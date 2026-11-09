@@ -1,9 +1,23 @@
 <!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>数据维护 · SWL Army Builder CN</title><link rel="stylesheet" href="style.css"></head><body>
 <header><div><span class="eyebrow">SWL ARMY BUILDER CN / DATA STUDIO</span><h1>数据维护中心</h1><nav class="module-nav"><a href="index.html">写表器</a><a class="active" href="maintenance.html">数据维护</a></nav></div></header>
 <div class="dashboard"><p class="lead">这是写表器的分支模块：维护卡牌数据与规则包。保存功能需要 <code>python server.py</code>（写回源文件与历史），Live Server 只能浏览。</p><div class="module-cards">
-<a class="module-card" href="units.html"><span class="eyebrow">01 / UNIT LIBRARY</span><h2>单位卡</h2><p>浏览原图与立绘，编辑属性、武器、军队准入、伙伴身份。</p></a>
-<a class="module-card" href="upgrades.html"><span class="eyebrow">02 / UPGRADE LIBRARY</span><h2>升级卡</h2><p>浏览卡图和中文卡文，维护槽位、宿主条件与卡文。</p></a>
-<a class="module-card" href="armies.html"><span class="eyebrow">03 / ARMY LIBRARY</span><h2>军表</h2><p>维护军表草稿与单位/升级实例，查看问题与费用。</p></a>
-<a class="module-card" href="rules.html"><span class="eyebrow">04 / RULE LIBRARY</span><h2>规则库</h2><p>维护语义槽位、专用槽授予、角色限定、唯一性/互斥、模式配额与战斗部队骨架。</p></a>
+<a class="module-card" href="units.html"><span class="eyebrow">01 / UNIT LIBRARY</span><h2>单位卡</h2><p>浏览原图与立绘，编辑属性、武器、军队准入、伙伴身份。</p><p class="module-count" id="count-units">载入中…</p></a>
+<a class="module-card" href="upgrades.html"><span class="eyebrow">02 / UPGRADE LIBRARY</span><h2>升级卡</h2><p>浏览卡图和中文卡文，维护槽位、宿主条件与卡文。</p><p class="module-count" id="count-upgrades">载入中…</p></a>
+<a class="module-card" href="armies.html"><span class="eyebrow">03 / ARMY LIBRARY</span><h2>军表</h2><p>维护军表草稿与单位/升级实例，查看问题与费用。</p><p class="module-count" id="count-armies">载入中…</p></a>
+<a class="module-card" href="rules.html"><span class="eyebrow">04 / RULE LIBRARY</span><h2>规则库</h2><p>维护语义槽位、槽位授予、角色限定、唯一性/互斥、模式配额与战斗部队骨架。</p><p class="module-count" id="count-rules">载入中…</p></a>
 </div><div class="notice">数据维护走 <code>python server.py --port 8770</code>（保存、历史、冲突检测需要它）；写表器主页 <code>index.html</code> 是纯静态，可直接用 Live Server 打开。</div></div>
+
+<script>
+(async()=>{
+  const load=p=>fetch(p).then(r=>r.ok?r.json():null).catch(()=>null);
+  const [units,upgrades,armies,rules]=await Promise.all([
+    load('data/units.json'),load('data/upgrades.json'),load('data/armies.json'),load('data/slot-rules.json')
+  ]);
+  const set=(id,text)=>{const n=document.getElementById(id);if(n)n.textContent=text};
+  if(units){const u=units.units||[];set('count-units','共 '+u.length+' 张 · 已校对 '+u.filter(x=>x.review&&x.review.status==='reviewed').length+' 张')}
+  if(upgrades){const c=upgrades.cards||[];set('count-upgrades','共 '+c.length+' 张 · 缺卡图 '+c.filter(x=>!x.assets||!x.assets.front).length+' 张')}
+  if(armies){const a=armies.armies||[];set('count-armies','共 '+a.length+' 份')}
+  if(rules){const s=rules.slots||[];const grants=((upgrades&&upgrades.cards)||[]).reduce((n,c)=>n+(((c.rules||{}).slotGrants)||[]).length,0);set('count-rules','语义槽位 '+s.length+' 类 · 槽位授予 '+grants+' 条')}
+})();
+</script>
 </body></html>

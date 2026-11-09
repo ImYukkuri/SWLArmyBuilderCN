@@ -1,7 +1,7 @@
 {
   "schema": "swl-upgrades/v1",
   "referenceVersion": "2026.11.04.0",
-  "updatedAt": "2026-11-09T10:21:47.816689+00:00",
+  "updatedAt": "2026-11-09T12:02:08.535706+00:00",
   "cards": [
     {
       "id": "21b-medical-droid",
@@ -18696,7 +18696,13 @@
         "slotTypes": [
           10
         ],
-        "locallyUnique": true
+        "locallyUnique": true,
+        "slotGrants": [
+          {
+            "trigger": "equipped",
+            "slot": "force"
+          }
+        ]
       },
       "review": {
         "status": "needs_review",
