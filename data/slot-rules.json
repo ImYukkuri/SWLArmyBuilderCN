@@ -1664,6 +1664,246 @@
       "status": "quotas_only",
       "alignment": "Dark"
     },
+    "8": {
+      "name": "Mandalorian Clans",
+      "parentFaction": null,
+      "alignment": "Mercenaries",
+      "modes": {
+        "standard": {
+          "rankQuotas": [
+            {
+              "rankId": 1,
+              "min": 1,
+              "max": 2
+            },
+            {
+              "rankId": 2,
+              "min": 2,
+              "max": 6
+            },
+            {
+              "rankId": 3,
+              "min": 0,
+              "max": 3
+            },
+            {
+              "rankId": 4,
+              "min": 0,
+              "max": 3
+            },
+            {
+              "rankId": 5,
+              "min": 0,
+              "max": 2
+            },
+            {
+              "rankId": 6,
+              "min": 0,
+              "max": 2
+            }
+          ],
+          "combined": []
+        },
+        "recon": {
+          "rankQuotas": [
+            {
+              "rankId": 1,
+              "min": 1,
+              "max": 3
+            },
+            {
+              "rankId": 2,
+              "min": 2,
+              "max": 4
+            },
+            {
+              "rankId": 3,
+              "min": 0,
+              "max": 3
+            },
+            {
+              "rankId": 4,
+              "min": 0,
+              "max": 3
+            },
+            {
+              "rankId": 5,
+              "min": 0,
+              "max": 1
+            },
+            {
+              "rankId": 6,
+              "min": 0,
+              "max": 2
+            }
+          ],
+          "combined": [
+            {
+              "tiers": [
+                1,
+                6
+              ],
+              "maximum": 3
+            }
+          ]
+        }
+      },
+      "textRules": [
+        "In a Mandalorian Clan, Mercenary units do count toward the minimum number of Ranks required and the army may include any number of Mercenaries at each Rank.",
+        "All units included in this army must have the same Affiliation as at least 1 {{Commander}} or {{Operative}} unit in this army.",
+        "During Setup, a player may choose to align their army with the Light Side or the Dark Side.",
+        "During Army Building, if all your {{Commander}} and {{Operative}} units have the same Affiliation, your army gains that Affiliation's special rules:"
+      ],
+      "options": [
+        {
+          "id": "clanWren",
+          "name": "Clan Wren",
+          "chooseOneKey": "a"
+        },
+        {
+          "id": "childrenOfTheWatch",
+          "name": "Children of the Watch",
+          "chooseOneKey": "a"
+        },
+        {
+          "id": "clanKryze",
+          "name": "Clan Kryze",
+          "chooseOneKey": "a"
+        },
+        {
+          "id": "clanSaxon",
+          "name": "Clan Saxon",
+          "chooseOneKey": "a"
+        },
+        {
+          "id": "unaffiliated",
+          "name": "Unaffiliated",
+          "chooseOneKey": "a"
+        },
+        {
+          "id": "veterans",
+          "name": "Veterans",
+          "chooseOneKey": null
+        },
+        {
+          "id": "toolsOfTrade",
+          "name": "Tools of the Trade",
+          "chooseOneKey": null
+        },
+        {
+          "id": null,
+          "name": "Rapid Deployment",
+          "chooseOneKey": null
+        },
+        {
+          "id": "gunsForHire",
+          "name": "Guns for Hire",
+          "chooseOneKey": null
+        },
+        {
+          "id": "featsOfValor",
+          "name": "Feats of Valor",
+          "chooseOneKey": null
+        }
+      ],
+      "machineRules": [],
+      "status": "text_only"
+    },
+    "9": {
+      "name": "Shadow Collective",
+      "parentFaction": null,
+      "alignment": "Dark",
+      "modes": {
+        "standard": {
+          "rankQuotas": [
+            {
+              "rankId": 1,
+              "min": 1,
+              "max": 4
+            },
+            {
+              "rankId": 2,
+              "min": 2,
+              "max": 6
+            },
+            {
+              "rankId": 3,
+              "min": 0,
+              "max": 4
+            },
+            {
+              "rankId": 4,
+              "min": 0,
+              "max": 3
+            },
+            {
+              "rankId": 5,
+              "min": 0,
+              "max": 2
+            },
+            {
+              "rankId": 6,
+              "min": 0,
+              "max": 3
+            }
+          ],
+          "combined": [
+            {
+              "tiers": [
+                1,
+                6
+              ],
+              "maximum": 4
+            }
+          ]
+        },
+        "recon": {
+          "rankQuotas": [
+            {
+              "rankId": 1,
+              "min": 1,
+              "max": 2
+            },
+            {
+              "rankId": 2,
+              "min": 1,
+              "max": 4
+            },
+            {
+              "rankId": 3,
+              "min": 0,
+              "max": 3
+            },
+            {
+              "rankId": 4,
+              "min": 0,
+              "max": 2
+            },
+            {
+              "rankId": 5,
+              "min": 0,
+              "max": 1
+            },
+            {
+              "rankId": 6,
+              "min": 0,
+              "max": 1
+            }
+          ],
+          "combined": [
+            {
+              "tiers": [
+                1,
+                6
+              ],
+              "maximum": 2
+            }
+          ]
+        }
+      },
+      "machineRules": [],
+      "status": "quotas_only"
+    },
     "10": {
       "name": "Stormtrooper Battalion",
       "parentFaction": "Empire",
@@ -2022,6 +2262,75 @@
       "options": [],
       "status": "quotas_only",
       "alignment": "Light"
+    },
+    "14": {
+      "name": "The Ohnaka Gang",
+      "parentFaction": null,
+      "alignment": "Mercenaries",
+      "modes": {
+        "standard": {
+          "rankQuotas": [
+            {
+              "rankId": 1,
+              "min": 0,
+              "max": 0
+            },
+            {
+              "rankId": 2,
+              "min": 3,
+              "max": 6
+            },
+            {
+              "rankId": 4,
+              "min": 0,
+              "max": 3
+            },
+            {
+              "rankId": 5,
+              "min": 2,
+              "max": 4
+            },
+            {
+              "rankId": 6,
+              "min": 1,
+              "max": 1
+            }
+          ],
+          "combined": []
+        },
+        "recon": {
+          "rankQuotas": [
+            {
+              "rankId": 1,
+              "min": 0,
+              "max": 0
+            },
+            {
+              "rankId": 2,
+              "min": 2,
+              "max": 5
+            },
+            {
+              "rankId": 4,
+              "min": 0,
+              "max": 2
+            },
+            {
+              "rankId": 5,
+              "min": 1,
+              "max": 3
+            },
+            {
+              "rankId": 6,
+              "min": 1,
+              "max": 1
+            }
+          ],
+          "combined": []
+        }
+      },
+      "machineRules": [],
+      "status": "quotas_only"
     },
     "15": {
       "name": "Rapid Interdiction Force",
@@ -2658,315 +2967,6 @@
       "options": [],
       "status": "quotas_only",
       "alignment": "Light"
-    },
-    "8": {
-      "name": "Mandalorian Clans",
-      "parentFaction": null,
-      "alignment": "Mercenaries",
-      "modes": {
-        "standard": {
-          "rankQuotas": [
-            {
-              "rankId": 1,
-              "min": 1,
-              "max": 2
-            },
-            {
-              "rankId": 2,
-              "min": 2,
-              "max": 6
-            },
-            {
-              "rankId": 3,
-              "min": 0,
-              "max": 3
-            },
-            {
-              "rankId": 4,
-              "min": 0,
-              "max": 3
-            },
-            {
-              "rankId": 5,
-              "min": 0,
-              "max": 2
-            },
-            {
-              "rankId": 6,
-              "min": 0,
-              "max": 2
-            }
-          ],
-          "combined": []
-        },
-        "recon": {
-          "rankQuotas": [
-            {
-              "rankId": 1,
-              "min": 1,
-              "max": 3
-            },
-            {
-              "rankId": 2,
-              "min": 2,
-              "max": 4
-            },
-            {
-              "rankId": 3,
-              "min": 0,
-              "max": 3
-            },
-            {
-              "rankId": 4,
-              "min": 0,
-              "max": 3
-            },
-            {
-              "rankId": 5,
-              "min": 0,
-              "max": 1
-            },
-            {
-              "rankId": 6,
-              "min": 0,
-              "max": 2
-            }
-          ],
-          "combined": [
-            {
-              "tiers": [
-                1,
-                6
-              ],
-              "maximum": 3
-            }
-          ]
-        }
-      },
-      "textRules": [
-        "In a Mandalorian Clan, Mercenary units do count toward the minimum number of Ranks required and the army may include any number of Mercenaries at each Rank.",
-        "All units included in this army must have the same Affiliation as at least 1 {{Commander}} or {{Operative}} unit in this army.",
-        "During Setup, a player may choose to align their army with the Light Side or the Dark Side.",
-        "During Army Building, if all your {{Commander}} and {{Operative}} units have the same Affiliation, your army gains that Affiliation's special rules:"
-      ],
-      "options": [
-        {
-          "id": "clanWren",
-          "name": "Clan Wren",
-          "chooseOneKey": "a"
-        },
-        {
-          "id": "childrenOfTheWatch",
-          "name": "Children of the Watch",
-          "chooseOneKey": "a"
-        },
-        {
-          "id": "clanKryze",
-          "name": "Clan Kryze",
-          "chooseOneKey": "a"
-        },
-        {
-          "id": "clanSaxon",
-          "name": "Clan Saxon",
-          "chooseOneKey": "a"
-        },
-        {
-          "id": "unaffiliated",
-          "name": "Unaffiliated",
-          "chooseOneKey": "a"
-        },
-        {
-          "id": "veterans",
-          "name": "Veterans",
-          "chooseOneKey": null
-        },
-        {
-          "id": "toolsOfTrade",
-          "name": "Tools of the Trade",
-          "chooseOneKey": null
-        },
-        {
-          "id": null,
-          "name": "Rapid Deployment",
-          "chooseOneKey": null
-        },
-        {
-          "id": "gunsForHire",
-          "name": "Guns for Hire",
-          "chooseOneKey": null
-        },
-        {
-          "id": "featsOfValor",
-          "name": "Feats of Valor",
-          "chooseOneKey": null
-        }
-      ],
-      "machineRules": [],
-      "status": "text_only"
-    },
-    "9": {
-      "name": "Shadow Collective",
-      "parentFaction": null,
-      "alignment": "Dark",
-      "modes": {
-        "standard": {
-          "rankQuotas": [
-            {
-              "rankId": 1,
-              "min": 1,
-              "max": 4
-            },
-            {
-              "rankId": 2,
-              "min": 2,
-              "max": 6
-            },
-            {
-              "rankId": 3,
-              "min": 0,
-              "max": 4
-            },
-            {
-              "rankId": 4,
-              "min": 0,
-              "max": 3
-            },
-            {
-              "rankId": 5,
-              "min": 0,
-              "max": 2
-            },
-            {
-              "rankId": 6,
-              "min": 0,
-              "max": 3
-            }
-          ],
-          "combined": [
-            {
-              "tiers": [
-                1,
-                6
-              ],
-              "maximum": 4
-            }
-          ]
-        },
-        "recon": {
-          "rankQuotas": [
-            {
-              "rankId": 1,
-              "min": 1,
-              "max": 2
-            },
-            {
-              "rankId": 2,
-              "min": 1,
-              "max": 4
-            },
-            {
-              "rankId": 3,
-              "min": 0,
-              "max": 3
-            },
-            {
-              "rankId": 4,
-              "min": 0,
-              "max": 2
-            },
-            {
-              "rankId": 5,
-              "min": 0,
-              "max": 1
-            },
-            {
-              "rankId": 6,
-              "min": 0,
-              "max": 1
-            }
-          ],
-          "combined": [
-            {
-              "tiers": [
-                1,
-                6
-              ],
-              "maximum": 2
-            }
-          ]
-        }
-      },
-      "machineRules": [],
-      "status": "quotas_only"
-    },
-    "14": {
-      "name": "The Ohnaka Gang",
-      "parentFaction": null,
-      "alignment": "Mercenaries",
-      "modes": {
-        "standard": {
-          "rankQuotas": [
-            {
-              "rankId": 1,
-              "min": 0,
-              "max": 0
-            },
-            {
-              "rankId": 2,
-              "min": 3,
-              "max": 6
-            },
-            {
-              "rankId": 4,
-              "min": 0,
-              "max": 3
-            },
-            {
-              "rankId": 5,
-              "min": 2,
-              "max": 4
-            },
-            {
-              "rankId": 6,
-              "min": 1,
-              "max": 1
-            }
-          ],
-          "combined": []
-        },
-        "recon": {
-          "rankQuotas": [
-            {
-              "rankId": 1,
-              "min": 0,
-              "max": 0
-            },
-            {
-              "rankId": 2,
-              "min": 2,
-              "max": 5
-            },
-            {
-              "rankId": 4,
-              "min": 0,
-              "max": 2
-            },
-            {
-              "rankId": 5,
-              "min": 1,
-              "max": 3
-            },
-            {
-              "rankId": 6,
-              "min": 1,
-              "max": 1
-            }
-          ],
-          "combined": []
-        }
-      },
-      "machineRules": [],
-      "status": "quotas_only"
     }
   },
   "predicates": {
@@ -3036,7 +3036,10 @@
           "exclude": [],
           "note": "非机器人步兵可携带“仅限冲锋队/岸防兵/侦察兵/死亡士兵”的重武器"
         }
-      ]
+      ],
+      "unitCaps": [],
+      "slots": [],
+      "keywords": []
     },
     "17": {
       "unitCaps": [
