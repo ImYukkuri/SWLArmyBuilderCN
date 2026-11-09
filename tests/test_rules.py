@@ -141,8 +141,8 @@ class ValidateArmyTest(unittest.TestCase):
         # A unit may equip only one card of a given name, across all local versions.
         army = {"mode": "standard", "armyId": 2, "pointsLimit": 1000, "units": [
             {"instanceId": "u1", "unitId": "empire-scout", "upgrades": [
-                {"instanceId": "c1", "upgradeId": "training-dug-in", "slotIndex": 1},
-                {"instanceId": "c2", "upgradeId": "upstream-19897", "slotIndex": 2}]}],
+                {"instanceId": "c1", "upgradeId": "training-imperial-march", "slotIndex": 1},
+                {"instanceId": "c2", "upgradeId": "upstream-19896", "slotIndex": 2}]}],
             "commandIds": [], "options": []}
         report = rules.validate_army(army)
         self.assertIn("local_duplicate_name", [i["code"] for i in report["issues"]])
