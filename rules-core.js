@@ -301,7 +301,7 @@ window.RulesCore = (() => {
   function validateArmy(army, data) {
     const { units, upgrades, defs, pkg } = data;
     const issues = [];
-    const issue = (status, code, message, instanceId) => issues.push({ status, code, message, instanceId });
+    const issue = (status, code, message, instanceId, extra) => issues.push({ status, code, message, instanceId, ...(extra || {}) });
     const nameIndex = buildNameIndex(upgrades, defs);
 
     let basePoints = 0;
@@ -497,11 +497,11 @@ window.RulesCore = (() => {
     for (const q of mode.rankQuotas || []) quotas[q.rankId] = q;
     for (const [rankId, count] of Object.entries(maxCounts)) {
       const q = quotas[rankId];
-      if (q && count > (q.max ?? 99)) issue("invalid", "rank_max", `军阶 ${rankId} 超过上限 ${q.max}`, null);
+      if (q && count > (q.max ?? 99)) issue("invalid", "rank_max", `军阶 ${rankId} 超过上限 ${q.max}`, null, { rank: Number(rankId) });
     }
     for (const [rankId, q] of Object.entries(quotas)) {
       if (waivedTiers.has(rankId)) continue;
-      if ((minCounts[rankId] || 0) < (q.min ?? 0)) issue("invalid", "rank_min", `军阶 ${rankId} 未满最低要求 ${q.min}`, null);
+      if ((minCounts[rankId] || 0) < (q.min ?? 0)) issue("invalid", "rank_min", `军阶 ${rankId} 未满最低要求 ${q.min}`, null, { rank: Number(rankId) });
     }
     for (const combo of mode.combined || []) {
       let total = 0;

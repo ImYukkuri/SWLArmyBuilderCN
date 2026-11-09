@@ -5,6 +5,7 @@ const uid=()=>crypto.randomUUID();
 let data=null,army=null,browser=null;const Q=new URLSearchParams(location.search),DATA_BASE=Q.get('base')||'';
 
 const RANK_ORDER=[1,6,2,3,4,5];
+const RANK_GLYPH={1:'5',6:'b',2:'6',3:'7',4:'8',5:'9'};
 const RANK_SHORT={1:"指挥",6:"特工",2:"核心",3:"特种",4:"支援",5:"重型"};
 const RANK_LABEL={1:"Commander",6:"Operative",2:"Corps",3:"Special Forces",4:"Support",5:"Heavy"};
 
@@ -110,14 +111,35 @@ function upgradeCard(card,inst,slotIndex){
   return b;
 }
 
-function renderRankBar(){
+function invalidMarks(report){
+  const units=new Set(),ranks=new Set();
+  for(const i of (report&&report.issues)||[]){
+    if(i.status!=='invalid')continue;
+    if(i.rank!=null)ranks.add(Number(i.rank));
+    const key=i.instanceId;
+    if(!key)continue;
+    if(army.units.some(u=>u.instanceId===key)){units.add(key);continue}
+    for(const u of army.units){if((u.upgrades||[]).some(x=>x.instanceId===key)){units.add(u.instanceId);break}}
+  }
+  return {units,ranks};
+}
+function renderRankBar(report){
   const bar=$('#rank-bar');bar.replaceChildren();
-  const counts={};
-  for(const inst of army.units){const u=data.units[inst.unitId];if(!u)continue;const r=rankOf(u,army.armyId);if(r!=null)counts[r]=(counts[r]||0)+1}
+  const counts={},badByRank={};
+  const marks=invalidMarks(report);
+  for(const inst of army.units){
+    const u=data.units[inst.unitId];if(!u)continue;
+    const r=rankOf(u,army.armyId);if(r==null)continue;
+    counts[r]=(counts[r]||0)+1;
+    if(marks.ranks.has(r)||marks.units.has(inst.instanceId))badByRank[r]=true;
+  }
   for(const r of RANK_ORDER){
     const chip=el('div');chip.className='rank-chip';chip.title='查看 '+RANK_LABEL[r]+' 单位卡';
     if(browser&&browser.mode==='units'&&browser.rank===r)chip.classList.add('active');
-    chip.textContent=RANK_SHORT[r];const b=el('span',String(counts[r]||0));b.className='badge';chip.append(b);
+    const icon=el('span',RANK_GLYPH[r]||'');icon.className='rank-icon';
+    const name=el('span',RANK_SHORT[r]);name.className='rank-name';
+    const b=el('span',String(counts[r]||0));b.className='badge'+(badByRank[r]?' bad':'');
+    chip.append(icon,name,b);
     chip.onclick=()=>{browser={mode:'units',rank:r};render()};
     bar.append(chip);
   }
@@ -200,7 +222,7 @@ function render(){
   if(!data||!army)return;
   renderFaction();renderMode();
   const report=RulesCore.validateArmy(army,data);
-  renderPoints(report);renderRankBar();renderUnits();renderBrowser();renderIssues(report);
+  renderPoints(report);renderRankBar(report);renderUnits();renderBrowser();renderIssues(report);
   const bad=report.issues.filter(i=>i.status==='invalid').length;
   $('#issue-count').textContent=bad?('⚠ '+bad):'';
 }

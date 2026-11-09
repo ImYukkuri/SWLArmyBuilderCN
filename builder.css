@@ -6,10 +6,14 @@
 .bf-field select{min-width:140px;background:#0d1520;border:1px solid #344961;border-radius:6px;padding:6px 9px;color:var(--ink)}
 .points-badge{margin-left:auto;font-size:16px;font-weight:700;color:var(--ink);padding-bottom:4px}
 .info-btn{width:26px;height:26px;border-radius:50%;padding:0;font-weight:700;color:#7fd6ff;border-color:#3d6f92;background:#132838}
-.rank-bar{display:flex;gap:10px;justify-content:flex-end;padding:4px 2px 10px;border-bottom:1px solid var(--line)}
-.rank-chip{position:relative;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#16212f;border:1px solid #2b3b50;font-size:11px;color:var(--muted);cursor:pointer}
-.rank-chip:hover,.rank-chip.active{border-color:var(--accent);color:var(--ink)}
-.rank-chip .badge{position:absolute;top:-5px;left:-5px;min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:#c23b3b;color:#fff;font-size:10px;line-height:16px;text-align:center}
+.rank-bar{display:flex;gap:18px;justify-content:flex-end;align-items:flex-start;padding:6px 2px 10px;border-bottom:1px solid var(--line)}
+.rank-chip{position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;width:46px;background:none;border:0;border-radius:0;height:auto;padding:0;cursor:pointer}
+.rank-chip .rank-icon{font:26px/1 LegionSymbols;color:var(--ink);display:block}
+.rank-chip .rank-name{font-size:10px;line-height:1.2;color:var(--muted);letter-spacing:.04em}
+.rank-chip:hover .rank-icon,.rank-chip.active .rank-icon{color:var(--accent)}
+.rank-chip:hover .rank-name,.rank-chip.active .rank-name{color:var(--ink)}
+.rank-chip .badge{position:absolute;top:-6px;left:0;min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:#e6edf7;color:#16212f;font-size:10px;font-weight:700;line-height:16px;text-align:center}
+.rank-chip .badge.bad{background:#c23b3b;color:#fff}
 .builder-body{display:grid;grid-template-columns:minmax(0,1fr) 460px;gap:18px;margin-top:8px}
 .army-list{display:flex;flex-direction:column}
 .unit-row{display:flex;align-items:center;gap:10px;padding:7px 6px;border-bottom:1px solid #202e40;cursor:pointer}

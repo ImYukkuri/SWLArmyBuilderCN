@@ -431,8 +431,8 @@ def validate_army(army):
     sel = []
     name_index = build_name_index(upgrades, definitions)
 
-    def issue(status, code, message, instance):
-        issues.append({"status": status, "code": code, "message": message, "instanceId": instance})
+    def issue(status, code, message, instance, extra=None):
+        issues.append({"status": status, "code": code, "message": message, "instanceId": instance, **(extra or {})})
 
     mode = package.get("modes", {}).get(army.get("mode", "standard"), {})
     battle_force = (package.get("battleForces") or {}).get(str(army.get("armyId")))
@@ -664,12 +664,12 @@ def validate_army(army):
     for rank_id, count in max_counts.items():
         q = quotas.get(rank_id)
         if q and count > q.get("max", 99):
-            issue("invalid", "rank_max", f"军阶 {rank_id} 超过上限 {q['max']}", None)
+            issue("invalid", "rank_max", f"军阶 {rank_id} 超过上限 {q['max']}", None, {"rank": int(rank_id)})
     for rank_id, q in quotas.items():
         if rank_id in waived_tiers:
             continue
         if min_counts.get(rank_id, 0) < q.get("min", 0):
-            issue("invalid", "rank_min", f"军阶 {rank_id} 未满最低要求 {q['min']}", None)
+            issue("invalid", "rank_min", f"军阶 {rank_id} 未满最低要求 {q['min']}", None, {"rank": int(rank_id)})
     for combo in mode.get("combined", []) or []:
         total = sum(max_counts.get(t, 0) for t in combo.get("tiers", []))
         if total > combo.get("maximum", 99):
