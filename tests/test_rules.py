@@ -251,6 +251,15 @@ class ValidateArmyTest(unittest.TestCase):
             "commandIds": [], "options": []}
         self.assertIn("unit_conflict", [i["code"] for i in rules.validate_army(army)["issues"]])
 
+    def test_cross_type_duplicate_by_name(self):
+        # Unique unit and unique upgrade sharing a name cannot share an army (Rex unit + Rex upgrade).
+        army = {"mode": "standard", "armyId": 4, "pointsLimit": 2000, "units": [
+            {"instanceId": "u1", "unitId": "republic-rex", "upgrades": []},
+            {"instanceId": "u2", "unitId": "republic-clone-trooper",
+             "upgrades": [{"instanceId": "c1", "upgradeId": "clone-rex", "slotIndex": 0}]}],
+            "commandIds": [], "options": []}
+        self.assertIn("cross_type_duplicate", [i["code"] for i in rules.validate_army(army)["issues"]])
+
     def test_two_darksaber_versions_conflict(self):
         army = {"mode": "standard", "armyId": 8, "pointsLimit": 1000, "units": [
             {"instanceId": "u1", "unitId": "mercenary-clan-kryze-bo-katan-kryze", "upgrades": [

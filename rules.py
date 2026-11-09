@@ -761,6 +761,17 @@ def validate_army(army):
     for key, n in unique_unit_counts.items():
         if n > 1:
             issue("invalid", "unit_unique_duplicate", f"独特单位「{key}」整军只能携带一次", None)
+    unique_unit_keys = {normalize_name(k) for k in unique_unit_counts}
+    if unique_unit_keys:
+        for upstream_id, card_id, ckey in seen:
+            card = upgrades.get(card_id) or {}
+            r = card.get("rules") or {}
+            rule = (package.get("upgradeRules") or {}).get(str(card.get("upstream", {}).get("id", "")), {})
+            if not (r.get("unique") is True or rule.get("armyUnique")):
+                continue
+            key = normalize_name((card.get("name") or {}).get("en") or card_id)
+            if key in unique_unit_keys:
+                issue("invalid", "cross_type_duplicate", f"独特卡「{(card.get('name') or {}).get('en') or card_id}」与同名单位在同一军表", ckey)
 
     # rank counting with tier exemptions (all from local unit rules/factions)
     army_unit_upstream_ids = set()

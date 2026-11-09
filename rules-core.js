@@ -580,6 +580,17 @@ window.RulesCore = (() => {
       }
     }
     for (const [key, n] of Object.entries(uniqueUnitCounts)) if (n > 1) issue("invalid", "unit_unique_duplicate", `独特单位「${key}」整军只能携带一次`, null);
+    const uniqueUnitKeys = new Set(Object.keys(uniqueUnitCounts).map(normalizeKey));
+    if (uniqueUnitKeys.size) {
+      for (const [upstreamId, cardId, ckey] of seen) {
+        const card = upgrades[cardId] || {};
+        const r = card.rules || {};
+        const rule = (pkg.upgradeRules || {})[String((card.upstream && card.upstream.id) || "")] || {};
+        if (!(r.unique === true || rule.armyUnique)) continue;
+        const key = normalizeKey((card.name && card.name.en) || cardId);
+        if (uniqueUnitKeys.has(key)) issue("invalid", "cross_type_duplicate", `独特卡「${(card.name && card.name.en) || cardId}」与同名单位在同一军表`, ckey);
+      }
+    }
 
     // rank counting with exemptions (local)
     const armyUnitUpstream = new Set();
