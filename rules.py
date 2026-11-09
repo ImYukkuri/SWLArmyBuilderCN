@@ -88,7 +88,7 @@ def evaluate(cond, ctx: dict, predicates: dict | None = None):
             if op == "in":
                 return actual in value
             if op == "contains":
-                return (value in actual) if hasattr(actual, "__contains__") else None
+                return any(str(x) == str(value) for x in actual) if isinstance(actual, list) else None
             if op == "gte":
                 return actual >= value
             if op == "lte":
@@ -129,6 +129,7 @@ def _unit_context(unit, package):
             "defenseDie": (unit.get("stats") or {}).get("defenseDie"),
             "factionId": unit.get("factionId"),
             "rankId": unit.get("rankId"),
+            "affiliationIds": [str(a) for a in (unit.get("affiliationIds") or [])],
             "keywords": [k.get("id") for k in unit.get("keywords", []) if isinstance(k, dict)],
         }
     }
@@ -665,7 +666,7 @@ def validate_army(army):
     issues.append({
         "status": "unknown",
         "code": "coverage_note",
-        "message": "属性效果（addProperties/replaceProperties）已计算但尚未参与资格判断；费用修正、chooseOneKey、quantityLimitedBy、军阶豁免、军阶要求/替换军阶与互斥卡牌已执行。战斗部队规则未覆盖项仍标 unknown。",
+        "message": "属性效果（addProperties/replaceProperties）已保留，但尚未参与资格判断；卡面限制、费用修正、chooseOneKey、quantityLimitedBy、军阶豁免、军阶要求/替换军阶与互斥卡牌已执行。战斗部队规则未覆盖项仍标 unknown。",
         "instanceId": None,
     })
     return {

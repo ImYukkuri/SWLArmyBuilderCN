@@ -1,7 +1,7 @@
 {
   "schema": "swl-upgrades/v1",
   "referenceVersion": "2026.11.04.0",
-  "updatedAt": "2026-11-09T09:40:10.058685+00:00",
+  "updatedAt": "2026-11-09T10:21:47.816689+00:00",
   "cards": [
     {
       "id": "21b-medical-droid",
@@ -43,14 +43,6 @@
         "front": "assets/upgrade-cards/21b-medical-droid.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "faction",
-              "value": 1
-            }
-          ]
-        ],
         "requiresTier": [
           2
         ],
@@ -630,14 +622,6 @@
         "front": "assets/upgrade-cards/adaptive-combat-network.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "unitType",
-              "value": 6
-            }
-          ]
-        ],
         "slotTypes": [
           6
         ],
@@ -676,7 +660,16 @@
         ],
         "verification": "text_matched",
         "condition": {
-          "ref": "droidTrooperUnitType"
+          "all": [
+            {
+              "ref": "droidTrooperUnitType"
+            },
+            {
+              "field": "unit.unitTypeId",
+              "op": "eq",
+              "value": 6
+            }
+          ]
         },
         "execution": "not_connected",
         "ocrEvidence": {
@@ -724,14 +717,6 @@
         "front": "assets/upgrade-cards/agile-climber.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "unitType",
-              "value": 1
-            }
-          ]
-        ],
         "slotTypes": [
           10
         ],
@@ -774,10 +759,19 @@
         "condition": {
           "all": [
             {
-              "ref": "trooperUnitType"
+              "all": [
+                {
+                  "ref": "trooperUnitType"
+                },
+                {
+                  "ref": "whiteDefenseDie"
+                }
+              ]
             },
             {
-              "ref": "whiteDefenseDie"
+              "field": "unit.unitTypeId",
+              "op": "eq",
+              "value": 1
             }
           ]
         },
@@ -2802,14 +2796,6 @@
         "front": "assets/upgrade-cards/axe-woves.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "affiliation",
-              "value": 1081
-            }
-          ]
-        ],
         "unavailableWith": [
           "Axe Woves"
         ],
@@ -2882,7 +2868,11 @@
           "description.en#leading-restriction"
         ],
         "verification": "visually_checked",
-        "condition": null,
+        "condition": {
+          "field": "unit.affiliationIds",
+          "op": "contains",
+          "value": 1081
+        },
         "execution": "unmapped",
         "unmappedReasons": [
           "context_field_missing_for_icon"
@@ -5113,18 +5103,6 @@
         "front": "assets/upgrade-cards/baron-rudor.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "faction",
-              "value": 2
-            },
-            {
-              "property": "unitType",
-              "value": 2
-            }
-          ]
-        ],
         "unavailableWith": [
           "Baron Rudor"
         ],
@@ -6178,14 +6156,6 @@
         "front": "assets/upgrade-cards/bo-katan-kryze.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "affiliation",
-              "value": 1081
-            }
-          ]
-        ],
         "unavailableWith": [
           "Bo-Katan Kryze"
         ],
@@ -6247,7 +6217,11 @@
           "description.en#leading-restriction"
         ],
         "verification": "visually_checked",
-        "condition": null,
+        "condition": {
+          "field": "unit.affiliationIds",
+          "op": "contains",
+          "value": 1081
+        },
         "execution": "unmapped",
         "unmappedReasons": [
           "context_field_missing_for_icon"
@@ -7191,14 +7165,6 @@
         "front": "assets/upgrade-cards/cassian-andor.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "faction",
-              "value": 1
-            }
-          ]
-        ],
         "unavailableWith": [
           "Cassian Andor"
         ],
@@ -7350,14 +7316,6 @@
         "front": "assets/upgrade-cards/cassian-andor-2.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "faction",
-              "value": 1
-            }
-          ]
-        ],
         "unavailableWith": [
           "Cassian Andor"
         ],
@@ -7597,14 +7555,6 @@
         "front": "assets/upgrade-cards/champion-of-the-watch.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "unitType",
-              "value": 9
-            }
-          ]
-        ],
         "unavailableIn": [
           [
             33797
@@ -7914,14 +7864,6 @@
         "front": "assets/upgrade-cards/children-of-the-watch.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "unitType",
-              "value": 9
-            }
-          ]
-        ],
         "unavailableWith": [
           "clanWren",
           "clanKryze",
@@ -8354,14 +8296,6 @@
         "front": "assets/upgrade-cards/clan-kryze.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "unitType",
-              "value": 9
-            }
-          ]
-        ],
         "unavailableWith": [
           "childrenOfTheWatch",
           "clanWren",
@@ -8467,14 +8401,6 @@
         "front": "assets/upgrade-cards/clan-saxon.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "unitType",
-              "value": 9
-            }
-          ]
-        ],
         "unavailableWith": [
           "childrenOfTheWatch",
           "clanWren",
@@ -8590,14 +8516,6 @@
         "front": "assets/upgrade-cards/clan-wren.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "unitType",
-              "value": 9
-            }
-          ]
-        ],
         "unavailableWith": [
           "childrenOfTheWatch",
           "clanKryze",
@@ -9065,14 +8983,6 @@
         "front": "assets/upgrade-cards/clone-comms.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "unitType",
-              "value": 5
-            }
-          ]
-        ],
         "requiresTier": [
           2
         ],
@@ -9308,14 +9218,6 @@
         "front": "assets/upgrade-cards/clone-engineer.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "unitType",
-              "value": 5
-            }
-          ]
-        ],
         "requiresTier": [
           2
         ],
@@ -9798,14 +9700,6 @@
         "front": "assets/upgrade-cards/clone-medic.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "unitType",
-              "value": 5
-            }
-          ]
-        ],
         "unique": false,
         "slotTypes": [
           19
@@ -10139,14 +10033,6 @@
         "front": "assets/upgrade-cards/clone-rex.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "faction",
-              "value": 4
-            }
-          ]
-        ],
         "unavailableWith": [
           "Clone Captain Rex"
         ],
@@ -10404,14 +10290,6 @@
         "front": "assets/upgrade-cards/clone-shock-pilot.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "faction",
-              "value": 4
-            }
-          ]
-        ],
         "requiresTier": [
           5
         ],
@@ -10757,14 +10635,6 @@
         "front": "assets/upgrade-cards/clone-veteran-pilot.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "faction",
-              "value": 4
-            }
-          ]
-        ],
         "requiresTier": [
           5
         ],
@@ -12545,17 +12415,6 @@
         "front": "assets/upgrade-cards/comms-control-array.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "unitType",
-              "value": [
-                2,
-                3
-              ]
-            }
-          ]
-        ],
         "unavailableIn": [
           [
             31844
@@ -12603,12 +12462,24 @@
         ],
         "verification": "text_matched",
         "condition": {
-          "field": "unit.unitTypeId",
-          "op": "in",
-          "value": [
-            2,
-            3,
-            "local:flying_vehicle"
+          "all": [
+            {
+              "field": "unit.unitTypeId",
+              "op": "in",
+              "value": [
+                2,
+                3,
+                "local:flying_vehicle"
+              ]
+            },
+            {
+              "field": "unit.unitTypeId",
+              "op": "in",
+              "value": [
+                2,
+                3
+              ]
+            }
           ]
         },
         "execution": "not_connected",
@@ -12952,18 +12823,6 @@
         "front": "assets/upgrade-cards/comms-linked-targeting.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "unitType",
-              "value": [
-                4,
-                2,
-                3
-              ]
-            }
-          ]
-        ],
         "unavailableIn": [
           [
             31844
@@ -13021,17 +12880,30 @@
         ],
         "verification": "text_matched",
         "condition": {
-          "any": [
+          "all": [
             {
-              "ref": "emplacementTrooperUnitType"
+              "any": [
+                {
+                  "ref": "emplacementTrooperUnitType"
+                },
+                {
+                  "field": "unit.unitTypeId",
+                  "op": "in",
+                  "value": [
+                    2,
+                    3,
+                    "local:flying_vehicle"
+                  ]
+                }
+              ]
             },
             {
               "field": "unit.unitTypeId",
               "op": "in",
               "value": [
+                4,
                 2,
-                3,
-                "local:flying_vehicle"
+                3
               ]
             }
           ]
@@ -13083,17 +12955,6 @@
         "front": "assets/upgrade-cards/comms-onboard.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "unitType",
-              "value": [
-                2,
-                3
-              ]
-            }
-          ]
-        ],
         "unavailableIn": [
           [
             31844
@@ -13151,12 +13012,24 @@
         ],
         "verification": "text_matched",
         "condition": {
-          "field": "unit.unitTypeId",
-          "op": "in",
-          "value": [
-            2,
-            3,
-            "local:flying_vehicle"
+          "all": [
+            {
+              "field": "unit.unitTypeId",
+              "op": "in",
+              "value": [
+                2,
+                3,
+                "local:flying_vehicle"
+              ]
+            },
+            {
+              "field": "unit.unitTypeId",
+              "op": "in",
+              "value": [
+                2,
+                3
+              ]
+            }
           ]
         },
         "execution": "not_connected",
@@ -13415,14 +13288,6 @@
         "front": "assets/upgrade-cards/crew-door-gunner.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "keywords",
-              "value": 158
-            }
-          ]
-        ],
         "unique": false,
         "slotTypes": [
           13,
@@ -14350,14 +14215,6 @@
         "front": "assets/upgrade-cards/din-djarin.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "affiliation",
-              "value": 965
-            }
-          ]
-        ],
         "unavailableWith": [
           "Din Djarin"
         ],
@@ -14418,7 +14275,11 @@
           "description.en#leading-restriction"
         ],
         "verification": "visually_checked",
-        "condition": null,
+        "condition": {
+          "field": "unit.affiliationIds",
+          "op": "contains",
+          "value": 965
+        },
         "execution": "unmapped",
         "unmappedReasons": [
           "context_field_missing_for_icon"
@@ -15735,14 +15596,6 @@
         "front": "assets/upgrade-cards/e4-medical.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "unitType",
-              "value": 6
-            }
-          ]
-        ],
         "unavailableIn": [
           [
             6180
@@ -15810,12 +15663,21 @@
         "condition": {
           "all": [
             {
-              "field": "unit.factionId",
-              "op": "eq",
-              "value": 5
+              "all": [
+                {
+                  "field": "unit.factionId",
+                  "op": "eq",
+                  "value": 5
+                },
+                {
+                  "ref": "droidTrooperUnitType"
+                }
+              ]
             },
             {
-              "ref": "droidTrooperUnitType"
+              "field": "unit.unitTypeId",
+              "op": "eq",
+              "value": 6
             }
           ]
         },
@@ -15902,14 +15764,6 @@
         "front": "assets/upgrade-cards/echo-arc.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "unitType",
-              "value": 5
-            }
-          ]
-        ],
         "unavailableIn": [
           [
             25980
@@ -16970,18 +16824,6 @@
         "front": "assets/upgrade-cards/ewoks-call-to-arms.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "unitType",
-              "value": 1
-            },
-            {
-              "property": "affiliation",
-              "value": 7
-            }
-          ]
-        ],
         "unique": false,
         "limit": 2,
         "slotTypes": [
@@ -17022,7 +16864,25 @@
         ],
         "verification": "visually_checked",
         "condition": {
-          "ref": "trooperUnitType"
+          "all": [
+            {
+              "ref": "trooperUnitType"
+            },
+            {
+              "all": [
+                {
+                  "field": "unit.unitTypeId",
+                  "op": "eq",
+                  "value": 1
+                },
+                {
+                  "field": "unit.affiliationIds",
+                  "op": "contains",
+                  "value": 7
+                }
+              ]
+            }
+          ]
         },
         "execution": "not_connected",
         "visualReview": {
@@ -17178,18 +17038,6 @@
         "front": "assets/upgrade-cards/ewoks-dwellers.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "unitType",
-              "value": 1
-            },
-            {
-              "property": "affiliation",
-              "value": 7
-            }
-          ]
-        ],
         "addProperties": [
           [
             {
@@ -17237,7 +17085,20 @@
           "description.en#leading-restriction"
         ],
         "verification": "visually_checked",
-        "condition": null,
+        "condition": {
+          "all": [
+            {
+              "field": "unit.unitTypeId",
+              "op": "eq",
+              "value": 1
+            },
+            {
+              "field": "unit.affiliationIds",
+              "op": "contains",
+              "value": 7
+            }
+          ]
+        },
         "execution": "unmapped",
         "unmappedReasons": [
           "context_field_missing_for_icon"
@@ -18093,18 +17954,6 @@
         "front": "assets/upgrade-cards/first-sergeant-arbmab.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "faction",
-              "value": 2
-            },
-            {
-              "property": "unitType",
-              "value": 3
-            }
-          ]
-        ],
         "unavailableWith": [
           "First Sergeant Arbmab"
         ],
@@ -18396,14 +18245,6 @@
         "front": "assets/upgrade-cards/flame-projector.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "unitType",
-              "value": 9
-            }
-          ]
-        ],
         "limit": 2,
         "slotTypes": [
           2
@@ -20920,14 +20761,6 @@
         "front": "assets/upgrade-cards/fx-9-medical.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "faction",
-              "value": 2
-            }
-          ]
-        ],
         "unavailableIn": [
           [
             6180
@@ -21052,32 +20885,6 @@
         "front": "assets/upgrade-cards/galaar-15-carbines.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "affiliation",
-              "value": 1084
-            }
-          ],
-          [
-            {
-              "property": "affiliation",
-              "value": 1083
-            }
-          ],
-          [
-            {
-              "property": "affiliation",
-              "value": 1082
-            }
-          ],
-          [
-            {
-              "property": "affiliation",
-              "value": 1081
-            }
-          ]
-        ],
         "availableIn": [
           33797,
           33796
@@ -21125,7 +20932,30 @@
           "description.en#leading-restriction"
         ],
         "verification": "visually_checked",
-        "condition": null,
+        "condition": {
+          "any": [
+            {
+              "field": "unit.affiliationIds",
+              "op": "contains",
+              "value": 1084
+            },
+            {
+              "field": "unit.affiliationIds",
+              "op": "contains",
+              "value": 1083
+            },
+            {
+              "field": "unit.affiliationIds",
+              "op": "contains",
+              "value": 1082
+            },
+            {
+              "field": "unit.affiliationIds",
+              "op": "contains",
+              "value": 1081
+            }
+          ]
+        },
         "execution": "unmapped",
         "unmappedReasons": [
           "context_field_missing_for_icon",
@@ -21553,14 +21383,6 @@
         "front": "assets/upgrade-cards/gangster-boss.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "affiliation",
-              "value": 3
-            }
-          ]
-        ],
         "unavailableWith": [
           "Gang Boss"
         ],
@@ -21628,9 +21450,18 @@
         ],
         "verification": "visually_checked",
         "condition": {
-          "field": "unit.rankId",
-          "op": "eq",
-          "value": 5
+          "all": [
+            {
+              "field": "unit.rankId",
+              "op": "eq",
+              "value": 5
+            },
+            {
+              "field": "unit.affiliationIds",
+              "op": "contains",
+              "value": 3
+            }
+          ]
         },
         "execution": "not_connected",
         "visualReview": {
@@ -22072,14 +21903,6 @@
         "front": "assets/upgrade-cards/gar-saxon.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "affiliation",
-              "value": 1083
-            }
-          ]
-        ],
         "unavailableWith": [
           "Gar Saxon"
         ],
@@ -22150,7 +21973,11 @@
           "description.en#leading-restriction"
         ],
         "verification": "visually_checked",
-        "condition": null,
+        "condition": {
+          "field": "unit.affiliationIds",
+          "op": "contains",
+          "value": 1083
+        },
         "execution": "unmapped",
         "unmappedReasons": [
           "context_field_missing_for_icon"
@@ -23293,18 +23120,6 @@
         "front": "assets/upgrade-cards/general-weiss.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "faction",
-              "value": 2
-            },
-            {
-              "property": "unitType",
-              "value": 3
-            }
-          ]
-        ],
         "unavailableWith": [
           "General Weiss"
         ],
@@ -24848,14 +24663,6 @@
         "front": "assets/upgrade-cards/governor-pryce.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "faction",
-              "value": 2
-            }
-          ]
-        ],
         "unavailableWith": [
           "Governor Pryce"
         ],
@@ -27152,21 +26959,6 @@
         "front": "assets/upgrade-cards/hit-the-dirt.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "unitType",
-              "value": [
-                1,
-                4,
-                5,
-                7,
-                8,
-                9
-              ]
-            }
-          ]
-        ],
         "unavailableIn": [
           [
             23656
@@ -27388,20 +27180,36 @@
             {
               "all": [
                 {
+                  "all": [
+                    {
+                      "ref": "trooperUnitType"
+                    },
+                    {
+                      "not": {
+                        "ref": "droidTrooperUnitType"
+                      }
+                    }
+                  ]
+                },
+                {
                   "ref": "trooperUnitType"
                 },
                 {
-                  "not": {
-                    "ref": "droidTrooperUnitType"
-                  }
+                  "ref": "whiteDefenseDie"
                 }
               ]
             },
             {
-              "ref": "trooperUnitType"
-            },
-            {
-              "ref": "whiteDefenseDie"
+              "field": "unit.unitTypeId",
+              "op": "in",
+              "value": [
+                1,
+                4,
+                5,
+                7,
+                "local:wookiee_trooper",
+                9
+              ]
             }
           ]
         },
@@ -27799,14 +27607,6 @@
         "front": "assets/upgrade-cards/imperial-comms.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "faction",
-              "value": 2
-            }
-          ]
-        ],
         "unavailableIn": [
           [
             6180
@@ -27920,18 +27720,6 @@
         "front": "assets/upgrade-cards/imperial-hammers.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "faction",
-              "value": 2
-            },
-            {
-              "property": "unitType",
-              "value": 3
-            }
-          ]
-        ],
         "unavailableWith": [
           {
             "id": 8,
@@ -28050,14 +27838,6 @@
         "front": "assets/upgrade-cards/imperial-officer.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "faction",
-              "value": 2
-            }
-          ]
-        ],
         "unavailableIn": [
           [
             6180
@@ -28194,14 +27974,6 @@
         "front": "assets/upgrade-cards/imperial-probe-droid.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "faction",
-              "value": 2
-            }
-          ]
-        ],
         "unavailableIn": [
           [
             6180
@@ -28332,17 +28104,6 @@
         "front": "assets/upgrade-cards/infantry-support.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "unitType",
-              "value": [
-                2,
-                3
-              ]
-            }
-          ]
-        ],
         "slotTypes": [
           6
         ],
@@ -28381,12 +28142,24 @@
         ],
         "verification": "text_matched",
         "condition": {
-          "field": "unit.unitTypeId",
-          "op": "in",
-          "value": [
-            2,
-            3,
-            "local:flying_vehicle"
+          "all": [
+            {
+              "field": "unit.unitTypeId",
+              "op": "in",
+              "value": [
+                2,
+                3,
+                "local:flying_vehicle"
+              ]
+            },
+            {
+              "field": "unit.unitTypeId",
+              "op": "in",
+              "value": [
+                2,
+                3
+              ]
+            }
           ]
         },
         "execution": "not_connected",
@@ -29799,14 +29572,6 @@
         "front": "assets/upgrade-cards/kallus.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "faction",
-              "value": 2
-            }
-          ]
-        ],
         "unavailableWith": [
           "Agent Kallus"
         ],
@@ -30078,14 +29843,6 @@
         "front": "assets/upgrade-cards/ki-adi-mundi-leader.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "unitType",
-              "value": 5
-            }
-          ]
-        ],
         "unavailableWith": [
           "Ki-Adi-Mundi"
         ],
@@ -30225,14 +29982,6 @@
         "front": "assets/upgrade-cards/kraken.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "faction",
-              "value": 5
-            }
-          ]
-        ],
         "unavailableIn": [
           [
             19103
@@ -31445,29 +31194,6 @@
         "front": "assets/upgrade-cards/lying-in-wait.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "unitType",
-              "value": [
-                1,
-                4,
-                5,
-                6,
-                7,
-                8,
-                9
-              ]
-            },
-            {
-              "property": "keywords",
-              "value": [
-                14,
-                141
-              ]
-            }
-          ]
-        ],
         "slotTypes": [
           10
         ],
@@ -31505,7 +31231,37 @@
           "references/upgrades-slim.json#requirements"
         ],
         "verification": "text_matched",
-        "condition": null,
+        "condition": {
+          "all": [
+            {
+              "field": "unit.unitTypeId",
+              "op": "in",
+              "value": [
+                1,
+                4,
+                5,
+                6,
+                7,
+                "local:wookiee_trooper",
+                9
+              ]
+            },
+            {
+              "any": [
+                {
+                  "field": "unit.keywords",
+                  "op": "contains",
+                  "value": "infiltrate"
+                },
+                {
+                  "field": "unit.keywords",
+                  "op": "contains",
+                  "value": "prepared_position"
+                }
+              ]
+            }
+          ]
+        },
         "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Trooper Unit with Infiltrate",
@@ -31591,14 +31347,6 @@
         "front": "assets/upgrade-cards/mace-windu-leader.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "unitType",
-              "value": 5
-            }
-          ]
-        ],
         "unavailableWith": [
           "Mace Windu"
         ],
@@ -32176,14 +31924,6 @@
         "front": "assets/upgrade-cards/mandalorian-rockets-clan.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "unitType",
-              "value": 9
-            }
-          ]
-        ],
         "unavailableIn": [
           [
             33788
@@ -32229,7 +31969,11 @@
           "references/upgrades-slim.json#requirements"
         ],
         "verification": "text_matched",
-        "condition": null,
+        "condition": {
+          "field": "unit.unitTypeId",
+          "op": "eq",
+          "value": 9
+        },
         "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Non-Mandalorian Initiates"
@@ -32277,14 +32021,6 @@
         "front": "assets/upgrade-cards/mandalorian-shields-clan.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "unitType",
-              "value": 9
-            }
-          ]
-        ],
         "unavailableIn": [
           [
             33771
@@ -32705,14 +32441,6 @@
         "front": "assets/upgrade-cards/micro-grenade-launcher.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "unitType",
-              "value": 9
-            }
-          ]
-        ],
         "slotTypes": [
           4
         ],
@@ -33473,18 +33201,6 @@
         "front": "assets/upgrade-cards/outer-rim-jockey.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "faction",
-              "value": 1
-            },
-            {
-              "property": "unitType",
-              "value": 2
-            }
-          ]
-        ],
         "unique": false,
         "addProperties": [
           [
@@ -33798,14 +33514,6 @@
         "front": "assets/upgrade-cards/paz-vizzla.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "affiliation",
-              "value": 965
-            }
-          ]
-        ],
         "unavailableWith": [
           "Paz Vizsla"
         ],
@@ -33877,7 +33585,11 @@
           "description.en#leading-restriction"
         ],
         "verification": "visually_checked",
-        "condition": null,
+        "condition": {
+          "field": "unit.affiliationIds",
+          "op": "contains",
+          "value": 965
+        },
         "execution": "unmapped",
         "unmappedReasons": [
           "context_field_missing_for_icon"
@@ -34062,14 +33774,6 @@
         "front": "assets/upgrade-cards/personal-combat-shield.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "unitType",
-              "value": 9
-            }
-          ]
-        ],
         "unavailableIn": [
           [
             33788
@@ -34653,14 +34357,6 @@
         "front": "assets/upgrade-cards/pilot-frenzied.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "affiliation",
-              "value": 3
-            }
-          ]
-        ],
         "unavailableWith": [
           {
             "id": 8,
@@ -34714,9 +34410,18 @@
         ],
         "verification": "visually_checked",
         "condition": {
-          "field": "unit.rankId",
-          "op": "eq",
-          "value": 5
+          "all": [
+            {
+              "field": "unit.rankId",
+              "op": "eq",
+              "value": 5
+            },
+            {
+              "field": "unit.affiliationIds",
+              "op": "contains",
+              "value": 3
+            }
+          ]
         },
         "execution": "not_connected",
         "visualReview": {
@@ -34774,14 +34479,6 @@
         "front": "assets/upgrade-cards/pilot-raid-leader.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "faction",
-              "value": 6
-            }
-          ]
-        ],
         "unavailableWith": [
           "Raiding Party Leader"
         ],
@@ -34861,9 +34558,18 @@
         ],
         "verification": "visually_checked",
         "condition": {
-          "field": "unit.rankId",
-          "op": "eq",
-          "value": 5
+          "all": [
+            {
+              "field": "unit.rankId",
+              "op": "eq",
+              "value": 5
+            },
+            {
+              "field": "unit.factionId",
+              "op": "eq",
+              "value": 6
+            }
+          ]
         },
         "execution": "not_connected",
         "visualReview": {
@@ -35019,14 +34725,6 @@
         "front": "assets/upgrade-cards/pk-worker.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "unitType",
-              "value": 6
-            }
-          ]
-        ],
         "unavailableIn": [
           [
             6180
@@ -35095,12 +34793,21 @@
         "condition": {
           "all": [
             {
-              "field": "unit.factionId",
-              "op": "eq",
-              "value": 5
+              "all": [
+                {
+                  "field": "unit.factionId",
+                  "op": "eq",
+                  "value": 5
+                },
+                {
+                  "ref": "droidTrooperUnitType"
+                }
+              ]
             },
             {
-              "ref": "droidTrooperUnitType"
+              "field": "unit.unitTypeId",
+              "op": "eq",
+              "value": 6
             }
           ]
         },
@@ -35441,14 +35148,6 @@
         "front": "assets/upgrade-cards/plo-koon-leader.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "unitType",
-              "value": 5
-            }
-          ]
-        ],
         "unavailableWith": [
           "Plo Koon",
           {
@@ -35671,17 +35370,6 @@
         "front": "assets/upgrade-cards/programming-attack.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "unitType",
-              "value": [
-                2,
-                3
-              ]
-            }
-          ]
-        ],
         "unavailableIn": [
           [
             31844
@@ -35740,12 +35428,24 @@
         ],
         "verification": "text_matched",
         "condition": {
-          "field": "unit.unitTypeId",
-          "op": "in",
-          "value": [
-            2,
-            3,
-            "local:flying_vehicle"
+          "all": [
+            {
+              "field": "unit.unitTypeId",
+              "op": "in",
+              "value": [
+                2,
+                3,
+                "local:flying_vehicle"
+              ]
+            },
+            {
+              "field": "unit.unitTypeId",
+              "op": "in",
+              "value": [
+                2,
+                3
+              ]
+            }
           ]
         },
         "execution": "not_connected",
@@ -35913,17 +35613,6 @@
         "front": "assets/upgrade-cards/programming-defense.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "unitType",
-              "value": [
-                2,
-                3
-              ]
-            }
-          ]
-        ],
         "unavailableIn": [
           [
             31844
@@ -35983,12 +35672,24 @@
         ],
         "verification": "text_matched",
         "condition": {
-          "field": "unit.unitTypeId",
-          "op": "in",
-          "value": [
-            2,
-            3,
-            "local:flying_vehicle"
+          "all": [
+            {
+              "field": "unit.unitTypeId",
+              "op": "in",
+              "value": [
+                2,
+                3,
+                "local:flying_vehicle"
+              ]
+            },
+            {
+              "field": "unit.unitTypeId",
+              "op": "in",
+              "value": [
+                2,
+                3
+              ]
+            }
           ]
         },
         "execution": "not_connected",
@@ -36031,17 +35732,6 @@
         "front": "assets/upgrade-cards/programming-engagement.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "unitType",
-              "value": [
-                2,
-                3
-              ]
-            }
-          ]
-        ],
         "unavailableIn": [
           [
             31844
@@ -36099,12 +35789,24 @@
         ],
         "verification": "text_matched",
         "condition": {
-          "field": "unit.unitTypeId",
-          "op": "in",
-          "value": [
-            2,
-            3,
-            "local:flying_vehicle"
+          "all": [
+            {
+              "field": "unit.unitTypeId",
+              "op": "in",
+              "value": [
+                2,
+                3,
+                "local:flying_vehicle"
+              ]
+            },
+            {
+              "field": "unit.unitTypeId",
+              "op": "in",
+              "value": [
+                2,
+                3
+              ]
+            }
           ]
         },
         "execution": "not_connected",
@@ -36599,14 +36301,6 @@
         "front": "assets/upgrade-cards/r4-astromech.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "faction",
-              "value": 2
-            }
-          ]
-        ],
         "unavailableIn": [
           [
             6180
@@ -37045,14 +36739,6 @@
         "front": "assets/upgrade-cards/rebel-astromech.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "faction",
-              "value": 1
-            }
-          ]
-        ],
         "requiresTier": [
           2
         ],
@@ -37379,14 +37065,6 @@
         "front": "assets/upgrade-cards/rebel-comms.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "faction",
-              "value": 1
-            }
-          ]
-        ],
         "requiresTier": [
           2
         ],
@@ -37609,18 +37287,6 @@
         "front": "assets/upgrade-cards/rebel-hotshot-pilot.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "faction",
-              "value": 1
-            },
-            {
-              "property": "unitType",
-              "value": 2
-            }
-          ]
-        ],
         "addProperties": [
           [
             {
@@ -37854,14 +37520,6 @@
         "front": "assets/upgrade-cards/rebel-officer.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "faction",
-              "value": 1
-            }
-          ]
-        ],
         "requiresTier": [
           2
         ],
@@ -39082,14 +38740,6 @@
         "front": "assets/upgrade-cards/rook-kast-clan.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "affiliation",
-              "value": 1083
-            }
-          ]
-        ],
         "unavailableWith": [
           "Rook Kast",
           {
@@ -39169,7 +38819,11 @@
           "description.en#leading-restriction"
         ],
         "verification": "visually_checked",
-        "condition": null,
+        "condition": {
+          "field": "unit.affiliationIds",
+          "op": "contains",
+          "value": 1083
+        },
         "execution": "unmapped",
         "unmappedReasons": [
           "context_field_missing_for_icon"
@@ -39320,18 +38974,6 @@
         "front": "assets/upgrade-cards/ryder-azadi.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "faction",
-              "value": 1
-            },
-            {
-              "property": "unitType",
-              "value": 2
-            }
-          ]
-        ],
         "unavailableWith": [
           "Ryder Azadi"
         ],
@@ -39850,14 +39492,6 @@
         "front": "assets/upgrade-cards/sabine-wren.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "affiliation",
-              "value": 1082
-            }
-          ]
-        ],
         "unavailableWith": [
           "Sabine Wren"
         ],
@@ -39919,7 +39553,11 @@
           "description.en#leading-restriction"
         ],
         "verification": "visually_checked",
-        "condition": null,
+        "condition": {
+          "field": "unit.affiliationIds",
+          "op": "contains",
+          "value": 1082
+        },
         "execution": "unmapped",
         "unmappedReasons": [
           "context_field_missing_for_icon"
@@ -41386,14 +41024,6 @@
         "front": "assets/upgrade-cards/shriv.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "faction",
-              "value": 1
-            }
-          ]
-        ],
         "unavailableWith": [
           "Shriv Suurgav"
         ],
@@ -41545,14 +41175,6 @@
         "front": "assets/upgrade-cards/shukur-05-repeater.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "unitType",
-              "value": 9
-            }
-          ]
-        ],
         "slotTypes": [
           4
         ],
@@ -42984,14 +42606,6 @@
         "front": "assets/upgrade-cards/squad-leader-ahsoka.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "unitType",
-              "value": 5
-            }
-          ]
-        ],
         "unavailableWith": [
           "Ahsoka Tano, Jedi Padawan"
         ],
@@ -43108,17 +42722,6 @@
         "front": "assets/upgrade-cards/squadron-leader.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "unitType",
-              "value": [
-                2,
-                3
-              ]
-            }
-          ]
-        ],
         "unavailableWith": [
           "Squadron Leader"
         ],
@@ -43177,12 +42780,24 @@
         ],
         "verification": "text_matched",
         "condition": {
-          "field": "unit.unitTypeId",
-          "op": "in",
-          "value": [
-            2,
-            3,
-            "local:flying_vehicle"
+          "all": [
+            {
+              "field": "unit.unitTypeId",
+              "op": "in",
+              "value": [
+                2,
+                3,
+                "local:flying_vehicle"
+              ]
+            },
+            {
+              "field": "unit.unitTypeId",
+              "op": "in",
+              "value": [
+                2,
+                3
+              ]
+            }
           ]
         },
         "execution": "not_connected",
@@ -45474,18 +45089,6 @@
         "front": "assets/upgrade-cards/t-series-tactical.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "faction",
-              "value": 5
-            },
-            {
-              "property": "unitType",
-              "value": 6
-            }
-          ]
-        ],
         "unique": false,
         "chooseOneKey": "leader",
         "addProperties": [
@@ -45538,12 +45141,30 @@
         "condition": {
           "all": [
             {
-              "field": "unit.factionId",
-              "op": "eq",
-              "value": 5
+              "all": [
+                {
+                  "field": "unit.factionId",
+                  "op": "eq",
+                  "value": 5
+                },
+                {
+                  "ref": "droidTrooperUnitType"
+                }
+              ]
             },
             {
-              "ref": "droidTrooperUnitType"
+              "all": [
+                {
+                  "field": "unit.factionId",
+                  "op": "eq",
+                  "value": 5
+                },
+                {
+                  "field": "unit.unitTypeId",
+                  "op": "eq",
+                  "value": 6
+                }
+              ]
             }
           ]
         },
@@ -46035,14 +45656,6 @@
         "front": "assets/upgrade-cards/the-armorer.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "affiliation",
-              "value": 965
-            }
-          ]
-        ],
         "unavailableWith": [
           "The Armorer"
         ],
@@ -46104,7 +45717,11 @@
           "description.en#leading-restriction"
         ],
         "verification": "visually_checked",
-        "condition": null,
+        "condition": {
+          "field": "unit.affiliationIds",
+          "op": "contains",
+          "value": 965
+        },
         "execution": "unmapped",
         "unmappedReasons": [
           "context_field_missing_for_icon"
@@ -46272,18 +45889,6 @@
         "front": "assets/upgrade-cards/tie-pilot.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "faction",
-              "value": 2
-            },
-            {
-              "property": "unitType",
-              "value": 2
-            }
-          ]
-        ],
         "unique": false,
         "slotTypes": [
           7
@@ -50991,14 +50596,6 @@
         "front": "assets/upgrade-cards/training-dug-in.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "unitType",
-              "value": 4
-            }
-          ]
-        ],
         "unique": false,
         "slotTypes": [
           10,
@@ -51044,21 +50641,30 @@
         ],
         "verification": "text_matched",
         "condition": {
-          "any": [
+          "all": [
             {
-              "ref": "emplacementTrooperUnitType"
-            },
-            {
-              "all": [
+              "any": [
                 {
-                  "ref": "trooperUnitType"
+                  "ref": "emplacementTrooperUnitType"
                 },
                 {
-                  "field": "unit.keywords",
-                  "op": "contains",
-                  "value": "prepared_position"
+                  "all": [
+                    {
+                      "ref": "trooperUnitType"
+                    },
+                    {
+                      "field": "unit.keywords",
+                      "op": "contains",
+                      "value": "prepared_position"
+                    }
+                  ]
                 }
               ]
+            },
+            {
+              "field": "unit.unitTypeId",
+              "op": "eq",
+              "value": 4
             }
           ]
         },
@@ -51340,14 +50946,6 @@
         "front": "assets/upgrade-cards/training-imperial-march.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "faction",
-              "value": 2
-            }
-          ]
-        ],
         "requiresTier": [
           2
         ],
@@ -52224,14 +51822,6 @@
         "front": "assets/upgrade-cards/training-strike-and-fade.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "keywords",
-              "value": 58
-            }
-          ]
-        ],
         "unique": false,
         "slotTypes": [
           10,
@@ -52589,14 +52179,6 @@
         "front": "assets/upgrade-cards/tristan-wren-clan.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "unitType",
-              "value": 9
-            }
-          ]
-        ],
         "unavailableIn": [
           [
             33772
@@ -52681,7 +52263,11 @@
           "description.en#leading-restriction"
         ],
         "verification": "visually_checked",
-        "condition": null,
+        "condition": {
+          "field": "unit.unitTypeId",
+          "op": "eq",
+          "value": 9
+        },
         "execution": "unmapped",
         "unmappedReasons": [
           "context_field_missing_for_icon",
@@ -53596,14 +53182,6 @@
         "front": "assets/upgrade-cards/ursa-wren-clan.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "affiliation",
-              "value": 1082
-            }
-          ]
-        ],
         "unavailableWith": [
           "Ursa Wren",
           {
@@ -53674,7 +53252,11 @@
           "description.en#leading-restriction"
         ],
         "verification": "visually_checked",
-        "condition": null,
+        "condition": {
+          "field": "unit.affiliationIds",
+          "op": "contains",
+          "value": 1082
+        },
         "execution": "unmapped",
         "unmappedReasons": [
           "context_field_missing_for_icon"
@@ -54151,14 +53733,6 @@
         "front": "assets/upgrade-cards/viper-droid.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "unitType",
-              "value": 6
-            }
-          ]
-        ],
         "unavailableIn": [
           [
             6180
@@ -54226,12 +53800,21 @@
         "condition": {
           "all": [
             {
-              "field": "unit.factionId",
-              "op": "eq",
-              "value": 5
+              "all": [
+                {
+                  "field": "unit.factionId",
+                  "op": "eq",
+                  "value": 5
+                },
+                {
+                  "ref": "droidTrooperUnitType"
+                }
+              ]
             },
             {
-              "ref": "droidTrooperUnitType"
+              "field": "unit.unitTypeId",
+              "op": "eq",
+              "value": 6
             }
           ]
         },
@@ -54544,18 +54127,6 @@
         "front": "assets/upgrade-cards/wedge-antilles.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "faction",
-              "value": 1
-            },
-            {
-              "property": "unitType",
-              "value": 2
-            }
-          ]
-        ],
         "unavailableWith": [
           "Wedge Antilles"
         ],
@@ -55023,14 +54594,6 @@
         "front": "assets/upgrade-cards/whipcord-launcher.webp"
       },
       "rules": {
-        "requiredProperties": [
-          [
-            {
-              "property": "unitType",
-              "value": 9
-            }
-          ]
-        ],
         "unavailableIn": [
           [
             33788

@@ -42,7 +42,7 @@ window.RulesCore = (() => {
       try {
         if (op === "eq") return actual === value;
         if (op === "in") return Array.isArray(value) && value.includes(actual);
-        if (op === "contains") return Array.isArray(actual) ? actual.includes(value) : null;
+        if (op === "contains") return Array.isArray(actual) ? actual.some(x => String(x) === String(value)) : null;
         if (op === "gte") return actual >= value;
         if (op === "lte") return actual <= value;
       } catch (e) { return null; }
@@ -73,6 +73,7 @@ window.RulesCore = (() => {
       defenseDie: (unit.stats || {}).defenseDie,
       factionId: unit.factionId,
       rankId: unit.rankId,
+      affiliationIds: (unit.affiliationIds || []).map(String),
       keywords: (unit.keywords || []).map(k => k && k.id),
     } };
   }
@@ -522,7 +523,7 @@ window.RulesCore = (() => {
 
     const hasInvalid = issues.some(i => i.status === "invalid");
     const hasUnknown = issues.some(i => i.status === "unknown");
-    issues.push({ status: "unknown", code: "coverage_note", message: "属性效果（addProperties/replaceProperties）已计算但尚未参与资格判断；费用修正、chooseOneKey、quantityLimitedBy、军阶豁免、军阶要求/替换军阶与互斥卡牌已执行。战斗部队规则未覆盖项仍标 unknown。", instanceId: null });
+    issues.push({ status: "unknown", code: "coverage_note", message: "属性效果（addProperties/replaceProperties）已保留，但尚未参与资格判断；卡面限制、费用修正、chooseOneKey、quantityLimitedBy、军阶豁免、军阶要求/替换军阶与互斥卡牌已执行。战斗部队规则未覆盖项仍标 unknown。", instanceId: null });
     return { status: hasInvalid ? "invalid" : (hasUnknown ? "unknown" : "valid"), basePoints, effectivePoints, rankCounts: maxCounts, issues };
   }
 
