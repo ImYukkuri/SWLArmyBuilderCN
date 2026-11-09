@@ -177,7 +177,48 @@ def dedicated_slot_keys(package, unit, upgrades=None):
     return slot_grants_for(package, unit, None, upgrades)[1]
 
 
-def slot_list_for(package, unit, inst, upgrades):
+def matches_target(unit, target):
+    import re as _re
+    if not target:
+        return True
+    norm = lambda v: _re.sub(r"[^a-z0-9]", "", str(v or "").lower())
+    name = norm((unit.get("name") or {}).get("en"))
+    names = target.get("unitNames")
+    if names is not None and name not in [norm(n) for n in names]:
+        return False
+    types = target.get("unitTypes")
+    if types is not None and unit.get("unitTypeId") not in types:
+        return False
+    kws = target.get("keywords")
+    if kws is not None and not any((k or {}).get("id") in kws for k in unit.get("keywords") or []):
+        return False
+    return True
+
+
+def army_overrides_for(package, army_id):
+    return ((package or {}).get("armyOverrides") or {}).get(str(army_id))
+
+
+def effective_keywords(unit, equipped, definitions, package, army_id):
+    eff = apply_property_effects(unit, equipped, definitions)
+    keywords = [(k or {}).get("id") for k in eff.get("keywords") or []]
+    ov = army_overrides_for(package, army_id) or {}
+    for rule in ov.get("keywords") or []:
+        if isinstance(rule, dict) and rule.get("op") == "remove" and rule.get("keyword") and matches_target(unit, rule.get("target")):
+            keywords = [k for k in keywords if k != rule["keyword"]]
+    return keywords
+
+
+def unit_cap_for(unit, package, army_id):
+    ov = army_overrides_for(package, army_id) or {}
+    for cap in ov.get("unitCaps") or []:
+        if isinstance(cap, dict) and cap.get("unitName") is not None and matches_target(unit, {"unitNames": [cap["unitName"]]}):
+            return int(cap["max"])
+    own = (unit.get("rules") or {}).get("limit")
+    return own if isinstance(own, int) else None
+
+
+def slot_list_for(package, unit, inst, upgrades, army_id=None):
     out = []
     by_id, _ = slot_registry(package)
     for sid in unit.get("upgradeSlots") or []:
@@ -194,6 +235,13 @@ def slot_list_for(package, unit, inst, upgrades):
         if g.get("ifAbsentAny") and any(r["key"] in g["ifAbsentAny"] for r in out):
             continue
         out.append({"key": g["key"], "required": False, "virtual": True})
+    ov = army_overrides_for(package, army_id) or {}
+    for r in ov.get("slots") or []:
+        if isinstance(r, dict) and r.get("op") == "deny" and r.get("slot") and matches_target(unit, r.get("target")):
+            out = [x for x in out if x["key"] != r["slot"]]
+    for r in ov.get("slots") or []:
+        if isinstance(r, dict) and r.get("op") == "add" and r.get("slot") and matches_target(unit, r.get("target")) and not any(x["key"] == r["slot"] for x in out):
+            out.append({"key": r["slot"], "addedBy": "override"})
     return out
 
 
@@ -385,27 +433,33 @@ def _unit_upstream_ids_by_name(name, definitions):
 
 
 def host_alias_allows(card, unit, army, package, definitions, rule):
-    bf = (package.get("battleForces") or {}).get(str(army.get("armyId")))
-    aliases = (bf or {}).get("hostAliases") or []
+    ov = army_overrides_for(package, army.get("armyId")) or {}
+    aliases = ov.get("slotHosts") or []
     if not aliases:
         return False
     access = access_keys(card, package, rule)
     ctx = _unit_context(unit, package)
     predicates = package.get("predicates") or {}
     card_hosts = [str(x) for x in (upstream_hosts(rule, card) or [])]
+    allowed = False
     for a in aliases:
-        if not isinstance(a, dict) or a.get("type") != "ignoreHostRequirement" or not a.get("slot"):
+        if not isinstance(a, dict) or not a.get("slot") or a["slot"] not in access:
             continue
-        if a["slot"] not in access:
+        if not matches_target(unit, a.get("target")):
             continue
         if a.get("when") is not None and evaluate(a["when"], ctx, predicates) is not True:
             continue
-        ids = set()
-        for name in a.get("asUnits") or []:
-            ids.update(_unit_upstream_ids_by_name(name, definitions))
-        if any(ch in ids for ch in card_hosts):
-            return True
-    return False
+        exclude = set()
+        for name in a.get("exclude") or []:
+            exclude.update(_unit_upstream_ids_by_name(name, definitions))
+        if any(ch in exclude for ch in card_hosts):
+            return False
+        include = set()
+        for name in a.get("include") or []:
+            include.update(_unit_upstream_ids_by_name(name, definitions))
+        if any(ch in include for ch in card_hosts):
+            allowed = True
+    return allowed
 
 
 def upgrade_eligibility(card, unit, army, package, definitions, name_index, equipped=None):
@@ -526,7 +580,7 @@ def validate_army(army):
             elif urc_ok is None:
                 issue("unknown", "unit_restriction_condition_unknown", f"单位「{(unit.get('name') or {}).get('en', unit.get('id'))}」的卡面限制条件存在未覆盖语义", key)
 
-        slot_list = slot_list_for(package, unit, inst, upgrades)
+        slot_list = slot_list_for(package, unit, inst, upgrades, army.get("armyId"))
         for rec in slot_list:
             if rec.get("virtual"):
                 issue("unknown", "dedicated_grant_virtual",
@@ -829,6 +883,29 @@ def validate_army(army):
             src_copies = army_unit_upstream_counts.get(src_id, 0)
             if copies > ratio * src_copies:
                 issue("invalid", "quantity_limited", f"「{unit.get('name', {}).get('en', unit_id)}」数量受母单位限制", None)
+
+    army_ov = army_overrides_for(package, army.get("armyId")) or {}
+    if army_ov:
+        for rule in army_ov.get("keywords") or []:
+            if not isinstance(rule, dict) or rule.get("op") != "ban" or not rule.get("keyword"):
+                continue
+            for inst in army.get("units", []):
+                u = units.get(inst.get("unitId"))
+                if not u:
+                    continue
+                equipped = [upgrades[x.get("upgradeId")] for x in inst.get("upgrades", []) if x.get("upgradeId") in upgrades]
+                if rule["keyword"] in effective_keywords(u, equipped, definitions, package, army.get("armyId")):
+                    issue("invalid", "army_keyword_banned", f"本军表禁用关键词「{rule['keyword']}」", inst.get("instanceId"))
+        for inst in army.get("units", []):
+            u = units.get(inst.get("unitId"))
+            if not u:
+                continue
+            cap = unit_cap_for(u, package, army.get("armyId"))
+            if cap is None:
+                continue
+            copies = sum(1 for x in army.get("units", []) if x.get("unitId") == inst.get("unitId"))
+            if copies > cap:
+                issue("invalid", "unit_limit_exceeded", f"「{(u.get('name') or {}).get('en') or u.get('id')}」最多 {cap} 个（当前 {copies}）", None)
 
     if battle_force:
         battle_force_checks(battle_force, units, upgrades, definitions)

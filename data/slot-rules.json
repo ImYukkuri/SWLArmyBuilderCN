@@ -1662,31 +1662,7 @@
       "machineRules": [],
       "options": [],
       "status": "quotas_only",
-      "alignment": "Dark",
-      "hostAliases": [
-        {
-          "type": "ignoreHostRequirement",
-          "slot": "heavy_weapon",
-          "when": {
-            "field": "unit.unitTypeId",
-            "op": "in",
-            "value": [
-              1,
-              5,
-              7,
-              9,
-              "local:wookiee_trooper"
-            ]
-          },
-          "asUnits": [
-            "Stormtroopers",
-            "Shoretroopers",
-            "Scout Troopers",
-            "Imperial Death Troopers"
-          ],
-          "note": "非机器人步兵单位可携带“仅限冲锋队/岸防兵/侦察兵/死亡士兵”的重武器"
-        }
-      ]
+      "alignment": "Dark"
     },
     "10": {
       "name": "Stormtrooper Battalion",
@@ -2318,19 +2294,9 @@
         "The Field Commander keyword cannot be used in a Blizzard Force army.",
         "Imperial Probe Droid units in this army do not have the Detachment keyword."
       ],
-      "machineRules": [
-        {
-          "type": "banKeyword",
-          "keyword": "field_commander"
-        },
-        {
-          "type": "unitCap",
-          "unitName": "Stormtroopers",
-          "max": 2
-        }
-      ],
+      "machineRules": [],
       "options": [],
-      "status": "machine",
+      "status": "overrides",
       "alignment": "Dark",
       "unparsedRules": [
         "Imperial Probe Droid units in this army do not have the Detachment keyword."
@@ -3045,6 +3011,46 @@
       "not": {
         "ref": "whiteDefenseDie"
       }
+    }
+  },
+  "armyOverrides": {
+    "7": {
+      "slotHosts": [
+        {
+          "slot": "heavy_weapon",
+          "target": {
+            "unitTypes": [
+              1,
+              5,
+              7,
+              9,
+              "local:wookiee_trooper"
+            ]
+          },
+          "include": [
+            "Stormtroopers",
+            "Shoretroopers",
+            "Scout Troopers",
+            "Imperial Death Troopers"
+          ],
+          "exclude": [],
+          "note": "非机器人步兵可携带“仅限冲锋队/岸防兵/侦察兵/死亡士兵”的重武器"
+        }
+      ]
+    },
+    "17": {
+      "unitCaps": [
+        {
+          "unitName": "Stormtroopers",
+          "max": 2
+        }
+      ],
+      "keywords": [
+        {
+          "op": "ban",
+          "keyword": "field_commander"
+        }
+      ]
     }
   }
 }

@@ -166,3 +166,39 @@ PDF 原文：
 | 帝国残党 · 岸防兵 + T-21（仅冲锋队） | 允许 |
 | 帝国残党 · 黑暗士兵（机器人）+ T-21B | 拒绝（`host_restriction`） |
 | 帝国 · 冲锋队 + T-21B | 拒绝（`host_restriction`） |
+
+## 10. 军表覆盖层 `armyOverrides`（取代 hostAliases / battleforce 专属机器规则）
+
+单位卡与升级卡上的 `upgradeSlots`、`slotIds`、`availableIn`、`rules.limit` 是**通常情况**；任何例外都以「相对基线的增量」写在军表级覆盖层里，战斗部队只是写入者之一。
+
+```json
+"armyOverrides": {
+  "7": {
+    "slotHosts": [{
+      "slot": "heavy_weapon",
+      "target": {"unitTypes": [1, 5, 7, 9, "local:wookiee_trooper"]},
+      "include": ["Stormtroopers", "Shoretroopers", "Scout Troopers", "Imperial Death Troopers"],
+      "exclude": []
+    }]
+  },
+  "17": {
+    "unitCaps": [{"unitName": "Stormtroopers", "max": 2}],
+    "keywords": [{"op": "ban", "keyword": "field_commander"}]
+  }
+}
+```
+
+| 字段 | 语义 | 基线 |
+|---|---|---|
+| `unitCaps` | 军表内某单位数量上限（**覆盖**单位自身 `rules.limit`） | 单位 `rules.limit` |
+| `slotHosts` | 放宽卡的 `availableIn`：`include` 追加可用宿主，`exclude` 收回 | 卡 `availableIn` |
+| `slots` | 槽位归属：`add`/`deny` 某槽位对某类单位生效 | 单位 `upgradeSlots` + 卡 `slotGrants` |
+| `keywords` | `ban`（禁用）/ `remove`（剔除）某关键词 | 单位/卡提供的关键词 |
+
+**求值顺序**：基线 → `exclude`/`deny`/`remove` → `include`/`add`；同一项同时命中时 **deny 优先**。
+
+**引擎入口**：`slotListFor`（槽位）、`upgradeEligibility`（宿主）、`unitCapFor`（上限）、`effectiveKeywords`（关键词）——全部由「有效配置」函数产出，候选过滤、组军校验、UI 共用同一份结果。
+
+**已迁移**：`battleForces[7].hostAliases` → `armyOverrides[7].slotHosts`；`battleForces[17].machineRules`（unitCap / banKeyword）→ `armyOverrides[17]`。验证：IR 冲锋队可带 T-21B、机器人/非该部队拒绝；Blizzard 3 个冲锋队超限、2 个合法；带「战地指挥官」升级触发 `army_keyword_banned`。
+
+**待补**：`slots` 的 `add`/`deny` 目前无数据用例（引擎已实现）；单位自身 `rules.limit` 之前未执行，现由 `unitCapFor` 统一处理。

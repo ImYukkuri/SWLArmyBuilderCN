@@ -88,12 +88,12 @@ class ValidateArmyTest(unittest.TestCase):
             {"instanceId": f"s{i}", "unitId": storm["id"], "upgrades": []} for i in range(3)],
             "commandIds": [], "options": []}
         codes = [i["code"] for i in rules.validate_army(army)["issues"]]
-        self.assertIn("battle_force_unit_cap", codes)
+        self.assertIn("unit_limit_exceeded", codes)
         banned = {"mode": "standard", "armyId": 17, "pointsLimit": 1500, "units": [
             {"instanceId": "u1", "unitId": storm["id"], "upgrades": [
                 {"instanceId": "c1", "upgradeId": "aayla", "slotIndex": 1}]}],
             "commandIds": [], "options": []}
-        self.assertIn("battle_force_keyword_banned", [i["code"] for i in rules.validate_army(banned)["issues"]])
+        self.assertIn("army_keyword_banned", [i["code"] for i in rules.validate_army(banned)["issues"]])
 
     def test_hit_the_dirt_condition_grants_qualifying_non_holder(self):
         pkg = rules.load_package()

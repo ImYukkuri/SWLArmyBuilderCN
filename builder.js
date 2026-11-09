@@ -69,7 +69,7 @@ function alreadyInArmy(u){if(!isUnique(u))return false;const k=uniqueKey(u);retu
 function setStatus(t,error){const p=$('#status');if(!p)return;p.textContent=t;p.classList.toggle('error',!!error)}
 function slotDef(key){const s=(data.pkg.slots||[]).find(x=>x.id===key);if(!s)return null;return (data.defs.upgradeSlots||[]).find(x=>x.id===s.sourceId)||s}
 function slotName(key){const d=slotDef(key);return d&&d.name?d.name.zh:key}
-function unitSlotRecords(u,inst){return RulesCore.slotListFor(data.pkg,u,inst,data.upgrades)}
+function unitSlotRecords(u,inst){return RulesCore.slotListFor(data.pkg,u,inst,data.upgrades,army.armyId)}
 function accessOf(card){const rule=(data.pkg.upgradeRules||{})[String(card.upstream&&card.upstream.id||'')]||{};return RulesCore.accessKeys(card,data.pkg,rule)}
 
 function restrictionOk(card,unit,inst){const equipped=((inst&&inst.upgrades)||[]).map(x=>data.upgrades[x.upgradeId]).filter(Boolean);return RulesCore.upgradeEligibility(card,unit,army,data,equipped).ok}
