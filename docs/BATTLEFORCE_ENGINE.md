@@ -116,3 +116,53 @@
 - 「可用单位」以 `unit.factions` 为准，PDF 列表用于核对；两者不一致时以本地数据为准并记入差异报告。
 - 部队专属单位（`factions` 只含该部队）在基础阵营军表中不会出现，这是正确的。
 - 雇佣兵部队（Mandalorian Clans / Shadow Collective / Ohnaka Gang）的池化规则与 `allowAnyMercenaries` 交互复杂，需要单独设计（第 3 节第 5 条）。
+
+## 8. 规则类型 ↔ 词条 / 条件映射（排查结果）
+
+对 15 个部队的 PDF「SPECIAL RULES」逐条扫描后，机器规则与词条/条件的对应关系：
+
+| 规则类型 | 依赖的词条 / 字段 | 能否用现有条件语言表达 | 说明 |
+|---|---|---|---|
+| `banKeyword` | `unit.keywords`（如 `field_commander`） | **可以**：`{not:{field:"unit.keywords",op:"contains",value:"field_commander"}}` | 但需要「对全军每个单位施加」的机制；Blizzard / Echo Base / Separatist Invasion 三处出现 |
+| `removeKeyword` | `unit.keywords`（如 `detachment`） | 不能 | 是修改器：先改上下文再判其他规则（Blizzard：帝国探测机器人失去 Detachment） |
+| `hostAlias` | 卡的 `availableIn` + 单位 `unitTypeId` | 不能 | 跨「卡 × 单位 × 部队」的例外（帝国残党重武器） |
+| `unitCap` | 无词条，纯计数 | 不能 | Blizzard：0–2 冲锋队 |
+| `uniqueUpgrades` | 卡 `rules.unique` | 不能 | 白名单校验 |
+| `treatAsMercenary` | `unit.factions` + 雇佣兵池 | 部分 | 帝国残党：侦察兵/死亡士兵「视为雇佣兵」用于组军计数 |
+| `allowAnyMercenaries` | 雇佣兵池 | 部分 | Bright Tree Village 等 |
+| `requireSharedAffiliation` | `unit.affiliationIds` | **可以**（条件），但锚点单位需额外机制 | Mandalorian Clans |
+| `divisionChoice` | `unit.divisions` | **可以**（`contains`） | Mandalorian Clans |
+| `optionChoice` | `options` + `chooseOneKey` | 不能 | 氏族选项，需要 UI 选择 |
+
+### 数据质量提示
+
+- PDF 规则文本里的图标在 OCR 后变成占位字母（`p`=指挥官图标、`o`=特工图标、`m`=雇佣兵图标），例如「non-p non-o Vehicle unit」「count as m units」。机器化时必须人工读图确认。
+- 关键词表里存在 OCR 残留的占位词条：`pending_equir`、`pending_move`、`pending_vehicle`、`pending_w_lo`，条件扫描会误命中，建议清理。
+
+## 9. 帝国残党重武器共享（hostAliases）
+
+PDF 原文：
+
+> Any non-Droid Trooper unit in this army with a [heavy weapon] upgrade icon may equip a [heavy weapon] upgrade with one of the following unit requirements, ignoring that requirement: Stormtroopers only, Shoretroopers only, Scout Troopers only, or Imperial Death Troopers only.
+
+数据（`battleForces["7"].hostAliases`）：
+
+```json
+{
+  "type": "ignoreHostRequirement",
+  "slot": "heavy_weapon",
+  "when": {"field": "unit.unitTypeId", "op": "in", "value": [1, 5, 7, 9, "local:wookiee_trooper"]},
+  "asUnits": ["Stormtroopers", "Shoretroopers", "Scout Troopers", "Imperial Death Troopers"]
+}
+```
+
+引擎（`upgradeEligibility` / `upgrade_eligibility`）：宿主检查失败时，若当前部队存在匹配该槽位的 `ignoreHostRequirement`，且单位满足 `when`，且卡片的 `availableIn` 与 `asUnits` 解析出的上游单位有交集，则视为通过。
+
+验证（双引擎一致）：
+
+| 场景 | 结果 |
+|---|---|
+| 帝国残党 · 冲锋队 + T-21B（仅岸防兵） | 允许 |
+| 帝国残党 · 岸防兵 + T-21（仅冲锋队） | 允许 |
+| 帝国残党 · 黑暗士兵（机器人）+ T-21B | 拒绝（`host_restriction`） |
+| 帝国 · 冲锋队 + T-21B | 拒绝（`host_restriction`） |

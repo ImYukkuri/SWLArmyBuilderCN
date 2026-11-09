@@ -208,6 +208,19 @@ class ValidateArmyTest(unittest.TestCase):
         eff2 = rules.apply_property_effects(unit, [champ], defs)
         self.assertEqual(eff2["affiliationIds"], ["965"])
 
+    def test_battle_force_host_alias(self):
+        # Imperial Remnant: non-Droid Trooper units may ignore the four named unit requirements on heavy weapons.
+        def codes(army_id, unit_id, card_id):
+            army = {"mode": "standard", "armyId": army_id, "pointsLimit": 1500, "units": [
+                {"instanceId": "u1", "unitId": unit_id,
+                 "upgrades": [{"instanceId": "c1", "upgradeId": card_id, "slotIndex": 0}]}],
+                "commandIds": [], "options": []}
+            return [i["code"] for i in rules.validate_army(army)["issues"]]
+        self.assertNotIn("host_restriction", codes(7, "empire-stormtroopers", "shore-t21b"))
+        self.assertNotIn("host_restriction", codes(7, "empire-shoretroopers", "stormtrooper-t21"))
+        self.assertIn("host_restriction", codes(7, "empire-dark-troopers", "shore-t21b"))
+        self.assertIn("host_restriction", codes(2, "empire-stormtroopers", "shore-t21b"))
+
     def test_two_darksaber_versions_conflict(self):
         army = {"mode": "standard", "armyId": 8, "pointsLimit": 1000, "units": [
             {"instanceId": "u1", "unitId": "mercenary-clan-kryze-bo-katan-kryze", "upgrades": [

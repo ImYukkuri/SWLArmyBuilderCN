@@ -377,6 +377,37 @@ def apply_property_effects(unit, cards, definitions):
     return out
 
 
+def _unit_upstream_ids_by_name(name, definitions):
+    import re as _re
+    key = _re.sub(r"[^a-z0-9]", "", str(name or "").lower())
+    return [str(s.get("id")) for s in (definitions.get("sourceUnits") or [])
+            if _re.sub(r"[^a-z0-9]", "", str((s.get("name") or {}).get("en") or "").lower()) == key]
+
+
+def host_alias_allows(card, unit, army, package, definitions, rule):
+    bf = (package.get("battleForces") or {}).get(str(army.get("armyId")))
+    aliases = (bf or {}).get("hostAliases") or []
+    if not aliases:
+        return False
+    access = access_keys(card, package, rule)
+    ctx = _unit_context(unit, package)
+    predicates = package.get("predicates") or {}
+    card_hosts = [str(x) for x in (upstream_hosts(rule, card) or [])]
+    for a in aliases:
+        if not isinstance(a, dict) or a.get("type") != "ignoreHostRequirement" or not a.get("slot"):
+            continue
+        if a["slot"] not in access:
+            continue
+        if a.get("when") is not None and evaluate(a["when"], ctx, predicates) is not True:
+            continue
+        ids = set()
+        for name in a.get("asUnits") or []:
+            ids.update(_unit_upstream_ids_by_name(name, definitions))
+        if any(ch in ids for ch in card_hosts):
+            return True
+    return False
+
+
 def upgrade_eligibility(card, unit, army, package, definitions, name_index, equipped=None):
     """Single source of truth for card-vs-unit eligibility.
 
@@ -391,7 +422,7 @@ def upgrade_eligibility(card, unit, army, package, definitions, name_index, equi
     memberships = [m for m in unit.get("factions", []) if m.get("id") == army.get("armyId")]
     out = []
     hosts = upstream_hosts(rule, card)
-    if hosts is not None and str(unit.get("upstream", {}).get("id", "")) not in hosts:
+    if hosts is not None and str(unit.get("upstream", {}).get("id", "")) not in hosts and not host_alias_allows(card, unit, army, package, definitions, rule):
         out.append(("invalid", "host_restriction", "此升级仅限特定角色/版本"))
     facs = (card.get("rules") or {}).get("factions")
     if facs and army.get("armyId") not in [int(f) for f in facs]:

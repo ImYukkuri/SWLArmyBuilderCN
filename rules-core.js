@@ -256,6 +256,36 @@ window.RulesCore = (() => {
     }
     return { ...unit, keywords: [...keywords].map(id => ({ id })), affiliationIds: affiliations };
   }
+  function unitUpstreamIdsByName(name, data) {
+    if (!data._nameToUpstream) {
+      const map = {};
+      for (const s of (data.defs && data.defs.sourceUnits) || []) {
+        const key = normalizeKey((s.name && s.name.en) || "");
+        if (!key) continue;
+        (map[key] ||= []).push(String(s.id));
+      }
+      data._nameToUpstream = map;
+    }
+    return data._nameToUpstream[normalizeKey(name)] || [];
+  }
+  function hostAliasAllows(card, unit, army, data, rule) {
+    const bf = (data.pkg.battleForces || {})[String(army.armyId)];
+    const aliases = (bf && bf.hostAliases) || [];
+    if (!aliases.length) return false;
+    const access = accessKeys(card, data.pkg, rule);
+    const ctx = unitContext(unit);
+    const predicates = data.pkg.predicates || {};
+    const cardHosts = hosts(rule, card) || [];
+    for (const a of aliases) {
+      if (!a || a.type !== "ignoreHostRequirement" || !a.slot) continue;
+      if (!access.includes(a.slot)) continue;
+      if (a.when && evaluate(a.when, ctx, predicates) !== true) continue;
+      const ids = new Set();
+      for (const name of a.asUnits || []) for (const id of unitUpstreamIdsByName(name, data)) ids.add(id);
+      if (cardHosts.some(x => ids.has(String(x)))) return true;
+    }
+    return false;
+  }
   function upgradeEligibility(card, unit, army, data, equipped) {
     const { defs, pkg, nameIndex } = data;
     if (card.deprecated) return { ok: false, issues: [{ status: "invalid", code: "deprecated_card", message: "该卡为废案，不参与组军" }] };
@@ -267,7 +297,8 @@ window.RulesCore = (() => {
     const issues = [];
     const add = (status, code, message) => issues.push({ status, code, message });
     const h = hosts(rule, card);
-    if (h != null && !h.includes(String(unit.upstream && unit.upstream.id || ""))) {
+    if (h != null && !h.includes(String(unit.upstream && unit.upstream.id || ""))
+        && !hostAliasAllows(card, unit, army, data, rule)) {
       add("invalid", "host_restriction", "此升级仅限特定角色/版本");
     }
     const facs = (card.rules || {}).factions;
