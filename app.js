@@ -114,7 +114,22 @@ async function reload(){if(dirty&&!confirm('放弃未保存修改并重新读取
 $('#save').addEventListener('click',async()=>{if(!syncRaw()||busy)return;try{busy=true;$('#save').disabled=true;acceptSave(await api('/api/save',{revision,card:draft,create:creating}))}catch(e){status(e.message,true)}finally{busy=false;$('#save').disabled=false}});
 $('#apply-json').addEventListener('click',()=>{if(syncRaw()){setDirty();tab('form');status('JSON 已应用到表单，尚未写入源文件')}});
 $('#raw-json').addEventListener('input',()=>{dirty=true;$('#dirty').textContent='有未保存修改'});
-$('#new-unit').addEventListener('click',newUnit);$('#reload').addEventListener('click',reload);for(const id of ['search','faction','review-filter'])$('#'+id).addEventListener('input',renderList);
+$('#new-unit').addEventListener('click',newUnit);
+$('#unit-image-upload').addEventListener('click',()=>$('#unit-image-file').click());
+$('#unit-image-file').addEventListener('change',async()=>{
+  const f=$('#unit-image-file').files[0];
+  if(!f)return;
+  if(!confirm('用所选图片替换「'+draft.id+'」的卡图？会自动按标准位置裁剪立绘，源文件会备份。')){$('#unit-image-file').value='';return}
+  busy=true;$('#unit-image-upload').disabled=true;
+  try{
+    const dataUrl=await new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=()=>rej(Error('读取文件失败'));r.readAsDataURL(f)});
+    const result=await api('/api/units/image',{id:draft.id,revision,dataUrl});
+    acceptSave(result);
+    status('卡图已更新并生成立绘：'+((result.card.assets||{}).portrait||''));
+  }catch(e){status(e.message,true)}
+  finally{busy=false;$('#unit-image-upload').disabled=false;$('#unit-image-file').value=''}
+});
+$('#reload').addEventListener('click',reload);for(const id of ['search','faction','review-filter'])$('#'+id).addEventListener('input',renderList);
 document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>tab(b.dataset.tab)));
 $('#export').addEventListener('click',()=>{const a=el('a');a.href=URL.createObjectURL(new Blob([JSON.stringify({...catalog,definitions:mappings.definitions},null,2)],{type:'application/json'}));a.download='unit-catalog.bundle.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),5000);status('已导出已保存的数据；草稿请先保存。')});
 window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue=''}});

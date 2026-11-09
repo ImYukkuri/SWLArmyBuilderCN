@@ -101,6 +101,31 @@ def make_portrait(card):
         with Image.open(path)as im:
             box=tuple(round(v*(im.width if i%2==0 else im.height))for i,v in enumerate(crop));im.crop(box).save(target,format='WEBP',quality=94)
     card['assets']['portrait']=target.relative_to(ROOT).as_posix()
+DEFAULT_PORTRAIT_CROP=[0.669,0.174,0.998,0.725]
+def save_unit_image(record_id,image_bytes,revision):
+    import io
+    if not isinstance(record_id,str)or not re.fullmatch(r'[a-z0-9][a-z0-9_-]{0,150}',record_id):raise ValueError('单位 ID 无效')
+    if not image_bytes:raise ValueError('图片为空')
+    try:
+        probe=Image.open(io.BytesIO(image_bytes));probe.verify()
+    except Exception:raise ValueError('不是有效的图片文件')
+    image=Image.open(io.BytesIO(image_bytes)).convert('RGB')
+    rel=f'assets/unit-cards/{record_id}.webp'
+    target=ROOT/rel
+    target.parent.mkdir(parents=True,exist_ok=True)
+    image.save(target,format='WEBP',quality=90,method=6)
+    with LOCK:
+        original=DATA.read_bytes()
+        if revision!=digest(original):raise FileExistsError('单位源文件已修改，请重新载入后再上传。')
+        catalog=json.loads(original)
+        card=next((c for c in catalog['units']if c['id']==record_id),None)
+        if card is None:raise ValueError('单位不存在')
+    assets=card.setdefault('assets',{})
+    assets['front']=rel
+    assets['portraitCrop']=list(DEFAULT_PORTRAIT_CROP)
+    return commit_card(card,revision)
+
+
 def commit_card(card,revision,create=False):
     card=migrate_legacy(card)
     validate(card)
@@ -183,7 +208,7 @@ class Handler(BaseHTTPRequestHandler):
         if self.headers.get('Content-Type','').split(';')[0]!='application/json':return self.reply(415,{'error':'需要 application/json'})
         try:
             path=urlsplit(self.path).path
-            maxsize=20_000_000 if path=='/api/upgrades/image' else 3_000_000
+            maxsize=20_000_000 if path in ['/api/upgrades/image','/api/units/image'] else 3_000_000
             size=int(self.headers.get('Content-Length','0'))
             if not 0<size<maxsize:raise ValueError('请求大小无效')
             data=json.loads(self.rfile.read(size))
@@ -194,6 +219,13 @@ class Handler(BaseHTTPRequestHandler):
                 head,_,b64=raw.partition(',')
                 if ';base64'not in head:raise ValueError('需要 base64 图片')
                 return self.reply(200,maintenance_store.save_image('upgrades',data['id'],base64.b64decode(b64),data['revision']))
+            if path=='/api/units/image':
+                import base64
+                raw=data.get('dataUrl','')
+                if not isinstance(raw,str)or not raw.startswith('data:image/'):raise ValueError('需要图片 data URL')
+                head,_,b64=raw.partition(',')
+                if ';base64'not in head:raise ValueError('需要 base64 图片')
+                return self.reply(200,save_unit_image(data['id'],base64.b64decode(b64),data['revision']))
             if path=='/api/save':return self.reply(200,commit_card(copy.deepcopy(data['card']),data['revision'],bool(data.get('create'))))
             if path in ['/api/upgrades/save','/api/armies/save','/api/armies/create']:
                 kind=path.split('/')[2];return self.reply(200,maintenance_store.save(kind,copy.deepcopy(data['card']),data['revision'],path.endswith('/create')or bool(data.get('create'))))
