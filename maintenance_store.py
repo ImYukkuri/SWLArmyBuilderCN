@@ -59,7 +59,7 @@ def save(kind,card,revision,create=False):
         old=path.read_bytes()
         if hashof(old)!=revision:raise FileExistsError('该模块源文件已被修改，请重新载入；草稿不会被覆盖。')
         catalog=json.loads(old);index=next((i for i,c in enumerate(catalog[key])if c['id']==card['id']),None)
-        if index is None and not(create and kind=='armies'):raise ValueError('没有此记录；不能修改固定 ID')
+        if index is None and not(create and kind in ('armies','upgrades')):raise ValueError('没有此记录；不能修改固定 ID')
         if index is not None and create:raise ValueError('ID 已存在')
         stamp=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S.%fZ');snapshot=stamp+'-'+hashof(old)[:12]+'.json';write(ROOT/'history'/kind/snapshot,old)
         if index is None:catalog[key].append(copy.deepcopy(card))

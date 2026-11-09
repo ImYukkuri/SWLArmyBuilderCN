@@ -82,31 +82,40 @@ def validate(card):
             if not isinstance(k.get('raw'),str):raise ValueError('词条必须为含 raw 的对象')
         else:check_ref('keywords',k.get('id'))
         if k.get('action')not in [None,'none','action','free-action']:raise ValueError('行动类型无效')
-    assets=card.get('assets',{});relative_asset(assets.get('front'))
+    assets=card.get('assets',{})
     box=assets.get('portraitCrop')
     if not isinstance(box,list)or len(box)!=4 or any(type(n)not in [int,float]for n in box)or not(0<=box[0]<box[2]<=1 and 0<=box[1]<box[3]<=1):raise ValueError('立绘裁剪为 [左,上,右,下]，范围 0–1')
-    with Image.open(relative_asset(assets['front']))as im:
-        if round(box[2]*im.width)<=round(box[0]*im.width)or round(box[3]*im.height)<=round(box[1]*im.height):raise ValueError('裁剪范围至少包含一个像素')
+    if assets.get('front'):
+        with Image.open(relative_asset(assets['front']))as im:
+            if round(box[2]*im.width)<=round(box[0]*im.width)or round(box[3]*im.height)<=round(box[1]*im.height):raise ValueError('裁剪范围至少包含一个像素')
     if card.get('review',{}).get('status')not in ['needs_review','reviewed']:raise ValueError('校对状态无效')
     if legacy and card.get('rank')not in [None,'commander','operative','corps','special-forces','support','heavy','counterpart']:raise ValueError('军阶枚举无效')
 def make_portrait(card):
-    path=relative_asset(card['assets']['front']);crop=card['assets']['portraitCrop']
+    front=(card.get('assets') or {}).get('front')
+    if not front:
+        card['assets']['portrait']=None
+        return
+    path=relative_asset(front);crop=card['assets']['portraitCrop']
     fingerprint=digest(path.read_bytes()+encoded(crop))[:20];target=ROOT/'assets/portraits'/(card['id']+'-'+fingerprint+'.webp')
     if not target.exists():
         with Image.open(path)as im:
             box=tuple(round(v*(im.width if i%2==0 else im.height))for i,v in enumerate(crop));im.crop(box).save(target,format='WEBP',quality=94)
     card['assets']['portrait']=target.relative_to(ROOT).as_posix()
-def commit_card(card,revision):
+def commit_card(card,revision,create=False):
     card=migrate_legacy(card)
     validate(card)
     with LOCK:
         original=DATA.read_bytes()
         if revision!=digest(original):raise FileExistsError('源文件已发生修改，请重新载入后合并修改；未覆盖你的草稿。')
         catalog=json.loads(original);index=next((i for i,c in enumerate(catalog['units'])if c['id']==card['id']),None)
-        if index is None:raise ValueError('单位 ID 不存在；为避免误覆盖，不允许直接更改 ID')
+        if index is None and not create:raise ValueError('单位 ID 不存在；为避免误覆盖，不允许直接更改 ID')
+        if index is not None and create:raise ValueError('该单位 ID 已存在')
         stamp=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S.%fZ');snapshot=stamp+'-'+digest(original)[:12]+'.json'
         HISTORY.mkdir(exist_ok=True);atomic(HISTORY/snapshot,original)
-        make_portrait(card);catalog['units'][index]=card;catalog['updatedAt']=datetime.now(timezone.utc).isoformat()
+        make_portrait(card)
+        if index is None:catalog['units'].append(card)
+        else:catalog['units'][index]=card
+        catalog['updatedAt']=datetime.now(timezone.utc).isoformat()
         content=encoded(catalog);atomic(DATA,content)
         return {'revision':digest(content),'card':card,'snapshot':snapshot}
 def commit_rules(package,revision):
@@ -185,9 +194,9 @@ class Handler(BaseHTTPRequestHandler):
                 head,_,b64=raw.partition(',')
                 if ';base64'not in head:raise ValueError('需要 base64 图片')
                 return self.reply(200,maintenance_store.save_image('upgrades',data['id'],base64.b64decode(b64),data['revision']))
-            if path=='/api/save':return self.reply(200,commit_card(copy.deepcopy(data['card']),data['revision']))
+            if path=='/api/save':return self.reply(200,commit_card(copy.deepcopy(data['card']),data['revision'],bool(data.get('create'))))
             if path in ['/api/upgrades/save','/api/armies/save','/api/armies/create']:
-                kind=path.split('/')[2];return self.reply(200,maintenance_store.save(kind,copy.deepcopy(data['card']),data['revision'],path.endswith('/create')))
+                kind=path.split('/')[2];return self.reply(200,maintenance_store.save(kind,copy.deepcopy(data['card']),data['revision'],path.endswith('/create')or bool(data.get('create'))))
             if path in ['/api/upgrades/restore','/api/armies/restore']:
                 kind=path.split('/')[2];return self.reply(200,maintenance_store.restore(kind,data['snapshot'],data['id'],data['revision']))
             if path=='/api/armies/delete':return self.reply(200,maintenance_store.delete_army(data['id'],data['revision']))
