@@ -105,7 +105,7 @@
 
 1. ✅ 配额与规则文本导入（`tools/import_battleforces.py`）。
 2. ⏳ 从 PDF 抽取「Unique Upgrades Allowed」并按名称解析到升级卡（解析率报告）。
-3. ⏳ 引擎实现 `battleForceChecks`（先做 banKeyword / unitCap / uniqueUpgrades 三种可机械判断的）。
+3. ✅ 引擎实现 `battleForceChecks`（banKeyword / unitCap / uniqueUpgrades）；Blizzard Force 已作为样例配置并通过双引擎测试。
 4. ⏳ 逐个部队补 `machineRules`（15 个，按 PDF 核对）。
 5. ⏳ 规则库页面战斗部队编辑表单。
 6. ⏳ 写表器：军阶栏显示配额、选项选择 UI。
