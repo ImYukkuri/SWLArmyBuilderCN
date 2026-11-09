@@ -202,6 +202,46 @@ window.RulesCore = (() => {
     return false;
   }
 
+  function upgradeEligibility(card, unit, army, data) {
+    const { defs, pkg, nameIndex } = data;
+    const idx = nameIndex || buildNameIndex(data.upgrades, defs);
+    const rule = (pkg.upgradeRules || {})[String(card.upstream && card.upstream.id || "")] || {};
+    const name = (card.name && card.name.en) || card.id;
+    const memberships = (unit.factions || []).filter(m => m.id === army.armyId);
+    const issues = [];
+    const add = (status, code, message) => issues.push({ status, code, message });
+    const h = hosts(rule, card);
+    if (h != null && !h.includes(String(unit.upstream && unit.upstream.id || ""))) {
+      add("invalid", "host_restriction", "此升级仅限特定角色/版本");
+    }
+    const facs = (card.rules || {}).factions;
+    if (facs && !facs.map(Number).includes(army.armyId)) {
+      add("invalid", "upgrade_faction", `升级「${name}」不属于当前军队/战斗部队`);
+    }
+    if (unavailableSets(card, idx, defs).fac.has(army.armyId)) {
+      add("invalid", "unavailable_faction", `升级「${name}」无法加入当前军队/战斗部队`);
+    }
+    const rp = (card.rules || {}).requiredProperties;
+    if (rp && !requiredPropertiesOk(unit, rp, defs)) {
+      add("invalid", "required_properties", `升级「${name}」不满足适用条件（阵营/类型/词条）`);
+    }
+    const rc = restrictionConditionOk(card, unit, pkg);
+    if (rc === false) add("invalid", "restriction_condition", `升级「${name}」不满足卡面限制条件`);
+    else if (rc === null && (card.restrictions || {}).condition) add("unknown", "restriction_condition_unknown", `升级「${name}」的卡面限制条件存在未覆盖语义`);
+    const divs = (card.rules || {}).requiredDivisions;
+    if (divs) {
+      const ud = unitDivisions(unit);
+      if (ud.length && !ud.some(d => divs.includes(d))) add("invalid", "division_restriction", `升级「${name}」仅限${divs.join("/")}阵营`);
+    }
+    const reqTier = (card.rules || {}).requiresTier;
+    if (reqTier && reqTier.length) {
+      const hostRank = memberships.length ? memberships[0].rankId : null;
+      if (hostRank == null || !reqTier.map(Number).includes(Number(hostRank))) {
+        add("invalid", "requires_tier", `升级「${name}」要求母单位军阶为 ${reqTier.join("/")}，当前为 ${hostRank == null ? "无" : hostRank}`);
+      }
+    }
+    return { ok: issues.every(i => i.status !== "invalid"), issues };
+  }
   function validateArmy(army, data) {
     const { units, upgrades, defs, pkg } = data;
     const issues = [];
@@ -256,39 +296,8 @@ window.RulesCore = (() => {
         if (index in assigned) { issue("invalid", "slot_occupied", "该槽已被另一张升级占用", ckey); }
         else assigned[index] = ckey;
 
-        const h = hosts(rule, card);
-        if (h != null && !h.includes(String(unit.upstream && unit.upstream.id || ""))) {
-          issue("invalid", "host_restriction", "此升级仅限特定角色/版本", ckey);
-        }
-        const facs = (card.rules || {}).factions;
-        if (facs && !facs.map(Number).includes(army.armyId)) {
-          issue("invalid", "upgrade_faction", `升级「${(card.name && card.name.en) || card.id}」不属于当前军队/战斗部队`, ckey);
-        }
-        if (unavailableSets(card, nameIndex, defs).fac.has(army.armyId)) {
-          issue("invalid", "unavailable_faction", `升级「${(card.name && card.name.en) || card.id}」无法加入当前军队/战斗部队`, ckey);
-        }
-        const rp = (card.rules || {}).requiredProperties;
-        if (rp && !requiredPropertiesOk(unit, rp, defs)) {
-          issue("invalid", "required_properties", `升级「${(card.name && card.name.en) || card.id}」不满足适用条件（阵营/类型/词条）`, ckey);
-        }
-        const rc = restrictionConditionOk(card, unit, pkg);
-        if (rc === false) {
-          issue("invalid", "restriction_condition", `升级「${(card.name && card.name.en) || card.id}」不满足卡面限制条件`, ckey);
-        } else if (rc === null && (card.restrictions || {}).condition) {
-          issue("unknown", "restriction_condition_unknown", `升级「${(card.name && card.name.en) || card.id}」的卡面限制条件存在未覆盖语义`, ckey);
-        }
-        const divs = (card.rules || {}).requiredDivisions;
-        if (divs) {
-          const ud = unitDivisions(unit);
-          if (ud.length && !ud.some(d => divs.includes(d))) issue("invalid", "division_restriction", `升级「${(card.name && card.name.en) || card.id}」仅限${divs.join("/")}阵营`, ckey);
-        }
-        const reqTier = (card.rules || {}).requiresTier;
-        if (reqTier && reqTier.length) {
-          const hostRank = memberships.length ? memberships[0].rankId : null;
-          if (hostRank == null || !reqTier.map(Number).includes(Number(hostRank))) {
-            issue("invalid", "requires_tier", `升级「${(card.name && card.name.en) || card.id}」要求母单位军阶为 ${reqTier.join("/")}，当前为 ${hostRank == null ? "无" : hostRank}`, ckey);
-          }
-        }
+        const elig = upgradeEligibility(card, unit, army, { units, upgrades, defs, pkg, nameIndex });
+        for (const e of elig.issues) issue(e.status, e.code, e.message, ckey);
       }
       for (let i = 0; i < slotList.length; i++) {
         if (slotList[i].required && !(i in assigned)) issue("invalid", "required_slot", `必选槽位 ${slotList[i].key} 尚未配置升级`, key);
@@ -527,5 +536,5 @@ window.RulesCore = (() => {
     return { status: hasInvalid ? "invalid" : (hasUnknown ? "unknown" : "valid"), basePoints, effectivePoints, rankCounts: maxCounts, issues };
   }
 
-  return { Dice, evaluate, validateArmy, slotKey, accessKeys, dedicatedSlotKeys, slotListFor, restrictionConditionOk, requiredPropertiesOk, normRp, buildNameIndex, unavailableSets };
+  return { Dice, evaluate, validateArmy, upgradeEligibility, slotKey, accessKeys, dedicatedSlotKeys, slotListFor, restrictionConditionOk, requiredPropertiesOk, normRp, buildNameIndex, unavailableSets };
 })();

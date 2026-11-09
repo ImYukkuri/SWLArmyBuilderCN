@@ -7,13 +7,13 @@
 | # | 切面 | 代码位置 | 触发时机 | 输入 | 输出 |
 |---|---|---|---|---|---|
 | S1 | 组军完整校验 | `rules.py::validate_army` / `rules-core.js::validateArmy` | 军表每次变化（选择/移除单位、增删升级、切模式/军队） | army + data | issues[{status,code,message}] |
-| S2 | 升级候选过滤 | `builder.js::restrictionOk` | 打开某个槽位浏览升级卡时 | card + unit + army | bool（是否进候选） |
+| S2 | 升级候选过滤 | `builder.js::restrictionOk` → `RulesCore.upgradeEligibility`（与 S1 同一函数） | 打开某个槽位浏览升级卡时 | card + unit + army | bool（是否进候选） |
 | S3 | 候选去重/互斥 | `builder.js::alreadySelectedUnique / sameNameSelected / conflictsWithSelected` | 同 S2 | card + unit 实例 | bool |
 | S4 | 单位可选性 | `builder.js::unitAvailability` | 浏览单位卡、渲染军表行 | unit + army | hidden / orphan（变红） |
 | S5 | 槽位计算 | `rules-core.js::slotListFor` / `rules.py::slot_list_for` | S1、S2 之前；每次渲染 | unit + 已携带升级 | slotList[{key,required,virtual}] |
 | S6 | 规则声明结构校验 | `rule_schema.py::validate_rules` | 编辑器保存规则 / 导入 | rules 对象 | raise（结构错误） |
 | S7 | 卡牌数据校验 | `maintenance_store.validate`（升级）、`server.validate`（单位） | 保存卡片 | card | raise（引用/类型错误） |
-| S8 | 候选查询接口 | `rules.py::query_candidates` | `POST /api/candidates` | unit id | 候选列表 |
+| S8 | 候选查询接口 | `rules.py::query_candidates` → `upgrade_eligibility`（与 S1 同一函数） | `POST /api/candidates` | unit id | 候选列表 |
 | S9 | 数据合并/导入脚本 | `tools/merge_upstream.py`、`import_maintenance.py` | 手工运行 | 上游快照 + 本地卡 | 写回 data/*.json |
 | S10 | 编辑器规则界面 | `rule-editor.js` | 编辑规则时 | 字段词表 | 控件（不校验，只暴露字段） |
 
@@ -103,7 +103,7 @@
 7. **同名规则硬编码**：`local_duplicate_name` 写死在引擎，不可配置，且与 `unique`/`locallyUnique` 语义重叠。
 8. **quantityLimitedBy 只实现一半**：unit/ratio 生效，faction 内 tier/ratio 未实现。
 9. **两套加槽机制**：规则包 `dedicatedGrants` 与卡级 `slotEffects` 并存。
-10. **候选过滤与组军校验是两份独立实现**：部分规则只在 S1 执行、不在 S2 过滤（例如 requiredChildren、部分 limit），会出现「候选能选、组军才报错」。
+10. ~~**候选过滤与组军校验是两份独立实现**~~：已统一为 `upgrade_eligibility` / `upgradeEligibility`，S1、S2、S8 共用同一套检查（含回归测试）。
 
 ## 四、整改建议顺序（供决策）
 

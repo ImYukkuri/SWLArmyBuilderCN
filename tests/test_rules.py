@@ -147,6 +147,35 @@ class ValidateArmyTest(unittest.TestCase):
         report = rules.validate_army(army)
         self.assertIn("local_duplicate_name", [i["code"] for i in report["issues"]])
 
+    def test_eligibility_single_source_of_truth(self):
+        # Candidate filtering (S2), validation (S1) and query_candidates (S8) must agree.
+        pkg = rules.load_package()
+        units, upgrades, defs = rules.load_cards()
+        name_index = rules.build_name_index(upgrades, defs)
+        elig_codes = {"host_restriction", "upgrade_faction", "unavailable_faction",
+                      "required_properties", "restriction_condition", "division_restriction",
+                      "requires_tier"}
+        pairs = [
+            ("empire-scout", "training-dug-in", 2),
+            ("rebels-rebel-troopers", "axe-woves", 1),
+            ("mercenary-clan-kryze-bo-katan-kryze", "axe-woves", 8),
+            ("separatists-b1", "adaptive-combat-network", 5),
+        ]
+        for uid, cid, army_id in pairs:
+            unit = units[uid]
+            card = upgrades[cid]
+            elig = {i[1] for i in rules.upgrade_eligibility(
+                card, unit, {"armyId": army_id}, pkg, defs, name_index) if i[0] == "invalid"}
+            army = {"mode": "standard", "armyId": army_id, "pointsLimit": 1000, "units": [
+                {"instanceId": "u1", "unitId": uid,
+                 "upgrades": [{"instanceId": "c1", "upgradeId": cid, "slotIndex": 0}]}],
+                "commandIds": [], "options": []}
+            got = {i["code"] for i in rules.validate_army(army)["issues"] if i["code"] in elig_codes}
+            self.assertEqual(got, elig, (uid, cid))
+            qc = {q["upgradeId"]: q for q in rules.query_candidates(uid, pkg, units, upgrades, army_id)}
+            if elig:
+                self.assertFalse(qc[cid]["available"], (uid, cid))
+
     def test_two_darksaber_versions_conflict(self):
         army = {"mode": "standard", "armyId": 8, "pointsLimit": 1000, "units": [
             {"instanceId": "u1", "unitId": "mercenary-clan-kryze-bo-katan-kryze", "upgrades": [

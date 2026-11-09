@@ -292,6 +292,46 @@ def _required_properties_ok(unit, rp, definitions):
     return False
 
 
+def upgrade_eligibility(card, unit, army, package, definitions, name_index):
+    """Single source of truth for card-vs-unit eligibility.
+
+    Used by full army validation (S1), candidate filtering (S2/S8) so the two
+    can never drift apart."""
+    rule = (package.get("upgradeRules") or {}).get(str((card.get("upstream") or {}).get("id", "")), {})
+    name = (card.get("name") or {}).get("en") or card.get("id")
+    memberships = [m for m in unit.get("factions", []) if m.get("id") == army.get("armyId")]
+    out = []
+    hosts = upstream_hosts(rule, card)
+    if hosts is not None and str(unit.get("upstream", {}).get("id", "")) not in hosts:
+        out.append(("invalid", "host_restriction", "此升级仅限特定角色/版本"))
+    facs = (card.get("rules") or {}).get("factions")
+    if facs and army.get("armyId") not in [int(f) for f in facs]:
+        out.append(("invalid", "upgrade_faction", f"升级「{name}」不属于当前军队/战斗部队"))
+    if army.get("armyId") in unavailable_sets(card, name_index, definitions)["fac"]:
+        out.append(("invalid", "unavailable_faction", f"升级「{name}」无法加入当前军队/战斗部队"))
+    rp = (card.get("rules") or {}).get("requiredProperties")
+    if rp and not _required_properties_ok(unit, rp, definitions):
+        out.append(("invalid", "required_properties", f"升级「{name}」不满足适用条件（阵营/类型/词条）"))
+    rc = (card.get("restrictions") or {}).get("condition")
+    if rc is not None:
+        rc_ok = evaluate(rc, _unit_context(unit, package), package.get("predicates") or {})
+        if rc_ok is False:
+            out.append(("invalid", "restriction_condition", f"升级「{name}」不满足卡面限制条件"))
+        elif rc_ok is None:
+            out.append(("unknown", "restriction_condition_unknown", f"升级「{name}」的卡面限制条件存在未覆盖语义"))
+    divs = (card.get("rules") or {}).get("requiredDivisions")
+    if divs:
+        ud = unit_divisions(unit)
+        if ud and not any(d in ud for d in divs):
+            out.append(("invalid", "division_restriction", f"升级「{name}」仅限{'/'.join(divs)}阵营"))
+    req_tier = (card.get("rules") or {}).get("requiresTier")
+    if req_tier:
+        host_rank = memberships[0].get("rankId") if memberships else None
+        if host_rank is None or int(host_rank) not in [int(t) for t in req_tier]:
+            out.append(("invalid", "requires_tier", f"升级「{name}」要求母单位军阶为 {'/'.join(str(t) for t in req_tier)}，当前为 {'无' if host_rank is None else host_rank}"))
+    return out
+
+
 def validate_army(army):
     package = load_package()
     units, upgrades, definitions = load_cards()
@@ -364,36 +404,8 @@ def validate_army(army):
             else:
                 assigned[index] = ckey
 
-            hosts = upstream_hosts(rule, card)
-            if hosts is not None and str(unit.get("upstream", {}).get("id", "")) not in hosts:
-                issue("invalid", "host_restriction", "此升级仅限特定角色/版本", ckey)
-
-            facs = (card.get("rules") or {}).get("factions")
-            if facs and army.get("armyId") not in [int(f) for f in facs]:
-                issue("invalid", "upgrade_faction", f"升级「{(card.get('name') or {}).get('en', card.get('id'))}」不属于当前军队/战斗部队", ckey)
-            if army.get("armyId") in unavailable_sets(card, name_index, definitions)["fac"]:
-                issue("invalid", "unavailable_faction", f"升级「{(card.get('name') or {}).get('en', card.get('id'))}」无法加入当前军队/战斗部队", ckey)
-
-            rp = (card.get("rules") or {}).get("requiredProperties")
-            if rp and not _required_properties_ok(unit, rp, definitions):
-                issue("invalid", "required_properties", f"升级「{(card.get('name') or {}).get('en', card.get('id'))}」不满足适用条件（阵营/类型/词条）", ckey)
-            rc = (card.get("restrictions") or {}).get("condition")
-            if rc is not None:
-                rc_ok = evaluate(rc, _unit_context(unit, package), package.get("predicates") or {})
-                if rc_ok is False:
-                    issue("invalid", "restriction_condition", f"升级「{(card.get('name') or {}).get('en', card.get('id'))}」不满足卡面限制条件", ckey)
-                elif rc_ok is None:
-                    issue("unknown", "restriction_condition_unknown", f"升级「{(card.get('name') or {}).get('en', card.get('id'))}」的卡面限制条件存在未覆盖语义", ckey)
-            divs = (card.get("rules") or {}).get("requiredDivisions")
-            if divs:
-                ud = unit_divisions(unit)
-                if ud and not any(d in ud for d in divs):
-                    issue("invalid", "division_restriction", f"升级「{(card.get('name') or {}).get('en', card.get('id'))}」仅限{'/'.join(divs)}阵营", ckey)
-            req_tier = (card.get("rules") or {}).get("requiresTier")
-            if req_tier:
-                host_rank = memberships[0].get("rankId") if memberships else None
-                if host_rank is None or int(host_rank) not in [int(t) for t in req_tier]:
-                    issue("invalid", "requires_tier", f"升级「{(card.get('name') or {}).get('en', card.get('id'))}」要求母单位军阶为 {'/'.join(str(t) for t in req_tier)}，当前为 {'无' if host_rank is None else host_rank}", ckey)
+            for status, code, message in upgrade_eligibility(card, unit, army, package, definitions, name_index):
+                issue(status, code, message, ckey)
 
         for i, s in enumerate(slot_list):
             if s.get("required") and i not in assigned:
@@ -678,7 +690,7 @@ def validate_army(army):
     }
 
 
-def query_candidates(unit_id, package=None, units=None, upgrades=None):
+def query_candidates(unit_id, package=None, units=None, upgrades=None, army_id=None):
     package = package or load_package()
     units = units or {u["id"]: u for u in _read("data/units.json")["units"]}
     upgrades = upgrades or {c["id"]: c for c in _read("data/upgrades.json")["cards"]}
@@ -703,17 +715,15 @@ def query_candidates(unit_id, package=None, units=None, upgrades=None):
         if g["key"] not in slot_keys:
             slot_keys.append(g["key"])
             granted.add(g["key"])
+    definitions = _read("data/catalog-definitions.json")
+    name_index = build_name_index(upgrades, definitions)
+    army = {"armyId": army_id if army_id is not None else ((unit.get("factions") or [{}])[0].get("id"))}
     results = []
     for card in upgrades.values():
         rule = (package.get("upgradeRules") or {}).get(str(card.get("upstream", {}).get("id", "")), {})
-        allowed = access_keys(card, package, rule)
-        matched = [k for k in allowed if k in slot_keys]
-        hosts = upstream_hosts(rule, card)
-        host_ok = True if hosts is None else str(unit.get("upstream", {}).get("id", "")) in hosts
-        results.append({
-            "upgradeId": card.get("id"),
-            "available": bool(matched) and host_ok,
-            "matchedSlots": matched,
-            "reason": ("可匹配槽位 " + "/".join(matched)) if (matched and host_ok) else ("不适用该单位" if not host_ok else "无匹配槽位"),
-        })
+        matched = [k for k in access_keys(card, package, rule) if k in slot_keys]
+        blocked = [i for i in upgrade_eligibility(card, unit, army, package, definitions, name_index) if i[0] == "invalid"]
+        available = bool(matched) and not blocked
+        reason = ("可匹配槽位 " + "/".join(matched)) if available else (blocked[0][2] if blocked else "无匹配槽位")
+        results.append({"upgradeId": card.get("id"), "available": available, "matchedSlots": matched, "reason": reason})
     return results
