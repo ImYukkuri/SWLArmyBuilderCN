@@ -533,6 +533,15 @@ window.RulesCore = (() => {
         issue("invalid", "unique_duplicate", `独特升级「${name}」跨版本只能携带一次`, null);
       }
     }
+    const cardCounts = {};
+    for (const [, cardId] of seen) cardCounts[cardId] = (cardCounts[cardId] || 0) + 1;
+    for (const [cardId, n] of Object.entries(cardCounts)) {
+      const card = upgrades[cardId] || {};
+      const rule = (pkg.upgradeRules || {})[String((card.upstream && card.upstream.id) || "")] || {};
+      if (((card.rules || {}).unique === true || rule.armyUnique) && n > 1) {
+        issue("invalid", "unique_duplicate", `独特升级「${(card.name && card.name.en) || cardId}」整军只能携带一次`, null);
+      }
+    }
     for (const [group, ids] of Object.entries(conflictGroups)) if (ids.size > 1) issue("invalid", "conflict_group", `互斥组 ${group} 中选择了多个互斥升级`, null);
     const conflictSets = new Map();
     for (const [upstreamId, cardId, ckey] of seen) {
@@ -583,6 +592,31 @@ window.RulesCore = (() => {
         const uid = String(u.upstream.id);
         armyUnitUpstream.add(uid);
         armyUnitUpstreamCounts[uid] = (armyUnitUpstreamCounts[uid] || 0) + 1;
+      }
+    }
+    const unitNameIndex = {};
+    for (const u of Object.values(units || {})) {
+      const key = normalizeKey((u.name && u.name.en) || "");
+      if (!key) continue;
+      (unitNameIndex[key] ||= new Set()).add(String((u.upstream && u.upstream.id) || ""));
+    }
+    for (const inst of army.units || []) {
+      const u = units[inst.unitId];
+      if (!u) continue;
+      const own = String((u.upstream && u.upstream.id) || "");
+      const ownKey = normalizeKey((u.name && u.name.en) || "");
+      for (const item of (u.rules || {}).unavailableWith || []) {
+        const ids = new Set();
+        if (item && typeof item === "object") {
+          if (item.propertyName === "units") ids.add(String(item.id));
+        } else if (typeof item === "string") {
+          const key = normalizeKey(item);
+          if (key && key !== ownKey) for (const id of unitNameIndex[key] || []) ids.add(id);
+        }
+        ids.delete(own);
+        if ([...ids].some(id => armyUnitUpstream.has(id))) {
+          issue("invalid", "unit_conflict", `「${(u.name && u.name.en) || u.id}」与军表中的互斥单位同时出现`, inst.instanceId);
+        }
       }
     }
     const minCounts = {}, maxCounts = {}, waivedTiers = new Set();

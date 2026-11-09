@@ -235,6 +235,22 @@ class ValidateArmyTest(unittest.TestCase):
         self.assertIsNone(rank("rebels-luke-skywalker-jedi", 13))
         self.assertEqual(rank("rebels-luke-skywalker-hero", 13), 1)
 
+    def test_unique_upgrade_by_name_across_versions(self):
+        army = {"mode": "standard", "armyId": 5, "pointsLimit": 2000, "units": [
+            {"instanceId": "u1", "unitId": "separatists-b1",
+             "upgrades": [{"instanceId": "c1", "upgradeId": "cassian-andor", "slotIndex": 0}]},
+            {"instanceId": "u2", "unitId": "separatists-b1",
+             "upgrades": [{"instanceId": "c2", "upgradeId": "cassian-andor-2", "slotIndex": 0}]}],
+            "commandIds": [], "options": []}
+        self.assertIn("unique_duplicate", [i["code"] for i in rules.validate_army(army)["issues"]])
+
+    def test_unit_conflict_from_unavailable_with(self):
+        army = {"mode": "standard", "armyId": 5, "pointsLimit": 2000, "units": [
+            {"instanceId": "u1", "unitId": "separatists-grievous-wheelbike", "upgrades": []},
+            {"instanceId": "u2", "unitId": "separatists-grievous", "upgrades": []}],
+            "commandIds": [], "options": []}
+        self.assertIn("unit_conflict", [i["code"] for i in rules.validate_army(army)["issues"]])
+
     def test_two_darksaber_versions_conflict(self):
         army = {"mode": "standard", "armyId": 8, "pointsLimit": 1000, "units": [
             {"instanceId": "u1", "unitId": "mercenary-clan-kryze-bo-katan-kryze", "upgrades": [

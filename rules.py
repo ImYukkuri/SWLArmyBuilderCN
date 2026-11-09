@@ -739,7 +739,15 @@ def validate_army(army):
         lim = r.get("limit")
         if isinstance(lim, int) and n > lim:
             issue("invalid", "limit_exceeded", f"升级「{name}」超过数量上限 {lim}", None)
-
+    unique_by_name = {}
+    for upstream_id, card_id, ckey in seen:
+        card = upgrades.get(card_id) or {}
+        key = normalize_name((card.get("name") or {}).get("en") or card_id)
+        unique_by_name.setdefault(key, set()).add(card_id)
+    for key, ids in unique_by_name.items():
+        if len(ids) > 1 and any(((upgrades.get(cid) or {}).get("rules") or {}).get("unique") is True for cid in ids):
+            label = (upgrades.get(next(iter(ids))) or {}).get("name", {}).get("en") or key
+            issue("invalid", "unique_duplicate", f"独特升级「{label}」跨版本只能携带一次", None)
     # unit uniqueness (group by name for unique units)
     unique_unit_counts = {}
     for inst in army.get("units", []):
@@ -767,6 +775,31 @@ def validate_army(army):
             uid = str(u["upstream"]["id"])
             army_unit_upstream_ids.add(uid)
             army_unit_upstream_counts[uid] = army_unit_upstream_counts.get(uid, 0) + 1
+    unit_name_index = {}
+    for u in units.values():
+        key = normalize_name((u.get("name") or {}).get("en") or "")
+        if key:
+            unit_name_index.setdefault(key, set()).add(str((u.get("upstream") or {}).get("id", "")))
+    for inst in army.get("units", []):
+        u = units.get(inst.get("unitId"))
+        if not u:
+            continue
+        own = str((u.get("upstream") or {}).get("id", ""))
+        own_key = normalize_name((u.get("name") or {}).get("en") or "")
+        for item in (u.get("rules") or {}).get("unavailableWith") or []:
+            ids = set()
+            if isinstance(item, dict):
+                if item.get("propertyName") == "units":
+                    ids.add(str(item.get("id")))
+            elif isinstance(item, str):
+                key = normalize_name(item)
+                if key and key != own_key:
+                    ids |= unit_name_index.get(key, set())
+            ids.discard(own)
+            if ids & army_unit_upstream_ids:
+                issue("invalid", "unit_conflict", f"「{(u.get('name') or {}).get('en') or u.get('id')}」与军表中的互斥单位同时出现", inst.get("instanceId"))
+
+
     min_counts = {}
     max_counts = {}
     waived_tiers = set()
