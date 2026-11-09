@@ -95,7 +95,7 @@ window.RuleEditor=(()=>{
   function tableFor(key,path,parent){
     if(key==='value'&&parent.property)return atomTables[parent.property];
     if(key==='slotTypes'||path.includes('slotTypes'))return 'upgradeSlots';
-    if(key==='factions'&&path.length===1)return 'armies';
+    if(path[0]==='factions')return 'armies';
     if(path.includes('availableIn'))return 'sourceUnits';
     if(path.includes('requiredChildren')&&key==='id')return 'upgrades';
     if(path.includes('quantityLimitedBy')&&key==='unit')return 'sourceUnits';

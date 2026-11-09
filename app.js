@@ -78,24 +78,54 @@ function newUnitDraft(){
     assets:{front:null,portrait:null,portraitCrop:[0,0,1,1]},
     review:{status:'needs_review',notes:'',issues:['新建卡片，待补全字段']},usage:'army_unit'}
 }
-function newUnit(){
+function startDraft(template,label){
   if(dirty&&!confirm('当前单位有未保存修改，确定放弃并新建？'))return;
-  draft=newUnitDraft();selected=draft.id;creating=true;dirty=false;
+  draft=template;selected=draft.id;creating=true;dirty=false;
   catalog.units.push(structuredClone(draft));
-  $('#dirty').textContent='新建（未保存）';$('#raw-json').value=JSON.stringify(draft,null,2);
-  renderForm();renderList();status('已创建草稿：填写字段后点击保存');
+  $('#dirty').textContent='';
+  $('#raw-json').value=JSON.stringify(draft,null,2);
+  renderForm();renderList();status('已创建'+label+'草稿：保存后才会写入源文件');
+}
+function newUnit(){startDraft(newUnitDraft(),'空白')}
+function copyUnit(){
+  if(!draft||!selected||creating){status('请先选择一个要复制的单位',true);return}
+  const base=structuredClone(draft);
+  base.id='new-unit-'+Date.now().toString(36);
+  base.name={...(base.name||{}),en:((base.name||{}).en||'Unit')+' (copy)',zh:((base.name||{}).zh||'单位')+'（副本）'};
+  base.assets={...(base.assets||{}),portrait:null};
+  base.review={...(base.review||{}),status:'needs_review',notes:'',issues:['复制自 '+selected+'，待校对']};
+  delete base.upstream;
+  startDraft(base,'复制')
+}
+function abandonDraft(){
+  if(!creating)return;
+  catalog.units=catalog.units.filter(u=>u.id!==selected);
+  creating=false;dirty=false;
+  const first=catalog.units[0];
+  if(first){selected=first.id;draft=structuredClone(first);$('#raw-json').value=JSON.stringify(draft,null,2);renderForm();renderList();status('已放弃草稿')}
+}
+function renderDraftBanner(){
+  const box=$('#draft-banner');
+  if(!box)return;
+  box.hidden=!creating;
+  if(!creating){box.replaceChildren();return}
+  box.replaceChildren();
+  const text=el('span','未保存草稿 · 保存后才会写入 data/units.json');
+  const save=el('button','保存');save.className='primary';save.onclick=()=>$('#save').click();
+  const drop=el('button','放弃');drop.className='minor';drop.onclick=abandonDraft;
+  box.append(text,save,drop);
 }
 function renderForm(){
   $('#fields').replaceChildren();objectForm(Object.fromEntries(Object.entries(draft).filter(([k])=>!['assets','source','rules'].includes(k))),[],$('#fields'));
   $('#title').textContent=draft.name.zh||draft.name.en;$('#subtitle').textContent=draft.name.en+(draft.title.en?' / '+draft.title.en:'');
-  if(draft.assets.front)$('#front').src=draft.assets.front;if(draft.assets.portrait)$('#portrait').src=draft.assets.portrait;
+  if(draft.assets.front)$('#front').src=draft.assets.front;else $('#front').removeAttribute('src');if(draft.assets.portrait)$('#portrait').src=draft.assets.portrait;else $('#portrait').removeAttribute('src');renderDraftBanner();if($('#unit-image-upload'))$('#unit-image-upload').disabled=creating;
   $('#source').textContent='提取依据已归档至 data/extraction-evidence.json，单位运行数据不再重复保存 OCR 和武器 source。';
   $('#issues').replaceChildren();for(const s of draft.review.issues||[]){const n=el('div',typeof s==='string'?s:JSON.stringify(s));n.className='issue';$('#issues').append(n)}
   $('#crop-controls').replaceChildren();['左','上','右','下'].forEach((label,i)=>{const l=el('label');l.className='field';l.append(el('span',label));const input=el('input');input.type='number';input.step='.005';input.min=0;input.max=1;input.value=draft.assets.portraitCrop[i];input.setAttribute('aria-label','裁剪'+label);input.addEventListener('input',()=>put(['assets','portraitCrop',i],Number(input.value)));l.append(input);$('#crop-controls').append(l)});renderKeywordParams();
 }
 function renderList(){const q=$('#search').value.trim().toLocaleLowerCase(),f=$('#faction').value,r=$('#review-filter').value;$('#list').replaceChildren();for(const u of catalog.units){if(f&&u.factionId!==Number(f)||r&&u.review.status!==r||q&&!JSON.stringify([u.id,u.name,u.title]).toLocaleLowerCase().includes(q))continue;const b=el('button');b.dataset.id=u.id;b.classList.toggle('active',u.id===selected);const img=el('img');img.src=u.assets.portrait;img.alt='';img.loading='lazy';const text=el('span');text.append(el('strong',u.name.zh||u.name.en),el('small',u.name.en),el('small',(u.title.zh||u.title.en||lookup('ranks',u.rankId)?.name.zh||'军阶待校对')+' · '+(u.review.status==='reviewed'?'已校对':'待校对')));b.append(img,text);b.addEventListener('click',()=>select(u.id));$('#list').append(b)}$('#counts').textContent=catalog.units.length+' 张卡 · '+catalog.units.filter(u=>u.review.status==='reviewed').length+' 已校对'}
 function syncRaw(){if(currentTab!=='json')return true;try{const v=JSON.parse($('#raw-json').value);if(v.id!==selected)throw Error('不可更改单位 ID');if(!v.name||!v.assets||!v.review)throw Error('缺少单位必要字段');draft=v;return true}catch(e){status('JSON 未应用：'+e.message,true);return false}}
-function select(id){if(busy)return;if(dirty&&!confirm('当前单位有未保存修改，确定放弃并切换？'))return;selected=id;draft=structuredClone(catalog.units.find(u=>u.id===id));dirty=false;$('#dirty').textContent='';$('#raw-json').value=JSON.stringify(draft,null,2);renderForm();renderList();status('');if(currentTab==='rules')renderRules();if(currentTab==='history')loadHistory();if(currentTab==='refs')loadReferences()}
+function select(id){if(busy)return;if(dirty&&!confirm('当前单位有未保存修改，确定放弃并切换？'))return;if(creating){catalog.units=catalog.units.filter(u=>u.id!==selected);creating=false;}selected=id;draft=structuredClone(catalog.units.find(u=>u.id===id));dirty=false;$('#dirty').textContent='';$('#raw-json').value=JSON.stringify(draft,null,2);renderForm();renderList();status('');if(currentTab==='rules')renderRules();if(currentTab==='history')loadHistory();if(currentTab==='refs')loadReferences()}
 async function tab(name){if(!syncRaw())return;currentTab=name;for(const n of ['form','rules','json','history','refs'])$('#'+n+'-pane').hidden=n!==name;document.querySelectorAll('[data-tab]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.tab===name)));if(name==='form')renderForm();if(name==='rules')renderRules();if(name==='json')$('#raw-json').value=JSON.stringify(draft,null,2);if(name==='history')await loadHistory();if(name==='refs')await loadReferences()}
 
 async function loadReferences(){
@@ -114,7 +144,7 @@ async function reload(){if(dirty&&!confirm('放弃未保存修改并重新读取
 $('#save').addEventListener('click',async()=>{if(!syncRaw()||busy)return;try{busy=true;$('#save').disabled=true;acceptSave(await api('/api/save',{revision,card:draft,create:creating}))}catch(e){status(e.message,true)}finally{busy=false;$('#save').disabled=false}});
 $('#apply-json').addEventListener('click',()=>{if(syncRaw()){setDirty();tab('form');status('JSON 已应用到表单，尚未写入源文件')}});
 $('#raw-json').addEventListener('input',()=>{dirty=true;$('#dirty').textContent='有未保存修改'});
-$('#new-unit').addEventListener('click',newUnit);
+$('#new-unit').addEventListener('click',newUnit);$('#copy-unit').addEventListener('click',copyUnit);
 $('#unit-image-upload').addEventListener('click',()=>$('#unit-image-file').click());
 $('#unit-image-file').addEventListener('change',async()=>{
   const f=$('#unit-image-file').files[0];
