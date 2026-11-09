@@ -92,6 +92,43 @@ function unitTypeOptions(){return (defs.unitTypes||[]).map(t=>[String(t.id),(t.n
 function keywordOptions(){return (defs.keywords||[]).map(k=>[k.id,(k.name.zh||k.name.en||k.id)])}
 function unitNameOptions(){return ((defs.sourceUnits||[]).map(s=>s.name.en)).slice(0,400)}
 
+function renderAllowedUnits(box,bf,rerender){
+  const sec=el('div');sec.className='bf-section';
+  sec.append(el('h3','允许单位（按名字）'));
+  const hint=el('p','归属来自单位卡 factions；同名单位按「名字 + 军阶」共享归属（例如两张达斯·维达只有同军阶的版本会一起获得）。要改归属请到单位卡编辑器。');
+  hint.className='hint';sec.append(hint);
+  if(!bfData){
+    const loading=el('p','正在载入单位数据…');loading.className='hint';sec.append(loading);box.append(sec);
+    loadBfData().then(()=>renderBattleForces()).catch(e=>status(e.message,true));
+    return;
+  }
+  const rankName={1:'指挥官',6:'特工',2:'核心',3:'特种部队',4:'支援',5:'重型'};
+  const rows={};
+  for(const u of Object.values(bfData.units||{})){
+    const rank=window.RulesCore?window.RulesCore.armyRank(u,Number(bfId),rules,defs,bfData.units):null;
+    if(rank==null) continue;
+    const name=(u.name&&u.name.en)||u.id;
+    rows[rank]=rows[rank]||{};
+    (rows[rank][name]=rows[rank][name]||[]).push(u.id);
+  }
+  let total=0;
+  for(const rank of [1,6,2,3,4,5]){
+    const names=rows[rank];if(!names) continue;
+    const fs=el('fieldset');fs.className='restriction-section';
+    fs.append(el('legend',(rankName[rank]||rank)+' · rank '+rank+' · '+Object.keys(names).length+' 个名字'));
+    for(const [name,ids] of Object.entries(names)){
+      total+=ids.length;
+      const row=el('div');row.className='bf-row';
+      const strong=el('strong',name);strong.style.minWidth='220px';
+      const small=el('span',ids.join(' / '));small.className='hint';
+      row.append(strong,small);fs.append(row);
+    }
+    sec.append(fs);
+  }
+  const sum=el('p','共 '+total+' 张单位卡可加入该部队。');sum.className='hint';sec.append(sum);
+  box.append(sec);
+}
+
 function renderOverrides(box,bf,rerender){
   const ov=rules.armyOverrides=rules.armyOverrides||{};
   const id=bfId;
@@ -246,6 +283,7 @@ function renderBattleForces(){
   tbox.append(ta);
   main.append(tbox);
 
+  renderAllowedUnits(main,bf,renderBattleForces);
   renderOverrides(main,bf,renderBattleForces);
   renderPreview(main,bf,renderBattleForces);
   layout.append(main);

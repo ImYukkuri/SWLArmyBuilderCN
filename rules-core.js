@@ -330,6 +330,27 @@ window.RulesCore = (() => {
     }
     return allowed;
   }
+  function parentFactionId(armyId, pkg, defs) {
+    const bf = ((pkg && pkg.battleForces) || {})[String(armyId)];
+    const name = bf && bf.parentFaction;
+    if (!name) return null;
+    const a = ((defs && defs.armies) || []).find(x => (x.name && x.name.en) === name);
+    return a ? a.id : null;
+  }
+  function armyRank(unit, armyId, pkg, defs, units) {
+    const direct = (unit.factions || []).find(f => f.id === armyId);
+    if (direct) return direct.rankId;
+    const pid = parentFactionId(armyId, pkg, defs);
+    if (pid == null) return null;
+    const parentEntry = (unit.factions || []).find(f => f.id === pid);
+    if (!parentEntry) return null;
+    const name = (unit.name && unit.name.en) || "";
+    for (const other of Object.values(units || {})) {
+      if (((other.name && other.name.en) || "") !== name) continue;
+      if ((other.factions || []).some(f => f.id === armyId && f.rankId === parentEntry.rankId)) return parentEntry.rankId;
+    }
+    return null;
+  }
   function upgradeEligibility(card, unit, army, data, equipped) {
     const { defs, pkg, nameIndex } = data;
     if (card.deprecated) return { ok: false, issues: [{ status: "invalid", code: "deprecated_card", message: "该卡为废案，不参与组军" }] };
@@ -337,7 +358,7 @@ window.RulesCore = (() => {
     const idx = nameIndex || buildNameIndex(data.upgrades, defs);
     const rule = (pkg.upgradeRules || {})[String(card.upstream && card.upstream.id || "")] || {};
     const name = (card.name && card.name.en) || card.id;
-    const memberships = (unit.factions || []).filter(m => m.id === army.armyId);
+    const hostRank = armyRank(unit, army.armyId, pkg, defs, data.units);
     const issues = [];
     const add = (status, code, message) => issues.push({ status, code, message });
     const h = hosts(rule, card);
@@ -366,7 +387,6 @@ window.RulesCore = (() => {
     }
     const reqTier = (card.rules || {}).requiresTier;
     if (reqTier && reqTier.length) {
-      const hostRank = memberships.length ? memberships[0].rankId : null;
       if (hostRank == null || !reqTier.map(Number).includes(Number(hostRank))) {
         add("invalid", "requires_tier", `升级「${name}」要求母单位军阶为 ${reqTier.join("/")}，当前为 ${hostRank == null ? "无" : hostRank}`);
       }
@@ -433,8 +453,8 @@ window.RulesCore = (() => {
         issue("invalid", "counterpart_as_unit", "伙伴卡需通过宿主单位的伙伴槽加入，不能作为独立单位", key);
       }
       basePoints += unit.points || 0;
-      const memberships = (unit.factions || []).filter(m => m.id === army.armyId);
-      if (!memberships.length) { issue("invalid", "army_membership", "此单位未列入当前军队", key); continue; }
+      const memberRank = armyRank(unit, army.armyId, pkg, defs, units);
+      if (memberRank == null) { issue("invalid", "army_membership", "此单位未列入当前军队", key); continue; }
       const urc = (unit.restrictions || {}).condition;
       if (urc !== undefined && urc !== null) {
         const urcOk = evaluate(urc, unitContext(unit), pkg.predicates || {});
@@ -575,8 +595,7 @@ window.RulesCore = (() => {
     const entourageExempt = entourageExemptions(army.units || [], units);
     for (const [unitId, copies] of Object.entries(unitIdCounts)) {
       const unit = units[unitId];
-      const memberships = (unit.factions || []).filter(m => m.id === army.armyId);
-      let rank = memberships.length ? memberships[0].rankId : null;
+      let rank = armyRank(unit, army.armyId, pkg, defs, units);
       if (rank == null) continue;
       if (unitReplaceTier[unitId] != null) rank = unitReplaceTier[unitId];
       const tc = (unit.rules || {}).tierCounting || {};
@@ -734,5 +753,5 @@ window.RulesCore = (() => {
     return { status: hasInvalid ? "invalid" : (hasUnknown ? "unknown" : "valid"), basePoints, effectivePoints, rankCounts: maxCounts, issues };
   }
 
-  return { Dice, evaluate, validateArmy, upgradeEligibility, entourageExemptions, slotKey, accessKeys, slotGrantsFor, dedicatedSlotKeys, slotListFor, restrictionConditionOk, requiredPropertiesOk, normRp, buildNameIndex, unavailableSets };
+  return { Dice, evaluate, validateArmy, upgradeEligibility, entourageExemptions, armyRank, slotKey, accessKeys, slotGrantsFor, dedicatedSlotKeys, slotListFor, restrictionConditionOk, requiredPropertiesOk, normRp, buildNameIndex, unavailableSets };
 })();

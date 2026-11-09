@@ -221,6 +221,20 @@ class ValidateArmyTest(unittest.TestCase):
         self.assertIn("host_restriction", codes(7, "empire-dark-troopers", "shore-t21b"))
         self.assertIn("host_restriction", codes(2, "empire-stormtroopers", "shore-t21b"))
 
+    def test_battle_force_membership_by_name_and_rank(self):
+        # Same-name variants share membership only when they sit at the same rank in the battle force parent faction.
+        pkg = rules.load_package()
+        units, _, defs = rules.load_cards()
+        rank = lambda uid, fid: rules.army_rank(units[uid], fid, pkg, defs, units)
+        self.assertEqual(rank("empire-darth-vader-lord", 17), 1)
+        self.assertIsNone(rank("empire-darth-vader-apprentice", 17))
+        self.assertEqual(rank("empire-stormtroopers-hwu", 17), 2)
+        self.assertEqual(rank("empire-stormtroopers", 17), 2)
+        self.assertIsNone(rank("rebels-ahsoka", 16))
+        self.assertEqual(rank("republic-ahsoka-padawan-commander", 16), 1)
+        self.assertIsNone(rank("rebels-luke-skywalker-jedi", 13))
+        self.assertEqual(rank("rebels-luke-skywalker-hero", 13), 1)
+
     def test_two_darksaber_versions_conflict(self):
         army = {"mode": "standard", "armyId": 8, "pointsLimit": 1000, "units": [
             {"instanceId": "u1", "unitId": "mercenary-clan-kryze-bo-katan-kryze", "upgrades": [

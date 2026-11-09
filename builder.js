@@ -29,7 +29,7 @@ function load(){
     restore();render();
   }).catch(e=>{const p=$('#issues');if(p)p.textContent='数据载入失败：'+e.message});
 }
-function rankOf(u,armyId){const m=(u.factions||[]).find(f=>f.id===armyId);return m?m.rankId:null}
+function rankOf(u,armyId){return RulesCore.armyRank(u,armyId,data.pkg,data.defs,data.units)}
 let unitNameIndex=null;
 function buildUnitNameIndex(){const idx={};const add=(key,id)=>{const k=String(key||'').toLowerCase().replace(/[^a-z0-9]/g,'').replace(/1/g,'i');if(k){(idx[k]||=new Set()).add(id)}};for(const u of Object.values(data.units)){add(u.id,u.id);add((u.name&&u.name.en)||'',u.id);add((u.name&&u.name.zh)||'',u.id)}return idx}
 function resolveUnitIdByName(name){if(!unitNameIndex)unitNameIndex=buildUnitNameIndex();const k=String(name||'').toLowerCase().replace(/[^a-z0-9]/g,'').replace(/1/g,'i');const hits=unitNameIndex[k]||new Set();return hits.size===1?[...hits][0]:null}

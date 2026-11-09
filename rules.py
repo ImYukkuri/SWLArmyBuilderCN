@@ -462,6 +462,42 @@ def host_alias_allows(card, unit, army, package, definitions, rule):
     return allowed
 
 
+def parent_faction_id(package, definitions, army_id):
+    bf = (package.get("battleForces") or {}).get(str(army_id)) or {}
+    name = bf.get("parentFaction")
+    if not name:
+        return None
+    for a in definitions.get("armies") or []:
+        if (a.get("name") or {}).get("en") == name:
+            return a["id"]
+    return None
+
+
+def unit_rank_in_army(unit, army_id, package, definitions):
+    for f in unit.get("factions") or []:
+        if f.get("id") == army_id:
+            return f.get("rankId")
+    pid = parent_faction_id(package, definitions, army_id)
+    if pid is None:
+        return None
+    return next((f.get("rankId") for f in unit.get("factions") or [] if f.get("id") == pid), None)
+
+
+def army_rank(unit, army_id, package, definitions, units):
+    rank = unit_rank_in_army(unit, army_id, package, definitions)
+    if rank is None:
+        return None
+    if any(f.get("id") == army_id for f in unit.get("factions") or []):
+        return rank
+    name = (unit.get("name") or {}).get("en")
+    for other in units.values():
+        if ((other.get("name") or {}).get("en")) != name:
+            continue
+        if any(f.get("id") == army_id and f.get("rankId") == rank for f in other.get("factions") or []):
+            return rank
+    return None
+
+
 def upgrade_eligibility(card, unit, army, package, definitions, name_index, equipped=None):
     """Single source of truth for card-vs-unit eligibility.
 
@@ -473,7 +509,7 @@ def upgrade_eligibility(card, unit, army, package, definitions, name_index, equi
         unit = apply_property_effects(unit, equipped, definitions)
     rule = (package.get("upgradeRules") or {}).get(str((card.get("upstream") or {}).get("id", "")), {})
     name = (card.get("name") or {}).get("en") or card.get("id")
-    memberships = [m for m in unit.get("factions", []) if m.get("id") == army.get("armyId")]
+    host_rank = unit_rank_in_army(unit, army.get("armyId"), package, definitions)
     out = []
     hosts = upstream_hosts(rule, card)
     if hosts is not None and str(unit.get("upstream", {}).get("id", "")) not in hosts and not host_alias_allows(card, unit, army, package, definitions, rule):
@@ -500,7 +536,6 @@ def upgrade_eligibility(card, unit, army, package, definitions, name_index, equi
             out.append(("invalid", "division_restriction", f"升级「{name}」仅限{'/'.join(divs)}阵营"))
     req_tier = (card.get("rules") or {}).get("requiresTier")
     if req_tier:
-        host_rank = memberships[0].get("rankId") if memberships else None
         if host_rank is None or int(host_rank) not in [int(t) for t in req_tier]:
             out.append(("invalid", "requires_tier", f"升级「{name}」要求母单位军阶为 {'/'.join(str(t) for t in req_tier)}，当前为 {'无' if host_rank is None else host_rank}"))
     return out
@@ -568,8 +603,8 @@ def validate_army(army):
         if unit.get("usage") == "counterpart" or unit.get("isCounterpart"):
             issue("invalid", "counterpart_as_unit", "伙伴卡需通过宿主单位的伙伴槽加入，不能作为独立单位", key)
         base_points += unit.get("points") or 0
-        memberships = [m for m in unit.get("factions", []) if m.get("id") == army.get("armyId")]
-        if not memberships:
+        member_rank = army_rank(unit, army.get("armyId"), package, definitions, units)
+        if member_rank is None:
             issue("invalid", "army_membership", "此单位未列入当前军队", key)
             continue
         urc = (unit.get("restrictions") or {}).get("condition")
@@ -741,8 +776,7 @@ def validate_army(army):
     entourage_exempt = entourage_exemptions(army.get("units", []), units)
     for unit_id, copies in unit_id_counts.items():
         unit = units[unit_id]
-        memberships = [m for m in unit.get("factions", []) if m.get("id") == army.get("armyId")]
-        rank = memberships[0].get("rankId") if memberships else None
+        rank = army_rank(unit, army.get("armyId"), package, definitions, units)
         if rank is None:
             continue
         if unit_replace_tier.get(unit_id) is not None:
