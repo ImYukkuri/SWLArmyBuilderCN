@@ -298,6 +298,41 @@ window.RulesCore = (() => {
     }
     return { ok: issues.every(i => i.status !== "invalid"), issues };
   }
+  function battleForceChecks(army, bf, units, upgrades, defs, issue) {
+    const norm = s => String(s || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+    const rules = (bf && bf.machineRules) || [];
+    for (const rule of rules) {
+      if (!rule || !rule.type) continue;
+      if (rule.type === "banKeyword" && rule.keyword) {
+        for (const inst of army.units || []) {
+          const u = units[inst.unitId];
+          if (!u) continue;
+          const equipped = (inst.upgrades || []).map(x => upgrades[x.upgradeId]).filter(Boolean);
+          const eff = applyPropertyEffects(u, equipped, defs);
+          if ((eff.keywords || []).some(k => k && k.id === rule.keyword)) {
+            issue("invalid", "battle_force_keyword_banned", `战斗部队禁用关键词「${rule.keyword}」`, inst.instanceId);
+          }
+        }
+      } else if (rule.type === "unitCap" && rule.unitName != null && rule.max != null) {
+        const target = norm(rule.unitName);
+        const copies = (army.units || []).filter(inst => norm((units[inst.unitId] || {}).name && units[inst.unitId].name.en) === target).length;
+        if (copies > Number(rule.max)) {
+          issue("invalid", "battle_force_unit_cap", `战斗部队限制「${rule.unitName}」最多 ${rule.max} 个（当前 ${copies}）`, null);
+        }
+      } else if (rule.type === "uniqueUpgrades" && Array.isArray(rule.allow)) {
+        const allowed = new Set(rule.allow.map(norm));
+        for (const inst of army.units || []) {
+          for (const sel of inst.upgrades || []) {
+            const card = upgrades[sel.upgradeId];
+            if (!card || !(card.rules || {}).unique) continue;
+            if (!allowed.has(norm((card.name && card.name.en) || card.id))) {
+              issue("invalid", "battle_force_unique_upgrade", `战斗部队不允许独特升级「${(card.name && card.name.en) || card.id}」`, sel.instanceId);
+            }
+          }
+        }
+      }
+    }
+  }
   function validateArmy(army, data) {
     const { units, upgrades, defs, pkg } = data;
     const issues = [];
@@ -311,7 +346,7 @@ window.RulesCore = (() => {
     const bf = (pkg.battleForces || {})[String(army.armyId)];
     if (bf) {
       mode = { ...mode, ...((bf.modes || {})[army.mode || "standard"] || {}) };
-      issue("unknown", "battle_force_rules", "战斗部队规则仍未完整实现（textRules / machineRules / options 未求值）", null);
+      if ((bf.unparsedRules || []).length) issue("unknown", "battle_force_rules", "战斗部队仍有未机器化的规则文本：" + bf.unparsedRules.join(" / "), null);
     }
     const pointsLimit = army.pointsLimit || mode.points || 1000;
 
@@ -593,6 +628,7 @@ window.RulesCore = (() => {
       }
     }
 
+    if (bf) battleForceChecks(army, bf, units, upgrades, defs, issue);
     if (effectivePoints > pointsLimit) issue("invalid", "points_limit", `有效费用 ${effectivePoints} 超过上限 ${pointsLimit}`, null);
 
     const hasInvalid = issues.some(i => i.status === "invalid");

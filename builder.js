@@ -213,7 +213,7 @@ function renderIssues(report){
 function renderFaction(){
   const sel=$('#faction');sel.replaceChildren();
   const ids=[...new Set([...data.defs.armies.map(a=>a.id),...Object.keys(data.pkg.battleForces||{}).map(Number)])];
-  for(const id of ids){const a=data.defs.armies.find(x=>x.id===id);const bf=(data.pkg.battleForces||{})[String(id)];const op=el('option',(a?a.name.zh||a.name.en:id)+(bf?'（骨架）':''));op.value=id;sel.append(op)}
+  for(const id of ids){const a=data.defs.armies.find(x=>x.id===id);const bf=(data.pkg.battleForces||{})[String(id)];const op=el('option',(a?a.name.zh||a.name.en:id)+(bf&&bf.status==='machine'?'':(bf?'（部分规则）':'')));op.value=id;sel.append(op)}
   sel.value=army.armyId;sel.onchange=()=>{army.armyId=Number(sel.value);browser=null;save();render()};
 }
 function renderMode(){const sel=$('#mode');sel.value=army.mode;sel.onchange=()=>{army.mode=sel.value;army.pointsLimit=sel.value==='standard'?1000:600;save();render()}}

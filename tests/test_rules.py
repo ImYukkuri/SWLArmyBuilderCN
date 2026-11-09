@@ -69,15 +69,31 @@ class ValidateArmyTest(unittest.TestCase):
         self.assertEqual(report["status"], "invalid")
         self.assertIn("rank_min", [i["code"] for i in report["issues"]])
 
-    def test_battle_force_skeleton_applies_own_quotas_and_unknown(self):
+    def test_battle_force_applies_own_quotas(self):
         pkg = rules.load_package()
         self.assertIn("battleForces", pkg)
         self.assertIn("7", pkg["battleForces"])
         army = {"mode": "standard", "armyId": 7, "pointsLimit": 1000, "units": [], "commandIds": [], "options": []}
         report = rules.validate_army(army)
         codes = [i["code"] for i in report["issues"]]
-        self.assertIn("battle_force_rules", codes)
         self.assertIn("rank_min", codes)
+        # unknown note only when the battle force still has unparsed rule text
+        bf = pkg["battleForces"]["7"]
+        self.assertEqual("battle_force_rules" in codes, bool(bf.get("unparsedRules")))
+
+    def test_battle_force_machine_rules(self):
+        units = rules.load_cards()[0]
+        storm = next(u for u in units.values() if (u.get("name") or {}).get("en") == "Stormtroopers")
+        army = {"mode": "standard", "armyId": 17, "pointsLimit": 1500, "units": [
+            {"instanceId": f"s{i}", "unitId": storm["id"], "upgrades": []} for i in range(3)],
+            "commandIds": [], "options": []}
+        codes = [i["code"] for i in rules.validate_army(army)["issues"]]
+        self.assertIn("battle_force_unit_cap", codes)
+        banned = {"mode": "standard", "armyId": 17, "pointsLimit": 1500, "units": [
+            {"instanceId": "u1", "unitId": storm["id"], "upgrades": [
+                {"instanceId": "c1", "upgradeId": "aayla", "slotIndex": 1}]}],
+            "commandIds": [], "options": []}
+        self.assertIn("battle_force_keyword_banned", [i["code"] for i in rules.validate_army(banned)["issues"]])
 
     def test_hit_the_dirt_condition_grants_qualifying_non_holder(self):
         pkg = rules.load_package()

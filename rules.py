@@ -434,13 +434,44 @@ def validate_army(army):
     def issue(status, code, message, instance, extra=None):
         issues.append({"status": status, "code": code, "message": message, "instanceId": instance, **(extra or {})})
 
+    def battle_force_checks(battle_force, units, upgrades, definitions):
+        import re as _re
+        norm = lambda v: _re.sub(r"[^a-z0-9]", "", str(v or "").lower())
+        for rule in (battle_force or {}).get("machineRules") or []:
+            if not isinstance(rule, dict):
+                continue
+            kind = rule.get("type")
+            if kind == "banKeyword" and rule.get("keyword"):
+                for inst in army.get("units", []):
+                    u = units.get(inst.get("unitId"))
+                    if not u:
+                        continue
+                    equipped = [upgrades[x.get("upgradeId")] for x in inst.get("upgrades", []) if x.get("upgradeId") in upgrades]
+                    eff = apply_property_effects(u, equipped, definitions)
+                    if any((k or {}).get("id") == rule["keyword"] for k in eff.get("keywords") or []):
+                        issue("invalid", "battle_force_keyword_banned", f"战斗部队禁用关键词「{rule['keyword']}」", inst.get("instanceId"))
+            elif kind == "unitCap" and rule.get("unitName") is not None and rule.get("max") is not None:
+                target = norm(rule["unitName"])
+                copies = sum(1 for inst in army.get("units", []) if norm(((units.get(inst.get("unitId")) or {}).get("name") or {}).get("en")) == target)
+                if copies > int(rule["max"]):
+                    issue("invalid", "battle_force_unit_cap", f"战斗部队限制「{rule['unitName']}」最多 {rule['max']} 个（当前 {copies}）", None)
+            elif kind == "uniqueUpgrades" and isinstance(rule.get("allow"), list):
+                allowed = {norm(x) for x in rule["allow"]}
+                for inst in army.get("units", []):
+                    for sel in inst.get("upgrades", []):
+                        card = upgrades.get(sel.get("upgradeId"))
+                        if not card or not (card.get("rules") or {}).get("unique"):
+                            continue
+                        if norm((card.get("name") or {}).get("en") or card.get("id")) not in allowed:
+                            issue("invalid", "battle_force_unique_upgrade", f"战斗部队不允许独特升级「{(card.get('name') or {}).get('en') or card.get('id')}」", sel.get("instanceId"))
+
     mode = package.get("modes", {}).get(army.get("mode", "standard"), {})
     battle_force = (package.get("battleForces") or {}).get(str(army.get("armyId")))
     if battle_force:
         bf_mode = (battle_force.get("modes") or {}).get(army.get("mode", "standard"), {})
         mode = {**mode, **bf_mode}
-        issue("unknown", "battle_force_rules",
-              "战斗部队规则仍未完整实现（textRules / machineRules / options 未求值）", None)
+        if battle_force.get("unparsedRules"):
+            issue("unknown", "battle_force_rules", "战斗部队仍有未机器化的规则文本：" + " / ".join(battle_force["unparsedRules"]), None)
     points_limit = army.get("pointsLimit") or mode.get("points") or 1000
 
     for inst in army.get("units", []):
@@ -767,6 +798,9 @@ def validate_army(army):
             src_copies = army_unit_upstream_counts.get(src_id, 0)
             if copies > ratio * src_copies:
                 issue("invalid", "quantity_limited", f"「{unit.get('name', {}).get('en', unit_id)}」数量受母单位限制", None)
+
+    if battle_force:
+        battle_force_checks(battle_force, units, upgrades, definitions)
 
     if effective_points > points_limit:
         issue("invalid", "points_limit", f"有效费用 {effective_points} 超过上限 {points_limit}", None)
