@@ -13,7 +13,29 @@ function displayPath(path){return path.map(x=>labels[x]||x).join(' / ')}
 function formField(key,value,path){
   const row=el('label');row.className='field';row.title=path.join('.');row.append(el('span',labels[key]||key));let control;
   const table=referenceTable(key,path);if(table==='keywords')row.firstChild.textContent='词条 ID';else if(table==='armies')row.firstChild.textContent='军队 ID';
-  if(table){control=el('select');const none=el('option','未确认');none.value='';control.append(none);for(const item of mappings.definitions[table]||[]){const op=el('option',item.id+' · '+(item.name.zh||item.name.en)+' / '+item.name.en);op.value=String(item.id);control.append(op)}control.value=value==null?'':String(value);control.addEventListener('change',()=>{const item=mappings.definitions[table].find(x=>String(x.id)===control.value);put(path,item?item.id:null);if(table==='keywords')renderForm()})}
+  if(path[0]==='keywords'&&key==='parameter'){
+    const kw=get(path.slice(0,-1))||{};
+    control=el('select');
+    const none=el('option','未指定');none.value='';control.append(none);
+    const ulist=[...catalog.units].sort((x,y)=>((x.name&&x.name.en)||'')<((y.name&&y.name.en)||'')?-1:1);
+    const og=el('optgroup');og.label='单位名称';
+    for(const u of ulist){const op=el('option',((u.name&&(u.name.zh||u.name.en))||u.id)+' · '+u.id);op.value='unit:'+u.id;og.append(op)}
+    control.append(og);
+    const ogt=el('optgroup');ogt.label='单位类型';
+    for(const t of (mappings.definitions.unitTypes||[])){const op=el('option',((t.name&&(t.name.zh||t.name.en))||t.id)+' · type '+t.id);op.value='type:'+t.id;ogt.append(op)}
+    control.append(ogt);
+    const ref=kw.parameterRef||null;
+    control.value=ref?(ref.kind==='unit'?'unit:'+ref.id:'type:'+ref.id):'';
+    control.addEventListener('change',()=>{
+      const v=control.value;
+      if(!v){delete kw.parameterRef;kw.parameter=null;put(path,null);status('已清除词条参数');return}
+      const idx=v.indexOf(':');const kind=v.slice(0,idx);const id=v.slice(idx+1);
+      kw.parameterRef=kind==='unit'?{kind:'unit',id:id}:{kind:'unitType',id:Number(id)};
+      const label=control.selectedOptions&&control.selectedOptions[0]?control.selectedOptions[0].textContent:'';
+      kw.parameter=(label.split(' · ')[0]||'').trim();
+      put(path,kw.parameter);status('词条参数已设为'+(kind==='unit'?'单位':'单位类型')+'：'+kw.parameter);
+    });
+  }else if(table){control=el('select');const none=el('option','未确认');none.value='';control.append(none);for(const item of mappings.definitions[table]||[]){const op=el('option',item.id+' · '+(item.name.zh||item.name.en)+' / '+item.name.en);op.value=String(item.id);control.append(op)}control.value=value==null?'':String(value);control.addEventListener('change',()=>{const item=mappings.definitions[table].find(x=>String(x.id)===control.value);put(path,item?item.id:null);if(table==='keywords')renderForm()})}
   else if(enums[key]){control=el('select');const empty=el('option','未确认');empty.value='';control.append(empty);for(const v of [...new Set([...enums[key],...(value&&!enums[key].includes(value)?[value]:[])])]){const op=el('option',enumLabels[v]||v);op.value=v;control.append(op)}control.value=value??'';control.addEventListener('change',()=>put(path,control.value||null))}
   else if(typeof value==='boolean'){control=el('input');control.type='checkbox';control.checked=value;control.addEventListener('change',()=>put(path,control.checked))}
   else if(typeof value==='number'||(value===null&&['points','models','wounds','courage','resilience','speed','min','max','red','black','white','value'].includes(key))){control=el('input');control.type='number';control.step='1';control.value=value??'';control.placeholder='未确认 / null';control.addEventListener('input',()=>put(path,control.value===''?null:Number(control.value)))}

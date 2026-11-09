@@ -177,24 +177,44 @@ window.RulesCore = (() => {
   function normalizeKey(s) {
     return String(s).toLowerCase().replace(/[^a-z0-9]/g, "");
   }
+  function keywordTargets(kw, units) {
+    const ref = kw && kw.parameterRef;
+    if (ref && typeof ref === "object" && ref.id != null && ref.id !== "") {
+      if (ref.kind === "unit" && units[ref.id]) return [["unit", ref.id]];
+      if (ref.kind === "unitType") return [["type", ref.id]];
+    }
+    const name = kw && kw.parameter;
+    if (!name) return [];
+    const key = normalizeKey(name);
+    return Object.values(units || {}).filter(u => normalizeKey((u.name && u.name.en) || "") === key).map(u => ["unit", u.id]);
+  }
   function entourageExemptions(armyUnits, units) {
-    const grants = {};
+    const budgets = {};
     for (const inst of armyUnits) {
       const u = units[inst.unitId] || {};
       for (const kw of u.keywords || []) {
-        if (kw.id === "entourage" && kw.parameter) {
-          const key = normalizeKey(kw.parameter);
-          if (key) grants[key] = (grants[key] || 0) + 1;
+        if (!kw || kw.id !== "entourage") continue;
+        for (const [kind, id] of keywordTargets(kw, units)) {
+          const key = kind + ":" + id;
+          const slot = (budgets[key] ||= { n: 0, sources: new Set() });
+          slot.n += 1;
+          slot.sources.add(u.id);
         }
       }
     }
     const exempt = {};
     for (const inst of armyUnits) {
-      const u = units[inst.unitId] || {};
-      const n = grants[normalizeKey((u.name && u.name.en) || "")] || 0;
-      if (n <= 0) continue;
-      const uid = String((u.upstream && u.upstream.id) || "");
-      exempt[uid] = Math.min((exempt[uid] || 0) + 1, n);
+      const u = units[inst.unitId];
+      if (!u) continue;
+      for (const [kind, id] of [["unit", u.id], ["type", u.unitTypeId]]) {
+        const key = kind + ":" + id;
+        const slot = budgets[key];
+        if (!slot || slot.n <= 0 || slot.sources.has(u.id)) continue;
+        slot.n -= 1;
+        const upstream = String((u.upstream && u.upstream.id) || "");
+        exempt[upstream] = (exempt[upstream] || 0) + 1;
+        break;
+      }
     }
     return exempt;
   }

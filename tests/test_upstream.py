@@ -12,6 +12,8 @@ class UpstreamTest(unittest.TestCase):
         cls.source=json.loads((ROOT/'references/upstream/legion.json').read_bytes())['data']
     def test_every_cost_matches_selected_version(self):
         for u in self.units.values():
+            if not u.get('upstream'):
+                continue  # locally authored card
             source=next(s for s in self.source[u['upstream']['collection']]if str(s['id'])==u['upstream']['id'])
             self.assertEqual(u['points'],source['points']);self.assertTrue(u['name']['zh']);validate(u)
     def test_cross_faction_variants_and_arf_identity(self):

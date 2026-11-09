@@ -360,24 +360,47 @@ def normalize_name(value):
     return re.sub(r"[^a-z0-9]", "", str(value or "").lower())
 
 
+def keyword_targets(kw, units):
+    """Targets of an entourage/retinue/detachment keyword: unit id or unit type."""
+    ref = kw.get("parameterRef")
+    if isinstance(ref, dict) and ref.get("id") not in (None, ""):
+        if ref.get("kind") == "unit" and ref["id"] in units:
+            return [("unit", ref["id"])]
+        if ref.get("kind") == "unitType":
+            return [("type", ref["id"])]
+    name = kw.get("parameter")
+    if name:
+        key = normalize_name(name)
+        return [("unit", u["id"]) for u in units.values()
+                if normalize_name((u.get("name") or {}).get("en") or "") == key]
+    return []
+
+
 def entourage_exemptions(army_units, units):
-    """ENTOURAGE: each entourage unit lets one copy of the named unit skip the rank maximum."""
-    grants = {}
+    """ENTOURAGE: each entourage unit lets one copy of the named unit/type skip the rank maximum."""
+    budgets = {}
     for inst in army_units:
         u = units.get(inst.get("unitId")) or {}
         for kw in u.get("keywords") or []:
-            if kw.get("id") == "entourage" and kw.get("parameter"):
-                key = normalize_name(kw["parameter"])
-                if key:
-                    grants[key] = grants.get(key, 0) + 1
+            if kw.get("id") != "entourage":
+                continue
+            for target in keyword_targets(kw, units):
+                slot = budgets.setdefault(target, {"n": 0, "sources": set()})
+                slot["n"] += 1
+                slot["sources"].add(u.get("id"))
     exempt = {}
     for inst in army_units:
-        u = units.get(inst.get("unitId")) or {}
-        n = grants.get(normalize_name((u.get("name") or {}).get("en") or ""), 0)
-        if n <= 0:
+        u = units.get(inst.get("unitId"))
+        if not u:
             continue
-        uid = str(u.get("upstream", {}).get("id", ""))
-        exempt[uid] = min(exempt.get(uid, 0) + 1, n)
+        for target in (("unit", u["id"]), ("type", u.get("unitTypeId"))):
+            slot = budgets.get(target)
+            if not slot or slot["n"] <= 0 or u["id"] in slot["sources"]:
+                continue
+            slot["n"] -= 1
+            upstream = str((u.get("upstream") or {}).get("id", ""))
+            exempt[upstream] = exempt.get(upstream, 0) + 1
+            break
     return exempt
 
 
