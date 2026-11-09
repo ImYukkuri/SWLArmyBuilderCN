@@ -8,6 +8,7 @@ snapshot is a development-time source only and is not loaded at runtime.
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 from dice_enums import (
@@ -292,6 +293,31 @@ def _required_properties_ok(unit, rp, definitions):
     return False
 
 
+def normalize_name(value):
+    return re.sub(r"[^a-z0-9]", "", str(value or "").lower())
+
+
+def entourage_exemptions(army_units, units):
+    """ENTOURAGE: each entourage unit lets one copy of the named unit skip the rank maximum."""
+    grants = {}
+    for inst in army_units:
+        u = units.get(inst.get("unitId")) or {}
+        for kw in u.get("keywords") or []:
+            if kw.get("id") == "entourage" and kw.get("parameter"):
+                key = normalize_name(kw["parameter"])
+                if key:
+                    grants[key] = grants.get(key, 0) + 1
+    exempt = {}
+    for inst in army_units:
+        u = units.get(inst.get("unitId")) or {}
+        n = grants.get(normalize_name((u.get("name") or {}).get("en") or ""), 0)
+        if n <= 0:
+            continue
+        uid = str(u.get("upstream", {}).get("id", ""))
+        exempt[uid] = min(exempt.get(uid, 0) + 1, n)
+    return exempt
+
+
 def keyword_map(definitions):
     m = {}
     for k in definitions.get("keywords", []):
@@ -341,6 +367,8 @@ def upgrade_eligibility(card, unit, army, package, definitions, name_index, equi
 
     Used by full army validation (S1), candidate filtering (S2/S8) so the two
     can never drift apart."""
+    if card.get("deprecated"):
+        return [("invalid", "deprecated_card", "该卡为废案，不参与组军")]
     if equipped:
         unit = apply_property_effects(unit, equipped, definitions)
     rule = (package.get("upgradeRules") or {}).get(str((card.get("upstream") or {}).get("id", "")), {})
@@ -579,6 +607,7 @@ def validate_army(army):
             rt = (card.get("rules") or {}).get("replaceTier") if card else None
             if rt is not None:
                 unit_replace_tier[inst.get("unitId")] = int(rt)
+    entourage_exempt = entourage_exemptions(army.get("units", []), units)
     for unit_id, copies in unit_id_counts.items():
         unit = units[unit_id]
         memberships = [m for m in unit.get("factions", []) if m.get("id") == army.get("armyId")]
@@ -613,7 +642,8 @@ def validate_army(army):
                 waived_tiers.add(t)
         if not ignore_min:
             min_counts[rank] = min_counts.get(rank, 0) + copies
-        max_counts[rank] = max_counts.get(rank, 0) + copies - exempt_copies
+        ent_exempt = entourage_exempt.get(str(unit.get("upstream", {}).get("id", "")), 0)
+        max_counts[rank] = max_counts.get(rank, 0) + copies - exempt_copies - ent_exempt
 
     quotas = {q["rankId"]: q for q in mode.get("rankQuotas", [])}
     for rank_id, count in max_counts.items():

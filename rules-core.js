@@ -131,6 +131,27 @@ window.RulesCore = (() => {
   function normalizeKey(s) {
     return String(s).toLowerCase().replace(/[^a-z0-9]/g, "");
   }
+  function entourageExemptions(armyUnits, units) {
+    const grants = {};
+    for (const inst of armyUnits) {
+      const u = units[inst.unitId] || {};
+      for (const kw of u.keywords || []) {
+        if (kw.id === "entourage" && kw.parameter) {
+          const key = normalizeKey(kw.parameter);
+          if (key) grants[key] = (grants[key] || 0) + 1;
+        }
+      }
+    }
+    const exempt = {};
+    for (const inst of armyUnits) {
+      const u = units[inst.unitId] || {};
+      const n = grants[normalizeKey((u.name && u.name.en) || "")] || 0;
+      if (n <= 0) continue;
+      const uid = String((u.upstream && u.upstream.id) || "");
+      exempt[uid] = Math.min((exempt[uid] || 0) + 1, n);
+    }
+    return exempt;
+  }
   function buildNameIndex(upgrades, defs) {
     const idx = {};
     const add = (key, uid) => {
@@ -231,6 +252,7 @@ window.RulesCore = (() => {
   }
   function upgradeEligibility(card, unit, army, data, equipped) {
     const { defs, pkg, nameIndex } = data;
+    if (card.deprecated) return { ok: false, issues: [{ status: "invalid", code: "deprecated_card", message: "该卡为废案，不参与组军" }] };
     if (equipped && equipped.length) unit = applyPropertyEffects(unit, equipped, defs);
     const idx = nameIndex || buildNameIndex(data.upgrades, defs);
     const rule = (pkg.upgradeRules || {})[String(card.upstream && card.upstream.id || "")] || {};
@@ -434,6 +456,7 @@ window.RulesCore = (() => {
         if (rt != null) unitReplaceTier[inst.unitId] = Number(rt);
       }
     }
+    const entourageExempt = entourageExemptions(army.units || [], units);
     for (const [unitId, copies] of Object.entries(unitIdCounts)) {
       const unit = units[unitId];
       const memberships = (unit.factions || []).filter(m => m.id === army.armyId);
@@ -461,7 +484,8 @@ window.RulesCore = (() => {
       }
       if (tc.waivesMinimum) for (const t of tc.waivesMinimum.tiers || []) waivedTiers.add(t);
       if (!ignoreMin) minCounts[rank] = (minCounts[rank] || 0) + copies;
-      maxCounts[rank] = (maxCounts[rank] || 0) + copies - exempt;
+      const entExempt = entourageExempt[String((unit.upstream && unit.upstream.id) || "")] || 0;
+      maxCounts[rank] = (maxCounts[rank] || 0) + copies - exempt - entExempt;
     }
     const quotas = {};
     for (const q of mode.rankQuotas || []) quotas[q.rankId] = q;
@@ -571,5 +595,5 @@ window.RulesCore = (() => {
     return { status: hasInvalid ? "invalid" : (hasUnknown ? "unknown" : "valid"), basePoints, effectivePoints, rankCounts: maxCounts, issues };
   }
 
-  return { Dice, evaluate, validateArmy, upgradeEligibility, slotKey, accessKeys, dedicatedSlotKeys, slotListFor, restrictionConditionOk, requiredPropertiesOk, normRp, buildNameIndex, unavailableSets };
+  return { Dice, evaluate, validateArmy, upgradeEligibility, entourageExemptions, slotKey, accessKeys, dedicatedSlotKeys, slotListFor, restrictionConditionOk, requiredPropertiesOk, normRp, buildNameIndex, unavailableSets };
 })();
