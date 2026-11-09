@@ -192,7 +192,7 @@ class Handler(BaseHTTPRequestHandler):
                 if key not in records:return self.reply(404,{'error':'没有此单位的提取依据'})
                 return self.reply(200,records[key])
             if path=='/api/history':return self.reply(200,[{'file':p.name,'size':p.stat().st_size}for p in sorted(HISTORY.glob('*.json'),reverse=True)])
-            files={'/':'index.html','/maintenance':'maintenance.html','/units':'units.html','/upgrades':'upgrades.html','/armies':'armies.html','/rules':'rules.html',**{'/'+name:name for name in ['index.html','maintenance.html','units.html','upgrades.html','armies.html','rules.html','dice-enums.js','app.js','builder.js','builder.css','rules-core.js','rules.js','rule-editor.js','condition-editor.js','upgrade-editor.js','army-editor.js','editor-common.js','style.css']}}
+            files={'/':'index.html','/maintenance':'maintenance.html','/units':'units.html','/upgrades':'upgrades.html','/armies':'armies.html','/rules':'rules.html',**{'/'+name:name for name in ['index.html','maintenance.html','units.html','upgrades.html','armies.html','rules.html','dice-enums.js','combo.js','app.js','builder.js','builder.css','rules-core.js','rules.js','rule-editor.js','condition-editor.js','upgrade-editor.js','army-editor.js','editor-common.js','style.css']}}
             if path in files:p=ROOT/files[path]
             elif path.startswith('/assets/'):
                 p=relative_asset(path[1:])
