@@ -1,0 +1,930 @@
+{
+  "separatists-geonosian-engineer": {
+    "stats": {
+      "models": 4
+    },
+    "rank": "corps"
+  },
+  "separatists-bx": {
+    "stats": {
+      "models": 4
+    },
+    "rank": "special-forces"
+  },
+  "separatists-dooku": {
+    "stats": {
+      "models": 1,
+      "attackSurge": "hit"
+    },
+    "rank": "commander"
+  },
+  "separatists-grievous-wheelbike": {
+    "stats": {
+      "resilienceSymbol": "dash"
+    },
+    "rank": "commander"
+  },
+  "separatists-magnaguard-prototype": {
+    "stats": {},
+    "rank": "special-forces"
+  },
+  "separatists-persuader": {
+    "stats": {
+      "wounds": 11
+    },
+    "rank": "heavy"
+  },
+  "separatists-persuader-prototype": {
+    "stats": {
+      "wounds": 11
+    },
+    "rank": "heavy"
+  },
+  "separatists-super-tactica-command-droid-aux": {
+    "stats": {
+      "courage": 3
+    },
+    "rank": "operative",
+    "weapons": {
+      "1": {
+        "nameEn": "E-5 Blaster Rifle"
+      }
+    }
+  },
+  "separatists-super-tactica-command-droid-cnc": {
+    "stats": {
+      "courage": 2
+    },
+    "rank": "commander"
+  },
+  "separatists-stap": {
+    "stats": {
+      "resilienceSymbol": "dash",
+      "attackSurge": "none"
+    },
+    "rank": "support"
+  },
+  "separatists-tsmeu-wheel-bikes": {
+    "stats": {
+      "resilienceSymbol": "dash"
+    },
+    "rank": "special-forces",
+    "weapons": {
+      "0": {
+        "nameEn": "Spiked Wheel",
+        "range": {
+          "min": null,
+          "max": null,
+          "type": "overrun"
+        }
+      }
+    }
+  },
+  "empire-74-z-speeder": {
+    "stats": {
+      "resilienceSymbol": "dash"
+    },
+    "rank": "support"
+  },
+  "empire-at-st": {
+    "stats": {
+      "wounds": 11
+    },
+    "rank": "heavy"
+  },
+  "empire-dark-troopers": {
+    "stats": {
+      "courageSymbol": "dash"
+    },
+    "rank": "heavy"
+  },
+  "empire-darth-vader-lord": {
+    "stats": {
+      "courageSymbol": "dash"
+    },
+    "rank": "commander"
+  },
+  "empire-dewback": {
+    "stats": {
+      "models": 1
+    },
+    "rank": "support"
+  },
+  "empire-e-web": {
+    "stats": {
+      "models": 1,
+      "wounds": 4,
+      "attackSurge": "critical"
+    },
+    "rank": "support"
+  },
+  "empire-general-tagge": {
+    "stats": {
+      "courage": 2
+    },
+    "rank": "commander"
+  },
+  "empire-grand-admiral-thrawn": {
+    "stats": {
+      "courage": 3
+    },
+    "rank": "commander"
+  },
+  "empire-grand-moff-tarkin": {
+    "stats": {
+      "courage": 3
+    },
+    "rank": "commander"
+  },
+  "empire-imperial-probe-droid": {
+    "stats": {
+      "wounds": 4,
+      "courage": 1
+    },
+    "rank": "special-forces"
+  },
+  "empire-marquand": {
+    "stats": {
+      "wounds": 11
+    },
+    "rank": "heavy"
+  },
+  "republic-jedi-barc": {
+    "stats": {
+      "resilienceSymbol": "dash",
+      "attackSurge": "none"
+    },
+    "rank": "commander"
+  },
+  "republic-ahsoka-padawan-commander": {
+    "stats": {
+      "courage": 2,
+      "attackSurge": "critical"
+    },
+    "rank": "commander"
+  },
+  "republic-anakin-barc": {
+    "stats": {
+      "models": 1,
+      "resilienceSymbol": "dash",
+      "attackSurge": "none"
+    },
+    "rank": "operative"
+  },
+  "republic-arc-troopers-strike": {
+    "stats": {
+      "models": 1,
+      "attackSurge": "critical"
+    },
+    "rank": "support"
+  },
+  "republic-at-rt-gar": {
+    "stats": {
+      "resilience": 4
+    },
+    "rank": "support"
+  },
+  "republic-clone-trooper": {
+    "stats": {
+      "models": 4
+    },
+    "rank": "corps"
+  },
+  "republic-clonetrooper-marksmen": {
+    "stats": {
+      "models": 4,
+      "attackSurge": "none"
+    },
+    "rank": "corps"
+  },
+  "republic-delta-squad": {
+    "stats": {
+      "courageSymbol": "dash"
+    },
+    "rank": "support"
+  },
+  "republic-yoda": {
+    "stats": {
+      "courage": 4
+    },
+    "rank": "commander",
+    "weapons": {
+      "1": {
+        "range": {
+          "min": 1,
+          "max": 2
+        }
+      }
+    }
+  },
+  "mercenary-black-sun-black-sun-vigo": {
+    "stats": {
+      "wounds": 4
+    },
+    "rank": "commander"
+  },
+  "mercenary-clan-covert-din-djarin-covert": {
+    "stats": {
+      "models": 1,
+      "attackSurge": "hit"
+    },
+    "rank": "operative",
+    "weapons": {
+      "1": {
+        "range": {
+          "min": 1,
+          "max": 2
+        }
+      }
+    }
+  },
+  "mercenary-clan-covert-paz-vizsla": {
+    "stats": {
+      "courage": 3
+    },
+    "rank": "operative"
+  },
+  "mercenary-clan-covert-the-armorer": {
+    "stats": {
+      "courage": 3
+    },
+    "rank": "commander"
+  },
+  "mercenary-clan-kryze-bo-katan-kryze": {
+    "stats": {
+      "courage": 3,
+      "attackSurge": "hit"
+    },
+    "rank": "commander"
+  },
+  "mercenary-clan-kryze-clan-kryze-veterans": {
+    "stats": {
+      "courage": 2
+    },
+    "rank": "special-forces",
+    "weapons": {
+      "1": {
+        "range": {
+          "min": 1,
+          "max": 3
+        }
+      }
+    }
+  },
+  "mercenary-clan-saxon-super-commandos-saxon": {
+    "stats": {
+      "models": 4
+    },
+    "rank": "special-forces"
+  },
+  "mercenary-clan-wren-clan-wren-veterans": {
+    "stats": {
+      "models": 4
+    },
+    "rank": "special-forces"
+  },
+  "mercenary-clan-wren-ursa-wren": {
+    "stats": {
+      "courage": 2
+    },
+    "rank": "commander"
+  },
+  "mercenary-creedless-mandalorian-hunter": {
+    "stats": {
+      "models": 1
+    },
+    "rank": "operative",
+    "weapons": {
+      "0": {
+        "nameEn": "Vibroknife"
+      }
+    }
+  },
+  "mercenary-creedless-mandalorian-initiates": {
+    "stats": {
+      "models": 5
+    },
+    "rank": "corps",
+    "weapons": {
+      "0": {
+        "nameEn": "Vibro Blades"
+      }
+    }
+  },
+  "mercenary-creedless-mandalorian-warriors-corps": {
+    "stats": {
+      "models": 5
+    },
+    "rank": "corps",
+    "weapons": {
+      "0": {
+        "nameEn": "Vibro Blades"
+      }
+    }
+  },
+  "mercenary-creedless-mandalorian-warriors-support": {
+    "stats": {
+      "models": 4
+    },
+    "rank": "support",
+    "weapons": {
+      "0": {
+        "nameEn": "Vibro Blades"
+      }
+    }
+  },
+  "mercenary-ewoks-chewbacca": {
+    "stats": {
+      "wounds": 11,
+      "attackSurge": "critical"
+    },
+    "rank": "heavy",
+    "weapons": {
+      "0": {
+        "range": {
+          "min": 0,
+          "max": 2
+        }
+      },
+      "1": {
+        "range": {
+          "min": 0,
+          "max": 3
+        }
+      },
+      "2": {
+        "range": {
+          "min": 1,
+          "max": 4
+        }
+      }
+    }
+  },
+  "mercenary-ewoks-logray": {
+    "stats": {
+      "wounds": 4
+    },
+    "rank": "commander"
+  },
+  "mercenary-maul-loyalists-gar-saxon": {
+    "stats": {
+      "models": 1,
+      "attackSurge": "hit"
+    },
+    "rank": "commander",
+    "weapons": {
+      "1": {
+        "range": {
+          "min": 1,
+          "max": 2
+        },
+        "nameEn": "Gar's Blaster Pistol"
+      }
+    }
+  },
+  "mercenary-maul-loyalists-mandalorian-super": {
+    "stats": {
+      "attackSurge": "none"
+    },
+    "rank": "special-forces",
+    "weapons": {
+      "1": {
+        "range": {
+          "min": 1,
+          "max": 3
+        },
+        "nameEn": "Blaster Carbines"
+      }
+    }
+  },
+  "mercenary-pyke-syndicate-pyke-syndicate-capo": {
+    "stats": {
+      "wounds": 4
+    },
+    "rank": "commander",
+    "weapons": {
+      "1": {
+        "range": {
+          "min": 1,
+          "max": 3
+        },
+        "nameEn": "Capo's Long Blaster"
+      }
+    }
+  },
+  "mercenary-raiders-hondo-ohnaka": {
+    "stats": {
+      "courageSymbol": "X"
+    },
+    "rank": "operative"
+  },
+  "mercenary-raiders-swoop-bike": {
+    "stats": {
+      "resilienceSymbol": "dash"
+    },
+    "rank": "support"
+  },
+  "mercenary-rogue-han-and-chewie": {
+    "stats": {
+      "woundsSymbol": "dash",
+      "attackSurge": "critical"
+    },
+    "rank": "operative"
+  },
+  "mercenary-rogue-boba-fett-daimyo": {
+    "stats": {
+      "models": 1,
+      "attackSurge": "critical"
+    },
+    "rank": "operative",
+    "weapons": {
+      "1": {
+        "range": {
+          "min": 1,
+          "max": 3
+        }
+      }
+    }
+  },
+  "mercenary-rogue-boba-fett-infamous": {
+    "stats": {
+      "models": 1,
+      "attackSurge": "critical"
+    },
+    "rank": "operative",
+    "weapons": {
+      "2": {
+        "range": {
+          "min": 1,
+          "max": 3
+        }
+      }
+    }
+  },
+  "rebels-at-rt-rebel": {
+    "stats": {
+      "resilience": 4
+    },
+    "rank": "support"
+  },
+  "rebels-guerilla-troopers": {
+    "stats": {
+      "attackSurge": "none"
+    },
+    "rank": "special-forces"
+  },
+  "rebels-luke-tauntaun": {
+    "stats": {
+      "models": 1
+    },
+    "rank": "commander",
+    "weapons": {
+      "1": {
+        "range": {
+          "min": 1,
+          "max": 2
+        }
+      }
+    }
+  },
+  "rebels-mark-2-blaster": {
+    "stats": {
+      "models": 1
+    },
+    "rank": "corps"
+  },
+  "rebels-rebel-agent-defender-democracy": {
+    "stats": {
+      "courage": 2
+    },
+    "rank": "operative",
+    "weapons": {
+      "1": {
+        "range": {
+          "min": 1,
+          "max": 2
+        },
+        "nameEn": "Blaster Pistol"
+      }
+    }
+  },
+  "rebels-rebel-officer-fight-freedom": {
+    "stats": {
+      "courage": 2
+    },
+    "rank": "commander",
+    "weapons": {
+      "1": {
+        "range": {
+          "min": 1,
+          "max": 2
+        },
+        "nameEn": "Blaster Pistol"
+      }
+    }
+  },
+  "rebels-sabine": {
+    "stats": {
+      "models": 1,
+      "attackSurge": "critical"
+    },
+    "rank": "operative"
+  },
+  "rebels-tauntaun-riders": {
+    "stats": {
+      "models": 2,
+      "wounds": 4
+    },
+    "rank": "support"
+  },
+  "rebels-x-34-landspeeder": {
+    "stats": {
+      "resilience": 4
+    },
+    "rank": "heavy"
+  },
+  "separatists-b2-rocket": {
+    "stats": {
+      "attackSurge": "none"
+    }
+  },
+  "separatists-bx-strike": {
+    "stats": {
+      "attackSurge": "critical"
+    }
+  },
+  "separatists-save-opress-cis": {
+    "stats": {
+      "attackSurge": "none"
+    },
+    "weapons": {
+      "1": {
+        "nameEn": "Dark Fury"
+      }
+    }
+  },
+  "empire-imperial-officer-ruthless-efficiency": {
+    "stats": {
+      "attackSurge": "hit"
+    },
+    "weapons": {
+      "1": {
+        "range": {
+          "min": 1,
+          "max": 2
+        }
+      }
+    }
+  },
+  "republic-ki-aadi-mundu": {
+    "stats": {
+      "attackSurge": "none"
+    }
+  },
+  "republic-mace-windu": {
+    "stats": {
+      "attackSurge": "critical"
+    }
+  },
+  "republic-shaak-ti": {
+    "stats": {
+      "attackSurge": "critical"
+    }
+  },
+  "mercenary-clan-saxon-gar-saxon-leader": {
+    "stats": {
+      "attackSurge": "critical"
+    }
+  },
+  "mercenary-clan-saxon-rook-kast": {
+    "stats": {
+      "attackSurge": "critical"
+    }
+  },
+  "mercenary-clan-wren-sabine-wren-clan": {
+    "stats": {
+      "attackSurge": "critical"
+    }
+  },
+  "mercenary-ewoks-wicket": {
+    "stats": {
+      "attackSurge": "critical"
+    },
+    "weapons": {
+      "1": {
+        "range": {
+          "min": 1,
+          "max": 2
+        }
+      }
+    }
+  },
+  "mercenary-maul-loyalists-maul-rival": {
+    "stats": {
+      "attackSurge": "none",
+      "speed": 2
+    }
+  },
+  "mercenary-maul-loyalists-savage-opress-maul": {
+    "stats": {
+      "attackSurge": "none",
+      "speed": 2
+    },
+    "weapons": {
+      "1": {
+        "range": {
+          "min": 1,
+          "max": 2
+        }
+      }
+    }
+  },
+  "rebels-1-4-fd-laser-cannon-team": {
+    "stats": {
+      "attackSurge": "hit",
+      "speed": 0
+    },
+    "weapons": {
+      "1": {
+        "range": {
+          "min": 1,
+          "max": 2
+        }
+      }
+    }
+  },
+  "rebels-han-solo-tauntaun": {
+    "stats": {
+      "attackSurge": "critical"
+    }
+  },
+  "rebels-t-47": {
+    "stats": {
+      "attackSurge": "critical"
+    }
+  },
+  "separatists-admiral-trench": {
+    "weapons": {
+      "1": {
+        "range": {
+          "min": 4,
+          "max": null,
+          "maxType": "infinite"
+        }
+      }
+    }
+  },
+  "separatists-aqua-droids": {
+    "weapons": {
+      "1": {
+        "range": {
+          "min": 1,
+          "max": 3
+        }
+      }
+    }
+  },
+  "separatists-b1": {
+    "weapons": {
+      "1": {
+        "range": {
+          "min": 1,
+          "max": 3
+        }
+      }
+    }
+  },
+  "separatists-dsd1-dwarf": {
+    "weapons": {
+      "0": {
+        "range": {
+          "min": 0,
+          "max": 0
+        },
+        "dice": {
+          "red": 1,
+          "black": 1,
+          "white": 1
+        }
+      }
+    }
+  },
+  "separatists-magna": {
+    "weapons": {
+      "1": {
+        "range": {
+          "min": 1,
+          "max": 2
+        }
+      }
+    }
+  },
+  "empire-iden-versio": {
+    "weapons": {
+      "1": {
+        "range": {
+          "min": 1,
+          "max": null,
+          "maxType": "infinite"
+        }
+      }
+    }
+  },
+  "empire-shoretroopers": {
+    "weapons": {
+      "1": {
+        "range": {
+          "min": 1,
+          "max": 3
+        }
+      }
+    }
+  },
+  "empire-snowtroopers": {
+    "weapons": {
+      "0": {
+        "range": {
+          "min": 0,
+          "max": 0
+        },
+        "dice": {
+          "red": 0,
+          "black": 0,
+          "white": 1
+        }
+      },
+      "1": {
+        "range": {
+          "min": 1,
+          "max": 3
+        }
+      }
+    }
+  },
+  "empire-stormtroopers-hwu": {
+    "weapons": {
+      "0": {
+        "range": {
+          "min": 0,
+          "max": 0
+        },
+        "dice": {
+          "red": 0,
+          "black": 0,
+          "white": 1
+        }
+      }
+    }
+  },
+  "republic-barc": {
+    "weapons": {
+      "1": {
+        "range": {
+          "min": 1,
+          "max": 3
+        }
+      }
+    }
+  },
+  "republic-wookiee-kashyyk": {
+    "weapons": {
+      "1": {
+        "range": {
+          "min": 1,
+          "max": 3
+        }
+      }
+    }
+  },
+  "republic-wookiee-noble": {
+    "weapons": {
+      "1": {
+        "range": {
+          "min": 1,
+          "max": 2
+        }
+      }
+    }
+  },
+  "mercenary-ewoks-ewok-slingers": {
+    "weapons": {
+      "1": {
+        "range": {
+          "min": 1,
+          "max": 2
+        }
+      }
+    }
+  },
+  "mercenary-pyke-syndicate-pyke-syndicate-footsoldier": {
+    "weapons": {
+      "1": {
+        "range": {
+          "min": 1,
+          "max": 3
+        }
+      }
+    }
+  },
+  "mercenary-raiders-weequay-pirate": {
+    "weapons": {
+      "1": {
+        "range": {
+          "min": 1,
+          "max": 2
+        },
+        "nameEn": "Weequay Blaster"
+      }
+    }
+  },
+  "mercenary-rogue-bad-batch": {
+    "weapons": {
+      "1": {
+        "range": {
+          "min": 1,
+          "max": 2
+        },
+        "nameEn": "DC-17 Blaster Pistols"
+      }
+    }
+  },
+  "mercenary-rogue-bossk": {
+    "weapons": {
+      "1": {
+        "range": {
+          "min": 2,
+          "max": 4
+        }
+      }
+    }
+  },
+  "mercenary-rogue-cad-bane": {
+    "weapons": {
+      "1": {
+        "range": {
+          "min": 1,
+          "max": 2
+        },
+        "nameEn": "LL-30 Blaster Pistols"
+      }
+    }
+  },
+  "mercenary-rogue-ig-11": {
+    "weapons": {
+      "1": {
+        "range": {
+          "min": 1,
+          "max": 3
+        },
+        "nameEn": "Modified E-11 Blaster"
+      },
+      "2": {
+        "range": {
+          "min": 1,
+          "max": 4
+        },
+        "nameEn": "Modified DLT-20A"
+      }
+    }
+  },
+  "mercenary-rogue-ig-88": {
+    "weapons": {
+      "1": {
+        "range": {
+          "min": 1,
+          "max": 3
+        },
+        "nameEn": "Modified E-11 Blaster"
+      },
+      "2": {
+        "range": {
+          "min": 1,
+          "max": 4
+        },
+        "nameEn": "Modified DLT-20A"
+      }
+    }
+  },
+  "rebels-luke-skywalker-jedi": {
+    "weapons": {
+      "0": {
+        "range": {
+          "min": 0,
+          "max": 0
+        },
+        "dice": {
+          "red": 0,
+          "black": 7,
+          "white": 0
+        }
+      }
+    }
+  },
+  "mercenary-ewoks-ewok-skirmishers": {
+    "weapons": {
+      "0": {
+        "nameEn": "Spears"
+      }
+    }
+  }
+}

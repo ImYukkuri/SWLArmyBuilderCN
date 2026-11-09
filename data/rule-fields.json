@@ -1,0 +1,172 @@
+{
+  "schema": "swl-rule-fields/v1",
+  "properties": {
+    "unitType": {
+      "zh": "单位类型",
+      "values": "unitTypes"
+    },
+    "faction": {
+      "zh": "阵营",
+      "values": "factions"
+    },
+    "affiliation": {
+      "zh": "组织",
+      "values": "affiliations"
+    },
+    "keywords": {
+      "zh": "关键词",
+      "values": "keywords"
+    }
+  },
+  "fields": {
+    "slotTypes": {
+      "zh": "可匹配槽位",
+      "values": "upgradeSlots",
+      "kind": "array"
+    },
+    "availableIn": {
+      "zh": "允许的单位",
+      "values": "sourceUnits",
+      "kind": "array"
+    },
+    "unavailableIn": {
+      "zh": "排除的单位",
+      "values": "sourceUnits",
+      "kind": "array"
+    },
+    "factions": {
+      "zh": "军队准入（含战斗部队）",
+      "values": "armies",
+      "kind": "array"
+    },
+    "requiredProperties": {
+      "zh": "适用条件",
+      "kind": "condition"
+    },
+    "requiredDivisions": {
+      "zh": "光明/黑暗限定",
+      "kind": "enum",
+      "options": {
+        "Light": "光明面",
+        "Dark": "黑暗面"
+      }
+    },
+    "unavailableWith": {
+      "zh": "互斥卡牌（旧字段，与互斥卡牌 ID 重复）",
+      "kind": "mixed"
+    },
+    "unique": {
+      "zh": "整军唯一",
+      "kind": "bool"
+    },
+    "locallyUnique": {
+      "zh": "同一单位不重复",
+      "kind": "bool"
+    },
+    "unlimited": {
+      "zh": "允许重复单位",
+      "kind": "bool"
+    },
+    "limit": {
+      "zh": "数量上限",
+      "kind": "number"
+    },
+    "addProperties": {
+      "zh": "增加属性",
+      "kind": "effects"
+    },
+    "replaceProperties": {
+      "zh": "替换属性",
+      "kind": "effects"
+    },
+    "modifiedPointsWith": {
+      "zh": "条件费用修正",
+      "kind": "array"
+    },
+    "tierCounting": {
+      "zh": "军阶计数修正",
+      "kind": "object"
+    },
+    "requiredChildren": {
+      "zh": "强制附带卡",
+      "kind": "array"
+    },
+    "quantityLimitedBy": {
+      "zh": "数量受母单位限制",
+      "kind": "array"
+    },
+    "chooseOneKey": {
+      "zh": "互斥选择组",
+      "kind": "string"
+    },
+    "poolBonuses": {
+      "zh": "雇佣兵池奖励",
+      "kind": "array"
+    },
+    "countsAsActivation": {
+      "zh": "计为独立激活",
+      "kind": "bool"
+    },
+    "costViaUpgrade": {
+      "zh": "费用只通过所属升级计入",
+      "kind": "bool"
+    },
+    "memberships": {
+      "zh": "单位成员关系（镜像；建议在表单『可加入军队及军阶』编辑）",
+      "kind": "array"
+    },
+    "requiresTier": {
+      "zh": "军阶要求",
+      "values": "ranks",
+      "kind": "array"
+    },
+    "replaceTier": {
+      "zh": "替换军阶",
+      "values": "ranks",
+      "kind": "number"
+    },
+    "unavailableWithIds": {
+      "zh": "互斥卡牌 ID",
+      "kind": "mixed"
+    },
+    "slotEffects": {
+      "zh": "槽位效果",
+      "kind": "array"
+    },
+    "type": {
+      "zh": "效果类型",
+      "kind": "enum"
+    },
+    "slot": {
+      "zh": "槽位",
+      "kind": "semantic"
+    },
+    "when": {
+      "zh": "触发条件",
+      "kind": "condition"
+    }
+  },
+  "nested": {
+    "property": "比较属性",
+    "value": "目标值",
+    "id": "引用 ID",
+    "propertyName": "对象类别",
+    "elementPropertyName": "附带对象类别",
+    "upgradeIndex": "槽位索引",
+    "modifier": "点数变化",
+    "unit": "母单位",
+    "ratio": "数量比例",
+    "in": "限定对象",
+    "tiers": "军阶",
+    "whenArmyIncludes": "需要军队包含",
+    "perSourceUnit": "每个来源提供名额",
+    "ignoreMinimum": "不计入最低",
+    "ignoreMaximum": "不计入最高",
+    "waivesMinimum": "免除最低",
+    "exempt": "条件豁免",
+    "ignoreMaximumWhenArmyIncludes": "存在指定单位时豁免上限",
+    "rank": "军阶",
+    "field": "字段",
+    "op": "操作符"
+  }
+}

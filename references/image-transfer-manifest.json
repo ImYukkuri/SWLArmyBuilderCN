@@ -1,0 +1,930 @@
+{
+  "count": 185,
+  "files": [
+    {
+      "file": "cis/admiral-trench_front.webp",
+      "sha256": "eda40876ba8abd967309e4d92c211a880a0cad8a345d52d9feeb40054e5051bc",
+      "bytes": 55326
+    },
+    {
+      "file": "cis/b2-rocket_front.webp",
+      "sha256": "16a97f9142f81d7b7760ad6e6ca86c71fabeb62dd4fb461cb6f7c8c51c8fab09",
+      "bytes": 57946
+    },
+    {
+      "file": "cis/geonosian-engineer_front.webp",
+      "sha256": "3edcd7f19a4ffe2301f54a52c2a2099470f26f680768ecb0a94cc75eb5a0a2c6",
+      "bytes": 67446
+    },
+    {
+      "file": "cis/save-opress-cis_front.webp",
+      "sha256": "4e346aa17b3762cc3123c75b33334431b36f532b3f68cad7685b5f10468fa9e8",
+      "bytes": 56458
+    },
+    {
+      "file": "cis/stap_front.webp",
+      "sha256": "9e57c845936e32829aae174dbc9b82ea0f2bc1e51a252d1fa26ee3176809e4a0",
+      "bytes": 59560
+    },
+    {
+      "file": "cis/tsmeu-wheel-bikes_front.webp",
+      "sha256": "e99f0329b7d42793f08fbf282ef554bbb66bfad0d8f300aa2b30ba5c0fab289f",
+      "bytes": 61198
+    },
+    {
+      "file": "gar/jedi-barc_front.webp",
+      "sha256": "4eb1f74e399be9d041bf29ff76ee5de9e59c9e54f7a0ec66ee5636266f8a4084",
+      "bytes": 63412
+    },
+    {
+      "file": "gar/ki_aadi_mundu_front.webp",
+      "sha256": "b381d6dbfc8c167e6ea2a6a6ce721c4cafd98e40ce434bf13996313a018896c2",
+      "bytes": 45464
+    },
+    {
+      "file": "gar/mace_windu_front.webp",
+      "sha256": "540adcc43b832feccde5f74d1a115b0a3eb9991331930a6c956ca8a54ad7f5a9",
+      "bytes": 55768
+    },
+    {
+      "file": "gar/plo_koon_front.webp",
+      "sha256": "3f32534addd65aa58758e41fc0cdfcc3027ff6d0cbdcbeb1c0aad6ef412b1c5f",
+      "bytes": 46648
+    },
+    {
+      "file": "gar/shaak_ti_front.webp",
+      "sha256": "ccf44ec1a1d6a30c8e43b3be291ed9b060720775badd53f4f044ca2348e2f23c",
+      "bytes": 52068
+    },
+    {
+      "file": "rebel/originals/1.4_fd_laser_cannon_team_front.webp",
+      "sha256": "fa8c109a700b767be85a289f56c3f9f8bc178d1791381f464ca5f5d6ed151c10",
+      "bytes": 59146
+    },
+    {
+      "file": "rebel/originals/a-a5_speeder_truck_rebel_front.webp",
+      "sha256": "eaaf869a475bd87f19512455bfb5edf997ae474138f1a72135733a7310980b23",
+      "bytes": 47420
+    },
+    {
+      "file": "rebel/originals/ahsoka_front.webp",
+      "sha256": "e831e5b2c181440b33cf102306cf227527a40f99453e23ad72e90393df29baa5",
+      "bytes": 46114
+    },
+    {
+      "file": "rebel/originals/at_rt_rebel_front.webp",
+      "sha256": "6c673afb76da5b69c089d2213364b6038020708022d5d552496437c57d5d8d2b",
+      "bytes": 51124
+    },
+    {
+      "file": "rebel/originals/c-3po-cyborg_front.webp",
+      "sha256": "2a0ecbcc71f127e742a843bd95d82f2d369481081246a612c7311412ae8bbd2a",
+      "bytes": 52614
+    },
+    {
+      "file": "rebel/originals/cassian_front.webp",
+      "sha256": "e2fe3b3ef725f3598929025104052f853c7e8d29a49370cc68d5dc2534073355",
+      "bytes": 59742
+    },
+    {
+      "file": "rebel/originals/chewbacca_rebel_front.webp",
+      "sha256": "b332b0abd487f3bb69fb4ab43cb2ab4beebcd26b5895ee8ed589c0203dbaa6c7",
+      "bytes": 54526
+    },
+    {
+      "file": "rebel/originals/commandos_front.webp",
+      "sha256": "15b0e71de8c9b275890fbdfb5966d6b8e50935687e75cee212bab807705fe838",
+      "bytes": 47124
+    },
+    {
+      "file": "rebel/originals/fleet_troopers_front.webp",
+      "sha256": "07a6be010f885516052cf78f49f2147eda27c1c7347e2002e7a4173eee6ebc3b",
+      "bytes": 38950
+    },
+    {
+      "file": "rebel/originals/guerilla-troopers_front.webp",
+      "sha256": "9c225d3612659b4cd56f2b338d5ac4bae020ebbbccac02f313582d20e6c28c83",
+      "bytes": 49112
+    },
+    {
+      "file": "rebel/originals/han-solo-tauntaun_front.webp",
+      "sha256": "a103266a17b70531891d940bc24df10d21755b636eb273d34ea25cdc296dd941",
+      "bytes": 68470
+    },
+    {
+      "file": "rebel/originals/jyn_front.webp",
+      "sha256": "86020b7a3ea09b1b86003acad35ed97df8cd61ee87f74879cbe921483e0b91b4",
+      "bytes": 57690
+    },
+    {
+      "file": "rebel/originals/k-2so_front.webp",
+      "sha256": "3fceb72d11a518e6370a36adacf825402c36e47c9496cc56ee84a4540d90cd1d",
+      "bytes": 49996
+    },
+    {
+      "file": "rebel/originals/lando_front.webp",
+      "sha256": "563baad1b227cb62792a8d201cad96bfdf98e2db064ccb5d0976f3cce4a7fc6b",
+      "bytes": 54712
+    },
+    {
+      "file": "rebel/originals/leia_organa_front.webp",
+      "sha256": "b4ffe3a4337b5685436e0fd126be65ce5dfceef33370409fc4369f486aebc9ed",
+      "bytes": 52870
+    },
+    {
+      "file": "rebel/originals/luke-skywalker-jedi_front.webp",
+      "sha256": "42d6ac77f2cd3de684c62fe060ce2b26c8f9362fdbca42867aa2b265e06aca75",
+      "bytes": 49292
+    },
+    {
+      "file": "rebel/originals/luke-tauntaun_front.webp",
+      "sha256": "0776f0fdbd098976c6d252f451c627fc9cfb79fabbb9813842f604379f944e14",
+      "bytes": 62320
+    },
+    {
+      "file": "rebel/originals/luke_skywalker_hero_front.webp",
+      "sha256": "039ccd6859df587afccc02c5011cbc8dcf33b148e55317eb46677b83c66d8cc5",
+      "bytes": 65010
+    },
+    {
+      "file": "rebel/originals/mark-2-blaster_front.webp",
+      "sha256": "d7d106bbf18ed416e4b961c50a1de4b908fba064c5cdda260ab622c088eaaeb5",
+      "bytes": 67132
+    },
+    {
+      "file": "rebel/originals/r2d2_hero_front.webp",
+      "sha256": "3c3a3f4e39c8ac6250e23fe785db730ff524991078ac0c82fb33663475f23733",
+      "bytes": 54328
+    },
+    {
+      "file": "rebel/originals/rebel-agent-defender-democracy_front.webp",
+      "sha256": "80e1d99a8573973bfe48a4e678528afc8faa6bf98705847aa39e91438b4930c2",
+      "bytes": 45290
+    },
+    {
+      "file": "rebel/originals/rebel-officer-fight-freedom_front.webp",
+      "sha256": "64751162f32a2fd404c4a9dc266d94a5d3b0f442f8ef9554608f93851dbd2073",
+      "bytes": 39766
+    },
+    {
+      "file": "rebel/originals/rebel_commandos_front.webp",
+      "sha256": "c9396722f35085acd62980b297bb6c27a5841af2984206bde3b67052d1906eaf",
+      "bytes": 518208
+    },
+    {
+      "file": "rebel/originals/rebel_troopers_front.webp",
+      "sha256": "acb1d79096ee0ba4382f72139632780aab730168b816da88b6bea6bf2368568a",
+      "bytes": 47990
+    },
+    {
+      "file": "rebel/originals/rebel_veterans_front.webp",
+      "sha256": "200d266d6c2c03ac444bf1a9321e20e907c8509a0e450b0932fea082fa6931fe",
+      "bytes": 50700
+    },
+    {
+      "file": "rebel/originals/sabine_front.webp",
+      "sha256": "57626fae3eda43a1cbcfd38ad26c99f2e700dedd2e0147065d90eb24f7f8f5a2",
+      "bytes": 47786
+    },
+    {
+      "file": "rebel/originals/sleeper-cell_front.webp",
+      "sha256": "a64cfa93583d9c66e2278baed13fd6128a2af5b36c6d3842084f5cfb4b2c3284",
+      "bytes": 51614
+    },
+    {
+      "file": "rebel/originals/solo_front.webp",
+      "sha256": "7e940a5fa3c142b9faaca352da169cc9b3a01f3dd4ea823f6d32e6e2768d2a7e",
+      "bytes": 53662
+    },
+    {
+      "file": "rebel/originals/t-47_front.webp",
+      "sha256": "3dcac6b7487888fb0f8f0090ff420924dacb9a86db27ff503764726e20905393",
+      "bytes": 54754
+    },
+    {
+      "file": "rebel/originals/tauntaun-riders_front.webp",
+      "sha256": "5936bed7b13deca167122a5c4628ceb16c809dd38d3e074994ebbb9419a5443f",
+      "bytes": 58450
+    },
+    {
+      "file": "rebel/originals/wookiee-freedom_front.webp",
+      "sha256": "7d46827f9b4f6350ac73d1def762be7e4839942decbd78befa492b7d5e8fe54a",
+      "bytes": 47420
+    },
+    {
+      "file": "rebel/originals/wookiee-resistance_front.webp",
+      "sha256": "2c1001ddd4204886434cf2e26f6540d2400c1cf0b141c6ae2e5d3087b8bc9169",
+      "bytes": 56086
+    },
+    {
+      "file": "rebel/originals/x-34_landspeeder_front.webp",
+      "sha256": "eb331f74c685794a9d6f7db7738bfff981590ed6e969d4d44c1e57e43a6b02b5",
+      "bytes": 46436
+    },
+    {
+      "file": "mercenary/creedless/mandalorian-hunter_front.webp",
+      "sha256": "409b62602c518f21cff1a726ea83bac1bdefc2a938f87795717e487696e17ae4",
+      "bytes": 53548
+    },
+    {
+      "file": "mercenary/creedless/mandalorian-leader_front.webp",
+      "sha256": "02e3cef6a5e871075ae996ffa26f16e2075a4cc99c6e0f4366282d0a1e00414c",
+      "bytes": 55592
+    },
+    {
+      "file": "mercenary/maul_loyalists/savage-opress-maul_front.webp",
+      "sha256": "c0a9e04903bc8db379d668f879dd29be15929bea05c5d49912bf086ecfdc8890",
+      "bytes": 56684
+    },
+    {
+      "file": "mercenary/rogue/han-and-chewie_front.webp",
+      "sha256": "3390cfc2ee77210b0c83c99425a9901a434f82e485cd7bac6dad98f9ae94d9dd",
+      "bytes": 44938
+    },
+    {
+      "file": "mercenary/rogue/originals/bad-batch_front.webp",
+      "sha256": "2ba4d11249612e05f29827407f62608da086b17f5df9292ed75ae0659a1bf44c",
+      "bytes": 58840
+    },
+    {
+      "file": "mercenary/rogue/originals/boba-fett-daimyo_front.webp",
+      "sha256": "13899cfd97f15662e25c8777d28dc8e166398458e3bff09eba309870c42482b7",
+      "bytes": 56312
+    },
+    {
+      "file": "mercenary/rogue/originals/boba-fett-infamous_front.webp",
+      "sha256": "24610831bdb01c0b40ef761ab50910351c19d45744c1d4d3d759195aed2d62ae",
+      "bytes": 65798
+    },
+    {
+      "file": "mercenary/rogue/originals/bossk_front.webp",
+      "sha256": "965df2f84d8571baefaec2d28e9fc604bd2bdbf17743c99de7073579ec1616e5",
+      "bytes": 58396
+    },
+    {
+      "file": "mercenary/rogue/originals/cad-bane_front.webp",
+      "sha256": "e09c0968368bfceb2e00f0ceaaa0e84dfaaefbbcc8b482336f807e091e8e1f58",
+      "bytes": 57622
+    },
+    {
+      "file": "mercenary/rogue/originals/ig-11_front.webp",
+      "sha256": "2bc140116eb612143e528e3d8d3c731a72cb6495a841acb989ec9044d3530445",
+      "bytes": 51680
+    },
+    {
+      "file": "mercenary/rogue/originals/ig-88_front.webp",
+      "sha256": "0ac6280544d2648533e465f9f10ca7404b1f53204f0a5dde192f0436bed75ff2",
+      "bytes": 65418
+    },
+    {
+      "file": "mercenary/rogue/originals/omega_front.webp",
+      "sha256": "d51b8d44f0a9443729427aba73ccc68bd2cb510d3b861db5a75a4734469d7d35",
+      "bytes": 39992
+    },
+    {
+      "file": "mercenary/raiders/originals/aa5_speeder_truck_front.webp",
+      "sha256": "d75958326503fe3ef6b562a762dee80d3f47f82418ee80e430f96a4aab48f535",
+      "bytes": 45424
+    },
+    {
+      "file": "mercenary/raiders/originals/hondo_ohnaka_front.webp",
+      "sha256": "02893d6a2ff0131e9a4f6cb8a8f62bcffdc13f8b3459cc1823915d57d007baf6",
+      "bytes": 67340
+    },
+    {
+      "file": "mercenary/raiders/originals/swoop-bike_front.webp",
+      "sha256": "64eb5fd43dbf0560e6fb1f4fa539fdc149905035321edad033ed5692b0fda024",
+      "bytes": 74562
+    },
+    {
+      "file": "mercenary/raiders/originals/weequay-pirate_front.webp",
+      "sha256": "5620b88519db03ebb2b3ed72750696961329f8c802267584819df5f6a3d6ecf7",
+      "bytes": 58782
+    },
+    {
+      "file": "mercenary/raiders/originals/wlo5-speeder-tank_front.webp",
+      "sha256": "33f644fd64a3d45e677ae7d613b48aaf265f8e6773461e2e3d0b555811a54ba9",
+      "bytes": 61120
+    },
+    {
+      "file": "mercenary/pyke_syndicate/originals/pyke-syndicate-capo_front.webp",
+      "sha256": "3dd9c91db67e2c6f00c8554740bc10adbf609155add536088c925a1b443864b9",
+      "bytes": 49744
+    },
+    {
+      "file": "mercenary/pyke_syndicate/originals/pyke-syndicate_footsoldier_front.webp",
+      "sha256": "e21e82811e6d03b69a1393efb745cf03667d86c14a7e26aa4522791bbcd4390e",
+      "bytes": 61804
+    },
+    {
+      "file": "mercenary/maul_loyalists/originals/gar-saxon_front.webp",
+      "sha256": "05e725de6e700dc3bfa5d6b89a57284d0ecb632c04a7f4bd1e57d020f0c0cb15",
+      "bytes": 58192
+    },
+    {
+      "file": "mercenary/maul_loyalists/originals/mandalorian-super_front.webp",
+      "sha256": "a5eee8136d6f4aa50628ad52b5f91eac65b9d298da0b2b520ab93dffbc44aed1",
+      "bytes": 56636
+    },
+    {
+      "file": "mercenary/maul_loyalists/originals/maul-rival_front.webp",
+      "sha256": "06f40cc09db78e2eaa2dccdc97b5bb0d026f512f8475d6fa27b080ed79cc3fd1",
+      "bytes": 51758
+    },
+    {
+      "file": "mercenary/ewoks/originals/c3po-golden_front.webp",
+      "sha256": "ba643b08a0f34a9472417c9fe0359533a596bb2b075b3956329ec137bfdcf01d",
+      "bytes": 68682
+    },
+    {
+      "file": "mercenary/ewoks/originals/chewbacca_front.webp",
+      "sha256": "34962930c99a6d78c5220782bc63c2424d37706958eb39aab72ed7b47245c835",
+      "bytes": 68654
+    },
+    {
+      "file": "mercenary/ewoks/originals/ewok_skirmishers_front.webp",
+      "sha256": "2f9adcc5184b8676b253b3d35b3759d375bcea12c4815116287e11dff2139603",
+      "bytes": 66970
+    },
+    {
+      "file": "mercenary/ewoks/originals/ewok_slingers_front.webp",
+      "sha256": "aca44fbb8e488962159281ceb6d131ddd9c525099c8769b9c164225be703afdd",
+      "bytes": 59398
+    },
+    {
+      "file": "mercenary/ewoks/originals/logray_front.webp",
+      "sha256": "9aade642cb92fa6eddccb0d79435c4a425c7b6a4ce4c60b92327a18866f28f89",
+      "bytes": 65832
+    },
+    {
+      "file": "mercenary/ewoks/originals/wicket_front.webp",
+      "sha256": "87df5ba246e826a0083de59ff3ccb1a8a09d33cc8c3fd7ad5e22dbc5f3155cbe",
+      "bytes": 77064
+    },
+    {
+      "file": "mercenary/creedless/originals/mandalorian-initiates_front.webp",
+      "sha256": "cbda5c60bbe7b6c19d23eaa4ae93b1d02a3d64edda8666dd4564ac86a322542a",
+      "bytes": 48284
+    },
+    {
+      "file": "mercenary/creedless/originals/mandalorian-warriors-corps_front.webp",
+      "sha256": "f990cc5c943e152b8bcf03cb10161d8c03173ac0c26061eabe5901e92a96bdfe",
+      "bytes": 51544
+    },
+    {
+      "file": "mercenary/creedless/originals/mandalorian-warriors-support_front.webp",
+      "sha256": "21b55024501e89fe4cfa6be95eca6a15b9f96b73255145bde2609f1b31048941",
+      "bytes": 53970
+    },
+    {
+      "file": "mercenary/clan_wren/originals/clan-wren-veterans_front.webp",
+      "sha256": "2fd1956872919fb4613584a5b9f7c63ce6d5d91dfb15c3ffb6199352163c2a55",
+      "bytes": 84466
+    },
+    {
+      "file": "mercenary/clan_wren/originals/sabine-wren-clan_front.webp",
+      "sha256": "573900153a902e8e65ad4cb2c12aa830b1c040e2213c432bb708192a55d15aa1",
+      "bytes": 63412
+    },
+    {
+      "file": "mercenary/clan_wren/originals/ursa-wren_front.webp",
+      "sha256": "9b67a945ae181b3c9504e39aae79733d7b2f1f50d42c0d4f20e4376ed2643219",
+      "bytes": 75202
+    },
+    {
+      "file": "mercenary/clan_saxon/originals/gar-saxon-leader_front.webp",
+      "sha256": "a3a8e07548a6eaa95abc48cc0b888cc00f4506e62319fca60c6d828598de2bad",
+      "bytes": 77382
+    },
+    {
+      "file": "mercenary/clan_saxon/originals/rook-kast_front.webp",
+      "sha256": "10924ed3225015c6813ef95705012cc841728f62474da34cee43c3be2711ed99",
+      "bytes": 60352
+    },
+    {
+      "file": "mercenary/clan_saxon/originals/super-commandos-saxon_front.webp",
+      "sha256": "905d63647c8c13cd41ad03a7c7e0f5295d26f9156ba56cd223782d1710210087",
+      "bytes": 65402
+    },
+    {
+      "file": "mercenary/clan_kryze/originals/axe-woves_front.webp",
+      "sha256": "dfca52334080e574e2fc274cb49d77374b4152211798f4c4cba840b955737197",
+      "bytes": 67810
+    },
+    {
+      "file": "mercenary/clan_kryze/originals/bo-katan-kryze_front.webp",
+      "sha256": "e5bf41af5ab7d53570d681a7e81baee9a5e9d44207e70a2e4dd259951ca04196",
+      "bytes": 84886
+    },
+    {
+      "file": "mercenary/clan_kryze/originals/clan-kryze-veterans_front.webp",
+      "sha256": "14ce5fff88c9541b096cd885e3796832b7b5c793069ca921d546642fb844eeba",
+      "bytes": 126438
+    },
+    {
+      "file": "mercenary/clan_covert/originals/din-djarin-covert_front.webp",
+      "sha256": "4bea5efa0b3719d128e0458b13b52c33b4983cc9a46cfde6b4359a07719995fa",
+      "bytes": 56268
+    },
+    {
+      "file": "mercenary/clan_covert/originals/grogu-covert_front.webp",
+      "sha256": "22111072feac7ba25b72fcaff6fe35cc53ddf3d0bea078d8518927aeff8720da",
+      "bytes": 41864
+    },
+    {
+      "file": "mercenary/clan_covert/originals/paz-vizsla_front.webp",
+      "sha256": "aba41b5a3f68eb2c84c422254377f3ed3df0fe9c48ff836f941c0b3b6a90d5b5",
+      "bytes": 88404
+    },
+    {
+      "file": "mercenary/clan_covert/originals/the-armorer_front.webp",
+      "sha256": "d3b75f6d9e2ba02a63756ab38341c3ab8a6b7e83647655bd5aa2991d5c79a34e",
+      "bytes": 131182
+    },
+    {
+      "file": "mercenary/black_sun/originals/black-sun-enforcers_front.webp",
+      "sha256": "1196139016bd0b86cae2b151922f952221ad728d0c27e6720609ee70ea7e97f1",
+      "bytes": 60912
+    },
+    {
+      "file": "mercenary/black_sun/originals/black-sun-vigo_front.webp",
+      "sha256": "2a3a2944d8b4baf37dde5b316fda75abd8097bcb773441f820b7bacf57743a64",
+      "bytes": 51450
+    },
+    {
+      "file": "gar/originals/ahsoka_padawan_commander_front.webp",
+      "sha256": "1b285833739a010fc0113316aab57d603e03c2d1bc91e2e6f52b5b1ed35ca201",
+      "bytes": 65458
+    },
+    {
+      "file": "gar/originals/anakin-barc_front.webp",
+      "sha256": "602580da24afac9bf7b00e26bf39e86dae3cf0acb4523d7d1385b470be69fdb7",
+      "bytes": 67182
+    },
+    {
+      "file": "gar/originals/anakin_front.webp",
+      "sha256": "eab4beb832ebf3223776a69c8d59dd3401bb05533306c2bb0072bfd2d354eeb9",
+      "bytes": 59554
+    },
+    {
+      "file": "gar/originals/arc_troopers_front.webp",
+      "sha256": "f6f5ddc54f6ab97c31e723be7273573bc6d390781da27ce3e7874ce71787b95a",
+      "bytes": 46444
+    },
+    {
+      "file": "gar/originals/arc_troopers_strike_front.webp",
+      "sha256": "b726b06cb8f18315dc317b507136dfd586fa9254be4ae52f1aebd50828c9cf10",
+      "bytes": 51006
+    },
+    {
+      "file": "gar/originals/arf_troopers_front.webp",
+      "sha256": "c6924a37c168dd82f0e72f71585e9fac6927e613d60a0694ef84eae75c66d27a",
+      "bytes": 41876
+    },
+    {
+      "file": "gar/originals/at_rt_gar_front.webp",
+      "sha256": "1223fc034d5eeb8f8fb7e597b11fb39d44cdad7c73d5e9832f5a830cd949adfa",
+      "bytes": 55340
+    },
+    {
+      "file": "gar/originals/bad-batch-gar_front.webp",
+      "sha256": "01b0977a6cd13bfc9b757b70110ac0250a16d7afd655183b9f8914acc7a4cc1b",
+      "bytes": 64142
+    },
+    {
+      "file": "gar/originals/barc_front.webp",
+      "sha256": "3365a6a89bdf8ce041d145f375f49bf539b70c2b6e26fd58d65992ca1cddb106",
+      "bytes": 45412
+    },
+    {
+      "file": "gar/originals/c3po_front.webp",
+      "sha256": "4a24648406485816eaf95f860b42c8978a3487c9f10f9435b4b2955e84b3ade0",
+      "bytes": 47834
+    },
+    {
+      "file": "gar/originals/chewbacca_gar_front.webp",
+      "sha256": "e45d8eabb5cf35456a1d75f764f5a742fab1ddd8a33afc466c9f0196c3d050d7",
+      "bytes": 53198
+    },
+    {
+      "file": "gar/originals/chieftain_front.webp",
+      "sha256": "e5e90d0ecc420d14fd27b039030f71665f75682bf724a50c446436a5c14d20c7",
+      "bytes": 60144
+    },
+    {
+      "file": "gar/originals/clonetrooper_marksmen_front.webp",
+      "sha256": "bc38785d1b9634769a7508944852f20b353e4da8ab2b0a5033ff48c2280050ff",
+      "bytes": 56046
+    },
+    {
+      "file": "gar/originals/clone_commander_leadership_front.webp",
+      "sha256": "ffbfd2f5aaf9696e6365e5fad955956380cb36bb31782809b13641586018668c",
+      "bytes": 56756
+    },
+    {
+      "file": "gar/originals/clone_commandos_front.webp",
+      "sha256": "6ee7e5394bbdef3781ddaf3f5086d8bc133efc7b03344a0c1e5cb3990391b5a2",
+      "bytes": 61648
+    },
+    {
+      "file": "gar/originals/clone_trooper_front.webp",
+      "sha256": "31fff063d890d778c86f97d96ab93a2cf2d62c66a55eed374368549ded74e02a",
+      "bytes": 50190
+    },
+    {
+      "file": "gar/originals/cody_front.webp",
+      "sha256": "848209f4bb66d3706d01d4fdaf02f438624e685cf45bfb15ad57cfa51414fb81",
+      "bytes": 62406
+    },
+    {
+      "file": "gar/originals/delta-squad_front.webp",
+      "sha256": "326df0ed3154ec0840973c8f75e8a533aecc1a82bd2f7c5ccc151852d5933145",
+      "bytes": 81532
+    },
+    {
+      "file": "gar/originals/isp_front.webp",
+      "sha256": "ec82846c215fd5fffa79d770f21bb044e63e2b8a5f7874cc166f4ec3333722d4",
+      "bytes": 50156
+    },
+    {
+      "file": "gar/originals/jedi_knight_front.webp",
+      "sha256": "62d4413f024b3742e90ee3227da8fccf2c22468e7bc1c91fa74fd66deeee8eb9",
+      "bytes": 51842
+    },
+    {
+      "file": "gar/originals/jedi_knight_general_front.webp",
+      "sha256": "cdb21c13dc252b3f4b4a2f4feef8d8f96aee7144b5d907e4642d20f14e2df90a",
+      "bytes": 50266
+    },
+    {
+      "file": "gar/originals/laat_gar_front.webp",
+      "sha256": "0486e129744ff2fdb5a341d72f57ade21e626b0564801700a50a131198586251",
+      "bytes": 50856
+    },
+    {
+      "file": "gar/originals/obiwan_front.webp",
+      "sha256": "e03d9d975fe6af3bef21b5b25f6022ddd794765ba66bfffb3f06789c406a54b7",
+      "bytes": 55848
+    },
+    {
+      "file": "gar/originals/padme_front.webp",
+      "sha256": "fe04e59157388c2c50fb0af91e9196e59063c29520ccb6960bd45458454facbf",
+      "bytes": 54694
+    },
+    {
+      "file": "gar/originals/r2d2_gar_front.webp",
+      "sha256": "45ab3a495b3a51e7cd593d38c3923f230b47d0c8f1f1c82313f3ad3f5d7babbe",
+      "bytes": 47524
+    },
+    {
+      "file": "gar/originals/raddaugh-gnasp_front.webp",
+      "sha256": "d731a902c51307b5bcbfb4d42c92ea48eefc920db221cf2cf0005683b9b83c00",
+      "bytes": 50576
+    },
+    {
+      "file": "gar/originals/raddaugh_front.webp",
+      "sha256": "e22c0472ecfab1da13df5eaae6adc91ba8c42053b1a5d2b98fb7ac1b0ba079d5",
+      "bytes": 58964
+    },
+    {
+      "file": "gar/originals/rex_front.webp",
+      "sha256": "b525bae033458c21df61ae7efbd9c2dab84a64517f2ad67ac5ee6444a7a9fb2c",
+      "bytes": 57334
+    },
+    {
+      "file": "gar/originals/saber_class_front.webp",
+      "sha256": "0ead9390b15107ac5b5fb90855a8e3891d6c9d7fd74f1027358476c743f8dfc8",
+      "bytes": 65936
+    },
+    {
+      "file": "gar/originals/wookiee-kashyyk_front.webp",
+      "sha256": "2a05c62cd959cc8eef033f497da6db42f6cea648bb864d014f70382731a113f6",
+      "bytes": 49316
+    },
+    {
+      "file": "gar/originals/wookiee-noble_front.webp",
+      "sha256": "30e667e70f7c71e5623a611a93738e01340d2dbd82aaba674858c7c751d3eda8",
+      "bytes": 47964
+    },
+    {
+      "file": "gar/originals/yoda_front.webp",
+      "sha256": "9cfac5a286538f10e2e7081375d3d35ed2977b007e7ded2e6a6096fa7e31dab2",
+      "bytes": 54906
+    },
+    {
+      "file": "empire/originals/74-z-speeder_front.webp",
+      "sha256": "eadce465a9c68b0f36888863940202c0eeafe4391fa04c569616e021bc6bc165",
+      "bytes": 60476
+    },
+    {
+      "file": "empire/originals/at_st_front.webp",
+      "sha256": "0746ed6dd0f723769868ae58c2497ed42da0132587fd12aa7580bbd8c3c30e0b",
+      "bytes": 57288
+    },
+    {
+      "file": "empire/originals/dark_troopers_front.webp",
+      "sha256": "07c57b8e411fcf12d4a858c67fd6f6bbeb91f93e52d40d99d0d2e251652125ed",
+      "bytes": 58932
+    },
+    {
+      "file": "empire/originals/darth-vader-apprentice_front.webp",
+      "sha256": "e1dc101b6f55555ca377403371c502ed758f68120bb14f70b3e7a79aa33db8dc",
+      "bytes": 58948
+    },
+    {
+      "file": "empire/originals/darth-vader-lord_front.webp",
+      "sha256": "d3bfda6c61888be3acb9ff0b6367d5d736e603df6c91a28eff4f0789bc9a91e1",
+      "bytes": 46990
+    },
+    {
+      "file": "empire/originals/death-troopers_front.webp",
+      "sha256": "3e197e36abb9d9faaaf16aa7584f46a06c39a0975aea822214e4c33a769c8ee6",
+      "bytes": 55252
+    },
+    {
+      "file": "empire/originals/dewback_front.webp",
+      "sha256": "32b2b7b479ffb81dce610fab60e60dfee02e1670869cf640997273eb3c789fb9",
+      "bytes": 50928
+    },
+    {
+      "file": "empire/originals/df-90-mortar_front.webp",
+      "sha256": "2f9901c1a4e39974b3eb694ad67b2e719348cdc39da0a877ab9445b6b3805888",
+      "bytes": 52756
+    },
+    {
+      "file": "empire/originals/e-web_front.webp",
+      "sha256": "18e04d5f15b3368b2108fb8a3c2f6d79897dcd45b43e595b9fe121c86183a200",
+      "bytes": 61056
+    },
+    {
+      "file": "empire/originals/fifth-brother_front.webp",
+      "sha256": "7521b8ac6a541b1caa443637eddf94542d0e6d924495035c490272c06f34bb35",
+      "bytes": 52074
+    },
+    {
+      "file": "empire/originals/general-tagge_front.webp",
+      "sha256": "88f1d7599571193513039c11d6d729b87eda0a86d93a7ba6190ba0e9b02cc3e1",
+      "bytes": 51984
+    },
+    {
+      "file": "empire/originals/gideon_front.webp",
+      "sha256": "ee85d6ad89b1bc56a3afcaa142cd95ab9574349d03f79168e498d722ba327757",
+      "bytes": 58938
+    },
+    {
+      "file": "empire/originals/grand-admiral-thrawn_front.webp",
+      "sha256": "c9ec50d774082dcc1ddcb4a9466df946d1a4daaac590171e59558af33d5af009",
+      "bytes": 58144
+    },
+    {
+      "file": "empire/originals/grand-moff-tarkin_front.webp",
+      "sha256": "23ed030794d13571ced135873f1c2822602f392d72fc45fc22fa4fb03ce9f479",
+      "bytes": 52468
+    },
+    {
+      "file": "empire/originals/id10-seeker_front.webp",
+      "sha256": "7d880af435893dce3b86658df404710a66d22759b70e22dae9bbfe050e29be2d",
+      "bytes": 48994
+    },
+    {
+      "file": "empire/originals/iden-versio_front.webp",
+      "sha256": "061a3125d6ec34b73860dcfb860dff89c2bf05deaa269f9af6f61dc7d505d829",
+      "bytes": 70030
+    },
+    {
+      "file": "empire/originals/imperial-agent-order-to-galaxy_front.webp",
+      "sha256": "cbe23440c8d865f667e3cafcee5773f14ed3d49f91deadd215b299b463815699",
+      "bytes": 34804
+    },
+    {
+      "file": "empire/originals/imperial-officer-ruthless-efficiency_front.webp",
+      "sha256": "9a10dac309e01c8e1be9a4c32d33b42dc52041ee19d0f5f2efca4bdb783092b8",
+      "bytes": 34810
+    },
+    {
+      "file": "empire/originals/imperial-probe-droid_front.webp",
+      "sha256": "6898d8b450db2b1f11eec288402c4b75f6cc1d77733cb59652edeaf2c622c5b4",
+      "bytes": 52512
+    },
+    {
+      "file": "empire/originals/inferno-squad_front.webp",
+      "sha256": "2f3e2e311f29138e98ee28f7eca89d32b63d437592e00b802fc78fbececb381a",
+      "bytes": 72288
+    },
+    {
+      "file": "empire/originals/kallus_front.webp",
+      "sha256": "1c26828a9285cf41b9f7119b54c944fcd83b26ca2fa041f59ca14d6b2cd7c594",
+      "bytes": 48736
+    },
+    {
+      "file": "empire/originals/laat_empire_front.webp",
+      "sha256": "e1b11415dd48ea0a0ff47a43e0e6cb6fa24c5ca57142a2f924f68ccea28a0b8f",
+      "bytes": 56478
+    },
+    {
+      "file": "empire/originals/marquand_front.webp",
+      "sha256": "40b492fbeb384d6850b9ecd64960f0c242a63d0b94b26c8a05cf12dc4ffa6d5c",
+      "bytes": 76394
+    },
+    {
+      "file": "empire/originals/orson_krennic_front.webp",
+      "sha256": "5fb4741f6fcec2fd5155f0e67bfd3debe5677d112cbad4fffe00338dcd40c925",
+      "bytes": 62082
+    },
+    {
+      "file": "empire/originals/range-trooper_front.webp",
+      "sha256": "068d63c5a50cd1738106a2aadefd9e5cc13225d121b3d34ffae9274ab22f8aba",
+      "bytes": 52624
+    },
+    {
+      "file": "empire/originals/riot-squad_front.webp",
+      "sha256": "fa4fc8c50d2e2e7a0857301bf96914fe580417c21d9549b9d42631521869e039",
+      "bytes": 49338
+    },
+    {
+      "file": "empire/originals/scout_front.webp",
+      "sha256": "c06a4147fb4603872c3785667c29372d8e65fa3e9dcbcf19d64facd5c75412b8",
+      "bytes": 49406
+    },
+    {
+      "file": "empire/originals/scout_strike_front.webp",
+      "sha256": "eef4ec116a146604a77103a9121a14040e0f0e21e890dac87d30ecd1dfd37e4e",
+      "bytes": 569464
+    },
+    {
+      "file": "empire/originals/seventh-sister_front.webp",
+      "sha256": "3dad326eebd8d8a637f65bb5bc818cc2949bb044842781e2cf16041b3098c281",
+      "bytes": 59550
+    },
+    {
+      "file": "empire/originals/shoretroopers_front.webp",
+      "sha256": "0e794677080e882224fb619e8390fd10945a6b92ca9af7d9f3e97cfc3e45f539",
+      "bytes": 52906
+    },
+    {
+      "file": "empire/originals/snowtroopers_front.webp",
+      "sha256": "c7d4d84bd804967ed12801184e599e76f80c6865d26cd99cb369536af3ee25b8",
+      "bytes": 53040
+    },
+    {
+      "file": "empire/originals/special-forces_front.webp",
+      "sha256": "c7c7a2892403bbe1471ecad6562a581e3a915fdf564801ab54aca9edad4d70e8",
+      "bytes": 57576
+    },
+    {
+      "file": "empire/originals/stormtroopers_front.webp",
+      "sha256": "04c15f24bc49527b3cbfd45c46add91aa8c38d0a41565ae689aedc1bb8ae3426",
+      "bytes": 46310
+    },
+    {
+      "file": "empire/originals/stormtroopers_hwu_front.webp",
+      "sha256": "d39e423319fbc0c362dbbda1fd330f42fa03ec2697ded6ded8215e17711126e9",
+      "bytes": 55336
+    },
+    {
+      "file": "empire/originals/tx-225_front.webp",
+      "sha256": "6e4a49426f631f115d1136c959ad847f759a68a7e38f781c9fa5ae7534e719a9",
+      "bytes": 58552
+    },
+    {
+      "file": "empire/originals/veers_front.webp",
+      "sha256": "fccae28a4f4ff1a83e360d6e053b4eb1e398c3140cadd10bbc2c8decabea9f55",
+      "bytes": 63212
+    },
+    {
+      "file": "cis/originals/aat_front.webp",
+      "sha256": "45357e3582a309ce159e86cebba4b0206c533b56ecca8af07d741a470fc5c3b4",
+      "bytes": 58684
+    },
+    {
+      "file": "cis/originals/aqua-droids_front.webp",
+      "sha256": "b12ddd8d38b51f764837c8210bbd436690ffbec3c3c64073a0ad708c1ca19967",
+      "bytes": 510838
+    },
+    {
+      "file": "cis/originals/asajj_front.webp",
+      "sha256": "78cdf6ce05807d4f4b1a140b75eb363d47c4d5254abe8d324cbb380dbd506715",
+      "bytes": 52572
+    },
+    {
+      "file": "cis/originals/b1_front.webp",
+      "sha256": "129e1c8e7b221c1e62bc1a573ea7bb1872a2ad9dfe889d28ce8553377dc6e042",
+      "bytes": 50876
+    },
+    {
+      "file": "cis/originals/b2_front.webp",
+      "sha256": "93a5d2b2dc8ce0ab8702587b57ed6a9d1e15c43cbc7ecb921cea9541248c51d7",
+      "bytes": 47158
+    },
+    {
+      "file": "cis/originals/bx_front.webp",
+      "sha256": "bd8b03ff635d54571855a6ecbe1a5cd2678c8fed17ff8a6f91e11d328ca1ac3c",
+      "bytes": 54576
+    },
+    {
+      "file": "cis/originals/bx_strike_front.webp",
+      "sha256": "60600c0de2b15e3a16129c9bb0d41d46d54e81ad643a516834150c563d1be817",
+      "bytes": 529468
+    },
+    {
+      "file": "cis/originals/dooku_front.webp",
+      "sha256": "7b1b3c119b3cfb026396ca07241dc7fb773aad45a894ebe36147aad64c1e34df",
+      "bytes": 65614
+    },
+    {
+      "file": "cis/originals/drk1-droid_front.webp",
+      "sha256": "33131fde94325ac62d7c1a396c7bf7d1728a63e8fbfa657688f537d4f7f423bd",
+      "bytes": 55872
+    },
+    {
+      "file": "cis/originals/droidekas_front.webp",
+      "sha256": "cb986c588c836e94416a489c110b4c37e176d6b7fc2cffe5e967bf98aa7f0eaa",
+      "bytes": 72556
+    },
+    {
+      "file": "cis/originals/dsd1-dwarf_front.webp",
+      "sha256": "daa62845e227993d3fe675db4b45614a162a8d6d72cc77ba36cf86552fbabc90",
+      "bytes": 65466
+    },
+    {
+      "file": "cis/originals/geonosian_front.webp",
+      "sha256": "a142c8b7d38c1a63a32e5bca60179ef4afb641721207c1161bf341613113b83f",
+      "bytes": 52234
+    },
+    {
+      "file": "cis/originals/grievous-wheelbike_front.webp",
+      "sha256": "1f7e4c5c94ff1c898261f8cdfc64f2d1b86fa72daba67b66d372a3208cea71e8",
+      "bytes": 72472
+    },
+    {
+      "file": "cis/originals/grievous_front.webp",
+      "sha256": "2b03e2b07dd8cbc199802e4ba9e797804af5bca1f844b2a5185408733726e187",
+      "bytes": 62850
+    },
+    {
+      "file": "cis/originals/kalani_front.webp",
+      "sha256": "619f2a9a32efa454c35bce8595f3b4e800eb4ffcf797157fa76e9d38bc6c151e",
+      "bytes": 55154
+    },
+    {
+      "file": "cis/originals/kraken_front.webp",
+      "sha256": "0ebae673717861944ec1e1c3461e9bad4d3b5977f3f80c6b2acb9798d2817ed4",
+      "bytes": 53408
+    },
+    {
+      "file": "cis/originals/lm-432-crab_front.webp",
+      "sha256": "794836f953853a4dd467f82371db81af66db0acc5cb99d46a5946e42f1cd1c06",
+      "bytes": 53686
+    },
+    {
+      "file": "cis/originals/magnaguard_prototype_front.webp",
+      "sha256": "939162d110ace2eb08aaefa5f59377d79875e39c90fd5d3d4c0260e47fc6bb36",
+      "bytes": 57956
+    },
+    {
+      "file": "cis/originals/magna_front.webp",
+      "sha256": "c81515f51cf2b345ccf3ba9a14195698fec33399c2bf9dec6c0deb36581f3241",
+      "bytes": 54316
+    },
+    {
+      "file": "cis/originals/maul_front.webp",
+      "sha256": "afab84530222d9ab312b159ee9fa3ded5236cf74c77953e9ba42117502c3fa99",
+      "bytes": 47066
+    },
+    {
+      "file": "cis/originals/persuader_front.webp",
+      "sha256": "fc8187699e49c6e3ee9ffb7dd96964b1503d8410545f48788e679e56d05fb9b0",
+      "bytes": 67418
+    },
+    {
+      "file": "cis/originals/persuader_prototype_front.webp",
+      "sha256": "c3a6e7df35c9f5dcb2e67ede4a01d6b5bc8368fb4c146312d7cbe23f65ddfa0a",
+      "bytes": 72938
+    },
+    {
+      "file": "cis/originals/poggle_front.webp",
+      "sha256": "a86c1f517469b13fa1e13f680a6ae89c4dec29fb40eb059388bd68a3ee416bc5",
+      "bytes": 65068
+    },
+    {
+      "file": "cis/originals/sun-fac_front.webp",
+      "sha256": "0344ccc7d1b0743b59e7591cc079b0d5e81dc5938aa6ea7e51557c6d93f52b9b",
+      "bytes": 64502
+    },
+    {
+      "file": "cis/originals/super-tactica-command-droid-aux_front.webp",
+      "sha256": "fc6a50739229680829ffbb7fd3c904f8845a0c6e56b85857b1eef74b1c6e1f5b",
+      "bytes": 65016
+    },
+    {
+      "file": "cis/originals/super-tactica-command-droid-cnc_front.webp",
+      "sha256": "904a58acc633b325deeec471d8bce5b5a3e1e3817be4ed819faf1e5cf2fc56dc",
+      "bytes": 63180
+    },
+    {
+      "file": "cis/originals/tactical_droid_front.webp",
+      "sha256": "708cb14474d3dc9cd16a7ac342775dc382264b199bad7d59085fc0ce8cc0f1a5",
+      "bytes": 55570
+    }
+  ]
+}

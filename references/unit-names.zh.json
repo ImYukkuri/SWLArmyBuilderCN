@@ -1,0 +1,3326 @@
+{
+  "schema": "legion-unit-names/v1",
+  "translationSource": "Chinese unit-card PDFs supplied by project owner; names only.",
+  "units": [
+    {
+      "faction": "empire",
+      "name": {
+        "en": "Stormtroopers",
+        "zh": "冲锋队"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Bludgeon",
+          "zh": "重击"
+        },
+        {
+          "en": "E-11 Blaster Rifle",
+          "zh": "E-11爆能步枪"
+        }
+      ]
+    },
+    {
+      "faction": "empire",
+      "name": {
+        "en": "Stormtrooper Riot Squad",
+        "zh": "冲锋队镇暴小队"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Stun Baton",
+          "zh": "眩晕棍"
+        },
+        {
+          "en": "E-11 Blaster Rifle",
+          "zh": "E-11爆能步枪"
+        }
+      ]
+    },
+    {
+      "faction": "empire",
+      "name": {
+        "en": "Stormtroopers",
+        "zh": "冲锋队"
+      },
+      "title": {
+        "en": "Heavy Response Unit",
+        "zh": "重型反应单位"
+      },
+      "weapons": [
+        {
+          "en": "Bludgeon",
+          "zh": "重击"
+        },
+        {
+          "en": "E-11 Blaster Rifle",
+          "zh": "E-11爆能步枪"
+        }
+      ]
+    },
+    {
+      "faction": "empire",
+      "name": {
+        "en": "Snowtroopers",
+        "zh": "雪地士兵"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Bludgeon",
+          "zh": "重击"
+        },
+        {
+          "en": "E-11 Blaster Rifle",
+          "zh": "E-11爆能步枪"
+        }
+      ]
+    },
+    {
+      "faction": "empire",
+      "name": {
+        "en": "Shoretroopers",
+        "zh": "岸防士兵"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Unarmed",
+          "zh": "赤手空拳"
+        },
+        {
+          "en": "E-22 Blaster Rifle",
+          "zh": "E-22爆能步枪"
+        }
+      ]
+    },
+    {
+      "faction": "empire",
+      "name": {
+        "en": "DF-90 Mortar Trooper",
+        "zh": "DF-90迫击炮部队"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "E-22 Blaster Rifle",
+          "zh": "E-22爆能步枪"
+        },
+        {
+          "en": "DF-90 Mortar",
+          "zh": "DF-90迫击炮"
+        }
+      ]
+    },
+    {
+      "faction": "empire",
+      "name": {
+        "en": "Scout Troopers",
+        "zh": "侦察兵"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Unarmed",
+          "zh": "赤手空拳"
+        },
+        {
+          "en": "EC-17 Hold-out Blaster",
+          "zh": "EC-17袖珍爆能枪"
+        }
+      ]
+    },
+    {
+      "faction": "empire",
+      "name": {
+        "en": "Imperial Death Troopers",
+        "zh": "帝国死亡士兵"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Close Quarters Combat",
+          "zh": "近身格斗术"
+        },
+        {
+          "en": "SE-14R Light Blaster",
+          "zh": "SE-14R轻型爆能枪"
+        },
+        {
+          "en": "E-11D Blaster Rifle",
+          "zh": "E-11D爆能步枪"
+        }
+      ]
+    },
+    {
+      "faction": "empire",
+      "name": {
+        "en": "Scout Troopers",
+        "zh": "侦察兵"
+      },
+      "title": {
+        "en": "Strike Team",
+        "zh": "打击小队"
+      },
+      "weapons": [
+        {
+          "en": "Unarmed",
+          "zh": "赤手空拳"
+        },
+        {
+          "en": "EC-17 Hold-out Blaster",
+          "zh": "EC-17袖珍爆能枪"
+        }
+      ]
+    },
+    {
+      "faction": "empire",
+      "name": {
+        "en": "Imperial Special Forces",
+        "zh": "帝国特种部队"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Unarmed",
+          "zh": "赤手空拳"
+        },
+        {
+          "en": "E-11 Blaster Rifle",
+          "zh": "E-11爆能步枪"
+        }
+      ]
+    },
+    {
+      "faction": "empire",
+      "name": {
+        "en": "74-Z Speeder Bikes",
+        "zh": "74-Z飞行摩托"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "EC-17 Hold-out Blaster",
+          "zh": "EC-17袖珍爆能枪"
+        },
+        {
+          "en": "Blaster Cannon",
+          "zh": "爆能炮"
+        }
+      ]
+    },
+    {
+      "faction": "empire",
+      "name": {
+        "en": "Imperial Special Forces",
+        "zh": "帝国特种部队"
+      },
+      "title": {
+        "en": "Inferno Squad",
+        "zh": "炼狱小队"
+      },
+      "weapons": [
+        {
+          "en": "Close Quarters Combat",
+          "zh": "近身格斗术"
+        },
+        {
+          "en": "E-11 Blaster Rifle",
+          "zh": "E-11爆能步枪"
+        }
+      ]
+    },
+    {
+      "faction": "empire",
+      "name": {
+        "en": "Dewback Rider",
+        "zh": "湿背蜥骑手"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Shock Prod & Claws",
+          "zh": "电击针和利爪"
+        }
+      ]
+    },
+    {
+      "faction": "empire",
+      "name": {
+        "en": "E-Web Heavy Blaster Team",
+        "zh": "E-WEB重型爆能枪小组"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Unarmed",
+          "zh": "赤手空拳"
+        },
+        {
+          "en": "Blaster Rifles",
+          "zh": "爆能步枪"
+        },
+        {
+          "en": "E-Web Heavy Blaster",
+          "zh": "E-WEB重型爆能枪"
+        }
+      ]
+    },
+    {
+      "faction": "empire",
+      "name": {
+        "en": "Range Troopers",
+        "zh": "游骑兵部队"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Gription Boot Kick",
+          "zh": "吸附靴踢击"
+        },
+        {
+          "en": "E-10R Blaster Rifle",
+          "zh": "E-10R爆能步枪"
+        }
+      ]
+    },
+    {
+      "faction": "empire",
+      "name": {
+        "en": "TX-225 GAVw Occupier Tank",
+        "zh": "TX-225 GAVw 占领者坦克"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Twin Cannons",
+          "zh": "双联炮"
+        },
+        {
+          "en": "Quad Cannons",
+          "zh": "四联炮"
+        }
+      ]
+    },
+    {
+      "faction": "empire",
+      "name": {
+        "en": "AT-ST",
+        "zh": "AT-ST"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Fence-Cutting Blades",
+          "zh": "障碍物切割刃"
+        },
+        {
+          "en": "MS-4 Twin Blaster",
+          "zh": "MS-4双联爆能枪"
+        }
+      ]
+    },
+    {
+      "faction": "empire",
+      "name": {
+        "en": "LAAT/le Patrol Transport",
+        "zh": "LAAT/LE运输巡逻艇"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Twin Laser Cannons",
+          "zh": "双联激光炮"
+        }
+      ]
+    },
+    {
+      "faction": "empire",
+      "name": {
+        "en": "Director Orson Krennic",
+        "zh": "奥尔森·克伦尼克总监"
+      },
+      "title": {
+        "en": "Architect of Terror",
+        "zh": "恐怖筑星者"
+      },
+      "weapons": [
+        {
+          "en": "Unarmed",
+          "zh": "赤手空拳"
+        },
+        {
+          "en": "Krennic's Blaster",
+          "zh": "克伦尼克的爆能枪"
+        }
+      ]
+    },
+    {
+      "faction": "empire",
+      "name": {
+        "en": "General Veers",
+        "zh": "维尔斯将军"
+      },
+      "title": {
+        "en": "Master Tactician",
+        "zh": "战术大师"
+      },
+      "weapons": [
+        {
+          "en": "Combat Expertise",
+          "zh": "战斗素养"
+        },
+        {
+          "en": "Veers' Blaster Rifle",
+          "zh": "维尔斯的爆能步枪"
+        }
+      ]
+    },
+    {
+      "faction": "empire",
+      "name": {
+        "en": "Imperial Dark Troopers",
+        "zh": "帝国黑暗士兵"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Crushing Punch",
+          "zh": "粉碎重拳"
+        },
+        {
+          "en": "E-11D Blaster",
+          "zh": "E-11D爆能枪"
+        }
+      ]
+    },
+    {
+      "faction": "empire",
+      "name": {
+        "en": "Darth Vader",
+        "zh": "达斯·维达"
+      },
+      "title": {
+        "en": "Dark Lord of the Sith",
+        "zh": "西斯黑暗尊主"
+      },
+      "weapons": [
+        {
+          "en": "Vader's Lightsaber",
+          "zh": "维达的光剑"
+        }
+      ]
+    },
+    {
+      "faction": "empire",
+      "name": {
+        "en": "Iden's ID10 Seeker Droid",
+        "zh": "伊登的ID10搜索机器人"
+      },
+      "title": {
+        "en": "“Droid”",
+        "zh": "“机器人”"
+      },
+      "weapons": [
+        {
+          "en": "Electro-Shock",
+          "zh": "电击"
+        }
+      ]
+    },
+    {
+      "faction": "empire",
+      "name": {
+        "en": "Iden Versio",
+        "zh": "伊登·韦尔西奥"
+      },
+      "title": {
+        "en": "Inferno Squad Leader",
+        "zh": "炼狱小队队长"
+      },
+      "weapons": [
+        {
+          "en": "Martial Arts",
+          "zh": "武术"
+        },
+        {
+          "en": "Iden's DLT-20A Rifle",
+          "zh": "伊登的DLT-20A步枪"
+        },
+        {
+          "en": "Iden's TL-50 Repeater",
+          "zh": "伊登的TL-50连发枪"
+        }
+      ]
+    },
+    {
+      "faction": "empire",
+      "name": {
+        "en": "Darth Vader",
+        "zh": "达斯·维达"
+      },
+      "title": {
+        "en": "The Emperor's Apprentice",
+        "zh": "皇帝的徒弟"
+      },
+      "weapons": [
+        {
+          "en": "Vader's Lightsaber",
+          "zh": "维达的光剑"
+        },
+        {
+          "en": "Force Throw",
+          "zh": "原力投掷"
+        }
+      ]
+    },
+    {
+      "faction": "empire",
+      "name": {
+        "en": "Moff Gideon",
+        "zh": "星区总督吉迪恩"
+      },
+      "title": {
+        "en": "Long Live the Empire",
+        "zh": "帝国万岁"
+      },
+      "weapons": [
+        {
+          "en": "Combat Training",
+          "zh": "战斗训练"
+        },
+        {
+          "en": "Gideon's Blaster",
+          "zh": "吉迪恩的爆能枪"
+        }
+      ]
+    },
+    {
+      "faction": "empire",
+      "name": {
+        "en": "Fifth Brother",
+        "zh": "五哥"
+      },
+      "title": {
+        "en": "The Kill Is Mine",
+        "zh": "由我猎杀"
+      },
+      "weapons": [
+        {
+          "en": "Spinning Lightsaber",
+          "zh": "旋转光剑"
+        },
+        {
+          "en": "Thrown Lightsaber",
+          "zh": "光剑投掷"
+        }
+      ]
+    },
+    {
+      "faction": "empire",
+      "name": {
+        "en": "Major Marquand",
+        "zh": "马昆德少校"
+      },
+      "title": {
+        "en": "Tempest Scout 2",
+        "zh": "风暴侦察机2号"
+      },
+      "weapons": [
+        {
+          "en": "Grenade Launcher",
+          "zh": "榴弹发射器"
+        },
+        {
+          "en": "88i Twin Light Blaster",
+          "zh": "88i双联轻型爆能枪"
+        },
+        {
+          "en": "MS-4 Twin Blaster",
+          "zh": "MS-4双联爆能枪"
+        }
+      ]
+    },
+    {
+      "faction": "empire",
+      "name": {
+        "en": "Agent Kallus",
+        "zh": "卡勒斯特工"
+      },
+      "title": {
+        "en": "Hunter of Spectres",
+        "zh": "幽灵猎人"
+      },
+      "weapons": [
+        {
+          "en": "J-19 Bo-Rifle",
+          "zh": "J-19棒枪"
+        }
+      ]
+    },
+    {
+      "faction": "empire",
+      "name": {
+        "en": "Seventh Sister",
+        "zh": "七妹"
+      },
+      "title": {
+        "en": "Compelled to Inflict Pain",
+        "zh": "执着于施加痛苦"
+      },
+      "weapons": [
+        {
+          "en": "Spinning Lightsaber",
+          "zh": "旋转光剑"
+        },
+        {
+          "en": "Thrown Lightsaber",
+          "zh": "光剑投掷"
+        }
+      ]
+    },
+    {
+      "faction": "republic",
+      "name": {
+        "en": "Clone Trooper Infantry",
+        "zh": "克隆人士兵步兵"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Unarmed",
+          "zh": "赤手空拳"
+        },
+        {
+          "en": "DC-15A Blaster Carbine",
+          "zh": "DC-15A爆能卡宾枪"
+        }
+      ]
+    },
+    {
+      "faction": "republic",
+      "name": {
+        "en": "ARC Troopers",
+        "zh": "ARC士兵"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "DC-17 Hand Blasters",
+          "zh": "DC-17爆能手枪"
+        }
+      ]
+    },
+    {
+      "faction": "republic",
+      "name": {
+        "en": "Wookiee Warriors",
+        "zh": "伍基人战士"
+      },
+      "title": {
+        "en": "Kashyyyk Defenders",
+        "zh": "卡希克防御者"
+      },
+      "weapons": [
+        {
+          "en": "Combat Training",
+          "zh": "战斗训练"
+        },
+        {
+          "en": "X1 Carbine",
+          "zh": "X1卡宾枪"
+        }
+      ]
+    },
+    {
+      "faction": "republic",
+      "name": {
+        "en": "ARC Troopers",
+        "zh": "ARC士兵"
+      },
+      "title": {
+        "en": "Strike Team",
+        "zh": "打击小队"
+      },
+      "weapons": [
+        {
+          "en": "DC-17 Hand Blasters",
+          "zh": "DC-17爆能手枪"
+        }
+      ]
+    },
+    {
+      "faction": "republic",
+      "name": {
+        "en": "Wookiee Warriors",
+        "zh": "伍基人战士"
+      },
+      "title": {
+        "en": "Noble Fighters",
+        "zh": "崇高战士"
+      },
+      "weapons": [
+        {
+          "en": "Ryyk Blade",
+          "zh": "吕克刀"
+        },
+        {
+          "en": "Kashyyyk Pistol",
+          "zh": "卡希克爆能手枪"
+        }
+      ]
+    },
+    {
+      "faction": "republic",
+      "name": {
+        "en": "BARC Speeder",
+        "zh": "BARC飞行摩托"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "DC-15A Blaster Rifle",
+          "zh": "DC-15A爆能步枪"
+        },
+        {
+          "en": "Twin Blaster Cannon",
+          "zh": "双联爆能炮"
+        }
+      ]
+    },
+    {
+      "faction": "republic",
+      "name": {
+        "en": "AT-RT",
+        "zh": "AT-RT"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Grappling Claws",
+          "zh": "攀地爪"
+        },
+        {
+          "en": "Rocket Launcher",
+          "zh": "火箭发射器"
+        }
+      ]
+    },
+    {
+      "faction": "republic",
+      "name": {
+        "en": "Raddaugh Gnasp Fluttercraft",
+        "zh": "拉道夫“咬牙蜂”扑翼机"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Pilot's Kashyyyk Pistol",
+          "zh": "驾驶员的卡希克手枪"
+        }
+      ]
+    },
+    {
+      "faction": "republic",
+      "name": {
+        "en": "Raddaugh Gnasp Fluttercraft",
+        "zh": "拉道夫“咬牙蜂”扑翼机"
+      },
+      "title": {
+        "en": "Attack Craft",
+        "zh": "攻击艇"
+      },
+      "weapons": [
+        {
+          "en": "Pilot's Kashyyyk Pistol",
+          "zh": "驾驶员的卡希克手枪"
+        }
+      ]
+    },
+    {
+      "faction": "republic",
+      "name": {
+        "en": "Clone Commandos",
+        "zh": "克隆人突击队"
+      },
+      "title": {
+        "en": "Delta Squad",
+        "zh": "德尔塔小队"
+      },
+      "weapons": [
+        {
+          "en": "Gauntlet Vibroblade",
+          "zh": "振动刀护手"
+        },
+        {
+          "en": "DC-17M ICWS Blaster",
+          "zh": "DC-17M ICWS爆能枪"
+        }
+      ]
+    },
+    {
+      "faction": "republic",
+      "name": {
+        "en": "Clone Commandos",
+        "zh": "克隆人突击队"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Gauntlet Vibroblade",
+          "zh": "振动刀护手"
+        },
+        {
+          "en": "DC-17M ICWS Blaster",
+          "zh": "DC-17M ICWS爆能枪"
+        }
+      ]
+    },
+    {
+      "faction": "republic",
+      "name": {
+        "en": "Saber-class Tank",
+        "zh": "“军刀”坦克"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Heavy Laser Cannons",
+          "zh": "重型激光炮"
+        }
+      ]
+    },
+    {
+      "faction": "republic",
+      "name": {
+        "en": "Infantry Support Platform",
+        "zh": "步兵支援平台"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "DC-15A Blaster Rifles",
+          "zh": "DC-15A爆能步枪"
+        }
+      ]
+    },
+    {
+      "faction": "republic",
+      "name": {
+        "en": "LAAT/le Patrol Transport",
+        "zh": "LAAT/LE运输巡逻艇"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Twin Laser Cannons",
+          "zh": "双联激光炮"
+        }
+      ]
+    },
+    {
+      "faction": "republic",
+      "name": {
+        "en": "Obi-Wan Kenobi",
+        "zh": "欧比-旺·克诺比"
+      },
+      "title": {
+        "en": "Civilized Warrior",
+        "zh": "文明战士"
+      },
+      "weapons": [
+        {
+          "en": "Obi-Wan's Lightsaber",
+          "zh": "欧比-旺的光剑"
+        }
+      ]
+    },
+    {
+      "faction": "republic",
+      "name": {
+        "en": "C-3PO",
+        "zh": "C-3PO"
+      },
+      "title": {
+        "en": "Human Cyborg Relations",
+        "zh": "人机关系机器人"
+      },
+      "weapons": [
+        {
+          "en": "Clumsy Kick",
+          "zh": "笨拙踢击"
+        }
+      ]
+    },
+    {
+      "faction": "republic",
+      "name": {
+        "en": "Clone Captain Rex",
+        "zh": "克隆人上尉雷克斯"
+      },
+      "title": {
+        "en": "Honorable Soldier",
+        "zh": "光荣的士兵"
+      },
+      "weapons": [
+        {
+          "en": "Combat Training",
+          "zh": "战斗训练"
+        },
+        {
+          "en": "DC-17 Hand Blasters",
+          "zh": "DC-17手持爆能枪"
+        }
+      ]
+    },
+    {
+      "faction": "republic",
+      "name": {
+        "en": "Yoda",
+        "zh": "尤达"
+      },
+      "title": {
+        "en": "Grand Master of the Jedi Order",
+        "zh": "绝地武士团宗师"
+      },
+      "weapons": [
+        {
+          "en": "Yoda's Lightsaber",
+          "zh": "尤达的光剑"
+        },
+        {
+          "en": "Force Wave",
+          "zh": "原力波"
+        }
+      ]
+    },
+    {
+      "faction": "republic",
+      "name": {
+        "en": "Clone Commander",
+        "zh": "克隆人指挥官"
+      },
+      "title": {
+        "en": "Trained for Leadership",
+        "zh": "领袖之才"
+      },
+      "weapons": [
+        {
+          "en": "Combat Training",
+          "zh": "战斗训练"
+        },
+        {
+          "en": "DC-15 Blaster Rifle",
+          "zh": "DC-15爆能步枪"
+        }
+      ]
+    },
+    {
+      "faction": "republic",
+      "name": {
+        "en": "Anakin Skywalker",
+        "zh": "安纳金·天行者"
+      },
+      "title": {
+        "en": "The Chosen One",
+        "zh": "天选之子"
+      },
+      "weapons": [
+        {
+          "en": "Anakin's Lightsaber",
+          "zh": "安纳金的光剑"
+        }
+      ]
+    },
+    {
+      "faction": "republic",
+      "name": {
+        "en": "Wookiee Chieftain",
+        "zh": "伍基人酋长"
+      },
+      "title": {
+        "en": "Clan Leader",
+        "zh": "氏族族长"
+      },
+      "weapons": [
+        {
+          "en": "Ancestral Weapon",
+          "zh": "先祖武器"
+        },
+        {
+          "en": "Chieftain's Bowcaster",
+          "zh": "酋长的弩枪"
+        }
+      ]
+    },
+    {
+      "faction": "republic",
+      "name": {
+        "en": "Clone Commander Cody",
+        "zh": "克隆人指挥官科迪"
+      },
+      "title": {
+        "en": "Leader of the 212th",
+        "zh": "212攻击营指挥官"
+      },
+      "weapons": [
+        {
+          "en": "Combat Training",
+          "zh": "战斗训练"
+        },
+        {
+          "en": "DC-15A Blaster Rifle",
+          "zh": "DC-15A爆能步枪"
+        }
+      ]
+    },
+    {
+      "faction": "republic",
+      "name": {
+        "en": "Chewbacca",
+        "zh": "丘巴卡"
+      },
+      "title": {
+        "en": "Hero of Kashyyyk",
+        "zh": "卡希克的英雄"
+      },
+      "weapons": [
+        {
+          "en": "Overwhelm",
+          "zh": "强压"
+        },
+        {
+          "en": "Chewbacca's Bowcaster",
+          "zh": "丘巴卡的弩枪"
+        }
+      ]
+    },
+    {
+      "faction": "republic",
+      "name": {
+        "en": "Padmé Amidala",
+        "zh": "帕德梅·阿米达拉"
+      },
+      "title": {
+        "en": "Spirited Senator",
+        "zh": "勇敢的议员"
+      },
+      "weapons": [
+        {
+          "en": "Martial Arts",
+          "zh": "武术"
+        },
+        {
+          "en": "Padmé's Blaster",
+          "zh": "帕德梅的爆能枪"
+        }
+      ]
+    },
+    {
+      "faction": "republic",
+      "name": {
+        "en": "R2-D2",
+        "zh": "R2-D2"
+      },
+      "title": {
+        "en": "Hero of a Thousand Devices",
+        "zh": "千械英雄"
+      },
+      "weapons": [
+        {
+          "en": "Electro-Shock",
+          "zh": "电击"
+        }
+      ]
+    },
+    {
+      "faction": "republic",
+      "name": {
+        "en": "The Bad Batch",
+        "zh": "残次品小队"
+      },
+      "title": {
+        "en": "Clone Force 99",
+        "zh": "99号克隆人部队"
+      },
+      "weapons": [
+        {
+          "en": "Combat Training",
+          "zh": "战斗训练"
+        },
+        {
+          "en": "DC-17 Hand Blaster",
+          "zh": "DC-17手持爆能枪"
+        }
+      ]
+    },
+    {
+      "faction": "rebels",
+      "name": {
+        "en": "Mark II Medium Blaster Trooper",
+        "zh": "MARK II中型爆能枪士兵"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Unarmed",
+          "zh": "赤手空拳"
+        },
+        {
+          "en": "Mark II Medium Blaster",
+          "zh": "MARK II中型爆能枪"
+        }
+      ]
+    },
+    {
+      "faction": "rebels",
+      "name": {
+        "en": "Rebel Troopers",
+        "zh": "义军士兵"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Unarmed",
+          "zh": "赤手空拳"
+        },
+        {
+          "en": "A280 Blaster Rifle",
+          "zh": "A280爆能步枪"
+        }
+      ]
+    },
+    {
+      "faction": "rebels",
+      "name": {
+        "en": "Fleet Troopers",
+        "zh": "舰队士兵"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "DH-17 Blaster Pistol",
+          "zh": "DH-17爆能手枪"
+        }
+      ]
+    },
+    {
+      "faction": "rebels",
+      "name": {
+        "en": "Rebel Veterans",
+        "zh": "义军老兵"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Unarmed",
+          "zh": "赤手空拳"
+        },
+        {
+          "en": "A280 Blaster Rifle",
+          "zh": "A280爆能步枪"
+        }
+      ]
+    },
+    {
+      "faction": "rebels",
+      "name": {
+        "en": "Rebel Commandos",
+        "zh": "义军突击队"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Unarmed",
+          "zh": "赤手空拳"
+        },
+        {
+          "en": "A280 Blaster Rifle",
+          "zh": "A280爆能步枪"
+        }
+      ]
+    },
+    {
+      "faction": "rebels",
+      "name": {
+        "en": "Wookiee Warriors",
+        "zh": "伍基人战士"
+      },
+      "title": {
+        "en": "Freedom Fighters",
+        "zh": "自由斗士"
+      },
+      "weapons": [
+        {
+          "en": "Ryyk Blade",
+          "zh": "吕克刀"
+        },
+        {
+          "en": "Kashyyyk Pistol",
+          "zh": "卡希克手枪"
+        }
+      ]
+    },
+    {
+      "faction": "rebels",
+      "name": {
+        "en": "Rebel Commandos",
+        "zh": "义军突击队"
+      },
+      "title": {
+        "en": "Strike Team",
+        "zh": "打击小队"
+      },
+      "weapons": [
+        {
+          "en": "Unarmed",
+          "zh": "赤手空拳"
+        },
+        {
+          "en": "A280 Blaster Rifle",
+          "zh": "A280爆能步枪"
+        }
+      ]
+    },
+    {
+      "faction": "rebels",
+      "name": {
+        "en": "Wookiee Warriors",
+        "zh": "伍基人战士"
+      },
+      "title": {
+        "en": "Kashyyyk Resistance",
+        "zh": "卡希克抵抗组织"
+      },
+      "weapons": [
+        {
+          "en": "Combat Training",
+          "zh": "战斗训练"
+        },
+        {
+          "en": "X1 Carbine",
+          "zh": "X1卡宾枪"
+        }
+      ]
+    },
+    {
+      "faction": "rebels",
+      "name": {
+        "en": "Mandalorian Resistance",
+        "zh": "曼达洛人抵抗组织"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "WESTAR-35 Blasters",
+          "zh": "韦斯塔-35型爆能枪"
+        }
+      ]
+    },
+    {
+      "faction": "rebels",
+      "name": {
+        "en": "Mandalorian Resistance",
+        "zh": "曼达洛人抵抗组织"
+      },
+      "title": {
+        "en": "Clan Wren",
+        "zh": "雷恩氏族"
+      },
+      "weapons": [
+        {
+          "en": "WESTAR-35 Blasters",
+          "zh": "韦斯塔-35型爆能枪"
+        }
+      ]
+    },
+    {
+      "faction": "rebels",
+      "name": {
+        "en": "Rebel Sleeper Cell",
+        "zh": "义军潜伏组织"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Det Packs",
+          "zh": "爆破背包"
+        },
+        {
+          "en": "Blaster Pistols",
+          "zh": "爆能手枪"
+        },
+        {
+          "en": "Blaster Pistols",
+          "zh": "爆能手枪"
+        }
+      ]
+    },
+    {
+      "faction": "rebels",
+      "name": {
+        "en": "AT-RT",
+        "zh": "AT-RT"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Grappling Claws",
+          "zh": "攀地爪"
+        },
+        {
+          "en": "A300 Blaster Rifle",
+          "zh": "A300爆能步枪"
+        }
+      ]
+    },
+    {
+      "faction": "rebels",
+      "name": {
+        "en": "1.4 FD Laser Cannon Team",
+        "zh": "1.4FD激光炮小组"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Unarmed",
+          "zh": "赤手空拳"
+        },
+        {
+          "en": "Blaster Pistols",
+          "zh": "爆能手枪"
+        },
+        {
+          "en": "1.4 FD Laser Cannon",
+          "zh": "1.4FD激光炮"
+        }
+      ]
+    },
+    {
+      "faction": "rebels",
+      "name": {
+        "en": "Tauntaun Riders",
+        "zh": "汤汤骑手"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Stampede",
+          "zh": "践踏"
+        },
+        {
+          "en": "Blaster Pistols",
+          "zh": "爆能手枪"
+        }
+      ]
+    },
+    {
+      "faction": "rebels",
+      "name": {
+        "en": "T-47 Airspeeder",
+        "zh": "T-47飞行艇"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Double Laser Cannon",
+          "zh": "双管激光炮"
+        }
+      ]
+    },
+    {
+      "faction": "rebels",
+      "name": {
+        "en": "A-A5 Speeder Truck",
+        "zh": "A-A5飞行卡车"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": []
+    },
+    {
+      "faction": "rebels",
+      "name": {
+        "en": "X-34 Landspeeder",
+        "zh": "X-34陆行艇"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Blaster Pistol",
+          "zh": "爆能手枪"
+        }
+      ]
+    },
+    {
+      "faction": "rebels",
+      "name": {
+        "en": "Leia Organa",
+        "zh": "莱娅·奥加纳"
+      },
+      "title": {
+        "en": "Fearless and Inventive",
+        "zh": "无惧与创新"
+      },
+      "weapons": [
+        {
+          "en": "Martial Arts",
+          "zh": "武术"
+        },
+        {
+          "en": "Leia's Blaster",
+          "zh": "莱娅的爆能枪"
+        }
+      ]
+    },
+    {
+      "faction": "rebels",
+      "name": {
+        "en": "C-3PO",
+        "zh": "C-3PO"
+      },
+      "title": {
+        "en": "Human Cyborg Relations",
+        "zh": "人机关系机器人"
+      },
+      "weapons": [
+        {
+          "en": "Clumsy Kick",
+          "zh": "笨拙踢击"
+        }
+      ]
+    },
+    {
+      "faction": "rebels",
+      "name": {
+        "en": "Luke Skywalker",
+        "zh": "卢克·天行者"
+      },
+      "title": {
+        "en": "Hero of the Rebellion",
+        "zh": "义军英雄"
+      },
+      "weapons": [
+        {
+          "en": "Anakin's Lightsaber",
+          "zh": "安纳金的光剑"
+        },
+        {
+          "en": "Luke's Blaster",
+          "zh": "卢克的爆能枪"
+        }
+      ]
+    },
+    {
+      "faction": "rebels",
+      "name": {
+        "en": "Cassian Andor",
+        "zh": "卡西安·安多"
+      },
+      "title": {
+        "en": "Capable Intelligence Agent",
+        "zh": "可靠的情报特工"
+      },
+      "weapons": [
+        {
+          "en": "Martial Arts",
+          "zh": "武术"
+        },
+        {
+          "en": "Cassian's Covert Blaster",
+          "zh": "卡西安的隐蔽爆能枪"
+        }
+      ]
+    },
+    {
+      "faction": "rebels",
+      "name": {
+        "en": "Jyn Erso",
+        "zh": "琴·厄索"
+      },
+      "title": {
+        "en": "Stardust",
+        "zh": "星尘"
+      },
+      "weapons": [
+        {
+          "en": "Collapsible Tonfa",
+          "zh": "折叠棍"
+        },
+        {
+          "en": "A-180 Blaster Pistol",
+          "zh": "A-180爆能手枪"
+        }
+      ]
+    },
+    {
+      "faction": "rebels",
+      "name": {
+        "en": "Han Solo",
+        "zh": "汉·索罗"
+      },
+      "title": {
+        "en": "Unorthodox General",
+        "zh": "非常规将军"
+      },
+      "weapons": [
+        {
+          "en": "Brawl",
+          "zh": "乱斗"
+        },
+        {
+          "en": "Han's DL-44 Blaster",
+          "zh": "汉的DL-44爆能枪"
+        }
+      ]
+    },
+    {
+      "faction": "rebels",
+      "name": {
+        "en": "Lando Calrissian",
+        "zh": "兰多·卡瑞辛"
+      },
+      "title": {
+        "en": "Canny General",
+        "zh": "精明的将军"
+      },
+      "weapons": [
+        {
+          "en": "Backup Plan",
+          "zh": "备用计划"
+        },
+        {
+          "en": "Lando's X-8 Blaster",
+          "zh": "兰多的X-8爆能枪"
+        }
+      ]
+    },
+    {
+      "faction": "rebels",
+      "name": {
+        "en": "Sabine Wren",
+        "zh": "莎宾·雷恩"
+      },
+      "title": {
+        "en": "Explosive Artist",
+        "zh": "爆炸艺术家"
+      },
+      "weapons": [
+        {
+          "en": "WESTAR-35 Blasters",
+          "zh": "韦斯塔-35型爆能枪"
+        }
+      ]
+    },
+    {
+      "faction": "rebels",
+      "name": {
+        "en": "Chewbacca",
+        "zh": "丘巴卡"
+      },
+      "title": {
+        "en": "Walking Carpet",
+        "zh": "行走的毛毯"
+      },
+      "weapons": [
+        {
+          "en": "Overwhelm",
+          "zh": "强压"
+        },
+        {
+          "en": "Chewbacca's Bowcaster",
+          "zh": "丘巴卡的弩枪"
+        }
+      ]
+    },
+    {
+      "faction": "rebels",
+      "name": {
+        "en": "R2-D2",
+        "zh": "R2-D2"
+      },
+      "title": {
+        "en": "Hero of a Thousand Devices",
+        "zh": "千械英雄"
+      },
+      "weapons": [
+        {
+          "en": "Electro-Shock",
+          "zh": "电击"
+        }
+      ]
+    },
+    {
+      "faction": "rebels",
+      "name": {
+        "en": "Luke Skywalker",
+        "zh": "卢克·天行者"
+      },
+      "title": {
+        "en": "Jedi Knight",
+        "zh": "绝地武士"
+      },
+      "weapons": [
+        {
+          "en": "Luke's Lightsaber",
+          "zh": "卢克的光剑"
+        }
+      ]
+    },
+    {
+      "faction": "rebels",
+      "name": {
+        "en": "Ahsoka Tano",
+        "zh": "阿索卡·塔诺"
+      },
+      "title": {
+        "en": "Fulcrum",
+        "zh": "支点"
+      },
+      "weapons": [
+        {
+          "en": "Ahsoka's Lightsabers",
+          "zh": "阿索卡的双光剑"
+        }
+      ]
+    },
+    {
+      "faction": "rebels",
+      "name": {
+        "en": "K-2SO",
+        "zh": "K-2SO"
+      },
+      "title": {
+        "en": "Sardonic Security Droid",
+        "zh": "爱挖苦的安保机器人"
+      },
+      "weapons": [
+        {
+          "en": "Overpower",
+          "zh": "重捶"
+        }
+      ]
+    },
+    {
+      "faction": "separatists",
+      "name": {
+        "en": "B1 Battle Droids",
+        "zh": "B1战斗机器人"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Bludgeon",
+          "zh": "重击"
+        },
+        {
+          "en": "E-5 Blaster Rifle",
+          "zh": "E-5爆能步枪"
+        }
+      ]
+    },
+    {
+      "faction": "separatists",
+      "name": {
+        "en": "B2 Super Battle Droids",
+        "zh": "B2超级战斗机器人"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Wrist Rockets",
+          "zh": "腕部火箭"
+        },
+        {
+          "en": "Arm Cannons",
+          "zh": "臂载炮"
+        }
+      ]
+    },
+    {
+      "faction": "separatists",
+      "name": {
+        "en": "Geonosian Warriors",
+        "zh": "吉奥诺西斯战士"
+      },
+      "title": {
+        "en": "Soldiers of the Hive",
+        "zh": "巢穴战士"
+      },
+      "weapons": [
+        {
+          "en": "Spears",
+          "zh": "长矛"
+        },
+        {
+          "en": "Sonic Blasters",
+          "zh": "声波枪"
+        }
+      ]
+    },
+    {
+      "faction": "separatists",
+      "name": {
+        "en": "BX-Series Droid Commandos",
+        "zh": "BX系列机器人突击队"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Unarmed",
+          "zh": "赤手空拳"
+        },
+        {
+          "en": "Commando E-5 Blaster",
+          "zh": "突击队E-5爆能枪"
+        }
+      ]
+    },
+    {
+      "faction": "separatists",
+      "name": {
+        "en": "IG-100 MagnaGuard",
+        "zh": "IG-100磁卫机器人"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Electrostaff",
+          "zh": "电杖"
+        },
+        {
+          "en": "Precision Laser Dart",
+          "zh": "精准激光镖"
+        }
+      ]
+    },
+    {
+      "faction": "separatists",
+      "name": {
+        "en": "BX-Series Droid Commandos",
+        "zh": "BX系列机器人突击队"
+      },
+      "title": {
+        "en": "Strike Team",
+        "zh": "打击小队"
+      },
+      "weapons": [
+        {
+          "en": "Unarmed",
+          "zh": "赤手空拳"
+        },
+        {
+          "en": "Commando E-5 Blaster",
+          "zh": "突击队E-5爆能枪"
+        }
+      ]
+    },
+    {
+      "faction": "separatists",
+      "name": {
+        "en": "IG-100 MagnaGuard",
+        "zh": "IG-100磁卫机器人"
+      },
+      "title": {
+        "en": "Prototype Assassin Droids",
+        "zh": "原型暗杀机器人"
+      },
+      "weapons": [
+        {
+          "en": "Electrostaff",
+          "zh": "电杖"
+        },
+        {
+          "en": "Precision Laser Dart",
+          "zh": "精准激光镖"
+        }
+      ]
+    },
+    {
+      "faction": "separatists",
+      "name": {
+        "en": "STAP Riders",
+        "zh": "STAP骑手"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Dual Blaster Cannons",
+          "zh": "双管爆能炮"
+        }
+      ]
+    },
+    {
+      "faction": "separatists",
+      "name": {
+        "en": "DSD1 Dwarf Spider Droid",
+        "zh": "DSD1矮蜘蛛机器人"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Wicked Kick",
+          "zh": "凶猛踢击"
+        }
+      ]
+    },
+    {
+      "faction": "separatists",
+      "name": {
+        "en": "Droidekas",
+        "zh": "机器佣兵"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Dual Blaster Cannons",
+          "zh": "双管爆能炮"
+        }
+      ]
+    },
+    {
+      "faction": "separatists",
+      "name": {
+        "en": "AAT Battle Tank",
+        "zh": "AAT战斗坦克"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Anti-Personnel Lasers",
+          "zh": "反人员激光炮"
+        },
+        {
+          "en": "Artillery Cannon",
+          "zh": "火炮"
+        }
+      ]
+    },
+    {
+      "faction": "separatists",
+      "name": {
+        "en": "Persuader-class Tank Droid",
+        "zh": "“说服者级”坦克机器人"
+      },
+      "title": {
+        "en": "Prototype Tank Droid",
+        "zh": "原型坦克机器人"
+      },
+      "weapons": [
+        {
+          "en": "Heavy Blasters",
+          "zh": "重型爆能炮"
+        },
+        {
+          "en": "Prototype Ion Cannons",
+          "zh": "原型离子炮"
+        }
+      ]
+    },
+    {
+      "faction": "separatists",
+      "name": {
+        "en": "Persuader-class Tank Droid",
+        "zh": "“说服者级”坦克机器人"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Heavy Blasters",
+          "zh": "重型爆能炮"
+        },
+        {
+          "en": "Ion Cannons",
+          "zh": "离子炮"
+        }
+      ]
+    },
+    {
+      "faction": "separatists",
+      "name": {
+        "en": "General Grievous",
+        "zh": "格里弗斯将军"
+      },
+      "title": {
+        "en": "Sinister Cyborg",
+        "zh": "邪恶的半机器人"
+      },
+      "weapons": [
+        {
+          "en": "Trophy Lightsabers",
+          "zh": "战利品光剑"
+        },
+        {
+          "en": "DT-57 “Annihilator”",
+          "zh": "DT-57“歼灭者”"
+        }
+      ]
+    },
+    {
+      "faction": "separatists",
+      "name": {
+        "en": "Kraken",
+        "zh": "克拉肯"
+      },
+      "title": {
+        "en": "Super Tactical Droid",
+        "zh": "超级战术机器人"
+      },
+      "weapons": [
+        {
+          "en": "Overwhelm",
+          "zh": "强压"
+        },
+        {
+          "en": "Blaster Rifle",
+          "zh": "爆能步枪"
+        }
+      ]
+    },
+    {
+      "faction": "separatists",
+      "name": {
+        "en": "T-Series Tactical Droid",
+        "zh": "T系列战术机器人"
+      },
+      "title": {
+        "en": "Programmed for Strategy",
+        "zh": "战略程序机器人"
+      },
+      "weapons": [
+        {
+          "en": "Bludgeon",
+          "zh": "重击"
+        },
+        {
+          "en": "Blaster Rifle",
+          "zh": "爆能步枪"
+        }
+      ]
+    },
+    {
+      "faction": "separatists",
+      "name": {
+        "en": "Count Dooku",
+        "zh": "杜库伯爵"
+      },
+      "title": {
+        "en": "Darth Tyranus",
+        "zh": "达斯·泰拉纳斯"
+      },
+      "weapons": [
+        {
+          "en": "Dooku's Lightsaber",
+          "zh": "杜库的光剑"
+        },
+        {
+          "en": "Force Lightning",
+          "zh": "原力闪电"
+        }
+      ]
+    },
+    {
+      "faction": "separatists",
+      "name": {
+        "en": "Kalani",
+        "zh": "卡拉尼"
+      },
+      "title": {
+        "en": "Super Tactical Droid",
+        "zh": "超级战术机器人"
+      },
+      "weapons": [
+        {
+          "en": "Combat Expertise",
+          "zh": "战斗素养"
+        },
+        {
+          "en": "Blaster Rifle",
+          "zh": "爆能步枪"
+        }
+      ]
+    },
+    {
+      "faction": "separatists",
+      "name": {
+        "en": "Maul",
+        "zh": "摩尔"
+      },
+      "title": {
+        "en": "Impatient Apprentice",
+        "zh": "急躁的学徒"
+      },
+      "weapons": [
+        {
+          "en": "Maul's Lightsaber",
+          "zh": "摩尔的光剑"
+        }
+      ]
+    },
+    {
+      "faction": "separatists",
+      "name": {
+        "en": "Poggle the Lesser",
+        "zh": "下等人波格尔"
+      },
+      "title": {
+        "en": "Public Leader of the Geonosians",
+        "zh": "吉奥诺西斯人公开领袖"
+      },
+      "weapons": [
+        {
+          "en": "Staff of Command",
+          "zh": "指挥手杖"
+        },
+        {
+          "en": "Concealed Blaster",
+          "zh": "隐匿爆能枪"
+        }
+      ]
+    },
+    {
+      "faction": "separatists",
+      "name": {
+        "en": "Asajj Ventress",
+        "zh": "阿萨吉·文崔斯"
+      },
+      "title": {
+        "en": "Separatist Assassin",
+        "zh": "分离势力刺客"
+      },
+      "weapons": [
+        {
+          "en": "Asajj's Lightsabers",
+          "zh": "阿萨吉的双光剑"
+        }
+      ]
+    },
+    {
+      "faction": "separatists",
+      "name": {
+        "en": "DRK-1 Sith Probe Droids",
+        "zh": "DRK-1西斯探测机器人"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Electro-Stun Blaster",
+          "zh": "电击眩晕爆能枪"
+        }
+      ]
+    },
+    {
+      "faction": "separatists",
+      "name": {
+        "en": "Sun Fac",
+        "zh": "森·法克"
+      },
+      "title": {
+        "en": "Ruthless Lieutenant",
+        "zh": "无情的副官"
+      },
+      "weapons": [
+        {
+          "en": "Force Pike",
+          "zh": "力矛"
+        },
+        {
+          "en": "Sonic Carbine",
+          "zh": "声波卡宾枪"
+        }
+      ]
+    },
+    {
+      "faction": "mandalorian",
+      "name": {
+        "en": "Din Djarin",
+        "zh": "丁·贾伦"
+      },
+      "title": {
+        "en": "The Mandalorian",
+        "zh": "曼达洛人"
+      },
+      "weapons": [
+        {
+          "en": "Vibroknife",
+          "zh": "震动刀"
+        },
+        {
+          "en": "IB-94 Blaster Pistol",
+          "zh": "IB-94爆能手枪"
+        }
+      ]
+    },
+    {
+      "faction": "mandalorian",
+      "name": {
+        "en": "Grogu",
+        "zh": "古古"
+      },
+      "title": {
+        "en": "The Child",
+        "zh": "孩子"
+      },
+      "weapons": []
+    },
+    {
+      "faction": "mandalorian",
+      "name": {
+        "en": "Ursa Wren",
+        "zh": "厄莎·雷恩"
+      },
+      "title": {
+        "en": "Leader of Clan Wren",
+        "zh": "雷恩氏族领袖"
+      },
+      "weapons": [
+        {
+          "en": "Blaster Pistols",
+          "zh": "爆能手枪"
+        }
+      ]
+    },
+    {
+      "faction": "mandalorian",
+      "name": {
+        "en": "Clan Wren Veterans",
+        "zh": "雷恩氏族老兵"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Blaster Pistols",
+          "zh": "爆能手枪"
+        },
+        {
+          "en": "GALAR-15 Carbines",
+          "zh": "加拉尔-15卡宾枪"
+        }
+      ]
+    },
+    {
+      "faction": "mandalorian",
+      "name": {
+        "en": "Sabine Wren",
+        "zh": "莎宾·雷恩"
+      },
+      "title": {
+        "en": "Back in the Fold",
+        "zh": "回归氏族"
+      },
+      "weapons": [
+        {
+          "en": "Pistols & Grenades",
+          "zh": "手枪与手雷"
+        }
+      ]
+    },
+    {
+      "faction": "mandalorian",
+      "name": {
+        "en": "Gar Saxon",
+        "zh": "加尔·萨克森"
+      },
+      "title": {
+        "en": "Head of Clan Saxon",
+        "zh": "萨克森氏族首脑"
+      },
+      "weapons": [
+        {
+          "en": "Dual Pistols",
+          "zh": "双持手枪"
+        },
+        {
+          "en": "GALAR-90 Sniper Rifle",
+          "zh": "加拉尔-90狙击步枪"
+        }
+      ]
+    },
+    {
+      "faction": "mandalorian",
+      "name": {
+        "en": "Rook Kast",
+        "zh": "鲁克·卡斯特"
+      },
+      "title": {
+        "en": "Devoted to the Cause",
+        "zh": "为大业献身"
+      },
+      "weapons": [
+        {
+          "en": "Dual Pistols",
+          "zh": "双持手枪"
+        }
+      ]
+    },
+    {
+      "faction": "mandalorian",
+      "name": {
+        "en": "Super Commandos",
+        "zh": "超级突击队"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [
+        {
+          "en": "Dual Pistols",
+          "zh": "双持手枪"
+        },
+        {
+          "en": "Blaster Rifles",
+          "zh": "爆能步枪"
+        }
+      ]
+    },
+    {
+      "faction": "separatists",
+      "name": {
+        "en": "Admiral Trench",
+        "zh": "特伦奇上将"
+      },
+      "title": {
+        "en": "Fleet Commander",
+        "zh": "舰队指挥官"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "separatists",
+      "name": {
+        "en": "B2 Super Rocket Battle Droids",
+        "zh": "B2超级火箭战斗机器人"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "separatists",
+      "name": {
+        "en": "Geonosian Engineers",
+        "zh": "吉奥诺西斯工程兵"
+      },
+      "title": {
+        "en": "Warriors",
+        "zh": "战士"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "separatists",
+      "name": {
+        "en": "Aqua Droids",
+        "zh": "水陆两栖机器人"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "separatists",
+      "name": {
+        "en": "General Grievous",
+        "zh": "格里弗斯将军"
+      },
+      "title": {
+        "en": "Wheel Bike Warlord",
+        "zh": "轮式摩托军阀"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "separatists",
+      "name": {
+        "en": "LM-432 Crab Droid",
+        "zh": "LM-432蟹型机器人"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "separatists",
+      "name": {
+        "en": "Super Tactical Command Droid",
+        "zh": "超级战术指挥机器人"
+      },
+      "title": {
+        "en": "Auxiliary Command Droid",
+        "zh": "辅助指挥机器人"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "separatists",
+      "name": {
+        "en": "Super Tactical Command Droid",
+        "zh": "超级战术指挥机器人"
+      },
+      "title": {
+        "en": "Command and Control Droid",
+        "zh": "指挥控制机器人"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "separatists",
+      "name": {
+        "en": "Savage Opress",
+        "zh": "萨瓦奇·奥普雷斯"
+      },
+      "title": {
+        "en": "Dooku's Apprentice",
+        "zh": "杜库的学徒"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "separatists",
+      "name": {
+        "en": "TSMEU-6 Wheel Bikes",
+        "zh": "TSMEU-6轮式摩托"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "empire",
+      "name": {
+        "en": "General Tagge",
+        "zh": "塔格将军"
+      },
+      "title": {
+        "en": "Imperial High Command",
+        "zh": "帝国最高指挥部"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "empire",
+      "name": {
+        "en": "Grand Admiral Thrawn",
+        "zh": "索龙元帅"
+      },
+      "title": {
+        "en": "Imperial High Command",
+        "zh": "帝国最高统帅部"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "empire",
+      "name": {
+        "en": "Grand Moff Tarkin",
+        "zh": "塔金大总督"
+      },
+      "title": {
+        "en": "Imperial High Command",
+        "zh": "帝国最高统帅部"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "empire",
+      "name": {
+        "en": "Imperial Agent",
+        "zh": "帝国特工"
+      },
+      "title": {
+        "en": "Bringing Order to the Galaxy",
+        "zh": "为银河带来秩序"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "empire",
+      "name": {
+        "en": "Imperial Officer",
+        "zh": "帝国军官"
+      },
+      "title": {
+        "en": "Ruthless Efficiency",
+        "zh": "冷酷高效"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "empire",
+      "name": {
+        "en": "Imperial Probe Droid",
+        "zh": "帝国探测机器人"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "republic",
+      "name": {
+        "en": "Jedi Knight",
+        "zh": "绝地武士"
+      },
+      "title": {
+        "en": "Mounted Jedi General",
+        "zh": "骑乘绝地将军"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "republic",
+      "name": {
+        "en": "Ki-Adi-Mundi",
+        "zh": "基-阿迪-蒙迪"
+      },
+      "title": {
+        "en": "Jedi Council",
+        "zh": "绝地委员会"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "republic",
+      "name": {
+        "en": "Mace Windu",
+        "zh": "梅斯·温杜"
+      },
+      "title": {
+        "en": "Jedi Council",
+        "zh": "绝地委员会"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "republic",
+      "name": {
+        "en": "Ahsoka Tano",
+        "zh": "阿索卡·塔诺"
+      },
+      "title": {
+        "en": "Padawan Commander",
+        "zh": "学徒指挥官"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "republic",
+      "name": {
+        "en": "Anakin Skywalker",
+        "zh": "安纳金·天行者"
+      },
+      "title": {
+        "en": "Mounted Jedi General",
+        "zh": "骑乘绝地将军"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "republic",
+      "name": {
+        "en": "Clone Trooper Marksmen",
+        "zh": "克隆人神射手"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "republic",
+      "name": {
+        "en": "Jedi Knight",
+        "zh": "绝地武士"
+      },
+      "title": {
+        "en": "Keeper of the Peace",
+        "zh": "和平守护者"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "republic",
+      "name": {
+        "en": "Jedi Knight General",
+        "zh": "绝地武士将军"
+      },
+      "title": {
+        "en": "Strong in the Force",
+        "zh": "原力强大"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "republic",
+      "name": {
+        "en": "Plo Koon",
+        "zh": "普洛·孔"
+      },
+      "title": {
+        "en": "Jedi Council",
+        "zh": "绝地委员会"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "republic",
+      "name": {
+        "en": "Shaak Ti",
+        "zh": "莎克·蒂"
+      },
+      "title": {
+        "en": "Jedi Council",
+        "zh": "绝地委员会"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "Black Sun Enforcers",
+        "zh": "黑日执法者"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "Black Sun Vigo",
+        "zh": "黑日维戈"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "Din Djarin",
+        "zh": "丁·贾伦"
+      },
+      "title": {
+        "en": "The Mandalorian",
+        "zh": "曼达洛人"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "Grogu",
+        "zh": "古古"
+      },
+      "title": {
+        "en": "The Child",
+        "zh": "孩子"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "Paz Vizsla",
+        "zh": "帕兹·维兹拉"
+      },
+      "title": {
+        "en": "Proud Warrior",
+        "zh": "骄傲的战士"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "The Armorer",
+        "zh": "军械师"
+      },
+      "title": {
+        "en": "Forging the Future",
+        "zh": "锻造未来"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "Axe Woves",
+        "zh": "阿克斯·沃夫斯"
+      },
+      "title": {
+        "en": "Cunning Warrior",
+        "zh": "机敏的战士"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "Bo-Katan Kryze",
+        "zh": "博-卡坦·克里兹"
+      },
+      "title": {
+        "en": "Savior of Mandalore",
+        "zh": "曼达洛的救星"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "Clan Kryze Veterans",
+        "zh": "克里兹氏族老兵"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "Gar Saxon",
+        "zh": "加尔·萨克森"
+      },
+      "title": {
+        "en": "Head of Clan Saxon",
+        "zh": "萨克森氏族首脑"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "Rook Kast",
+        "zh": "鲁克·卡斯特"
+      },
+      "title": {
+        "en": "Devoted to the Cause",
+        "zh": "为大业献身"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "Super Commandos",
+        "zh": "超级突击队"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "Clan Wren Veterans",
+        "zh": "雷恩氏族老兵"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "Sabine Wren",
+        "zh": "莎宾·雷恩"
+      },
+      "title": {
+        "en": "Back in the Fold",
+        "zh": "回归氏族"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "Ursa Wren",
+        "zh": "厄莎·雷恩"
+      },
+      "title": {
+        "en": "Leader of Clan Wren",
+        "zh": "雷恩氏族领袖"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "Mandalorian Hunter",
+        "zh": "曼达洛猎人"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "Mandalorian Leader",
+        "zh": "曼达洛领袖"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "Mandalorian Initiates",
+        "zh": "曼达洛学徒"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "Mandalorian Warriors",
+        "zh": "曼达洛战士"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "Mandalorian Warriors",
+        "zh": "曼达洛战士"
+      },
+      "title": {
+        "en": "Fire Support",
+        "zh": "火力支援"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "C-3PO",
+        "zh": "C-3PO"
+      },
+      "title": {
+        "en": "Golden God",
+        "zh": "黄金之神"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "Chewbacca",
+        "zh": "丘巴卡"
+      },
+      "title": {
+        "en": "Let the Wookiee Win",
+        "zh": "让伍基人赢"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "Ewok Skirmishers",
+        "zh": "伊沃克散兵"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "Ewok Slingers",
+        "zh": "伊沃克投石兵"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "Logray",
+        "zh": "洛格雷"
+      },
+      "title": {
+        "en": "Ewok Shaman",
+        "zh": "伊沃克萨满"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "Wicket",
+        "zh": "威克特"
+      },
+      "title": {
+        "en": "Hero of Bright Tree",
+        "zh": "亮树村英雄"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "Gar Saxon",
+        "zh": "加尔·萨克森"
+      },
+      "title": {
+        "en": "Militant Commando",
+        "zh": "好战突击队员"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "Mandalorian Super Commandos",
+        "zh": "曼达洛超级突击队"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "Maul",
+        "zh": "摩尔"
+      },
+      "title": {
+        "en": "A Rival",
+        "zh": "劲敌"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "Savage Opress",
+        "zh": "萨瓦奇·奥普雷斯"
+      },
+      "title": {
+        "en": "Maul's Enforcer",
+        "zh": "摩尔的打手"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "Pyke Syndicate Capo",
+        "zh": "派克辛迪加头目"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "Pyke Syndicate Foot Soldiers",
+        "zh": "派克辛迪加步兵"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "A-A5 Speeder Truck",
+        "zh": "A-A5飞行卡车"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "Hondo Ohnaka",
+        "zh": "洪多·奥纳卡"
+      },
+      "title": {
+        "en": "Trustworthy Compatriot",
+        "zh": "可靠的同伴"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "Swoop Bike Riders",
+        "zh": "飞扑摩托骑手"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "Weequay Pirates",
+        "zh": "威奎海盗"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "WLO-5 Speeder Tank",
+        "zh": "WLO-5飞行坦克"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "Han & Chewie",
+        "zh": "汉与丘伊"
+      },
+      "title": {
+        "en": "Notorious Scoundrels",
+        "zh": "恶名昭著的无赖"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "The Bad Batch",
+        "zh": "残次品小队"
+      },
+      "title": {
+        "en": "Clone Force 99",
+        "zh": "99号克隆人部队"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "Boba Fett",
+        "zh": "波巴·费特"
+      },
+      "title": {
+        "en": "Daimyo of Mos Espa",
+        "zh": "莫斯埃斯帕大名"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "Boba Fett",
+        "zh": "波巴·费特"
+      },
+      "title": {
+        "en": "Infamous Bounty Hunter",
+        "zh": "恶名昭著的赏金猎人"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "Bossk",
+        "zh": "博斯克"
+      },
+      "title": {
+        "en": "Trandoshan Terror",
+        "zh": "特兰多沙恐怖猎手"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "Cad Bane",
+        "zh": "凯德·贝恩"
+      },
+      "title": {
+        "en": "Needs No Introduction",
+        "zh": "无需介绍"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "IG-11",
+        "zh": "IG-11"
+      },
+      "title": {
+        "en": "Nurse and Protect",
+        "zh": "照料与保护"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "IG-88",
+        "zh": "IG-88"
+      },
+      "title": {
+        "en": "Notorious Assassin Droid",
+        "zh": "恶名昭著的刺客机器人"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "mercenary",
+      "name": {
+        "en": "Omega",
+        "zh": "欧米伽"
+      },
+      "title": {
+        "en": "Mascot of the 99th",
+        "zh": "99号部队的吉祥物"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "rebels",
+      "name": {
+        "en": "Guerilla Troopers",
+        "zh": "游击队士兵"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "rebels",
+      "name": {
+        "en": "Han Solo",
+        "zh": "汉·索罗"
+      },
+      "title": {
+        "en": "Reluctant Hero",
+        "zh": "不情愿的英雄"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "rebels",
+      "name": {
+        "en": "Luke Skywalker",
+        "zh": "卢克·天行者"
+      },
+      "title": {
+        "en": "Commander Skywalker",
+        "zh": "天行者指挥官"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "rebels",
+      "name": {
+        "en": "Rebel Agent",
+        "zh": "义军特工"
+      },
+      "title": {
+        "en": "Defender of Democracy",
+        "zh": "民主捍卫者"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    },
+    {
+      "faction": "rebels",
+      "name": {
+        "en": "Rebel Officer",
+        "zh": "义军军官"
+      },
+      "title": {
+        "en": "Fighting for Freedom",
+        "zh": "为自由而战"
+      },
+      "weapons": [],
+      "translationStatus": "local_draft"
+    }
+  ]
+}

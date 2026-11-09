@@ -1,0 +1,578 @@
+{
+  "schema": "swl-extraction-review/v2",
+  "summary": {
+    "cards": 185,
+    "frontImages": 185,
+    "linkedPortraits": 185,
+    "mappedCardIdentities": 185,
+    "unitsWithChineseNames": 185,
+    "weapons": 316,
+    "unitKeywords": 891,
+    "weaponKeywords": 248,
+    "unresolvedKeywords": 78,
+    "unitRecordsWithIncompleteStats": 0,
+    "weaponRecordsWithIncompleteDiceOrRange": 0,
+    "missingPoints": 0,
+    "missingUpgradeSlots": 0,
+    "layouts": {
+      "standard": 180,
+      "counterpart": 5
+    }
+  },
+  "limits": [
+    "Card text and image values still need human review.",
+    "Points, speed and upgrade slots imported from selected upstream snapshot; not an official accuracy guarantee.",
+    "Conditional slots are recorded, not evaluated; army-building constraints are deferred."
+  ],
+  "unmappedNames": [],
+  "unresolvedKeywords": [
+    {
+      "unitId": "separatists-geonosian-engineer",
+      "owner": "unit",
+      "id": "pending_special_issue_rapid_interdiction",
+      "raw": "Special Issue: Rapid Interdiction",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "separatists-geonosian-engineer",
+      "owner": "unit",
+      "id": "pending_forrce",
+      "raw": "Forrce",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "separatists-bx",
+      "owner": "unit",
+      "id": "pending_move",
+      "raw": "Move",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "separatists-bx-strike",
+      "owner": "unit",
+      "id": "pending_commmmmandos",
+      "raw": "Commmmmandos",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "separatists-droidekas",
+      "owner": "Dual Blaster Cannons",
+      "id": "pending_immune_deflect_sufppressive",
+      "raw": "Immune: Deflect, Sufppressive",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "separatists-dsd1-dwarf",
+      "owner": "unit",
+      "id": "pending_expert_climber",
+      "raw": "Expert Climber",
+      "status": "english_only"
+    },
+    {
+      "unitId": "separatists-grievous",
+      "owner": "unit",
+      "id": "pending_jedi_hunter",
+      "raw": "Jedi Hunter",
+      "status": "english_only"
+    },
+    {
+      "unitId": "separatists-lm-432-crab",
+      "owner": "Cras Claws",
+      "id": "pending_impact_2_pierce_1",
+      "raw": "Impact 2, Pierce 1",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "separatists-magnaguard-prototype",
+      "owner": "unit",
+      "id": "pending_special_issue_experimental_drooids",
+      "raw": "Special Issue: Experimental Drooids",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "separatists-persuader",
+      "owner": "Loncanwons",
+      "id": "pending_tiree",
+      "raw": "Tiree",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "separatists-persuader-prototype",
+      "owner": "unit",
+      "id": "pending_special_issue_experimental_drooids",
+      "raw": "Special Issue: Experimental Drooids",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "separatists-tactical-droid",
+      "owner": "unit",
+      "id": "pending_diirecr_a_drop_trooper_unit",
+      "raw": "Diirecr: A Drop Trooper Unit",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "separatists-stap",
+      "owner": "unit",
+      "id": "pending_vehicle",
+      "raw": "Vehicle",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "separatists-stap",
+      "owner": "Dual Blaster Cannons",
+      "id": "pending_fixeo_fronnt",
+      "raw": "Fixeo: Fronnt",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "separatists-tsmeu-wheel-bikes",
+      "owner": "Double Laser Cannon",
+      "id": "pending_fixeo_front",
+      "raw": "Fixeo: Front",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "empire-darth-vader-apprentice",
+      "owner": "unit",
+      "id": "pending_jep1_hunter",
+      "raw": "Jep1 Hunter",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "empire-df-90-mortar",
+      "owner": "unit",
+      "id": "pending_fire_support",
+      "raw": "Fire Support",
+      "status": "english_only"
+    },
+    {
+      "unitId": "empire-id10-seeker",
+      "owner": "unit",
+      "id": "pending_counterpart_iden_versio",
+      "raw": "Counterpart: Iden Versio",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "empire-iden-versio",
+      "owner": "Martial Arts",
+      "id": "pending_mee",
+      "raw": "Mee",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "empire-imperial-agent-order-to-galaxy",
+      "owner": "Comsar Traine",
+      "id": "pending_eee",
+      "raw": "EEE",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "empire-imperial-officer-ruthless-efficiency",
+      "owner": "unit",
+      "id": "pending_equir",
+      "raw": "Equir",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "empire-imperial-officer-ruthless-efficiency",
+      "owner": "Buster Pisol",
+      "id": "pending_he_tr",
+      "raw": "He TR",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "empire-kallus",
+      "owner": "unit",
+      "id": "pending_interrogate",
+      "raw": "Interrogate",
+      "status": "english_only"
+    },
+    {
+      "unitId": "empire-laat-empire",
+      "owner": "unit",
+      "id": "pending_immune_blast_melee_weapons",
+      "raw": "Immune: Blast, Melee, © Weapons",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "empire-marquand",
+      "owner": "unit",
+      "id": "pending_special_issue_tempest_force",
+      "raw": "Special Issue: Tempest Force",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "empire-seventh-sister",
+      "owner": "unit",
+      "id": "pending_interrogate",
+      "raw": "Interrogate",
+      "status": "english_only"
+    },
+    {
+      "unitId": "empire-stormtroopers-hwu",
+      "owner": "unit",
+      "id": "pending_flexible_response_2",
+      "raw": "Flexible Response 2",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "empire-stormtroopers-hwu",
+      "owner": "unit",
+      "id": "pending_special_issue_blizzarp_force",
+      "raw": "Special Issue: Blizzarp Force",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "republic-jedi-barc",
+      "owner": "Liutsager",
+      "id": "pending_er_2_overrun_1",
+      "raw": "Er 2 Overrun 1",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "republic-jedi-barc",
+      "owner": "Twin Blaster Cannon",
+      "id": "pending_foxep_front",
+      "raw": "Foxep: Front",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "republic-ki-aadi-mundu",
+      "owner": "Munoi's Lihtsaser",
+      "id": "pending_mpact_2_lethal_1",
+      "raw": "Mpact 2 Lethal 1",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "republic-mace-windu",
+      "owner": "unit",
+      "id": "pending_vaapad_mastery",
+      "raw": "Vaapad Mastery",
+      "status": "english_only"
+    },
+    {
+      "unitId": "republic-mace-windu",
+      "owner": "Force Crush",
+      "id": "pending_immobilize_1",
+      "raw": "Immobilize 1",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "republic-anakin-barc",
+      "owner": "Twin Blaster Cannon",
+      "id": "pending_fixen_front",
+      "raw": "Fixen: Front",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "republic-at-rt-gar",
+      "owner": "unit",
+      "id": "pending_expert_climber",
+      "raw": "Expert Climber",
+      "status": "english_only"
+    },
+    {
+      "unitId": "republic-bad-batch-gar",
+      "owner": "unit",
+      "id": "pending_wrecker",
+      "raw": "Wrecker",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "republic-c3po",
+      "owner": "unit",
+      "id": "pending_distrract",
+      "raw": "Distrract",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "republic-c3po",
+      "owner": "unit",
+      "id": "pending_counterpart_r2_d2",
+      "raw": "Counterpart: R2-D2",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "republic-laat-gar",
+      "owner": "unit",
+      "id": "pending_immune_blast_melee_weapons",
+      "raw": "Immune: Blast, Melee, © Weapons",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "republic-laat-gar",
+      "owner": "Twin Laser Cannons",
+      "id": "pending_fixep_front",
+      "raw": "Fixep: Front",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "republic-r2d2-gar",
+      "owner": "unit",
+      "id": "pending_a_reppairr_2_capacity_2",
+      "raw": "A) Reppairr 2: Capacity 2",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "republic-raddaugh-gnasp",
+      "owner": "unit",
+      "id": "pending_immune_blast_melee_weapons",
+      "raw": "Immune: Blast, Melee, © Weapons",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "republic-raddaugh",
+      "owner": "unit",
+      "id": "pending_attack_run",
+      "raw": "Attack RUN",
+      "status": "english_only"
+    },
+    {
+      "unitId": "republic-raddaugh",
+      "owner": "unit",
+      "id": "pending_immune_blast_melee_weapons",
+      "raw": "Immune: Blast, Melee, © Weapons",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "republic-raddaugh",
+      "owner": "unit",
+      "id": "pending_special_issue_wookiee_defenders",
+      "raw": "Special Issue: Wookiee Defenders",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "republic-plo-koon",
+      "owner": "unit",
+      "id": "pending_distract",
+      "raw": "Distract",
+      "status": "english_only"
+    },
+    {
+      "unitId": "republic-shaak-ti",
+      "owner": "unit",
+      "id": "pending_ain_non_3_unit",
+      "raw": "Ain: NoN-3 Unit",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "mercenary-clan-covert-grogu-covert",
+      "owner": "unit",
+      "id": "pending_counterpart_din_djarin",
+      "raw": "Counterpart: DIN Djarin",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "mercenary-clan-covert-the-armorer",
+      "owner": "unit",
+      "id": "pending_ap_yx",
+      "raw": "Ap: YX",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "mercenary-creedless-mandalorian-leader",
+      "owner": "unit",
+      "id": "pending_le_av",
+      "raw": "Le\" Av",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "mercenary-creedless-mandalorian-warriors-corps",
+      "owner": "unit",
+      "id": "pending_wee_av",
+      "raw": "Wee\" Av",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "mercenary-creedless-mandalorian-warriors-support",
+      "owner": "unit",
+      "id": "pending_we_av",
+      "raw": "We\" Av",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "mercenary-ewoks-c3po-golden",
+      "owner": "unit",
+      "id": "pending_w_lo",
+      "raw": "W— Lo",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "mercenary-ewoks-c3po-golden",
+      "owner": "unit",
+      "id": "pending_4a_master_storyteller",
+      "raw": "4A) Master Storyteller",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "mercenary-ewoks-c3po-golden",
+      "owner": "unit",
+      "id": "pending_divine_influence",
+      "raw": "Divine Influence",
+      "status": "english_only"
+    },
+    {
+      "unitId": "mercenary-ewoks-ewok-slingers",
+      "owner": "Slings",
+      "id": "pending_primitive",
+      "raw": "Primitive",
+      "status": "english_only"
+    },
+    {
+      "unitId": "mercenary-ewoks-logray",
+      "owner": "unit",
+      "id": "pending_aip_trooper",
+      "raw": "Aip: § Trooper",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "mercenary-ewoks-wicket",
+      "owner": "Sling",
+      "id": "pending_primitive",
+      "raw": "Primitive",
+      "status": "english_only"
+    },
+    {
+      "unitId": "mercenary-maul-loyalists-maul-rival",
+      "owner": "unit",
+      "id": "pending_wound_1",
+      "raw": "Wound 1",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "mercenary-pyke-syndicate-pyke-syndicate-capo",
+      "owner": "unit",
+      "id": "pending_ap_o",
+      "raw": "Ap: $o",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "mercenary-raiders-hondo-ohnaka",
+      "owner": "unit",
+      "id": "pending_my_moob_is_basep_on_profit",
+      "raw": "My Moob Is Basep ON Profit",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "mercenary-raiders-weequay-pirate",
+      "owner": "unit",
+      "id": "pending_swashbuckler",
+      "raw": "Swashbuckler",
+      "status": "english_only"
+    },
+    {
+      "unitId": "mercenary-rogue-han-and-chewie",
+      "owner": "unit",
+      "id": "pending_reckless_smuggler",
+      "raw": "Reckless Smuggler",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "mercenary-rogue-han-and-chewie",
+      "owner": "unit",
+      "id": "pending_chewbacca",
+      "raw": "Chewbacca",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "mercenary-rogue-han-and-chewie",
+      "owner": "unit",
+      "id": "pending_courageous_co_pilot",
+      "raw": "Courageous Co-pilot",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "mercenary-rogue-bossk",
+      "owner": "unit",
+      "id": "pending_regenerate_3",
+      "raw": "Regenerate 3",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "mercenary-rogue-omega",
+      "owner": "unit",
+      "id": "pending_counterpart_the_bad_batch",
+      "raw": "Counterpart: THE BAD Batch",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "mercenary-rogue-omega",
+      "owner": "unit",
+      "id": "pending_i_m_part_of_the_squad_too",
+      "raw": "I’m Part Of THE Squad Too",
+      "status": "english_only"
+    },
+    {
+      "unitId": "rebels-ahsoka",
+      "owner": "unit",
+      "id": "pending_allume_2",
+      "raw": "Allume 2",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "rebels-at-rt-rebel",
+      "owner": "unit",
+      "id": "pending_expert_climber",
+      "raw": "Expert Climber",
+      "status": "english_only"
+    },
+    {
+      "unitId": "rebels-c-3po-cyborg",
+      "owner": "unit",
+      "id": "pending_dd_distract",
+      "raw": "DD Distract",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "rebels-c-3po-cyborg",
+      "owner": "unit",
+      "id": "pending_counterpart_r2_d2",
+      "raw": "Counterpart: R2-D2",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "rebels-guerilla-troopers",
+      "owner": "unit",
+      "id": "pending_flexible_response_2",
+      "raw": "Flexible Response 2",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "rebels-guerilla-troopers",
+      "owner": "Stolen Blasters",
+      "id": "pending_loverwrieen",
+      "raw": "Loverwrieen",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "rebels-mark-2-blaster",
+      "owner": "unit",
+      "id": "pending_fire_support",
+      "raw": "Fire Support",
+      "status": "english_only"
+    },
+    {
+      "unitId": "rebels-mark-2-blaster",
+      "owner": "unit",
+      "id": "pending_fule_pivor",
+      "raw": "Fule Pivor",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "rebels-mark-2-blaster",
+      "owner": "Mark Il Mepium Blaster",
+      "id": "pending_fixed_pras",
+      "raw": "Fixed Pras",
+      "status": "unresolved"
+    },
+    {
+      "unitId": "rebels-t-47",
+      "owner": "unit",
+      "id": "pending_immune_blast_melee_weapons",
+      "raw": "Immune: Blast, Melee, © Weapons",
+      "status": "unresolved"
+    }
+  ],
+  "incompleteStats": [],
+  "incompleteWeapons": []
+}

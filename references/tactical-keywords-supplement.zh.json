@@ -1,0 +1,76 @@
+[
+  {
+    "identifier": "eyes_on_the_prize",
+    "rulebook_heading": "紧盯奖赏：词条",
+    "rulebook_english_heading": "EYES ON THE PRIZE: KEYWORD",
+    "summary": "单位队长在距离½内有目标标记，或本单位正携带目标标记时，获得所列词条。",
+    "rulebook_quote": "拥有紧盯奖赏关键词的单位，如果其单位队长在距离½内有至少一个目标标记，或该单位正携带至少一个目标标记，则拥有此关键词后列出的词条。具体获得的词条见卡牌正文。",
+    "timing": [
+      "global"
+    ]
+  },
+  {
+    "identifier": "smoke",
+    "rulebook_heading": "烟雾X",
+    "rulebook_english_heading": "SMOKE X",
+    "summary": "烟雾行动：在队长视线内、完全位于距离1内放置X个烟雾标记；附近步兵掩护提升，烟雾在结束阶段移除。",
+    "rulebook_quote": "拥有烟雾X的单位可以执行烟雾X行动，将X个烟雾标记放在其单位队长视线内且完全位于距离1内的平面上，不得与目标、优势、炸药或其他烟雾标记重叠。步兵单位队长在烟雾标记距离1内时，确定掩护步骤的掩护数值提高1。攻击步兵单位队长在烟雾标记距离1内时，防御单位的掩护数值也提高1。掩护提升可累积，同一单位不会被同一烟雾标记影响超过一次。烟雾标记在结束阶段的移除标记步骤移除。",
+    "timing": [
+      "activation",
+      "defense"
+    ]
+  },
+  {
+    "identifier": "area_weapon",
+    "rulebook_heading": "区域武器",
+    "rulebook_english_heading": "AREA WEAPON",
+    "summary": "对黄色距离图标指定范围内、视线中的每个友方和敌方单位分别远程攻击，包括交战单位；此武器必须单独组成攻击池。",
+    "rulebook_quote": "带有黄色距离图标的武器是区域武器。当使用区域武器时，对在距离图标上的数字指定距离内且在视线中的每个友方和敌方单位分别进行一次攻击，即使该单位在交战中。区域武器发起的攻击总是远程攻击。\n区域武器永远不能出现在单位发起的攻击池中，并且必须总是攻击池中唯一的武器。",
+    "timing": [
+      "attack"
+    ]
+  },
+  {
+    "identifier": "arm",
+    "rulebook_heading": "安设X：炸药标记类型",
+    "rulebook_english_heading": "ARM X: CHARGE TOKEN TYPE",
+    "summary": "安设行动：将X个指定类型、己方颜色的炸药标记放在队长视线内且完全位于距离1内；须平放，不能叠放目标、优势或其他炸药标记。",
+    "rulebook_quote": "安设X：炸药标记类型 (ARM X: CHARGE TOKEN TYPE)\n如果单位配备有拥有安设X：炸药标记类型关键词的卡牌，那么该单位能够进行安设X行动。当单位进行安设X行动时，该单位放置X个指定类型且与控制它的玩家颜色相同的炸药（优势）标记，放置的位置完全在它的单位队长1内且在视线中。\n炸药标记不能叠放在任何目标、优势或其他炸药标记上，并且必须放置在与该表面完全齐平的平坦表面上。",
+    "timing": [
+      "activation"
+    ]
+  },
+  {
+    "identifier": "detonate",
+    "rulebook_heading": "引爆X：炸药类型",
+    "rulebook_english_heading": "DETONATE X: CHARGE TYPE",
+    "summary": "单位攻击、移动或行动后，可引爆最多X个指定类型的友方炸药；对范围和视线内各单位分别攻击，然后移除炸药。",
+    "rulebook_quote": "单位攻击、移动或执行行动后，拥有引爆X武器的各单位可引爆最多X个指定类型的友方炸药标记。引爆先于其他在移动或行动后结算的效果，但待命标记可以在引爆前花费。双方均可引爆时，由未操控刚执行攻击、移动或行动单位的玩家优先。引爆时，使用标记对应卡牌的区域武器、激增转换和武器词条，对炸药视线和射程内每支友方及敌方单位分别攻击。该炸药标记视为攻击单位，不能花费瞄准或修正攻击骰，不受布设单位能力影响。引爆后从战场移除标记。",
+    "timing": [
+      "activation",
+      "movement",
+      "attack"
+    ]
+  },
+  {
+    "identifier": "permanent",
+    "rulebook_heading": "永久",
+    "rulebook_english_heading": "PERMANENT",
+    "summary": "结束阶段不弃置此命令卡；只要仍在场，其效果持续。",
+    "rulebook_quote": "带有永久关键词的命令卡在结束阶段不会像普通命令卡一样从场上弃置。只要该卡仍在场上，其效果持续生效。",
+    "timing": [
+      "global",
+      "end_round"
+    ]
+  },
+  {
+    "identifier": "divulge",
+    "rulebook_heading": "揭示",
+    "rulebook_english_heading": "DIVULGE",
+    "summary": "在卡牌指定阶段或步骤开始时展示并结算揭示效果；不算打出，步骤结束返回命令手牌，永久卡例外。",
+    "rulebook_quote": "带有揭示关键词的命令卡可在揭示所指定的阶段或步骤开始时展示，并结算揭示后的卡文。若提供多个选项，必须选择一个。如此展示不视为打出，且在揭示所处步骤结束时返回该玩家的命令手牌；带有永久的揭示卡不返回手牌，而是留在场上。玩家可揭示任意数量的命令卡。双方同时可揭示时蓝方优先。若放弃该次机会，该卡之后不能再揭示。具体时机以卡文指定内容为准。",
+    "timing": [
+      "setup"
+    ]
+  }
+]

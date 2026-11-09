@@ -1,0 +1,530 @@
+/* Semantic list-building rule engine (browser port of rules.py).
+ * Upstream-free: all rules read from our own data files. Pure functions. */
+window.RulesCore = (() => {
+  const UNKNOWN = Symbol("unknown");
+
+  const Dice = window.SWLDice || Object.freeze({
+    attackColors: Object.freeze({ RED: "red", BLACK: "black", WHITE: "white" }),
+    defenseColors: Object.freeze({ RED: "red", WHITE: "white" }),
+    attackFaces: Object.freeze({ BLANK: "blank", HIT: "hit", CRITICAL: "critical", SURGE: "surge" }),
+    defenseFaces: Object.freeze({ BLANK: "blank", BLOCK: "block", SURGE: "surge", SURGE_BLOCK: "surge-block" }),
+  });
+
+  function resolve(ctx, field) {
+    let node = ctx;
+    for (const part of String(field).split(".")) {
+      if (!node || typeof node !== "object" || !(part in node)) return UNKNOWN;
+      node = node[part];
+    }
+    return node;
+  }
+
+  function evaluate(cond, ctx, predicates) {
+    if (!cond || typeof cond !== "object") return null;
+    if ("ref" in cond) {
+      return predicates && cond.ref in predicates ? evaluate(predicates[cond.ref], ctx, predicates) : null;
+    }
+    if ("all" in cond) {
+      let out = true;
+      for (const c of cond.all) { const r = evaluate(c, ctx, predicates); if (r === false) return false; if (r === null) out = null; }
+      return out;
+    }
+    if ("any" in cond) {
+      let out = false;
+      for (const c of cond.any) { const r = evaluate(c, ctx, predicates); if (r === true) return true; if (r === null) out = null; }
+      return out;
+    }
+    if ("not" in cond) { const r = evaluate(cond.not, ctx, predicates); return r === null ? null : !r; }
+    if ("field" in cond) {
+      const actual = resolve(ctx, cond.field);
+      if (actual === UNKNOWN) return null;
+      const op = cond.op || "eq", value = cond.value;
+      try {
+        if (op === "eq") return actual === value;
+        if (op === "in") return Array.isArray(value) && value.includes(actual);
+        if (op === "contains") return Array.isArray(actual) ? actual.includes(value) : null;
+        if (op === "gte") return actual >= value;
+        if (op === "lte") return actual <= value;
+      } catch (e) { return null; }
+      return null;
+    }
+    return null;
+  }
+
+  function slotRegistry(pkg) {
+    const byId = {}, bySource = {};
+    for (const s of pkg.slots || []) { byId[s.id] = s; bySource[String(s.sourceId)] = s; }
+    return { byId, bySource };
+  }
+  function slotKey(pkg, sourceId) {
+    const { bySource } = slotRegistry(pkg);
+    const s = bySource[String(sourceId)];
+    return s ? s.id : `unknown_source_slot_${sourceId}`;
+  }
+  function accessKeys(card, pkg, rule) {
+    if (rule && rule.access) return rule.access.filter(a => a.slot).map(a => a.slot);
+    return [...new Set((card.slotIds || []).map(sid => slotKey(pkg, sid)))];
+  }
+  function unitContext(unit) {
+    return { unit: {
+      id: unit.id,
+      upstreamId: String(unit.upstream && unit.upstream.id || ""),
+      unitTypeId: unit.unitTypeId,
+      defenseDie: (unit.stats || {}).defenseDie,
+      factionId: unit.factionId,
+      rankId: unit.rankId,
+      keywords: (unit.keywords || []).map(k => k && k.id),
+    } };
+  }
+  function dedicatedSlotKeys(pkg, unit) {
+    const ctx = unitContext(unit);
+    const predicates = pkg.predicates || {};
+    const out = [];
+    for (const [grantKey, grant] of Object.entries(pkg.dedicatedGrants || {})) {
+      let ok = false;
+      if (grant.condition != null) {
+        ok = evaluate(grant.condition, ctx, predicates) === true;
+      } else if ((grant.holders || []).map(String).includes(String(unit.upstream && unit.upstream.id || ""))) {
+        ok = true;
+      }
+      if (!ok) continue;
+      out.push({ key: grant.grants || grantKey, ifAbsentAny: grant.ifAbsentAny || null });
+    }
+    return out;
+  }
+  function slotListFor(pkg, unit, inst, upgrades) {
+    const { byId } = slotRegistry(pkg);
+    const out = [];
+    for (const s of (unit.upgradeSlots || [])) {
+      const sid = (typeof s === "object") ? s.id : s;
+      const key = slotKey(pkg, sid);
+      if (byId[key] && byId[key].kind === "dedicated") continue; // printed dedicated slots are replaced by the shared exempt grants
+      out.push({ key, required: !!(typeof s === "object" && s.required) });
+    }
+    const ctx = unitContext(unit);
+    const predicates = pkg.predicates || {};
+    for (const sel of (inst && inst.upgrades) || []) {
+      const card = upgrades[sel.upgradeId];
+      for (const eff of (card && card.rules && card.rules.slotEffects) || []) {
+        if (!eff || eff.type !== "addSlot" || !eff.slot) continue;
+        if (eff.when && evaluate(eff.when, ctx, predicates) !== true) continue;
+        out.push({ key: eff.slot, addedBy: card.id });
+      }
+    }
+    for (const g of dedicatedSlotKeys(pkg, unit)) {
+      if (out.some(r => r.key === g.key)) continue;
+      if (g.ifAbsentAny && out.some(r => g.ifAbsentAny.includes(r.key))) continue;
+      out.push({ key: g.key, required: false, virtual: true });
+    }
+    return out;
+  }
+  function unitDivisions(unit) {
+    return (unit.divisions || []).map(String);
+  }
+  function hosts(rule, card) {
+    if (rule && rule.host) return rule.host.map(String);
+    const local = (card.rules || {}).availableIn;
+    if (local) return local.map(String);
+    return null;
+  }
+  function normalizeKey(s) {
+    return String(s).toLowerCase().replace(/[^a-z0-9]/g, "");
+  }
+  function buildNameIndex(upgrades, defs) {
+    const idx = {};
+    const add = (key, uid) => {
+      if (key == null || key === "") return;
+      const k = normalizeKey(key);
+      if (!k) return;
+      (idx[k] ||= new Set()).add(String(uid));
+    };
+    for (const card of Object.values(upgrades || {})) {
+      const uid = String((card.upstream && card.upstream.id) || "");
+      if (!uid) continue;
+      add(card.id, uid);
+      add((card.name && card.name.en) || "", uid);
+    }
+    for (const u of (defs && defs.upgrades) || []) {
+      add(u.id, u.name && u.name.en);
+      add((u.name && u.name.en) || "", u.id);
+    }
+    return idx;
+  }
+  function unavailableSets(card, idx, defs) {
+    const up = new Set(), fac = new Set();
+    const own = String((card.upstream && card.upstream.id) || "");
+    const ownAliases = new Set([normalizeKey(card.id), normalizeKey((card.name && card.name.en) || "")]);
+    const du = (defs && defs.upgrades || []).find(x => String(x.id) === own);
+    if (du && du.name) ownAliases.add(normalizeKey(du.name.en));
+    for (const item of (card.rules || {}).unavailableWithIds || []) {
+      if (item && typeof item === "object") {
+        if (item.propertyName === "upgrades") up.add(String(item.id));
+        else if (item.propertyName === "factions") fac.add(Number(item.id));
+      } else if (typeof item === "string") {
+        const k = normalizeKey(item);
+        if (ownAliases.has(k)) continue; // self-name: already enforced via unique-by-name
+        for (const id of ((idx || {})[k] || new Set())) if (id !== own) up.add(id);
+      }
+    }
+    return { up, fac };
+  }
+  function normRp(rp) {
+    if (!rp) return null;
+    if (Array.isArray(rp) && rp.length && Array.isArray(rp[0])) return rp;
+    return [rp];
+  }
+  function restrictionConditionOk(card, unit, pkg) {
+    const cond = (card.restrictions || {}).condition;
+    if (!cond) return null;
+    return evaluate(cond, unitContext(unit), pkg.predicates || {});
+  }
+  function requiredPropertiesOk(unit, rp, defs) {
+    const groups = normRp(rp);
+    if (!groups) return true;
+    const kwMap = {};
+    for (const k of defs.keywords || []) for (const uid of k.upstreamIds || []) kwMap[String(uid)] = k.id;
+    const utMap = {1:1,2:2,3:3,4:4,5:5,6:6,7:7,8:"local:wookiee_trooper",9:9};
+    const unitKw = new Set((unit.keywords || []).map(k => k && k.id));
+    const aff = new Set((unit.affiliationIds || []).map(String));
+    for (const group of groups) {
+      let ok = true;
+      for (const atom of group) {
+        if (!atom || typeof atom !== "object") continue;
+        const prop = atom.property, v = atom.value, vlist = Array.isArray(v) ? v : [v];
+        if (prop === "faction") { if (!vlist.includes(unit.factionId)) ok = false; }
+        else if (prop === "unitType") { const local = vlist.map(x => utMap[x] ?? x); if (!local.includes(unit.unitTypeId)) ok = false; }
+        else if (prop === "affiliation") { if (!vlist.some(x => aff.has(String(x)))) ok = false; }
+        else if (prop === "keywords") { const local = vlist.map(x => kwMap[String(x)]).filter(Boolean); if (!local.some(k => unitKw.has(k))) ok = false; }
+      }
+      if (ok) return true;
+    }
+    return false;
+  }
+
+  function validateArmy(army, data) {
+    const { units, upgrades, defs, pkg } = data;
+    const issues = [];
+    const issue = (status, code, message, instanceId) => issues.push({ status, code, message, instanceId });
+    const nameIndex = buildNameIndex(upgrades, defs);
+
+    let basePoints = 0;
+    const seen = [], sel = [];
+
+    let mode = (pkg.modes || {})[army.mode || "standard"] || {};
+    const bf = (pkg.battleForces || {})[String(army.armyId)];
+    if (bf) {
+      mode = { ...mode, ...((bf.modes || {})[army.mode || "standard"] || {}) };
+      issue("unknown", "battle_force_rules", "战斗部队规则仍未完整实现（textRules / machineRules / options 未求值）", null);
+    }
+    const pointsLimit = army.pointsLimit || mode.points || 1000;
+
+    for (const inst of army.units || []) {
+      const key = inst.instanceId;
+      const unit = units[inst.unitId];
+      if (!unit) { issue("invalid", "missing_unit", "单位引用不存在", key); continue; }
+      if (unit.usage === "counterpart" || unit.isCounterpart) {
+        issue("invalid", "counterpart_as_unit", "伙伴卡需通过宿主单位的伙伴槽加入，不能作为独立单位", key);
+      }
+      basePoints += unit.points || 0;
+      const memberships = (unit.factions || []).filter(m => m.id === army.armyId);
+      if (!memberships.length) { issue("invalid", "army_membership", "此单位未列入当前军队", key); continue; }
+
+      const slotList = slotListFor(pkg, unit, inst, upgrades);
+      for (const rec of slotList) {
+        if (rec.virtual) issue("unknown", "dedicated_grant_virtual", `该单位满足专用槽 ${rec.key} 的语义条件，但本地基础槽未包含；已按虚拟槽补入`, key);
+      }
+
+      const assigned = {};
+      for (const selected of inst.upgrades || []) {
+        const ckey = selected.instanceId;
+        const card = upgrades[selected.upgradeId];
+        if (!card) { issue("invalid", "missing_upgrade", "升级引用不存在", ckey); continue; }
+        basePoints += card.points || 0;
+        const rule = (pkg.upgradeRules || {})[String(card.upstream && card.upstream.id || "")] || {};
+        seen.push([String(card.upstream && card.upstream.id || ""), card.id, ckey]);
+        sel.push({ upstreamId: String(card.upstream && card.upstream.id || ""), cardId: card.id, ckey, unitId: unit.id, unitKey: key, unitUpstreamId: String(unit.upstream && unit.upstream.id || "") });
+
+        const index = selected.slotIndex;
+        if (!Number.isInteger(index)) { issue("invalid", "slot_missing", "升级未指定槽位", ckey); continue; }
+        if (index < 0 || index >= slotList.length) { issue("invalid", "slot_missing", "对应槽不存在；已保留选择", ckey); continue; }
+        const slotRec = slotList[index];
+        const allowed = accessKeys(card, pkg, rule);
+        if (!allowed.includes(slotRec.key)) {
+          issue("invalid", "slot_mismatch", `升级可匹配槽位 [${allowed.join(", ")}]，不包含当前槽 ${slotRec.key}`, ckey);
+        }
+        if (index in assigned) { issue("invalid", "slot_occupied", "该槽已被另一张升级占用", ckey); }
+        else assigned[index] = ckey;
+
+        const h = hosts(rule, card);
+        if (h != null && !h.includes(String(unit.upstream && unit.upstream.id || ""))) {
+          issue("invalid", "host_restriction", "此升级仅限特定角色/版本", ckey);
+        }
+        const facs = (card.rules || {}).factions;
+        if (facs && !facs.map(Number).includes(army.armyId)) {
+          issue("invalid", "upgrade_faction", `升级「${(card.name && card.name.en) || card.id}」不属于当前军队/战斗部队`, ckey);
+        }
+        if (unavailableSets(card, nameIndex, defs).fac.has(army.armyId)) {
+          issue("invalid", "unavailable_faction", `升级「${(card.name && card.name.en) || card.id}」无法加入当前军队/战斗部队`, ckey);
+        }
+        const rp = (card.rules || {}).requiredProperties;
+        if (rp && !requiredPropertiesOk(unit, rp, defs)) {
+          issue("invalid", "required_properties", `升级「${(card.name && card.name.en) || card.id}」不满足适用条件（阵营/类型/词条）`, ckey);
+        }
+        const rc = restrictionConditionOk(card, unit, pkg);
+        if (rc === false) {
+          issue("invalid", "restriction_condition", `升级「${(card.name && card.name.en) || card.id}」不满足卡面限制条件`, ckey);
+        } else if (rc === null && (card.restrictions || {}).condition) {
+          issue("unknown", "restriction_condition_unknown", `升级「${(card.name && card.name.en) || card.id}」的卡面限制条件存在未覆盖语义`, ckey);
+        }
+        const divs = (card.rules || {}).requiredDivisions;
+        if (divs) {
+          const ud = unitDivisions(unit);
+          if (ud.length && !ud.some(d => divs.includes(d))) issue("invalid", "division_restriction", `升级「${(card.name && card.name.en) || card.id}」仅限${divs.join("/")}阵营`, ckey);
+        }
+        const reqTier = (card.rules || {}).requiresTier;
+        if (reqTier && reqTier.length) {
+          const hostRank = memberships.length ? memberships[0].rankId : null;
+          if (hostRank == null || !reqTier.map(Number).includes(Number(hostRank))) {
+            issue("invalid", "requires_tier", `升级「${(card.name && card.name.en) || card.id}」要求母单位军阶为 ${reqTier.join("/")}，当前为 ${hostRank == null ? "无" : hostRank}`, ckey);
+          }
+        }
+      }
+      for (let i = 0; i < slotList.length; i++) {
+        if (slotList[i].required && !(i in assigned)) issue("invalid", "required_slot", `必选槽位 ${slotList[i].key} 尚未配置升级`, key);
+      }
+      const seenLocal = {}, seenLocalNames = {};
+      for (const selected of inst.upgrades || []) {
+        const cid = selected.upgradeId;
+        if (cid && cid in seenLocal) issue("invalid", "local_duplicate", "同一单位重复装备同组升级", selected.instanceId);
+        seenLocal[cid] = true;
+        const card = upgrades[cid] || {};
+        const nm = String((card.name && card.name.en) || cid || "").toLowerCase();
+        if (seenLocalNames[nm]) issue("invalid", "local_duplicate_name", `同一单位不能装备多张同名升级「${(card.name && (card.name.zh || card.name.en)) || nm}」`, selected.instanceId);
+        seenLocalNames[nm] = true;
+      }
+      let children = ((pkg.unitRules || {})[String(unit.upstream && unit.upstream.id || "")] || {}).requiredChildren;
+      if (!children) children = (unit.rules || {}).requiredChildren;
+      if (children) {
+        const have = (inst.upgrades || []).map(u => upgrades[u.upgradeId]).filter(Boolean)
+          .map(c => String(c.upstream && c.upstream.id || ""));
+        for (const child of children) {
+          if (!have.includes(String(child.id))) issue("invalid", "required_child_missing", `缺少必带升级（上游 ID ${child.id}）`, key);
+        }
+      }
+    }
+
+    // conflicts / uniqueness
+    const byName = {}, conflictGroups = {}, selectedUpstream = new Set();
+    for (const [upstreamId, cardId, ckey] of seen) {
+      const card = upgrades[cardId] || {};
+      const name = String((card.name && card.name.en) || cardId).toLowerCase();
+      (byName[name] ||= new Set()).add(cardId);
+      const rule = (pkg.upgradeRules || {})[upstreamId] || {};
+      if (rule.conflictGroup) (conflictGroups[rule.conflictGroup] ||= new Set()).add(upstreamId);
+      selectedUpstream.add(upstreamId);
+    }
+    for (const [name, ids] of Object.entries(byName)) {
+      if (ids.size > 1 && [...ids].some(cid => ((upgrades[cid] || {}).rules || {}).unique === true)) {
+        issue("invalid", "unique_duplicate", `独特升级「${name}」跨版本只能携带一次`, null);
+      }
+    }
+    for (const [group, ids] of Object.entries(conflictGroups)) if (ids.size > 1) issue("invalid", "conflict_group", `互斥组 ${group} 中选择了多个互斥升级`, null);
+    const conflictSets = new Map();
+    for (const [upstreamId, cardId, ckey] of seen) {
+      conflictSets.set(cardId, unavailableSets(upgrades[cardId] || {}, nameIndex, defs));
+    }
+    for (let i = 0; i < seen.length; i++) {
+      for (let j = i + 1; j < seen.length; j++) {
+        const [au, ac, akey] = seen[i];
+        const [bu, bc, bkey] = seen[j];
+        const ra = (pkg.upgradeRules || {})[au] || {};
+        const rb = (pkg.upgradeRules || {})[bu] || {};
+        if (ra.conflictGroup && rb.conflictGroup && ra.conflictGroup === rb.conflictGroup) continue; // already reported
+        const ca = conflictSets.get(ac) || { up: new Set() };
+        const cb = conflictSets.get(bc) || { up: new Set() };
+        if (ca.up.has(bu) || cb.up.has(au)) issue("invalid", "upgrade_conflict", "选择了互斥的升级", akey);
+      }
+    }
+
+    const upgradeCounts = {};
+    for (const [upstreamId, cardId, ckey] of seen) upgradeCounts[cardId] = (upgradeCounts[cardId] || 0) + 1;
+    for (const [cardId, n] of Object.entries(upgradeCounts)) {
+      const card = upgrades[cardId] || {}; const r = card.rules || {};
+      const rule = (pkg.upgradeRules || {})[String(card.upstream && card.upstream.id || "")] || {};
+      const name = (card.name && card.name.en) || cardId;
+      if ((r.unique === true || rule.armyUnique) && n > 1) issue("invalid", "unique_duplicate", `独特升级「${name}」整军只能携带一次`, null);
+      if (Number.isInteger(r.limit) && n > r.limit) issue("invalid", "limit_exceeded", `升级「${name}」超过数量上限 ${r.limit}`, null);
+    }
+
+    const uniqueUnitCounts = {};
+    for (const inst of army.units || []) {
+      const unit = units[inst.unitId]; if (!unit) continue;
+      const r = unit.rules || {};
+      if (r.unlimited === false) {
+        const key = String((unit.name && unit.name.en) || unit.id).toLowerCase();
+        uniqueUnitCounts[key] = (uniqueUnitCounts[key] || 0) + 1;
+      }
+    }
+    for (const [key, n] of Object.entries(uniqueUnitCounts)) if (n > 1) issue("invalid", "unit_unique_duplicate", `独特单位「${key}」整军只能携带一次`, null);
+
+    // rank counting with exemptions (local)
+    const armyUnitUpstream = new Set();
+    const armyUnitUpstreamCounts = {};
+    const unitIdCounts = {};
+    for (const inst of army.units || []) {
+      const u = units[inst.unitId]; if (!u) continue;
+      unitIdCounts[u.id] = (unitIdCounts[u.id] || 0) + 1;
+      if (u.upstream) {
+        const uid = String(u.upstream.id);
+        armyUnitUpstream.add(uid);
+        armyUnitUpstreamCounts[uid] = (armyUnitUpstreamCounts[uid] || 0) + 1;
+      }
+    }
+    const minCounts = {}, maxCounts = {}, waivedTiers = new Set();
+    const unitReplaceTier = {};
+    for (const inst of army.units || []) {
+      for (const su of inst.upgrades || []) {
+        const card = upgrades[su.upgradeId];
+        const rt = card && (card.rules || {}).replaceTier;
+        if (rt != null) unitReplaceTier[inst.unitId] = Number(rt);
+      }
+    }
+    for (const [unitId, copies] of Object.entries(unitIdCounts)) {
+      const unit = units[unitId];
+      const memberships = (unit.factions || []).filter(m => m.id === army.armyId);
+      let rank = memberships.length ? memberships[0].rankId : null;
+      if (rank == null) continue;
+      if (unitReplaceTier[unitId] != null) rank = unitReplaceTier[unitId];
+      const tc = (unit.rules || {}).tierCounting || {};
+      let ignoreMin = tc.ignoreMinimum === true;
+      let ignoreMax = tc.ignoreMaximum === true;
+      for (const f of unit.factions || []) {
+        if (f.id === army.armyId) {
+          const ftc = f.tierCounting || {};
+          if (ftc.ignoreMinimum === true) ignoreMin = true;
+          if (ftc.ignoreMaximum === true) ignoreMax = true;
+        }
+      }
+      let exempt = 0;
+      const ex = tc.exempt || tc.ignoreMaximumWhenArmyIncludes;
+      if (ex) {
+        let whens = ex.whenArmyIncludes;
+        if (!Array.isArray(whens)) whens = [whens];
+        const per = ex.perSourceUnit || 1;
+        const src = whens.filter(w => armyUnitUpstream.has(String(w))).length;
+        if (src) exempt = Math.min(per * src, copies);
+      }
+      if (tc.waivesMinimum) for (const t of tc.waivesMinimum.tiers || []) waivedTiers.add(t);
+      if (!ignoreMin) minCounts[rank] = (minCounts[rank] || 0) + copies;
+      maxCounts[rank] = (maxCounts[rank] || 0) + copies - exempt;
+    }
+    const quotas = {};
+    for (const q of mode.rankQuotas || []) quotas[q.rankId] = q;
+    for (const [rankId, count] of Object.entries(maxCounts)) {
+      const q = quotas[rankId];
+      if (q && count > (q.max ?? 99)) issue("invalid", "rank_max", `军阶 ${rankId} 超过上限 ${q.max}`, null);
+    }
+    for (const [rankId, q] of Object.entries(quotas)) {
+      if (waivedTiers.has(rankId)) continue;
+      if ((minCounts[rankId] || 0) < (q.min ?? 0)) issue("invalid", "rank_min", `军阶 ${rankId} 未满最低要求 ${q.min}`, null);
+    }
+    for (const combo of mode.combined || []) {
+      let total = 0;
+      for (const t of combo.tiers || []) total += maxCounts[t] || 0;
+      if (total > combo.maximum) issue("invalid", "rank_combined", `军阶组合 ${combo.tiers} 合计超过上限 ${combo.maximum}`, null);
+    }
+
+    // command cards
+    const selectedUpgradeUpstream = new Set(sel.map(x => x.upstreamId));
+    for (const cid of army.commandIds || []) {
+      const cmd = (defs.commands || []).find(x => String(x.id) === String(cid));
+      if (!cmd) { issue("invalid", "command_missing", `命令卡引用不存在：${cid}`, null); continue; }
+      const name = (cmd.name && cmd.name.en) || cid;
+      const facs = cmd.factions || [];
+      if (facs.length && !facs.includes(army.armyId)) issue("invalid", "command_faction", `命令卡「${name}」不属于当前军队`, null);
+      if ((cmd.campaigns || []).length) issue("unknown", "command_campaign", `命令卡「${name}」为战役卡，标准模式资格待核验`, null);
+      for (const un of cmd.unlockedBy || []) {
+        const target = String(un.id), prop = un.propertyName;
+        if (prop === "units" && !armyUnitUpstream.has(target)) issue("invalid", "command_unlock", `命令卡「${name}」需要包含解锁单位（上游 ${target}）`, null);
+        else if (prop === "upgrades" && !selectedUpgradeUpstream.has(target)) issue("invalid", "command_unlock", `命令卡「${name}」需要包含解锁升级（上游 ${target}）`, null);
+      }
+    }
+    const hand = mode.commandHand;
+    if (hand && (army.commandIds || []).length) {
+      const pips = (army.commandIds || []).map(cid => {
+        const c = (defs.commands || []).find(x => String(x.id) === String(cid));
+        return c && c.pips != null ? c.pips : null;
+      }).filter(p => p != null);
+      for (const rule of hand) {
+        const n = pips.filter(p => p === rule.pips).length;
+        if (n < (rule.min || 0)) issue("invalid", "command_min", `${rule.pips} 点命令卡不足 ${rule.min} 张`, null);
+        if (n > (rule.max || 99)) issue("invalid", "command_max", `${rule.pips} 点命令卡超过 ${rule.max} 张`, null);
+      }
+    }
+
+    // mercenary pool (local)
+    const pool = (mode.pools || {}).mercenary;
+    if (pool) {
+      let bonus = 0;
+      for (const x of sel) {
+        const card = upgrades[x.cardId] || {};
+        if (((card.rules || {}).poolBonuses || []).includes("extraMercenary")) bonus += 1;
+      }
+      let merc = 0;
+      for (const inst of army.units || []) {
+        const unit = units[inst.unitId]; if (!unit) continue;
+        for (const f of unit.factions || []) {
+          if ((f.tierPools || []).includes("mercenary") && f.id === army.armyId) { merc += 1; break; }
+        }
+      }
+      const limit = (pool.max || 1) + bonus;
+      if (merc > limit) issue("invalid", "mercenary_pool", `雇佣兵数量 ${merc} 超过上限 ${limit}`, null);
+      if (bonus) issue("unknown", "mercenary_pool_semantics", "雇佣兵池额外名额叠加语义仍需核验", null);
+    }
+
+    // effects (local)
+    let effectivePoints = basePoints;
+    for (const x of sel) {
+      const card = upgrades[x.cardId] || {};
+      for (const m of (card.rules || {}).modifiedPointsWith || []) {
+        const prop = m.property, mid = String(m.id), mod = m.modifier || 0;
+        let applies = false;
+        if (prop === "options") {
+          if ((army.options || []).some(o => String(o) === mid) && armyUnitUpstream.has(String(m.in))) applies = true;
+        } else if (prop === "units") {
+          if (armyUnitUpstream.has(mid)) applies = true;
+        }
+        if (applies) effectivePoints += mod;
+      }
+    }
+    const chooseGroups = {};
+    for (const x of sel) {
+      const card = upgrades[x.cardId] || {};
+      const ck = (card.rules || {}).chooseOneKey;
+      if (ck) {
+        (chooseGroups[x.unitKey] ||= {})[ck] ||= new Set();
+        chooseGroups[x.unitKey][ck].add(x.upstreamId);
+      }
+    }
+    for (const [unitKey, groups] of Object.entries(chooseGroups)) {
+      for (const [ck, ids] of Object.entries(groups)) if (ids.size > 1) issue("invalid", "choose_one", `单位内互斥选择组「${ck}」只能选择其一`, unitKey);
+    }
+    for (const [unitId, copies] of Object.entries(unitIdCounts)) {
+      const unit = units[unitId];
+      for (const q of (unit.rules || {}).quantityLimitedBy || []) {
+        const srcId = String(q.unit), ratio = q.ratio || 1;
+        const srcCopies = armyUnitUpstreamCounts[srcId] || 0;
+        if (copies > ratio * srcCopies) issue("invalid", "quantity_limited", `「${(unit.name && unit.name.en) || unitId}」数量受母单位限制`, null);
+      }
+    }
+
+    if (effectivePoints > pointsLimit) issue("invalid", "points_limit", `有效费用 ${effectivePoints} 超过上限 ${pointsLimit}`, null);
+
+    const hasInvalid = issues.some(i => i.status === "invalid");
+    const hasUnknown = issues.some(i => i.status === "unknown");
+    issues.push({ status: "unknown", code: "coverage_note", message: "属性效果（addProperties/replaceProperties）已计算但尚未参与资格判断；费用修正、chooseOneKey、quantityLimitedBy、军阶豁免、军阶要求/替换军阶与互斥卡牌已执行。战斗部队规则未覆盖项仍标 unknown。", instanceId: null });
+    return { status: hasInvalid ? "invalid" : (hasUnknown ? "unknown" : "valid"), basePoints, effectivePoints, rankCounts: maxCounts, issues };
+  }
+
+  return { Dice, evaluate, validateArmy, slotKey, accessKeys, dedicatedSlotKeys, slotListFor, restrictionConditionOk, requiredPropertiesOk, normRp, buildNameIndex, unavailableSets };
+})();

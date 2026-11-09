@@ -1,0 +1,68 @@
+/* List builder — one shared card browser for unit cards (landscape) and upgrade cards (portrait). */
+.builder-shell{max-width:1320px;margin:0 auto;padding:16px 18px 90px}
+.builder-top{display:flex;align-items:flex-end;gap:20px;flex-wrap:wrap;padding:8px 2px 4px}
+.bf-field{display:flex;flex-direction:column;gap:4px}
+.bf-field>span{font-size:12px;color:var(--muted)}
+.bf-field select{min-width:140px;background:#0d1520;border:1px solid #344961;border-radius:6px;padding:6px 9px;color:var(--ink)}
+.points-badge{margin-left:auto;font-size:16px;font-weight:700;color:var(--ink);padding-bottom:4px}
+.info-btn{width:26px;height:26px;border-radius:50%;padding:0;font-weight:700;color:#7fd6ff;border-color:#3d6f92;background:#132838}
+.rank-bar{display:flex;gap:10px;justify-content:flex-end;padding:4px 2px 10px;border-bottom:1px solid var(--line)}
+.rank-chip{position:relative;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#16212f;border:1px solid #2b3b50;font-size:11px;color:var(--muted);cursor:pointer}
+.rank-chip:hover,.rank-chip.active{border-color:var(--accent);color:var(--ink)}
+.rank-chip .badge{position:absolute;top:-5px;left:-5px;min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:#c23b3b;color:#fff;font-size:10px;line-height:16px;text-align:center}
+.builder-body{display:grid;grid-template-columns:minmax(0,1fr) 460px;gap:18px;margin-top:8px}
+.army-list{display:flex;flex-direction:column}
+.unit-row{display:flex;align-items:center;gap:10px;padding:7px 6px;border-bottom:1px solid #202e40;cursor:pointer}
+.unit-row:hover{background:#142032}
+.unit-row.orphan{background:#2a1418;border-left:3px solid #c23b3b;border-bottom-color:#5a3030}
+.unit-row.orphan .name{color:#ffb5b5}
+.unit-row.selected{background:#173240;box-shadow:inset 3px 0 0 var(--accent)}
+.unit-row .portrait{width:44px;height:44px;border-radius:50%;object-fit:cover;background:#1a2738;border:1px solid #2b3b50;flex:none}
+.unit-row .rank-tag{flex:none;min-width:38px;padding:2px 4px;border-radius:5px;background:#1a2738;border:1px solid #2b3b50;font-size:10px;color:var(--muted);text-align:center}
+.unit-row .main{flex:1;min-width:0}
+.unit-row .name{font-size:14px;font-weight:600;color:var(--ink)}
+.unit-row .name small{color:var(--muted);font-weight:400}
+.unit-row .slots{display:flex;gap:5px;flex-wrap:wrap;margin-top:4px;align-items:center}
+.slot-chip{display:inline-flex;align-items:center;gap:3px;padding:1px 6px;border-radius:11px;background:#16212f;border:1px solid #2b3b50;font-size:10px;color:var(--muted);white-space:nowrap;cursor:pointer}
+.slot-chip:hover{border-color:var(--accent);color:var(--ink)}
+.slot-chip.active{border-color:var(--accent);color:var(--ink);background:#1d3a52}
+.slot-chip .slot-glyph{font-size:14px;color:var(--accent);min-width:0}
+.slot-chip.filled{background:#1b3a36;border-color:#2f6f63;color:#bff3e6;cursor:default}
+.slot-chip.locked{background:#1a1c24;border-color:#3a3f4b;color:#5d6675;cursor:not-allowed;opacity:.65}
+.slot-chip.filled .x{color:#ff9b9b;font-weight:700;cursor:pointer;margin-left:2px}
+.slot-chip.filled.invalid{background:#2a1418;border-color:#c23b3b;color:#ffb5b5}
+.unit-row .pts{width:56px;text-align:right;font-weight:700;font-size:14px}
+.unit-row .ops{display:flex;gap:5px;align-items:center;justify-content:flex-end;width:80px}
+.unit-row .ops button{padding:2px 7px;font-size:12px}
+.unit-row .ops .trash{padding:3px 7px;border-color:#5a3030;background:#2a1518;color:#ffb5b5}
+.card-browser{position:sticky;top:12px;align-self:start;background:#101a29;border:1px solid var(--line);border-radius:10px;padding:12px;max-height:calc(100vh - 40px);overflow:auto}
+.browser-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.browser-head h3{font-size:14px;color:var(--ink)}
+.browser-head button{padding:2px 8px}
+.card-grid{display:grid;gap:8px}
+.card-grid.units{grid-template-columns:repeat(2,minmax(0,1fr))}
+.card-grid.upgrades{grid-template-columns:repeat(3,minmax(0,1fr))}
+.card{border:1px solid #2b3b50;border-radius:7px;overflow:hidden;background:#0d1520;cursor:pointer;text-align:left;padding:0}
+.card:hover{border-color:var(--accent)}
+.card.card--upgrade.chosen{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent)}
+.card img{display:block;width:100%;object-fit:cover;background:#0a111a}
+.card-grid.units .card img{aspect-ratio:10/7}
+.card-grid.upgrades .card img{aspect-ratio:7/10}
+.card .meta{padding:4px 6px;font-size:10px;line-height:1.25}
+.card .card-placeholder{aspect-ratio:7/10;display:flex;align-items:center;justify-content:center;background:#16212f;color:#5d6675;font-size:11px;width:100%}
+.card .meta strong{display:block;font-weight:600;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card .meta span{color:var(--muted)}
+.card-grid.units .card .meta strong{white-space:normal}
+.issue{font-size:12px}
+@media(max-width:980px){.builder-body{grid-template-columns:1fr}.card-browser{position:static;max-height:none}}
+@media(max-width:640px){.unit-row .slots{display:none}.rank-tag{display:none}}
+
+.statusbar{min-height:20px;font-size:12px;color:var(--accent);padding:2px 2px 6px}
+.statusbar.error{color:#ff9898}
+.issue-count{font-size:12px;color:#ffb5b5;padding-bottom:4px}
+.card.taken{opacity:.4;cursor:not-allowed;border-color:#5a3030;filter:grayscale(.7)}
+.card.taken:hover{border-color:#5a3030}
+.unique-badge{display:inline-block;font-size:9px;color:#ffd183;border:1px solid #6a5325;border-radius:4px;padding:0 3px;margin-left:4px;vertical-align:middle}
+
+.slot-chip.extra{border-style:dashed;background:#3a2f18;border-color:#c9a24b;color:#ffe2a8}
+.slot-chip.extra:hover{border-color:#e8c36a;color:#ffedc4}

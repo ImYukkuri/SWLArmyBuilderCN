@@ -1,0 +1,11 @@
+node_modules/
+__pycache__/
+history/
+work/
+*.traineddata
+eng.traineddata
+dist/
+.pytest_cache/
+references/upstream/
+references/*.pdf
+_*.py

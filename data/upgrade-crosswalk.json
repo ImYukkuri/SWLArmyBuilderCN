@@ -1,0 +1,2525 @@
+{
+  "records": [
+    {
+      "localId": "21b-medical-droid",
+      "upstreamId": "64",
+      "status": "matched"
+    },
+    {
+      "localId": "aa5-heavy-laser",
+      "upstreamId": "197",
+      "status": "matched"
+    },
+    {
+      "localId": "aa5-quad",
+      "upstreamId": "206",
+      "status": "matched"
+    },
+    {
+      "localId": "aayla",
+      "upstreamId": "119",
+      "status": "matched"
+    },
+    {
+      "localId": "academy-trained",
+      "upstreamId": "20268",
+      "status": "matched"
+    },
+    {
+      "localId": "adaptive-combat-network",
+      "upstreamId": "22901",
+      "status": "matched"
+    },
+    {
+      "localId": "agile-climber",
+      "upstreamId": "22902",
+      "status": "matched"
+    },
+    {
+      "localId": "airspeeder-buzzer",
+      "upstreamId": "27",
+      "status": "matched"
+    },
+    {
+      "localId": "airspeeder-harpoon",
+      "upstreamId": "28",
+      "status": "matched"
+    },
+    {
+      "localId": "annul",
+      "upstreamId": "22903",
+      "status": "matched"
+    },
+    {
+      "localId": "arc-dc15",
+      "upstreamId": "21916",
+      "status": "matched"
+    },
+    {
+      "localId": "armament-din-djarin-rifle",
+      "upstreamId": "3650",
+      "status": "matched"
+    },
+    {
+      "localId": "armament-din-djarin-spear",
+      "upstreamId": "4413",
+      "status": "matched"
+    },
+    {
+      "localId": "armament-electrogauntlets",
+      "upstreamId": "155",
+      "status": "matched"
+    },
+    {
+      "localId": "armament-maul-darksaber",
+      "upstreamId": "2632",
+      "status": "matched"
+    },
+    {
+      "localId": "armament-saxon-jetpack-rocket",
+      "upstreamId": "2774",
+      "status": "matched"
+    },
+    {
+      "localId": "armament-saxon-rifle",
+      "upstreamId": "2773",
+      "status": "matched"
+    },
+    {
+      "localId": "asajj-heavy",
+      "upstreamId": "21911",
+      "status": "matched"
+    },
+    {
+      "localId": "at-st-mortar",
+      "upstreamId": "23",
+      "status": "matched"
+    },
+    {
+      "localId": "at-st-twin-light",
+      "upstreamId": "22",
+      "status": "matched"
+    },
+    {
+      "localId": "atrt-flame",
+      "upstreamId": "20",
+      "status": "matched"
+    },
+    {
+      "localId": "atrt-laser-cannon",
+      "upstreamId": "3",
+      "status": "matched"
+    },
+    {
+      "localId": "atrt-rotary",
+      "upstreamId": "4",
+      "status": "matched"
+    },
+    {
+      "localId": "axe-woves",
+      "upstreamId": "22512",
+      "status": "matched"
+    },
+    {
+      "localId": "b1-e5c",
+      "upstreamId": "105",
+      "status": "matched"
+    },
+    {
+      "localId": "b1-e60r",
+      "upstreamId": "106",
+      "status": "matched"
+    },
+    {
+      "localId": "b1-miniature",
+      "upstreamId": "94",
+      "status": "matched"
+    },
+    {
+      "localId": "b1-oom",
+      "upstreamId": "136",
+      "status": "matched"
+    },
+    {
+      "localId": "b1-radiation",
+      "upstreamId": "137",
+      "status": "matched"
+    },
+    {
+      "localId": "b1-security",
+      "upstreamId": "125",
+      "status": "matched"
+    },
+    {
+      "localId": "b1-sniper",
+      "upstreamId": "126",
+      "status": "matched"
+    },
+    {
+      "localId": "b1-squad",
+      "upstreamId": "16573",
+      "status": "matched"
+    },
+    {
+      "localId": "b2-acm",
+      "upstreamId": "141",
+      "status": "matched"
+    },
+    {
+      "localId": "b2-anti-infantry-missile",
+      "upstreamId": "23145",
+      "status": "matched"
+    },
+    {
+      "localId": "b2-anti-infantry-missile-flipside",
+      "upstreamId": "23145",
+      "status": "matched"
+    },
+    {
+      "localId": "b2-ha",
+      "upstreamId": "148",
+      "status": "matched"
+    },
+    {
+      "localId": "b2-ha-rocket",
+      "upstreamId": "23146",
+      "status": "matched"
+    },
+    {
+      "localId": "b2-miniature",
+      "upstreamId": "118",
+      "status": "matched"
+    },
+    {
+      "localId": "b2-rocket-mini",
+      "upstreamId": "23144",
+      "status": "matched"
+    },
+    {
+      "localId": "b2-squad",
+      "upstreamId": "16563",
+      "status": "matched"
+    },
+    {
+      "localId": "backworld-medic",
+      "upstreamId": "212",
+      "status": "matched"
+    },
+    {
+      "localId": "barc-ion",
+      "upstreamId": "112",
+      "status": "matched"
+    },
+    {
+      "localId": "barc-rps6",
+      "upstreamId": "113",
+      "status": "matched"
+    },
+    {
+      "localId": "barc-twinlaser",
+      "upstreamId": "100",
+      "status": "matched"
+    },
+    {
+      "localId": "baron-rudor",
+      "upstreamId": "205",
+      "status": "matched"
+    },
+    {
+      "localId": "battlemaster",
+      "upstreamId": "22659",
+      "status": "matched"
+    },
+    {
+      "localId": "battlemind",
+      "upstreamId": "22904",
+      "status": "matched"
+    },
+    {
+      "localId": "battleshield-1",
+      "upstreamId": "413",
+      "status": "matched"
+    },
+    {
+      "localId": "battleshield-2",
+      "upstreamId": "413",
+      "status": "matched"
+    },
+    {
+      "localId": "battletank-oom-droid",
+      "upstreamId": "154",
+      "status": "matched"
+    },
+    {
+      "localId": "beskad-duelist-clan",
+      "upstreamId": "22602",
+      "status": "matched"
+    },
+    {
+      "localId": "black-sun-crew",
+      "upstreamId": "21341",
+      "status": "matched"
+    },
+    {
+      "localId": "bo-katan-darksaber",
+      "upstreamId": "22612",
+      "status": "matched"
+    },
+    {
+      "localId": "bo-katan-kryze",
+      "upstreamId": "22513",
+      "status": "matched"
+    },
+    {
+      "localId": "bowcaster",
+      "upstreamId": "51",
+      "status": "matched"
+    },
+    {
+      "localId": "bx-gas",
+      "upstreamId": "174",
+      "status": "matched"
+    },
+    {
+      "localId": "bx-shield",
+      "upstreamId": "160",
+      "status": "matched"
+    },
+    {
+      "localId": "bx-sniper",
+      "upstreamId": "159",
+      "status": "matched"
+    },
+    {
+      "localId": "bx-vibro",
+      "upstreamId": "161",
+      "status": "matched"
+    },
+    {
+      "localId": "cassian-a280-pistol",
+      "upstreamId": "142",
+      "status": "matched"
+    },
+    {
+      "localId": "cassian-a280-sniper",
+      "upstreamId": "142",
+      "status": "matched"
+    },
+    {
+      "localId": "cassian-andor",
+      "upstreamId": "20800",
+      "status": "matched"
+    },
+    {
+      "localId": "cassian-andor-2",
+      "upstreamId": "20800",
+      "status": "matched"
+    },
+    {
+      "localId": "caught-in-a-web",
+      "upstreamId": "23148",
+      "status": "matched"
+    },
+    {
+      "localId": "champion-of-the-watch",
+      "upstreamId": "22599",
+      "status": "matched"
+    },
+    {
+      "localId": "chewbacca-heavy",
+      "upstreamId": "21913",
+      "status": "matched"
+    },
+    {
+      "localId": "children-of-the-watch",
+      "upstreamId": "22597",
+      "status": "matched"
+    },
+    {
+      "localId": "cis-aqua-miniature",
+      "upstreamId": "18179",
+      "status": "matched"
+    },
+    {
+      "localId": "cis-crab-laser",
+      "upstreamId": "16580",
+      "status": "matched"
+    },
+    {
+      "localId": "cis-crab-twin",
+      "upstreamId": "16578",
+      "status": "matched"
+    },
+    {
+      "localId": "clan-kryze",
+      "upstreamId": "22595",
+      "status": "matched"
+    },
+    {
+      "localId": "clan-saxon",
+      "upstreamId": "22598",
+      "status": "matched"
+    },
+    {
+      "localId": "clan-wren",
+      "upstreamId": "22596",
+      "status": "matched"
+    },
+    {
+      "localId": "clone-boil",
+      "upstreamId": "16554",
+      "status": "matched"
+    },
+    {
+      "localId": "clone-captain",
+      "upstreamId": "16556",
+      "status": "matched"
+    },
+    {
+      "localId": "clone-commander",
+      "upstreamId": "16555",
+      "status": "matched"
+    },
+    {
+      "localId": "clone-comms",
+      "upstreamId": "194",
+      "status": "matched"
+    },
+    {
+      "localId": "clone-dp23",
+      "upstreamId": "16572",
+      "status": "matched"
+    },
+    {
+      "localId": "clone-engineer",
+      "upstreamId": "195",
+      "status": "matched"
+    },
+    {
+      "localId": "clone-fox",
+      "upstreamId": "200",
+      "status": "matched"
+    },
+    {
+      "localId": "clone-marksmen-miniature",
+      "upstreamId": "20770",
+      "status": "matched"
+    },
+    {
+      "localId": "clone-marksmen-squad",
+      "upstreamId": "20718",
+      "status": "matched"
+    },
+    {
+      "localId": "clone-medic",
+      "upstreamId": "19065",
+      "status": "matched"
+    },
+    {
+      "localId": "clone-miniature",
+      "upstreamId": "16559",
+      "status": "matched"
+    },
+    {
+      "localId": "clone-mortar",
+      "upstreamId": "16568",
+      "status": "matched"
+    },
+    {
+      "localId": "clone-rex",
+      "upstreamId": "20802",
+      "status": "matched"
+    },
+    {
+      "localId": "clone-rocket",
+      "upstreamId": "16560",
+      "status": "matched"
+    },
+    {
+      "localId": "clone-shock-pilot",
+      "upstreamId": "202",
+      "status": "matched"
+    },
+    {
+      "localId": "clone-specialist",
+      "upstreamId": "16567",
+      "status": "matched"
+    },
+    {
+      "localId": "clone-squad",
+      "upstreamId": "16571",
+      "status": "matched"
+    },
+    {
+      "localId": "clone-veteran-pilot",
+      "upstreamId": "146",
+      "status": "matched"
+    },
+    {
+      "localId": "clone-z6",
+      "upstreamId": "16557",
+      "status": "matched"
+    },
+    {
+      "localId": "cody-squad",
+      "upstreamId": "21910",
+      "status": "matched"
+    },
+    {
+      "localId": "combat-armor",
+      "upstreamId": "20272",
+      "status": "matched"
+    },
+    {
+      "localId": "combat-armor-rebel",
+      "upstreamId": "20282",
+      "status": "matched"
+    },
+    {
+      "localId": "command-and-control-uplink",
+      "upstreamId": "20274",
+      "status": "matched"
+    },
+    {
+      "localId": "command-improvised",
+      "upstreamId": "44",
+      "status": "matched"
+    },
+    {
+      "localId": "command-inspiring",
+      "upstreamId": "188",
+      "status": "matched"
+    },
+    {
+      "localId": "command-lead",
+      "upstreamId": "2697",
+      "status": "matched"
+    },
+    {
+      "localId": "command-strict",
+      "upstreamId": "62",
+      "status": "matched"
+    },
+    {
+      "localId": "command-trusted-agent",
+      "upstreamId": "19827",
+      "status": "matched"
+    },
+    {
+      "localId": "command-underworld",
+      "upstreamId": "2429",
+      "status": "matched"
+    },
+    {
+      "localId": "command-vigilance",
+      "upstreamId": "191",
+      "status": "matched"
+    },
+    {
+      "localId": "commandos-saboteur",
+      "upstreamId": "48",
+      "status": "matched"
+    },
+    {
+      "localId": "commandos-sniper",
+      "upstreamId": "47",
+      "status": "matched"
+    },
+    {
+      "localId": "commandos-sniper-a",
+      "upstreamId": "15114",
+      "status": "matched"
+    },
+    {
+      "localId": "commandos-sniper-b",
+      "upstreamId": "15012",
+      "status": "matched"
+    },
+    {
+      "localId": "comms-control-array",
+      "upstreamId": "169",
+      "status": "matched"
+    },
+    {
+      "localId": "comms-emergency",
+      "upstreamId": "2713",
+      "status": "matched"
+    },
+    {
+      "localId": "comms-hacked",
+      "upstreamId": "918",
+      "status": "matched"
+    },
+    {
+      "localId": "comms-hq",
+      "upstreamId": "41",
+      "status": "matched"
+    },
+    {
+      "localId": "comms-jammer",
+      "upstreamId": "1",
+      "status": "matched"
+    },
+    {
+      "localId": "comms-linked-targeting",
+      "upstreamId": "99",
+      "status": "matched"
+    },
+    {
+      "localId": "comms-onboard",
+      "upstreamId": "201",
+      "status": "matched"
+    },
+    {
+      "localId": "comms-spotter-uplink",
+      "upstreamId": "19834",
+      "status": "matched"
+    },
+    {
+      "localId": "cr-24-flame",
+      "upstreamId": "115",
+      "status": "matched"
+    },
+    {
+      "localId": "crew-door-gunner",
+      "upstreamId": "19835",
+      "status": "matched"
+    },
+    {
+      "localId": "crosshair",
+      "upstreamId": "15989",
+      "status": "matched"
+    },
+    {
+      "localId": "dark-trooper-miniature",
+      "upstreamId": "6321",
+      "status": "matched"
+    },
+    {
+      "localId": "dc-15x-sniper",
+      "upstreamId": "158",
+      "status": "matched"
+    },
+    {
+      "localId": "deadeye",
+      "upstreamId": "22660",
+      "status": "matched"
+    },
+    {
+      "localId": "defend-in-depth",
+      "upstreamId": "20270",
+      "status": "matched"
+    },
+    {
+      "localId": "del-meeko",
+      "upstreamId": "170",
+      "status": "matched"
+    },
+    {
+      "localId": "din-djarin",
+      "upstreamId": "22594",
+      "status": "matched"
+    },
+    {
+      "localId": "din-djarin-darksaber",
+      "upstreamId": "22611",
+      "status": "matched"
+    },
+    {
+      "localId": "dlt-19d",
+      "upstreamId": "84",
+      "status": "matched"
+    },
+    {
+      "localId": "dlt19x-scout",
+      "upstreamId": "52",
+      "status": "matched"
+    },
+    {
+      "localId": "double-bladed-lightsaber",
+      "upstreamId": "20434",
+      "status": "matched"
+    },
+    {
+      "localId": "dt-f16",
+      "upstreamId": "77",
+      "status": "matched"
+    },
+    {
+      "localId": "dual-armaments",
+      "upstreamId": "22653",
+      "status": "matched"
+    },
+    {
+      "localId": "dw-3-grenade-launcher",
+      "upstreamId": "24",
+      "status": "matched"
+    },
+    {
+      "localId": "e-11d-focused-fire",
+      "upstreamId": "85",
+      "status": "matched"
+    },
+    {
+      "localId": "e-11d-grenade-launcher",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "e4-medical",
+      "upstreamId": "189",
+      "status": "matched"
+    },
+    {
+      "localId": "echo-arc",
+      "upstreamId": "16569",
+      "status": "matched"
+    },
+    {
+      "localId": "echo-bb",
+      "upstreamId": "19063",
+      "status": "matched"
+    },
+    {
+      "localId": "ee-3-carbine",
+      "upstreamId": "22655",
+      "status": "matched"
+    },
+    {
+      "localId": "electrostaff",
+      "upstreamId": "20461",
+      "status": "matched"
+    },
+    {
+      "localId": "electrostaff-pirate",
+      "upstreamId": "21641",
+      "status": "matched"
+    },
+    {
+      "localId": "enhanced-combat-subroutines",
+      "upstreamId": "20457",
+      "status": "matched"
+    },
+    {
+      "localId": "ewok-medicine",
+      "upstreamId": "9625",
+      "status": "matched"
+    },
+    {
+      "localId": "ewok-secret",
+      "upstreamId": "9624",
+      "status": "matched"
+    },
+    {
+      "localId": "ewoks-axe",
+      "upstreamId": "9398",
+      "status": "matched"
+    },
+    {
+      "localId": "ewoks-call-to-arms",
+      "upstreamId": "9399",
+      "status": "matched"
+    },
+    {
+      "localId": "ewoks-curiosity",
+      "upstreamId": "9400",
+      "status": "matched"
+    },
+    {
+      "localId": "ewoks-dwellers",
+      "upstreamId": "9317",
+      "status": "matched"
+    },
+    {
+      "localId": "ewoks-onward",
+      "upstreamId": "9626",
+      "status": "matched"
+    },
+    {
+      "localId": "ewoks-skirmish-squad",
+      "upstreamId": "16564",
+      "status": "matched"
+    },
+    {
+      "localId": "ewoks-slinger-squad",
+      "upstreamId": "16575",
+      "status": "matched"
+    },
+    {
+      "localId": "ewoks-trapper",
+      "upstreamId": "9402",
+      "status": "matched"
+    },
+    {
+      "localId": "expanded-databanks",
+      "upstreamId": "20458",
+      "status": "matched"
+    },
+    {
+      "localId": "fifth-brother",
+      "upstreamId": "21914",
+      "status": "matched"
+    },
+    {
+      "localId": "fire-control",
+      "upstreamId": "22906",
+      "status": "matched"
+    },
+    {
+      "localId": "first-sergeant-arbmab",
+      "upstreamId": "87",
+      "status": "matched"
+    },
+    {
+      "localId": "fives",
+      "upstreamId": "16552",
+      "status": "matched"
+    },
+    {
+      "localId": "flame-projector",
+      "upstreamId": "22607",
+      "status": "matched"
+    },
+    {
+      "localId": "fleet-barrage",
+      "upstreamId": "39",
+      "status": "matched"
+    },
+    {
+      "localId": "fleet-scatter",
+      "upstreamId": "31",
+      "status": "matched"
+    },
+    {
+      "localId": "fleet-squad",
+      "upstreamId": "16558",
+      "status": "matched"
+    },
+    {
+      "localId": "fleet-trooper",
+      "upstreamId": "35",
+      "status": "matched"
+    },
+    {
+      "localId": "force-absorb",
+      "upstreamId": "22909",
+      "status": "matched"
+    },
+    {
+      "localId": "force-adept",
+      "upstreamId": "20438",
+      "status": "matched"
+    },
+    {
+      "localId": "force-agility",
+      "upstreamId": "22910",
+      "status": "matched"
+    },
+    {
+      "localId": "force-anger",
+      "upstreamId": "45",
+      "status": "matched"
+    },
+    {
+      "localId": "force-barrier",
+      "upstreamId": "184",
+      "status": "matched"
+    },
+    {
+      "localId": "force-burst",
+      "upstreamId": "626",
+      "status": "matched"
+    },
+    {
+      "localId": "force-choke",
+      "upstreamId": "8",
+      "status": "matched"
+    },
+    {
+      "localId": "force-clairvoyance",
+      "upstreamId": "19833",
+      "status": "matched"
+    },
+    {
+      "localId": "force-despair",
+      "upstreamId": "22905",
+      "status": "matched"
+    },
+    {
+      "localId": "force-drain",
+      "upstreamId": "22911",
+      "status": "matched"
+    },
+    {
+      "localId": "force-enhanced-defense",
+      "upstreamId": "22912",
+      "status": "matched"
+    },
+    {
+      "localId": "force-fear",
+      "upstreamId": "111",
+      "status": "matched"
+    },
+    {
+      "localId": "force-guidance",
+      "upstreamId": "102",
+      "status": "matched"
+    },
+    {
+      "localId": "force-hope",
+      "upstreamId": "107",
+      "status": "matched"
+    },
+    {
+      "localId": "force-mind",
+      "upstreamId": "32",
+      "status": "matched"
+    },
+    {
+      "localId": "force-push",
+      "upstreamId": "9",
+      "status": "matched"
+    },
+    {
+      "localId": "force-reflexes",
+      "upstreamId": "10",
+      "status": "matched"
+    },
+    {
+      "localId": "force-saber",
+      "upstreamId": "13",
+      "status": "matched"
+    },
+    {
+      "localId": "force-terror",
+      "upstreamId": "19829",
+      "status": "matched"
+    },
+    {
+      "localId": "force-tranquility",
+      "upstreamId": "19831",
+      "status": "matched"
+    },
+    {
+      "localId": "frontline-commander",
+      "upstreamId": "20278",
+      "status": "matched"
+    },
+    {
+      "localId": "full-beskar-armor",
+      "upstreamId": "22662",
+      "status": "matched"
+    },
+    {
+      "localId": "fx-9-medical",
+      "upstreamId": "66",
+      "status": "matched"
+    },
+    {
+      "localId": "galaar-15-carbines",
+      "upstreamId": "22418",
+      "status": "matched"
+    },
+    {
+      "localId": "galaar-15-leader",
+      "upstreamId": "22657",
+      "status": "matched"
+    },
+    {
+      "localId": "galaar-90-sniper",
+      "upstreamId": "22419",
+      "status": "matched"
+    },
+    {
+      "localId": "galaar-90-sniper-leader",
+      "upstreamId": "22654",
+      "status": "matched"
+    },
+    {
+      "localId": "gangster-boss",
+      "upstreamId": "21339",
+      "status": "matched"
+    },
+    {
+      "localId": "gar-arf-miniatures",
+      "upstreamId": "18476",
+      "status": "matched"
+    },
+    {
+      "localId": "gar-arf-rps",
+      "upstreamId": "18477",
+      "status": "matched"
+    },
+    {
+      "localId": "gar-jedi-guardian",
+      "upstreamId": "18478",
+      "status": "matched"
+    },
+    {
+      "localId": "gar-saxon",
+      "upstreamId": "22613",
+      "status": "matched"
+    },
+    {
+      "localId": "gear-ascension",
+      "upstreamId": "173",
+      "status": "matched"
+    },
+    {
+      "localId": "gear-binoculars",
+      "upstreamId": "101",
+      "status": "matched"
+    },
+    {
+      "localId": "gear-datapad",
+      "upstreamId": "58",
+      "status": "matched"
+    },
+    {
+      "localId": "gear-din-jetpack",
+      "upstreamId": "19062",
+      "status": "matched"
+    },
+    {
+      "localId": "gear-emergency",
+      "upstreamId": "43",
+      "status": "matched"
+    },
+    {
+      "localId": "gear-environment",
+      "upstreamId": "37",
+      "status": "matched"
+    },
+    {
+      "localId": "gear-extra-supplies",
+      "upstreamId": "19832",
+      "status": "matched"
+    },
+    {
+      "localId": "gear-grappling",
+      "upstreamId": "18",
+      "status": "matched"
+    },
+    {
+      "localId": "gear-portable",
+      "upstreamId": "180",
+      "status": "matched"
+    },
+    {
+      "localId": "gear-scopes",
+      "upstreamId": "15",
+      "status": "matched"
+    },
+    {
+      "localId": "gear-supplies",
+      "upstreamId": "2609",
+      "status": "matched"
+    },
+    {
+      "localId": "general-of-the-republic",
+      "upstreamId": "20428",
+      "status": "matched"
+    },
+    {
+      "localId": "general-weiss",
+      "upstreamId": "25",
+      "status": "matched"
+    },
+    {
+      "localId": "generator-barrage",
+      "upstreamId": "40",
+      "status": "matched"
+    },
+    {
+      "localId": "generator-overcharged",
+      "upstreamId": "42",
+      "status": "matched"
+    },
+    {
+      "localId": "geonosian-miniature",
+      "upstreamId": "11864",
+      "status": "matched"
+    },
+    {
+      "localId": "geonosian-pike-1",
+      "upstreamId": "11865",
+      "status": "matched"
+    },
+    {
+      "localId": "geonosian-pike-2",
+      "upstreamId": "11865",
+      "status": "matched"
+    },
+    {
+      "localId": "geonosian-sonic",
+      "upstreamId": "11866",
+      "status": "matched"
+    },
+    {
+      "localId": "geonosian-squad",
+      "upstreamId": "16561",
+      "status": "matched"
+    },
+    {
+      "localId": "gideon-darksaber",
+      "upstreamId": "6132",
+      "status": "matched"
+    },
+    {
+      "localId": "gideon-hask",
+      "upstreamId": "171",
+      "status": "matched"
+    },
+    {
+      "localId": "gnasp-bomber",
+      "upstreamId": "932",
+      "status": "matched"
+    },
+    {
+      "localId": "gnasp-gunner",
+      "upstreamId": "919",
+      "status": "matched"
+    },
+    {
+      "localId": "go-for-broke",
+      "upstreamId": "22913",
+      "status": "matched"
+    },
+    {
+      "localId": "governor-pryce",
+      "upstreamId": "199",
+      "status": "matched"
+    },
+    {
+      "localId": "grenade-concussion",
+      "upstreamId": "6",
+      "status": "matched"
+    },
+    {
+      "localId": "grenade-emp",
+      "upstreamId": "162",
+      "status": "matched"
+    },
+    {
+      "localId": "grenade-fragmentation",
+      "upstreamId": "57",
+      "status": "matched"
+    },
+    {
+      "localId": "grenade-impact",
+      "upstreamId": "30",
+      "status": "matched"
+    },
+    {
+      "localId": "grenade-smoke",
+      "upstreamId": "103",
+      "status": "matched"
+    },
+    {
+      "localId": "grenade-sonic",
+      "upstreamId": "2610",
+      "status": "matched"
+    },
+    {
+      "localId": "grievous-heavy",
+      "upstreamId": "21912",
+      "status": "matched"
+    },
+    {
+      "localId": "guild-member",
+      "upstreamId": "22661",
+      "status": "matched"
+    },
+    {
+      "localId": "hatred",
+      "upstreamId": "22914",
+      "status": "matched"
+    },
+    {
+      "localId": "heavy-arm-cannon",
+      "upstreamId": "20460",
+      "status": "matched"
+    },
+    {
+      "localId": "heavy-blacksun-enforcer",
+      "upstreamId": "2565",
+      "status": "matched"
+    },
+    {
+      "localId": "heavy-blaster-pistol",
+      "upstreamId": "20275",
+      "status": "matched"
+    },
+    {
+      "localId": "heavy-blaster-pistol-rebel",
+      "upstreamId": "20284",
+      "status": "matched"
+    },
+    {
+      "localId": "heavy-commando-miniature",
+      "upstreamId": "2716",
+      "status": "matched"
+    },
+    {
+      "localId": "heavy-electro-whip",
+      "upstreamId": "2426",
+      "status": "matched"
+    },
+    {
+      "localId": "heavy-mag-det",
+      "upstreamId": "2568",
+      "status": "matched"
+    },
+    {
+      "localId": "heavy-pyke-p13",
+      "upstreamId": "2425",
+      "status": "matched"
+    },
+    {
+      "localId": "heavy-rook-kast",
+      "upstreamId": "2718",
+      "status": "matched"
+    },
+    {
+      "localId": "helping-hand",
+      "upstreamId": "22915",
+      "status": "matched"
+    },
+    {
+      "localId": "high-speed-tracking",
+      "upstreamId": "22916",
+      "status": "matched"
+    },
+    {
+      "localId": "hit-the-dirt",
+      "upstreamId": "22917",
+      "status": "matched"
+    },
+    {
+      "localId": "hound-grizzer",
+      "upstreamId": "203",
+      "status": "matched"
+    },
+    {
+      "localId": "hunter",
+      "upstreamId": "15011",
+      "status": "matched"
+    },
+    {
+      "localId": "ig100-magnaguard-pilot",
+      "upstreamId": "21489",
+      "status": "matched"
+    },
+    {
+      "localId": "imperial-comms",
+      "upstreamId": "67",
+      "status": "matched"
+    },
+    {
+      "localId": "imperial-hammers",
+      "upstreamId": "83",
+      "status": "matched"
+    },
+    {
+      "localId": "imperial-officer",
+      "upstreamId": "50",
+      "status": "matched"
+    },
+    {
+      "localId": "imperial-probe-droid",
+      "upstreamId": "21906",
+      "status": "matched"
+    },
+    {
+      "localId": "infantry-support",
+      "upstreamId": "22918",
+      "status": "matched"
+    },
+    {
+      "localId": "inquisitorus-training",
+      "upstreamId": "11867",
+      "status": "matched"
+    },
+    {
+      "localId": "isp-327",
+      "upstreamId": "960",
+      "status": "matched"
+    },
+    {
+      "localId": "isp-rocket",
+      "upstreamId": "965",
+      "status": "matched"
+    },
+    {
+      "localId": "isp-twin",
+      "upstreamId": "963",
+      "status": "matched"
+    },
+    {
+      "localId": "isp-twin-blaster",
+      "upstreamId": "964",
+      "status": "matched"
+    },
+    {
+      "localId": "jedi-consular",
+      "upstreamId": "20429",
+      "status": "matched"
+    },
+    {
+      "localId": "jedi-guardian",
+      "upstreamId": "20431",
+      "status": "matched"
+    },
+    {
+      "localId": "jedi-negotiator",
+      "upstreamId": "20430",
+      "status": "matched"
+    },
+    {
+      "localId": "jyn-erso",
+      "upstreamId": "21907",
+      "status": "matched"
+    },
+    {
+      "localId": "k2s0-blaster",
+      "upstreamId": "166",
+      "status": "matched"
+    },
+    {
+      "localId": "kallus",
+      "upstreamId": "20801",
+      "status": "matched"
+    },
+    {
+      "localId": "katarn-armor",
+      "upstreamId": "15012",
+      "status": "matched"
+    },
+    {
+      "localId": "ki-adi-mundi-leader",
+      "upstreamId": "22963",
+      "status": "matched"
+    },
+    {
+      "localId": "kraken",
+      "upstreamId": "20803",
+      "status": "matched"
+    },
+    {
+      "localId": "landspeeder-ion",
+      "upstreamId": "92",
+      "status": "matched"
+    },
+    {
+      "localId": "landspeeder-medium",
+      "upstreamId": "91",
+      "status": "matched"
+    },
+    {
+      "localId": "lightsaber",
+      "upstreamId": "20432",
+      "status": "matched"
+    },
+    {
+      "localId": "limiter-override",
+      "upstreamId": "20454",
+      "status": "matched"
+    },
+    {
+      "localId": "logistical-prowess",
+      "upstreamId": "21594",
+      "status": "matched"
+    },
+    {
+      "localId": "lok-duk",
+      "upstreamId": "149",
+      "status": "matched"
+    },
+    {
+      "localId": "long-rifle-pirate",
+      "upstreamId": "21644",
+      "status": "matched"
+    },
+    {
+      "localId": "longgun",
+      "upstreamId": "618",
+      "status": "matched"
+    },
+    {
+      "localId": "luke-skywalker",
+      "upstreamId": "21908",
+      "status": "matched"
+    },
+    {
+      "localId": "lying-in-wait",
+      "upstreamId": "22919",
+      "status": "matched"
+    },
+    {
+      "localId": "mace-windu-leader",
+      "upstreamId": "22965",
+      "status": "matched"
+    },
+    {
+      "localId": "magna-miniature",
+      "upstreamId": "883",
+      "status": "matched"
+    },
+    {
+      "localId": "magna-rps",
+      "upstreamId": "884",
+      "status": "matched"
+    },
+    {
+      "localId": "magna-whip",
+      "upstreamId": "885",
+      "status": "matched"
+    },
+    {
+      "localId": "mandalorian-initiate-squad",
+      "upstreamId": "22417",
+      "status": "matched"
+    },
+    {
+      "localId": "mandalorian-rockets-clan",
+      "upstreamId": "22605",
+      "status": "matched"
+    },
+    {
+      "localId": "mandalorian-shields-clan",
+      "upstreamId": "22603",
+      "status": "matched"
+    },
+    {
+      "localId": "master-duelist",
+      "upstreamId": "20435",
+      "status": "matched"
+    },
+    {
+      "localId": "mertalizer",
+      "upstreamId": "6320",
+      "status": "matched"
+    },
+    {
+      "localId": "micro-grenade-launcher",
+      "upstreamId": "22421",
+      "status": "matched"
+    },
+    {
+      "localId": "mobility-upgrade",
+      "upstreamId": "20459",
+      "status": "matched"
+    },
+    {
+      "localId": "obiwan-heavy",
+      "upstreamId": "21909",
+      "status": "matched"
+    },
+    {
+      "localId": "optimized-task-flow",
+      "upstreamId": "20455",
+      "status": "matched"
+    },
+    {
+      "localId": "ordnance-ap",
+      "upstreamId": "147",
+      "status": "matched"
+    },
+    {
+      "localId": "ordnance-bunker",
+      "upstreamId": "152",
+      "status": "matched"
+    },
+    {
+      "localId": "ordnance-energy",
+      "upstreamId": "153",
+      "status": "matched"
+    },
+    {
+      "localId": "outer-rim-jockey",
+      "upstreamId": "82",
+      "status": "matched"
+    },
+    {
+      "localId": "overcharged-blaster-packs",
+      "upstreamId": "22920",
+      "status": "matched"
+    },
+    {
+      "localId": "overclock",
+      "upstreamId": "20452",
+      "status": "matched"
+    },
+    {
+      "localId": "paz-vizzla",
+      "upstreamId": "22510",
+      "status": "matched"
+    },
+    {
+      "localId": "peacekeeping-mission",
+      "upstreamId": "20436",
+      "status": "matched"
+    },
+    {
+      "localId": "personal-combat-shield",
+      "upstreamId": "22604",
+      "status": "matched"
+    },
+    {
+      "localId": "personnel-blacksun-miniature",
+      "upstreamId": "2566",
+      "status": "matched"
+    },
+    {
+      "localId": "personnel-blacksun-vigo",
+      "upstreamId": "2567",
+      "status": "matched"
+    },
+    {
+      "localId": "personnel-pyke-capo",
+      "upstreamId": "2428",
+      "status": "matched"
+    },
+    {
+      "localId": "personnel-pyke-miniature",
+      "upstreamId": "2427",
+      "status": "matched"
+    },
+    {
+      "localId": "pilot-frenzied",
+      "upstreamId": "2799",
+      "status": "matched"
+    },
+    {
+      "localId": "pilot-raid-leader",
+      "upstreamId": "2800",
+      "status": "matched"
+    },
+    {
+      "localId": "pirate-captain",
+      "upstreamId": "21342",
+      "status": "matched"
+    },
+    {
+      "localId": "pk-worker",
+      "upstreamId": "190",
+      "status": "matched"
+    },
+    {
+      "localId": "platoon-commander",
+      "upstreamId": "20271",
+      "status": "matched"
+    },
+    {
+      "localId": "plo-koon",
+      "upstreamId": "150",
+      "status": "matched"
+    },
+    {
+      "localId": "plo-koon-leader",
+      "upstreamId": "22964",
+      "status": "matched"
+    },
+    {
+      "localId": "programmed-loyalty",
+      "upstreamId": "6322",
+      "status": "matched"
+    },
+    {
+      "localId": "programming-attack",
+      "upstreamId": "947",
+      "status": "matched"
+    },
+    {
+      "localId": "programming-bounty",
+      "upstreamId": "4441",
+      "status": "matched"
+    },
+    {
+      "localId": "programming-defense",
+      "upstreamId": "961",
+      "status": "matched"
+    },
+    {
+      "localId": "programming-engagement",
+      "upstreamId": "962",
+      "status": "matched"
+    },
+    {
+      "localId": "programming-nanny",
+      "upstreamId": "3648",
+      "status": "matched"
+    },
+    {
+      "localId": "proven-tactician",
+      "upstreamId": "20280",
+      "status": "matched"
+    },
+    {
+      "localId": "pyke-syndicate-crew",
+      "upstreamId": "21338",
+      "status": "matched"
+    },
+    {
+      "localId": "pyke-syndicate-squad",
+      "upstreamId": "21905",
+      "status": "matched"
+    },
+    {
+      "localId": "r4-astromech",
+      "upstreamId": "68",
+      "status": "matched"
+    },
+    {
+      "localId": "range-trooper-dlt20a",
+      "upstreamId": "15010",
+      "status": "matched"
+    },
+    {
+      "localId": "range-trooper-miniature",
+      "upstreamId": "15014",
+      "status": "matched"
+    },
+    {
+      "localId": "range-trooper-t21a",
+      "upstreamId": "15015",
+      "status": "matched"
+    },
+    {
+      "localId": "rebel-astromech",
+      "upstreamId": "63",
+      "status": "matched"
+    },
+    {
+      "localId": "rebel-captain",
+      "upstreamId": "132",
+      "status": "matched"
+    },
+    {
+      "localId": "rebel-cm093",
+      "upstreamId": "98",
+      "status": "matched"
+    },
+    {
+      "localId": "rebel-comms",
+      "upstreamId": "55",
+      "status": "matched"
+    },
+    {
+      "localId": "rebel-dlt-20",
+      "upstreamId": "123",
+      "status": "matched"
+    },
+    {
+      "localId": "rebel-hotshot-pilot",
+      "upstreamId": "207",
+      "status": "matched"
+    },
+    {
+      "localId": "rebel-mpl57",
+      "upstreamId": "11",
+      "status": "matched"
+    },
+    {
+      "localId": "rebel-officer",
+      "upstreamId": "49",
+      "status": "matched"
+    },
+    {
+      "localId": "rebel-specialist",
+      "upstreamId": "133",
+      "status": "matched"
+    },
+    {
+      "localId": "rebel-squad",
+      "upstreamId": "16562",
+      "status": "matched"
+    },
+    {
+      "localId": "rebel-sx21-trooper",
+      "upstreamId": "124",
+      "status": "matched"
+    },
+    {
+      "localId": "rebel-trooper-miniature",
+      "upstreamId": "12",
+      "status": "matched"
+    },
+    {
+      "localId": "rebel-veteran",
+      "upstreamId": "76",
+      "status": "matched"
+    },
+    {
+      "localId": "rebel-z6",
+      "upstreamId": "16",
+      "status": "matched"
+    },
+    {
+      "localId": "reluctant-hero",
+      "upstreamId": "20281",
+      "status": "matched"
+    },
+    {
+      "localId": "repeating-blaster",
+      "upstreamId": "20283",
+      "status": "matched"
+    },
+    {
+      "localId": "riot-squad-kx",
+      "upstreamId": "16579",
+      "status": "matched"
+    },
+    {
+      "localId": "riot-squad-marksman",
+      "upstreamId": "16577",
+      "status": "matched"
+    },
+    {
+      "localId": "rook-kast-clan",
+      "upstreamId": "22593",
+      "status": "matched"
+    },
+    {
+      "localId": "rt-97c-blaster",
+      "upstreamId": "116",
+      "status": "matched"
+    },
+    {
+      "localId": "ryder-azadi",
+      "upstreamId": "90",
+      "status": "matched"
+    },
+    {
+      "localId": "saber-beam",
+      "upstreamId": "151",
+      "status": "matched"
+    },
+    {
+      "localId": "saber-beam-turret",
+      "upstreamId": "145",
+      "status": "matched"
+    },
+    {
+      "localId": "sabine-darksaber",
+      "upstreamId": "71",
+      "status": "matched"
+    },
+    {
+      "localId": "sabine-wren",
+      "upstreamId": "22609",
+      "status": "matched"
+    },
+    {
+      "localId": "saxon-darksaber",
+      "upstreamId": "22610",
+      "status": "matched"
+    },
+    {
+      "localId": "scout-saboteur",
+      "upstreamId": "53",
+      "status": "matched"
+    },
+    {
+      "localId": "security-detail",
+      "upstreamId": "21595",
+      "status": "matched"
+    },
+    {
+      "localId": "seek-and-destroy",
+      "upstreamId": "20450",
+      "status": "matched"
+    },
+    {
+      "localId": "seeker-droid",
+      "upstreamId": "20273",
+      "status": "matched"
+    },
+    {
+      "localId": "seventh-sister",
+      "upstreamId": "21915",
+      "status": "matched"
+    },
+    {
+      "localId": "shaak-ti",
+      "upstreamId": "21727",
+      "status": "matched"
+    },
+    {
+      "localId": "shore-squad",
+      "upstreamId": "16570",
+      "status": "matched"
+    },
+    {
+      "localId": "shore-t21b",
+      "upstreamId": "114",
+      "status": "matched"
+    },
+    {
+      "localId": "shore-trooper",
+      "upstreamId": "95",
+      "status": "matched"
+    },
+    {
+      "localId": "shriv",
+      "upstreamId": "198",
+      "status": "matched"
+    },
+    {
+      "localId": "shukur-05-repeater",
+      "upstreamId": "22420",
+      "status": "matched"
+    },
+    {
+      "localId": "sleeper-astromech",
+      "upstreamId": "16581",
+      "status": "matched"
+    },
+    {
+      "localId": "sleeper-marksman",
+      "upstreamId": "16576",
+      "status": "matched"
+    },
+    {
+      "localId": "sliced-comms",
+      "upstreamId": "20451",
+      "status": "matched"
+    },
+    {
+      "localId": "sm-9-frag",
+      "upstreamId": "6319",
+      "status": "matched"
+    },
+    {
+      "localId": "snow-flame",
+      "upstreamId": "36",
+      "status": "matched"
+    },
+    {
+      "localId": "snow-ion",
+      "upstreamId": "21",
+      "status": "matched"
+    },
+    {
+      "localId": "snow-squad",
+      "upstreamId": "16565",
+      "status": "matched"
+    },
+    {
+      "localId": "snowtrooper",
+      "upstreamId": "34",
+      "status": "matched"
+    },
+    {
+      "localId": "special-t21",
+      "upstreamId": "182",
+      "status": "matched"
+    },
+    {
+      "localId": "spider-flame",
+      "upstreamId": "948",
+      "status": "matched"
+    },
+    {
+      "localId": "spider-ion",
+      "upstreamId": "949",
+      "status": "matched"
+    },
+    {
+      "localId": "spider-laser",
+      "upstreamId": "950",
+      "status": "matched"
+    },
+    {
+      "localId": "squad-leader-ahsoka",
+      "upstreamId": "18909",
+      "status": "matched"
+    },
+    {
+      "localId": "squadron-leader",
+      "upstreamId": "22921",
+      "status": "matched"
+    },
+    {
+      "localId": "stormtrooper",
+      "upstreamId": "14",
+      "status": "matched"
+    },
+    {
+      "localId": "stormtrooper-captain",
+      "upstreamId": "134",
+      "status": "matched"
+    },
+    {
+      "localId": "stormtrooper-dlt19",
+      "upstreamId": "7",
+      "status": "matched"
+    },
+    {
+      "localId": "stormtrooper-hh12",
+      "upstreamId": "19",
+      "status": "matched"
+    },
+    {
+      "localId": "stormtrooper-rt97c",
+      "upstreamId": "121",
+      "status": "matched"
+    },
+    {
+      "localId": "stormtrooper-specialist",
+      "upstreamId": "135",
+      "status": "matched"
+    },
+    {
+      "localId": "stormtrooper-squad",
+      "upstreamId": "16566",
+      "status": "matched"
+    },
+    {
+      "localId": "stormtrooper-t21",
+      "upstreamId": "122",
+      "status": "matched"
+    },
+    {
+      "localId": "strategic-programming",
+      "upstreamId": "20456",
+      "status": "matched"
+    },
+    {
+      "localId": "strong-in-the-force",
+      "upstreamId": "22922",
+      "status": "matched"
+    },
+    {
+      "localId": "stuck-in",
+      "upstreamId": "22924",
+      "status": "matched"
+    },
+    {
+      "localId": "stun-baton",
+      "upstreamId": "20276",
+      "status": "matched"
+    },
+    {
+      "localId": "super-commando-gunslinger",
+      "upstreamId": "22600",
+      "status": "matched"
+    },
+    {
+      "localId": "super-commando-marksman",
+      "upstreamId": "2717",
+      "status": "matched"
+    },
+    {
+      "localId": "super-commando-marksman-super",
+      "upstreamId": "22601",
+      "status": "matched"
+    },
+    {
+      "localId": "superior-equipment",
+      "upstreamId": "22854",
+      "status": "matched"
+    },
+    {
+      "localId": "t-21-blaster",
+      "upstreamId": "96",
+      "status": "matched"
+    },
+    {
+      "localId": "t-series-pilot",
+      "upstreamId": "120",
+      "status": "matched"
+    },
+    {
+      "localId": "t-series-tactical",
+      "upstreamId": "181",
+      "status": "matched"
+    },
+    {
+      "localId": "tactical-acument",
+      "upstreamId": "20437",
+      "status": "matched"
+    },
+    {
+      "localId": "tank-hunting-munitions",
+      "upstreamId": "22923",
+      "status": "matched"
+    },
+    {
+      "localId": "targeting-relay",
+      "upstreamId": "20453",
+      "status": "matched"
+    },
+    {
+      "localId": "tech",
+      "upstreamId": "15988",
+      "status": "matched"
+    },
+    {
+      "localId": "the-armorer",
+      "upstreamId": "21729",
+      "status": "matched"
+    },
+    {
+      "localId": "thermal-detonator",
+      "upstreamId": "20314",
+      "status": "matched"
+    },
+    {
+      "localId": "tie-pilot",
+      "upstreamId": "204",
+      "status": "matched"
+    },
+    {
+      "localId": "tip-of-the-spear",
+      "upstreamId": "20269",
+      "status": "matched"
+    },
+    {
+      "localId": "tod-advanced-drill",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-assault-badge",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-battle-shaken",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-behind-schedule",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-born-to-lead",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-captious",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-compromised",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-conspicuous",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-dedicated-to-the-cause",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-disillusioned",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-downtrodden1",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-downtrodden2",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-downtrodden3",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-downtrodden4",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-downtrodden5",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-embittered",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-expert-pilot",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-extra-equipment",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-failure-not-an-option",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-fatigue1",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-fatigue2",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-fatigue3",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-fatigue4",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-fatigue5",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-fearsome",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-feats-of-valor",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-field-modifications",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-flat-footed",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-flexible-response",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-forward-patrol",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-go-where-the-money-is",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-greedy",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-harsh-environemts-gear",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-headhunters",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-hopeful",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-implacable",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-legendary",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-losing-faith",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-lucky-shot",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-marksmanship-badge",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-on-the-backfoot",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-one-in-a-million",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-personal-shields",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-rapid-response",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-recon-badge",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-resilient",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-scrambled",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-self-serving",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-self-sufficient",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-selfless-warden",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-special-munitions",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-sterner-stuff",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-strongpoint-expertise",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-tunnel-vision",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-unity",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-unsure",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-urban-assault-expert",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-veteran-gunners",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-veteran-leader",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-war-weary",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-weight-of-responsibility",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-well-stocked",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "tod-well-supplied",
+      "upstreamId": null,
+      "status": "unmatched"
+    },
+    {
+      "localId": "training-duck",
+      "upstreamId": "33",
+      "status": "matched"
+    },
+    {
+      "localId": "training-dug-in",
+      "upstreamId": "19830",
+      "status": "matched"
+    },
+    {
+      "localId": "training-endurance",
+      "upstreamId": "70",
+      "status": "matched"
+    },
+    {
+      "localId": "training-fray",
+      "upstreamId": "628",
+      "status": "matched"
+    },
+    {
+      "localId": "training-hunt",
+      "upstreamId": "19061",
+      "status": "matched"
+    },
+    {
+      "localId": "training-imperial-march",
+      "upstreamId": "19828",
+      "status": "matched"
+    },
+    {
+      "localId": "training-mission-objective",
+      "upstreamId": "19826",
+      "status": "matched"
+    },
+    {
+      "localId": "training-offensive",
+      "upstreamId": "129",
+      "status": "matched"
+    },
+    {
+      "localId": "training-overwatch",
+      "upstreamId": "72",
+      "status": "matched"
+    },
+    {
+      "localId": "training-protector",
+      "upstreamId": "627",
+      "status": "matched"
+    },
+    {
+      "localId": "training-seize",
+      "upstreamId": "185",
+      "status": "matched"
+    },
+    {
+      "localId": "training-situational",
+      "upstreamId": "172",
+      "status": "matched"
+    },
+    {
+      "localId": "training-stance-a",
+      "upstreamId": "179",
+      "status": "matched"
+    },
+    {
+      "localId": "training-stance-b",
+      "upstreamId": "179",
+      "status": "matched"
+    },
+    {
+      "localId": "training-strike-and-fade",
+      "upstreamId": "19824",
+      "status": "matched"
+    },
+    {
+      "localId": "training-strike-team-leader",
+      "upstreamId": "19825",
+      "status": "matched"
+    },
+    {
+      "localId": "training-tenacity",
+      "upstreamId": "54",
+      "status": "matched"
+    },
+    {
+      "localId": "training-upclose",
+      "upstreamId": "2631",
+      "status": "matched"
+    },
+    {
+      "localId": "tristan-wren-clan",
+      "upstreamId": "22608",
+      "status": "matched"
+    },
+    {
+      "localId": "turbo-charge",
+      "upstreamId": "20709",
+      "status": "matched"
+    },
+    {
+      "localId": "twin-lightsabers",
+      "upstreamId": "20433",
+      "status": "matched"
+    },
+    {
+      "localId": "tx225-dlt19",
+      "upstreamId": "88",
+      "status": "matched"
+    },
+    {
+      "localId": "tx225-rt97c",
+      "upstreamId": "89",
+      "status": "matched"
+    },
+    {
+      "localId": "tyrannical-taskmaster",
+      "upstreamId": "20449",
+      "status": "matched"
+    },
+    {
+      "localId": "unorthodox",
+      "upstreamId": "210",
+      "status": "matched"
+    },
+    {
+      "localId": "unseen-saboteur",
+      "upstreamId": "20279",
+      "status": "matched"
+    },
+    {
+      "localId": "unstable-a5-astromech",
+      "upstreamId": "209",
+      "status": "matched"
+    },
+    {
+      "localId": "ursa-wren-clan",
+      "upstreamId": "22650",
+      "status": "matched"
+    },
+    {
+      "localId": "veteran-squad",
+      "upstreamId": "16574",
+      "status": "matched"
+    },
+    {
+      "localId": "vibro-axe",
+      "upstreamId": "20285",
+      "status": "matched"
+    },
+    {
+      "localId": "vibrosword",
+      "upstreamId": "22658",
+      "status": "matched"
+    },
+    {
+      "localId": "viper-droid",
+      "upstreamId": "192",
+      "status": "matched"
+    },
+    {
+      "localId": "war-party-leader",
+      "upstreamId": "22656",
+      "status": "matched"
+    },
+    {
+      "localId": "waxer",
+      "upstreamId": "16553",
+      "status": "matched"
+    },
+    {
+      "localId": "wedge-antilles",
+      "upstreamId": "29",
+      "status": "matched"
+    },
+    {
+      "localId": "weequay-captain",
+      "upstreamId": "21643",
+      "status": "matched"
+    },
+    {
+      "localId": "weequay-crew",
+      "upstreamId": "21340",
+      "status": "matched"
+    },
+    {
+      "localId": "weequay-squad",
+      "upstreamId": "21642",
+      "status": "matched"
+    },
+    {
+      "localId": "whipcord-launcher",
+      "upstreamId": "22606",
+      "status": "matched"
+    },
+    {
+      "localId": "wrecker",
+      "upstreamId": "15986",
+      "status": "matched"
+    },
+    {
+      "localId": "x34-a300",
+      "upstreamId": "80",
+      "status": "matched"
+    },
+    {
+      "localId": "x34-rocket",
+      "upstreamId": "81",
+      "status": "matched"
+    },
+    {
+      "localId": "xs-iv",
+      "upstreamId": "6318",
+      "status": "matched"
+    },
+    {
+      "localId": "youre-not-all-the-same-to-me",
+      "upstreamId": "21726",
+      "status": "matched"
+    },
+    {
+      "localId": "z6-riot-baton",
+      "upstreamId": "20277",
+      "status": "matched"
+    }
+  ],
+  "summary": {
+    "legacy": 503,
+    "matched": 439,
+    "unmatched": 64,
+    "upstreamOnly": 36
+  }
+}

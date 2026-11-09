@@ -1,0 +1,23 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SWL Army Builder CN · 写表器</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="builder.css"></head><body>
+<div class="builder-shell">
+  <div class="builder-top">
+    <div class="bf-field"><span>Battleforce:</span><select id="faction" aria-label="Battleforce"></select></div>
+    <div class="bf-field"><span>Mode:</span><select id="mode" aria-label="Mode"><option value="standard">STANDARD</option><option value="recon">RECON</option></select></div>
+    <div class="points-badge" id="points">0 / 1000 (1000)</div>
+    <span id="issue-count" class="issue-count"></span>
+    <button id="info" class="info-btn" title="校验结果">i</button>
+    <nav class="module-nav" style="margin-left:auto"><a class="active" href="index.html">写表器</a><a href="maintenance.html">数据维护</a></nav>
+  </div>
+  <div class="statusbar" id="status" role="status"></div>
+  <div class="rank-bar" id="rank-bar"></div>
+  <div class="builder-body">
+    <div class="army-col"><div class="army-list" id="army-units"></div></div>
+    <aside class="card-browser" id="card-browser">
+      <div class="browser-head"><h3 id="browser-title">点击军阶或槽位查看卡牌</h3><button id="browser-close" hidden>×</button></div>
+      <div class="card-grid" id="card-grid"></div>
+    </aside>
+  </div>
+  <div class="issues-panel" id="issues-panel" hidden><div id="issues" class="issues"></div></div>
+</div>
+<script src="dice-enums.js"></script>
+<script src="rules-core.js"></script><script src="builder.js"></script></body></html>

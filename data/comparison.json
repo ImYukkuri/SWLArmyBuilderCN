@@ -1,0 +1,8206 @@
+{
+  "schema": "swl-upstream-comparison/v1",
+  "url": "https://nowforwrath.github.io/legion.json",
+  "contentVersion": "2026.11.04.0",
+  "sha256": "cf3c029e60e8353aa629915790378fa65ffda7841792d7b876caabe3a0716326",
+  "counts": {
+    "localCards": 185,
+    "upstreamUnits": 183,
+    "matched": 185,
+    "unmatched": 0
+  },
+  "unmatched": [],
+  "records": [
+    {
+      "id": "separatists-admiral-trench",
+      "upstream": {
+        "collection": "units",
+        "id": "35770"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 85
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 5,
+              "rankId": 1
+            },
+            {
+              "id": 15,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            9,
+            9,
+            9,
+            6,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "separatists-b2-rocket",
+      "upstream": {
+        "collection": "units",
+        "id": "35769"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 94
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 5,
+              "rankId": 5
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            1,
+            6,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "separatists-geonosian-engineer",
+      "upstream": {
+        "collection": "units",
+        "id": "34054"
+      },
+      "matchMethod": "reviewed_alias",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 55
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 15,
+              "rankId": 2
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            26
+          ]
+        },
+        {
+          "field": "identity",
+          "card": [
+            "Geonosian Engineers",
+            "Warriors"
+          ],
+          "upstream": [
+            "Geonosian Warriors",
+            "Geonosian Engineers"
+          ],
+          "resolution": "reviewed_alias_keep_printed_name"
+        }
+      ]
+    },
+    {
+      "id": "separatists-aat",
+      "upstream": {
+        "collection": "units",
+        "id": "54"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 150
+        },
+        {
+          "field": "stats.speed",
+          "before": 1,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 5,
+              "rankId": 5
+            },
+            {
+              "id": 11,
+              "rankId": 5
+            },
+            {
+              "id": 15,
+              "rankId": 5
+            }
+          ]
+        },
+        {
+          "field": "unitTypeId",
+          "before": 2,
+          "upstream": 3,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            7,
+            6,
+            14,
+            14
+          ]
+        }
+      ]
+    },
+    {
+      "id": "separatists-aqua-droids",
+      "upstream": {
+        "collection": "units",
+        "id": "28382"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 78
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 5,
+              "rankId": 5
+            }
+          ]
+        },
+        {
+          "field": "unitTypeId",
+          "before": "local:heavy_droid_trooper",
+          "upstream": 6,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "id": "separatists-asajj",
+      "upstream": {
+        "collection": "units",
+        "id": "13582"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 115
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 5,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            5,
+            5,
+            10,
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "id": "separatists-b1",
+      "upstream": {
+        "collection": "units",
+        "id": "38"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 38
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 5,
+              "rankId": 2
+            },
+            {
+              "id": 11,
+              "rankId": 2
+            },
+            {
+              "id": 20,
+              "rankId": 2
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            1,
+            6,
+            16,
+            17
+          ]
+        },
+        {
+          "field": "stats.models",
+          "before": 3,
+          "upstream": 6,
+          "resolution": "retain_card_image_value"
+        }
+      ]
+    },
+    {
+      "id": "separatists-b2",
+      "upstream": {
+        "collection": "units",
+        "id": "52"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 64
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 5,
+              "rankId": 2
+            },
+            {
+              "id": 20,
+              "rankId": 2
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            1,
+            6
+          ]
+        },
+        {
+          "field": "stats.models",
+          "before": 3,
+          "upstream": 1,
+          "resolution": "retain_card_image_value"
+        }
+      ]
+    },
+    {
+      "id": "separatists-bx",
+      "upstream": {
+        "collection": "units",
+        "id": "64"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 60
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 5,
+              "rankId": 3
+            },
+            {
+              "id": 20,
+              "rankId": 3
+            },
+            {
+              "id": 15,
+              "rankId": 2
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            10,
+            6,
+            12,
+            3
+          ]
+        },
+        {
+          "field": "stats.models",
+          "before": 4,
+          "upstream": 1,
+          "resolution": "retain_card_image_value"
+        }
+      ]
+    },
+    {
+      "id": "separatists-bx-strike",
+      "upstream": {
+        "collection": "units",
+        "id": "25982"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 20
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 5,
+              "rankId": 4
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            {
+              "id": 4,
+              "required": true
+            },
+            10,
+            6,
+            12,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "separatists-dooku",
+      "upstream": {
+        "collection": "units",
+        "id": "49"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 165
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 5,
+              "rankId": 1
+            },
+            {
+              "id": 11,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            5,
+            5,
+            5,
+            9
+          ]
+        }
+      ]
+    },
+    {
+      "id": "separatists-drk1-droid",
+      "upstream": {
+        "collection": "units",
+        "id": "77"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 35
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 5,
+              "rankId": 3
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "id": "separatists-droidekas",
+      "upstream": {
+        "collection": "units",
+        "id": "43"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 67
+        },
+        {
+          "field": "stats.speed",
+          "before": 1,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 5,
+              "rankId": 4
+            },
+            {
+              "id": 11,
+              "rankId": 4
+            },
+            {
+              "id": 20,
+              "rankId": 4
+            },
+            {
+              "id": 15,
+              "rankId": 4
+            }
+          ]
+        },
+        {
+          "field": "unitTypeId",
+          "before": "local:heavy_droid_trooper",
+          "upstream": 6,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            6
+          ]
+        },
+        {
+          "field": "stats.models",
+          "before": 2,
+          "upstream": 1,
+          "resolution": "retain_card_image_value"
+        }
+      ]
+    },
+    {
+      "id": "separatists-dsd1-dwarf",
+      "upstream": {
+        "collection": "units",
+        "id": "2019"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 50
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 5,
+              "rankId": 4
+            },
+            {
+              "id": 15,
+              "rankId": 4
+            }
+          ]
+        },
+        {
+          "field": "unitTypeId",
+          "before": 3,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            {
+              "id": 18,
+              "required": true
+            },
+            8,
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "id": "separatists-geonosian",
+      "upstream": {
+        "collection": "units",
+        "id": "19103"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 45
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 5,
+              "rankId": 2
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            1,
+            26
+          ]
+        }
+      ]
+    },
+    {
+      "id": "separatists-grievous-wheelbike",
+      "upstream": {
+        "collection": "units",
+        "id": "32232"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 150
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 5,
+              "rankId": 1
+            },
+            {
+              "id": 11,
+              "rankId": 1
+            },
+            {
+              "id": 15,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            9,
+            10,
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "separatists-grievous",
+      "upstream": {
+        "collection": "units",
+        "id": "45"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 130
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 5,
+              "rankId": 1
+            },
+            {
+              "id": 11,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            9,
+            9,
+            10,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "separatists-kalani",
+      "upstream": {
+        "collection": "units",
+        "id": "1854"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 85
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 5,
+              "rankId": 1
+            },
+            {
+              "id": 20,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            9,
+            9,
+            9,
+            6,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "separatists-kraken",
+      "upstream": {
+        "collection": "units",
+        "id": "1852"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 80
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 5,
+              "rankId": 1
+            },
+            {
+              "id": 20,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            9,
+            9,
+            10,
+            6,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "separatists-lm-432-crab",
+      "upstream": {
+        "collection": "units",
+        "id": "25966"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 70
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 5,
+              "rankId": 4
+            },
+            {
+              "id": 15,
+              "rankId": 4
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            {
+              "id": 18,
+              "required": true
+            },
+            8,
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "id": "separatists-magna",
+      "upstream": {
+        "collection": "units",
+        "id": "1809"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 72
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 5,
+              "rankId": 3
+            },
+            {
+              "id": 11,
+              "rankId": 3
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            10,
+            10,
+            6,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "separatists-magnaguard-prototype",
+      "upstream": {
+        "collection": "units",
+        "id": "19077"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 56
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 20,
+              "rankId": 2
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            10,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "separatists-maul",
+      "upstream": {
+        "collection": "units",
+        "id": "74"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 115
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 5,
+              "rankId": 6
+            },
+            {
+              "id": 11,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            5,
+            5,
+            10,
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "id": "separatists-persuader",
+      "upstream": {
+        "collection": "units",
+        "id": "2109"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 130
+        },
+        {
+          "field": "stats.speed",
+          "before": 1,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 5,
+              "rankId": 5
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            {
+              "id": 18,
+              "required": true
+            },
+            6,
+            14,
+            14,
+            21
+          ]
+        }
+      ]
+    },
+    {
+      "id": "separatists-persuader-prototype",
+      "upstream": {
+        "collection": "units",
+        "id": "19076"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 130
+        },
+        {
+          "field": "stats.speed",
+          "before": 1,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 20,
+              "rankId": 5
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            {
+              "id": 18,
+              "required": true
+            },
+            6,
+            14,
+            14
+          ]
+        }
+      ]
+    },
+    {
+      "id": "separatists-poggle",
+      "upstream": {
+        "collection": "units",
+        "id": "19106"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 55
+        },
+        {
+          "field": "stats.speed",
+          "before": 1,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 5,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            9,
+            9,
+            6,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "separatists-sun-fac",
+      "upstream": {
+        "collection": "units",
+        "id": "19105"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 55
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 5,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            10,
+            6,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "separatists-super-tactica-command-droid-aux",
+      "upstream": {
+        "collection": "units",
+        "id": "31845"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 60
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 5,
+              "rankId": 6
+            },
+            {
+              "id": 15,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            {
+              "id": 24,
+              "required": true
+            },
+            18,
+            18,
+            6,
+            2,
+            12,
+            12
+          ]
+        }
+      ]
+    },
+    {
+      "id": "separatists-super-tactica-command-droid-cnc",
+      "upstream": {
+        "collection": "units",
+        "id": "31844"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 70
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 5,
+              "rankId": 1
+            },
+            {
+              "id": 15,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            {
+              "id": 24,
+              "required": true
+            },
+            18,
+            18,
+            18,
+            9,
+            6,
+            2,
+            12
+          ]
+        }
+      ]
+    },
+    {
+      "id": "separatists-tactical-droid",
+      "upstream": {
+        "collection": "units",
+        "id": "76"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 60
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 5,
+              "rankId": 1
+            },
+            {
+              "id": 11,
+              "rankId": 1
+            },
+            {
+              "id": 20,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            9,
+            6,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "separatists-save-opress-cis",
+      "upstream": {
+        "collection": "units",
+        "id": "33792"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 90
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 5,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            5,
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "id": "separatists-stap",
+      "upstream": {
+        "collection": "units",
+        "id": "69"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 70
+        },
+        {
+          "field": "stats.speed",
+          "before": 3,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 5,
+              "rankId": 4
+            },
+            {
+              "id": 11,
+              "rankId": 4
+            },
+            {
+              "id": 15,
+              "rankId": 4
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            6,
+            20
+          ]
+        },
+        {
+          "field": "stats.models",
+          "before": 2,
+          "upstream": 1,
+          "resolution": "retain_card_image_value"
+        }
+      ]
+    },
+    {
+      "id": "separatists-tsmeu-wheel-bikes",
+      "upstream": {
+        "collection": "units",
+        "id": "32595"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 90
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 5,
+              "rankId": 3
+            },
+            {
+              "id": 15,
+              "rankId": 3
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            7,
+            10,
+            6,
+            2
+          ]
+        },
+        {
+          "field": "stats.models",
+          "before": 2,
+          "upstream": 0,
+          "resolution": "retain_card_image_value"
+        }
+      ]
+    },
+    {
+      "id": "empire-74-z-speeder",
+      "upstream": {
+        "collection": "units",
+        "id": "2"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 70
+        },
+        {
+          "field": "stats.speed",
+          "before": 3,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 2,
+              "rankId": 4
+            },
+            {
+              "id": 7,
+              "rankId": 4
+            },
+            {
+              "id": 17,
+              "rankId": 4
+            },
+            {
+              "id": 19,
+              "rankId": 4
+            },
+            {
+              "id": 10,
+              "rankId": 4
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            6,
+            20
+          ]
+        },
+        {
+          "field": "stats.models",
+          "before": 2,
+          "upstream": 1,
+          "resolution": "retain_card_image_value"
+        }
+      ]
+    },
+    {
+      "id": "empire-at-st",
+      "upstream": {
+        "collection": "units",
+        "id": "9"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 145
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 2,
+              "rankId": 5
+            },
+            {
+              "id": 17,
+              "rankId": 5
+            },
+            {
+              "id": 19,
+              "rankId": 5
+            },
+            {
+              "id": 10,
+              "rankId": 5
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            7,
+            8,
+            8,
+            8,
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "id": "empire-dark-troopers",
+      "upstream": {
+        "collection": "units",
+        "id": "6180"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 95
+        },
+        {
+          "field": "stats.speed",
+          "before": 1,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 2,
+              "rankId": 5
+            },
+            {
+              "id": 7,
+              "rankId": 5
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            18,
+            4,
+            4,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": "empire-darth-vader-apprentice",
+      "upstream": {
+        "collection": "units",
+        "id": "47"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 155
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 2,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            5,
+            5,
+            10,
+            10
+          ]
+        },
+        {
+          "field": "stats.wounds",
+          "before": 7,
+          "upstream": 6,
+          "resolution": "retain_card_image_value"
+        }
+      ]
+    },
+    {
+      "id": "empire-darth-vader-lord",
+      "upstream": {
+        "collection": "units",
+        "id": "3"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 170
+        },
+        {
+          "field": "stats.speed",
+          "before": 1,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 2,
+              "rankId": 1
+            },
+            {
+              "id": 17,
+              "rankId": 1
+            },
+            {
+              "id": 10,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            5,
+            5,
+            5,
+            9
+          ]
+        }
+      ]
+    },
+    {
+      "id": "empire-death-troopers",
+      "upstream": {
+        "collection": "units",
+        "id": "30"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 66
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 2,
+              "rankId": 3
+            },
+            {
+              "id": 7,
+              "rankId": 2
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            10,
+            6,
+            2,
+            12,
+            3
+          ]
+        },
+        {
+          "field": "stats.models",
+          "before": 4,
+          "upstream": 1,
+          "resolution": "retain_card_image_value"
+        }
+      ]
+    },
+    {
+      "id": "empire-dewback",
+      "upstream": {
+        "collection": "units",
+        "id": "40"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 70
+        },
+        {
+          "field": "stats.speed",
+          "before": 1,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 2,
+              "rankId": 4
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            10,
+            6,
+            12
+          ]
+        }
+      ]
+    },
+    {
+      "id": "empire-df-90-mortar",
+      "upstream": {
+        "collection": "units",
+        "id": "48"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 40
+        },
+        {
+          "field": "stats.speed",
+          "before": 1,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 2,
+              "rankId": 2
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            6,
+            22,
+            23
+          ]
+        }
+      ]
+    },
+    {
+      "id": "empire-e-web",
+      "upstream": {
+        "collection": "units",
+        "id": "19"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 60
+        },
+        {
+          "field": "stats.speed",
+          "before": 1,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 2,
+              "rankId": 4
+            },
+            {
+              "id": 17,
+              "rankId": 4
+            },
+            {
+              "id": 7,
+              "rankId": 4
+            },
+            {
+              "id": 10,
+              "rankId": 4
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            6,
+            11,
+            23
+          ]
+        }
+      ]
+    },
+    {
+      "id": "empire-fifth-brother",
+      "upstream": {
+        "collection": "units",
+        "id": "19108"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 97
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 2,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            5,
+            10,
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "id": "empire-general-tagge",
+      "upstream": {
+        "collection": "units",
+        "id": "33593"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 85
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 2,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            9,
+            9,
+            9,
+            10,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "empire-gideon",
+      "upstream": {
+        "collection": "units",
+        "id": "11258"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 80
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 2,
+              "rankId": 1
+            },
+            {
+              "id": 7,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            9,
+            9,
+            10,
+            2,
+            12
+          ]
+        }
+      ]
+    },
+    {
+      "id": "empire-grand-admiral-thrawn",
+      "upstream": {
+        "collection": "units",
+        "id": "32588"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 110
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 2,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            9,
+            9,
+            9,
+            10,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "empire-grand-moff-tarkin",
+      "upstream": {
+        "collection": "units",
+        "id": "32589"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 95
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 2,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            9,
+            9,
+            9,
+            26
+          ]
+        }
+      ]
+    },
+    {
+      "id": "empire-id10-seeker",
+      "upstream": {
+        "collection": "upgrades",
+        "id": "167"
+      },
+      "matchMethod": "counterpart_explicit",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 0
+        }
+      ]
+    },
+    {
+      "id": "empire-iden-versio",
+      "upstream": {
+        "collection": "units",
+        "id": "58"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 115
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 2,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "unitTypeId",
+          "before": 1,
+          "upstream": 6,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            9,
+            10,
+            10,
+            2,
+            15
+          ]
+        }
+      ]
+    },
+    {
+      "id": "empire-imperial-agent-order-to-galaxy",
+      "upstream": {
+        "collection": "units",
+        "id": "31667"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 50
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 2,
+              "rankId": 6
+            },
+            {
+              "id": 7,
+              "rankId": 6
+            },
+            {
+              "id": 19,
+              "rankId": 6
+            },
+            {
+              "id": 10,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            24,
+            9,
+            10,
+            2,
+            2,
+            12
+          ]
+        }
+      ]
+    },
+    {
+      "id": "empire-imperial-officer-ruthless-efficiency",
+      "upstream": {
+        "collection": "units",
+        "id": "31668"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 55
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 2,
+              "rankId": 1
+            },
+            {
+              "id": 7,
+              "rankId": 1
+            },
+            {
+              "id": 19,
+              "rankId": 1
+            },
+            {
+              "id": 17,
+              "rankId": 1
+            },
+            {
+              "id": 10,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            {
+              "id": 24,
+              "required": true
+            },
+            9,
+            10,
+            10,
+            2,
+            2,
+            12
+          ]
+        }
+      ]
+    },
+    {
+      "id": "empire-imperial-probe-droid",
+      "upstream": {
+        "collection": "units",
+        "id": "32590"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 35
+        },
+        {
+          "field": "stats.speed",
+          "before": 1,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 2,
+              "rankId": 3
+            },
+            {
+              "id": 17,
+              "rankId": 3
+            },
+            {
+              "id": 19,
+              "rankId": 3
+            },
+            {
+              "id": 10,
+              "rankId": 3
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": []
+        }
+      ]
+    },
+    {
+      "id": "empire-inferno-squad",
+      "upstream": {
+        "collection": "units",
+        "id": "79"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 34
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 2,
+              "rankId": 3
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            4,
+            10,
+            10,
+            6,
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "empire-kallus",
+      "upstream": {
+        "collection": "units",
+        "id": "29931"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 70
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 2,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            9,
+            10,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "empire-laat-empire",
+      "upstream": {
+        "collection": "units",
+        "id": "773"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 90
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 2,
+              "rankId": 5
+            },
+            {
+              "id": 10,
+              "rankId": 5
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            7,
+            6,
+            14,
+            14,
+            21
+          ]
+        },
+        {
+          "field": "stats.wounds",
+          "before": 8,
+          "upstream": 1,
+          "resolution": "retain_card_image_value"
+        }
+      ]
+    },
+    {
+      "id": "empire-marquand",
+      "upstream": {
+        "collection": "units",
+        "id": "17348"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 180
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 19,
+              "rankId": 5
+            }
+          ]
+        },
+        {
+          "field": "unitTypeId",
+          "before": 3,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": []
+        }
+      ]
+    },
+    {
+      "id": "empire-orson-krennic",
+      "upstream": {
+        "collection": "units",
+        "id": "29"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 65
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 2,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            9,
+            9,
+            2,
+            26
+          ]
+        }
+      ]
+    },
+    {
+      "id": "empire-range-trooper",
+      "upstream": {
+        "collection": "units",
+        "id": "23657"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 60
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 2,
+              "rankId": 4
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            1,
+            6,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "empire-riot-squad",
+      "upstream": {
+        "collection": "units",
+        "id": "25967"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 44
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 2,
+              "rankId": 2
+            },
+            {
+              "id": 10,
+              "rankId": 2
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            4,
+            10,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "empire-scout",
+      "upstream": {
+        "collection": "units",
+        "id": "17"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 48
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 2,
+              "rankId": 3
+            },
+            {
+              "id": 7,
+              "rankId": 2
+            },
+            {
+              "id": 19,
+              "rankId": 3
+            },
+            {
+              "id": 10,
+              "rankId": 3
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            10,
+            6,
+            2,
+            3
+          ]
+        },
+        {
+          "field": "stats.models",
+          "before": 4,
+          "upstream": 1,
+          "resolution": "retain_card_image_value"
+        }
+      ]
+    },
+    {
+      "id": "empire-scout-strike",
+      "upstream": {
+        "collection": "units",
+        "id": "25981"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 22
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 2,
+              "rankId": 4
+            },
+            {
+              "id": 10,
+              "rankId": 4
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            {
+              "id": 4,
+              "required": true
+            },
+            10,
+            6,
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "empire-seventh-sister",
+      "upstream": {
+        "collection": "units",
+        "id": "19109"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 102
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 2,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            5,
+            10,
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "id": "empire-shoretroopers",
+      "upstream": {
+        "collection": "units",
+        "id": "39"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 46
+        },
+        {
+          "field": "stats.speed",
+          "before": 1,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 2,
+              "rankId": 2
+            },
+            {
+              "id": 7,
+              "rankId": 2
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            1,
+            10,
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "empire-snowtroopers",
+      "upstream": {
+        "collection": "units",
+        "id": "7"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 42
+        },
+        {
+          "field": "stats.speed",
+          "before": 1,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 2,
+              "rankId": 2
+            },
+            {
+              "id": 17,
+              "rankId": 2
+            }
+          ]
+        },
+        {
+          "field": "unitTypeId",
+          "before": 1,
+          "upstream": 1,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            1,
+            2,
+            3,
+            22
+          ]
+        }
+      ]
+    },
+    {
+      "id": "empire-special-forces",
+      "upstream": {
+        "collection": "units",
+        "id": "78"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 54
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 2,
+              "rankId": 3
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            10,
+            10,
+            6,
+            2,
+            3
+          ]
+        },
+        {
+          "field": "stats.models",
+          "before": 4,
+          "upstream": 1,
+          "resolution": "retain_card_image_value"
+        }
+      ]
+    },
+    {
+      "id": "empire-stormtroopers",
+      "upstream": {
+        "collection": "units",
+        "id": "5"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 42
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 2,
+              "rankId": 2
+            },
+            {
+              "id": 7,
+              "rankId": 2
+            },
+            {
+              "id": 17,
+              "rankId": 2
+            },
+            {
+              "id": 19,
+              "rankId": 2
+            },
+            {
+              "id": 10,
+              "rankId": 2
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            1,
+            2,
+            3,
+            22
+          ]
+        },
+        {
+          "field": "stats.models",
+          "before": 4,
+          "upstream": 1,
+          "resolution": "retain_card_image_value"
+        }
+      ]
+    },
+    {
+      "id": "empire-stormtroopers-hwu",
+      "upstream": {
+        "collection": "units",
+        "id": "5880"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 36
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 17,
+              "rankId": 2
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            4,
+            22
+          ]
+        }
+      ]
+    },
+    {
+      "id": "empire-tx-225",
+      "upstream": {
+        "collection": "units",
+        "id": "31"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 125
+        },
+        {
+          "field": "stats.speed",
+          "before": 1,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 2,
+              "rankId": 5
+            },
+            {
+              "id": 10,
+              "rankId": 5
+            },
+            {
+              "id": 8,
+              "rankId": 5
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            7,
+            8,
+            6,
+            21
+          ]
+        }
+      ]
+    },
+    {
+      "id": "empire-veers",
+      "upstream": {
+        "collection": "units",
+        "id": "8"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 75
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 2,
+              "rankId": 1
+            },
+            {
+              "id": 17,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            9,
+            9,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "republic-jedi-barc",
+      "upstream": {
+        "collection": "units",
+        "id": "33776"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 110
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 4,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            5,
+            5,
+            9,
+            10,
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "id": "republic-ki-aadi-mundu",
+      "upstream": {
+        "collection": "units",
+        "id": "33777"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 155
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 4,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            5,
+            5,
+            5,
+            9,
+            10
+          ]
+        },
+        {
+          "field": "stats.wounds",
+          "before": 6,
+          "upstream": 3,
+          "resolution": "retain_card_image_value"
+        }
+      ]
+    },
+    {
+      "id": "republic-mace-windu",
+      "upstream": {
+        "collection": "units",
+        "id": "33575"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 165
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 4,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            5,
+            5,
+            5,
+            9,
+            10,
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "id": "republic-ahsoka-padawan-commander",
+      "upstream": {
+        "collection": "units",
+        "id": "29671"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 110
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 4,
+              "rankId": 1
+            },
+            {
+              "id": 16,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            5,
+            9,
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "id": "republic-anakin-barc",
+      "upstream": {
+        "collection": "units",
+        "id": "33769"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 110
+        },
+        {
+          "field": "stats.speed",
+          "before": 3,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 4,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            5,
+            5,
+            10,
+            10,
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "id": "republic-anakin",
+      "upstream": {
+        "collection": "units",
+        "id": "73"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 170
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 4,
+              "rankId": 1
+            },
+            {
+              "id": 16,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            5,
+            5,
+            10,
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "id": "republic-arc-troopers",
+      "upstream": {
+        "collection": "units",
+        "id": "62"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 70
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 4,
+              "rankId": 3
+            },
+            {
+              "id": 16,
+              "rankId": 3
+            },
+            {
+              "id": 21,
+              "rankId": 3
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            19,
+            4,
+            10,
+            6,
+            2,
+            2,
+            3
+          ]
+        },
+        {
+          "field": "stats.models",
+          "before": 4,
+          "upstream": 1,
+          "resolution": "retain_card_image_value"
+        }
+      ]
+    },
+    {
+      "id": "republic-arc-troopers-strike",
+      "upstream": {
+        "collection": "units",
+        "id": "25980"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 23
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 4,
+              "rankId": 4
+            },
+            {
+              "id": 16,
+              "rankId": 4
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            {
+              "id": 4,
+              "required": true
+            },
+            10,
+            6,
+            2,
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "republic-arf-troopers",
+      "upstream": {
+        "collection": "units",
+        "id": "28861"
+      },
+      "matchMethod": "reviewed_alias",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 66
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 4,
+              "rankId": 3
+            },
+            {
+              "id": 16,
+              "rankId": 3
+            },
+            {
+              "id": 12,
+              "rankId": 3
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            19,
+            4,
+            1,
+            10,
+            6,
+            3
+          ]
+        },
+        {
+          "field": "name",
+          "before": {
+            "en": "ARC Troopers",
+            "zh": "ARC士兵"
+          },
+          "after": {
+            "en": "ARF Troopers",
+            "zh": "ARF士兵"
+          }
+        },
+        {
+          "field": "identity",
+          "card": [
+            "ARC Troopers",
+            ""
+          ],
+          "upstream": [
+            "ARF Troopers",
+            null
+          ],
+          "resolution": "reviewed_alias_keep_printed_name"
+        }
+      ]
+    },
+    {
+      "id": "republic-at-rt-gar",
+      "upstream": {
+        "collection": "units",
+        "id": "70"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 60
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 4,
+              "rankId": 4
+            },
+            {
+              "id": 16,
+              "rankId": 4
+            },
+            {
+              "id": 12,
+              "rankId": 4
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            8,
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "id": "republic-bad-batch-gar",
+      "upstream": {
+        "collection": "units",
+        "id": "23655"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 170
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 4,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "id": "republic-barc",
+      "upstream": {
+        "collection": "units",
+        "id": "44"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 59
+        },
+        {
+          "field": "stats.speed",
+          "before": 3,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 4,
+              "rankId": 4
+            },
+            {
+              "id": 16,
+              "rankId": 4
+            },
+            {
+              "id": 21,
+              "rankId": 4
+            }
+          ]
+        },
+        {
+          "field": "unitTypeId",
+          "before": 2,
+          "upstream": 3,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            6,
+            20,
+            13
+          ]
+        }
+      ]
+    },
+    {
+      "id": "republic-c3po",
+      "upstream": {
+        "collection": "upgrades",
+        "id": "131"
+      },
+      "matchMethod": "counterpart_explicit",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 15
+        }
+      ]
+    },
+    {
+      "id": "republic-chewbacca-gar",
+      "upstream": {
+        "collection": "units",
+        "id": "1565"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 90
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 4,
+              "rankId": 1
+            },
+            {
+              "id": 21,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "unitTypeId",
+          "before": "local:wookiee_trooper",
+          "upstream": 1,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            10,
+            10,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "republic-chieftain",
+      "upstream": {
+        "collection": "units",
+        "id": "1528"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 100
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 4,
+              "rankId": 1
+            },
+            {
+              "id": 21,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "unitTypeId",
+          "before": "local:wookiee_trooper",
+          "upstream": 1,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            9,
+            10,
+            10,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "republic-clone-commander-leadership",
+      "upstream": {
+        "collection": "units",
+        "id": "75"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 60
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 4,
+              "rankId": 1
+            },
+            {
+              "id": 16,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "unitTypeId",
+          "before": 5,
+          "upstream": 1,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            9,
+            10,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "republic-clone-commandos",
+      "upstream": {
+        "collection": "units",
+        "id": "23656"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 90
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 4,
+              "rankId": 4
+            },
+            {
+              "id": 16,
+              "rankId": 4
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            10,
+            6,
+            2,
+            12,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "republic-clone-trooper",
+      "upstream": {
+        "collection": "units",
+        "id": "25964"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 56
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 4,
+              "rankId": 2
+            },
+            {
+              "id": 16,
+              "rankId": 2
+            },
+            {
+              "id": 21,
+              "rankId": 2
+            },
+            {
+              "id": 12,
+              "rankId": 2
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            19,
+            4,
+            1,
+            10,
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "republic-clonetrooper-marksmen",
+      "upstream": {
+        "collection": "units",
+        "id": "32248"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 50
+        },
+        {
+          "field": "stats.speed",
+          "before": 1,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 4,
+              "rankId": 2
+            },
+            {
+              "id": 16,
+              "rankId": 2
+            },
+            {
+              "id": 12,
+              "rankId": 2
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            19,
+            4,
+            1,
+            10,
+            2
+          ]
+        },
+        {
+          "field": "stats.models",
+          "before": 4,
+          "upstream": 1,
+          "resolution": "retain_card_image_value"
+        }
+      ]
+    },
+    {
+      "id": "republic-cody",
+      "upstream": {
+        "collection": "units",
+        "id": "6376"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 95
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 4,
+              "rankId": 1
+            },
+            {
+              "id": 12,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            9,
+            10,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "republic-delta-squad",
+      "upstream": {
+        "collection": "units",
+        "id": "24084"
+      },
+      "matchMethod": "reviewed_alias",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 105
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 4,
+              "rankId": 4
+            },
+            {
+              "id": 16,
+              "rankId": 4
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            10,
+            10,
+            6,
+            2,
+            12,
+            3
+          ]
+        },
+        {
+          "field": "identity",
+          "card": [
+            "Clone Commandos",
+            "Delta Squad"
+          ],
+          "upstream": [
+            "Clone Commandos (DS)",
+            "Delta Squad"
+          ],
+          "resolution": "reviewed_alias_keep_printed_name"
+        }
+      ]
+    },
+    {
+      "id": "republic-isp",
+      "upstream": {
+        "collection": "units",
+        "id": "2108"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 65
+        },
+        {
+          "field": "stats.speed",
+          "before": 3,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 4,
+              "rankId": 5
+            },
+            {
+              "id": 21,
+              "rankId": 5
+            },
+            {
+              "id": 12,
+              "rankId": 5
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            7,
+            8,
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "id": "republic-jedi-knight",
+      "upstream": {
+        "collection": "units",
+        "id": "31843"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 85
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 4,
+              "rankId": 6
+            },
+            {
+              "id": 21,
+              "rankId": 6
+            },
+            {
+              "id": 12,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "unitTypeId",
+          "before": 1,
+          "upstream": 1,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            {
+              "id": 24,
+              "required": true
+            },
+            5,
+            10,
+            {
+              "id": 12,
+              "required": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "republic-jedi-knight-general",
+      "upstream": {
+        "collection": "units",
+        "id": "31842"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 105
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 4,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            {
+              "id": 24,
+              "required": true
+            },
+            5,
+            5,
+            10,
+            10,
+            {
+              "id": 12,
+              "required": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "republic-laat-gar",
+      "upstream": {
+        "collection": "units",
+        "id": "771"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 90
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 4,
+              "rankId": 5
+            },
+            {
+              "id": 16,
+              "rankId": 5
+            },
+            {
+              "id": 12,
+              "rankId": 5
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            7,
+            6,
+            14,
+            14,
+            21
+          ]
+        },
+        {
+          "field": "stats.wounds",
+          "before": 8,
+          "upstream": 6,
+          "resolution": "retain_card_image_value"
+        }
+      ]
+    },
+    {
+      "id": "republic-obiwan",
+      "upstream": {
+        "collection": "units",
+        "id": "41"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 150
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 4,
+              "rankId": 1
+            },
+            {
+              "id": 12,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            5,
+            5,
+            9,
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "id": "republic-padme",
+      "upstream": {
+        "collection": "units",
+        "id": "60"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 52
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 4,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            9,
+            10,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "republic-r2d2-gar",
+      "upstream": {
+        "collection": "units",
+        "id": "56"
+      },
+      "matchMethod": "reviewed_alias",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 55
+        },
+        {
+          "field": "stats.speed",
+          "before": 1,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 4,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            6,
+            15
+          ]
+        },
+        {
+          "field": "identity",
+          "card": [
+            "R2-D2",
+            "Hero of a Thousand Devices"
+          ],
+          "upstream": [
+            "R2-D2",
+            "Independent Astromech"
+          ],
+          "resolution": "reviewed_alias_keep_printed_name"
+        }
+      ]
+    },
+    {
+      "id": "republic-raddaugh-gnasp",
+      "upstream": {
+        "collection": "units",
+        "id": "1984"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 55
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 4,
+              "rankId": 4
+            },
+            {
+              "id": 21,
+              "rankId": 4
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            6,
+            20,
+            13
+          ]
+        }
+      ]
+    },
+    {
+      "id": "republic-raddaugh",
+      "upstream": {
+        "collection": "units",
+        "id": "19078"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 57
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 21,
+              "rankId": 4
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            6,
+            20,
+            13
+          ]
+        }
+      ]
+    },
+    {
+      "id": "republic-rex",
+      "upstream": {
+        "collection": "units",
+        "id": "50"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 95
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 4,
+              "rankId": 1
+            },
+            {
+              "id": 16,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            9,
+            10,
+            2,
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "republic-saber-class",
+      "upstream": {
+        "collection": "units",
+        "id": "53"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 145
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 4,
+              "rankId": 5
+            },
+            {
+              "id": 21,
+              "rankId": 5
+            },
+            {
+              "id": 12,
+              "rankId": 5
+            }
+          ]
+        },
+        {
+          "field": "unitTypeId",
+          "before": 2,
+          "upstream": 3,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            7,
+            8,
+            6,
+            14,
+            14
+          ]
+        }
+      ]
+    },
+    {
+      "id": "republic-wookiee-kashyyk",
+      "upstream": {
+        "collection": "units",
+        "id": "1527"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 62
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 4,
+              "rankId": 3
+            },
+            {
+              "id": 21,
+              "rankId": 3
+            }
+          ]
+        },
+        {
+          "field": "unitTypeId",
+          "before": "local:wookiee_trooper",
+          "upstream": 1,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            10,
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "republic-wookiee-noble",
+      "upstream": {
+        "collection": "units",
+        "id": "1563"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 62
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 4,
+              "rankId": 3
+            },
+            {
+              "id": 21,
+              "rankId": 2
+            }
+          ]
+        },
+        {
+          "field": "unitTypeId",
+          "before": "local:wookiee_trooper",
+          "upstream": 1,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            10,
+            10,
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "republic-yoda",
+      "upstream": {
+        "collection": "units",
+        "id": "764"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 150
+        },
+        {
+          "field": "stats.speed",
+          "before": 1,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 4,
+              "rankId": 1
+            },
+            {
+              "id": 21,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            5,
+            5,
+            5,
+            9
+          ]
+        }
+      ]
+    },
+    {
+      "id": "republic-plo-koon",
+      "upstream": {
+        "collection": "units",
+        "id": "33791"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 105
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 4,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            5,
+            5,
+            9,
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "id": "republic-shaak-ti",
+      "upstream": {
+        "collection": "units",
+        "id": "33794"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 120
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 4,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            5,
+            5,
+            9,
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mercenary-black-sun-black-sun-enforcers",
+      "upstream": {
+        "collection": "units",
+        "id": "4417"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 50
+        },
+        {
+          "field": "stats.speed",
+          "before": 3,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 2,
+              "rankId": 2
+            },
+            {
+              "id": 5,
+              "rankId": 2
+            },
+            {
+              "id": 9,
+              "rankId": 2
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            1,
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mercenary-black-sun-black-sun-vigo",
+      "upstream": {
+        "collection": "units",
+        "id": "4717"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 50
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 2,
+              "rankId": 1
+            },
+            {
+              "id": 5,
+              "rankId": 1
+            },
+            {
+              "id": 9,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            9,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mercenary-clan-covert-din-djarin-covert",
+      "upstream": {
+        "collection": "units",
+        "id": "34881"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 95
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 6
+            },
+            {
+              "id": 2,
+              "rankId": 6
+            },
+            {
+              "id": 8,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            10,
+            10,
+            6,
+            2,
+            2,
+            12,
+            15
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mercenary-clan-covert-grogu-covert",
+      "upstream": {
+        "collection": "upgrades",
+        "id": "22586"
+      },
+      "matchMethod": "counterpart_explicit",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 17
+        }
+      ]
+    },
+    {
+      "id": "mercenary-clan-covert-paz-vizsla",
+      "upstream": {
+        "collection": "units",
+        "id": "33790"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 105
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 8,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            10,
+            10,
+            2,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mercenary-clan-covert-the-armorer",
+      "upstream": {
+        "collection": "units",
+        "id": "33795"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 120
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 8,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            9,
+            9,
+            10,
+            2,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mercenary-clan-kryze-axe-woves",
+      "upstream": {
+        "collection": "units",
+        "id": "33770"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 90
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 6
+            },
+            {
+              "id": 4,
+              "rankId": 6
+            },
+            {
+              "id": 8,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            10,
+            10,
+            6,
+            2,
+            2,
+            3
+          ]
+        },
+        {
+          "field": "stats.wounds",
+          "before": 3,
+          "upstream": 5,
+          "resolution": "retain_card_image_value"
+        }
+      ]
+    },
+    {
+      "id": "mercenary-clan-kryze-bo-katan-kryze",
+      "upstream": {
+        "collection": "units",
+        "id": "33771"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 110
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 1
+            },
+            {
+              "id": 4,
+              "rankId": 1
+            },
+            {
+              "id": 8,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            9,
+            10,
+            10,
+            2,
+            2,
+            12,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mercenary-clan-kryze-clan-kryze-veterans",
+      "upstream": {
+        "collection": "units",
+        "id": "33772"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 120
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 3
+            },
+            {
+              "id": 4,
+              "rankId": 3
+            },
+            {
+              "id": 8,
+              "rankId": 3
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            1,
+            10,
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mercenary-clan-saxon-gar-saxon-leader",
+      "upstream": {
+        "collection": "units",
+        "id": "34888"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 115
+        },
+        {
+          "field": "stats.speed",
+          "before": 3,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 8,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            9,
+            10,
+            10,
+            2,
+            2,
+            12,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mercenary-clan-saxon-rook-kast",
+      "upstream": {
+        "collection": "units",
+        "id": "34886"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 85
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 8,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            9,
+            10,
+            6,
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mercenary-clan-saxon-super-commandos-saxon",
+      "upstream": {
+        "collection": "units",
+        "id": "34890"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 92
+        },
+        {
+          "field": "stats.speed",
+          "before": 3,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 8,
+              "rankId": 3
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            1,
+            10,
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mercenary-clan-wren-clan-wren-veterans",
+      "upstream": {
+        "collection": "units",
+        "id": "33773"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 92
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 3
+            },
+            {
+              "id": 8,
+              "rankId": 3
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            1,
+            10,
+            2,
+            3
+          ]
+        },
+        {
+          "field": "stats.models",
+          "before": 4,
+          "upstream": 3,
+          "resolution": "retain_card_image_value"
+        }
+      ]
+    },
+    {
+      "id": "mercenary-clan-wren-sabine-wren-clan",
+      "upstream": {
+        "collection": "units",
+        "id": "34887"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 110
+        },
+        {
+          "field": "stats.speed",
+          "before": 3,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 8,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            10,
+            2,
+            2,
+            12,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mercenary-clan-wren-ursa-wren",
+      "upstream": {
+        "collection": "units",
+        "id": "34889"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 75
+        },
+        {
+          "field": "stats.speed",
+          "before": 3,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 1
+            },
+            {
+              "id": 8,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            9,
+            10,
+            10,
+            2,
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mercenary-creedless-mandalorian-hunter",
+      "upstream": {
+        "collection": "units",
+        "id": "33787"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 75
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 6
+            },
+            {
+              "id": 2,
+              "rankId": 6
+            },
+            {
+              "id": 4,
+              "rankId": 6
+            },
+            {
+              "id": 5,
+              "rankId": 6
+            },
+            {
+              "id": 8,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            {
+              "id": 24,
+              "required": true
+            },
+            10,
+            2,
+            2,
+            {
+              "id": 12,
+              "required": true
+            },
+            3,
+            25
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mercenary-creedless-mandalorian-leader",
+      "upstream": {
+        "collection": "units",
+        "id": "33789"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 90
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 8,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            {
+              "id": 24,
+              "required": true
+            },
+            9,
+            10,
+            2,
+            2,
+            {
+              "id": 12,
+              "required": true
+            },
+            3,
+            25
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mercenary-creedless-mandalorian-initiates",
+      "upstream": {
+        "collection": "units",
+        "id": "33788"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 56
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 8,
+              "rankId": 2
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            1,
+            10,
+            3,
+            25
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mercenary-creedless-mandalorian-warriors-corps",
+      "upstream": {
+        "collection": "units",
+        "id": "33797"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 64
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 8,
+              "rankId": 2
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            1,
+            10,
+            2,
+            12,
+            3,
+            25
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mercenary-creedless-mandalorian-warriors-support",
+      "upstream": {
+        "collection": "units",
+        "id": "33796"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 55
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 8,
+              "rankId": 4
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            {
+              "id": 4,
+              "required": true
+            },
+            1,
+            10,
+            2,
+            3,
+            25
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mercenary-ewoks-c3po-golden",
+      "upstream": {
+        "collection": "units",
+        "id": "15016"
+      },
+      "matchMethod": "reviewed_alias",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 40
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 18,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "unitTypeId",
+          "before": 6,
+          "upstream": 1,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "affiliationIds",
+          "before": [
+            "7"
+          ],
+          "after": [
+            "6"
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": []
+        },
+        {
+          "field": "identity",
+          "card": [
+            "C-3PO",
+            "Golden God"
+          ],
+          "upstream": [
+            "C-3P0",
+            "Golden God"
+          ],
+          "resolution": "reviewed_alias_keep_printed_name"
+        }
+      ]
+    },
+    {
+      "id": "mercenary-ewoks-chewbacca",
+      "upstream": {
+        "collection": "units",
+        "id": "15969"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 180
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 18,
+              "rankId": 5
+            }
+          ]
+        },
+        {
+          "field": "unitTypeId",
+          "before": 3,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "affiliationIds",
+          "before": [
+            "7"
+          ],
+          "after": [
+            "6"
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": []
+        }
+      ]
+    },
+    {
+      "id": "mercenary-ewoks-ewok-skirmishers",
+      "upstream": {
+        "collection": "units",
+        "id": "15784"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 40
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 2
+            },
+            {
+              "id": 18,
+              "rankId": 2
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            1,
+            1,
+            10
+          ]
+        },
+        {
+          "field": "stats.models",
+          "before": 5,
+          "upstream": 6,
+          "resolution": "retain_card_image_value"
+        }
+      ]
+    },
+    {
+      "id": "mercenary-ewoks-ewok-slingers",
+      "upstream": {
+        "collection": "units",
+        "id": "16377"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 38
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 3
+            },
+            {
+              "id": 18,
+              "rankId": 3
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            1,
+            1,
+            10
+          ]
+        },
+        {
+          "field": "stats.models",
+          "before": 3,
+          "upstream": 6,
+          "resolution": "retain_card_image_value"
+        }
+      ]
+    },
+    {
+      "id": "mercenary-ewoks-logray",
+      "upstream": {
+        "collection": "units",
+        "id": "16687"
+      },
+      "matchMethod": "reviewed_alias",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 45
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 18,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            9,
+            10,
+            10,
+            10
+          ]
+        },
+        {
+          "field": "identity",
+          "card": [
+            "Logray",
+            "Ewok Shaman"
+          ],
+          "upstream": [
+            "Logray",
+            "Superstitious Shaman"
+          ],
+          "resolution": "reviewed_alias_keep_printed_name"
+        }
+      ]
+    },
+    {
+      "id": "mercenary-ewoks-wicket",
+      "upstream": {
+        "collection": "units",
+        "id": "15015"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 64
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 1
+            },
+            {
+              "id": 18,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            10,
+            10,
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mercenary-maul-loyalists-gar-saxon",
+      "upstream": {
+        "collection": "units",
+        "id": "4891"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 90
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 9,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            10,
+            10,
+            6,
+            2,
+            2,
+            12,
+            12
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mercenary-maul-loyalists-mandalorian-super",
+      "upstream": {
+        "collection": "units",
+        "id": "4767"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 66
+        },
+        {
+          "field": "stats.speed",
+          "before": 3,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 9,
+              "rankId": 3
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            10,
+            6,
+            2,
+            12,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mercenary-maul-loyalists-maul-rival",
+      "upstream": {
+        "collection": "units",
+        "id": "4551"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 130
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 9,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "unitTypeId",
+          "before": 1,
+          "upstream": 1,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            5,
+            5,
+            9,
+            10,
+            12
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mercenary-maul-loyalists-savage-opress-maul",
+      "upstream": {
+        "collection": "units",
+        "id": "33793"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 90
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 9,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "unitTypeId",
+          "before": 1,
+          "upstream": 1,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            5,
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mercenary-pyke-syndicate-pyke-syndicate-capo",
+      "upstream": {
+        "collection": "units",
+        "id": "4216"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 42
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 1
+            },
+            {
+              "id": 2,
+              "rankId": 1
+            },
+            {
+              "id": 4,
+              "rankId": 1
+            },
+            {
+              "id": 5,
+              "rankId": 1
+            },
+            {
+              "id": 9,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            9,
+            2,
+            26
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mercenary-pyke-syndicate-pyke-syndicate-footsoldier",
+      "upstream": {
+        "collection": "units",
+        "id": "4215"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 42
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 2
+            },
+            {
+              "id": 2,
+              "rankId": 2
+            },
+            {
+              "id": 4,
+              "rankId": 2
+            },
+            {
+              "id": 5,
+              "rankId": 2
+            },
+            {
+              "id": 9,
+              "rankId": 2
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            1,
+            2,
+            3,
+            26
+          ]
+        },
+        {
+          "field": "stats.models",
+          "before": 1,
+          "upstream": 4,
+          "resolution": "retain_card_image_value"
+        }
+      ]
+    },
+    {
+      "id": "mercenary-raiders-aa5-speeder-truck",
+      "upstream": {
+        "collection": "units",
+        "id": "4919"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 75
+        },
+        {
+          "field": "stats.speed",
+          "before": 1,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 9,
+              "rankId": 5
+            },
+            {
+              "id": 8,
+              "rankId": 5
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            7,
+            8,
+            6,
+            13,
+            13
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mercenary-raiders-hondo-ohnaka",
+      "upstream": {
+        "collection": "units",
+        "id": "29681"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 85
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 6
+            },
+            {
+              "id": 2,
+              "rankId": 6
+            },
+            {
+              "id": 4,
+              "rankId": 6
+            },
+            {
+              "id": 5,
+              "rankId": 6
+            },
+            {
+              "id": 14,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "unitTypeId",
+          "before": 1,
+          "upstream": 1,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            9,
+            6,
+            2,
+            3,
+            3,
+            26
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mercenary-raiders-swoop-bike",
+      "upstream": {
+        "collection": "units",
+        "id": "5406"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 70
+        },
+        {
+          "field": "stats.speed",
+          "before": 3,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 4
+            },
+            {
+              "id": 4,
+              "rankId": 4
+            },
+            {
+              "id": 9,
+              "rankId": 4
+            },
+            {
+              "id": 14,
+              "rankId": 4
+            }
+          ]
+        },
+        {
+          "field": "affiliationIds",
+          "before": [
+            "3"
+          ],
+          "after": []
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            6,
+            20
+          ]
+        },
+        {
+          "field": "stats.models",
+          "before": 2,
+          "upstream": 1,
+          "resolution": "retain_card_image_value"
+        }
+      ]
+    },
+    {
+      "id": "mercenary-raiders-weequay-pirate",
+      "upstream": {
+        "collection": "units",
+        "id": "32591"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 40
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 2
+            },
+            {
+              "id": 2,
+              "rankId": 2
+            },
+            {
+              "id": 4,
+              "rankId": 2
+            },
+            {
+              "id": 5,
+              "rankId": 2
+            },
+            {
+              "id": 9,
+              "rankId": 2
+            },
+            {
+              "id": 14,
+              "rankId": 2
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            1,
+            1,
+            10,
+            2,
+            3
+          ]
+        },
+        {
+          "field": "stats.models",
+          "before": 1,
+          "upstream": 4,
+          "resolution": "retain_card_image_value"
+        }
+      ]
+    },
+    {
+      "id": "mercenary-raiders-wlo5-speeder-tank",
+      "upstream": {
+        "collection": "units",
+        "id": "32592"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 100
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 5
+            },
+            {
+              "id": 2,
+              "rankId": 5
+            },
+            {
+              "id": 4,
+              "rankId": 5
+            },
+            {
+              "id": 5,
+              "rankId": 5
+            },
+            {
+              "id": 9,
+              "rankId": 5
+            },
+            {
+              "id": 14,
+              "rankId": 5
+            },
+            {
+              "id": 8,
+              "rankId": 5
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            7,
+            6,
+            13
+          ]
+        },
+        {
+          "field": "stats.wounds",
+          "before": 19,
+          "upstream": 10,
+          "resolution": "retain_card_image_value"
+        }
+      ]
+    },
+    {
+      "id": "mercenary-rogue-han-and-chewie",
+      "upstream": {
+        "collection": "units",
+        "id": "33775"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 120
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "affiliationIds",
+          "before": [
+            "6"
+          ],
+          "after": []
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            1,
+            1,
+            10,
+            10
+          ]
+        },
+        {
+          "field": "stats.wounds",
+          "before": null,
+          "upstream": 0,
+          "resolution": "retain_card_image_value"
+        }
+      ]
+    },
+    {
+      "id": "mercenary-rogue-bad-batch",
+      "upstream": {
+        "collection": "units",
+        "id": "25086"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 150
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "affiliationIds",
+          "before": [
+            "6"
+          ],
+          "after": []
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            4,
+            4,
+            4,
+            15
+          ]
+        },
+        {
+          "field": "stats.models",
+          "before": 3,
+          "upstream": 0,
+          "resolution": "retain_card_image_value"
+        }
+      ]
+    },
+    {
+      "id": "mercenary-rogue-boba-fett-daimyo",
+      "upstream": {
+        "collection": "units",
+        "id": "6176"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 120
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "affiliationIds",
+          "before": [
+            "6"
+          ],
+          "after": []
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            10,
+            10,
+            2,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mercenary-rogue-boba-fett-infamous",
+      "upstream": {
+        "collection": "units",
+        "id": "5000"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 130
+        },
+        {
+          "field": "stats.speed",
+          "before": 3,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 2,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "affiliationIds",
+          "before": [
+            "6"
+          ],
+          "after": []
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            10,
+            10,
+            6,
+            2,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mercenary-rogue-bossk",
+      "upstream": {
+        "collection": "units",
+        "id": "4999"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 105
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 2,
+              "rankId": 6
+            },
+            {
+              "id": 5,
+              "rankId": 6
+            },
+            {
+              "id": 9,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "affiliationIds",
+          "before": [
+            "6"
+          ],
+          "after": []
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            10,
+            10,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mercenary-rogue-cad-bane",
+      "upstream": {
+        "collection": "units",
+        "id": "5001"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 105
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 2,
+              "rankId": 6
+            },
+            {
+              "id": 5,
+              "rankId": 6
+            },
+            {
+              "id": 9,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "affiliationIds",
+          "before": [
+            "6"
+          ],
+          "after": []
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            10,
+            10,
+            6,
+            2,
+            12,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mercenary-rogue-ig-11",
+      "upstream": {
+        "collection": "units",
+        "id": "6178"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 105
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 6
+            },
+            {
+              "id": 2,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "affiliationIds",
+          "before": [
+            "6"
+          ],
+          "after": []
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            {
+              "id": 18,
+              "required": true
+            },
+            10,
+            6,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mercenary-rogue-ig-88",
+      "upstream": {
+        "collection": "units",
+        "id": "6177"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 110
+        },
+        {
+          "field": "factionId",
+          "before": 3,
+          "after": 6
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 2,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "affiliationIds",
+          "before": [
+            "6"
+          ],
+          "after": []
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            10,
+            6,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mercenary-rogue-omega",
+      "upstream": {
+        "collection": "upgrades",
+        "id": "15628"
+      },
+      "matchMethod": "counterpart_explicit",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 10
+        }
+      ]
+    },
+    {
+      "id": "rebels-1-4-fd-laser-cannon-team",
+      "upstream": {
+        "collection": "units",
+        "id": "18"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 65
+        },
+        {
+          "field": "stats.speed",
+          "before": 0,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 4
+            },
+            {
+              "id": 13,
+              "rankId": 4
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            6,
+            11,
+            23,
+            26
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rebels-a-a5-speeder-truck-rebel",
+      "upstream": {
+        "collection": "units",
+        "id": "772"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 75
+        },
+        {
+          "field": "stats.speed",
+          "before": 1,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 5
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            7,
+            8,
+            6,
+            13,
+            13
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rebels-ahsoka",
+      "upstream": {
+        "collection": "units",
+        "id": "15014"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 115
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            5,
+            5,
+            10,
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rebels-at-rt-rebel",
+      "upstream": {
+        "collection": "units",
+        "id": "1"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 54
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 4
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            8,
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rebels-c-3po-cyborg",
+      "upstream": {
+        "collection": "upgrades",
+        "id": "131"
+      },
+      "matchMethod": "counterpart_explicit",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 15
+        }
+      ]
+    },
+    {
+      "id": "rebels-cassian",
+      "upstream": {
+        "collection": "units",
+        "id": "29930"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 90
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            9,
+            10,
+            10,
+            2,
+            12
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rebels-chewbacca-rebel",
+      "upstream": {
+        "collection": "units",
+        "id": "25"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 90
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 6
+            },
+            {
+              "id": 13,
+              "rankId": 6
+            },
+            {
+              "id": 18,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "unitTypeId",
+          "before": "local:wookiee_trooper",
+          "upstream": 1,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            10,
+            10,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rebels-commandos",
+      "upstream": {
+        "collection": "units",
+        "id": "13"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 42
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 3
+            },
+            {
+              "id": 18,
+              "rankId": 3
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            10,
+            6,
+            2,
+            3
+          ]
+        },
+        {
+          "field": "stats.models",
+          "before": 4,
+          "upstream": 1,
+          "resolution": "retain_card_image_value"
+        }
+      ]
+    },
+    {
+      "id": "rebels-fleet-troopers",
+      "upstream": {
+        "collection": "units",
+        "id": "12"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 40
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 2
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            1,
+            2,
+            3,
+            26
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rebels-guerilla-troopers",
+      "upstream": {
+        "collection": "units",
+        "id": "33774"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 60
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 3
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            {
+              "id": 4,
+              "required": true
+            },
+            {
+              "id": 4,
+              "required": true
+            },
+            10,
+            10,
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rebels-han-solo-tauntaun",
+      "upstream": {
+        "collection": "units",
+        "id": "32594"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 90
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 6
+            },
+            {
+              "id": 13,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            9,
+            10,
+            6,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rebels-jyn",
+      "upstream": {
+        "collection": "units",
+        "id": "29928"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 75
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            9,
+            10,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rebels-k-2so",
+      "upstream": {
+        "collection": "units",
+        "id": "29932"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 70
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            6,
+            12
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rebels-lando",
+      "upstream": {
+        "collection": "units",
+        "id": "80"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 105
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            9,
+            10,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rebels-leia-organa",
+      "upstream": {
+        "collection": "units",
+        "id": "11"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 75
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 1
+            },
+            {
+              "id": 13,
+              "rankId": 1
+            },
+            {
+              "id": 18,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            9,
+            9,
+            10,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rebels-luke-skywalker-jedi",
+      "upstream": {
+        "collection": "units",
+        "id": "46"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 165
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "unitTypeId",
+          "before": 1,
+          "upstream": 1,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            5,
+            5,
+            5,
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rebels-luke-tauntaun",
+      "upstream": {
+        "collection": "units",
+        "id": "32593"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 110
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 1
+            },
+            {
+              "id": 13,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            5,
+            9,
+            10,
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rebels-luke-skywalker-hero",
+      "upstream": {
+        "collection": "units",
+        "id": "4"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 120
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 1
+            },
+            {
+              "id": 13,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            5,
+            9,
+            10,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rebels-mark-2-blaster",
+      "upstream": {
+        "collection": "units",
+        "id": "42"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 40
+        },
+        {
+          "field": "stats.speed",
+          "before": 1,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 2
+            },
+            {
+              "id": 13,
+              "rankId": 2
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            6,
+            23,
+            26
+          ]
+        },
+        {
+          "field": "stats.wounds",
+          "before": 4,
+          "upstream": 3,
+          "resolution": "retain_card_image_value"
+        }
+      ]
+    },
+    {
+      "id": "rebels-r2d2-hero",
+      "upstream": {
+        "collection": "units",
+        "id": "55"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 55
+        },
+        {
+          "field": "stats.speed",
+          "before": 1,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 6
+            },
+            {
+              "id": 13,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            6,
+            15
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rebels-rebel-agent-defender-democracy",
+      "upstream": {
+        "collection": "units",
+        "id": "31670"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 50
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 6
+            },
+            {
+              "id": 13,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            {
+              "id": 24,
+              "required": true
+            },
+            9,
+            10,
+            2,
+            12,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rebels-rebel-officer-fight-freedom",
+      "upstream": {
+        "collection": "units",
+        "id": "31669"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 55
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 1
+            },
+            {
+              "id": 13,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            {
+              "id": 24,
+              "required": true
+            },
+            9,
+            10,
+            10,
+            2,
+            12,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rebels-rebel-commandos",
+      "upstream": {
+        "collection": "units",
+        "id": "25979"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 20
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 4
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            {
+              "id": 4,
+              "required": true
+            },
+            10,
+            6,
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rebels-rebel-troopers",
+      "upstream": {
+        "collection": "units",
+        "id": "6"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 40
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 2
+            },
+            {
+              "id": 18,
+              "rankId": 2
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            1,
+            2,
+            3,
+            26
+          ]
+        },
+        {
+          "field": "stats.models",
+          "before": 4,
+          "upstream": 1,
+          "resolution": "retain_card_image_value"
+        }
+      ]
+    },
+    {
+      "id": "rebels-rebel-veterans",
+      "upstream": {
+        "collection": "units",
+        "id": "36"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 48
+        },
+        {
+          "field": "stats.speed",
+          "before": 1,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 2
+            },
+            {
+              "id": 13,
+              "rankId": 2
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            1,
+            10,
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rebels-sabine",
+      "upstream": {
+        "collection": "units",
+        "id": "33"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 105
+        },
+        {
+          "field": "stats.speed",
+          "before": 3,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 6
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            10,
+            2,
+            2,
+            12
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rebels-sleeper-cell",
+      "upstream": {
+        "collection": "units",
+        "id": "25968"
+      },
+      "matchMethod": "reviewed_alias",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 77
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 3
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            1,
+            10,
+            6,
+            2
+          ]
+        },
+        {
+          "field": "stats.models",
+          "before": 3,
+          "upstream": 6,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "identity",
+          "card": [
+            "Rebel Sleeper Cell",
+            ""
+          ],
+          "upstream": [
+            "Rebel Sleeper Cell",
+            "Ready to Strike"
+          ],
+          "resolution": "reviewed_alias_keep_printed_name"
+        }
+      ]
+    },
+    {
+      "id": "rebels-solo",
+      "upstream": {
+        "collection": "units",
+        "id": "15"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 100
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 1
+            },
+            {
+              "id": 13,
+              "rankId": 1
+            },
+            {
+              "id": 18,
+              "rankId": 1
+            }
+          ]
+        },
+        {
+          "field": "unitTypeId",
+          "before": 1,
+          "upstream": 1,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            9,
+            10,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rebels-t-47",
+      "upstream": {
+        "collection": "units",
+        "id": "10"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 125
+        },
+        {
+          "field": "stats.speed",
+          "before": 3,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 5
+            },
+            {
+              "id": 13,
+              "rankId": 5
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            7,
+            8,
+            6,
+            20
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rebels-tauntaun-riders",
+      "upstream": {
+        "collection": "units",
+        "id": "35"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 95
+        },
+        {
+          "field": "stats.speed",
+          "before": 3,
+          "upstream": 2,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 4
+            },
+            {
+              "id": 13,
+              "rankId": 4
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            10,
+            6
+          ]
+        },
+        {
+          "field": "stats.models",
+          "before": 2,
+          "upstream": 1,
+          "resolution": "retain_card_image_value"
+        }
+      ]
+    },
+    {
+      "id": "rebels-wookiee-freedom",
+      "upstream": {
+        "collection": "units",
+        "id": "24"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 62
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 3
+            }
+          ]
+        },
+        {
+          "field": "unitTypeId",
+          "before": "local:wookiee_trooper",
+          "upstream": 1,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            10,
+            10,
+            2,
+            3
+          ]
+        },
+        {
+          "field": "stats.models",
+          "before": 3,
+          "upstream": 1,
+          "resolution": "retain_card_image_value"
+        }
+      ]
+    },
+    {
+      "id": "rebels-wookiee-resistance",
+      "upstream": {
+        "collection": "units",
+        "id": "1529"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 62
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 3
+            }
+          ]
+        },
+        {
+          "field": "unitTypeId",
+          "before": "local:wookiee_trooper",
+          "upstream": 1,
+          "resolution": "retain_card_image_value"
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            4,
+            10,
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rebels-x-34-landspeeder",
+      "upstream": {
+        "collection": "units",
+        "id": "32"
+      },
+      "matchMethod": "name_title_faction",
+      "changes": [
+        {
+          "field": "points",
+          "before": null,
+          "after": 55
+        },
+        {
+          "field": "factions",
+          "before": [],
+          "after": [
+            {
+              "id": 1,
+              "rankId": 5
+            }
+          ]
+        },
+        {
+          "field": "upgradeSlots",
+          "before": null,
+          "after": [
+            7,
+            8,
+            6,
+            20,
+            13,
+            13
+          ]
+        }
+      ]
+    }
+  ],
+  "notImported": [
+    "encyclopedia",
+    "campaigns",
+    "packs",
+    "quantityLimitedBy",
+    "ignoreMinimum",
+    "unavailableWith",
+    "tierCounting",
+    "poolBonuses",
+    "requiredChildren",
+    "ttsName"
+  ],
+  "fieldPolicy": {
+    "points": "upstream",
+    "speed": "fill missing only; retain existing card values and report conflicts",
+    "upgradeSlots": "upstream, conditions kept separate",
+    "keywords": "printed card values and action types + shared rule IDs; upstream keyword lists mix weapon and unit rules",
+    "models/health/courage": "retain card values; differences reported"
+  }
+}
