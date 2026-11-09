@@ -300,9 +300,11 @@ window.RulesCore = (() => {
     if (!data._nameToUpstream) {
       const map = {};
       for (const s of (data.defs && data.defs.sourceUnits) || []) {
-        const key = normalizeKey((s.name && s.name.en) || "");
-        if (!key) continue;
-        (map[key] ||= []).push(String(s.id));
+        const full = (s.name && s.name.en) || "";
+        const key = normalizeKey(full);
+        if (key) (map[key] ||= []).push(String(s.id));
+        const identity = normalizeKey(full.split("·")[0]);
+        if (identity && identity !== key) (map[identity] ||= []).push(String(s.id));
       }
       data._nameToUpstream = map;
     }

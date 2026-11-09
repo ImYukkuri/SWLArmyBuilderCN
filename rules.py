@@ -428,8 +428,12 @@ def apply_property_effects(unit, cards, definitions):
 def _unit_upstream_ids_by_name(name, definitions):
     import re as _re
     key = _re.sub(r"[^a-z0-9]", "", str(name or "").lower())
-    return [str(s.get("id")) for s in (definitions.get("sourceUnits") or [])
-            if _re.sub(r"[^a-z0-9]", "", str((s.get("name") or {}).get("en") or "").lower()) == key]
+    out = []
+    for s in definitions.get("sourceUnits") or []:
+        full = (s.get("name") or {}).get("en") or ""
+        if _re.sub(r"[^a-z0-9]", "", full.lower()) == key or _re.sub(r"[^a-z0-9]", "", full.split("·")[0].lower()) == key:
+            out.append(str(s.get("id")))
+    return out
 
 
 def host_alias_allows(card, unit, army, package, definitions, rule):
