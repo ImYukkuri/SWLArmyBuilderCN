@@ -95,13 +95,13 @@
 ## 三、目前「乱套」的具体点
 
 1. **两套条件系统并存**：`requiredProperties`（结构化）与 `restrictions.condition`（表达式）。同一张卡可能两处都有，求值逻辑不同，容易重复报错或互相矛盾。
-2. **只存不查**：`unavailableIn`、`countsAsActivation`、`costViaUpgrade` 完全不参与校验。
-3. **声称已计算但实际没有**：`addProperties/replaceProperties` 未计算，coverage_note 文案误导。
-4. **镜像字段误导**：`memberships` 可编辑、会同步，但引擎不读；真正生效的是单位顶层 `factions`。
-5. **execution 状态与求值不一致**：`restrictions.execution`（not_connected/source_alignment_pending…）仍有值，但引擎已统一求值 `restrictions.condition`，不看 execution。
+2. ~~**只存不查**~~：`unavailableIn`、`countsAsActivation`、`costViaUpgrade` 已从数据、schema 和编辑器中移除。
+3. ~~**声称已计算但实际没有**~~：`addProperties/replaceProperties` 现已参与资格判断（装备卡效果会合并进单位上下文），文案已修正。
+4. ~~**镜像字段误导**~~：单位 `rules.memberships` 镜像已移除，引擎统一读顶层 `factions`。
+5. ~~**execution 状态与求值不一致**~~：`restrictions.execution` 已从数据移除，条件一律按 `restrictions.condition` 求值。
 6. **编辑器字段 ≠ 引擎字段**：rule-editor 暴露和 rule_schema 允许的字段，比引擎真正执行的多（如 unavailableIn）。
 7. **同名规则硬编码**：`local_duplicate_name` 写死在引擎，不可配置，且与 `unique`/`locallyUnique` 语义重叠。
-8. **quantityLimitedBy 只实现一半**：unit/ratio 生效，faction 内 tier/ratio 未实现。
+8. **quantityLimitedBy**：`{unit, ratio}` 已生效；本地与上游数据中都**不存在** `{tier, ratio}` 条目，故未实现该分支（出现数据时再补）。
 9. **两套加槽机制**：规则包 `dedicatedGrants` 与卡级 `slotEffects` 并存。
 10. ~~**候选过滤与组军校验是两份独立实现**~~：已统一为 `upgrade_eligibility` / `upgradeEligibility`，S1、S2、S8 共用同一套检查（含回归测试）。
 

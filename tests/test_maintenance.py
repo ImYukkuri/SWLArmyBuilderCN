@@ -37,7 +37,7 @@ class MaintenanceTest(unittest.TestCase):
         self.assertEqual(cards['bo-katan-darksaber']['upstream']['id'],'22612')
         self.assertEqual(cards['saxon-darksaber']['upstream']['id'],'22610')
         e=next(c for c in self.cards if c['name']['en']=='Electrobinoculars');self.assertEqual(e['slotIds'],[2,16,28])
-        h=next(c for c in self.cards if c['name']['en']=='Hit the Dirt');self.assertEqual(h['slotIds'],[10,26,27]);self.assertTrue(h['rules']['unavailableIn'])
+        h=next(c for c in self.cards if c['name']['en']=='Hit the Dirt');self.assertEqual(h['slotIds'],[10,26,27]);self.assertNotIn('unavailableIn',h['rules'])
     def test_rules_and_validation(self):
         validate_rules({'requiredProperties':[[{'property':'unitType','value':[1,4]}]],'unique':False,'modifiedPointsWith':[]})
         for bad in [{'requiredProperties':[{'property':'unitType','value':1}]},{'unique':'true'},{'limit':-1},{'tierCounting':[]}]:

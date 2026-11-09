@@ -7,7 +7,7 @@ from upgrade_schema import compact_upgrade
 from server import ROOT,atomic,encoded,digest
 
 OVERRIDES={'armament-maul-darksaber':2632,'bo-katan-darksaber':22612,'din-djarin-darksaber':22611,'gideon-darksaber':6132,'sabine-darksaber':71,'saxon-darksaber':22610,'beskad-duelist-clan':22602,'cis-crab-twin':16578,'isp-twin-blaster':964,'combat-armor':20272,'combat-armor-rebel':20282,'heavy-blaster-pistol':20275,'heavy-blaster-pistol-rebel':20284,'galaar-90-sniper':22419,'galaar-90-sniper-leader':22654,'gar-jedi-guardian':18478,'jedi-guardian':20431,'heavy-rook-kast':2718,'rook-kast-clan':22593,'plo-koon':150,'plo-koon-leader':22964,'super-commando-gunslinger':22600,'super-commando-marksman':2717,'super-commando-marksman-super':22601,'stormtrooper-dlt19':7,'stormtrooper-rt97c':121,'tristan-wren-clan':22608,'ursa-wren-clan':22650,'training-dug-in':19830,'training-imperial-march':19828,'kraken':20803,'b2-anti-infantry-missile':23145,'b2-anti-infantry-missile-flipside':23145,'cassian-a280-pistol':142,'commandos-sniper-b':15012,'training-stance-a':179,'training-stance-b':179}
-FIELDS=['requiredProperties','availableIn','unavailableIn','unavailableWith','requiresTier','requiredDivisions','unique','limit','chooseOneKey','addProperties','replaceProperties','modifiedPointsWith','poolBonuses','tierCounting','replaceTier','requiredChildren','quantityLimitedBy','unlimited','unlockedBy','factions']
+FIELDS=['requiredProperties','availableIn','unavailableWith','requiresTier','requiredDivisions','unique','limit','chooseOneKey','addProperties','replaceProperties','modifiedPointsWith','poolBonuses','tierCounting','replaceTier','requiredChildren','quantityLimitedBy','unlimited','unlockedBy','factions']
 def backup(path):
     if path.exists():
         stamp=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S.%fZ');atomic(ROOT/'history/migrations'/(stamp+'-'+path.name),path.read_bytes())
@@ -49,8 +49,8 @@ def main():
         s=next(s for s in data[c['upstream']['collection']]if str(s['id'])==c['upstream']['id'])
         c['usage']='counterpart'if c.get('isCounterpart')else'army_unit';c['rules']=rules(s,c['upstream']['collection'])
         if c.get('isCounterpart'):
-            c['rules']['slotTypes']=[15];c['rules']['countsAsActivation']=False;c['rules']['costViaUpgrade']=True
-        else:c['rules']['memberships']=copy.deepcopy(s['factions']);c['rules'].pop('factions',None)
+            c['rules']['slotTypes']=[15]
+        else:c['rules'].pop('factions',None)
     defs['upgrades']=[{'id':str(s['id']),'name':{'en':s['name'],'zh':next((c['name']['zh']for c in result if c.get('upstream',{}).get('id')==str(s['id'])and c['name']['zh']), '')},'slotIds':s['type']if isinstance(s['type'],list)else[s['type']]}for s in data['upgrades']]
     defs['sourceUnits']=[{'id':str(s['id']),'name':{'en':s['name']+(' · '+s['title']if s['title']else''),'zh':next((c['name']['zh']for c in units['units']if c['upstream']['id']==str(s['id'])and c['upstream']['collection']=='units'),'')}}for s in data['units']]
     defs['sourceKeywords']=[{'id':s['id'],'name':{'en':s['name'],'zh':''}}for s in data['keywords']]

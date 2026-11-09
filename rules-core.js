@@ -202,8 +202,36 @@ window.RulesCore = (() => {
     return false;
   }
 
-  function upgradeEligibility(card, unit, army, data) {
+  function keywordMap(defs) {
+    const m = {};
+    for (const k of defs.keywords || []) for (const uid of k.upstreamIds || []) m[String(uid)] = k.id;
+    return m;
+  }
+  function applyPropertyEffects(unit, cards, defs) {
+    if (!cards || !cards.length) return unit;
+    const kwMap = keywordMap(defs);
+    const keywords = new Set((unit.keywords || []).map(k => k && k.id));
+    let affiliations = (unit.affiliationIds || []).map(String);
+    for (const card of cards) {
+      const r = (card && card.rules) || {};
+      for (const group of (r.addProperties || [])) for (const atom of group) {
+        if (!atom) continue;
+        const vals = Array.isArray(atom.value) ? atom.value : [atom.value];
+        if (atom.property === 'keywords') for (const v of vals) keywords.add(kwMap[String(v)] || String(v));
+        else if (atom.property === 'affiliation') for (const v of vals) if (!affiliations.includes(String(v))) affiliations.push(String(v));
+      }
+      for (const group of (r.replaceProperties || [])) for (const atom of group) {
+        if (!atom) continue;
+        const vals = Array.isArray(atom.value) ? atom.value : [atom.value];
+        if (atom.property === 'affiliation') affiliations = vals.map(String);
+        else if (atom.property === 'keywords') { keywords.clear(); for (const v of vals) keywords.add(kwMap[String(v)] || String(v)); }
+      }
+    }
+    return { ...unit, keywords: [...keywords].map(id => ({ id })), affiliationIds: affiliations };
+  }
+  function upgradeEligibility(card, unit, army, data, equipped) {
     const { defs, pkg, nameIndex } = data;
+    if (equipped && equipped.length) unit = applyPropertyEffects(unit, equipped, defs);
     const idx = nameIndex || buildNameIndex(data.upgrades, defs);
     const rule = (pkg.upgradeRules || {})[String(card.upstream && card.upstream.id || "")] || {};
     const name = (card.name && card.name.en) || card.id;
@@ -269,6 +297,12 @@ window.RulesCore = (() => {
       basePoints += unit.points || 0;
       const memberships = (unit.factions || []).filter(m => m.id === army.armyId);
       if (!memberships.length) { issue("invalid", "army_membership", "此单位未列入当前军队", key); continue; }
+      const urc = (unit.restrictions || {}).condition;
+      if (urc !== undefined && urc !== null) {
+        const urcOk = evaluate(urc, unitContext(unit), pkg.predicates || {});
+        if (urcOk === false) issue("invalid", "unit_restriction_condition", `单位「${(unit.name && unit.name.en) || unit.id}」不满足卡面限制条件`, key);
+        else if (urcOk === null) issue("unknown", "unit_restriction_condition_unknown", `单位「${(unit.name && unit.name.en) || unit.id}」的卡面限制条件存在未覆盖语义`, key);
+      }
 
       const slotList = slotListFor(pkg, unit, inst, upgrades);
       for (const rec of slotList) {
@@ -276,6 +310,7 @@ window.RulesCore = (() => {
       }
 
       const assigned = {};
+      const equippedCards = (inst.upgrades || []).map(x => upgrades[x.upgradeId]).filter(Boolean);
       for (const selected of inst.upgrades || []) {
         const ckey = selected.instanceId;
         const card = upgrades[selected.upgradeId];
@@ -296,7 +331,7 @@ window.RulesCore = (() => {
         if (index in assigned) { issue("invalid", "slot_occupied", "该槽已被另一张升级占用", ckey); }
         else assigned[index] = ckey;
 
-        const elig = upgradeEligibility(card, unit, army, { units, upgrades, defs, pkg, nameIndex });
+        const elig = upgradeEligibility(card, unit, army, { units, upgrades, defs, pkg, nameIndex }, equippedCards);
         for (const e of elig.issues) issue(e.status, e.code, e.message, ckey);
       }
       for (let i = 0; i < slotList.length; i++) {
@@ -532,7 +567,7 @@ window.RulesCore = (() => {
 
     const hasInvalid = issues.some(i => i.status === "invalid");
     const hasUnknown = issues.some(i => i.status === "unknown");
-    issues.push({ status: "unknown", code: "coverage_note", message: "属性效果（addProperties/replaceProperties）已保留，但尚未参与资格判断；卡面限制、费用修正、chooseOneKey、quantityLimitedBy、军阶豁免、军阶要求/替换军阶与互斥卡牌已执行。战斗部队规则未覆盖项仍标 unknown。", instanceId: null });
+    issues.push({ status: "unknown", code: "coverage_note", message: "属性效果（addProperties/replaceProperties）已参与资格判断；卡面限制、费用修正、chooseOneKey、quantityLimitedBy、军阶豁免、军阶要求/替换军阶与互斥卡牌已执行。战斗部队规则未覆盖项仍标 unknown。", instanceId: null });
     return { status: hasInvalid ? "invalid" : (hasUnknown ? "unknown" : "valid"), basePoints, effectivePoints, rankCounts: maxCounts, issues };
   }
 

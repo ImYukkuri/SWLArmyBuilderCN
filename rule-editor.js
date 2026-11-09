@@ -3,35 +3,35 @@
 window.RuleEditor=(()=>{
   const E=(tag,text)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;return e};
   const labels={
-    slotTypes:'可匹配槽位', availableIn:'允许的单位', unavailableIn:'排除的单位',
+    slotTypes:'可匹配槽位', availableIn:'允许的单位',
     unavailableWith:'互斥卡牌（旧字段，与互斥卡牌 ID 重复）', factions:'军队准入（含战斗部队）',
     requiredProperties:'适用条件（外层 OR / 内层 AND）', requiredDivisions:'光明/黑暗限定', unique:'整军唯一', locallyUnique:'同一单位不重复',
     limit:'数量上限', unlimited:'允许重复单位', addProperties:'增加属性', replaceProperties:'替换属性',
     modifiedPointsWith:'条件费用修正', tierCounting:'军阶计数修正', requiredChildren:'强制附带卡',
     quantityLimitedBy:'数量受母单位限制', chooseOneKey:'互斥选择组', poolBonuses:'雇佣兵池奖励',
-    countsAsActivation:'计为独立激活', costViaUpgrade:'费用只通过所属升级计入', property:'比较属性',
+    property:'比较属性',
     value:'目标值', tiers:'军阶', whenArmyIncludes:'需要军队包含', perSourceUnit:'每个来源提供名额',
     ignoreMinimum:'不计入最低', ignoreMaximum:'不计入最高', waivesMinimum:'免除最低', exempt:'条件豁免',
     ignoreMaximumWhenArmyIncludes:'存在指定单位时豁免上限', id:'引用 ID', elementPropertyName:'对象类别',
     upgradeIndex:'槽位索引', modifier:'点数变化', unit:'母单位', ratio:'数量比例', in:'限定对象',
-    requiresTier:'军阶要求', replaceTier:'替换军阶', unavailableWithIds:'互斥卡牌 ID', memberships:'单位成员关系（镜像；建议在表单『可加入军队及军阶』编辑）', rank:'军阶',
+    requiresTier:'军阶要求', replaceTier:'替换军阶', unavailableWithIds:'互斥卡牌 ID', rank:'军阶',
     slotEffects:'槽位效果（携带后增加/修正槽位）', type:'效果类型', slot:'槽位', when:'触发条件', field:'字段', op:'操作符'
   };
   const groups=[
-    ['适用资格',['slotTypes','requiredProperties','requiredDivisions','availableIn','unavailableIn','factions']],
+    ['适用资格',['slotTypes','requiredProperties','requiredDivisions','availableIn','factions']],
     ['唯一性与互斥',['unique','unlimited','limit','locallyUnique','chooseOneKey','unavailableWithIds']],
-    ['依赖与数量',['requiredChildren','quantityLimitedBy','countsAsActivation','costViaUpgrade']],
+    ['依赖与数量',['requiredChildren','quantityLimitedBy']],
     ['效果与费用',['addProperties','replaceProperties','modifiedPointsWith']],
     ['军阶和佣兵池',['tierCounting','poolBonuses']],
     ['军阶要求',['requiresTier']],
     ['槽位效果',['slotEffects']]
   ];
   const defaults={
-    slotTypes:[2], availableIn:[], unavailableIn:[], unavailableWith:[], factions:[],
+    slotTypes:[2], availableIn:[], factions:[],
     requiredProperties:[[{property:'unitType',value:1}]], requiredDivisions:['Light'], unique:false, locallyUnique:false,
     unlimited:true, limit:1, chooseOneKey:'leader', addProperties:[], replaceProperties:[],
     modifiedPointsWith:[], tierCounting:{ignoreMinimum:false}, requiredChildren:[], quantityLimitedBy:[],
-    poolBonuses:[], countsAsActivation:false, costViaUpgrade:true, slotEffects:[]
+    poolBonuses:[], slotEffects:[]
   };
   let props=['unitType','faction','affiliation','keywords'];
   let atomTables={unitType:'unitTypes',faction:'factions',affiliation:'affiliations',keywords:'keywords'};
@@ -96,9 +96,7 @@ window.RuleEditor=(()=>{
     if(key==='value'&&parent.property)return atomTables[parent.property];
     if(key==='slotTypes'||path.includes('slotTypes'))return 'upgradeSlots';
     if(key==='factions'&&path.length===1)return 'armies';
-    if(path.includes('memberships')&&key==='id')return 'armies';
-    if(path.includes('memberships')&&key==='rank')return 'ranks';
-    if(path.includes('availableIn')||path.includes('unavailableIn'))return 'sourceUnits';
+    if(path.includes('availableIn'))return 'sourceUnits';
     if(path.includes('requiredChildren')&&key==='id')return 'upgrades';
     if(path.includes('quantityLimitedBy')&&key==='unit')return 'sourceUnits';
     if(path.includes('unavailableWith')&&key==='id')return parent.propertyName==='units'?'sourceUnits':'upgrades';
@@ -146,7 +144,7 @@ window.RuleEditor=(()=>{
         if(value!=null&&!items.some(i=>String(i.id)===String(value))){const op=E('option','待确认引用：'+value);op.value=String(value);input.append(op)}
         input.value=value??'';input.onchange=()=>{const found=items.find(i=>String(i.id)===input.value);object[key]=found?(typeof value==='number'?Number(found.id):found.id):input.value||null;notify()};
       }else if(path.includes('requiredDivisions')){input=E('select');for(const [v,t]of [['Light','光明面'],['Dark','黑暗面']]){const op=E('option',t);op.value=v;input.append(op)}input.value=value??'';input.onchange=()=>{object[key]=input.value||null;notify()}}
-      else if(typeof value==='boolean'||['unique','unlimited','locallyUnique','countsAsActivation','costViaUpgrade','ignoreMaximum','ignoreMinimum'].includes(key)){
+      else if(typeof value==='boolean'||['unique','unlimited','locallyUnique','ignoreMaximum','ignoreMinimum'].includes(key)){
         input=E('select');for(const [v,t]of [['null','未指定'],['true','是'],['false','否']]){const op=E('option',t);op.value=v;input.append(op)}input.value=String(value);input.onchange=()=>{object[key]=JSON.parse(input.value);notify()};
       }else{
         input=E('input');input.value=value??'';input.placeholder=value===null?'null':'';
@@ -165,7 +163,6 @@ window.RuleEditor=(()=>{
       if(['addProperties','replaceProperties'].includes(key))return [{property:'keywords',value:[]}];
       if(path.includes('addProperties')||path.includes('replaceProperties'))return {property:'keywords',value:[]};
       if(key==='unavailableWith')return {id:(defs.upgrades&&defs.upgrades[0]&&defs.upgrades[0].id)||'64',propertyName:'upgrades'};
-      if(key==='unavailableIn')return (defs.sourceUnits&&defs.sourceUnits[0]&&defs.sourceUnits[0].id)||1;
       if(key==='factions')return 1;if(key==='slotTypes')return 2;
       if(key==='poolBonuses')return 'extraMercenary';
       if(path.includes('slotEffects'))return {type:'addSlot',slot:'heavy_weapon'};

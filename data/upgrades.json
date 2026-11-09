@@ -101,7 +101,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -214,7 +213,6 @@
             "772"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "aa5-heavy-laser",
@@ -322,7 +320,6 @@
             "772"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "aa5-quad",
@@ -449,7 +446,6 @@
             "53"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "aayla",
@@ -578,7 +574,6 @@
             "31668"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "academy-trained",
@@ -671,7 +666,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "adaptive-combat-network",
@@ -775,7 +769,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -886,7 +879,6 @@
             "10"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "airspeeder-buzzer",
@@ -999,7 +991,6 @@
             "10"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "airspeeder-harpoon",
@@ -1075,7 +1066,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "annul",
@@ -1193,7 +1183,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -1323,7 +1312,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "field": "unit.upstreamId",
           "op": "in",
@@ -1460,7 +1448,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "field": "unit.upstreamId",
           "op": "in",
@@ -1579,7 +1566,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "field": "unit.upstreamId",
           "op": "in",
@@ -1741,7 +1727,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -1872,7 +1857,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Gar Saxon, Militant Commandeer"
         ],
@@ -2005,7 +1989,6 @@
             "4891"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "armament-saxon-rifle",
@@ -2187,7 +2170,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -2301,7 +2283,6 @@
             "9"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "at-st-mortar",
@@ -2410,7 +2391,6 @@
             "9"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "at-st-twin-light",
@@ -2524,7 +2504,6 @@
             "70"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "atrt-flame",
@@ -2636,7 +2615,6 @@
             "70"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "atrt-laser-cannon",
@@ -2744,7 +2722,6 @@
             "70"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "atrt-rotary",
@@ -2873,7 +2850,6 @@
           "op": "contains",
           "value": 1081
         },
-        "execution": "unmapped",
         "unmappedReasons": [
           "context_field_missing_for_icon"
         ],
@@ -2986,7 +2962,6 @@
             "38"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "b1-e5c",
@@ -3099,7 +3074,6 @@
             "38"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "b1-e60r",
@@ -3195,7 +3169,6 @@
             "38"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "b1-miniature",
@@ -3302,7 +3275,6 @@
             "38"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "b1-oom",
@@ -3413,7 +3385,6 @@
             "38"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "b1-radiation",
@@ -3516,7 +3487,6 @@
             "38"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "b1-security",
@@ -3626,7 +3596,6 @@
             "38"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "b1-sniper",
@@ -3748,7 +3717,6 @@
             "38"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "b1-squad",
@@ -3853,7 +3821,6 @@
             "52"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "b2-acm",
@@ -3964,7 +3931,6 @@
             "35769"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "b2-anti-infantry-missile",
@@ -4076,7 +4042,6 @@
             "35769"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "b2-anti-infantry-missile-flipside",
@@ -4192,7 +4157,6 @@
             "52"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "b2-ha",
@@ -4306,7 +4270,6 @@
             "35769"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "b2-ha-rocket",
@@ -4402,7 +4365,6 @@
             "52"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "b2-miniature",
@@ -4498,7 +4460,6 @@
             "35769"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "b2-rocket-mini",
@@ -4620,7 +4581,6 @@
             "52"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "b2-squad",
@@ -4716,7 +4676,6 @@
             "772"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "backworld-medic",
@@ -4838,7 +4797,6 @@
             "44"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "barc-ion",
@@ -4948,7 +4906,6 @@
             "44"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "barc-rps6",
@@ -5058,7 +5015,6 @@
             "44"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "barc-twinlaser",
@@ -5168,7 +5124,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -5294,7 +5249,6 @@
             }
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "battlemaster",
@@ -5373,7 +5327,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "battlemind",
@@ -5491,7 +5444,6 @@
             "24"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "battleshield-1",
@@ -5603,7 +5555,6 @@
             "24"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "battleshield-2",
@@ -5709,7 +5660,6 @@
             "54"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "battletank-oom-droid",
@@ -5826,7 +5776,6 @@
             "33773"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "beskad-duelist-clan",
@@ -5918,7 +5867,6 @@
             "32592"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "black-sun-crew",
@@ -6102,7 +6050,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "existing_host_partial",
         "unmappedReasons": [
           "unresolved_subject: Mandalorian Clans"
         ],
@@ -6222,7 +6169,6 @@
           "op": "contains",
           "value": 1081
         },
-        "execution": "unmapped",
         "unmappedReasons": [
           "context_field_missing_for_icon"
         ],
@@ -6350,7 +6296,6 @@
             "24"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "bowcaster",
@@ -6466,7 +6411,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "field": "unit.upstreamId",
           "op": "in",
@@ -6580,7 +6524,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "field": "unit.upstreamId",
           "op": "in",
@@ -6703,7 +6646,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "field": "unit.upstreamId",
           "op": "in",
@@ -6828,7 +6770,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "field": "unit.upstreamId",
           "op": "in",
@@ -6950,7 +6891,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "field": "unit.upstreamId",
           "op": "in",
@@ -7076,7 +7016,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "field": "unit.upstreamId",
           "op": "in",
@@ -7240,7 +7179,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -7383,7 +7321,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -7508,7 +7445,6 @@
             "35770"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "caught-in-a-web",
@@ -7555,17 +7491,6 @@
         "front": "assets/upgrade-cards/champion-of-the-watch.webp"
       },
       "rules": {
-        "unavailableIn": [
-          [
-            33797
-          ],
-          [
-            33788
-          ],
-          [
-            33796
-          ]
-        ],
         "unavailableWith": [
           "clanWren",
           "clanKryze",
@@ -7663,7 +7588,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -7810,7 +7734,6 @@
           "op": "eq",
           "value": "local:wookiee_trooper"
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -7924,7 +7847,6 @@
           "op": "eq",
           "value": 9
         },
-        "execution": "not_connected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "children-of-the-watch",
@@ -8034,7 +7956,6 @@
             "28382"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "cis-aqua-miniature",
@@ -8144,7 +8065,6 @@
             "25966"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "cis-crab-laser",
@@ -8250,7 +8170,6 @@
             "25966"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "cis-crab-twin",
@@ -8356,7 +8275,6 @@
           "op": "eq",
           "value": 9
         },
-        "execution": "not_connected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "clan-kryze",
@@ -8471,7 +8389,6 @@
           "op": "eq",
           "value": 9
         },
-        "execution": "not_connected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "clan-saxon",
@@ -8586,7 +8503,6 @@
           "op": "eq",
           "value": 9
         },
-        "execution": "not_connected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "clan-wren",
@@ -8719,7 +8635,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -8832,7 +8747,6 @@
           "op": "eq",
           "value": 5
         },
-        "execution": "not_connected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "clone-captain",
@@ -8939,7 +8853,6 @@
           "op": "eq",
           "value": 5
         },
-        "execution": "not_connected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "clone-commander",
@@ -9056,7 +8969,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -9171,7 +9083,6 @@
             "25964"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "clone-dp23",
@@ -9291,7 +9202,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -9431,7 +9341,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -9531,7 +9440,6 @@
             "32248"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "clone-marksmen-miniature",
@@ -9652,7 +9560,6 @@
             "32248"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "clone-marksmen-squad",
@@ -9743,7 +9650,6 @@
           "op": "eq",
           "value": 5
         },
-        "execution": "not_connected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "clone-medic",
@@ -9839,7 +9745,6 @@
             "25964"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "clone-miniature",
@@ -9967,7 +9872,6 @@
             }
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "clone-mortar",
@@ -10118,7 +10022,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -10248,7 +10151,6 @@
             }
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "clone-rocket",
@@ -10345,7 +10247,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -10462,7 +10363,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -10589,7 +10489,6 @@
             "25964"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "clone-squad",
@@ -10690,7 +10589,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -10800,7 +10698,6 @@
             "25964"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "clone-z6",
@@ -10961,7 +10858,6 @@
             }
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "cody-squad",
@@ -11062,7 +10958,6 @@
             }
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "combat-armor",
@@ -11163,7 +11058,6 @@
             }
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "combat-armor-rebel",
@@ -11283,7 +11177,6 @@
             }
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "command-and-control-uplink",
@@ -11388,7 +11281,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "command-improvised",
@@ -11461,7 +11353,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "command-inspiring",
@@ -11546,7 +11437,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "command-lead",
@@ -11620,7 +11510,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "command-strict",
@@ -11712,7 +11601,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "command-trusted-agent",
@@ -11799,7 +11687,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "command-underworld",
@@ -11874,7 +11761,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "command-vigilance",
@@ -11990,7 +11876,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "field": "unit.upstreamId",
           "op": "in",
@@ -12113,7 +11998,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "field": "unit.upstreamId",
           "op": "in",
@@ -12238,7 +12122,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "field": "unit.upstreamId",
           "op": "in",
@@ -12359,7 +12242,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "field": "unit.upstreamId",
           "op": "in",
@@ -12415,14 +12297,6 @@
         "front": "assets/upgrade-cards/comms-control-array.webp"
       },
       "rules": {
-        "unavailableIn": [
-          [
-            31844
-          ],
-          [
-            31845
-          ]
-        ],
         "unique": false,
         "slotTypes": [
           6
@@ -12482,7 +12356,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "comms-control-array",
@@ -12557,7 +12430,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "comms-emergency",
@@ -12631,7 +12503,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "comms-hacked",
@@ -12706,7 +12577,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "comms-hq",
@@ -12779,7 +12649,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "comms-jammer",
@@ -12823,14 +12692,6 @@
         "front": "assets/upgrade-cards/comms-linked-targeting.webp"
       },
       "rules": {
-        "unavailableIn": [
-          [
-            31844
-          ],
-          [
-            31845
-          ]
-        ],
         "unique": false,
         "addProperties": [
           [
@@ -12908,7 +12769,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "comms-linked-targeting",
@@ -12955,14 +12815,6 @@
         "front": "assets/upgrade-cards/comms-onboard.webp"
       },
       "rules": {
-        "unavailableIn": [
-          [
-            31844
-          ],
-          [
-            31845
-          ]
-        ],
         "unique": false,
         "addProperties": [
           [
@@ -13032,7 +12884,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "comms-onboard",
@@ -13110,7 +12961,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "comms-spotter-uplink",
@@ -13218,7 +13068,6 @@
             "40"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "cr-24-flame",
@@ -13333,7 +13182,6 @@
           "op": "contains",
           "value": "transport"
         },
-        "execution": "not_connected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "crew-door-gunner",
@@ -13482,7 +13330,6 @@
             "25086"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "crosshair",
@@ -13577,7 +13424,6 @@
             "6180"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "dark-trooper-miniature",
@@ -13689,7 +13535,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "field": "unit.upstreamId",
           "op": "in",
@@ -13832,7 +13677,6 @@
             }
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "deadeye",
@@ -13969,7 +13813,6 @@
             }
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "defend-in-depth",
@@ -14138,7 +13981,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -14280,7 +14122,6 @@
           "op": "contains",
           "value": 965
         },
-        "execution": "unmapped",
         "unmappedReasons": [
           "context_field_missing_for_icon"
         ],
@@ -14451,7 +14292,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "field": "unit.upstreamId",
           "op": "in",
@@ -14613,7 +14453,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "field": "unit.upstreamId",
           "op": "in",
@@ -14735,7 +14574,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "field": "unit.upstreamId",
           "op": "in",
@@ -14874,7 +14712,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "any": [
             {
@@ -15076,7 +14913,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "field": "unit.upstreamId",
           "op": "in",
@@ -15228,7 +15064,6 @@
             }
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "dual-armaments",
@@ -15336,7 +15171,6 @@
             "9"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "dw-3-grenade-launcher",
@@ -15449,7 +15283,6 @@
             "30"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "e-11d-focused-fire",
@@ -15545,7 +15378,6 @@
             "30"
           ]
         },
-        "execution": "not_connected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "e-11d-grenade-launcher",
@@ -15596,14 +15428,6 @@
         "front": "assets/upgrade-cards/e4-medical.webp"
       },
       "rules": {
-        "unavailableIn": [
-          [
-            6180
-          ],
-          [
-            23657
-          ]
-        ],
         "unique": false,
         "addProperties": [
           [
@@ -15681,7 +15505,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -15764,11 +15587,6 @@
         "front": "assets/upgrade-cards/echo-arc.webp"
       },
       "rules": {
-        "unavailableIn": [
-          [
-            25980
-          ]
-        ],
         "unavailableWith": [
           "Echo, ARC Marksman"
         ],
@@ -15849,7 +15667,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -15962,7 +15779,6 @@
             "25086"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "echo-bb",
@@ -16078,7 +15894,6 @@
             }
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "ee-3-carbine",
@@ -16211,7 +16026,6 @@
             "31845"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "electrostaff",
@@ -16330,7 +16144,6 @@
             "32591"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "electrostaff-pirate",
@@ -16437,7 +16250,6 @@
             "31845"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "enhanced-combat-subroutines",
@@ -16542,7 +16354,6 @@
             "16687"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "ewok-medicine",
@@ -16654,7 +16465,6 @@
             "16687"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "ewok-secret",
@@ -16779,7 +16589,6 @@
             }
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "ewoks-axe",
@@ -16884,7 +16693,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -16993,7 +16801,6 @@
             }
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "ewoks-curiosity",
@@ -17099,7 +16906,6 @@
             }
           ]
         },
-        "execution": "unmapped",
         "unmappedReasons": [
           "context_field_missing_for_icon"
         ],
@@ -17214,7 +17020,6 @@
             "16687"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "ewoks-onward",
@@ -17336,7 +17141,6 @@
             "15784"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "ewoks-skirmish-squad",
@@ -17458,7 +17262,6 @@
             "16377"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "ewoks-slinger-squad",
@@ -17572,7 +17375,6 @@
             }
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "ewoks-trapper",
@@ -17667,7 +17469,6 @@
             "31845"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "expanded-databanks",
@@ -17820,7 +17621,6 @@
             "25967"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "fifth-brother",
@@ -17911,7 +17711,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "fire-control",
@@ -18029,7 +17828,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -18177,7 +17975,6 @@
           "op": "eq",
           "value": 5
         },
-        "execution": "not_connected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "fives",
@@ -18288,7 +18085,6 @@
           "op": "eq",
           "value": 9
         },
-        "execution": "not_connected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "flame-projector",
@@ -18406,7 +18202,6 @@
             "12"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "fleet-barrage",
@@ -18516,7 +18311,6 @@
             "12"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "fleet-scatter",
@@ -18638,7 +18432,6 @@
             "12"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "fleet-squad",
@@ -18734,7 +18527,6 @@
             "12"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "fleet-trooper",
@@ -18821,7 +18613,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Light Side"
         ],
@@ -18942,7 +18733,6 @@
             }
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "force-adept",
@@ -19018,7 +18808,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "force-agility",
@@ -19101,7 +18890,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Dark Side"
         ],
@@ -19179,7 +18967,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "force-barrier",
@@ -19254,7 +19041,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "force-burst",
@@ -19338,7 +19124,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Dark Side"
         ],
@@ -19421,7 +19206,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "force-clairvoyance",
@@ -19511,7 +19295,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Dark Side"
         ],
@@ -19602,7 +19385,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Dark Side"
         ],
@@ -19691,7 +19473,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "force-enhanced-defense",
@@ -19787,7 +19568,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Dark Side"
         ],
@@ -19863,7 +19643,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "force-guidance",
@@ -19959,7 +19738,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Light Side"
         ],
@@ -20046,7 +19824,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Light Side"
         ],
@@ -20123,7 +19900,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "force-push",
@@ -20194,7 +19970,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "force-reflexes",
@@ -20288,7 +20063,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "force-saber",
@@ -20374,7 +20148,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Dark Side"
         ],
@@ -20468,7 +20241,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Light Side"
         ],
@@ -20608,7 +20380,6 @@
             "31669"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "frontline-commander",
@@ -20710,7 +20481,6 @@
             "33787"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "full-beskar-armor",
@@ -20761,14 +20531,6 @@
         "front": "assets/upgrade-cards/fx-9-medical.webp"
       },
       "rules": {
-        "unavailableIn": [
-          [
-            6180
-          ],
-          [
-            23657
-          ]
-        ],
         "unique": false,
         "slotTypes": [
           1
@@ -20824,7 +20586,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -20956,7 +20717,6 @@
             }
           ]
         },
-        "execution": "unmapped",
         "unmappedReasons": [
           "context_field_missing_for_icon",
           "context_field_missing_for_icon"
@@ -21060,7 +20820,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Mandalorian Leder"
         ],
@@ -21193,7 +20952,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -21338,7 +21096,6 @@
             }
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "galaar-90-sniper-leader",
@@ -21463,7 +21220,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -21569,7 +21325,6 @@
             "28861"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "gar-arf-miniatures",
@@ -21682,7 +21437,6 @@
             "28861"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "gar-arf-rps",
@@ -21824,7 +21578,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -21978,7 +21731,6 @@
           "op": "contains",
           "value": 1083
         },
-        "execution": "unmapped",
         "unmappedReasons": [
           "context_field_missing_for_icon"
         ],
@@ -22072,7 +21824,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "gear-ascension",
@@ -22153,7 +21904,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "slotPermissionsText": [
           "B1 Battle Droids units can equip this card even though they do not have a {@icon.slot-gear} upgrade slot."
         ],
@@ -22241,7 +21991,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "gear-datapad",
@@ -22353,7 +22102,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "field": "unit.upstreamId",
           "op": "in",
@@ -22442,7 +22190,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "gear-emergency",
@@ -22527,7 +22274,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "gear-environment",
@@ -22600,7 +22346,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "gear-extra-supplies",
@@ -22685,7 +22430,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "gear-grappling",
@@ -22776,7 +22520,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "slotPermissionsText": [
           "B1 Battle Droids units can equip this card even though they do not have a {@icon.slot-gear} upgrade slot."
         ],
@@ -22864,7 +22607,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "gear-scopes",
@@ -22939,7 +22681,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "gear-supplies",
@@ -23073,7 +22814,6 @@
             "31842"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "general-of-the-republic",
@@ -23204,7 +22944,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -23291,7 +23030,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "generator-barrage",
@@ -23373,7 +23111,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "generator-overcharged",
@@ -23462,7 +23199,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "field": "unit.upstreamId",
           "op": "in",
@@ -23578,7 +23314,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "field": "unit.upstreamId",
           "op": "in",
@@ -23698,7 +23433,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "field": "unit.upstreamId",
           "op": "in",
@@ -23815,7 +23549,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "field": "unit.upstreamId",
           "op": "in",
@@ -23942,7 +23675,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "field": "unit.upstreamId",
           "op": "in",
@@ -24143,7 +23875,6 @@
             "11258"
           ]
         },
-        "execution": "active_host",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -24296,7 +24027,6 @@
         ],
         "verification": "visually_checked",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Imperial Special Forcesor Trooper"
         ],
@@ -24415,7 +24145,6 @@
             "1984"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "gnasp-bomber",
@@ -24531,7 +24260,6 @@
             "1984"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "gnasp-gunner",
@@ -24616,7 +24344,6 @@
         "condition": {
           "ref": "trooperUnitType"
         },
-        "execution": "not_connected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "go-for-broke",
@@ -24748,7 +24475,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -24840,7 +24566,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "grenade-concussion",
@@ -24928,7 +24653,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "grenade-emp",
@@ -25016,7 +24740,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "grenade-fragmentation",
@@ -25105,7 +24828,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "grenade-impact",
@@ -25182,7 +24904,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "grenade-smoke",
@@ -25268,7 +24989,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "grenade-sonic",
@@ -25418,7 +25138,6 @@
         ],
         "verification": "visually_checked",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "any": [
             {
@@ -25568,7 +25287,6 @@
             "33787"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "guild-member",
@@ -25656,7 +25374,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Dark Side"
         ],
@@ -25765,7 +25482,6 @@
             "31845"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "heavy-arm-cannon",
@@ -25875,7 +25591,6 @@
             "4417"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "heavy-blacksun-enforcer",
@@ -26020,7 +25735,6 @@
             }
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "heavy-blaster-pistol",
@@ -26156,7 +25870,6 @@
             }
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "heavy-blaster-pistol-rebel",
@@ -26255,7 +25968,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Mandalorian Super Commandos, Maul Loyalists"
         ],
@@ -26370,7 +26082,6 @@
             "4215"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "heavy-electro-whip",
@@ -26483,7 +26194,6 @@
             "4417"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "heavy-mag-det",
@@ -26592,7 +26302,6 @@
             "4215"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "heavy-pyke-p13",
@@ -26740,7 +26449,6 @@
             "4767"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "heavy-rook-kast",
@@ -26831,7 +26539,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Light Side"
         ],
@@ -26910,7 +26617,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "high-speed-tracking",
@@ -26959,179 +26665,6 @@
         "front": "assets/upgrade-cards/hit-the-dirt.webp"
       },
       "rules": {
-        "unavailableIn": [
-          [
-            23656
-          ],
-          [
-            32248
-          ],
-          [
-            34881
-          ],
-          [
-            34887
-          ],
-          [
-            34890
-          ],
-          [
-            34888
-          ],
-          [
-            34889
-          ],
-          [
-            34886
-          ],
-          [
-            29671
-          ],
-          [
-            19108
-          ],
-          [
-            29931
-          ],
-          [
-            25967
-          ],
-          [
-            6376
-          ],
-          [
-            33772
-          ],
-          [
-            33777
-          ],
-          [
-            33794
-          ],
-          [
-            33771
-          ],
-          [
-            33795
-          ],
-          [
-            33797
-          ],
-          [
-            28861
-          ],
-          [
-            33790
-          ],
-          [
-            33789
-          ],
-          [
-            4767
-          ],
-          [
-            33791
-          ],
-          [
-            33773
-          ],
-          [
-            25964
-          ],
-          [
-            4891
-          ],
-          [
-            13582
-          ],
-          [
-            19109
-          ],
-          [
-            11258
-          ],
-          [
-            24084
-          ],
-          [
-            5000
-          ],
-          [
-            6176
-          ],
-          [
-            15014
-          ],
-          [
-            6179
-          ],
-          [
-            32593
-          ],
-          [
-            4
-          ],
-          [
-            33
-          ],
-          [
-            47
-          ],
-          [
-            39
-          ],
-          [
-            30
-          ],
-          [
-            78
-          ],
-          [
-            79
-          ],
-          [
-            33770
-          ],
-          [
-            41
-          ],
-          [
-            33575
-          ],
-          [
-            73
-          ],
-          [
-            33776
-          ],
-          [
-            31842
-          ],
-          [
-            50
-          ],
-          [
-            75
-          ],
-          [
-            62
-          ],
-          [
-            25980
-          ],
-          [
-            45
-          ],
-          [
-            32588
-          ],
-          [
-            33787
-          ],
-          [
-            33774
-          ]
-        ],
         "slotTypes": [
           10,
           26,
@@ -27213,7 +26746,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -27343,7 +26875,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -27461,7 +26992,6 @@
             "25086"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "hunter",
@@ -27566,7 +27096,6 @@
             "32595"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "ig100-magnaguard-pilot",
@@ -27607,14 +27136,6 @@
         "front": "assets/upgrade-cards/imperial-comms.webp"
       },
       "rules": {
-        "unavailableIn": [
-          [
-            6180
-          ],
-          [
-            23657
-          ]
-        ],
         "unique": false,
         "slotTypes": [
           1
@@ -27676,7 +27197,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -27784,7 +27304,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -27838,14 +27357,6 @@
         "front": "assets/upgrade-cards/imperial-officer.webp"
       },
       "rules": {
-        "unavailableIn": [
-          [
-            6180
-          ],
-          [
-            23657
-          ]
-        ],
         "unique": false,
         "chooseOneKey": "leader",
         "addProperties": [
@@ -27912,7 +27423,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -27974,11 +27484,6 @@
         "front": "assets/upgrade-cards/imperial-probe-droid.webp"
       },
       "rules": {
-        "unavailableIn": [
-          [
-            6180
-          ]
-        ],
         "slotTypes": [
           4
         ],
@@ -28057,7 +27562,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -28162,7 +27666,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "infantry-support",
@@ -28279,7 +27782,6 @@
             }
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "inquisitorus-training",
@@ -28369,7 +27871,6 @@
             "2108"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "isp-327",
@@ -28490,7 +27991,6 @@
             "2108"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "isp-rocket",
@@ -28599,7 +28099,6 @@
             "2108"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "isp-twin",
@@ -28721,7 +28220,6 @@
             "2108"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "isp-twin-blaster",
@@ -28864,7 +28362,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "any": [
             {
@@ -29011,7 +28508,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "any": [
             {
@@ -29164,7 +28660,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "any": [
             {
@@ -29339,7 +28834,6 @@
         ],
         "verification": "visually_checked",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Guerilla Troopers, Rebel Commandos"
         ],
@@ -29478,7 +28972,6 @@
         ],
         "verification": "visually_checked",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "field": "unit.upstreamId",
           "op": "in",
@@ -29661,7 +29154,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -29751,7 +29243,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "field": "unit.upstreamId",
           "op": "in",
@@ -29910,7 +29401,6 @@
           "op": "eq",
           "value": 5
         },
-        "execution": "not_connected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "ki-adi-mundi-leader",
@@ -29982,11 +29472,6 @@
         "front": "assets/upgrade-cards/kraken.webp"
       },
       "rules": {
-        "unavailableIn": [
-          [
-            19103
-          ]
-        ],
         "unavailableWith": [
           "Kraken",
           {
@@ -30075,7 +29560,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -30197,7 +29681,6 @@
             "32"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "landspeeder-ion",
@@ -30303,7 +29786,6 @@
             "32"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "landspeeder-medium",
@@ -30428,7 +29910,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "any": [
             {
@@ -30548,7 +30029,6 @@
             "31845"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "limiter-override",
@@ -30650,7 +30130,6 @@
             "33593"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "logistical-prowess",
@@ -30757,7 +30236,6 @@
             "54"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "lok-duk",
@@ -30866,7 +30344,6 @@
             "32591"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "long-rifle-pirate",
@@ -30980,7 +30457,6 @@
             "24"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "longgun",
@@ -31144,7 +30620,6 @@
             }
           ]
         },
-        "execution": "active_host",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -31262,7 +30737,6 @@
             }
           ]
         },
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Trooper Unit with Infiltrate",
           "unresolved_subject: Prepared Position"
@@ -31415,7 +30889,6 @@
           "op": "eq",
           "value": 5
         },
-        "execution": "not_connected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "mace-windu-leader",
@@ -31504,7 +30977,6 @@
             "19077"
           ]
         },
-        "execution": "active_host",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -31624,7 +31096,6 @@
             "19077"
           ]
         },
-        "execution": "active_host",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -31743,7 +31214,6 @@
             "19077"
           ]
         },
-        "execution": "active_host",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -31862,7 +31332,6 @@
             "33788"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "mandalorian-initiate-squad",
@@ -31924,11 +31393,6 @@
         "front": "assets/upgrade-cards/mandalorian-rockets-clan.webp"
       },
       "rules": {
-        "unavailableIn": [
-          [
-            33788
-          ]
-        ],
         "limit": 2,
         "slotTypes": [
           3
@@ -31974,7 +31438,6 @@
           "op": "eq",
           "value": 9
         },
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Non-Mandalorian Initiates"
         ],
@@ -32021,47 +31484,6 @@
         "front": "assets/upgrade-cards/mandalorian-shields-clan.webp"
       },
       "rules": {
-        "unavailableIn": [
-          [
-            33771
-          ],
-          [
-            34888
-          ],
-          [
-            33789
-          ],
-          [
-            33795
-          ],
-          [
-            34889
-          ],
-          [
-            33770
-          ],
-          [
-            34881
-          ],
-          [
-            33787
-          ],
-          [
-            33790
-          ],
-          [
-            34886
-          ],
-          [
-            34887
-          ],
-          [
-            33
-          ],
-          [
-            5000
-          ]
-        ],
         "addProperties": [
           [
             {
@@ -32132,7 +31554,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -32266,7 +31687,6 @@
             }
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "master-duelist",
@@ -32374,7 +31794,6 @@
             "6180"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "mertalizer",
@@ -32483,7 +31902,6 @@
           "op": "eq",
           "value": 9
         },
-        "execution": "not_connected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "micro-grenade-launcher",
@@ -32590,7 +32008,6 @@
             "31845"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "mobility-upgrade",
@@ -32748,7 +32165,6 @@
             "28861"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "obiwan-heavy",
@@ -32851,7 +32267,6 @@
             "31845"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "optimized-task-flow",
@@ -32951,7 +32366,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "ordnance-ap",
@@ -33053,7 +32467,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "ordnance-bunker",
@@ -33158,7 +32571,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "ordnance-energy",
@@ -33263,7 +32675,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -33348,7 +32759,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "overcharged-blaster-packs",
@@ -33445,7 +32855,6 @@
             "31845"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "overclock",
@@ -33590,7 +32999,6 @@
           "op": "contains",
           "value": 965
         },
-        "execution": "unmapped",
         "unmappedReasons": [
           "context_field_missing_for_icon"
         ],
@@ -33723,7 +33131,6 @@
             }
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "peacekeeping-mission",
@@ -33774,26 +33181,6 @@
         "front": "assets/upgrade-cards/personal-combat-shield.webp"
       },
       "rules": {
-        "unavailableIn": [
-          [
-            33788
-          ],
-          [
-            33797
-          ],
-          [
-            33772
-          ],
-          [
-            33773
-          ],
-          [
-            34890
-          ],
-          [
-            33796
-          ]
-        ],
         "requiresTier": [
           1,
           6
@@ -33879,7 +33266,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -33993,7 +33379,6 @@
             "4417"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "personnel-blacksun-miniature",
@@ -34099,7 +33484,6 @@
             "4417"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "personnel-blacksun-vigo",
@@ -34201,7 +33585,6 @@
             "4215"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "personnel-pyke-capo",
@@ -34313,7 +33696,6 @@
             "4215"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "personnel-pyke-miniature",
@@ -34423,7 +33805,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -34571,7 +33952,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -34677,7 +34057,6 @@
             "32592"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "pirate-captain",
@@ -34725,14 +34104,6 @@
         "front": "assets/upgrade-cards/pk-worker.webp"
       },
       "rules": {
-        "unavailableIn": [
-          [
-            6180
-          ],
-          [
-            23657
-          ]
-        ],
         "unique": false,
         "addProperties": [
           [
@@ -34811,7 +34182,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -34942,7 +34312,6 @@
             "31667"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "platoon-commander",
@@ -35067,7 +34436,6 @@
             "53"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "plo-koon",
@@ -35224,7 +34592,6 @@
           "op": "eq",
           "value": 5
         },
-        "execution": "not_connected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "plo-koon-leader",
@@ -35326,7 +34693,6 @@
             "6180"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "programmed-loyalty",
@@ -35370,14 +34736,6 @@
         "front": "assets/upgrade-cards/programming-attack.webp"
       },
       "rules": {
-        "unavailableIn": [
-          [
-            31844
-          ],
-          [
-            31845
-          ]
-        ],
         "unique": false,
         "addProperties": [
           [
@@ -35448,7 +34806,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "programming-attack",
@@ -35565,7 +34922,6 @@
             "6178"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "programming-bounty",
@@ -35613,14 +34969,6 @@
         "front": "assets/upgrade-cards/programming-defense.webp"
       },
       "rules": {
-        "unavailableIn": [
-          [
-            31844
-          ],
-          [
-            31845
-          ]
-        ],
         "unique": false,
         "addProperties": [
           [
@@ -35692,7 +35040,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "programming-defense",
@@ -35732,14 +35079,6 @@
         "front": "assets/upgrade-cards/programming-engagement.webp"
       },
       "rules": {
-        "unavailableIn": [
-          [
-            31844
-          ],
-          [
-            31845
-          ]
-        ],
         "unique": false,
         "addProperties": [
           [
@@ -35809,7 +35148,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "programming-engagement",
@@ -35916,7 +35254,6 @@
             "6178"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "programming-nanny",
@@ -36043,7 +35380,6 @@
             "31669"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "proven-tactician",
@@ -36135,7 +35471,6 @@
             "32592"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "pyke-syndicate-crew",
@@ -36253,7 +35588,6 @@
             "4215"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "pyke-syndicate-squad",
@@ -36301,14 +35635,6 @@
         "front": "assets/upgrade-cards/r4-astromech.webp"
       },
       "rules": {
-        "unavailableIn": [
-          [
-            6180
-          ],
-          [
-            23657
-          ]
-        ],
         "unique": false,
         "addProperties": [
           [
@@ -36374,7 +35700,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -36488,7 +35813,6 @@
             "23657"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "range-trooper-dlt20a",
@@ -36583,7 +35907,6 @@
             "23657"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "range-trooper-miniature",
@@ -36691,7 +36014,6 @@
             "23657"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "range-trooper-t21a",
@@ -36797,7 +36119,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -36914,7 +36235,6 @@
             "6"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "rebel-captain",
@@ -37024,7 +36344,6 @@
             "36"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "rebel-cm093",
@@ -37129,7 +36448,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -37244,7 +36562,6 @@
             "6"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "rebel-dlt-20",
@@ -37348,7 +36665,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -37471,7 +36787,6 @@
             "6"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "rebel-mpl57",
@@ -37578,7 +36893,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -37688,7 +37002,6 @@
             "6"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "rebel-specialist",
@@ -37810,7 +37123,6 @@
             "6"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "rebel-squad",
@@ -37920,7 +37232,6 @@
             "6"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "rebel-sx21-trooper",
@@ -38016,7 +37327,6 @@
             "6"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "rebel-trooper-miniature",
@@ -38112,7 +37422,6 @@
             "36"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "rebel-veteran",
@@ -38217,7 +37526,6 @@
             "6"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "rebel-z6",
@@ -38345,7 +37653,6 @@
             "31670"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "reluctant-hero",
@@ -38489,7 +37796,6 @@
             }
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "repeating-blaster",
@@ -38599,7 +37905,6 @@
             "25967"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "riot-squad-kx",
@@ -38692,7 +37997,6 @@
             "25967"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "riot-squad-marksman",
@@ -38824,7 +38128,6 @@
           "op": "contains",
           "value": 1083
         },
-        "execution": "unmapped",
         "unmappedReasons": [
           "context_field_missing_for_icon"
         ],
@@ -38933,7 +38236,6 @@
             "40"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "rt-97c-blaster",
@@ -39039,7 +38341,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -39150,7 +38451,6 @@
             "53"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "saber-beam",
@@ -39256,7 +38556,6 @@
             "53"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "saber-beam-turret",
@@ -39444,7 +38743,6 @@
             "34887"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "sabine-darksaber",
@@ -39558,7 +38856,6 @@
           "op": "contains",
           "value": 1082
         },
-        "execution": "unmapped",
         "unmappedReasons": [
           "context_field_missing_for_icon"
         ],
@@ -39755,7 +39052,6 @@
             "34888"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "saxon-darksaber",
@@ -39922,7 +39218,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "field": "unit.upstreamId",
           "op": "in",
@@ -40039,7 +39334,6 @@
             "30"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "security-detail",
@@ -40159,7 +39453,6 @@
             "31845"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "seek-and-destroy",
@@ -40281,7 +39574,6 @@
             }
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "seeker-droid",
@@ -40435,7 +39727,6 @@
             "79"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "seventh-sister",
@@ -40588,7 +39879,6 @@
         ],
         "verification": "visually_checked",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: This card can only be included in a army"
         ],
@@ -40719,7 +40009,6 @@
             "39"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "shore-squad",
@@ -40871,7 +40160,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "field": "unit.upstreamId",
           "op": "in",
@@ -40977,7 +40265,6 @@
             "39"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "shore-trooper",
@@ -41109,7 +40396,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -41217,7 +40503,6 @@
           "op": "eq",
           "value": 9
         },
-        "execution": "not_connected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "shukur-05-repeater",
@@ -41320,7 +40605,6 @@
             "25968"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "sleeper-astromech",
@@ -41413,7 +40697,6 @@
             "25968"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "sleeper-marksman",
@@ -41507,7 +40790,6 @@
             "31845"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "sliced-comms",
@@ -41623,7 +40905,6 @@
             "6180"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "sm-9-frag",
@@ -41735,7 +41016,6 @@
             "7"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "snow-flame",
@@ -41853,7 +41133,6 @@
             "7"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "snow-ion",
@@ -41975,7 +41254,6 @@
             "7"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "snow-squad",
@@ -42071,7 +41349,6 @@
             "7"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "snowtrooper",
@@ -42183,7 +41460,6 @@
             "79"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "special-t21",
@@ -42294,7 +41570,6 @@
             "2019"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "spider-flame",
@@ -42411,7 +41686,6 @@
             "2019"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "spider-ion",
@@ -42520,7 +41794,6 @@
             "2019"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "spider-laser",
@@ -42676,7 +41949,6 @@
           "op": "eq",
           "value": 5
         },
-        "execution": "not_connected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "squad-leader-ahsoka",
@@ -42800,7 +42072,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "squadron-leader",
@@ -42898,7 +42169,6 @@
             "5880"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "stormtrooper",
@@ -43013,7 +42283,6 @@
             "5880"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "stormtrooper-captain",
@@ -43167,7 +42436,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "field": "unit.upstreamId",
           "op": "in",
@@ -43334,7 +42602,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "field": "unit.upstreamId",
           "op": "in",
@@ -43494,7 +42761,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "field": "unit.upstreamId",
           "op": "in",
@@ -43612,7 +42878,6 @@
             "5880"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "stormtrooper-specialist",
@@ -43736,7 +43001,6 @@
             "5880"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "stormtrooper-squad",
@@ -43889,7 +43153,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "field": "unit.upstreamId",
           "op": "in",
@@ -44003,7 +43266,6 @@
             "31845"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "strategic-programming",
@@ -44124,7 +43386,6 @@
         ],
         "verification": "visually_checked",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: This card may only be equipped by a unit that has 1",
           "context_field_missing_for_icon"
@@ -44215,7 +43476,6 @@
         "condition": {
           "ref": "trooperUnitType"
         },
-        "execution": "not_connected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "stuck-in",
@@ -44349,7 +43609,6 @@
             }
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "stun-baton",
@@ -44453,7 +43712,6 @@
         ],
         "verification": "visually_checked",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "field": "unit.upstreamId",
           "op": "in",
@@ -44583,7 +43841,6 @@
             "4767"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "super-commando-marksman",
@@ -44694,7 +43951,6 @@
             "34890"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "super-commando-marksman-super",
@@ -44796,7 +44052,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -44907,7 +44162,6 @@
             "40"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "t-21-blaster",
@@ -45020,7 +44274,6 @@
             "54"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "t-series-pilot",
@@ -45168,7 +44421,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -45292,7 +44544,6 @@
             }
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "tactical-acument",
@@ -45372,7 +44623,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "tank-hunting-munitions",
@@ -45463,7 +44713,6 @@
             "31845"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "targeting-relay",
@@ -45586,7 +44835,6 @@
             "25086"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "tech",
@@ -45722,7 +44970,6 @@
           "op": "contains",
           "value": 965
         },
-        "execution": "unmapped",
         "unmappedReasons": [
           "context_field_missing_for_icon"
         ],
@@ -45850,7 +45097,6 @@
             }
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "thermal-detonator",
@@ -45941,7 +45187,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -46089,7 +45334,6 @@
             }
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "tip-of-the-spear",
@@ -46153,7 +45397,6 @@
         "sources": [],
         "verification": "visually_checked",
         "condition": null,
-        "execution": "no_restriction_detected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -46230,7 +45473,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: VR2",
           "unresolved_subject: higher"
@@ -46296,7 +45538,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "tod-battle-shaken",
@@ -46366,7 +45607,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Story Arc: The Weekend War"
         ],
@@ -46438,7 +45678,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Paragon and VR4",
           "unresolved_subject: higher"
@@ -46501,7 +45740,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "tod-captious",
@@ -46577,7 +45815,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Story Arc: Liberate the System"
         ],
@@ -46657,7 +45894,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Story Arc: Bring Peace to the Galaxy"
         ],
@@ -46727,7 +45963,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Resilient and VR3",
           "unresolved_subject: higher"
@@ -46800,7 +46035,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Story Arc: Birth of a Legend"
         ],
@@ -46863,7 +46097,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "tod-downtrodden1",
@@ -46923,7 +46156,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "tod-downtrodden2",
@@ -46983,7 +46215,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "tod-downtrodden3",
@@ -47043,7 +46274,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "tod-downtrodden4",
@@ -47103,7 +46333,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "tod-downtrodden5",
@@ -47174,7 +46403,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Story Arc: Root Out the Corruption"
         ],
@@ -47249,7 +46477,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Units with Speeder X and VR2",
           "unresolved_subject: higher"
@@ -47331,7 +46558,6 @@
         "condition": {
           "ref": "trooperUnitType"
         },
-        "execution": "not_connected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "tod-extra-equipment",
@@ -47403,7 +46629,6 @@
         ],
         "verification": "visually_checked",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Story Arc: Bring Peace to the Galaxy",
           "unresolved_subject: VR4 or higher"
@@ -47474,7 +46699,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "tod-fatigue1",
@@ -47536,7 +46760,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "tod-fatigue2",
@@ -47598,7 +46821,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "tod-fatigue3",
@@ -47660,7 +46882,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "tod-fatigue4",
@@ -47722,7 +46943,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "tod-fatigue5",
@@ -47791,7 +47011,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Trooper and VR2",
           "unresolved_subject: higher"
@@ -47860,7 +47079,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: VR2",
           "unresolved_subject: higher"
@@ -47942,7 +47160,6 @@
             "local:flying_vehicle"
           ]
         },
-        "execution": "not_connected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "tod-field-modifications",
@@ -48013,7 +47230,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Story Arc: Bring Peace to the Galaxy"
         ],
@@ -48093,7 +47309,6 @@
         ],
         "verification": "visually_checked",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Trooper and VR2",
           "unresolved_subject: higher"
@@ -48169,7 +47384,6 @@
         "condition": {
           "ref": "trooperUnitType"
         },
-        "execution": "not_connected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "tod-forward-patrol",
@@ -48236,7 +47450,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Story Arc: A Pirate's Life"
         ],
@@ -48308,7 +47521,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Story Arc: A Pirate's Life"
         ],
@@ -48372,7 +47584,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "tod-harsh-environemts-gear",
@@ -48440,7 +47651,6 @@
         ],
         "verification": "visually_checked",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: and VR2",
           "unresolved_subject: higher"
@@ -48517,7 +47727,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Story Arc: Liberate the System"
         ],
@@ -48587,7 +47796,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Sterner Stuff and VR3",
           "unresolved_subject: higher"
@@ -48662,7 +47870,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Story Arc: Birth of a Legend",
           "unresolved_subject: Paragon and VR 3",
@@ -48734,7 +47941,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Story Arc: Birth of a Legend"
         ],
@@ -48804,7 +48010,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: One in a Million and VR3",
           "unresolved_subject: higher"
@@ -48869,7 +48074,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "tod-marksmanship-badge",
@@ -48937,7 +48141,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Story Arc: The Weekend War"
         ],
@@ -49000,7 +48203,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "tod-one-in-a-million",
@@ -49072,7 +48274,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: VR2",
           "unresolved_subject: higher"
@@ -49142,7 +48343,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Story Arc: The Weekend War"
         ],
@@ -49214,7 +48414,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: VR2",
           "unresolved_subject: higher"
@@ -49278,7 +48477,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "tod-resilient",
@@ -49352,7 +48550,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Story Arc: Root Out the Corruption"
         ],
@@ -49421,7 +48618,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Story Arc: A Pirate's Life"
         ],
@@ -49492,7 +48688,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: VR2",
           "unresolved_subject: higher"
@@ -49570,7 +48765,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Story Arc: Peacekeeping Mission"
         ],
@@ -49637,7 +48831,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "tod-special-munitions",
@@ -49706,7 +48899,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: VR3",
           "unresolved_subject: higher"
@@ -49774,7 +48966,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "tod-strongpoint-expertise",
@@ -49836,7 +49027,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "tod-tunnel-vision",
@@ -49906,7 +49096,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Story Arc: Peacekeeping Mission",
           "unresolved_subject: Clone Trooper Unit and VR4",
@@ -49973,7 +49162,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "tod-unsure",
@@ -50044,7 +49232,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: VR2",
           "unresolved_subject: higher"
@@ -50117,7 +49304,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Vehicle and VR3",
           "unresolved_subject: higher"
@@ -50182,7 +49368,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "tod-veteran-leader",
@@ -50250,7 +49435,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Story Arc: Peacekeeping Mission"
         ],
@@ -50324,7 +49508,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Story Arc: Liberate the System"
         ],
@@ -50394,7 +49577,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Special Munitions and VR3",
           "unresolved_subject: higher"
@@ -50470,7 +49652,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: Story Arc: Root Out the Corruption",
           "unresolved_subject: VR2",
@@ -50548,7 +49729,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "training-duck",
@@ -50668,7 +49848,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "training-dug-in",
@@ -50746,7 +49925,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "training-endurance",
@@ -50819,7 +49997,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "training-fray",
@@ -50893,7 +50070,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "training-hunt",
@@ -51004,7 +50180,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -51055,14 +50230,6 @@
         "front": "assets/upgrade-cards/training-mission-objective.webp"
       },
       "rules": {
-        "unavailableIn": [
-          [
-            32595
-          ],
-          [
-            32232
-          ]
-        ],
         "unique": false,
         "slotTypes": [
           10
@@ -51104,7 +50271,6 @@
         "condition": {
           "ref": "trooperUnitType"
         },
-        "execution": "not_connected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "training-mission-objective",
@@ -51190,7 +50356,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "training-offensive",
@@ -51275,7 +50440,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "training-overwatch",
@@ -51353,7 +50517,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "training-protector",
@@ -51450,7 +50613,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -51540,7 +50702,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "training-situational",
@@ -51649,7 +50810,6 @@
         ],
         "verification": "visually_checked",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: This card may only be equipped by a unit that has 1",
           "context_field_missing_for_icon"
@@ -51767,7 +50927,6 @@
         ],
         "verification": "visually_checked",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: This card may only be equipped by a unit that has 1",
           "context_field_missing_for_icon"
@@ -51867,7 +51026,6 @@
           "op": "contains",
           "value": "speeder"
         },
-        "execution": "not_connected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "training-strike-and-fade",
@@ -51976,7 +51134,6 @@
           "op": "eq",
           "value": 6
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -52056,7 +51213,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "training-tenacity",
@@ -52129,7 +51285,6 @@
         "sources": [],
         "verification": "no_restriction_detected",
         "condition": null,
-        "execution": "no_restriction_detected",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "training-upclose",
@@ -52179,11 +51334,6 @@
         "front": "assets/upgrade-cards/tristan-wren-clan.webp"
       },
       "rules": {
-        "unavailableIn": [
-          [
-            33772
-          ]
-        ],
         "unavailableWith": [
           "Tristan Wren",
           {
@@ -52268,7 +51418,6 @@
           "op": "eq",
           "value": 9
         },
-        "execution": "unmapped",
         "unmappedReasons": [
           "context_field_missing_for_icon",
           "context_field_missing_for_icon"
@@ -52361,7 +51510,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "unmapped",
         "unmappedReasons": [
           "unresolved_subject: General Grievous, Wheel Bike Warlord and TSMEU-6 Wheel Bikes"
         ],
@@ -52471,7 +51619,6 @@
         ],
         "verification": "text_matched",
         "condition": null,
-        "execution": "source_alignment_pending",
         "candidateCondition": {
           "any": [
             {
@@ -52599,7 +51746,6 @@
             "31"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "tx225-dlt19",
@@ -52700,7 +51846,6 @@
             "31"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "tx225-rt97c",
@@ -52798,7 +51943,6 @@
             "31845"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "tyrannical-taskmaster",
@@ -52891,7 +52035,6 @@
             "772"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "unorthodox",
@@ -53027,7 +52170,6 @@
             }
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "unseen-saboteur",
@@ -53133,7 +52275,6 @@
             }
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "unstable-a5-astromech",
@@ -53257,7 +52398,6 @@
           "op": "contains",
           "value": 1082
         },
-        "execution": "unmapped",
         "unmappedReasons": [
           "context_field_missing_for_icon"
         ],
@@ -53387,7 +52527,6 @@
             "36"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "veteran-squad",
@@ -53525,7 +52664,6 @@
             }
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "vibro-axe",
@@ -53668,7 +52806,6 @@
             }
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "vibrosword",
@@ -53733,14 +52870,6 @@
         "front": "assets/upgrade-cards/viper-droid.webp"
       },
       "rules": {
-        "unavailableIn": [
-          [
-            6180
-          ],
-          [
-            23657
-          ]
-        ],
         "unique": false,
         "addProperties": [
           [
@@ -53818,7 +52947,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -53945,7 +53073,6 @@
             "33789"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "war-party-leader",
@@ -54078,7 +53205,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -54210,7 +53336,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -54337,7 +53462,6 @@
             "32591"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "weequay-captain",
@@ -54427,7 +53551,6 @@
             "32592"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "weequay-crew",
@@ -54550,7 +53673,6 @@
             "32591"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "weequay-squad",
@@ -54594,29 +53716,6 @@
         "front": "assets/upgrade-cards/whipcord-launcher.webp"
       },
       "rules": {
-        "unavailableIn": [
-          [
-            33788
-          ],
-          [
-            33797
-          ],
-          [
-            33772
-          ],
-          [
-            33773
-          ],
-          [
-            34890
-          ],
-          [
-            33796
-          ],
-          [
-            4767
-          ]
-        ],
         "slotTypes": [
           2
         ],
@@ -54686,7 +53785,6 @@
             }
           ]
         },
-        "execution": "not_connected",
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -54814,7 +53912,6 @@
             "25086"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "wrecker",
@@ -54915,7 +54012,6 @@
             "32"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "x34-a300",
@@ -55021,7 +54117,6 @@
             "32"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "x34-rocket",
@@ -55131,7 +54226,6 @@
             "6180"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "xs-iv",
@@ -55238,7 +54332,6 @@
             "33791"
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "youre-not-all-the-same-to-me",
@@ -55374,7 +54467,6 @@
             }
           ]
         },
-        "execution": "active_host",
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "z6-riot-baton",
@@ -55442,8 +54534,7 @@
         "zhReview": "legacy_unverified",
         "sources": [],
         "verification": "no_image",
-        "condition": null,
-        "execution": "not_reviewed"
+        "condition": null
       }
     },
     {
@@ -55501,8 +54592,7 @@
         "zhReview": "legacy_unverified",
         "sources": [],
         "verification": "no_image",
-        "condition": null,
-        "execution": "not_reviewed"
+        "condition": null
       }
     },
     {
@@ -55560,8 +54650,7 @@
         "zhReview": "legacy_unverified",
         "sources": [],
         "verification": "no_image",
-        "condition": null,
-        "execution": "not_reviewed"
+        "condition": null
       }
     },
     {
@@ -55632,8 +54721,7 @@
         "zhReview": "legacy_unverified",
         "sources": [],
         "verification": "no_image",
-        "condition": null,
-        "execution": "not_reviewed"
+        "condition": null
       }
     },
     {
@@ -55706,8 +54794,7 @@
         "zhReview": "legacy_unverified",
         "sources": [],
         "verification": "no_image",
-        "condition": null,
-        "execution": "not_reviewed"
+        "condition": null
       }
     },
     {
@@ -55796,8 +54883,7 @@
         "zhReview": "legacy_unverified",
         "sources": [],
         "verification": "no_image",
-        "condition": null,
-        "execution": "not_reviewed"
+        "condition": null
       }
     },
     {
@@ -55854,8 +54940,7 @@
         "zhReview": "legacy_unverified",
         "sources": [],
         "verification": "no_image",
-        "condition": null,
-        "execution": "not_reviewed"
+        "condition": null
       }
     },
     {
@@ -55913,8 +54998,7 @@
         "zhReview": "legacy_unverified",
         "sources": [],
         "verification": "no_image",
-        "condition": null,
-        "execution": "not_reviewed"
+        "condition": null
       }
     },
     {
@@ -55971,8 +55055,7 @@
         "zhReview": "legacy_unverified",
         "sources": [],
         "verification": "no_image",
-        "condition": null,
-        "execution": "not_reviewed"
+        "condition": null
       }
     },
     {
@@ -56050,8 +55133,7 @@
         "zhReview": "legacy_unverified",
         "sources": [],
         "verification": "no_image",
-        "condition": null,
-        "execution": "not_reviewed"
+        "condition": null
       }
     },
     {
@@ -56129,8 +55211,7 @@
         "zhReview": "legacy_unverified",
         "sources": [],
         "verification": "no_image",
-        "condition": null,
-        "execution": "not_reviewed"
+        "condition": null
       }
     },
     {
@@ -56220,8 +55301,7 @@
         "zhReview": "legacy_unverified",
         "sources": [],
         "verification": "no_image",
-        "condition": null,
-        "execution": "not_reviewed"
+        "condition": null
       }
     },
     {
@@ -56279,8 +55359,7 @@
         "zhReview": "legacy_unverified",
         "sources": [],
         "verification": "no_image",
-        "condition": null,
-        "execution": "not_reviewed"
+        "condition": null
       }
     },
     {
@@ -56351,8 +55430,7 @@
         "zhReview": "legacy_unverified",
         "sources": [],
         "verification": "no_image",
-        "condition": null,
-        "execution": "not_reviewed"
+        "condition": null
       }
     },
     {
@@ -56423,8 +55501,7 @@
         "zhReview": "legacy_unverified",
         "sources": [],
         "verification": "no_image",
-        "condition": null,
-        "execution": "not_reviewed"
+        "condition": null
       }
     },
     {
@@ -56486,8 +55563,7 @@
         "zhReview": "legacy_unverified",
         "sources": [],
         "verification": "no_image",
-        "condition": null,
-        "execution": "not_reviewed"
+        "condition": null
       }
     },
     {
@@ -56559,8 +55635,7 @@
         "zhReview": "legacy_unverified",
         "sources": [],
         "verification": "no_image",
-        "condition": null,
-        "execution": "not_reviewed"
+        "condition": null
       }
     },
     {
@@ -56587,11 +55662,6 @@
       "rules": {
         "availableIn": [
           19077
-        ],
-        "unavailableIn": [
-          [
-            19103
-          ]
         ],
         "unavailableWith": [
           "Kraken",
@@ -56646,8 +55716,7 @@
         "zhReview": "legacy_unverified",
         "sources": [],
         "verification": "no_image",
-        "condition": null,
-        "execution": "not_reviewed"
+        "condition": null
       }
     },
     {
@@ -56705,8 +55774,7 @@
         "zhReview": "legacy_unverified",
         "sources": [],
         "verification": "no_image",
-        "condition": null,
-        "execution": "not_reviewed"
+        "condition": null
       }
     },
     {
@@ -56765,8 +55833,7 @@
         "zhReview": "legacy_unverified",
         "sources": [],
         "verification": "no_image",
-        "condition": null,
-        "execution": "not_reviewed"
+        "condition": null
       }
     },
     {
@@ -56841,8 +55908,7 @@
         "zhReview": "legacy_unverified",
         "sources": [],
         "verification": "no_image",
-        "condition": null,
-        "execution": "not_reviewed"
+        "condition": null
       }
     },
     {
@@ -56913,8 +55979,7 @@
         "zhReview": "legacy_unverified",
         "sources": [],
         "verification": "no_image",
-        "condition": null,
-        "execution": "not_reviewed"
+        "condition": null
       }
     },
     {
@@ -56985,8 +56050,7 @@
         "zhReview": "legacy_unverified",
         "sources": [],
         "verification": "no_image",
-        "condition": null,
-        "execution": "not_reviewed"
+        "condition": null
       }
     },
     {
@@ -57043,8 +56107,7 @@
         "zhReview": "legacy_unverified",
         "sources": [],
         "verification": "no_image",
-        "condition": null,
-        "execution": "not_reviewed"
+        "condition": null
       }
     },
     {
@@ -57101,8 +56164,7 @@
         "zhReview": "legacy_unverified",
         "sources": [],
         "verification": "no_image",
-        "condition": null,
-        "execution": "not_reviewed"
+        "condition": null
       }
     },
     {
@@ -57159,8 +56221,7 @@
         "zhReview": "legacy_unverified",
         "sources": [],
         "verification": "no_image",
-        "condition": null,
-        "execution": "not_reviewed"
+        "condition": null
       }
     },
     {
@@ -57217,8 +56278,7 @@
         "zhReview": "legacy_unverified",
         "sources": [],
         "verification": "no_image",
-        "condition": null,
-        "execution": "not_reviewed"
+        "condition": null
       }
     },
     {
@@ -57276,8 +56336,7 @@
         "zhReview": "legacy_unverified",
         "sources": [],
         "verification": "no_image",
-        "condition": null,
-        "execution": "not_reviewed"
+        "condition": null
       }
     },
     {
@@ -57334,8 +56393,7 @@
         "zhReview": "legacy_unverified",
         "sources": [],
         "verification": "no_image",
-        "condition": null,
-        "execution": "not_reviewed"
+        "condition": null
       }
     },
     {
@@ -57416,8 +56474,7 @@
         "zhReview": "legacy_unverified",
         "sources": [],
         "verification": "no_image",
-        "condition": null,
-        "execution": "not_reviewed"
+        "condition": null
       }
     },
     {
@@ -57498,8 +56555,7 @@
         "zhReview": "legacy_unverified",
         "sources": [],
         "verification": "no_image",
-        "condition": null,
-        "execution": "not_reviewed"
+        "condition": null
       }
     },
     {
@@ -57556,8 +56612,7 @@
         "zhReview": "legacy_unverified",
         "sources": [],
         "verification": "no_image",
-        "condition": null,
-        "execution": "not_reviewed"
+        "condition": null
       }
     }
   ]

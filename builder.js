@@ -50,6 +50,7 @@ function unitParentIds(u){
   return parents;
 }
 function unitAvailability(u){
+  if(u.restrictions&&u.restrictions.condition&&RulesCore.restrictionConditionOk(u,u,data.pkg)===false)return {hidden:true,orphan:false};
   const parents=unitParentIds(u);
   if(!parents.length)return {hidden:false,orphan:false};
   const childCount=army.units.filter(inst=>inst.unitId===u.id).length;
@@ -70,7 +71,7 @@ function slotName(key){const d=slotDef(key);return d&&d.name?d.name.zh:key}
 function unitSlotRecords(u,inst){return RulesCore.slotListFor(data.pkg,u,inst,data.upgrades)}
 function accessOf(card){const rule=(data.pkg.upgradeRules||{})[String(card.upstream&&card.upstream.id||'')]||{};return RulesCore.accessKeys(card,data.pkg,rule)}
 
-function restrictionOk(card,unit){return RulesCore.upgradeEligibility(card,unit,army,data).ok}
+function restrictionOk(card,unit,inst){const equipped=((inst&&inst.upgrades)||[]).map(x=>data.upgrades[x.upgradeId]).filter(Boolean);return RulesCore.upgradeEligibility(card,unit,army,data,equipped).ok}
 function sameNameSelected(card,inst){const nm=String((card.name&&card.name.en)||card.id||'').toLowerCase();return (inst.upgrades||[]).some(x=>{const c=data.upgrades[x.upgradeId];return c&&String((c.name&&c.name.en)||c.id||'').toLowerCase()===nm})}
 function alreadySelectedUnique(card){const r=card.rules||{};if(!(r.unique===true||Number.isInteger(r.limit)))return false;const name=String(card.name&&card.name.en||'').toLowerCase();let n=0;for(const inst of army.units)for(const ch of inst.upgrades||[]){const c=data.upgrades[ch.upgradeId];if(!c)continue;if(c.id===card.id)n++;else if(r.unique===true&&String(c.name&&c.name.en||'').toLowerCase()===name)n++}const lim=Number.isInteger(r.limit)?r.limit:1;return n>=lim}
 
@@ -176,7 +177,7 @@ function renderBrowser(){
     const inst=army.units.find(x=>x.instanceId===browser.unitInstanceId),u=inst&&data.units[inst.unitId];
     if(!u){browser=null;renderBrowser();return}
     title.textContent='升级卡 · '+(u.name.zh||u.name.en)+' · '+slotName(browser.slotKey);
-    const selUp=selectedUpstreamIds();const cands=Object.values(data.upgrades).filter(c=>restrictionOk(c,u)&&accessOf(c).includes(browser.slotKey)&&!alreadySelectedUnique(c)&&!sameNameSelected(c,inst)&&!conflictsWithSelected(c,selUp));
+    const selUp=selectedUpstreamIds();const cands=Object.values(data.upgrades).filter(c=>restrictionOk(c,u,inst)&&accessOf(c).includes(browser.slotKey)&&!alreadySelectedUnique(c)&&!sameNameSelected(c,inst)&&!conflictsWithSelected(c,selUp));
     cands.sort((a,b)=>(a.name.zh||a.name.en).localeCompare(b.name.zh||b.name.en,'zh'));
     for(const c of cands)grid.append(upgradeCard(c,inst,browser.slotIndex));
     if(!cands.length)grid.append(el('p','没有可放入该槽的升级。'));

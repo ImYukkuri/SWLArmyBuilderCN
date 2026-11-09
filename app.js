@@ -6,10 +6,9 @@ const enumLabels={army_unit:'加入军队的单位',commander:'指挥官',operat
 function status(text,error=false){$('#status').textContent=text;$('#status').classList.toggle('error',error)}
 async function api(path,body){const r=await fetch(path,body?{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}:{});const text=await r.text();let d;try{d=JSON.parse(text)}catch(e){throw Error('此操作需要 python server.py（当前静态服务无法读写源文件）。')}if(!r.ok)throw Error(d.error||r.statusText);return d}
 // 成员关系同步边界：顶层 `factions` 是组军/军阶计数的权威来源；
-// `rules.memberships` 是兼容镜像（键名 rank 对应顶层 rankId）。表单编辑顶层 factions 时回写镜像。
-function setDirty(){if(draft.rules?.memberships)draft.rules.memberships=draft.factions.map(f=>({...draft.rules.memberships.find(m=>m.id===f.id),id:f.id,rank:f.rankId}));dirty=true;$('#dirty').textContent='有未保存修改';$('#raw-json').value=JSON.stringify(draft,null,2)}
+function setDirty(){dirty=true;$('#dirty').textContent='有未保存修改';$('#raw-json').value=JSON.stringify(draft,null,2)}
 function get(path){return path.reduce((o,k)=>o[k],draft)}
-function put(path,value){const p=path.slice(),k=p.pop();get(p)[k]=value;if(k==='usage'){draft.isCounterpart=value==='counterpart';if(draft.isCounterpart)draft.rankId=null}if(path[0]==='factions'&&draft.rules?.memberships){draft.rules.memberships=draft.factions.map(f=>({...draft.rules.memberships.find(m=>m.id===f.id),id:f.id,rank:f.rankId}))}if(k==='action')delete get(p).actionDetection;setDirty()}
+function put(path,value){const p=path.slice(),k=p.pop();get(p)[k]=value;if(k==='usage'){draft.isCounterpart=value==='counterpart';if(draft.isCounterpart)draft.rankId=null}if(k==='action')delete get(p).actionDetection;setDirty()}
 function displayPath(path){return path.map(x=>labels[x]||x).join(' / ')}
 function formField(key,value,path){
   const row=el('label');row.className='field';row.title=path.join('.');row.append(el('span',labels[key]||key));let control;
@@ -68,8 +67,7 @@ function objectForm(object,path=[],container){
   }else container.append(formField(key,value,p));
  }
 }
-// 规则标签反向同步：编辑 memberships 镜像时回写顶层 factions（rank -> rankId）。
-function renderRules(){RuleEditor.render(document.querySelector('#unit-rules'),draft.rules||(draft.rules={}),mappings.definitions,()=>{if(draft.rules.memberships)draft.factions=draft.rules.memberships.map(m=>({id:m.id,rankId:m.rank}));setDirty()},{kind:'units',usage:draft.usage||'army_unit'});}
+function renderRules(){ConditionEditor.render(document.querySelector('#condition-editor'),draft.restrictions||(draft.restrictions={}),mappings.definitions,()=>setDirty(),renderRules);RuleEditor.render(document.querySelector('#unit-rules'),draft.rules||(draft.rules={}),mappings.definitions,()=>{setDirty()},{kind:'units',usage:draft.usage||'army_unit'});}
 function renderForm(){
   $('#fields').replaceChildren();objectForm(Object.fromEntries(Object.entries(draft).filter(([k])=>!['assets','source','rules'].includes(k))),[],$('#fields'));
   $('#title').textContent=draft.name.zh||draft.name.en;$('#subtitle').textContent=draft.name.en+(draft.title.en?' / '+draft.title.en:'');

@@ -292,11 +292,57 @@ def _required_properties_ok(unit, rp, definitions):
     return False
 
 
-def upgrade_eligibility(card, unit, army, package, definitions, name_index):
+def keyword_map(definitions):
+    m = {}
+    for k in definitions.get("keywords", []):
+        for uid in k.get("upstreamIds") or []:
+            m[str(uid)] = k["id"]
+    return m
+
+
+def apply_property_effects(unit, cards, definitions):
+    """Apply addProperties / replaceProperties of the equipped cards to a unit copy."""
+    if not cards:
+        return unit
+    kw = keyword_map(definitions)
+    keywords = {k.get("id") for k in (unit.get("keywords") or []) if isinstance(k, dict)}
+    affiliations = [str(a) for a in (unit.get("affiliationIds") or [])]
+    for card in cards:
+        r = (card or {}).get("rules") or {}
+        for group in r.get("addProperties") or []:
+            for atom in group:
+                if not isinstance(atom, dict):
+                    continue
+                vals = atom.get("value") if isinstance(atom.get("value"), list) else [atom.get("value")]
+                if atom.get("property") == "keywords":
+                    for v in vals:
+                        keywords.add(kw.get(str(v), str(v)))
+                elif atom.get("property") == "affiliation":
+                    for v in vals:
+                        if str(v) not in affiliations:
+                            affiliations.append(str(v))
+        for group in r.get("replaceProperties") or []:
+            for atom in group:
+                if not isinstance(atom, dict):
+                    continue
+                vals = atom.get("value") if isinstance(atom.get("value"), list) else [atom.get("value")]
+                if atom.get("property") == "affiliation":
+                    affiliations = [str(v) for v in vals]
+                elif atom.get("property") == "keywords":
+                    keywords = {kw.get(str(v), str(v)) for v in vals}
+    out = dict(unit)
+    out["keywords"] = [{"id": k} for k in keywords]
+    out["affiliationIds"] = affiliations
+    return out
+
+
+def upgrade_eligibility(card, unit, army, package, definitions, name_index, equipped=None):
     """Single source of truth for card-vs-unit eligibility.
 
     Used by full army validation (S1), candidate filtering (S2/S8) so the two
     can never drift apart."""
+    if equipped:
+        unit = apply_property_effects(unit, equipped, definitions)
     rule = (package.get("upgradeRules") or {}).get(str((card.get("upstream") or {}).get("id", "")), {})
     name = (card.get("name") or {}).get("en") or card.get("id")
     memberships = [m for m in unit.get("factions", []) if m.get("id") == army.get("armyId")]
@@ -367,6 +413,13 @@ def validate_army(army):
         if not memberships:
             issue("invalid", "army_membership", "此单位未列入当前军队", key)
             continue
+        urc = (unit.get("restrictions") or {}).get("condition")
+        if urc is not None:
+            urc_ok = evaluate(urc, _unit_context(unit, package), package.get("predicates") or {})
+            if urc_ok is False:
+                issue("invalid", "unit_restriction_condition", f"单位「{(unit.get('name') or {}).get('en', unit.get('id'))}」不满足卡面限制条件", key)
+            elif urc_ok is None:
+                issue("unknown", "unit_restriction_condition_unknown", f"单位「{(unit.get('name') or {}).get('en', unit.get('id'))}」的卡面限制条件存在未覆盖语义", key)
 
         slot_list = slot_list_for(package, unit, inst, upgrades)
         for rec in slot_list:
@@ -375,6 +428,7 @@ def validate_army(army):
                       f"该单位满足专用槽 {rec['key']} 的语义条件，但本地基础槽未包含；已按虚拟槽补入", key)
 
         assigned = {}
+        equipped = [upgrades[x.get("upgradeId")] for x in inst.get("upgrades", []) if x.get("upgradeId") in upgrades]
         for selected in inst.get("upgrades", []):
             ckey = selected.get("instanceId")
             card = upgrades.get(selected.get("upgradeId"))
@@ -404,7 +458,7 @@ def validate_army(army):
             else:
                 assigned[index] = ckey
 
-            for status, code, message in upgrade_eligibility(card, unit, army, package, definitions, name_index):
+            for status, code, message in upgrade_eligibility(card, unit, army, package, definitions, name_index, equipped):
                 issue(status, code, message, ckey)
 
         for i, s in enumerate(slot_list):
@@ -678,7 +732,7 @@ def validate_army(army):
     issues.append({
         "status": "unknown",
         "code": "coverage_note",
-        "message": "属性效果（addProperties/replaceProperties）已保留，但尚未参与资格判断；卡面限制、费用修正、chooseOneKey、quantityLimitedBy、军阶豁免、军阶要求/替换军阶与互斥卡牌已执行。战斗部队规则未覆盖项仍标 unknown。",
+        "message": "属性效果（addProperties/replaceProperties）已参与资格判断；卡面限制、费用修正、chooseOneKey、quantityLimitedBy、军阶豁免、军阶要求/替换军阶与互斥卡牌已执行。战斗部队规则未覆盖项仍标 unknown。",
         "instanceId": None,
     })
     return {

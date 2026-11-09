@@ -139,17 +139,7 @@
             "upgradeIndex": 2
           }
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 5,
-            "rank": 1
-          },
-          {
-            "id": 15,
-            "rank": 1
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -252,13 +242,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 5,
-            "rank": 5
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -385,13 +369,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 15,
-            "rank": 2
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -534,21 +512,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 5,
-            "rank": 5
-          },
-          {
-            "id": 11,
-            "rank": 5
-          },
-          {
-            "id": 15,
-            "rank": 5
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -670,13 +634,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 5,
-            "rank": 5
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -795,13 +753,7 @@
         "unavailableWith": [
           "Asajj Ventress"
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 5,
-            "rank": 6
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -935,21 +887,7 @@
       ],
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 5,
-            "rank": 2
-          },
-          {
-            "id": 11,
-            "rank": 2
-          },
-          {
-            "id": 20,
-            "rank": 2
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -1076,17 +1014,7 @@
             "perSourceUnit": 1
           }
         },
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 5,
-            "rank": 2
-          },
-          {
-            "id": 20,
-            "rank": 2
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -1231,21 +1159,7 @@
       ],
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 5,
-            "rank": 3
-          },
-          {
-            "id": 20,
-            "rank": 3
-          },
-          {
-            "id": 15,
-            "rank": 2
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -1384,13 +1298,7 @@
             "ratio": 1
           }
         ],
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 5,
-            "rank": 4
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -1539,17 +1447,7 @@
         "unavailableWith": [
           "Count Dooku"
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 5,
-            "rank": 1
-          },
-          {
-            "id": 11,
-            "rank": 1
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -1661,13 +1559,7 @@
             "ratio": 1
           }
         ],
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 5,
-            "rank": 3
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -1789,25 +1681,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 5,
-            "rank": 4
-          },
-          {
-            "id": 11,
-            "rank": 4
-          },
-          {
-            "id": 20,
-            "rank": 4
-          },
-          {
-            "id": 15,
-            "rank": 4
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -1917,17 +1791,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 5,
-            "rank": 4
-          },
-          {
-            "id": 15,
-            "rank": 4
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -2048,13 +1912,7 @@
       ],
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 5,
-            "rank": 2
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -2219,21 +2077,7 @@
             "propertyName": "units"
           }
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 5,
-            "rank": 1
-          },
-          {
-            "id": 11,
-            "rank": 1
-          },
-          {
-            "id": 15,
-            "rank": 1
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -2391,17 +2235,7 @@
             "propertyName": "units"
           }
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 5,
-            "rank": 1
-          },
-          {
-            "id": 11,
-            "rank": 1
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -2535,17 +2369,7 @@
         "unavailableWith": [
           "Kalani"
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 5,
-            "rank": 1
-          },
-          {
-            "id": 20,
-            "rank": 1
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -2689,17 +2513,7 @@
             "perSourceUnit": 1
           }
         },
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 5,
-            "rank": 1
-          },
-          {
-            "id": 20,
-            "rank": 1
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -2817,17 +2631,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 5,
-            "rank": 4
-          },
-          {
-            "id": 15,
-            "rank": 4
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -2967,17 +2771,7 @@
             "perSourceUnit": 1
           }
         },
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 5,
-            "rank": 3
-          },
-          {
-            "id": 11,
-            "rank": 3
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -3096,13 +2890,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 20,
-            "rank": 2
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -3222,17 +3010,7 @@
             "propertyName": "units"
           }
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 5,
-            "rank": 6
-          },
-          {
-            "id": 11,
-            "rank": 6
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -3374,13 +3152,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 5,
-            "rank": 5
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -3535,13 +3307,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 20,
-            "rank": 5
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -3665,13 +3431,7 @@
         "unavailableWith": [
           "Poggle the Lesser"
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 5,
-            "rank": 1
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -3810,13 +3570,7 @@
         "unavailableWith": [
           "Sun Fac"
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 5,
-            "rank": 6
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -3953,17 +3707,7 @@
       ],
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 5,
-            "rank": 6
-          },
-          {
-            "id": 15,
-            "rank": 6
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -4097,17 +3841,7 @@
       ],
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 5,
-            "rank": 1
-          },
-          {
-            "id": 15,
-            "rank": 1
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -4229,21 +3963,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 5,
-            "rank": 1
-          },
-          {
-            "id": 11,
-            "rank": 1
-          },
-          {
-            "id": 20,
-            "rank": 1
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -4391,13 +4111,7 @@
             "propertyName": "units"
           }
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 5,
-            "rank": 6
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -4524,21 +4238,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 5,
-            "rank": 4
-          },
-          {
-            "id": 11,
-            "rank": 4
-          },
-          {
-            "id": 15,
-            "rank": 4
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -4682,17 +4382,7 @@
             "perSourceUnit": 1
           }
         },
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 5,
-            "rank": 3
-          },
-          {
-            "id": 15,
-            "rank": 3
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -4827,29 +4517,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 2,
-            "rank": 4
-          },
-          {
-            "id": 7,
-            "rank": 4
-          },
-          {
-            "id": 17,
-            "rank": 4
-          },
-          {
-            "id": 19,
-            "rank": 4
-          },
-          {
-            "id": 10,
-            "rank": 4
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -4986,25 +4654,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 2,
-            "rank": 5
-          },
-          {
-            "id": 17,
-            "rank": 5
-          },
-          {
-            "id": 19,
-            "rank": 5
-          },
-          {
-            "id": 10,
-            "rank": 5
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -5136,17 +4786,7 @@
             "perSourceUnit": 1
           }
         },
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 2,
-            "rank": 5
-          },
-          {
-            "id": 7,
-            "rank": 5
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -5295,13 +4935,7 @@
             "perSourceUnit": 1
           }
         },
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 2,
-            "rank": 6
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -5435,21 +5069,7 @@
             "perSourceUnit": 1
           }
         },
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 2,
-            "rank": 1
-          },
-          {
-            "id": 17,
-            "rank": 1
-          },
-          {
-            "id": 10,
-            "rank": 1
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -5602,17 +5222,7 @@
             "perSourceUnit": 1
           }
         },
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 2,
-            "rank": 3
-          },
-          {
-            "id": 7,
-            "rank": 2
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -5721,13 +5331,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 2,
-            "rank": 4
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -5864,13 +5468,7 @@
             "ratio": 1
           }
         ],
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 2,
-            "rank": 2
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -6013,25 +5611,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 2,
-            "rank": 4
-          },
-          {
-            "id": 17,
-            "rank": 4
-          },
-          {
-            "id": 7,
-            "rank": 4
-          },
-          {
-            "id": 10,
-            "rank": 4
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -6170,13 +5750,7 @@
         "unavailableWith": [
           "Fifth Brother"
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 2,
-            "rank": 6
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -6304,13 +5878,7 @@
             "upgradeIndex": 3
           }
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 2,
-            "rank": 1
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -6445,17 +6013,7 @@
         "unavailableWith": [
           "Moff Gideon"
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 2,
-            "rank": 1
-          },
-          {
-            "id": 7,
-            "rank": 1
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -6586,13 +6144,7 @@
         "unavailableWith": [
           "Grand Admiral Thrawn"
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 2,
-            "rank": 1
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -6690,13 +6242,7 @@
         "unavailableWith": [
           "Grand Moff Tarkin"
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 2,
-            "rank": 1
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -6832,9 +6378,7 @@
         "slotTypes": [
           15
         ],
-        "locallyUnique": true,
-        "countsAsActivation": false,
-        "costViaUpgrade": true
+        "locallyUnique": true
       },
       "divisions": [
         "Dark"
@@ -7002,13 +6546,7 @@
         "unavailableWith": [
           "Iden Versio"
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 2,
-            "rank": 1
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -7135,25 +6673,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 2,
-            "rank": 6
-          },
-          {
-            "id": 7,
-            "rank": 6
-          },
-          {
-            "id": 19,
-            "rank": 6
-          },
-          {
-            "id": 10,
-            "rank": 6
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -7289,29 +6809,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 2,
-            "rank": 1
-          },
-          {
-            "id": 7,
-            "rank": 1
-          },
-          {
-            "id": 19,
-            "rank": 1
-          },
-          {
-            "id": 17,
-            "rank": 1
-          },
-          {
-            "id": 10,
-            "rank": 1
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -7437,52 +6935,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 2,
-            "rank": 3,
-            "quantityLimitedBy": [
-              {
-                "tier": 3,
-                "ratio": 1
-              }
-            ],
-            "tierCounting": {
-              "ignoreMaximum": true
-            }
-          },
-          {
-            "id": 17,
-            "rank": 3
-          },
-          {
-            "id": 19,
-            "rank": 3,
-            "quantityLimitedBy": [
-              {
-                "tier": 3,
-                "ratio": 1
-              }
-            ],
-            "tierCounting": {
-              "ignoreMaximum": true
-            }
-          },
-          {
-            "id": 10,
-            "rank": 3,
-            "quantityLimitedBy": [
-              {
-                "tier": 3,
-                "ratio": 1
-              }
-            ],
-            "tierCounting": {
-              "ignoreMaximum": true
-            }
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -7617,13 +7070,7 @@
             "upgradeIndex": 1
           }
         ],
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 2,
-            "rank": 3
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -7749,13 +7196,7 @@
             "propertyName": "units"
           }
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 2,
-            "rank": 6
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -7879,17 +7320,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 2,
-            "rank": 5
-          },
-          {
-            "id": 10,
-            "rank": 5
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -8062,13 +7493,7 @@
             ]
           }
         },
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 19,
-            "rank": 5
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -8191,13 +7616,7 @@
         "unavailableWith": [
           "Director Orson Krennic"
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 2,
-            "rank": 1
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -8316,13 +7735,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 2,
-            "rank": 4
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -8448,17 +7861,7 @@
       ],
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 2,
-            "rank": 2
-          },
-          {
-            "id": 10,
-            "rank": 2
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -8595,25 +7998,7 @@
       ],
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 2,
-            "rank": 3
-          },
-          {
-            "id": 7,
-            "rank": 2
-          },
-          {
-            "id": 19,
-            "rank": 3
-          },
-          {
-            "id": 10,
-            "rank": 3
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -8754,17 +8139,7 @@
             "ratio": 1
           }
         ],
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 2,
-            "rank": 4
-          },
-          {
-            "id": 10,
-            "rank": 4
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -8920,13 +8295,7 @@
             "perSourceUnit": 1
           }
         },
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 2,
-            "rank": 6
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -9066,17 +8435,7 @@
       ],
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 2,
-            "rank": 2
-          },
-          {
-            "id": 7,
-            "rank": 2
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -9208,17 +8567,7 @@
       ],
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 2,
-            "rank": 2
-          },
-          {
-            "id": 17,
-            "rank": 2
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -9339,13 +8688,7 @@
       ],
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 2,
-            "rank": 3
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -9491,29 +8834,7 @@
       ],
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 2,
-            "rank": 2
-          },
-          {
-            "id": 7,
-            "rank": 2
-          },
-          {
-            "id": 17,
-            "rank": 2
-          },
-          {
-            "id": 19,
-            "rank": 2
-          },
-          {
-            "id": 10,
-            "rank": 2
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -9630,13 +8951,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 17,
-            "rank": 2
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -9782,21 +9097,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 2,
-            "rank": 5
-          },
-          {
-            "id": 10,
-            "rank": 5
-          },
-          {
-            "id": 8,
-            "rank": 5
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -9925,17 +9226,7 @@
         "unavailableWith": [
           "General Veers"
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 2,
-            "rank": 1
-          },
-          {
-            "id": 17,
-            "rank": 1
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -10087,13 +9378,7 @@
       ],
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 4,
-            "rank": 1
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Light"
@@ -10219,13 +9504,7 @@
         "unavailableWith": [
           "Ki-Adi-Mundi"
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 4,
-            "rank": 1
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Light"
@@ -10378,13 +9657,7 @@
         "unavailableWith": [
           "Mace Windu"
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 4,
-            "rank": 1
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Light"
@@ -10521,17 +9794,7 @@
             "perSourceUnit": 1
           }
         },
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 4,
-            "rank": 1
-          },
-          {
-            "id": 16,
-            "rank": 1
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Light"
@@ -10686,13 +9949,7 @@
             "propertyName": "units"
           }
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 4,
-            "rank": 6
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Light"
@@ -10819,17 +10076,7 @@
             "propertyName": "units"
           }
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 4,
-            "rank": 1
-          },
-          {
-            "id": 16,
-            "rank": 1
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Light"
@@ -10948,21 +10195,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 4,
-            "rank": 3
-          },
-          {
-            "id": 16,
-            "rank": 3
-          },
-          {
-            "id": 21,
-            "rank": 3
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Light"
@@ -11086,17 +10319,7 @@
             "ratio": 1
           }
         ],
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 4,
-            "rank": 4
-          },
-          {
-            "id": 16,
-            "rank": 4
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Light"
@@ -11223,21 +10446,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 4,
-            "rank": 3
-          },
-          {
-            "id": 16,
-            "rank": 3
-          },
-          {
-            "id": 12,
-            "rank": 3
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Light"
@@ -11374,21 +10583,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 4,
-            "rank": 4
-          },
-          {
-            "id": 16,
-            "rank": 4
-          },
-          {
-            "id": 12,
-            "rank": 4
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Light"
@@ -11549,13 +10744,7 @@
             "upgradeIndex": 4
           }
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 4,
-            "rank": 6
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Light"
@@ -11687,21 +10876,7 @@
             "perSourceUnit": 1
           }
         },
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 4,
-            "rank": 4
-          },
-          {
-            "id": 16,
-            "rank": 4
-          },
-          {
-            "id": 21,
-            "rank": 4
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Light"
@@ -11831,9 +11006,7 @@
         "slotTypes": [
           15
         ],
-        "locallyUnique": true,
-        "countsAsActivation": false,
-        "costViaUpgrade": true
+        "locallyUnique": true
       },
       "divisions": [
         "Light"
@@ -11983,17 +11156,7 @@
             "propertyName": "units"
           }
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 4,
-            "rank": 1
-          },
-          {
-            "id": 21,
-            "rank": 1
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Light"
@@ -12124,17 +11287,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 4,
-            "rank": 1
-          },
-          {
-            "id": 21,
-            "rank": 1
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Light"
@@ -12252,17 +11405,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 4,
-            "rank": 1
-          },
-          {
-            "id": 16,
-            "rank": 1
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Light"
@@ -12402,17 +11545,7 @@
             "upgradeIndex": 2
           }
         ],
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 4,
-            "rank": 4
-          },
-          {
-            "id": 16,
-            "rank": 4
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Light"
@@ -12546,25 +11679,7 @@
       ],
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 4,
-            "rank": 2
-          },
-          {
-            "id": 16,
-            "rank": 2
-          },
-          {
-            "id": 21,
-            "rank": 2
-          },
-          {
-            "id": 12,
-            "rank": 2
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Light"
@@ -12700,21 +11815,7 @@
       ],
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 4,
-            "rank": 2
-          },
-          {
-            "id": 16,
-            "rank": 2
-          },
-          {
-            "id": 12,
-            "rank": 2
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Light"
@@ -12854,17 +11955,7 @@
         "unavailableWith": [
           "Clone Commander Cody"
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 4,
-            "rank": 1
-          },
-          {
-            "id": 12,
-            "rank": 1
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Light"
@@ -13013,17 +12104,7 @@
             "upgradeIndex": 3
           }
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 4,
-            "rank": 4
-          },
-          {
-            "id": 16,
-            "rank": 4
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Light"
@@ -13133,21 +12214,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 4,
-            "rank": 5
-          },
-          {
-            "id": 21,
-            "rank": 5
-          },
-          {
-            "id": 12,
-            "rank": 5
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Light"
@@ -13254,21 +12321,7 @@
       ],
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 4,
-            "rank": 6
-          },
-          {
-            "id": 21,
-            "rank": 6
-          },
-          {
-            "id": 12,
-            "rank": 6
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Light"
@@ -13378,13 +12431,7 @@
       ],
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 4,
-            "rank": 1
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Light"
@@ -13512,21 +12559,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 4,
-            "rank": 5
-          },
-          {
-            "id": 16,
-            "rank": 5
-          },
-          {
-            "id": 12,
-            "rank": 5
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Light"
@@ -13658,17 +12691,7 @@
             "propertyName": "units"
           }
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 4,
-            "rank": 1
-          },
-          {
-            "id": 12,
-            "rank": 1
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Light"
@@ -13792,13 +12815,7 @@
         "unavailableWith": [
           "Padme Amidala"
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 4,
-            "rank": 6
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Light"
@@ -13909,13 +12926,7 @@
             "propertyName": "units"
           }
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 4,
-            "rank": 6
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Light"
@@ -14019,17 +13030,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 4,
-            "rank": 4
-          },
-          {
-            "id": 21,
-            "rank": 4
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Light"
@@ -14136,13 +13137,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 21,
-            "rank": 4
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Light"
@@ -14271,17 +13266,7 @@
         "unavailableWith": [
           "Clone Captain Rex"
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 4,
-            "rank": 1
-          },
-          {
-            "id": 16,
-            "rank": 1
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Light"
@@ -14409,21 +13394,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 4,
-            "rank": 5
-          },
-          {
-            "id": 21,
-            "rank": 5
-          },
-          {
-            "id": 12,
-            "rank": 5
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Light"
@@ -14539,17 +13510,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 4,
-            "rank": 3
-          },
-          {
-            "id": 21,
-            "rank": 3
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Light"
@@ -14668,17 +13629,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 4,
-            "rank": 3
-          },
-          {
-            "id": 21,
-            "rank": 2
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Light"
@@ -14821,17 +13772,7 @@
         "unavailableWith": [
           "Yoda"
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 4,
-            "rank": 1
-          },
-          {
-            "id": 21,
-            "rank": 1
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Light"
@@ -14957,13 +13898,7 @@
         "unavailableWith": [
           "Plo Koon"
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 4,
-            "rank": 6
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Light"
@@ -15090,13 +14025,7 @@
         "poolBonuses": [
           "extraMercenary"
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 4,
-            "rank": 6
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Light"
@@ -15237,33 +14166,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 2,
-            "rank": 2,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 5,
-            "rank": 2,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 9,
-            "rank": 2
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -15384,33 +14287,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 2,
-            "rank": 1,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 5,
-            "rank": 1,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 9,
-            "rank": 1
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -15588,33 +14465,7 @@
           "clanKryze",
           "clanSaxon"
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 6,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 2,
-            "rank": 6,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 8,
-            "rank": 6
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -15720,9 +14571,7 @@
         "slotTypes": [
           15
         ],
-        "locallyUnique": true,
-        "countsAsActivation": false,
-        "costViaUpgrade": true
+        "locallyUnique": true
       },
       "divisions": [
         "Dark"
@@ -15863,13 +14712,7 @@
             ]
           }
         },
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 8,
-            "rank": 6
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -16001,13 +14844,7 @@
           "clanKryze",
           "clanSaxon"
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 8,
-            "rank": 1
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -16151,33 +14988,7 @@
           "clanWren",
           "clanSaxon"
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 6,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 4,
-            "rank": 6,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 8,
-            "rank": 6
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -16320,33 +15131,7 @@
           "clanWren",
           "clanSaxon"
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 1,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 4,
-            "rank": 1,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 8,
-            "rank": 1
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -16490,33 +15275,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 3,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 4,
-            "rank": 3,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 8,
-            "rank": 3
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -16665,13 +15424,7 @@
           "clanWren",
           "clanKryze"
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 8,
-            "rank": 1
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -16793,13 +15546,7 @@
           "clanWren",
           "clanKryze"
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 8,
-            "rank": 6
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -16923,13 +15670,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 8,
-            "rank": 3
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -17072,23 +15813,7 @@
             "perSourceUnit": 1
           }
         },
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 3,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 8,
-            "rank": 3
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -17211,13 +15936,7 @@
           "clanSaxon",
           "clanKryze"
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 8,
-            "rank": 6
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -17347,23 +16066,7 @@
           "clanSaxon",
           "clanKryze"
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 1,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 8,
-            "rank": 1
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -17556,53 +16259,7 @@
             "upgradeIndex": 6
           }
         ],
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 6,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 2,
-            "rank": 6,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 4,
-            "rank": 6,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 5,
-            "rank": 6,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 8,
-            "rank": 6
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -17760,13 +16417,7 @@
             "upgradeIndex": 7
           }
         ],
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 8,
-            "rank": 1
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -17894,13 +16545,7 @@
             "upgradeIndex": 4
           }
         ],
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 8,
-            "rank": 2
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -18046,13 +16691,7 @@
             "upgradeIndex": 6
           }
         ],
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 8,
-            "rank": 2
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -18213,13 +16852,7 @@
             "ratio": 1
           }
         ],
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 8,
-            "rank": 4
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -18307,17 +16940,7 @@
         "unavailableWith": [
           "C-3P0"
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 18,
-            "rank": 1
-          },
-          {
-            "id": 18,
-            "rank": 1
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -18489,17 +17112,7 @@
             "propertyName": "units"
           }
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 18,
-            "rank": 5
-          },
-          {
-            "id": 18,
-            "rank": 5
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -18614,27 +17227,7 @@
       ],
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 2,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 18,
-            "rank": 2
-          },
-          {
-            "id": 18,
-            "rank": 2
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -18777,27 +17370,7 @@
       ],
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 3,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 18,
-            "rank": 3
-          },
-          {
-            "id": 18,
-            "rank": 3
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -18911,17 +17484,7 @@
         "unavailableWith": [
           "Logray"
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 18,
-            "rank": 1
-          },
-          {
-            "id": 18,
-            "rank": 1
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -19079,27 +17642,7 @@
         "unavailableWith": [
           "Wicket"
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 1,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 18,
-            "rank": 1
-          },
-          {
-            "id": 18,
-            "rank": 1
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -19240,13 +17783,7 @@
           "clanWren",
           "clanKryze"
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 9,
-            "rank": 1
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -19368,13 +17905,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 9,
-            "rank": 3
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -19501,13 +18032,7 @@
             "propertyName": "units"
           }
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 9,
-            "rank": 6
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -19656,13 +18181,7 @@
             "propertyName": "units"
           }
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 9,
-            "rank": 6
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -19823,53 +18342,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 1,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 2,
-            "rank": 1,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 4,
-            "rank": 1,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 5,
-            "rank": 1,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 9,
-            "rank": 1
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -20039,53 +18512,7 @@
       ],
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 2,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 2,
-            "rank": 2,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 4,
-            "rank": 2,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 5,
-            "rank": 2,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 9,
-            "rank": 2
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -20181,17 +18608,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 9,
-            "rank": 5
-          },
-          {
-            "id": 8,
-            "rank": 5
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -20372,53 +18789,7 @@
         "unavailableWith": [
           "Hondo Ohnaka"
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 6,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 2,
-            "rank": 6,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 4,
-            "rank": 6,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 5,
-            "rank": 6,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 14,
-            "rank": 6
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -20568,37 +18939,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 4,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 4,
-            "rank": 4,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 9,
-            "rank": 4
-          },
-          {
-            "id": 14,
-            "rank": 4
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -20771,57 +19112,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 2,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 2,
-            "rank": 2,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 4,
-            "rank": 2,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 5,
-            "rank": 2,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 9,
-            "rank": 2
-          },
-          {
-            "id": 14,
-            "rank": 2
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -21007,61 +19298,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 5,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 2,
-            "rank": 5,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 4,
-            "rank": 5,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 5,
-            "rank": 5,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 9,
-            "rank": 5
-          },
-          {
-            "id": 14,
-            "rank": 5
-          },
-          {
-            "id": 8,
-            "rank": 5
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Dark"
@@ -21184,19 +19421,7 @@
             "upgradeIndex": 1
           }
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 6,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -21359,19 +19584,7 @@
             "upgradeIndex": 3
           }
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 6,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -21526,19 +19739,7 @@
             "propertyName": "units"
           }
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 6,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -21713,19 +19914,7 @@
             "propertyName": "units"
           }
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 2,
-            "rank": 6,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -21888,33 +20077,7 @@
             "propertyName": "units"
           }
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 2,
-            "rank": 6,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 5,
-            "rank": 6,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 9,
-            "rank": 6
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -22077,33 +20240,7 @@
             "propertyName": "units"
           }
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 2,
-            "rank": 6,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 5,
-            "rank": 6,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 9,
-            "rank": 6
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -22277,29 +20414,7 @@
         "unavailableWith": [
           "IG-11"
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 6,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          },
-          {
-            "id": 2,
-            "rank": 6,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -22461,19 +20576,7 @@
         "unavailableWith": [
           "IG-88"
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 2,
-            "rank": 6,
-            "tierPools": [
-              "mercenary"
-            ],
-            "tierCounting": {
-              "ignoreMinimum": true
-            }
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Dark"
@@ -22598,9 +20701,7 @@
         "slotTypes": [
           15
         ],
-        "locallyUnique": true,
-        "countsAsActivation": false,
-        "costViaUpgrade": true
+        "locallyUnique": true
       },
       "divisions": [
         "Dark"
@@ -22743,17 +20844,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 4
-          },
-          {
-            "id": 13,
-            "rank": 4
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Light"
@@ -22843,13 +20934,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 5
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Light"
@@ -22973,13 +21058,7 @@
             "propertyName": "units"
           }
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 6
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Light"
@@ -23099,13 +21178,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 4
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Light"
@@ -23235,9 +21308,7 @@
         "slotTypes": [
           15
         ],
-        "locallyUnique": true,
-        "countsAsActivation": false,
-        "costViaUpgrade": true
+        "locallyUnique": true
       },
       "divisions": [
         "Light"
@@ -23379,13 +21450,7 @@
             ]
           }
         },
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 6
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Light"
@@ -23534,21 +21599,7 @@
             "propertyName": "units"
           }
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 6
-          },
-          {
-            "id": 13,
-            "rank": 6
-          },
-          {
-            "id": 18,
-            "rank": 6
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Light"
@@ -23673,17 +21724,7 @@
       ],
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 3
-          },
-          {
-            "id": 18,
-            "rank": 3
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Light"
@@ -23795,13 +21836,7 @@
       ],
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 2
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Light"
@@ -23927,13 +21962,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 3
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Light"
@@ -24083,17 +22112,7 @@
             "propertyName": "units"
           }
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 6
-          },
-          {
-            "id": 13,
-            "rank": 6
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Light"
@@ -24234,13 +22253,7 @@
             "propertyName": "units"
           }
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 6
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Light"
@@ -24362,13 +22375,7 @@
             "ratio": 1
           }
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 6
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Light"
@@ -24497,13 +22504,7 @@
         "poolBonuses": [
           "extraMercenary"
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 1
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Light"
@@ -24635,21 +22636,7 @@
         "unavailableWith": [
           "Leia Organa"
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 1
-          },
-          {
-            "id": 13,
-            "rank": 1
-          },
-          {
-            "id": 18,
-            "rank": 1
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Light"
@@ -24776,13 +22763,7 @@
             "propertyName": "units"
           }
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 6
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Light"
@@ -24941,17 +22922,7 @@
             "propertyName": "units"
           }
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 1
-          },
-          {
-            "id": 13,
-            "rank": 1
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Light"
@@ -25107,17 +23078,7 @@
             "propertyName": "units"
           }
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 1
-          },
-          {
-            "id": 13,
-            "rank": 1
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Light"
@@ -25260,17 +23221,7 @@
             "ratio": 1
           }
         ],
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 2
-          },
-          {
-            "id": 13,
-            "rank": 2
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Light"
@@ -25384,17 +23335,7 @@
             "propertyName": "units"
           }
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 6
-          },
-          {
-            "id": 13,
-            "rank": 6
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Light"
@@ -25516,17 +23457,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 6
-          },
-          {
-            "id": 13,
-            "rank": 6
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Light"
@@ -25646,17 +23577,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 1
-          },
-          {
-            "id": 13,
-            "rank": 1
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Light"
@@ -25787,13 +23708,7 @@
             "ratio": 1
           }
         ],
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 4
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Light"
@@ -25934,17 +23849,7 @@
       ],
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 2
-          },
-          {
-            "id": 18,
-            "rank": 2
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Light"
@@ -26087,17 +23992,7 @@
       ],
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 2
-          },
-          {
-            "id": 13,
-            "rank": 2
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Light"
@@ -26212,13 +24107,7 @@
           "clanSaxon",
           "clanKryze"
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 6
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Light"
@@ -26364,13 +24253,7 @@
       ],
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 3
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Light"
@@ -26508,21 +24391,7 @@
             "propertyName": "units"
           }
         ],
-        "unlimited": false,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 1
-          },
-          {
-            "id": 13,
-            "rank": 1
-          },
-          {
-            "id": 18,
-            "rank": 1
-          }
-        ]
+        "unlimited": false
       },
       "divisions": [
         "Light"
@@ -26641,17 +24510,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 5
-          },
-          {
-            "id": 13,
-            "rank": 5
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Light"
@@ -26778,17 +24637,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 4
-          },
-          {
-            "id": 13,
-            "rank": 4
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Light"
@@ -26904,13 +24753,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 3
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Light"
@@ -27022,13 +24865,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 3
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Light"
@@ -27132,13 +24969,7 @@
       },
       "usage": "army_unit",
       "rules": {
-        "unlimited": true,
-        "memberships": [
-          {
-            "id": 1,
-            "rank": 5
-          }
-        ]
+        "unlimited": true
       },
       "divisions": [
         "Light"

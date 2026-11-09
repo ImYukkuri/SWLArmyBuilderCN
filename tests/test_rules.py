@@ -176,6 +176,19 @@ class ValidateArmyTest(unittest.TestCase):
             if elig:
                 self.assertFalse(qc[cid]["available"], (uid, cid))
 
+    def test_apply_property_effects(self):
+        _, upgrades, defs = rules.load_cards()
+        unit = {"keywords": [{"id": "trooper"}], "affiliationIds": ["1"]}
+        aayla = upgrades["aayla"]
+        eff = rules.apply_property_effects(unit, [aayla], defs)
+        ids = {k["id"] for k in eff["keywords"]}
+        self.assertIn("inspire", ids)
+        self.assertIn("field_commander", ids)
+        self.assertIn("trooper", ids)
+        champ = upgrades["champion-of-the-watch"]
+        eff2 = rules.apply_property_effects(unit, [champ], defs)
+        self.assertEqual(eff2["affiliationIds"], ["965"])
+
     def test_two_darksaber_versions_conflict(self):
         army = {"mode": "standard", "armyId": 8, "pointsLimit": 1000, "units": [
             {"instanceId": "u1", "unitId": "mercenary-clan-kryze-bo-katan-kryze", "upgrades": [

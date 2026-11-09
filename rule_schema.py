@@ -1,7 +1,7 @@
 """Structural checks for editable machine restrictions, not a full game interpreter."""
 import math
-ARRAY_FIELDS={'availableIn','unavailableIn','unavailableWith','requiresTier','requiredDivisions','poolBonuses','requiredChildren','quantityLimitedBy','factions','slotTypes','memberships','modifiedPointsWith','addProperties','replaceProperties'}
-BOOL_FIELDS={'unique','unlimited','locallyUnique','countsAsActivation','costViaUpgrade'}
+ARRAY_FIELDS={'availableIn','unavailableWith','requiresTier','requiredDivisions','poolBonuses','requiredChildren','quantityLimitedBy','factions','slotTypes','modifiedPointsWith','addProperties','replaceProperties'}
+BOOL_FIELDS={'unique','unlimited','locallyUnique'}
 KNOWN=ARRAY_FIELDS|BOOL_FIELDS|{'requiredProperties','limit','chooseOneKey','tierCounting','replaceTier','unlockedBy'}
 def validate_rules(rules):
     if not isinstance(rules,dict):raise ValueError('限制规则必须为对象')
