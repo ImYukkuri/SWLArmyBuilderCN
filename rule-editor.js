@@ -15,7 +15,7 @@ window.RuleEditor=(()=>{
     ignoreMaximumWhenArmyIncludes:'存在指定单位时豁免上限', id:'引用 ID', elementPropertyName:'对象类别',
     upgradeIndex:'槽位索引', modifier:'点数变化', unit:'母单位', ratio:'数量比例', in:'限定对象',
     requiresTier:'军阶要求', replaceTier:'替换军阶', unavailableWithIds:'互斥卡牌 ID', rank:'军阶',
-    slotEffects:'槽位效果（携带后增加/修正槽位）', type:'效果类型', slot:'槽位', when:'触发条件', field:'字段', op:'操作符'
+    slotGrants:'槽位授予（equipped=携带生效 / unitQualifies=单位满足条件生效）', trigger:'触发方式', type:'效果类型', slot:'槽位', when:'触发条件', field:'字段', op:'操作符'
   };
   const groups=[
     ['适用资格',['slotTypes','requiredProperties','requiredDivisions','availableIn','factions']],
@@ -24,14 +24,14 @@ window.RuleEditor=(()=>{
     ['效果与费用',['addProperties','replaceProperties','modifiedPointsWith']],
     ['军阶和佣兵池',['tierCounting','poolBonuses']],
     ['军阶要求',['requiresTier']],
-    ['槽位效果',['slotEffects']]
+    ['槽位授予',['slotGrants']]
   ];
   const defaults={
     slotTypes:[2], availableIn:[], factions:[],
     requiredProperties:[[{property:'unitType',value:1}]], requiredDivisions:['Light'], unique:false, locallyUnique:false,
     unlimited:true, limit:1, chooseOneKey:'leader', addProperties:[], replaceProperties:[],
     modifiedPointsWith:[], tierCounting:{ignoreMinimum:false}, requiredChildren:[], quantityLimitedBy:[],
-    poolBonuses:[], slotEffects:[]
+    poolBonuses:[], slotGrants:[]
   };
   let props=['unitType','faction','affiliation','keywords'];
   let atomTables={unitType:'unitTypes',faction:'factions',affiliation:'affiliations',keywords:'keywords'};
@@ -104,7 +104,7 @@ window.RuleEditor=(()=>{
     if(path.includes('poolBonuses'))return null;
     if(path.includes('modifiedPointsWith')&&(key==='id'||key==='in'))return 'sourceUnits';
     if(path.includes('whenArmyIncludes'))return 'sourceUnits';
-    if(path.includes('slotEffects')&&key==='slot')return 'semanticSlots';
+    if(path.includes('slotGrants')&&key==='slot')return 'semanticSlots';
     return null;
   }
 
@@ -127,8 +127,8 @@ window.RuleEditor=(()=>{
       const value=object[key],row=E('label');row.className='field';row.title=path.join('.');row.append(E('span',labels[key]||key));
       const table=tableFor(key,path,object),items=(table&&defs[table])||[];
       let input;
-      if(path.includes('slotEffects')&&key==='type'){
-        input=E('select');for(const [v,t]of [['addSlot','增加槽位（携带后）'],['addSpecialSlot','增加专用槽（符合条件时）']]){const op=E('option',t);op.value=v;input.append(op)}
+      if(path.includes('slotGrants')&&key==='trigger'){
+        input=E('select');for(const [v,t]of [['equipped','携带该卡时生效'],['unitQualifies','单位满足条件时生效']]){const op=E('option',t);op.value=v;input.append(op)}
         input.value=value??'addSlot';input.onchange=()=>{object[key]=input.value;notify()};
       }else if(key==='property'&&props.length){
         input=E('select');for(const p of props){const op=E('option',(propLabels[p]||p)+' · '+p);op.value=p;input.append(op)}
@@ -165,7 +165,7 @@ window.RuleEditor=(()=>{
       if(key==='unavailableWith')return {id:(defs.upgrades&&defs.upgrades[0]&&defs.upgrades[0].id)||'64',propertyName:'upgrades'};
       if(key==='factions')return 1;if(key==='slotTypes')return 2;
       if(key==='poolBonuses')return 'extraMercenary';
-      if(path.includes('slotEffects'))return {type:'addSlot',slot:'heavy_weapon'};
+      if(path.includes('slotGrants'))return {trigger:'equipped',slot:'heavy_weapon'};
       if(key==='value'){const t=atomTables[parent.property];return defs[t]&&defs[t][0]?defs[t][0].id:1}
       return '';
     }

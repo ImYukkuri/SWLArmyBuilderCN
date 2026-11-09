@@ -102,7 +102,7 @@
 6. **编辑器字段 ≠ 引擎字段**：rule-editor 暴露和 rule_schema 允许的字段，比引擎真正执行的多（如 unavailableIn）。
 7. **同名规则硬编码**：`local_duplicate_name` 写死在引擎，不可配置，且与 `unique`/`locallyUnique` 语义重叠。
 8. **quantityLimitedBy**：`{unit, ratio}` 已生效；本地与上游数据中都**不存在** `{tier, ratio}` 条目，故未实现该分支（出现数据时再补）。
-9. **两套加槽机制**：规则包 `dedicatedGrants` 与卡级 `slotEffects` 并存。
+9. ~~**两套加槽机制**~~：已合并为卡片 `rules.slotGrants`，用 `trigger` 区分 `equipped`（携带生效）与 `unitQualifies`（单位满足条件生效）；规则包 `dedicatedGrants` 已移除。
 10. ~~**候选过滤与组军校验是两份独立实现**~~：已统一为 `upgrade_eligibility` / `upgradeEligibility`，S1、S2、S8 共用同一套检查（含回归测试）。
 
 ## 四、整改建议顺序（供决策）

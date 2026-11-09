@@ -2103,9 +2103,9 @@
         "unavailableWithIds": [
           "Asajj Ventress"
         ],
-        "slotEffects": [
+        "slotGrants": [
           {
-            "type": "addSlot",
+            "trigger": "equipped",
             "slot": "heavy_weapon"
           }
         ]
@@ -7126,9 +7126,9 @@
         "unavailableWithIds": [
           "Cassian Andor"
         ],
-        "slotEffects": [
+        "slotGrants": [
           {
-            "type": "addSlot",
+            "trigger": "equipped",
             "slot": "heavy_weapon"
           }
         ]
@@ -9960,13 +9960,13 @@
         "unavailableWithIds": [
           "Clone Captain Rex"
         ],
-        "slotEffects": [
+        "slotGrants": [
           {
-            "type": "addSlot",
+            "trigger": "equipped",
             "slot": "command"
           },
           {
-            "type": "addSlot",
+            "trigger": "equipped",
             "slot": "training"
           }
         ]
@@ -10310,9 +10310,9 @@
           1
         ],
         "locallyUnique": true,
-        "slotEffects": [
+        "slotGrants": [
           {
-            "type": "addSlot",
+            "trigger": "equipped",
             "slot": "gear"
           }
         ]
@@ -13143,7 +13143,23 @@
           21,
           29
         ],
-        "locallyUnique": true
+        "locallyUnique": true,
+        "slotGrants": [
+          {
+            "trigger": "unitQualifies",
+            "slot": "crew_exempt",
+            "holders": [
+              31,
+              771,
+              773,
+              2109
+            ],
+            "ifAbsentAny": [
+              "crew"
+            ],
+            "note": "待读图完善：运输载具限定？"
+          }
+        ]
       },
       "review": {
         "status": "needs_review",
@@ -17318,9 +17334,9 @@
           1
         ],
         "locallyUnique": true,
-        "slotEffects": [
+        "slotGrants": [
           {
-            "type": "addSlot",
+            "trigger": "equipped",
             "slot": "training"
           }
         ]
@@ -17422,9 +17438,9 @@
           2
         ],
         "locallyUnique": true,
-        "slotEffects": [
+        "slotGrants": [
           {
-            "type": "addSlot",
+            "trigger": "equipped",
             "slot": "protocol"
           }
         ]
@@ -21875,7 +21891,20 @@
           16,
           28
         ],
-        "locallyUnique": true
+        "locallyUnique": true,
+        "slotGrants": [
+          {
+            "trigger": "unitQualifies",
+            "slot": "gear_exempt",
+            "holders": [
+              38
+            ],
+            "ifAbsentAny": [
+              "gear"
+            ],
+            "note": "待读图完善：B1 限定，或所有机器人士兵限定？"
+          }
+        ]
       },
       "review": {
         "status": "needs_review",
@@ -22491,7 +22520,20 @@
           17,
           28
         ],
-        "locallyUnique": true
+        "locallyUnique": true,
+        "slotGrants": [
+          {
+            "trigger": "unitQualifies",
+            "slot": "gear_exempt",
+            "holders": [
+              38
+            ],
+            "ifAbsentAny": [
+              "gear"
+            ],
+            "note": "待读图完善：B1 限定？"
+          }
+        ]
       },
       "review": {
         "status": "needs_review",
@@ -22768,9 +22810,9 @@
         "unavailableWithIds": [
           "General of the Republic"
         ],
-        "slotEffects": [
+        "slotGrants": [
           {
-            "type": "addSlot",
+            "trigger": "equipped",
             "slot": "command"
           }
         ]
@@ -25098,9 +25140,9 @@
         "unavailableWithIds": [
           "General Grievous"
         ],
-        "slotEffects": [
+        "slotGrants": [
           {
-            "type": "addSlot",
+            "trigger": "equipped",
             "slot": "heavy_weapon"
           }
         ]
@@ -26670,7 +26712,32 @@
           26,
           27
         ],
-        "locallyUnique": true
+        "locallyUnique": true,
+        "slotGrants": [
+          {
+            "trigger": "unitQualifies",
+            "slot": "training_exempt",
+            "condition": {
+              "all": [
+                {
+                  "ref": "trooperUnitType"
+                },
+                {
+                  "not": {
+                    "ref": "droidTrooperUnitType"
+                  }
+                },
+                {
+                  "ref": "whiteDefenseDie"
+                }
+              ]
+            },
+            "ifAbsentAny": [
+              "training"
+            ],
+            "note": "士兵限定 + 非机器人士兵 + 白防御骰（已确定，以条件为准，忽略上游持有者名单）"
+          }
+        ]
       },
       "review": {
         "status": "needs_review",
@@ -27141,9 +27208,9 @@
           1
         ],
         "locallyUnique": true,
-        "slotEffects": [
+        "slotGrants": [
           {
-            "type": "addSlot",
+            "trigger": "equipped",
             "slot": "comms"
           }
         ]
@@ -27488,9 +27555,9 @@
           4
         ],
         "locallyUnique": true,
-        "slotEffects": [
+        "slotGrants": [
           {
-            "type": "addSlot",
+            "trigger": "equipped",
             "slot": "heavy_weapon",
             "when": {
               "field": "unit.rankId",
@@ -28322,9 +28389,9 @@
         "unavailableWithIds": [
           "Jedi Consular"
         ],
-        "slotEffects": [
+        "slotGrants": [
           {
-            "type": "addSlot",
+            "trigger": "equipped",
             "slot": "force"
           }
         ]
@@ -28620,9 +28687,9 @@
         "unavailableWithIds": [
           "Jedi Negotiator"
         ],
-        "slotEffects": [
+        "slotGrants": [
           {
-            "type": "addSlot",
+            "trigger": "equipped",
             "slot": "training"
           }
         ]
@@ -28794,9 +28861,9 @@
         "unavailableWithIds": [
           "Jyn Erso"
         ],
-        "slotEffects": [
+        "slotGrants": [
           {
-            "type": "addSlot",
+            "trigger": "equipped",
             "slot": "heavy_weapon"
           }
         ]
@@ -29503,9 +29570,9 @@
             "propertyName": "upgrades"
           }
         ],
-        "slotEffects": [
+        "slotGrants": [
           {
-            "type": "addSlot",
+            "trigger": "equipped",
             "slot": "heavy_weapon"
           }
         ]
@@ -30563,9 +30630,9 @@
         "unavailableWithIds": [
           "Luke Skywalker"
         ],
-        "slotEffects": [
+        "slotGrants": [
           {
-            "type": "addSlot",
+            "trigger": "equipped",
             "slot": "heavy_weapon"
           }
         ]
@@ -35542,9 +35609,9 @@
           1
         ],
         "locallyUnique": true,
-        "slotEffects": [
+        "slotGrants": [
           {
-            "type": "addSlot",
+            "trigger": "equipped",
             "slot": "heavy_weapon"
           }
         ]
@@ -36189,9 +36256,9 @@
           1
         ],
         "locallyUnique": true,
-        "slotEffects": [
+        "slotGrants": [
           {
-            "type": "addSlot",
+            "trigger": "equipped",
             "slot": "training"
           }
         ]
@@ -36392,9 +36459,9 @@
           1
         ],
         "locallyUnique": true,
-        "slotEffects": [
+        "slotGrants": [
           {
-            "type": "addSlot",
+            "trigger": "equipped",
             "slot": "comms"
           }
         ]
@@ -36956,9 +37023,9 @@
           1
         ],
         "locallyUnique": true,
-        "slotEffects": [
+        "slotGrants": [
           {
-            "type": "addSlot",
+            "trigger": "equipped",
             "slot": "gear"
           }
         ]
@@ -39406,9 +39473,9 @@
           24
         ],
         "locallyUnique": true,
-        "slotEffects": [
+        "slotGrants": [
           {
-            "type": "addSlot",
+            "trigger": "equipped",
             "slot": "training"
           }
         ]
@@ -42236,9 +42303,9 @@
           1
         ],
         "locallyUnique": true,
-        "slotEffects": [
+        "slotGrants": [
           {
-            "type": "addSlot",
+            "trigger": "equipped",
             "slot": "training"
           }
         ]
@@ -42831,9 +42898,9 @@
           1
         ],
         "locallyUnique": true,
-        "slotEffects": [
+        "slotGrants": [
           {
-            "type": "addSlot",
+            "trigger": "equipped",
             "slot": "gear"
           }
         ]
@@ -45369,9 +45436,9 @@
         "front": "assets/upgrade-cards/tod-advanced-drill.webp"
       },
       "rules": {
-        "slotEffects": [
+        "slotGrants": [
           {
-            "type": "addSlot",
+            "trigger": "equipped",
             "slot": "training"
           }
         ]
@@ -46518,13 +46585,13 @@
         "front": "assets/upgrade-cards/tod-extra-equipment.webp"
       },
       "rules": {
-        "slotEffects": [
+        "slotGrants": [
           {
-            "type": "addSlot",
+            "trigger": "equipped",
             "slot": "gear"
           },
           {
-            "type": "addSlot",
+            "trigger": "equipped",
             "slot": "grenades"
           }
         ]
@@ -47275,9 +47342,9 @@
         "front": "assets/upgrade-cards/tod-flexible-response.webp"
       },
       "rules": {
-        "slotEffects": [
+        "slotGrants": [
           {
-            "type": "addSlot",
+            "trigger": "equipped",
             "slot": "heavy_weapon"
           }
         ]
@@ -49782,7 +49849,20 @@
           23,
           27
         ],
-        "locallyUnique": true
+        "locallyUnique": true,
+        "slotGrants": [
+          {
+            "trigger": "unitQualifies",
+            "slot": "training_exempt",
+            "condition": {
+              "ref": "emplacementTrooperUnitType"
+            },
+            "ifAbsentAny": [
+              "training"
+            ],
+            "note": "架设士兵限定（已确定）"
+          }
+        ]
       },
       "review": {
         "status": "needs_review",
@@ -50131,7 +50211,24 @@
           22,
           27
         ],
-        "locallyUnique": true
+        "locallyUnique": true,
+        "slotGrants": [
+          {
+            "trigger": "unitQualifies",
+            "slot": "training_exempt",
+            "holders": [
+              5,
+              7,
+              48,
+              5880,
+              36899
+            ],
+            "ifAbsentAny": [
+              "training"
+            ],
+            "note": "待读图完善：帝国士兵限定？"
+          }
+        ]
       },
       "review": {
         "status": "needs_review",
@@ -50987,7 +51084,27 @@
           20,
           27
         ],
-        "locallyUnique": true
+        "locallyUnique": true,
+        "slotGrants": [
+          {
+            "trigger": "unitQualifies",
+            "slot": "training_exempt",
+            "holders": [
+              2,
+              10,
+              32,
+              44,
+              69,
+              1984,
+              5406,
+              19078
+            ],
+            "ifAbsentAny": [
+              "training"
+            ],
+            "note": "待读图完善：反重力/地面载具限定？"
+          }
+        ]
       },
       "review": {
         "status": "needs_review",
@@ -51896,9 +52013,9 @@
           24
         ],
         "locallyUnique": true,
-        "slotEffects": [
+        "slotGrants": [
           {
-            "type": "addSlot",
+            "trigger": "equipped",
             "slot": "protocol"
           }
         ]

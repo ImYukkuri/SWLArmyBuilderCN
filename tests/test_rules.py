@@ -28,8 +28,11 @@ class SlotRegistryTest(unittest.TestCase):
         self.assertEqual(rules.slot_key(self.pkg, 26), "hit_the_dirt")
 
     def test_dedicated_grants_present(self):
-        self.assertIn("hit_the_dirt", self.pkg["dedicatedGrants"])
-        self.assertIn("electrobinoculars", self.pkg["dedicatedGrants"])
+        _, upgrades, _ = rules.load_cards()
+        hit = upgrades["hit-the-dirt"]["rules"]["slotGrants"]
+        self.assertTrue(any(g.get("trigger") == "unitQualifies" for g in hit))
+        binoc = upgrades["gear-binoculars"]["rules"]["slotGrants"]
+        self.assertTrue(any(g.get("trigger") == "unitQualifies" for g in binoc))
 
 
 class ValidateArmyTest(unittest.TestCase):

@@ -18,18 +18,7 @@ function renderDedicated(){
   const box=$('#dedicated-grants');box.replaceChildren();
   const pred=el('details');pred.open=true;pred.append(el('summary','命名条件 predicates'));
   pred.append(el('pre',JSON.stringify(rules.predicates||{},null,2)));box.append(pred);
-  for(const [key,grant] of Object.entries(rules.dedicatedGrants||{})){
-    const d=el('details');d.open=!!grant.condition;
-    const holders=(grant.holders||[]).map(String).join('、');
-    d.append(el('summary',key+' · '+(grant.slotType||'未设置槽类型')+' · '+(grant.condition?'条件（权威）':'名单（待读图完善）')));
-    if(grant.note)d.append(el('p',grant.note));
-    if(grant.slotType)d.append(el('p','slotType：'+grant.slotType));
-    if(grant.ifAbsentAny?.length)d.append(el('p','ifAbsentAny：'+grant.ifAbsentAny.join('、')));
-    if(grant.condition)d.append(el('pre',JSON.stringify(grant.condition,null,2)));
-    if(grant.holders?.length)d.append(el('p','持有者（上游单位 ID）：'+holders));
-    box.append(d);
-  }
-}
+  box.append(el('p','槽位授予已并入卡片 rules.slotGrants（equipped / unitQualifies）；请到升级卡编辑器维护。'));}
 function renderUpgradeRules(){
   const box=$('#upgrade-rules');box.replaceChildren();
   for(const [id,rule] of Object.entries(rules.upgradeRules||{})){

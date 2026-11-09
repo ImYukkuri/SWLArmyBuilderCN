@@ -77,21 +77,35 @@ window.RulesCore = (() => {
       keywords: (unit.keywords || []).map(k => k && k.id),
     } };
   }
-  function dedicatedSlotKeys(pkg, unit) {
+  function slotGrantsFor(pkg, unit, inst, upgrades) {
     const ctx = unitContext(unit);
     const predicates = pkg.predicates || {};
-    const out = [];
-    for (const [grantKey, grant] of Object.entries(pkg.dedicatedGrants || {})) {
-      let ok = false;
-      if (grant.condition != null) {
-        ok = evaluate(grant.condition, ctx, predicates) === true;
-      } else if ((grant.holders || []).map(String).includes(String(unit.upstream && unit.upstream.id || ""))) {
-        ok = true;
+    const equipped = [];
+    for (const sel of (inst && inst.upgrades) || []) {
+      const card = upgrades[sel.upgradeId];
+      if (!card) continue;
+      for (const grant of (card.rules || {}).slotGrants || []) {
+        if (!grant || grant.trigger !== "equipped" || !grant.slot) continue;
+        if (grant.when && evaluate(grant.when, ctx, predicates) !== true) continue;
+        equipped.push({ key: grant.slot, addedBy: card.id });
       }
-      if (!ok) continue;
-      out.push({ key: grant.grants || grantKey, ifAbsentAny: grant.ifAbsentAny || null });
     }
-    return out;
+    const qualify = [];
+    const uid = String((unit.upstream && unit.upstream.id) || "");
+    for (const cardId of Object.keys(upgrades).sort()) {
+      const card = upgrades[cardId];
+      for (const grant of (card.rules || {}).slotGrants || []) {
+        if (!grant || grant.trigger !== "unitQualifies" || !grant.slot) continue;
+        let ok;
+        if (grant.condition != null) ok = evaluate(grant.condition, ctx, predicates) === true;
+        else ok = (grant.holders || []).map(String).includes(uid);
+        if (ok) qualify.push({ key: grant.slot, ifAbsentAny: grant.ifAbsentAny || null });
+      }
+    }
+    return { equipped, qualify };
+  }
+  function dedicatedSlotKeys(pkg, unit, upgrades) {
+    return slotGrantsFor(pkg, unit, null, upgrades || {}).qualify;
   }
   function slotListFor(pkg, unit, inst, upgrades) {
     const { byId } = slotRegistry(pkg);
@@ -102,17 +116,9 @@ window.RulesCore = (() => {
       if (byId[key] && byId[key].kind === "dedicated") continue; // printed dedicated slots are replaced by the shared exempt grants
       out.push({ key, required: !!(typeof s === "object" && s.required) });
     }
-    const ctx = unitContext(unit);
-    const predicates = pkg.predicates || {};
-    for (const sel of (inst && inst.upgrades) || []) {
-      const card = upgrades[sel.upgradeId];
-      for (const eff of (card && card.rules && card.rules.slotEffects) || []) {
-        if (!eff || eff.type !== "addSlot" || !eff.slot) continue;
-        if (eff.when && evaluate(eff.when, ctx, predicates) !== true) continue;
-        out.push({ key: eff.slot, addedBy: card.id });
-      }
-    }
-    for (const g of dedicatedSlotKeys(pkg, unit)) {
+    const grants = slotGrantsFor(pkg, unit, inst, upgrades);
+    for (const g of grants.equipped) out.push({ key: g.key, addedBy: g.addedBy });
+    for (const g of grants.qualify) {
       if (out.some(r => r.key === g.key)) continue;
       if (g.ifAbsentAny && out.some(r => g.ifAbsentAny.includes(r.key))) continue;
       out.push({ key: g.key, required: false, virtual: true });
@@ -595,5 +601,5 @@ window.RulesCore = (() => {
     return { status: hasInvalid ? "invalid" : (hasUnknown ? "unknown" : "valid"), basePoints, effectivePoints, rankCounts: maxCounts, issues };
   }
 
-  return { Dice, evaluate, validateArmy, upgradeEligibility, entourageExemptions, slotKey, accessKeys, dedicatedSlotKeys, slotListFor, restrictionConditionOk, requiredPropertiesOk, normRp, buildNameIndex, unavailableSets };
+  return { Dice, evaluate, validateArmy, upgradeEligibility, entourageExemptions, slotKey, accessKeys, slotGrantsFor, dedicatedSlotKeys, slotListFor, restrictionConditionOk, requiredPropertiesOk, normRp, buildNameIndex, unavailableSets };
 })();

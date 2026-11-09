@@ -136,22 +136,45 @@ def _unit_context(unit, package):
     }
 
 
-def dedicated_slot_keys(package, unit):
+def slot_grants_for(package, unit, inst, upgrades):
+    """All slot grants that apply to this instance.
+
+    Card-level rules.slotGrants entries carry a trigger:
+      * equipped      -> applies while the card is carried
+      * unitQualifies -> applies when the unit meets the grant condition
+    """
     ctx = _unit_context(unit, package)
     predicates = package.get("predicates") or {}
-    out = []
-    for grant_key, grant in (package.get("dedicatedGrants") or {}).items():
-        ok = False
-        cond = grant.get("condition")
-        if cond is not None:
-            ok = evaluate(cond, ctx, predicates) is True
-        else:
-            holders = grant.get("holders") or []
-            ok = str(unit.get("upstream", {}).get("id", "")) in [str(h) for h in holders]
-        if not ok:
+    equipped_grants = []
+    for sel in (inst.get("upgrades") if inst else []) or []:
+        card = upgrades.get(sel.get("upgradeId"))
+        if not card:
             continue
-        out.append({"key": grant.get("grants") or grant_key, "ifAbsentAny": grant.get("ifAbsentAny")})
-    return out
+        for grant in (card.get("rules") or {}).get("slotGrants") or []:
+            if not isinstance(grant, dict) or grant.get("trigger") != "equipped" or not grant.get("slot"):
+                continue
+            if grant.get("when") is not None and evaluate(grant["when"], ctx, predicates) is not True:
+                continue
+            equipped_grants.append({"key": grant["slot"], "addedBy": card.get("id")})
+    qualify_grants = []
+    uid = str(unit.get("upstream", {}).get("id", ""))
+    for card_id in sorted(upgrades):
+        for grant in (upgrades[card_id].get("rules") or {}).get("slotGrants") or []:
+            if not isinstance(grant, dict) or grant.get("trigger") != "unitQualifies" or not grant.get("slot"):
+                continue
+            if grant.get("condition") is not None:
+                ok = evaluate(grant["condition"], ctx, predicates) is True
+            else:
+                ok = uid in [str(h) for h in (grant.get("holders") or [])]
+            if ok:
+                qualify_grants.append({"key": grant["slot"], "ifAbsentAny": grant.get("ifAbsentAny")})
+    return equipped_grants, qualify_grants
+
+
+def dedicated_slot_keys(package, unit, upgrades=None):
+    if upgrades is None:
+        upgrades = {c["id"]: c for c in _read("data/upgrades.json")["cards"]}
+    return slot_grants_for(package, unit, None, upgrades)[1]
 
 
 def slot_list_for(package, unit, inst, upgrades):
@@ -163,17 +186,9 @@ def slot_list_for(package, unit, inst, upgrades):
         if by_id.get(key, {}).get("kind") == "dedicated":
             continue  # printed dedicated slots are replaced by the shared exempt grants
         out.append({"key": key, "required": bool(sid.get("required")) if isinstance(sid, dict) else False})
-    ctx = _unit_context(unit, package)
-    predicates = package.get("predicates") or {}
-    for sel in (inst.get("upgrades") if inst else []) or []:
-        card = upgrades.get(sel.get("upgradeId"))
-        for eff in ((card.get("rules") or {}).get("slotEffects") if card else []) or []:
-            if not eff or eff.get("type") != "addSlot" or not eff.get("slot"):
-                continue
-            if eff.get("when") and evaluate(eff["when"], ctx, predicates) is not True:
-                continue
-            out.append({"key": eff["slot"], "addedBy": card.get("id")})
-    for g in dedicated_slot_keys(package, unit):
+    equipped_grants, qualify_grants = slot_grants_for(package, unit, inst, upgrades)
+    out.extend(equipped_grants)
+    for g in qualify_grants:
         if any(r["key"] == g["key"] for r in out):
             continue
         if g.get("ifAbsentAny") and any(r["key"] in g["ifAbsentAny"] for r in out):
@@ -791,7 +806,7 @@ def query_candidates(unit_id, package=None, units=None, upgrades=None, army_id=N
             continue
         slot_keys.append(key)
     granted = set()
-    for g in dedicated_slot_keys(package, unit):
+    for g in dedicated_slot_keys(package, unit, upgrades):
         if g.get("ifAbsentAny") and any(k in g["ifAbsentAny"] for k in slot_keys):
             continue
         if g["key"] in granted:

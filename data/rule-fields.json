@@ -129,9 +129,13 @@
       "zh": "互斥卡牌 ID",
       "kind": "mixed"
     },
-    "slotEffects": {
-      "zh": "槽位效果",
+    "slotGrants": {
+      "zh": "槽位授予",
       "kind": "array"
+    },
+    "trigger": {
+      "zh": "触发方式",
+      "kind": "enum"
     },
     "type": {
       "zh": "效果类型",
