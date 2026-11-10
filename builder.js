@@ -270,6 +270,12 @@ function deckPicker(title,items,onPick){
   box.append(head,list);overlay.append(box);document.body.append(overlay);
   draw('');input.focus();
 }
+function ownerLabel(cmd){
+  if(cmd.owner)return cmd.owner;
+  const names=(cmd.factions||[]).map(id=>{const a=(data.defs.armies||[]).find(x=>x.id===id);return a?((a.name&&(a.name.zh||a.name.en))||String(id)):String(id)});
+  if(!names.length)return '通用';
+  return names.length>3?names.slice(0,3).join(' / ')+' …':names.join(' / ');
+}
 function commandText(text){
   if(!text)return '';
   const map={'rank-commander':'指挥官','rank-operative':'特工','rank-corps':'核心','rank-special-forces':'特种','rank-support':'支援','rank-heavy':'重型','rank-special':'特种'};
@@ -289,8 +295,9 @@ function openCommandCard(cmd,index){
   const zh=(cmd.description||{}).zh||'';
   const en=(cmd.description||{}).en||'';
   const ordersZh=(cmd.orders||{}).zh||'';
-  if(ordersZh)mask.append(el('em',commandText(ordersZh)));
-  mask.append(el('p',commandText(zh)||commandText(en)||'暂无效果文本'));
+  const own=el('span','所属：'+ownerLabel(cmd));own.className='view-meta';mask.append(own);
+  if(ordersZh){const od=el('span','下令：'+commandText(ordersZh));od.className='view-meta';mask.append(od)}
+  const eff=el('p',commandText(zh)||commandText(en)||'暂无效果文本');eff.className='view-effect';mask.append(eff);
   figure.append(mask);
   box.append(head,figure);
   if(index!=null){
@@ -348,9 +355,12 @@ function renderDeck(){
       if(card.image){const art=el('img');art.className='slot-art';art.src=card.image;art.alt='';art.loading='lazy';b.append(art)}
       const pip=el('span',pipLabel(card));pip.className='slot-pip';b.append(pip);
       const mask=el('div');mask.className='slot-mask';
-      mask.append(el('strong',commandName(card)));
+      const nm=el('strong',commandName(card));nm.className='mask-name';mask.append(nm);
+      const own=el('span','所属：'+ownerLabel(card));own.className='mask-meta';mask.append(own);
+      const orders=commandText(((card.orders||{}).zh)||((card.orders||{}).en)||'');
+      if(orders){const od=el('span','下令：'+orders);od.className='mask-meta';mask.append(od)}
       const eff=commandText(((card.description||{}).zh)||((card.description||{}).en)||'');
-      if(eff)mask.append(el('p',eff));
+      if(eff){const pp=el('p',eff);pp.className='mask-effect';mask.append(pp)}
       b.append(mask);
       b.title=((card.name&&card.name.en)||'')+' · '+eff;
     }else{
