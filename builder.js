@@ -202,6 +202,29 @@ function renderBrowser(){
     cands.sort((a,b)=>(a.name.zh||a.name.en).localeCompare(b.name.zh||b.name.en,'zh'));
     for(const c of cands)grid.append(upgradeCard(c,inst,browser.slotIndex));
     if(!cands.length)grid.append(el('p','没有可放入该槽的升级。'));
+  }else if(browser.mode==='commands'){
+    close.hidden=false;grid.className='card-grid commands';
+    const idx=browser.slotIndex;
+    const wanted=commandSlotPips()[idx];
+    const picked=new Set((army.commandIds||[]).map(String));
+    title.textContent='战术卡 · 牌点 '+wanted+(wanted===4?' · Standing Orders':'');
+    const list=(data.defs.commands||[])
+      .filter(c=>!c.hidden)
+      .filter(commandAvailable)
+      .filter(c=>slotPipOf(c)===wanted)
+      .filter(c=>!picked.has(String(c.id))||String(army.commandIds[idx])===String(c.id))
+      .sort((a,b)=>String(a.name.en).localeCompare(String(b.name.en)));
+    for(const c of list){
+      const b=el('button');b.type='button';b.className='card command-card';
+      if(c.image){const im=el('img');im.src=c.image;im.alt='';im.loading='lazy';b.append(im)}
+      const meta=el('div');meta.className='meta';
+      meta.append(el('strong',commandName(c)));
+      meta.append(pipDots(c.pips),el('span',(c.owner?ownerLabel(c):'通用')));
+      b.append(meta);
+      b.onclick=()=>pickCommand(c,idx);
+      grid.append(b);
+    }
+    if(!list.length)grid.append(el('p','该牌点没有可选的战术卡。'));
   }
 }
 function renderIssues(report){
@@ -218,8 +241,8 @@ function renderFaction(){
 function renderMode(){const sel=$('#mode');sel.value=army.mode;sel.onchange=()=>{army.mode=sel.value;army.pointsLimit=sel.value==='standard'?1000:600;save();render()}}
 function renderPoints(report){const limit=army.pointsLimit||1000;$('#points').textContent=report.basePoints+' / '+limit+' ('+(limit-report.basePoints)+')'}
 function pipDots(n){
-  const box=document.createElement('span');box.className='pip-dots';box.title='牌点 '+n;
-  for(let i=0;i<4;i++){const d=document.createElement('i');d.className='pip-dot'+(i<n?' on':'');box.append(d)}
+  const box=document.createElement('span');box.className='pip-badge';box.title='牌点 '+n;
+  for(let i=0;i<(Number(n)||0);i++){const d=document.createElement('i');box.append(d)}
   return box;
 }
 function commandOf(id){return (data.defs.commands||[]).find(c=>String(c.id)===String(id))||null}
@@ -351,24 +374,18 @@ function openCommandCard(cmd,index){
   overlay.append(box);document.body.append(overlay);
 }
 function openCommandSlot(index){
-  const wanted=commandSlotPips()[index];
-  const picked=new Set((army.commandIds||[]).map(String));
-  const items=(data.defs.commands||[])
-    .filter(c=>!c.hidden)
-    .filter(commandAvailable)
-    .filter(c=>slotPipOf(c)===wanted)
-    .filter(c=>!picked.has(String(c.id))||String(army.commandIds[index])===String(c.id))
-    .sort((a,b)=>String(a.name.en).localeCompare(String(b.name.en)))
-    .map(c=>({id:String(c.id),label:commandName(c),sub:c.name.en,pips:c.pips,image:c.image||'',text:commandText(((c.description||{}).zh)||((c.description||{}).en)||''),owner:ownerLabel(c),orders:commandText(((c.orders||{}).zh)||((c.orders||{}).en)||'')}));
-  deckPicker('选择战术卡 · 第 '+(index+1)+' 位',items,it=>{
-    army.commandIds[index]=String(it.id);
-    save();render();
-    const total=commandSlots();
-    let next=-1;
-    for(let i=index+1;i<total;i++){if(!army.commandIds[i]){next=i;break}}
-    if(next<0)for(let i=0;i<index;i++){if(!army.commandIds[i]){next=i;break}}
-    if(next>=0)setTimeout(()=>openCommandSlot(next),60);
-  });
+  browser={mode:'commands',slotIndex:index};
+  render();
+}
+function pickCommand(cmd,index){
+  army.commandIds[index]=String(cmd.id);
+  save();render();
+  const total=commandSlots();
+  let next=-1;
+  for(let i=index+1;i<total;i++){if(!army.commandIds[i]){next=i;break}}
+  if(next<0)for(let i=0;i<index;i++){if(!army.commandIds[i]){next=i;break}}
+  if(next>=0){browser={mode:'commands',slotIndex:next};render()}
+  else browser=null;
 }
 function openDeckSlot(kind,label){
   army.deck=army.deck||{};

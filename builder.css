@@ -70,3 +70,4 @@
 
 .slot-chip.extra{border-style:dashed;background:#3a2f18;border-color:#c9a24b;color:#ffe2a8}
 .slot-chip.extra:hover{border-color:#e8c36a;color:#ffedc4}
+@media (max-width: 900px){.builder-body{flex-direction:column}.army-col{width:100%}.card-browser{width:100%;margin-top:10px;position:static}}
