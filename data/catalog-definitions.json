@@ -13442,7 +13442,8 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "hidden": true
     },
     {
       "id": "10",
@@ -14916,7 +14917,8 @@
       "description": {
         "en": "Savage Opress may suffer up to the current Round number in Wounds. Then, for each Wound token Savage Opress has, Savage Opress gains 1 Aim token. Finally, for each Wound token Maul has, Maul gains 1 Aim token.\n\nChoose 1 of Maul's Command Cards in your Discard pile, if able. Return the chosen Command Card to your Command Hand.",
         "zh": "萨瓦奇·奥普雷斯可以承受不超过当前回合数的伤害。然后，萨瓦奇·奥普雷斯每拥有1个伤害标记，便获得1个瞄准标记。最后，摩尔每拥有1个伤害标记，便获得1个瞄准标记。\n\n若能如此做，从你的弃牌堆中选择1张摩尔的命令卡，将所选命令卡返回你的命令手牌。"
-      }
+      },
+      "image": "assets/command-cards/19886.webp"
     },
     {
       "id": "14378",
@@ -21518,7 +21520,8 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "hidden": true
     },
     {
       "id": "786",
@@ -22885,7 +22888,8 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "hidden": true
     },
     {
       "id": "6349",
@@ -23958,7 +23962,8 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "hidden": true
     },
     {
       "id": "2272",
@@ -24372,7 +24377,8 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "hidden": true
     },
     {
       "id": "52",
@@ -26848,5 +26854,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-11-10T09:17:05.642171+00:00"
+  "updatedAt": "2026-11-10T10:33:03.160174+00:00"
 }

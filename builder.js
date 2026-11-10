@@ -343,6 +343,7 @@ function openCommandSlot(index){
   const wanted=commandSlotPips()[index];
   const picked=new Set((army.commandIds||[]).map(String));
   const items=(data.defs.commands||[])
+    .filter(c=>!c.hidden)
     .filter(commandAvailable)
     .filter(c=>slotPipOf(c)===wanted)
     .filter(c=>!picked.has(String(c.id))||String(army.commandIds[index])===String(c.id))

@@ -20,6 +20,7 @@ function renderList(){
   const pip=$('#pip-filter').value;
   const art=$('#art-filter').value;
   const items=rows().filter(c=>{
+    if(c.hidden)return false;
     if(pip&&String(c.pips)!==pip)return false;
     if(art==='missing'&&c.image)return false;
     if(art==='ready'&&!c.image)return false;
