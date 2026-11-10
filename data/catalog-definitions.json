@@ -15972,7 +15972,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "owner": "Grand Admiral Thrawn",
+      "orders": {
+        "en": "1 Unit",
+        "zh": "1支单位"
+      },
+      "description": {
+        "en": "At the start of the Activation Phase, choose an enemy unit. If the chosen unit does not have a faceup Order token, assign it a faceup Order token from your opponent’s Order Pool, if able.\n\nThe first time your opponent chooses to activate a unit this Round, they may choose to activate the chosen unit. If they do not, the chosen unit may not activate using a faceup Order token until your Opponent has no Order tokens in their Order Pool or on Command Cards, and has no other units with faceup Order tokens.",
+        "zh": "在激活阶段开始时，选择一支敌方单位。若所选单位没有正面朝上的命令标记，则在可能的情况下，从对手的命令池中为其分配一个正面朝上的命令标记。\n\n本轮对手第一次选择激活单位时，可以选择激活该单位。若对手没有这样做，则该单位不能使用正面朝上的命令标记激活，直到对手的命令池和命令卡上均没有命令标记，且没有其他拥有正面朝上命令标记的单位。"
+      },
+      "image": "assets/command-cards/18898.webp"
     },
     {
       "id": "18899",
@@ -16048,7 +16058,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "owner": "Grand Moff Tarkin",
+      "orders": {
+        "en": "No Units",
+        "zh": "无单位"
+      },
+      "description": {
+        "en": "You must Divulge this card.\n\nDivulge: Resolve Setup Effects step.\nPermanent. Darth Vader gains Guardian 4: Grand Moff Tarkin and can benefit from Backup. While defending, Grand Moff Tarkin can benefit from Backup provided by Darth Vader even if the attacking unit’s unit leader is within {@icon.range-2} of Grand Moff Tarkin.\n\nWhile Grand Moff Tarkin is Contesting an Objective token that is not in allied Territory, allied Trooper units within {@icon.range-2} of him have Disciplined 1.",
+        "zh": "你必须揭示此卡。\n\n揭示：结算设置效果步骤。\n永久。达斯·维达获得“护卫4：Grand Moff Tarkin”，且可以从守护中受益。塔金大星区总督防御时，即使攻击单位的单位队长位于塔金大星区总督的{@icon.range-2}内，他仍可以从达斯·维达提供的守护中受益。\n\n当塔金大星区总督正在争夺一个不在友方领土内的目标标记时，他的{@icon.range-2}内的友方士兵单位拥有纪律1。"
+      },
+      "image": "assets/command-cards/18902.webp"
     },
     {
       "id": "18900",
@@ -16086,7 +16106,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "owner": "General Tagge",
+      "orders": {
+        "en": "1 Unit",
+        "zh": "1支单位"
+      },
+      "description": {
+        "en": "General Tagge may remove any number of tokens from Logistical Prowess to gain the matching tokens.\n\nAt the start of the Activation Phase, General Tagge may make a Speed-2 move.",
+        "zh": "塔格将军可以从“后勤专长”上移除任意数量的标记，获得对应的标记。\n\n在激活阶段开始时，塔格将军可以进行一次速度2移动。"
+      },
+      "image": "assets/command-cards/18900.webp"
     },
     {
       "id": "18901",
@@ -16754,7 +16784,7 @@
       },
       "orders": {
         "en": "Agent Kallus",
-        "zh": "卡勒斯特工"
+        "zh": "卡勒斯{@icon.rank-operative}"
       },
       "owner": "Agent Kallus"
     },
@@ -16870,7 +16900,16 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "owner": "Bo-Katan Kryze",
+      "orders": {
+        "en": "Bo-Katan Kryze",
+        "zh": "博-卡坦·克里兹"
+      },
+      "description": {
+        "en": "At the start of Bo-Katan Kryzeʼs next Activation, she may make a Recover action. Bo-Katan Kryze gains Barrage and Relentless this Round. Additionally, while Bo-Katan Kryze is Engaged this Round, her weapons gain Pierce 1.",
+        "zh": "博-卡坦·克里兹下次激活开始时，可以执行一次恢复行动。博-卡坦本轮获得弹幕炮击及追击。此外，本轮她交战期间，其武器获得穿刺1。"
+      }
     },
     {
       "id": "19483",
@@ -17909,8 +17948,8 @@
         "zh": "克隆人指挥官科迪下次激活期间，他的各{@icon.free-action}行动可以执行最多2次。本轮友方单位宣告攻击拥有至少1个观察标记的敌方单位时，可以花费其中1个观察标记。若如此做，若敌方单位为步兵，此次攻击获得压制；若为载具，则获得冲击1。"
       },
       "orders": {
-        "en": "Clone Commander Cody",
-        "zh": "克隆人指挥官科迪"
+        "en": "Clone {@icon.rank-commander} Cody",
+        "zh": "克隆人{@icon.rank-commander}科迪"
       },
       "owner": "Clone Commander Cody"
     },
@@ -21130,7 +21169,16 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "owner": "Generic",
+      "orders": {
+        "en": "1 Unit",
+        "zh": "1支单位"
+      },
+      "description": {
+        "en": "A well-placed unit with the element of surprise on its side can turn the tide of an entire battle.",
+        "zh": "一支位置得当、占据出其不意优势的单位，能够扭转整场战斗的局势。"
+      }
     },
     {
       "id": "11",
@@ -21580,7 +21628,7 @@
       },
       "orders": {
         "en": "Agent Kallus & 1 Unit",
-        "zh": "卡勒斯特工及1 支单位"
+        "zh": "卡勒斯{@icon.rank-operative}及1 支单位"
       },
       "owner": "Agent Kallus"
     },
@@ -22466,8 +22514,8 @@
         "zh": "本轮通过此卡获发命令的单位在科迪{@icon.range-1}内因敌方攻击受到至少1点伤害后，在该攻击结算后，若科迪在攻击敌方单位{@icon.range-4}内且能看到它，可以对该单位进行一次攻击。"
       },
       "orders": {
-        "en": "Clone Commander Cody & 1 Trooper Unit",
-        "zh": "克隆人指挥官科迪及1 支步兵单位"
+        "en": "Clone {@icon.rank-commander} Cody & 1 Trooper Unit",
+        "zh": "克隆人{@icon.rank-commander}科迪及1 支步兵单位"
       },
       "owner": "Clone Commander Cody"
     },

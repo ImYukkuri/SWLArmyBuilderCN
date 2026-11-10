@@ -270,6 +270,21 @@ function deckPicker(title,items,onPick){
   box.append(head,list);overlay.append(box);document.body.append(overlay);
   draw('');input.focus();
 }
+const ORDER_GLYPH={'rank-commander':'5','rank-operative':'b','rank-corps':'6','rank-special-forces':'7','rank-special':'7','rank-support':'8','rank-heavy':'9'};
+function ordersNodes(text){
+  const frag=document.createDocumentFragment();
+  const src=String(text||'');
+  const re=/\{@icon\.([a-z0-9-]+)\}/g;
+  let last=0,m;
+  while((m=re.exec(src))){
+    if(m.index>last)frag.append(document.createTextNode(src.slice(last,m.index)));
+    const glyph=ORDER_GLYPH[m[1]];
+    if(glyph){const sp=document.createElement('span');sp.className='rank-glyph';sp.textContent=glyph;frag.append(sp)}
+    last=re.lastIndex;
+  }
+  if(last<src.length)frag.append(document.createTextNode(src.slice(last)));
+  return frag;
+}
 function ownerLabel(cmd){
   if(cmd.owner)return cmd.owner;
   const names=(cmd.factions||[]).map(id=>{const a=(data.defs.armies||[]).find(x=>x.id===id);return a?((a.name&&(a.name.zh||a.name.en))||String(id)):String(id)});
@@ -297,7 +312,9 @@ function openCommandCard(cmd,index){
   const ordersZh=(cmd.orders||{}).zh||'';
   const vn=el('div',commandName(cmd));vn.className='view-seg view-name';mask.append(vn);
   const vo=el('div');vo.className='view-seg view-orders';
-  vo.append(el('span','下令'),el('b',commandText(ordersZh)||commandText((cmd.orders||{}).en||'')||'—'));mask.append(vo);
+  const vob=el('b');const vt=ordersZh||((cmd.orders||{}).en||'');
+  if(vt)vob.append(ordersNodes(vt));else vob.textContent='—';
+  vo.append(el('span','下令'),vob);mask.append(vo);
   const ve=el('div',commandText(zh)||commandText(en)||'暂无效果文本');ve.className='view-seg view-effect';mask.append(ve);
   const vw=el('div');vw.className='view-seg view-owner';
   vw.append(el('span','所属'),el('b',ownerLabel(cmd)));mask.append(vw);
@@ -359,9 +376,11 @@ function renderDeck(){
       const pip=el('span',pipLabel(card));pip.className='slot-pip';b.append(pip);
       const mask=el('div');mask.className='slot-mask';
       const nm=el('div',commandName(card));nm.className='mask-seg mask-name';mask.append(nm);
-      const orders=commandText(((card.orders||{}).zh)||((card.orders||{}).en)||'');
+      const ordersRaw=((card.orders||{}).zh)||((card.orders||{}).en)||'';
+      const orders=ordersRaw;
       const od=el('div');od.className='mask-seg mask-orders';
-      const odk=el('span','下令');const odv=el('b',orders||'—');od.append(odk,odv);mask.append(od);
+      const odk=el('span','下令');const odv=el('b');odv.append(ordersNodes(orders));if(!orders)odv.textContent='—';
+      od.append(odk,odv);mask.append(od);
       const eff=commandText(((card.description||{}).zh)||((card.description||{}).en)||'');
       const pp=el('div',eff||'—');pp.className='mask-seg mask-effect';mask.append(pp);
       const ow=el('div');ow.className='mask-seg mask-owner';
