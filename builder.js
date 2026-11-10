@@ -28,7 +28,12 @@ function load(){
     data={units:Object.fromEntries(uj.units.map(u=>[u.id,u])),upgrades:Object.fromEntries(gj.cards.map(c=>[c.id,c])),defs:dj,pkg:pj};
     data.deckData=bj||{objectives:[],deployments:[],conditions:[]};
     data.nameIndex=RulesCore.buildNameIndex(data.upgrades,data.defs);
-    restore();render();
+    restore();
+    army.commandIds=army.commandIds||[];
+    const pipsList=commandSlotPips();
+    const p4=pipsList.lastIndexOf(4);
+    if(p4>=0&&!army.commandIds[p4])army.commandIds[p4]='8';
+    render();
   }).catch(e=>{const p=$('#issues');if(p)p.textContent='数据载入失败：'+e.message});
 }
 function rankOf(u,armyId){return RulesCore.armyRank(u,armyId,data.pkg,data.defs,data.units)}
@@ -269,6 +274,7 @@ function deckPicker(title,items,onPick){
       if(it.badge){const bd=el('span',it.badge);bd.className='pick-badge';line.append(bd)}
       body.append(line);
       if(it.text)body.append(el('p',it.text));
+      if(it.owner||it.orders){const meta=el('span',((it.owner?('所属 '+it.owner):'')+(it.orders?(' · 下令 '+it.orders):'')).trim());meta.className='pick-meta';body.append(meta)}
       b.append(body);
       b.onclick=()=>{onPick(it);overlay.remove()};
       list.append(b);
@@ -348,7 +354,7 @@ function openCommandSlot(index){
     .filter(c=>slotPipOf(c)===wanted)
     .filter(c=>!picked.has(String(c.id))||String(army.commandIds[index])===String(c.id))
     .sort((a,b)=>String(a.name.en).localeCompare(String(b.name.en)))
-    .map(c=>({id:String(c.id),label:commandName(c),sub:c.name.en,badge:pipLabel(c),image:c.image||'',text:commandText(((c.description||{}).zh)||((c.description||{}).en)||'')}));
+    .map(c=>({id:String(c.id),label:commandName(c),sub:c.name.en,badge:pipLabel(c),image:c.image||'',text:commandText(((c.description||{}).zh)||((c.description||{}).en)||''),owner:ownerLabel(c),orders:commandText(((c.orders||{}).zh)||((c.orders||{}).en)||'')}));
   deckPicker('选择战术卡 · 第 '+(index+1)+' 位',items,it=>{
     army.commandIds[index]=String(it.id);
     save();render();
@@ -398,6 +404,9 @@ function renderDeck(){
       const owk=el('span','所属');const owv=el('b',ownerLabel(card));ow.append(owk,owv);mask.append(ow);
       b.append(mask);
       b.title=((card.name&&card.name.en)||'')+' · '+eff;
+      const rm=el('span','×');rm.className='command-remove';rm.title='移除';
+      rm.onclick=ev=>{ev.stopPropagation();army.commandIds[i]=null;save();render()};
+      b.append(rm);
     }else{
       b.append(el('span','P'+slotPips[i]+' 槽'),el('strong','+ 选择'));
     }
