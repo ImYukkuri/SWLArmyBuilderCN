@@ -12721,7 +12721,7 @@
     {
       "id": "1962",
       "name": {
-        "en": "Marked for Elimination",
+        "en": "Marked For Elimination",
         "zh": "歼灭标记"
       },
       "pips": 1,
@@ -13540,7 +13540,7 @@
     {
       "id": "2377",
       "name": {
-        "en": "Rule With Respect",
+        "en": "Rule with Respect",
         "zh": "以德服人"
       },
       "pips": 3,
@@ -14292,7 +14292,7 @@
     {
       "id": "43",
       "name": {
-        "en": "Deploy the Garrison",
+        "en": "Deploy The Garrison",
         "zh": "部署卫戍部队"
       },
       "pips": 2,
@@ -15135,7 +15135,7 @@
     {
       "id": "6508",
       "name": {
-        "en": "I am no Jedi",
+        "en": "I Am No Jedi",
         "zh": "我不是绝地"
       },
       "pips": 1,
@@ -16109,7 +16109,7 @@
     {
       "id": "18900",
       "name": {
-        "en": "I Have Graphs AND the Command",
+        "en": "I Have Graphs and the Command",
         "zh": "我有图表，也有指挥权"
       },
       "pips": 1,
@@ -16721,7 +16721,7 @@
     {
       "id": "19405",
       "name": {
-        "en": "Insolence?! We are pirates!",
+        "en": "Insolence?! We are Pirates!",
         "zh": "放肆？！我们可是海盗！"
       },
       "pips": 1,
@@ -16838,7 +16838,7 @@
       },
       "orders": {
         "en": "Agent Kallus",
-        "zh": "卡勒斯{@icon.rank-operative}"
+        "zh": "卡勒斯特工"
       },
       "owner": "Agent Kallus"
     },
@@ -17914,7 +17914,7 @@
     {
       "id": "18",
       "name": {
-        "en": "No Time for Sorrows",
+        "en": "No Time For Sorrows",
         "zh": "无暇悲伤"
       },
       "pips": 2,
@@ -17962,7 +17962,7 @@
     {
       "id": "6131",
       "name": {
-        "en": "Bring it Down!",
+        "en": "Bring It Down!",
         "zh": "干掉它！"
       },
       "pips": 1,
@@ -18002,8 +18002,8 @@
         "zh": "克隆人指挥官科迪下次激活期间，他的各{@icon.free-action}行动可以执行最多2次。本轮友方单位宣告攻击拥有至少1个观察标记的敌方单位时，可以花费其中1个观察标记。若如此做，若敌方单位为步兵，此次攻击获得压制；若为载具，则获得冲击1。"
       },
       "orders": {
-        "en": "Clone {@icon.rank-commander} Cody",
-        "zh": "克隆人{@icon.rank-commander}科迪"
+        "en": "Clone Commander Cody",
+        "zh": "克隆人指挥官科迪"
       },
       "owner": "Clone Commander Cody"
     },
@@ -18455,7 +18455,7 @@
       "image": "assets/command-cards/3050.webp",
       "description": {
         "en": "This card cannot be selected during the Command Phase. When an allied unit within {@icon.range-1} and in LOS of Grogu is declared as a defender against a Ranged attack, you may discard this card from your Command Hand. If you do, the defending unit gains 2 Dodge tokens and gains Deflect until the attack is resolved.",
-        "zh": "此卡不能在命令阶段选择。格罗古{@icon.range-1}内且在其视线内的友方单位被宣告为远程攻击的防御方时，你可以从命令手牌弃置此卡。若如此做，防御单位获得2个闪避标记，并获得反弹，直到该攻击结算完毕。"
+        "zh": "此卡不能在命令阶段选择。古古{@icon.range-1}内且在其视线内的友方单位被宣告为远程攻击的防御方时，你可以从命令手牌弃置此卡。若如此做，防御单位获得2个闪避标记，并获得反弹，直到该攻击结算完毕。"
       },
       "orders": {
         "en": "",
@@ -18926,7 +18926,7 @@
     {
       "id": "1",
       "name": {
-        "en": "New Ways to Motivate Them",
+        "en": "New Ways To Motivate Them",
         "zh": "激励他们的新方法"
       },
       "pips": 2,
@@ -20203,7 +20203,7 @@
     {
       "id": "56",
       "name": {
-        "en": "I am a Jedi",
+        "en": "I Am a Jedi",
         "zh": "我是个绝地"
       },
       "pips": 3,
@@ -20403,7 +20403,7 @@
     {
       "id": "61",
       "name": {
-        "en": "Fear and Dead Men",
+        "en": "Fear And Dead Men",
         "zh": "恐惧与亡者"
       },
       "pips": 2,
@@ -20685,7 +20685,7 @@
     {
       "id": "4",
       "name": {
-        "en": "Master of Evil",
+        "en": "Master Of Evil",
         "zh": "邪恶之主"
       },
       "pips": 3,
@@ -21682,7 +21682,7 @@
       },
       "orders": {
         "en": "Agent Kallus & 1 Unit",
-        "zh": "卡勒斯{@icon.rank-operative}及1 支单位"
+        "zh": "卡勒斯特工及1 支单位"
       },
       "owner": "Agent Kallus"
     },
@@ -21864,7 +21864,7 @@
     {
       "id": "3085",
       "name": {
-        "en": "A Machine Made for Killing",
+        "en": "A Machine Made For Killing",
         "zh": "为杀戮而造的机器"
       },
       "pips": 2,
@@ -22060,7 +22060,7 @@
     {
       "id": "5183",
       "name": {
-        "en": "I am Fear",
+        "en": "I Am Fear",
         "zh": "我即是恐惧"
       },
       "pips": 2,
@@ -22528,7 +22528,7 @@
     {
       "id": "6130",
       "name": {
-        "en": "Have I Ever Let you Down?",
+        "en": "Have I Ever Let You Down?",
         "zh": "我哪次让你失望了？"
       },
       "pips": 2,
@@ -22568,8 +22568,8 @@
         "zh": "本轮通过此卡获发命令的单位在科迪{@icon.range-1}内因敌方攻击受到至少1点伤害后，在该攻击结算后，若科迪在攻击敌方单位{@icon.range-4}内且能看到它，可以对该单位进行一次攻击。"
       },
       "orders": {
-        "en": "Clone {@icon.rank-commander} Cody & 1 Trooper Unit",
-        "zh": "克隆人{@icon.rank-commander}科迪及1 支步兵单位"
+        "en": "Clone Commander Cody & 1 Trooper Unit",
+        "zh": "克隆人指挥官科迪及1 支步兵单位"
       },
       "owner": "Clone Commander Cody"
     },
@@ -22672,7 +22672,7 @@
     {
       "id": "8116",
       "name": {
-        "en": "Squadron, on me",
+        "en": "Squadron, On Me",
         "zh": "中队，跟上"
       },
       "pips": 2,
