@@ -239,7 +239,7 @@ function deckPicker(title,items,onPick){
       const b=el('button');b.type='button';b.className='pick-item';
       b.append(el('strong',it.label||it.id));
       if(it.sub)b.append(el('small',it.sub));
-      if(it.pips)b.append(el('span','P'+it.pips));
+      if(it.pips)b.append(el('span','P'+it.pips+(it.points?(' · '+it.points+'分'):'')));
       b.onclick=()=>{onPick(it);overlay.remove()};
       list.append(b);
     }
@@ -255,7 +255,7 @@ function openCommandSlot(index){
     .filter(commandAvailable)
     .filter(c=>!picked.has(String(c.id))||String(army.commandIds[index])===String(c.id))
     .sort((a,b)=>a.pips-b.pips||String(a.name.en).localeCompare(String(b.name.en)))
-    .map(c=>({id:String(c.id),label:commandName(c),sub:c.name.en,pips:c.pips}));
+    .map(c=>({id:String(c.id),label:commandName(c),sub:c.name.en,pips:c.pips,points:c.points||0}));
   deckPicker('选择战术卡 · 第 '+(index+1)+' 位',items,it=>{
     army.commandIds[index]=String(it.id);
     save();render();
@@ -290,7 +290,7 @@ function renderDeck(){
     const card=commandOf(army.commandIds[i]);
     const b=el('button');b.type='button';b.className='command-slot'+(card?' filled':'');
     if(card){
-      b.append(el('span','P'+card.pips),el('strong',commandName(card)),el('small',(card.name&&card.name.en)||''));
+      b.append(el('span','P'+card.pips+(card.points?(' · 写表 '+card.points+' 分'):'')),el('strong',commandName(card)),el('small',(card.name&&card.name.en)||''));
       b.title=card.name.en||'';
     }else{
       b.append(el('span','空'),el('strong','+ 选择'));
