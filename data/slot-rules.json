@@ -3039,7 +3039,17 @@
       ],
       "unitCaps": [],
       "slots": [],
-      "keywords": []
+      "keywords": [],
+      "rankOverrides": [
+        {
+          "unitNames": [
+            "Scout Troopers",
+            "Imperial Death Troopers"
+          ],
+          "rankId": 2,
+          "note": "IR 规则：侦察兵与帝国死亡士兵按核心（rank 2）计算，优先于卡面军阶推导"
+        }
+      ]
     },
     "17": {
       "unitCaps": [

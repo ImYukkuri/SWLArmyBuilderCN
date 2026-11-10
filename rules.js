@@ -167,6 +167,24 @@ function renderOverrides(box,bf,rerender){
   sec.append(el('h3','本部队专属规则（覆盖默认行为）'));
   const hint=el('p','下面的规则只对「'+ (bf.name||'本部队') +'」生效，是在通用规则之上叠加的增量：先应用「排除 / 移除」，再应用「纳入 / 新增」——也就是禁止优先。');hint.className='hint';sec.append(hint);
 
+  /* rankOverrides */
+  const rankBox=el('fieldset');rankBox.className='restriction-section';
+  rankBox.append(el('legend','军阶重定向（本部队内把某单位当作另一军阶）'));
+  const rankHint=el('p','这里的设定先于卡面军阶和「允许单位」推导生效，影响配额统计、组合上限与升级的军阶要求。');rankHint.className='hint';rankBox.append(rankHint);
+  const rankRules=data.rankOverrides=data.rankOverrides||[];
+  for(let i=0;i<rankRules.length;i++){
+    const r=rankRules[i];
+    rankBox.append(bfRow([
+      unitMultiField('单位',r.unitNames||[],v=>{r.unitNames=v;setDirty();rerender()}),
+      bfSelect([['1','指挥官'],['6','特工'],['2','核心'],['3','特种部队'],['4','支援'],['5','重型']],String(r.rankId||''),v=>{r.rankId=Number(v);setDirty();rerender()}),
+      bfDel(rankRules,i,rerender)
+    ]));
+  }
+  const addRank=el('button','+ 军阶重定向');addRank.type='button';
+  addRank.onclick=()=>{rankRules.push({unitNames:[],rankId:2});setDirty();rerender()};
+  rankBox.append(addRank);
+  sec.append(rankBox);
+
   /* unitCaps */
   const caps=data.unitCaps=data.unitCaps||[];
   const capBox=el('fieldset');capBox.className='restriction-section';

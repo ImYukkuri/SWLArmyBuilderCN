@@ -361,6 +361,11 @@ window.RulesCore = (() => {
     return a ? a.id : null;
   }
   function armyRank(unit, armyId, pkg, defs, units) {
+    const ov = armyOverridesFor(pkg, armyId);
+    const overrideName = normalizeKey((unit.name && unit.name.en) || "");
+    for (const rule of (ov && ov.rankOverrides) || []) {
+      if (rule && (rule.unitNames || []).some(n => normalizeKey(n) === overrideName)) return Number(rule.rankId);
+    }
     const bf = ((pkg && pkg.battleForces) || {})[String(armyId)] || {};
     const allowed = bf.allowedUnits;
     if (allowed && typeof allowed === "object") {
@@ -384,6 +389,19 @@ window.RulesCore = (() => {
     }
     return null;
   }
+  function conditionIsHostOnly(cond) {
+    let hostOnly = true;
+    const walk = node => {
+      if (!hostOnly || node == null) return;
+      if (Array.isArray(node)) { for (const n of node) walk(n); return; }
+      if (typeof node === "object") {
+        if (typeof node.field === "string" && !node.field.startsWith("unit.")) hostOnly = false;
+        for (const [k, v] of Object.entries(node)) { if (k === "field") continue; if (v && typeof v === "object") walk(v); }
+      }
+    };
+    walk(cond);
+    return hostOnly;
+  }
   function upgradeEligibility(card, unit, army, data, equipped) {
     const { defs, pkg, nameIndex } = data;
     if (card.deprecated) return { ok: false, issues: [{ status: "invalid", code: "deprecated_card", message: "该卡为废案，不参与组军" }] };
@@ -395,8 +413,8 @@ window.RulesCore = (() => {
     const issues = [];
     const add = (status, code, message) => issues.push({ status, code, message });
     const h = hosts(rule, card);
-    if (h != null && !h.includes(String(unit.upstream && unit.upstream.id || ""))
-        && !hostAliasAllows(card, unit, army, data, rule)) {
+    const aliasOk = hostAliasAllows(card, unit, army, data, rule);
+    if (h != null && !h.includes(String(unit.upstream && unit.upstream.id || "")) && !aliasOk) {
       add("invalid", "host_restriction", "此升级仅限特定角色/版本");
     }
     const facs = (card.rules || {}).factions;
@@ -411,7 +429,9 @@ window.RulesCore = (() => {
       add("invalid", "required_properties", `升级「${name}」不满足适用条件（阵营/类型/词条）`);
     }
     const rc = restrictionConditionOk(card, unit, pkg);
-    if (rc === false) add("invalid", "restriction_condition", `升级「${name}」不满足卡面限制条件`);
+    const cond = (card.restrictions || {}).condition;
+    const condBypassed = aliasOk && rc === false && conditionIsHostOnly(cond);
+    if (rc === false && !condBypassed) add("invalid", "restriction_condition", `升级「${name}」不满足卡面限制条件`);
     else if (rc === null && (card.restrictions || {}).condition) add("unknown", "restriction_condition_unknown", `升级「${name}」的卡面限制条件存在未覆盖语义`);
     const divs = (card.rules || {}).requiredDivisions;
     if (divs) {

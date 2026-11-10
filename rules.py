@@ -513,6 +513,11 @@ def unit_rank_in_army(unit, army_id, package, definitions):
 
 
 def army_rank(unit, army_id, package, definitions, units):
+    ov = army_overrides_for(package, army_id) or {}
+    unit_name = normalize_name((unit.get("name") or {}).get("en") or "")
+    for rule in ov.get("rankOverrides") or []:
+        if isinstance(rule, dict) and any(normalize_name(n) == unit_name for n in rule.get("unitNames") or []):
+            return int(rule["rankId"])
     bf = (package.get("battleForces") or {}).get(str(army_id)) or {}
     allowed = bf.get("allowedUnits")
     if isinstance(allowed, dict):
@@ -535,6 +540,31 @@ def army_rank(unit, army_id, package, definitions, units):
     return None
 
 
+def condition_is_host_only(cond):
+    """True when a card restriction only constrains the host unit (unit.* fields)."""
+    state = {"host_only": True}
+
+    def walk(node):
+        if not state["host_only"] or node is None:
+            return
+        if isinstance(node, list):
+            for item in node:
+                walk(item)
+            return
+        if isinstance(node, dict):
+            field = node.get("field")
+            if isinstance(field, str) and not field.startswith("unit."):
+                state["host_only"] = False
+            for key, value in node.items():
+                if key == "field":
+                    continue
+                if isinstance(value, (dict, list)):
+                    walk(value)
+
+    walk(cond)
+    return state["host_only"]
+
+
 def upgrade_eligibility(card, unit, army, package, definitions, name_index, equipped=None):
     """Single source of truth for card-vs-unit eligibility.
 
@@ -549,7 +579,8 @@ def upgrade_eligibility(card, unit, army, package, definitions, name_index, equi
     host_rank = unit_rank_in_army(unit, army.get("armyId"), package, definitions)
     out = []
     hosts = upstream_hosts(rule, card)
-    if hosts is not None and str(unit.get("upstream", {}).get("id", "")) not in hosts and not host_alias_allows(card, unit, army, package, definitions, rule):
+    alias_ok = host_alias_allows(card, unit, army, package, definitions, rule)
+    if hosts is not None and str(unit.get("upstream", {}).get("id", "")) not in hosts and not alias_ok:
         out.append(("invalid", "host_restriction", "此升级仅限特定角色/版本"))
     facs = (card.get("rules") or {}).get("factions")
     if facs and army.get("armyId") not in [int(f) for f in facs]:
@@ -562,7 +593,7 @@ def upgrade_eligibility(card, unit, army, package, definitions, name_index, equi
     rc = (card.get("restrictions") or {}).get("condition")
     if rc is not None:
         rc_ok = evaluate(rc, _unit_context(unit, package), package.get("predicates") or {})
-        if rc_ok is False:
+        if rc_ok is False and not (alias_ok and condition_is_host_only(rc)):
             out.append(("invalid", "restriction_condition", f"升级「{name}」不满足卡面限制条件"))
         elif rc_ok is None:
             out.append(("unknown", "restriction_condition_unknown", f"升级「{name}」的卡面限制条件存在未覆盖语义"))
