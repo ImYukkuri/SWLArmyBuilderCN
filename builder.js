@@ -38,15 +38,7 @@ function unitParentIds(u){
   for(const q of (u.rules||{}).quantityLimitedBy||[]){if(q&&q.unit!=null)parents.push({id:String(q.unit),ratio:q.ratio||1})}
   for(const k of (u.keywords||[])){
     if(!k||typeof k!=='object')continue;
-    if(k.id==='detachment'||k.id==='retinue'){const pid=resolveUnitIdByName(k.parameter);if(pid){const x=data.units[pid];const up=x&&x.upstream?String(x.upstream.id):null;if(up&&!parents.some(p=>p.id===up))parents.push({id:up,ratio:1})}}
-  }
-  for(const other of Object.values(data.units)){
-    for(const k of (other.keywords||[])){
-      if(k&&typeof k==='object'&&k.id==='entourage'){
-        const cid=resolveUnitIdByName(k.parameter);
-        if(cid===u.id){const up=other.upstream?String(other.upstream.id):null;if(up&&!parents.some(p=>p.id===up))parents.push({id:up,ratio:1})}
-      }
-    }
+    if(k.id==='detachment'){const pid=resolveUnitIdByName(k.parameter);if(pid){const x=data.units[pid];const up=x&&x.upstream?String(x.upstream.id):null;if(up&&!parents.some(p=>p.id===up))parents.push({id:up,ratio:1})}}
   }
   return parents;
 }
