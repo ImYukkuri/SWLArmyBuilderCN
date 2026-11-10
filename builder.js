@@ -255,7 +255,7 @@ function commandSlots(){return commandSlotPips().length}
 function slotPipOf(cmd){return cmd?(cmd.slotPips!=null?cmd.slotPips:cmd.pips):null}
 function pipLabel(cmd){
   const printed=cmd.pips, slot=slotPipOf(cmd);
-  return slot!=null&&slot!==printed?('牌点 '+printed+' · 写表视作 '+slot):('牌点 '+printed);
+  return '';
 }
 function deckPicker(title,items,onPick){
   const overlay=el('div');overlay.className='pick-overlay';
@@ -276,7 +276,7 @@ function deckPicker(title,items,onPick){
       const line=el('span');line.className='pick-line';
       line.append(el('strong',it.label||it.id));
       if(it.sub)line.append(el('small',it.sub));
-      if(it.badge){const bd=el('span',it.badge);bd.className='pick-badge';line.append(bd)}
+      if(it.pips!=null){const bd=document.createElement('span');bd.className='pick-badge';bd.append(pipDots(it.pips));line.append(bd)}
       body.append(line);
       if(it.text)body.append(el('p',it.text));
       if(it.owner||it.orders){const meta=el('span',((it.owner?('所属 '+it.owner):'')+(it.orders?(' · 下令 '+it.orders):'')).trim());meta.className='pick-meta';body.append(meta)}
@@ -325,7 +325,7 @@ function openCommandCard(cmd,index){
   const overlay=el('div');overlay.className='card-view-overlay';
   const box=el('div');box.className='card-view';
   const head=el('div');head.className='card-view-head';
-  head.append(el('strong',commandName(cmd)),pipDots(cmd.pips),el('span',pipLabel(cmd)));
+  head.append(el('strong',commandName(cmd)),pipDots(cmd.pips));
   const close=el('button','×');close.type='button';close.className='pick-close';close.onclick=()=>overlay.remove();
   head.append(close);
   const figure=el('div');figure.className='card-view-figure';
@@ -363,7 +363,7 @@ function openCommandSlot(index){
     .filter(c=>slotPipOf(c)===wanted)
     .filter(c=>!picked.has(String(c.id))||String(army.commandIds[index])===String(c.id))
     .sort((a,b)=>String(a.name.en).localeCompare(String(b.name.en)))
-    .map(c=>({id:String(c.id),label:commandName(c),sub:c.name.en,badge:pipLabel(c),image:c.image||'',text:commandText(((c.description||{}).zh)||((c.description||{}).en)||''),owner:ownerLabel(c),orders:commandText(((c.orders||{}).zh)||((c.orders||{}).en)||'')}));
+    .map(c=>({id:String(c.id),label:commandName(c),sub:c.name.en,pips:c.pips,image:c.image||'',text:commandText(((c.description||{}).zh)||((c.description||{}).en)||''),owner:ownerLabel(c),orders:commandText(((c.orders||{}).zh)||((c.orders||{}).en)||'')}));
   deckPicker('选择战术卡 · 第 '+(index+1)+' 位',items,it=>{
     army.commandIds[index]=String(it.id);
     save();render();
@@ -399,7 +399,7 @@ function renderDeck(){
     const b=el('button');b.type='button';b.className='command-slot'+(card?' filled':'')+(card&&card.image?' with-art':'');
     if(card){
       if(card.image){const art=el('img');art.className='slot-art';art.src=card.image;art.alt='';art.loading='lazy';b.append(art)}
-      const pip=el('span',pipLabel(card));pip.className='slot-pip';b.append(pip);
+      const pip=document.createElement('span');pip.className='slot-pip';pip.append(pipDots(card.pips));b.append(pip);
       const mask=el('div');mask.className='slot-mask';
       const nm=el('div',commandName(card));nm.className='mask-seg mask-name';mask.append(nm);
       const ordersRaw=((card.orders||{}).zh)||((card.orders||{}).en)||'';
@@ -417,7 +417,7 @@ function renderDeck(){
       rm.onclick=ev=>{ev.stopPropagation();army.commandIds[i]=null;save();render()};
       b.append(rm);
     }else{
-      b.append(el('span','牌点 '+slotPips[i]+' 槽'),el('strong','+ 选择'));
+      const slotDots=document.createElement('span');slotDots.append(pipDots(slotPips[i]));b.append(slotDots,el('strong','+ 选择'));
     }
     b.onclick=()=>card?openCommandCard(card,i):openCommandSlot(i);
     grid.append(b);
