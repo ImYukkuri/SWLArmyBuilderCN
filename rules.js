@@ -336,7 +336,7 @@ async function reload(){
     dirty=false;$('#dirty').textContent='';render();$('#raw-json').value=JSON.stringify(rules,null,2);status('')
   }catch(e){status(e.message,true)}
 }
-$('#save').onclick=async()=>{try{if(tab==='json'){rules=JSON.parse($('#raw-json').value)}$('#save').disabled=true;const resp=await fetch('/api/slot-rules/save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({rules,revision})});const text=await resp.text();let r;try{r=JSON.parse(text)}catch{throw Error('保存需要 python server.py（当前静态服务无法写回源文件）。')}if(!resp.ok)throw Error(r.error||('HTTP '+resp.status));revision=r.revision;dirty=false;$('#dirty').textContent='';render();status('已保存规则包；备份 history/slot-rules/'+r.snapshot)}catch(e){status(e.message,true)}finally{$('#save').disabled=false}};
+$('#save').onclick=async()=>{try{if(tab==='json'){rules=JSON.parse($('#raw-json').value)}$('#save').disabled=true;const resp=await fetch('/api/slot-rules/save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({rules,revision})});const text=await resp.text();let r;try{r=JSON.parse(text)}catch{throw Error('保存需要 python server.py（当前静态服务无法写回源文件）。')}if(!resp.ok)throw Error(r.error||('HTTP '+resp.status));revision=r.revision;dirty=false;$('#dirty').textContent='';if(window.SaveUI)SaveUI.flashSaved();render();status('已保存规则包；备份 history/slot-rules/'+r.snapshot)}catch(e){if(window.SaveUI)SaveUI.fail(e,reload);else status(e.message,true)}finally{$('#save').disabled=false}};
 $('#apply-json').onclick=()=>{try{rules=JSON.parse($('#raw-json').value);setDirty();render();setTab('slots')}catch(e){status('JSON 无效：'+e.message,true)}};
 $('#raw-json').oninput=()=>setDirty();
 $('#reload').onclick=reload;

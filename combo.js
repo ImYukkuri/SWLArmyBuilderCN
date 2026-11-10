@@ -276,3 +276,56 @@ window.UnitPicker = (() => {
 
   return { openMulti };
 })();
+
+/* Save feedback: distinguish "saved" from "save refused because the file moved on". */
+window.SaveUI = {
+  flashSaved() {
+    const d = document.getElementById('dirty');
+    if (!d) return;
+    d.textContent = '已保存';
+    d.style.color = '#59d18d';
+    setTimeout(() => {
+      if (d.textContent === '已保存') {
+        d.textContent = '';
+        d.style.color = '';
+      }
+    }, 2500);
+  },
+  fail(e, onReload) {
+    const message = (e && e.message) || '未知错误';
+    const conflict = (e && e.status === 409) || /已发生修改|已被修改|已修改/.test(message);
+    const anchor = document.getElementById('status') || document.body;
+    let box = document.getElementById('save-banner');
+    if (!box) {
+      box = document.createElement('div');
+      box.id = 'save-banner';
+      box.className = 'draft-banner bad';
+      anchor.after(box);
+    }
+    box.replaceChildren();
+    const msg = document.createElement('span');
+    msg.textContent = conflict
+      ? '保存未完成：源文件已被其他窗口或脚本修改，你的草稿仍在（没有覆盖任何内容）。'
+      : '保存失败：' + message;
+    box.append(msg);
+    if (conflict && onReload) {
+      const reload = document.createElement('button');
+      reload.type = 'button';
+      reload.className = 'primary';
+      reload.textContent = '重新载入（丢弃草稿）';
+      reload.onclick = () => {
+        if (confirm('重新载入会丢弃当前草稿，确定？')) { box.remove(); onReload(); }
+      };
+      box.append(reload);
+    }
+    const close = document.createElement('button');
+    close.type = 'button';
+    close.className = 'minor';
+    close.textContent = conflict ? '保留草稿继续编辑' : '关闭';
+    close.onclick = () => box.remove();
+    box.append(close);
+    box.hidden = false;
+    const st = document.getElementById('status');
+    if (st) { st.textContent = conflict ? '保存未完成：源文件已被修改，需要重新载入' : '保存失败：' + message; st.classList.add('error'); }
+  }
+};
