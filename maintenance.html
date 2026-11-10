@@ -1,9 +1,9 @@
 <!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>数据维护 · SWL Army Builder CN</title><link rel="stylesheet" href="style.css"></head><body>
-<header><div><span class="eyebrow">SWL ARMY BUILDER CN / DATA STUDIO</span><h1>数据维护中心</h1><nav class="module-nav"><a href="index.html">写表器</a><a class="active" href="maintenance.html">数据维护</a></nav></div></header>
+<header><div><span class="eyebrow">SWL ARMY BUILDER CN / DATA STUDIO</span><h1>数据维护中心</h1><nav class="module-nav"><a href="index.html">写表器</a><a class="active" href="maintenance.html">数据维护</a><a href="commands.html">战术卡</a></nav></div></header>
 <div class="dashboard"><p class="lead">这是写表器的分支模块：维护卡牌数据与规则包。保存功能需要 <code>python server.py</code>（写回源文件与历史），Live Server 只能浏览。</p><div class="module-cards">
 <a class="module-card" href="units.html"><span class="eyebrow">01 / UNIT LIBRARY</span><h2>单位卡</h2><p>浏览原图与立绘，编辑属性、武器、军队准入、伙伴身份。</p><p class="module-count" id="count-units">载入中…</p></a>
 <a class="module-card" href="upgrades.html"><span class="eyebrow">02 / UPGRADE LIBRARY</span><h2>升级卡</h2><p>浏览卡图和中文卡文，维护槽位、宿主条件与卡文。</p><p class="module-count" id="count-upgrades">载入中…</p></a>
-<a class="module-card" href="armies.html"><span class="eyebrow">03 / ARMY LIBRARY</span><h2>军表</h2><p>维护军表草稿与单位/升级实例，查看问题与费用。</p><p class="module-count" id="count-armies">载入中…</p></a>
+<a class="module-card" href="commands.html"><span class="eyebrow">03 / COMMAND DECK</span><h2>战术卡</h2><p>维护指挥卡：点数、可用军队、解锁单位、指令与效果文本、卡图。</p><p class="module-count">251 张指挥卡</p></a><a class="module-card" href="armies.html"><span class="eyebrow">03 / ARMY LIBRARY</span><h2>军表</h2><p>维护军表草稿与单位/升级实例，查看问题与费用。</p><p class="module-count" id="count-armies">载入中…</p></a>
 <a class="module-card" href="rules.html"><span class="eyebrow">04 / RULE LIBRARY</span><h2>规则库</h2><p>维护语义槽位、槽位授予、角色限定、唯一性/互斥、模式配额与战斗部队骨架。</p><p class="module-count" id="count-rules">载入中…</p></a>
 </div><div class="notice">数据维护走 <code>python server.py --port 8770</code>（保存、历史、冲突检测需要它）；写表器主页 <code>index.html</code> 是纯静态，可直接用 Live Server 打开。</div></div>
 
