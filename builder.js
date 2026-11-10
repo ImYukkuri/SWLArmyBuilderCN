@@ -343,10 +343,16 @@ function renderDeck(){
   const slotPips=commandSlotPips();
   for(let i=0;i<slotPips.length;i++){
     const card=commandOf(army.commandIds[i]);
-    const b=el('button');b.type='button';b.className='command-slot'+(card?' filled':'');
+    const b=el('button');b.type='button';b.className='command-slot'+(card?' filled':'')+(card&&card.image?' with-art':'');
     if(card){
-      b.append(el('span',pipLabel(card)),el('strong',commandName(card)),el('small',(card.name&&card.name.en)||''));
-      b.title=card.name.en||'';
+      if(card.image){const art=el('img');art.className='slot-art';art.src=card.image;art.alt='';art.loading='lazy';b.append(art)}
+      const pip=el('span',pipLabel(card));pip.className='slot-pip';b.append(pip);
+      const mask=el('div');mask.className='slot-mask';
+      mask.append(el('strong',commandName(card)));
+      const eff=commandText(((card.description||{}).zh)||((card.description||{}).en)||'');
+      if(eff)mask.append(el('p',eff));
+      b.append(mask);
+      b.title=((card.name&&card.name.en)||'')+' · '+eff;
     }else{
       b.append(el('span','P'+slotPips[i]+' 槽'),el('strong','+ 选择'));
     }
