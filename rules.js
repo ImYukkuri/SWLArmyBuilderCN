@@ -129,6 +129,22 @@ function renderAllowedUnits(box,bf,rerender){
   box.append(sec);
 }
 
+function unitMultiField(label,values,onChange){
+  const row=el('div');row.className='bf-row';
+  const btn=el('button','选择单位'+(values.length?'（'+values.length+'）':''));btn.type='button';
+  btn.onclick=()=>{
+    if(!window.UnitPicker){status('单位选择器未载入',true);return}
+    const units=(defs.sourceUnits||[]).map(s=>({id:s.id,name:s.name}));
+    const selected=values.map(n=>{const hit=(defs.sourceUnits||[]).find(s=>(s.name&&s.name.en)===n||String(s.id)===String(n));return hit?String(hit.id):null}).filter(Boolean);
+    window.UnitPicker.openMulti(units,selected,ids=>{
+      const names=ids.map(id=>{const s=(defs.sourceUnits||[]).find(x=>String(x.id)===String(id));return s?((s.name&&s.name.en)||String(id)):String(id)});
+      onChange(names);setDirty();renderBattleForces();
+    });
+  };
+  row.append(el('span',label),btn);
+  for(const n of values){const chip=el('span',n);chip.className='rule-chip';row.append(chip)}
+  return row;
+}
 function renderOverrides(box,bf,rerender){
   const ov=rules.armyOverrides=rules.armyOverrides||{};
   const id=bfId;
@@ -159,9 +175,7 @@ function renderOverrides(box,bf,rerender){
     h.target=h.target||{};
     const slot=bfSelect(slotOptions(),h.slot,v=>h.slot=v);
     const types=bfMulti(unitTypeOptions(),h.target.unitTypes||[],v=>h.target.unitTypes=v.map(Number));
-    const inc=bfText((h.include||[]).join(', '),v=>h.include=v.split(',').map(x=>x.trim()).filter(Boolean),'允许的宿主单位名，逗号分隔');
-    const exc=bfText((h.exclude||[]).join(', '),v=>h.exclude=v.split(',').map(x=>x.trim()).filter(Boolean),'排除的宿主单位名');
-    hostBox.append(el('div','槽位'),slot,el('div','目标单位类型'),types,bfRow([inc]),bfRow([exc,bfDel(hosts,i,rerender)]));
+    hostBox.append(el('div','槽位'),slot,el('div','目标单位类型'),types,unitMultiField('放宽（include）',h.include||[],v=>h.include=v),bfRow([unitMultiField('收回（exclude）',h.exclude||[],v=>h.exclude=v),bfDel(hosts,i,rerender)]));
   });
   hostBox.append(bfAdd('宿主放宽',()=>hosts,()=>({slot:'heavy_weapon',target:{unitTypes:[1]},include:[],exclude:[]}),rerender));
   sec.append(hostBox);

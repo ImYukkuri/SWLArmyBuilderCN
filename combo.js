@@ -163,3 +163,116 @@
     }).observe(document.body, { childList: true, subtree: true });
   });
 })();
+
+/* Multi-select unit picker dialog (shared by the rule editors). */
+window.UnitPicker = (() => {
+  function ensureStyle() {
+    if (document.getElementById('unit-picker-style')) return;
+    const style = document.createElement('style');
+    style.id = 'unit-picker-style';
+    style.textContent =
+      '.unit-picker-overlay{position:fixed;inset:0;background:rgba(15,23,42,.45);display:flex;align-items:center;justify-content:center;z-index:1000}' +
+      '.unit-picker{background:#fff;border-radius:12px;width:min(460px,92vw);max-height:82vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.35)}' +
+      '.unit-picker-head{display:flex;gap:8px;padding:12px;border-bottom:1px solid #e5e7eb;align-items:center}' +
+      '.unit-picker-head strong{white-space:nowrap}' +
+      '.unit-picker-head input{flex:1;padding:8px 10px;border:1px solid #d1d5db;border-radius:8px;font-size:14px}' +
+      '.unit-picker-close{border:0;background:transparent;font-size:20px;cursor:pointer;padding:4px 8px}' +
+      '.unit-picker-list{overflow:auto;padding:8px;display:flex;flex-direction:column;gap:4px}' +
+      '.unit-picker-list .empty{padding:16px;color:#6b7280;text-align:center}' +
+      '.unit-picker-item{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:8px 10px;border:1px solid #e5e7eb;border-radius:8px;background:#f9fafb;cursor:pointer;text-align:left;font-size:14px}' +
+      '.unit-picker-item:hover{background:#eef2ff;border-color:#c7d2fe}' +
+      '.unit-picker-item.selected{background:#e0e7ff;border-color:#818cf8}' +
+      '.unit-picker-item small{color:#6b7280}' +
+      '.unit-picker-foot{display:flex;gap:8px;padding:10px 12px;border-top:1px solid #e5e7eb}' +
+      '.unit-picker-foot button{padding:6px 14px;border-radius:8px;border:1px solid #d1d5db;background:#f9fafb;cursor:pointer}' +
+      '.unit-picker-foot .primary{background:#4f46e5;color:#fff;border-color:#4f46e5;margin-left:auto}';
+    document.head.append(style);
+  }
+
+  function openMulti(units, selected, onConfirm) {
+    ensureStyle();
+    const overlay = document.createElement('div');
+    overlay.className = 'unit-picker-overlay';
+    const dialog = document.createElement('div');
+    dialog.className = 'unit-picker';
+    const head = document.createElement('div');
+    head.className = 'unit-picker-head';
+    const title = document.createElement('strong');
+    title.textContent = '选择单位（可多选）';
+    const input = document.createElement('input');
+    input.placeholder = '搜索 ID / 中文名 / 英文名';
+    const closeBtn = document.createElement('button');
+    closeBtn.type = 'button';
+    closeBtn.className = 'unit-picker-close';
+    closeBtn.textContent = '×';
+    head.append(title, input, closeBtn);
+    const list = document.createElement('div');
+    list.className = 'unit-picker-list';
+    const foot = document.createElement('div');
+    foot.className = 'unit-picker-foot';
+    const clearBtn = document.createElement('button');
+    clearBtn.type = 'button';
+    clearBtn.textContent = '清空';
+    const cancelBtn = document.createElement('button');
+    cancelBtn.type = 'button';
+    cancelBtn.textContent = '取消';
+    const okBtn = document.createElement('button');
+    okBtn.type = 'button';
+    okBtn.className = 'primary';
+    okBtn.textContent = '确定';
+    foot.append(clearBtn, cancelBtn, okBtn);
+    dialog.append(head, list, foot);
+    overlay.append(dialog);
+
+    const sel = new Set((selected || []).map(String));
+    const items = units || [];
+
+    function draw(filter) {
+      list.replaceChildren();
+      const f = String(filter || '').trim().toLowerCase();
+      const rows = items.filter(it => {
+        if (!f) return true;
+        return String(it.id).toLowerCase().includes(f) ||
+          ((it.name && it.name.zh) || '').toLowerCase().includes(f) ||
+          ((it.name && it.name.en) || '').toLowerCase().includes(f);
+      }).slice(0, 300);
+      if (!rows.length) {
+        const p = document.createElement('p');
+        p.className = 'empty';
+        p.textContent = '无匹配单位';
+        list.append(p);
+        return;
+      }
+      for (const it of rows) {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'unit-picker-item' + (sel.has(String(it.id)) ? ' selected' : '');
+        const strong = document.createElement('strong');
+        strong.textContent = (it.name && (it.name.zh || it.name.en)) || it.id;
+        const small = document.createElement('small');
+        small.textContent = ((it.name && it.name.en) || '') + ' · ' + it.id;
+        b.append(strong, small);
+        b.onclick = () => {
+          const id = String(it.id);
+          if (sel.has(id)) sel.delete(id); else sel.add(id);
+          draw(input.value);
+        };
+        list.append(b);
+      }
+    }
+
+    function close() { overlay.remove(); }
+    closeBtn.onclick = close;
+    cancelBtn.onclick = close;
+    clearBtn.onclick = () => { sel.clear(); draw(input.value); };
+    okBtn.onclick = () => { onConfirm([...sel]); close(); };
+    input.addEventListener('input', () => draw(input.value));
+    overlay.addEventListener('mousedown', e => { if (e.target === overlay) close(); });
+
+    document.body.append(overlay);
+    draw('');
+    input.focus();
+  }
+
+  return { openMulti };
+})();

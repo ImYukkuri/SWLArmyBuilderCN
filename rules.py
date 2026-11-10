@@ -452,6 +452,8 @@ def _unit_upstream_ids_by_name(name, definitions):
     import re as _re
     key = _re.sub(r"[^a-z0-9]", "", str(name or "").lower())
     out = []
+    if any(str(s.get("id")) == str(name) for s in definitions.get("sourceUnits") or []):
+        return [str(name)]
     for s in definitions.get("sourceUnits") or []:
         full = (s.get("name") or {}).get("en") or ""
         if _re.sub(r"[^a-z0-9]", "", full.lower()) == key or _re.sub(r"[^a-z0-9]", "", full.split("·")[0].lower()) == key:

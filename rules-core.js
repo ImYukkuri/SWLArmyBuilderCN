@@ -320,6 +320,7 @@ window.RulesCore = (() => {
     if (!data._nameToUpstream) {
       const map = {};
       for (const s of (data.defs && data.defs.sourceUnits) || []) {
+        (map[String(s.id)] ||= []).push(String(s.id));
         const full = (s.name && s.name.en) || "";
         const key = normalizeKey(full);
         if (key) (map[key] ||= []).push(String(s.id));
