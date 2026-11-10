@@ -225,10 +225,13 @@ $('#image-file').onchange=async()=>{
   try{
     const dataUrl=await new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=()=>rej(Error('读取失败'));r.readAsDataURL(f)});
     const result=await call('/api/commands/image',{id:selected,revision,dataUrl});
-    revision=result.revision;draft.image=result.image||draft.image;
+    revision=result.revision;
+    const rel=result.front||result.image||null;
+    if(!rel)throw Error('服务端未返回卡图路径');
+    draft.image=rel;
     const row=rows().find(c=>c.id===selected);if(row)row.image=draft.image;
     dirty=false;$('#dirty').textContent='';renderForm();renderImage();renderList();
-    status('卡图已更新：'+draft.image);
+    status('卡图已更新：'+rel);
   }catch(e){if(window.SaveUI)SaveUI.fail(e,reload);else status(e.message,true)}
   finally{busy=false;$('#image-upload').disabled=false;$('#image-file').value=''}
 };
