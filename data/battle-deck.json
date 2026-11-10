@@ -1,0 +1,531 @@
+{
+  "schema": "swl-battle-deck/v1",
+  "source": "references/upstream/legion.json",
+  "objectives": [
+    {
+      "id": "objective-13",
+      "upstreamId": "13",
+      "name": {
+        "en": "Marked Targets",
+        "zh": ""
+      },
+      "modes": [
+        "standard"
+      ]
+    },
+    {
+      "id": "objective-14",
+      "upstreamId": "14",
+      "name": {
+        "en": "Sweep and Clear",
+        "zh": ""
+      },
+      "modes": [
+        "standard"
+      ]
+    },
+    {
+      "id": "objective-15",
+      "upstreamId": "15",
+      "name": {
+        "en": "Bring Them to Heel",
+        "zh": ""
+      },
+      "modes": [
+        "standard"
+      ]
+    },
+    {
+      "id": "objective-16",
+      "upstreamId": "16",
+      "name": {
+        "en": "Surface Scan",
+        "zh": ""
+      },
+      "modes": [
+        "standard"
+      ]
+    },
+    {
+      "id": "objective-17",
+      "upstreamId": "17",
+      "name": {
+        "en": "Destroy Enemy Base",
+        "zh": ""
+      },
+      "modes": [
+        "standard"
+      ]
+    },
+    {
+      "id": "objective-18",
+      "upstreamId": "18",
+      "name": {
+        "en": "Recon Mission",
+        "zh": ""
+      },
+      "modes": [
+        "standard"
+      ]
+    },
+    {
+      "id": "objective-21",
+      "upstreamId": "21",
+      "name": {
+        "en": "Recon Mission",
+        "zh": ""
+      },
+      "modes": [
+        "recon"
+      ]
+    },
+    {
+      "id": "objective-20",
+      "upstreamId": "20",
+      "name": {
+        "en": "Surface Scan",
+        "zh": ""
+      },
+      "modes": [
+        "recon"
+      ]
+    },
+    {
+      "id": "objective-19",
+      "upstreamId": "19",
+      "name": {
+        "en": "Bring Them to Heel",
+        "zh": ""
+      },
+      "modes": [
+        "recon"
+      ]
+    },
+    {
+      "id": "objective-22",
+      "upstreamId": "22",
+      "name": {
+        "en": "Supply Run",
+        "zh": ""
+      },
+      "modes": [
+        "standard"
+      ]
+    },
+    {
+      "id": "objective-23",
+      "upstreamId": "23",
+      "name": {
+        "en": "Failed Negotiations",
+        "zh": ""
+      },
+      "modes": [
+        "standard"
+      ]
+    },
+    {
+      "id": "objective-24",
+      "upstreamId": "24",
+      "name": {
+        "en": "Retrieve the Data",
+        "zh": ""
+      },
+      "modes": [
+        "standard"
+      ]
+    },
+    {
+      "id": "objective-25",
+      "upstreamId": "25",
+      "name": {
+        "en": "Align the Relay",
+        "zh": ""
+      },
+      "modes": [
+        "standard"
+      ]
+    }
+  ],
+  "deployments": [
+    {
+      "id": "deployment-13",
+      "upstreamId": "13",
+      "name": {
+        "en": "Close the Pocket",
+        "zh": ""
+      },
+      "modes": [
+        "standard"
+      ]
+    },
+    {
+      "id": "deployment-14",
+      "upstreamId": "14",
+      "name": {
+        "en": "Bunker Assault",
+        "zh": ""
+      },
+      "modes": [
+        "standard"
+      ]
+    },
+    {
+      "id": "deployment-15",
+      "upstreamId": "15",
+      "name": {
+        "en": "Breakthrough",
+        "zh": ""
+      },
+      "modes": [
+        "standard"
+      ]
+    },
+    {
+      "id": "deployment-16",
+      "upstreamId": "16",
+      "name": {
+        "en": "Intercept Signals",
+        "zh": ""
+      },
+      "modes": [
+        "standard"
+      ]
+    },
+    {
+      "id": "deployment-17",
+      "upstreamId": "17",
+      "name": {
+        "en": "Recover the Research",
+        "zh": ""
+      },
+      "modes": [
+        "standard"
+      ]
+    },
+    {
+      "id": "deployment-19",
+      "upstreamId": "19",
+      "name": {
+        "en": "Shifting Priorities",
+        "zh": ""
+      },
+      "modes": [
+        "standard"
+      ]
+    },
+    {
+      "id": "deployment-22",
+      "upstreamId": "22",
+      "name": {
+        "en": "Close the Pocket",
+        "zh": ""
+      },
+      "modes": [
+        "recon"
+      ]
+    },
+    {
+      "id": "deployment-21",
+      "upstreamId": "21",
+      "name": {
+        "en": "Bunker Assault",
+        "zh": ""
+      },
+      "modes": [
+        "recon"
+      ]
+    },
+    {
+      "id": "deployment-20",
+      "upstreamId": "20",
+      "name": {
+        "en": "Intercept Signals",
+        "zh": ""
+      },
+      "modes": [
+        "recon"
+      ]
+    },
+    {
+      "id": "deployment-24",
+      "upstreamId": "24",
+      "name": {
+        "en": "Contact, Contact!",
+        "zh": ""
+      },
+      "modes": [
+        "standard"
+      ]
+    },
+    {
+      "id": "deployment-25",
+      "upstreamId": "25",
+      "name": {
+        "en": "Payload",
+        "zh": ""
+      },
+      "modes": [
+        "standard"
+      ]
+    },
+    {
+      "id": "deployment-26",
+      "upstreamId": "26",
+      "name": {
+        "en": "Cauldron",
+        "zh": ""
+      },
+      "modes": [
+        "standard"
+      ]
+    },
+    {
+      "id": "deployment-23",
+      "upstreamId": "23",
+      "name": {
+        "en": "Outflank",
+        "zh": ""
+      },
+      "modes": [
+        "standard"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "condition-13",
+      "upstreamId": "13",
+      "name": {
+        "en": "Advanced Intel",
+        "zh": ""
+      },
+      "modes": [
+        "standard"
+      ]
+    },
+    {
+      "id": "condition-14",
+      "upstreamId": "14",
+      "name": {
+        "en": "Fortified Position",
+        "zh": ""
+      },
+      "modes": [
+        "standard"
+      ]
+    },
+    {
+      "id": "condition-15",
+      "upstreamId": "15",
+      "name": {
+        "en": "Cunning Deployment",
+        "zh": ""
+      },
+      "modes": [
+        "standard"
+      ]
+    },
+    {
+      "id": "condition-16",
+      "upstreamId": "16",
+      "name": {
+        "en": "Garrison",
+        "zh": ""
+      },
+      "modes": [
+        "standard"
+      ]
+    },
+    {
+      "id": "condition-17",
+      "upstreamId": "17",
+      "name": {
+        "en": "Ordnance",
+        "zh": ""
+      },
+      "modes": [
+        "standard"
+      ]
+    },
+    {
+      "id": "condition-18",
+      "upstreamId": "18",
+      "name": {
+        "en": "Strafing Run",
+        "zh": ""
+      },
+      "modes": [
+        "standard"
+      ]
+    },
+    {
+      "id": "condition-20",
+      "upstreamId": "20",
+      "name": {
+        "en": "Cunning Deployment",
+        "zh": ""
+      },
+      "modes": [
+        "recon"
+      ]
+    },
+    {
+      "id": "condition-19",
+      "upstreamId": "19",
+      "name": {
+        "en": "Advanced Intel",
+        "zh": ""
+      },
+      "modes": [
+        "recon"
+      ]
+    },
+    {
+      "id": "condition-21",
+      "upstreamId": "21",
+      "name": {
+        "en": "Fortified Position",
+        "zh": ""
+      },
+      "modes": [
+        "recon"
+      ]
+    },
+    {
+      "id": "condition-28",
+      "upstreamId": "28",
+      "name": {
+        "en": "Scrambled Orders",
+        "zh": ""
+      },
+      "modes": [
+        "standard"
+      ],
+      "armyIds": [
+        1,
+        13,
+        18
+      ]
+    },
+    {
+      "id": "condition-29",
+      "upstreamId": "29",
+      "name": {
+        "en": "Extreme Discipline",
+        "zh": ""
+      },
+      "modes": [
+        "standard"
+      ],
+      "armyIds": [
+        2,
+        10,
+        19,
+        17,
+        7
+      ]
+    },
+    {
+      "id": "condition-26",
+      "upstreamId": "26",
+      "name": {
+        "en": "Rapid Deployment",
+        "zh": ""
+      },
+      "modes": [
+        "standard"
+      ],
+      "armyIds": [
+        4,
+        21,
+        12,
+        16
+      ]
+    },
+    {
+      "id": "condition-22",
+      "upstreamId": "22",
+      "name": {
+        "en": "Black Ops",
+        "zh": ""
+      },
+      "modes": [
+        "standard"
+      ],
+      "armyIds": [
+        2,
+        10,
+        19,
+        17,
+        7
+      ]
+    },
+    {
+      "id": "condition-23",
+      "upstreamId": "23",
+      "name": {
+        "en": "Command Override",
+        "zh": ""
+      },
+      "modes": [
+        "standard"
+      ],
+      "armyIds": [
+        5,
+        11,
+        15,
+        20
+      ]
+    },
+    {
+      "id": "condition-24",
+      "upstreamId": "24",
+      "name": {
+        "en": "Coordinated Strike",
+        "zh": ""
+      },
+      "modes": [
+        "standard"
+      ],
+      "armyIds": [
+        4,
+        21,
+        12,
+        16
+      ]
+    },
+    {
+      "id": "condition-25",
+      "upstreamId": "25",
+      "name": {
+        "en": "No Time to Lose",
+        "zh": ""
+      },
+      "modes": [
+        "standard"
+      ],
+      "armyIds": [
+        1,
+        13,
+        18
+      ]
+    },
+    {
+      "id": "condition-27",
+      "upstreamId": "27",
+      "name": {
+        "en": "Armored Assault",
+        "zh": ""
+      },
+      "modes": [
+        "standard"
+      ],
+      "armyIds": [
+        5,
+        11,
+        15,
+        20
+      ]
+    }
+  ]
+}

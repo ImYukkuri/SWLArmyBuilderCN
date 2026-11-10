@@ -23,8 +23,10 @@ function load(){
     loadFile(DATA_BASE+'data/upgrades.json'),
     loadFile(DATA_BASE+'data/catalog-definitions.json'),
     loadFile(DATA_BASE+'data/slot-rules.json'),
-  ]).then(([uj,gj,dj,pj])=>{
+    loadFile(DATA_BASE+'data/battle-deck.json').catch(()=>({objectives:[],deployments:[],conditions:[]})),
+  ]).then(([uj,gj,dj,pj,bj])=>{
     data={units:Object.fromEntries(uj.units.map(u=>[u.id,u])),upgrades:Object.fromEntries(gj.cards.map(c=>[c.id,c])),defs:dj,pkg:pj};
+    data.deckData=bj||{objectives:[],deployments:[],conditions:[]};
     data.nameIndex=RulesCore.buildNameIndex(data.upgrades,data.defs);
     restore();render();
   }).catch(e=>{const p=$('#issues');if(p)p.textContent='数据载入失败：'+e.message});
@@ -210,11 +212,111 @@ function renderFaction(){
 }
 function renderMode(){const sel=$('#mode');sel.value=army.mode;sel.onchange=()=>{army.mode=sel.value;army.pointsLimit=sel.value==='standard'?1000:600;save();render()}}
 function renderPoints(report){const limit=army.pointsLimit||1000;$('#points').textContent=report.basePoints+' / '+limit+' ('+(limit-report.basePoints)+')'}
+function commandOf(id){return (data.defs.commands||[]).find(c=>String(c.id)===String(id))||null}
+function commandName(cmd){return (cmd.name&&(cmd.name.zh||cmd.name.en))||String(cmd.id)}
+function commandAvailable(cmd){
+  const facs=cmd.factions||[];
+  if(facs.length&&!facs.includes(Number(army.armyId)))return false;
+  const unlocks=(cmd.unlockedBy||[]).filter(u=>u&&u.propertyName==='units');
+  if(!unlocks.length)return true;
+  const have=new Set((army.units||[]).map(i=>String(((data.units[i.unitId]||{}).upstream||{}).id||'')));
+  return unlocks.some(u=>have.has(String(u.id)));
+}
+function commandSlots(){const mode=(data.pkg.modes||{})[army.mode]||{};const hand=mode.commandHand||[];const n=hand.reduce((a,r)=>a+(r.min||0),0);return n||7}
+function deckPicker(title,items,onPick){
+  const overlay=el('div');overlay.className='pick-overlay';
+  const box=el('div');box.className='pick-box';
+  const head=el('div');head.className='pick-head';
+  const input=el('input');input.placeholder='搜索名称';
+  const close=el('button','×');close.type='button';close.className='pick-close';close.onclick=()=>overlay.remove();
+  head.append(el('strong',title),input,close);
+  const list=el('div');list.className='pick-list';
+  const draw=q=>{
+    list.replaceChildren();
+    const key=String(q||'').toLowerCase();
+    for(const it of items){
+      if(key&&!((it.label||'').toLowerCase().includes(key)||String(it.sub||'').toLowerCase().includes(key)))continue;
+      const b=el('button');b.type='button';b.className='pick-item';
+      b.append(el('strong',it.label||it.id));
+      if(it.sub)b.append(el('small',it.sub));
+      if(it.pips)b.append(el('span','P'+it.pips));
+      b.onclick=()=>{onPick(it);overlay.remove()};
+      list.append(b);
+    }
+    if(!list.children.length)list.append(el('p','没有可选项'));
+  };
+  input.oninput=()=>draw(input.value);
+  box.append(head,list);overlay.append(box);document.body.append(overlay);
+  draw('');input.focus();
+}
+function openCommandSlot(index){
+  const picked=new Set((army.commandIds||[]).map(String));
+  const items=(data.defs.commands||[])
+    .filter(commandAvailable)
+    .filter(c=>!picked.has(String(c.id))||String(army.commandIds[index])===String(c.id))
+    .sort((a,b)=>a.pips-b.pips||String(a.name.en).localeCompare(String(b.name.en)))
+    .map(c=>({id:String(c.id),label:commandName(c),sub:c.name.en,pips:c.pips}));
+  deckPicker('选择战术卡 · 第 '+(index+1)+' 位',items,it=>{
+    army.commandIds[index]=String(it.id);
+    save();render();
+    const total=commandSlots();
+    let next=-1;
+    for(let i=index+1;i<total;i++){if(!army.commandIds[i]){next=i;break}}
+    if(next<0)for(let i=0;i<index;i++){if(!army.commandIds[i]){next=i;break}}
+    if(next>=0)setTimeout(()=>openCommandSlot(next),60);
+  });
+}
+function openDeckSlot(kind,label){
+  army.deck=army.deck||{};
+  const source=kind==='advantage'?data.deckData.conditions:kind==='deployment'?data.deckData.deployments:data.deckData.objectives;
+  const items=(source||[]).filter(x=>{
+    if(x.armyIds&&x.armyIds.length&&!x.armyIds.includes(Number(army.armyId)))return false;
+    return true;
+  }).map(x=>({id:x.id,label:(x.name&&(x.name.zh||x.name.en))||x.id,sub:(x.name&&x.name.en)||''}));
+  deckPicker('选择'+label,items,it=>{army.deck[kind]=it.id;save();render()});
+}
+function renderDeck(){
+  const box=$('#deck-panel');if(!box)return;box.replaceChildren();
+  army.commandIds=army.commandIds||[];army.deck=army.deck||{};
+  const section=el('section');section.className='deck-section';
+  const head=el('div');head.className='deck-head';
+  head.append(el('h3','战术卡'));
+  const picked=(army.commandIds||[]).filter(Boolean);
+  head.append(el('span','已选 '+picked.length+'/'+commandSlots()));
+  section.append(head);
+  const grid=el('div');grid.className='command-slots';
+  const slots=commandSlots();
+  for(let i=0;i<slots;i++){
+    const card=commandOf(army.commandIds[i]);
+    const b=el('button');b.type='button';b.className='command-slot'+(card?' filled':'');
+    if(card){
+      b.append(el('span','P'+card.pips),el('strong',commandName(card)),el('small',(card.name&&card.name.en)||''));
+      b.title=card.name.en||'';
+    }else{
+      b.append(el('span','空'),el('strong','+ 选择'));
+    }
+    b.onclick=()=>openCommandSlot(i);
+    grid.append(b);
+  }
+  section.append(grid);
+  const deckRow=el('div');deckRow.className='deck-row';
+  for(const [kind,label] of [['primary','主要目标'],['secondary','次要目标'],['advantage','优势'],['deployment','部署']]){
+    const id=army.deck[kind];
+    const source=kind==='advantage'?data.deckData.conditions:kind==='deployment'?data.deckData.deployments:data.deckData.objectives;
+    const entry=id?(source||[]).find(x=>x.id===id):null;
+    const b=el('button');b.type='button';b.className='deck-slot'+(entry?' filled':'');
+    b.append(el('small',label),el('strong',entry?((entry.name&&(entry.name.zh||entry.name.en))||entry.id):'未选择'));
+    b.onclick=()=>openDeckSlot(kind,label);
+    deckRow.append(b);
+  }
+  section.append(deckRow);
+  box.append(section);
+}
 function render(){
   if(!data||!army)return;
   renderFaction();renderMode();
   const report=RulesCore.validateArmy(army,data);
-  renderPoints(report);renderRankBar(report);renderUnits();renderBrowser();renderIssues(report);
+  renderPoints(report);renderRankBar(report);renderUnits();renderDeck();renderBrowser();renderIssues(report);
   const bad=report.issues.filter(i=>i.status==='invalid').length;
   $('#issue-count').textContent=bad?('⚠ '+bad):'';
 }
