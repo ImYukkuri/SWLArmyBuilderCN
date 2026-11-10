@@ -28,10 +28,14 @@ function renderList(){
   });
   $('#counts').textContent=items.length+' / '+rows().length+' 张';
   for(const c of items){
-    const b=mk('button');b.type='button';b.className='list-item'+(c.id===selected?' active':'')+(c.image?'':' no-art');
+    const b=mk('button');b.type='button';b.className='card-row'+(c.id===selected?' active':'')+(c.image?'':' no-art');
+    if(c.image){const img=mk('img');img.className='card-row-art';img.src=c.image;img.alt='';img.loading='lazy';b.append(img)}
+    else{const ph=mk('span');ph.className='card-row-art placeholder';ph.textContent='无图';b.append(ph)}
+    const body=mk('span');body.className='card-row-body';
     const name=mk('strong',(c.name&&(c.name.zh||c.name.en))||c.id);
-    const sub=mk('small','P'+c.pips+(c.slotPips&&c.slotPips!==c.pips?(' → P'+c.slotPips):'')+' · '+(c.owner||'通用')+(c.image?'':' · 缺卡图'));
-    b.append(name,sub);
+    const sub=mk('small','P'+c.pips+(c.slotPips&&c.slotPips!==c.pips?(' → P'+c.slotPips):'')+' · '+(c.owner||'通用'));
+    body.append(name,sub);
+    b.append(body);
     b.onclick=()=>select(c.id);
     box.append(b);
   }
@@ -51,6 +55,14 @@ function field(label,control){const row=mk('label');row.className='field';row.ap
 function renderForm(){
   const box=$('#form');box.replaceChildren();
   if(!draft){box.append(mk('p','左侧选择一张战术卡'));return}
+  const actions=mk('div');actions.className='row-actions card-actions';
+  const swap=mk('button','修改 / 上传卡图');swap.type='button';
+  swap.onclick=()=>{setTab('image');$('#image-file').click()};
+  const view=mk('button','查看大图');view.type='button';
+  view.onclick=()=>{setTab('image')};
+  const add=mk('button','新建战术卡');add.type='button';add.onclick=newCard;
+  actions.append(swap,view,add);
+  box.append(actions);
   $('#title').textContent=(draft.name&&(draft.name.zh||draft.name.en))||draft.id;
   $('#subtitle').textContent=draft.id+' · '+(draft.owner||'通用');
   const idInput=mk('input');idInput.value=draft.id;idInput.disabled=true;box.append(field('固定 ID',idInput));
