@@ -12388,7 +12388,7 @@
       "id": "16488",
       "name": {
         "en": "Stories, So Many of Them True",
-        "zh": ""
+        "zh": "故事多着呢，真事也不少"
       },
       "pips": 3,
       "factions": [
@@ -12420,7 +12420,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/16488.webp",
+      "owner": "杭多·欧纳卡",
+      "orders": {
+        "en": "杭多·欧纳卡",
+        "zh": "Hondo Ohnaka"
+      },
+      "description": {
+        "en": "This Round, when an allied unit begins its\nactivation on the battlefield and within  of\nHondo Ohnaka, if he has a faceup Order token\nand ifhe is not Panicked, Hondo Ohnaka\nmay gain 1 Suppression token. If he does, the\nactivating unit gains I Aim token, I Dodge\ntoken, or 1 Surge token.",
+        "zh": "本回合中，当一支友方单位在战场上开始激活，且位于杭多·欧纳卡一定距离内时，如果杭多拥有一枚正面朝上的命令标记，且自身未陷入惊慌状态，杭多可以获得1枚压制标记。如果他这样做，该激活单位获得一个以下一种标记：瞄准，闪避，激增。"
+      }
     },
     {
       "id": "37",
@@ -12454,7 +12464,7 @@
       "id": "16487",
       "name": {
         "en": "That's Just Good Business",
-        "zh": ""
+        "zh": "这才是好买卖"
       },
       "pips": 2,
       "factions": [
@@ -12486,13 +12496,23 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/16487.webp",
+      "owner": "杭多·奥纳卡",
+      "orders": {
+        "zh": "杭多·奥纳卡和一个单位",
+        "en": "HONDO OHNAKA & 1 UNIT"
+      },
+      "description": {
+        "en": "This Round, Hondo Ohnaka cannot beSuppressed or Panicked and may perform afree Move Action during his Activation. Thefirst time Hondo Ohnaka moves into meleewith an enemy unit this Round, after themove is resolved, Hondo Ohnaka removes allSuppression tokens on him and that enemyunit gains the tokens removed. Then, thatenemy unit removes all green tokens on them,and Hondo Ohnaka gains the tokens removed.",
+        "zh": "本回合中，杭多·欧纳卡不会陷入受压制或惊慌状态，并且在其激活期间可以执行一次免费移动行动。本回合内，杭多·欧纳卡首次移动至与一支敌方单位进入近战接触时，在该次移动结算后，杭多移除自身所有压制标记，该敌方单位获得这些被移除的标记。随后，该敌方单位移除其身上所有绿色标记，杭多·欧纳卡获得这些被移除的标记。"
+      }
     },
     {
       "id": "16484",
       "name": {
         "en": "I Go Where I'm Needed",
-        "zh": ""
+        "zh": "哪有需要我就去哪"
       },
       "pips": 3,
       "factions": [
@@ -12524,7 +12544,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "owner": "阿索卡·塔诺",
+      "image": "assets/command-cards/16484.webp",
+      "orders": {
+        "en": "3 UNITS",
+        "zh": "3个单位"
+      },
+      "description": {
+        "en": "Ahsoka Tano may make a Speed-3 Move. ThisRound, Ahsoka Tano gains GuARDIAN 3 andDisENGAGE, her @ is increased by 1, she treatsher maximum Speed as 1, and her maximumSpeed cannot be increased.",
+        "zh": "阿索卡·塔诺可以进行一个速度3的移动。本回合中，阿索卡·塔诺获得 护卫3 和 脱离交战 ，她的士气提升1，最大速度视为1，并且她的最大速度无法增加。"
+      }
     },
     {
       "id": "16486",
@@ -12667,7 +12697,20 @@
         "en": "3 Units",
         "zh": "3 支单位"
       },
-      "owner": "Mercenary {@icon.rank-commander} or {@icon.rank-operative}"
+      "owner": "Mercenary {@icon.rank-commander} or {@icon.rank-operative}",
+      "keywords": [
+        {
+          "id": "mercenary",
+          "raw": "Mercenary",
+          "label": "雇佣兵：阵营",
+          "value": null,
+          "summary": "该单位为雇佣兵，可编入以下阵营军队。",
+          "full": "带有雇佣兵： 阵营关键词的单位是雇佣兵单位。 雇佣兵： 阵营关键词指定的阵营能够将该单位作为雇佣兵单位包括在军队中。",
+          "timing": [
+            "global"
+          ]
+        }
+      ]
     },
     {
       "id": "1902",
@@ -12716,7 +12759,20 @@
         "en": "2 Units",
         "zh": "2 支单位"
       },
-      "owner": "Mercenary {@icon.rank-commander} or {@icon.rank-operative}"
+      "owner": "Mercenary {@icon.rank-commander} or {@icon.rank-operative}",
+      "keywords": [
+        {
+          "id": "mercenary",
+          "raw": "Mercenary",
+          "label": "雇佣兵：阵营",
+          "value": null,
+          "summary": "该单位为雇佣兵，可编入以下阵营军队。",
+          "full": "带有雇佣兵： 阵营关键词的单位是雇佣兵单位。 雇佣兵： 阵营关键词指定的阵营能够将该单位作为雇佣兵单位包括在军队中。",
+          "timing": [
+            "global"
+          ]
+        }
+      ]
     },
     {
       "id": "1962",
@@ -12816,7 +12872,32 @@
         "en": "IG-88",
         "zh": "IG-88"
       },
-      "owner": "IG-88"
+      "owner": "IG-88",
+      "keywords": [
+        {
+          "id": "independent",
+          "raw": "Independent",
+          "label": "独立：标记X/行动",
+          "value": null,
+          "summary": "激活阶段开始时，若无命令标记，获得X个对应标记或免费执行对应行动。",
+          "full": "在激活阶段 开始时， 如果带有独立关键词的单位没有命令标记， 则该单位可以获得X个列出的标记， 或进行列出的行动(作为一个免费行动)。",
+          "timing": [
+            "activation_start"
+          ]
+        },
+        {
+          "id": "permanent",
+          "raw": "Permanent",
+          "label": "永久",
+          "value": null,
+          "summary": "结束阶段不弃置此命令卡；只要仍在场，其效果持续。",
+          "full": "带有永久关键词的命令卡在结束阶段不会像普通命令卡一样从场上弃置。只要该卡仍在场上，其效果持续生效。",
+          "timing": [
+            "global",
+            "end_round"
+          ]
+        }
+      ]
     },
     {
       "id": "1827",
@@ -12864,7 +12945,20 @@
         "en": "Maul & 2 Units",
         "zh": "摩尔及2 支单位"
       },
-      "owner": "Maul, A Rival"
+      "owner": "Maul, A Rival",
+      "keywords": [
+        {
+          "id": "mercenary",
+          "raw": "Mercenary",
+          "label": "雇佣兵：阵营",
+          "value": null,
+          "summary": "该单位为雇佣兵，可编入以下阵营军队。",
+          "full": "带有雇佣兵： 阵营关键词的单位是雇佣兵单位。 雇佣兵： 阵营关键词指定的阵营能够将该单位作为雇佣兵单位包括在军队中。",
+          "timing": [
+            "global"
+          ]
+        }
+      ]
     },
     {
       "id": "2378",
@@ -12964,7 +13058,20 @@
         "en": "IG-11",
         "zh": "IG-11"
       },
-      "owner": "IG-11"
+      "owner": "IG-11",
+      "keywords": [
+        {
+          "id": "gunslinger",
+          "raw": "Gunslinger",
+          "label": "快枪手",
+          "value": null,
+          "summary": "每次攻击流程一次，用同一件武器攻击2个不同单位。",
+          "full": "在带有快枪手关键词的单位到达声明额外防御者步骤时，它可以声明一个额外防御者并创建一个攻击池， 这个攻击池仅包含一个已贡献到另一个攻击池的远程武器。 快枪手关键词每个攻击流程只能使用一次。",
+          "timing": [
+            "attack"
+          ]
+        }
+      ]
     },
     {
       "id": "19764",
@@ -13357,7 +13464,80 @@
         "en": "General Veers",
         "zh": "维尔斯将军"
       },
-      "owner": "General Veers"
+      "owner": "General Veers",
+      "weapons": [
+        {
+          "name": "AT-AT Cannons",
+          "minRange": 4,
+          "maxRange": 6,
+          "dice": {
+            "red": 4,
+            "black": 0,
+            "white": 0
+          },
+          "keywords": [
+            {
+              "name": "immune",
+              "colonValue": "Deflect"
+            },
+            {
+              "name": "impact_x",
+              "xValue": "2"
+            }
+          ],
+          "zh": {
+            "name": "AT-AT Cannons",
+            "keywords": [
+              {
+                "id": "immune",
+                "ruleId": "immune_deflect",
+                "label": "免疫：反弹",
+                "summary": "使用此攻击池攻击时，不会因反弹受到伤害。",
+                "full": "当单位用拥有免疫：反弹的攻击池攻击时，它不能承受来自反弹关键词的伤害。",
+                "timing": [
+                  "attack"
+                ]
+              },
+              {
+                "id": "impact_x",
+                "ruleId": "impact",
+                "label": "冲击2",
+                "summary": "攻击装甲单位时，修正攻击骰可将最多X个命中改为暴击。",
+                "full": "当单位攻击时， 如果它的攻击池拥有冲击X关键词， 且防御单位拥有装甲X关键词， 则在修正攻击骰子步骤期间， 攻击单位能够将最多X个 【命中图标】 结果修正为【暴击图标】 结果。",
+                "timing": [
+                  "attack"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "keywords": [
+        {
+          "id": "immune_deflect",
+          "ruleId": "immune_deflect",
+          "label": "免疫：反弹",
+          "summary": "使用此攻击池攻击时，不会因反弹受到伤害。",
+          "full": "当单位用拥有免疫：反弹的攻击池攻击时，它不能承受来自反弹关键词的伤害。",
+          "timing": [
+            "attack"
+          ],
+          "raw": "免疫：反弹",
+          "value": null
+        },
+        {
+          "id": "impact",
+          "ruleId": "impact",
+          "label": "冲击2",
+          "summary": "攻击装甲单位时，修正攻击骰可将最多X个命中改为暴击。",
+          "full": "当单位攻击时， 如果它的攻击池拥有冲击X关键词， 且防御单位拥有装甲X关键词， 则在修正攻击骰子步骤期间， 攻击单位能够将最多X个 【命中图标】 结果修正为【暴击图标】 结果。",
+          "timing": [
+            "attack"
+          ],
+          "raw": "冲击2",
+          "value": "2"
+        }
+      ]
     },
     {
       "id": "3051",
@@ -13479,7 +13659,31 @@
         "en": "Chewbacca & Yoda",
         "zh": "丘巴卡及尤达"
       },
-      "owner": "Chewbacca"
+      "owner": "Chewbacca",
+      "keywords": [
+        {
+          "id": "guardian",
+          "raw": "Guardian X",
+          "label": "护卫X",
+          "value": "X",
+          "summary": "距离1内且视线中的士兵防御远程攻击时，此单位可将X个命中分配给自己，正常进行防御并获得1个压制；压力值大于等于勇气值时不能使用。",
+          "full": "在拥有护卫X关键词的单位 1内且在视线中的友方士兵单位防御远程攻击时， 它可以在修正攻击骰子步骤期间取消最多X个命中 【命中图标】 结果。 每有一个以此方式取消的命中 【命中图标】 结果， 带有护卫X关键词的单位就投掷1个与其单位卡牌上的防御骰子相同的防御骰子。 在根据其激增图或使用激增标记转化任何防御激增 【防御激增图标】 结果后， 带有护卫X关键词的单位获得1个压制标记， 然后每有一个空白结果， 就承受1点伤害。 即使使用了护卫X关键词， 防御单位也如常获得一个压制标记。如果防御单位本身也有护卫X关键词， 则其他单位不能对该防御单位使用护卫X。 如果多个友方单位在攻击期间都能够使用护卫X关键词， 则控制这些单位的玩家先声明哪个单位使用护卫X关键词并结算其能力， 然后再选择是否声明另一个单位使用护卫X关键词。如果单位拥有的压制标记数量大于等于其 【图标】， 则该单位不能使用护卫X。穿刺X关键词能够用于取消使用护卫X的单位掷出的防御骰子上的格挡 【格挡图标】 结果； 将取消的格挡【格挡图标】 结果视为空白结果。 以此方式使用穿刺X后， 任何未使用的穿刺X值仍然能够用于取消防御单位掷出的格挡 【格挡图标】 结果。此外， 带有护卫X关键词的单位不能从守护受益， 并且忽略提供守护时的【军团军阶图标】 军阶要求。",
+          "timing": [
+            "defense"
+          ]
+        },
+        {
+          "id": "deflect",
+          "raw": "Deflect",
+          "label": "反弹",
+          "value": null,
+          "summary": "防御远程攻击或使用护卫X时获得激增：格挡；若相应防御骰有至少1个激增，攻击者受到1点伤害。对仅由高速武器发起的攻击无效。",
+          "full": "带有反弹关键词的单位防御远程攻击或使用护卫X关键词期间， 其激增转化图获得【防御激增图标】：【格挡图标】。 此外， 在转换【防御激增图标】 结果之前的转化防御激增步骤期间， 如果防御掷骰中有至少1个 【防御激增图标】结果， 则攻击者承受1点伤害。 当带有反弹关键词的单位使用护卫X关键词时， 在转化任何防御激增前， 如果用护卫X掷出的骰子中有至少1个 【防御激增图标】 结果， 则攻击者承受1点伤害。如果反弹关键词导致攻击单位被击败，攻击仍会继续，防御者仍然会承受伤害。防御攻击或对攻击使用护卫X关键词期间，如果该次攻击仅由带有高速关键词的武器发起的，则反弹关键词没有效果。",
+          "timing": [
+            "defense"
+          ]
+        }
+      ]
     },
     {
       "id": "34",
@@ -13635,7 +13839,20 @@
         "en": "Moff Gideon",
         "zh": "吉迪恩总督"
       },
-      "owner": "Moff Gideon"
+      "owner": "Moff Gideon",
+      "keywords": [
+        {
+          "id": "relentless",
+          "raw": "Relentless",
+          "label": "追击",
+          "value": null,
+          "summary": "移动行动后，可免费攻击1次。",
+          "full": "拥有追击关键词的单位在其激活期间进行移动行动后， 可以进行一次免费攻击行动。",
+          "timing": [
+            "movement"
+          ]
+        }
+      ]
     },
     {
       "id": "100",
@@ -13707,7 +13924,20 @@
         "en": "2 Trooper Units",
         "zh": "2 支步兵单位"
       },
-      "owner": "Tempest Force"
+      "owner": "Tempest Force",
+      "keywords": [
+        {
+          "id": "disengage",
+          "raw": "Disengage",
+          "label": "脱离交战",
+          "value": null,
+          "summary": "仅与1个敌方单位交战时，可正常移动。",
+          "full": "带有脱离交战关键词的士兵单位与单个敌方单位处于交战中时， 它能够如常进行移动。",
+          "timing": [
+            "movement"
+          ]
+        }
+      ]
     },
     {
       "id": "257",
@@ -13755,7 +13985,31 @@
         "en": "Yoda & 1 Trooper Unit",
         "zh": "尤达及1 支步兵单位"
       },
-      "owner": "yoda"
+      "owner": "yoda",
+      "keywords": [
+        {
+          "id": "outmaneuver",
+          "raw": "Outmaneuver",
+          "label": "超机动",
+          "value": null,
+          "summary": "可花费闪避标记取消暴击。",
+          "full": "应用闪避和掩护步骤期间， 带有超机动关键词的单位能够花费闪避标记来取消 【暴击图标】 结果。",
+          "timing": [
+            "defense"
+          ]
+        },
+        {
+          "id": "relentless",
+          "raw": "Relentless",
+          "label": "追击",
+          "value": null,
+          "summary": "移动行动后，可免费攻击1次。",
+          "full": "拥有追击关键词的单位在其激活期间进行移动行动后， 可以进行一次免费攻击行动。",
+          "timing": [
+            "movement"
+          ]
+        }
+      ]
     },
     {
       "id": "90",
@@ -13855,7 +14109,20 @@
         "en": "Fifth Brother & 2 Trooper Units",
         "zh": "五弟及2 支步兵单位"
       },
-      "owner": "Fifth Brother"
+      "owner": "Fifth Brother",
+      "keywords": [
+        {
+          "id": "dauntless",
+          "raw": "Dauntless",
+          "label": "无畏",
+          "value": null,
+          "summary": "重振后若处于压制但未恐慌，可再获得1个压制标记并免费移动1次；无畏单位不受强迫影响。",
+          "full": "在带有无畏关键词的非机器人士兵单位重振后， 如果它处于压制中但不处于恐慌中， 则在它的进行行动步骤开始时，它可以获得1个压制标记来进行一次免费移动行动。带有无畏关键词的单位不能受到强迫关键词的影响。",
+          "timing": [
+            "activation"
+          ]
+        }
+      ]
     },
     {
       "id": "3",
@@ -13912,7 +14179,20 @@
         "en": "1 Vehicle Unit",
         "zh": "1 支载具单位"
       },
-      "owner": "Tempest Force"
+      "owner": "Tempest Force",
+      "keywords": [
+        {
+          "id": "demoralize",
+          "raw": "Demoralize 1",
+          "label": "震慑1",
+          "value": "1",
+          "summary": "重振后，向距离2内敌军合计添加最多X个压制标记。",
+          "full": "在带有震慑X关键词的单位重振后， 向在 2内的敌方单位添加总计最多X个压制标记。",
+          "timing": [
+            "activation"
+          ]
+        }
+      ]
     },
     {
       "id": "2376",
@@ -13964,7 +14244,104 @@
         "en": "Boba Fett",
         "zh": "波巴·费特"
       },
-      "owner": "Boba Fett"
+      "owner": "Boba Fett",
+      "weapons": [
+        {
+          "name": "No Disintegrations",
+          "minRange": 0,
+          "maxRange": 1,
+          "dice": {
+            "red": 2,
+            "black": 1,
+            "white": 0
+          },
+          "keywords": [
+            {
+              "name": "blast"
+            },
+            {
+              "name": "impact_x",
+              "xValue": "1"
+            },
+            {
+              "name": "versatile"
+            }
+          ],
+          "zh": {
+            "name": "No Disintegrations",
+            "keywords": [
+              {
+                "id": "blast",
+                "ruleId": "blast",
+                "label": "爆炸",
+                "summary": "攻击时，目标单位掩体骰不取消命中。",
+                "full": "应用闪避和掩护步骤期间， 如果该攻击池包含爆炸关键词，则防御单位不能使用轻掩护和重掩护来取消攻击池产出的命中【命中图标】 结果。",
+                "timing": [
+                  "defense"
+                ]
+              },
+              {
+                "id": "impact_x",
+                "ruleId": "impact",
+                "label": "冲击1",
+                "summary": "攻击装甲单位时，修正攻击骰可将最多X个命中改为暴击。",
+                "full": "当单位攻击时， 如果它的攻击池拥有冲击X关键词， 且防御单位拥有装甲X关键词， 则在修正攻击骰子步骤期间， 攻击单位能够将最多X个 【命中图标】 结果修正为【暴击图标】 结果。",
+                "timing": [
+                  "attack"
+                ]
+              },
+              {
+                "id": "versatile",
+                "ruleId": "versatile",
+                "label": "多用途",
+                "summary": "交战中仍可用此武器远程攻击；",
+                "full": "即使单位处于交战中， 也能够用拥有多用途关键词的武器进行远程攻击。 如果带有多用途关键词的武器既是远程武器又是近战武器， 那么它能够用来进行远程攻击或近战攻击。",
+                "timing": [
+                  "attack"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "keywords": [
+        {
+          "id": "blast",
+          "ruleId": "blast",
+          "label": "爆炸",
+          "summary": "攻击时，目标单位掩体骰不取消命中。",
+          "full": "应用闪避和掩护步骤期间， 如果该攻击池包含爆炸关键词，则防御单位不能使用轻掩护和重掩护来取消攻击池产出的命中【命中图标】 结果。",
+          "timing": [
+            "defense"
+          ],
+          "raw": "爆炸",
+          "value": null
+        },
+        {
+          "id": "impact",
+          "ruleId": "impact",
+          "label": "冲击1",
+          "summary": "攻击装甲单位时，修正攻击骰可将最多X个命中改为暴击。",
+          "full": "当单位攻击时， 如果它的攻击池拥有冲击X关键词， 且防御单位拥有装甲X关键词， 则在修正攻击骰子步骤期间， 攻击单位能够将最多X个 【命中图标】 结果修正为【暴击图标】 结果。",
+          "timing": [
+            "attack"
+          ],
+          "raw": "冲击1",
+          "value": "1"
+        },
+        {
+          "id": "versatile",
+          "ruleId": "versatile",
+          "label": "多用途",
+          "summary": "交战中仍可用此武器远程攻击；",
+          "full": "即使单位处于交战中， 也能够用拥有多用途关键词的武器进行远程攻击。 如果带有多用途关键词的武器既是远程武器又是近战武器， 那么它能够用来进行远程攻击或近战攻击。",
+          "timing": [
+            "attack"
+          ],
+          "raw": "多用途",
+          "value": null
+        }
+      ]
     },
     {
       "id": "22",
@@ -14064,7 +14441,20 @@
         "en": "Fifth Brother & Seventh Sister",
         "zh": "五弟及七妹"
       },
-      "owner": "Seventh Sister"
+      "owner": "Seventh Sister",
+      "keywords": [
+        {
+          "id": "indomitable",
+          "raw": "Indomitable",
+          "label": "不屈",
+          "value": null,
+          "summary": "重振时掷红色防御骰。",
+          "full": "当带有不屈关键词的单位重振时， 它不投掷白色防御骰子，改为投掷红色防御骰子。",
+          "timing": [
+            "activation"
+          ]
+        }
+      ]
     },
     {
       "id": "73",
@@ -14116,7 +14506,20 @@
         "en": "Cassian Andor",
         "zh": "卡西安·安多"
       },
-      "owner": "Cassian Andor"
+      "owner": "Cassian Andor",
+      "keywords": [
+        {
+          "id": "gunslinger",
+          "raw": "Gunslinger",
+          "label": "快枪手",
+          "value": null,
+          "summary": "每次攻击流程一次，用同一件武器攻击2个不同单位。",
+          "full": "在带有快枪手关键词的单位到达声明额外防御者步骤时，它可以声明一个额外防御者并创建一个攻击池， 这个攻击池仅包含一个已贡献到另一个攻击池的远程武器。 快枪手关键词每个攻击流程只能使用一次。",
+          "timing": [
+            "attack"
+          ]
+        }
+      ]
     },
     {
       "id": "16620",
@@ -14164,7 +14567,32 @@
         "en": "3 Trooper Units",
         "zh": "3 支步兵单位"
       },
-      "owner": "Jyn Erso"
+      "owner": "Jyn Erso",
+      "keywords": [
+        {
+          "id": "danger_sense",
+          "raw": "Danger Sense 2",
+          "label": "危险感知2",
+          "value": "2",
+          "summary": "可保留最多X个压制标记；每有1个压制多掷1个防御骰，最多额外X个。",
+          "full": "当带有危险感知X关键词的单位将要移除它任意数量的压制标记时， 它可以选择其中最多X个标记不移除(可以选择0个)。带有危险感知X关键词的单位防御攻击时， 在投掷防御骰子步骤期间， 它每拥有一个压制标记， 就投掷额外1个防御骰子， 最多额外X个骰子。",
+          "timing": [
+            "end_round",
+            "defense"
+          ]
+        },
+        {
+          "id": "indomitable",
+          "raw": "Indomitable",
+          "label": "不屈",
+          "value": null,
+          "summary": "重振时掷红色防御骰。",
+          "full": "当带有不屈关键词的单位重振时， 它不投掷白色防御骰子，改为投掷红色防御骰子。",
+          "timing": [
+            "activation"
+          ]
+        }
+      ]
     },
     {
       "id": "16619",
@@ -14212,7 +14640,20 @@
         "en": "Jyn Erso",
         "zh": "琴·厄索"
       },
-      "owner": "Jyn Erso"
+      "owner": "Jyn Erso",
+      "keywords": [
+        {
+          "id": "charge",
+          "raw": "Charge",
+          "label": "冲锋",
+          "value": null,
+          "summary": "移动进入近战后，可仅用近战武器对该单位免费攻击1次。",
+          "full": "拥有冲锋关键词的单位在其激活期间进行移动行动， 使其与敌方模型进入底座接触来开始近战后， 它可以只使用近战武器对该单位进行一次免费攻击行动。",
+          "timing": [
+            "movement"
+          ]
+        }
+      ]
     },
     {
       "id": "16624",
@@ -14467,7 +14908,20 @@
         "en": "Anakin Skywalker & 2 Units",
         "zh": "阿纳金·天行者及2 支单位"
       },
-      "owner": "Anakin Skywalker"
+      "owner": "Anakin Skywalker",
+      "keywords": [
+        {
+          "id": "inspire",
+          "raw": "Inspire 2",
+          "label": "提振2",
+          "value": "2",
+          "summary": "激活结束时，距离2内其他友军移除合计最多X个压制标记。",
+          "full": "当带有提振X关键词的单位结束其激活时， 从在 2内的其他友方单位移除总计最多X个压制标记。",
+          "timing": [
+            "activation"
+          ]
+        }
+      ]
     },
     {
       "id": "14377",
@@ -14705,7 +15159,20 @@
         "en": "Iden Versio",
         "zh": "艾登·韦尔西奥"
       },
-      "owner": "Iden Versio"
+      "owner": "Iden Versio",
+      "keywords": [
+        {
+          "id": "sharpshooter",
+          "raw": "Sharpshooter 2",
+          "label": "精确射手2",
+          "value": "2",
+          "summary": "攻击时，防御者的掩护降低X级。",
+          "full": "确定掩护步骤期间， 带有精确射手X关键词的单位将防御者的掩护数值减去X。例如， 带有重掩护和1个压制标记的单位被带有精确射手1的单位攻击时， 则该单位有轻掩护。",
+          "timing": [
+            "attack"
+          ]
+        }
+      ]
     },
     {
       "id": "20052",
@@ -14879,7 +15346,20 @@
         "en": "3 Units",
         "zh": "3 支单位"
       },
-      "owner": "Agent Kallus"
+      "owner": "Agent Kallus",
+      "keywords": [
+        {
+          "id": "suppressive",
+          "raw": "Suppressive",
+          "label": "压制",
+          "value": null,
+          "summary": "攻击时，防御方额外获得1个压制标记。",
+          "full": "当单位防御拥有压制的攻击池时， 在分配压制标记给防御者步骤期间， 它获得额外1个压制标记。",
+          "timing": [
+            "attack"
+          ]
+        }
+      ]
     },
     {
       "id": "93",
@@ -15030,7 +15510,20 @@
         "en": "2 Trooper Units",
         "zh": "2 支步兵单位"
       },
-      "owner": "Obi-Wan Kenobi"
+      "owner": "Obi-Wan Kenobi",
+      "keywords": [
+        {
+          "id": "guardian",
+          "raw": "Guardian X",
+          "label": "护卫X",
+          "value": "X",
+          "summary": "距离1内且视线中的士兵防御远程攻击时，此单位可将X个命中分配给自己，正常进行防御并获得1个压制；压力值大于等于勇气值时不能使用。",
+          "full": "在拥有护卫X关键词的单位 1内且在视线中的友方士兵单位防御远程攻击时， 它可以在修正攻击骰子步骤期间取消最多X个命中 【命中图标】 结果。 每有一个以此方式取消的命中 【命中图标】 结果， 带有护卫X关键词的单位就投掷1个与其单位卡牌上的防御骰子相同的防御骰子。 在根据其激增图或使用激增标记转化任何防御激增 【防御激增图标】 结果后， 带有护卫X关键词的单位获得1个压制标记， 然后每有一个空白结果， 就承受1点伤害。 即使使用了护卫X关键词， 防御单位也如常获得一个压制标记。如果防御单位本身也有护卫X关键词， 则其他单位不能对该防御单位使用护卫X。 如果多个友方单位在攻击期间都能够使用护卫X关键词， 则控制这些单位的玩家先声明哪个单位使用护卫X关键词并结算其能力， 然后再选择是否声明另一个单位使用护卫X关键词。如果单位拥有的压制标记数量大于等于其 【图标】， 则该单位不能使用护卫X。穿刺X关键词能够用于取消使用护卫X的单位掷出的防御骰子上的格挡 【格挡图标】 结果； 将取消的格挡【格挡图标】 结果视为空白结果。 以此方式使用穿刺X后， 任何未使用的穿刺X值仍然能够用于取消防御单位掷出的格挡 【格挡图标】 结果。此外， 带有护卫X关键词的单位不能从守护受益， 并且忽略提供守护时的【军团军阶图标】 军阶要求。",
+          "timing": [
+            "defense"
+          ]
+        }
+      ]
     },
     {
       "id": "1963",
@@ -15082,7 +15575,20 @@
         "en": "Gar Saxon & 2 Trooper Units",
         "zh": "加尔·萨克森及2 支步兵单位"
       },
-      "owner": "Gar Saxon"
+      "owner": "Gar Saxon",
+      "keywords": [
+        {
+          "id": "indomitable",
+          "raw": "Indomitable",
+          "label": "不屈",
+          "value": null,
+          "summary": "重振时掷红色防御骰。",
+          "full": "当带有不屈关键词的单位重振时， 它不投掷白色防御骰子，改为投掷红色防御骰子。",
+          "timing": [
+            "activation"
+          ]
+        }
+      ]
     },
     {
       "id": "58",
@@ -15130,7 +15636,20 @@
         "en": "4 Clone Trooper Units",
         "zh": "4 支克隆人士兵单位"
       },
-      "owner": "Clone Captain Rex"
+      "owner": "Clone Captain Rex",
+      "keywords": [
+        {
+          "id": "inspire",
+          "raw": "Inspire 2",
+          "label": "提振2",
+          "value": "2",
+          "summary": "激活结束时，距离2内其他友军移除合计最多X个压制标记。",
+          "full": "当带有提振X关键词的单位结束其激活时， 从在 2内的其他友方单位移除总计最多X个压制标记。",
+          "timing": [
+            "activation"
+          ]
+        }
+      ]
     },
     {
       "id": "6508",
@@ -15178,7 +15697,20 @@
         "en": "Ahsoka Tano",
         "zh": "阿索卡·塔诺"
       },
-      "owner": "Ahsoka Tano, Fulcrum"
+      "owner": "Ahsoka Tano, Fulcrum",
+      "keywords": [
+        {
+          "id": "agile",
+          "raw": "Agile 1",
+          "label": "敏捷1",
+          "value": "1",
+          "summary": "移动行动后，获得X个闪避标记。",
+          "full": "当带有敏捷X关键词的单位进行标准移动(作为行动或免费行动的一部分)时， 在效果结算后， 它获得X个闪避标记。",
+          "timing": [
+            "movement"
+          ]
+        }
+      ]
     },
     {
       "id": "7330",
@@ -15226,7 +15758,32 @@
         "en": "Leia Organa & Wicket",
         "zh": "莱娅·奥加纳及威基特"
       },
-      "owner": "Leia Organa"
+      "owner": "Leia Organa",
+      "keywords": [
+        {
+          "id": "permanent",
+          "raw": "Permanent",
+          "label": "永久",
+          "value": null,
+          "summary": "结束阶段不弃置此命令卡；只要仍在场，其效果持续。",
+          "full": "带有永久关键词的命令卡在结束阶段不会像普通命令卡一样从场上弃置。只要该卡仍在场上，其效果持续生效。",
+          "timing": [
+            "global",
+            "end_round"
+          ]
+        },
+        {
+          "id": "teamwork",
+          "raw": "Teamwork",
+          "label": "团队合作：单位名称",
+          "value": null,
+          "summary": "在以下单位距离2内时，一方获得瞄准或闪避标记后，另一方获得1个同类型标记。",
+          "full": "当带有团队合作关键词的单位， 在拥有由团队合作关键词指定的单位名称的友方单位 2内时， 如果这两个单位中的任何一个获得1个或更多瞄准标记或1个或更多闪避标记，则另一个单位获得1个相同类型的标记。",
+          "timing": [
+            "global"
+          ]
+        }
+      ]
     },
     {
       "id": "7327",
@@ -15349,7 +15906,20 @@
         "en": "3 Trooper Units",
         "zh": "3支士兵单位"
       },
-      "owner": "Imperial Officer"
+      "owner": "Imperial Officer",
+      "keywords": [
+        {
+          "id": "suppressive",
+          "raw": "Suppressive",
+          "label": "压制",
+          "summary": "攻击时，防御方额外获得1个压制标记。",
+          "full": "当单位防御拥有压制的攻击池时， 在分配压制标记给防御者步骤期间， 它获得额外1个压制标记。",
+          "timing": [
+            "attack"
+          ],
+          "value": null
+        }
+      ]
     },
     {
       "id": "17863",
@@ -15775,7 +16345,21 @@
         "en": "2 Vehicles or {@icon.rank-special-forces} Units",
         "zh": "2 Vehicles或{@icon.rank-special-forces} 支单位"
       },
-      "owner": "212th Attack Battalion"
+      "owner": "212th Attack Battalion",
+      "keywords": [
+        {
+          "id": "observe",
+          "raw": "Observe 1",
+          "label": "观察1",
+          "value": "1",
+          "summary": "观察X行动：使距离3且视线中的1个敌军获得X个观察标记；友方可花费观察标记重骰1个攻击骰",
+          "full": "作为一个卡牌行动， 带有观察X关键词的单位能够选择一个在3内且在视线中的敌方单位。 所选敌方单位获得X个观察标记。 观察标记会在结束阶段的移除标记步骤期间被移除。当友方单位进行攻击时， 在重掷攻击骰子步骤期间， 它可以花费属于防御单位的任意数量的观察标记。 每有一个以此方式花费的观察标记， 攻击单位就重掷1个攻击骰子。 观察标记一次花费1个， 并且通过花费后续的观察或瞄准标记，同一个骰子能够重掷多次。 攻击单位可以按任意顺序花费瞄准标记和观察标记。",
+          "timing": [
+            "activation",
+            "attack"
+          ]
+        }
+      ]
     },
     {
       "id": "18220",
@@ -15799,7 +16383,42 @@
         "en": "1 Unit",
         "zh": "1 支单位"
       },
-      "owner": "212th Attack Battalion"
+      "owner": "212th Attack Battalion",
+      "keywords": [
+        {
+          "id": "infiltrate",
+          "raw": "Infiltrate",
+          "label": "渗透",
+          "value": null,
+          "summary": "激活开始时，若未部署，可将该单位完全置于友方领地内进行部署；",
+          "full": "当带有渗透关键词的单位开始其激活时， 如果其未部署， 其可以通过将该单位的单位队长放置到完全在友方领地内的位置来进行部署。 然后， 放置该单位中剩余的模型， 使它们与它们的单位队长保持凝聚， 并且完全在友方领地内。 当使用渗透放置模型时， 它们不能叠放在不可通过地形上。",
+          "timing": [
+            "activation"
+          ]
+        },
+        {
+          "id": "divulge",
+          "raw": "Divulge",
+          "label": "揭示",
+          "value": null,
+          "summary": "在卡牌指定阶段或步骤开始时展示并结算揭示效果；不算打出，步骤结束返回命令手牌，永久卡例外。",
+          "full": "带有揭示关键词的命令卡可在揭示所指定的阶段或步骤开始时展示，并结算揭示后的卡文。若提供多个选项，必须选择一个。如此展示不视为打出，且在揭示所处步骤结束时返回该玩家的命令手牌；带有永久的揭示卡不返回手牌，而是留在场上。玩家可揭示任意数量的命令卡。双方同时可揭示时蓝方优先。若放弃该次机会，该卡之后不能再揭示。具体时机以卡文指定内容为准。",
+          "timing": [
+            "setup"
+          ]
+        },
+        {
+          "id": "scout",
+          "raw": "Scout 1",
+          "label": "侦察1",
+          "value": "1",
+          "summary": "未部署时，行动步骤开始可免费速度X移动完成部署并忽略困难地形；侦察可叠加，最高3。",
+          "full": "当带有侦察X关键词的未部署单位激活时， 在它的进行行动步骤开始时， 它可以通过进行一个免费的速度X移动行动来部署， 忽略困难地形。 无论单位的速度是多少， 都能够进行此移动。侦察X关键词是累积的， 但不能超过3。 如果单位的侦察X将要超过侦察3， 则它改为拥有侦察3。",
+          "timing": [
+            "deployment"
+          ]
+        }
+      ]
     },
     {
       "id": "18309",
@@ -15846,7 +16465,43 @@
         "en": "No Units",
         "zh": "无单位"
       },
-      "owner": "Grand Admiral Thrawn"
+      "owner": "Grand Admiral Thrawn",
+      "keywords": [
+        {
+          "id": "divulge",
+          "raw": "Divulge",
+          "label": "揭示",
+          "summary": "在卡牌指定阶段或步骤开始时展示并结算揭示效果；不算打出，步骤结束返回命令手牌，永久卡例外。",
+          "full": "带有揭示关键词的命令卡可在揭示所指定的阶段或步骤开始时展示，并结算揭示后的卡文。若提供多个选项，必须选择一个。如此展示不视为打出，且在揭示所处步骤结束时返回该玩家的命令手牌；带有永久的揭示卡不返回手牌，而是留在场上。玩家可揭示任意数量的命令卡。双方同时可揭示时蓝方优先。若放弃该次机会，该卡之后不能再揭示。具体时机以卡文指定内容为准。",
+          "timing": [
+            "setup"
+          ],
+          "value": null
+        },
+        {
+          "id": "permanent",
+          "raw": "Permanent",
+          "label": "永久",
+          "summary": "结束阶段不弃置此命令卡；只要仍在场，其效果持续。",
+          "full": "带有永久关键词的命令卡在结束阶段不会像普通命令卡一样从场上弃置。只要该卡仍在场上，其效果持续生效。",
+          "timing": [
+            "global",
+            "end_round"
+          ],
+          "value": null
+        },
+        {
+          "id": "reinforcements",
+          "raw": "Reinforcements",
+          "label": "增援",
+          "summary": "第一回合结束阶段开始时，可进行1次速度1移动。",
+          "full": "在第一轮的 结束阶段 开始时， 带有增援关键词的单位可以进行一次速度1移动。",
+          "timing": [
+            "end_round"
+          ],
+          "value": null
+        }
+      ]
     },
     {
       "id": "18310",
@@ -15893,7 +16548,43 @@
         "en": "3 Units",
         "zh": "3支单位"
       },
-      "owner": "Grand Moff Tarkin"
+      "owner": "Grand Moff Tarkin",
+      "keywords": [
+        {
+          "id": "divulge",
+          "raw": "Divulge",
+          "label": "揭示",
+          "summary": "在卡牌指定阶段或步骤开始时展示并结算揭示效果；不算打出，步骤结束返回命令手牌，永久卡例外。",
+          "full": "带有揭示关键词的命令卡可在揭示所指定的阶段或步骤开始时展示，并结算揭示后的卡文。若提供多个选项，必须选择一个。如此展示不视为打出，且在揭示所处步骤结束时返回该玩家的命令手牌；带有永久的揭示卡不返回手牌，而是留在场上。玩家可揭示任意数量的命令卡。双方同时可揭示时蓝方优先。若放弃该次机会，该卡之后不能再揭示。具体时机以卡文指定内容为准。",
+          "timing": [
+            "setup"
+          ],
+          "value": null
+        },
+        {
+          "id": "permanent",
+          "raw": "Permanent",
+          "label": "永久",
+          "summary": "结束阶段不弃置此命令卡；只要仍在场，其效果持续。",
+          "full": "带有永久关键词的命令卡在结束阶段不会像普通命令卡一样从场上弃置。只要该卡仍在场上，其效果持续生效。",
+          "timing": [
+            "global",
+            "end_round"
+          ],
+          "value": null
+        },
+        {
+          "id": "demoralize",
+          "raw": "Demoralize 1",
+          "label": "震慑1",
+          "summary": "重振后，向距离2内敌军合计添加最多X个压制标记。",
+          "full": "在带有震慑X关键词的单位重振后， 向在 2内的敌方单位添加总计最多X个压制标记。",
+          "timing": [
+            "activation"
+          ],
+          "value": "1"
+        }
+      ]
     },
     {
       "id": "13729",
@@ -15945,7 +16636,64 @@
         "en": "The Bad Batch",
         "zh": "异等小队"
       },
-      "owner": "The Bad Batch"
+      "owner": "The Bad Batch",
+      "keywords": [
+        {
+          "id": "suppressive",
+          "raw": "Suppressive",
+          "label": "压制",
+          "value": null,
+          "summary": "攻击时，防御方额外获得1个压制标记。",
+          "full": "当单位防御拥有压制的攻击池时， 在分配压制标记给防御者步骤期间， 它获得额外1个压制标记。",
+          "timing": [
+            "attack"
+          ]
+        },
+        {
+          "id": "reliable",
+          "raw": "Reliable 1",
+          "label": "可靠1",
+          "value": "1",
+          "summary": "激活阶段开始时，获得X个激增标记。",
+          "full": "在每个激活阶段 开始时， 带有可靠X关键词的单位获得X个激增标记。",
+          "timing": [
+            "activation_start"
+          ]
+        },
+        {
+          "id": "tactical",
+          "raw": "Tactical 1",
+          "label": "战术1",
+          "value": "1",
+          "summary": "移动行动后，获得X个瞄准标记。",
+          "full": "当带有战术X关键词的单位进行标准移动(作为行动或免费行动的一部分)时， 在效果结算后， 它获得X个瞄准标记。",
+          "timing": [
+            "movement"
+          ]
+        },
+        {
+          "id": "inspire",
+          "raw": "Inspire 1",
+          "label": "提振1",
+          "value": "1",
+          "summary": "激活结束时，距离2内其他友军移除合计最多X个压制标记。",
+          "full": "当带有提振X关键词的单位结束其激活时， 从在 2内的其他友方单位移除总计最多X个压制标记。",
+          "timing": [
+            "activation"
+          ]
+        },
+        {
+          "id": "precise",
+          "raw": "Precise 1",
+          "label": "精准1",
+          "value": "1",
+          "summary": "花费瞄准标记重骰时，额外重掷X个骰。",
+          "full": "每次带有精准X关键词的单位在重掷攻击骰子步骤期间花费瞄准标记时， 每个花费的瞄准标记能够让它额外重掷最多X个攻击骰子。",
+          "timing": [
+            "attack"
+          ]
+        }
+      ]
     },
     {
       "id": "18903",
@@ -16104,7 +16852,56 @@
         "en": "You must Divulge this card.\n\nDivulge: Resolve Setup Effects step.\nPermanent. Darth Vader gains Guardian 4: Grand Moff Tarkin and can benefit from Backup. While defending, Grand Moff Tarkin can benefit from Backup provided by Darth Vader even if the attacking unit’s unit leader is within {@icon.range-2} of Grand Moff Tarkin.\n\nWhile Grand Moff Tarkin is Contesting an Objective token that is not in allied Territory, allied Trooper units within {@icon.range-2} of him have Disciplined 1.",
         "zh": "你必须揭示此卡。\n\n揭示：结算设置效果步骤。\n永久。达斯·维达获得“护卫4：Grand Moff Tarkin”，且可以从守护中受益。塔金大星区总督防御时，即使攻击单位的单位队长位于塔金大星区总督的{@icon.range-2}内，他仍可以从达斯·维达提供的守护中受益。\n\n当塔金大星区总督正在争夺一个不在友方领土内的目标标记时，他的{@icon.range-2}内的友方士兵单位拥有纪律1。"
       },
-      "image": "assets/command-cards/18902.webp"
+      "image": "assets/command-cards/18902.webp",
+      "keywords": [
+        {
+          "id": "divulge",
+          "raw": "Divulge",
+          "label": "揭示",
+          "summary": "在卡牌指定阶段或步骤开始时展示并结算揭示效果；不算打出，步骤结束返回命令手牌，永久卡例外。",
+          "full": "带有揭示关键词的命令卡可在揭示所指定的阶段或步骤开始时展示，并结算揭示后的卡文。若提供多个选项，必须选择一个。如此展示不视为打出，且在揭示所处步骤结束时返回该玩家的命令手牌；带有永久的揭示卡不返回手牌，而是留在场上。玩家可揭示任意数量的命令卡。双方同时可揭示时蓝方优先。若放弃该次机会，该卡之后不能再揭示。具体时机以卡文指定内容为准。",
+          "timing": [
+            "setup"
+          ],
+          "value": null
+        },
+        {
+          "id": "permanent",
+          "raw": "Permanent",
+          "label": "永久",
+          "summary": "结束阶段不弃置此命令卡；只要仍在场，其效果持续。",
+          "full": "带有永久关键词的命令卡在结束阶段不会像普通命令卡一样从场上弃置。只要该卡仍在场上，其效果持续生效。",
+          "timing": [
+            "global",
+            "end_round"
+          ],
+          "value": null
+        },
+        {
+          "id": "guardian",
+          "raw": "Guardian 4: Grand Moff Tarkin",
+          "label": "护卫4：Grand Moff Tarkin",
+          "summary": "距离1内且视线中的士兵防御远程攻击时，此单位可将X个命中分配给自己，正常进行防御并获得1个压制；压力值大于等于勇气值时不能使用。",
+          "full": "在拥有护卫X关键词的单位 1内且在视线中的友方士兵单位防御远程攻击时， 它可以在修正攻击骰子步骤期间取消最多X个命中 【命中图标】 结果。 每有一个以此方式取消的命中 【命中图标】 结果， 带有护卫X关键词的单位就投掷1个与其单位卡牌上的防御骰子相同的防御骰子。 在根据其激增图或使用激增标记转化任何防御激增 【防御激增图标】 结果后， 带有护卫X关键词的单位获得1个压制标记， 然后每有一个空白结果， 就承受1点伤害。 即使使用了护卫X关键词， 防御单位也如常获得一个压制标记。如果防御单位本身也有护卫X关键词， 则其他单位不能对该防御单位使用护卫X。 如果多个友方单位在攻击期间都能够使用护卫X关键词， 则控制这些单位的玩家先声明哪个单位使用护卫X关键词并结算其能力， 然后再选择是否声明另一个单位使用护卫X关键词。如果单位拥有的压制标记数量大于等于其 【图标】， 则该单位不能使用护卫X。穿刺X关键词能够用于取消使用护卫X的单位掷出的防御骰子上的格挡 【格挡图标】 结果； 将取消的格挡【格挡图标】 结果视为空白结果。 以此方式使用穿刺X后， 任何未使用的穿刺X值仍然能够用于取消防御单位掷出的格挡 【格挡图标】 结果。此外， 带有护卫X关键词的单位不能从守护受益， 并且忽略提供守护时的【军团军阶图标】 军阶要求。",
+          "timing": [
+            "defense"
+          ],
+          "value": "4",
+          "parameter": "Grand Moff Tarkin",
+          "parameterKind": "unit"
+        },
+        {
+          "id": "disciplined",
+          "raw": "Disciplined 1",
+          "label": "纪律1",
+          "summary": "接收命令后，移除X个压制标记。",
+          "full": "带有纪律X关键词的单位接收命令后， 它可以移除最多X个压制标记。",
+          "timing": [
+            "command"
+          ],
+          "value": "1"
+        }
+      ]
     },
     {
       "id": "18900",
@@ -16788,7 +17585,42 @@
         "en": "3 Units",
         "zh": "3 支单位"
       },
-      "owner": "The Ohnaka Gang"
+      "owner": "The Ohnaka Gang",
+      "keywords": [
+        {
+          "id": "eyes_on_the_prize",
+          "raw": "Eyes on the Prize",
+          "label": "紧盯奖赏",
+          "value": null,
+          "summary": "单位队长在距离½内有目标标记，或本单位正携带目标标记时，获得所列词条。",
+          "full": "拥有紧盯奖赏关键词的单位，如果其单位队长在距离½内有至少一个目标标记，或该单位正携带至少一个目标标记，则拥有此关键词后列出的词条。具体获得的词条见卡牌正文。",
+          "timing": [
+            "global"
+          ]
+        },
+        {
+          "id": "low_profile",
+          "raw": "Low Profile",
+          "label": "低姿态",
+          "value": null,
+          "summary": "骰掩体骰时，少掷1个防御骰并增加1个格挡结果。",
+          "full": "投掷掩护池步骤期间， 当带有低姿态关键词的单位将要投掷1个或更多防御骰子时， 它少投掷1个防御骰子， 并改为掷骰后添加一个额外的 【格挡图标】 结果到掩护池。",
+          "timing": [
+            "defense"
+          ]
+        },
+        {
+          "id": "nimble",
+          "raw": "Nimble",
+          "label": "灵巧",
+          "value": null,
+          "summary": "防御时若花费闪避标记，攻击结算后获得1个闪避标记。",
+          "full": "当带有灵巧关键词的单位防御攻击， 并且在该次攻击流程的任意时刻期间花费至少1个闪避标记时， 在该次攻击结算后， 它获得1个闪避标记。",
+          "timing": [
+            "defense"
+          ]
+        }
+      ]
     },
     {
       "id": "99",
@@ -16840,7 +17672,20 @@
         "en": "Agent Kallus",
         "zh": "卡勒斯特工"
       },
-      "owner": "Agent Kallus"
+      "owner": "Agent Kallus",
+      "keywords": [
+        {
+          "id": "hold_the_line",
+          "raw": "Hold the Line",
+          "label": "坚守战线",
+          "value": null,
+          "summary": "处于交战中时，获得激增：命中和激增：格挡。",
+          "full": "只要带有坚守战线关键词的单位处于交战中， 其获得【攻击激增图标】：【命中图标】 和【防御激增图标】：【格挡图标】。",
+          "timing": [
+            "global"
+          ]
+        }
+      ]
     },
     {
       "id": "19485",
@@ -16963,7 +17808,42 @@
       "description": {
         "en": "At the start of Bo-Katan Kryzeʼs next Activation, she may make a Recover action. Bo-Katan Kryze gains Barrage and Relentless this Round. Additionally, while Bo-Katan Kryze is Engaged this Round, her weapons gain Pierce 1.",
         "zh": "博-卡坦·克里兹下次激活开始时，可以执行一次恢复行动。博-卡坦本轮获得弹幕炮击及追击。此外，本轮她交战期间，其武器获得穿刺1。"
-      }
+      },
+      "keywords": [
+        {
+          "id": "relentless",
+          "raw": "Relentless",
+          "label": "追击",
+          "value": null,
+          "summary": "移动行动后，可免费攻击1次。",
+          "full": "拥有追击关键词的单位在其激活期间进行移动行动后， 可以进行一次免费攻击行动。",
+          "timing": [
+            "movement"
+          ]
+        },
+        {
+          "id": "barrage",
+          "raw": "Barrage",
+          "label": "弹幕炮击",
+          "value": null,
+          "summary": "激活中可以进行2次攻击行动。但若此做，此次激活不能使用军火库。",
+          "full": "如果单位有弹幕炮击关键词， 且在它的激活期间它不使用军火库关键词， 则它可以改为在它的激活期间进行2次攻击行动， 而不是1次。",
+          "timing": [
+            "activation"
+          ]
+        },
+        {
+          "id": "pierce",
+          "raw": "Pierce 1",
+          "label": "穿刺1",
+          "value": "1",
+          "summary": "对方修正防御骰时，取消最多X个格挡结果；",
+          "full": "当单位用拥有穿刺X关键词的攻击池攻击时， 在修正防御骰子步骤期间， 它可以取消最多X个【格挡图标】 结果。穿刺X关键词能够用于取消使用护卫X关键词的单位掷出的防御骰子上的 【格挡图标】 结果。 当这么做时， 将取消的【格挡图标】 结果视为空白结果。 以此方式使用穿刺X关键词后， 任何未使用的穿刺X值仍然能够用于取消防御单位掷出的 【格挡图标】 结果。例如， 带有穿刺3的单位在攻击一个敌方单位， 而另一个敌方单位使用护卫2来取消2个 【命中图标】 结果。 在转化防御【防御激增图标】 结果后， 使用护卫的单位掷出了2个【格挡图标】 结果。 攻击单位使用穿刺来取消这2个 【格挡图标】 结果， 于是使用护卫的单位承受2点伤害。现在防御单位投掷防御骰子， 而攻击单位可以再取消防御单位掷出的1个 【格挡图标】 结果， 因为到目前为止， 其初始的穿刺3仅使用了2点。",
+          "timing": [
+            "attack"
+          ]
+        }
+      ]
     },
     {
       "id": "19483",
@@ -17074,7 +17954,20 @@
         "en": "1 Mandalorian Trooper Unit",
         "zh": "1 支曼达洛步兵单位"
       },
-      "owner": "Mandalorian Clans"
+      "owner": "Mandalorian Clans",
+      "keywords": [
+        {
+          "id": "inspire",
+          "raw": "Inspire 2",
+          "label": "提振2",
+          "value": "2",
+          "summary": "激活结束时，距离2内其他友军移除合计最多X个压制标记。",
+          "full": "当带有提振X关键词的单位结束其激活时， 从在 2内的其他友方单位移除总计最多X个压制标记。",
+          "timing": [
+            "activation"
+          ]
+        }
+      ]
     },
     {
       "id": "19514",
@@ -17122,7 +18015,31 @@
         "en": "1 {@icon.clan-wren}{@icon.rank-commander} or {@icon.clan-wren}{@icon.rank-operative}",
         "zh": "1 {@icon.clan-wren}{@icon.rank-commander}或{@icon.clan-wren}{@icon.rank-operative}"
       },
-      "owner": "Ursa Wren"
+      "owner": "Ursa Wren",
+      "keywords": [
+        {
+          "id": "guardian",
+          "raw": "Guardian 1",
+          "label": "护卫1",
+          "value": "1",
+          "summary": "距离1内且视线中的士兵防御远程攻击时，此单位可将X个命中分配给自己，正常进行防御并获得1个压制；压力值大于等于勇气值时不能使用。",
+          "full": "在拥有护卫X关键词的单位 1内且在视线中的友方士兵单位防御远程攻击时， 它可以在修正攻击骰子步骤期间取消最多X个命中 【命中图标】 结果。 每有一个以此方式取消的命中 【命中图标】 结果， 带有护卫X关键词的单位就投掷1个与其单位卡牌上的防御骰子相同的防御骰子。 在根据其激增图或使用激增标记转化任何防御激增 【防御激增图标】 结果后， 带有护卫X关键词的单位获得1个压制标记， 然后每有一个空白结果， 就承受1点伤害。 即使使用了护卫X关键词， 防御单位也如常获得一个压制标记。如果防御单位本身也有护卫X关键词， 则其他单位不能对该防御单位使用护卫X。 如果多个友方单位在攻击期间都能够使用护卫X关键词， 则控制这些单位的玩家先声明哪个单位使用护卫X关键词并结算其能力， 然后再选择是否声明另一个单位使用护卫X关键词。如果单位拥有的压制标记数量大于等于其 【图标】， 则该单位不能使用护卫X。穿刺X关键词能够用于取消使用护卫X的单位掷出的防御骰子上的格挡 【格挡图标】 结果； 将取消的格挡【格挡图标】 结果视为空白结果。 以此方式使用穿刺X后， 任何未使用的穿刺X值仍然能够用于取消防御单位掷出的格挡 【格挡图标】 结果。此外， 带有护卫X关键词的单位不能从守护受益， 并且忽略提供守护时的【军团军阶图标】 军阶要求。",
+          "timing": [
+            "defense"
+          ]
+        },
+        {
+          "id": "guardian",
+          "raw": "Guardian X",
+          "label": "护卫X",
+          "value": "X",
+          "summary": "距离1内且视线中的士兵防御远程攻击时，此单位可将X个命中分配给自己，正常进行防御并获得1个压制；压力值大于等于勇气值时不能使用。",
+          "full": "在拥有护卫X关键词的单位 1内且在视线中的友方士兵单位防御远程攻击时， 它可以在修正攻击骰子步骤期间取消最多X个命中 【命中图标】 结果。 每有一个以此方式取消的命中 【命中图标】 结果， 带有护卫X关键词的单位就投掷1个与其单位卡牌上的防御骰子相同的防御骰子。 在根据其激增图或使用激增标记转化任何防御激增 【防御激增图标】 结果后， 带有护卫X关键词的单位获得1个压制标记， 然后每有一个空白结果， 就承受1点伤害。 即使使用了护卫X关键词， 防御单位也如常获得一个压制标记。如果防御单位本身也有护卫X关键词， 则其他单位不能对该防御单位使用护卫X。 如果多个友方单位在攻击期间都能够使用护卫X关键词， 则控制这些单位的玩家先声明哪个单位使用护卫X关键词并结算其能力， 然后再选择是否声明另一个单位使用护卫X关键词。如果单位拥有的压制标记数量大于等于其 【图标】， 则该单位不能使用护卫X。穿刺X关键词能够用于取消使用护卫X的单位掷出的防御骰子上的格挡 【格挡图标】 结果； 将取消的格挡【格挡图标】 结果视为空白结果。 以此方式使用穿刺X后， 任何未使用的穿刺X值仍然能够用于取消防御单位掷出的格挡 【格挡图标】 结果。此外， 带有护卫X关键词的单位不能从守护受益， 并且忽略提供守护时的【军团军阶图标】 军阶要求。",
+          "timing": [
+            "defense"
+          ]
+        }
+      ]
     },
     {
       "id": "19513",
@@ -17170,7 +18087,20 @@
         "en": "Sabine Wren & 1 {@icon.clan-wren} unit",
         "zh": "萨宾·雷恩及1 {@icon.clan-wren} 支单位"
       },
-      "owner": "Sabine Wren, Back in the Fold"
+      "owner": "Sabine Wren, Back in the Fold",
+      "keywords": [
+        {
+          "id": "steady",
+          "raw": "Steady",
+          "label": "稳步",
+          "value": null,
+          "summary": "激活期间移动后，可仅使用远程武器免费攻击1次。",
+          "full": "拥有稳步关键词的单位在它的激活期间进行移动行动后，它可以进行一次免费攻击行动。 在此次攻击行动期间， 只有远程武器能够添加到攻击池中。",
+          "timing": [
+            "movement"
+          ]
+        }
+      ]
     },
     {
       "id": "19510",
@@ -17194,7 +18124,42 @@
         "en": "2 Units",
         "zh": "2 支单位"
       },
-      "owner": "Mandalorian Clans"
+      "owner": "Mandalorian Clans",
+      "keywords": [
+        {
+          "id": "death_from_above",
+          "raw": "Death From Above",
+          "label": "死亡天降",
+          "value": null,
+          "summary": "若所在非区域地形高于防御方，防御方掩护不能取消命中。",
+          "full": "当带有死亡天降关键词的单位攻击时， 如果攻击单位的单位队长叠放在一块非区域地形， 且该地形的高度高于防御单位的单位队长叠放的任何地形， 则在应用掩护步骤期间，防御单位不能使用掩护来取消命中 【命中图标】 结果。",
+          "timing": [
+            "attack"
+          ]
+        },
+        {
+          "id": "jump",
+          "raw": "Jump X",
+          "label": "跳跃X",
+          "value": "X",
+          "summary": "移动行动时可执行跳跃X，忽略困难地形、高度X或以下地形及模型；可越过不可通过地形，但不能在其上结束。",
+          "full": "拥有跳跃X关键词的单位在任何它能够进行移动行动的时候， 都能够进行跳跃X卡牌行动。 该单位如常进行移动行动， 并且能够忽略高度X或更低的地形， 或在其顶部结束移动。 用跳跃X行动进行移动期间， 单位忽略高度小于等于X的困难地形和其他模型的效果。 当使用跳跃X行动进行移动时， 单位可以将移动工具叠放在不可通过地形上， 但不能在叠放在不可通过地形上的情况下结束它的移动。 当单位进行跳跃X行动时， 从该单位的起始位置测量高度。",
+          "timing": [
+            "movement"
+          ]
+        },
+        {
+          "id": "jump",
+          "raw": "Jump 2",
+          "label": "跳跃2",
+          "value": "2",
+          "summary": "移动行动时可执行跳跃X，忽略困难地形、高度X或以下地形及模型；可越过不可通过地形，但不能在其上结束。",
+          "full": "拥有跳跃X关键词的单位在任何它能够进行移动行动的时候， 都能够进行跳跃X卡牌行动。 该单位如常进行移动行动， 并且能够忽略高度X或更低的地形， 或在其顶部结束移动。 用跳跃X行动进行移动期间， 单位忽略高度小于等于X的困难地形和其他模型的效果。 当使用跳跃X行动进行移动时， 单位可以将移动工具叠放在不可通过地形上， 但不能在叠放在不可通过地形上的情况下结束它的移动。 当单位进行跳跃X行动时， 从该单位的起始位置测量高度。",
+          "timing": [
+            "movement"
+          ]
+        }
+      ]
     },
     {
       "id": "19519",
@@ -17218,7 +18183,31 @@
         "en": "3 Units",
         "zh": "3 支单位"
       },
-      "owner": "Mandalorian Clans"
+      "owner": "Mandalorian Clans",
+      "keywords": [
+        {
+          "id": "versatile",
+          "raw": "Versatile",
+          "label": "多用途",
+          "value": null,
+          "summary": "交战中仍可用此武器远程攻击；",
+          "full": "即使单位处于交战中， 也能够用拥有多用途关键词的武器进行远程攻击。 如果带有多用途关键词的武器既是远程武器又是近战武器， 那么它能够用来进行远程攻击或近战攻击。",
+          "timing": [
+            "attack"
+          ]
+        },
+        {
+          "id": "charge",
+          "raw": "Charge",
+          "label": "冲锋",
+          "value": null,
+          "summary": "移动进入近战后，可仅用近战武器对该单位免费攻击1次。",
+          "full": "拥有冲锋关键词的单位在其激活期间进行移动行动， 使其与敌方模型进入底座接触来开始近战后， 它可以只使用近战武器对该单位进行一次免费攻击行动。",
+          "timing": [
+            "movement"
+          ]
+        }
+      ]
     },
     {
       "id": "19515",
@@ -17267,7 +18256,31 @@
         "en": "2 {@icon.clan-covert} units",
         "zh": "2 {@icon.clan-covert} 支单位"
       },
-      "owner": "{@icon.clan-covert} {@icon.rank-commander} or {@icon.clan-covert} {@icon.rank-operative}"
+      "owner": "{@icon.clan-covert} {@icon.rank-commander} or {@icon.clan-covert} {@icon.rank-operative}",
+      "keywords": [
+        {
+          "id": "infiltrate",
+          "raw": "Infiltrate",
+          "label": "渗透",
+          "value": null,
+          "summary": "激活开始时，若未部署，可将该单位完全置于友方领地内进行部署；",
+          "full": "当带有渗透关键词的单位开始其激活时， 如果其未部署， 其可以通过将该单位的单位队长放置到完全在友方领地内的位置来进行部署。 然后， 放置该单位中剩余的模型， 使它们与它们的单位队长保持凝聚， 并且完全在友方领地内。 当使用渗透放置模型时， 它们不能叠放在不可通过地形上。",
+          "timing": [
+            "activation"
+          ]
+        },
+        {
+          "id": "divulge",
+          "raw": "Divulge",
+          "label": "揭示",
+          "value": null,
+          "summary": "在卡牌指定阶段或步骤开始时展示并结算揭示效果；不算打出，步骤结束返回命令手牌，永久卡例外。",
+          "full": "带有揭示关键词的命令卡可在揭示所指定的阶段或步骤开始时展示，并结算揭示后的卡文。若提供多个选项，必须选择一个。如此展示不视为打出，且在揭示所处步骤结束时返回该玩家的命令手牌；带有永久的揭示卡不返回手牌，而是留在场上。玩家可揭示任意数量的命令卡。双方同时可揭示时蓝方优先。若放弃该次机会，该卡之后不能再揭示。具体时机以卡文指定内容为准。",
+          "timing": [
+            "setup"
+          ]
+        }
+      ]
     },
     {
       "id": "19516",
@@ -17364,7 +18377,31 @@
         "en": "2 {@icon.clan-kryze} units",
         "zh": "2 {@icon.clan-kryze} 支单位"
       },
-      "owner": "{@icon.clan-kryze}{@icon.rank-commander} or {@icon.clan-kryze}{@icon.rank-operative}"
+      "owner": "{@icon.clan-kryze}{@icon.rank-commander} or {@icon.clan-kryze}{@icon.rank-operative}",
+      "keywords": [
+        {
+          "id": "outmaneuver",
+          "raw": "Outmaneuver",
+          "label": "超机动",
+          "value": null,
+          "summary": "可花费闪避标记取消暴击。",
+          "full": "应用闪避和掩护步骤期间， 带有超机动关键词的单位能够花费闪避标记来取消 【暴击图标】 结果。",
+          "timing": [
+            "defense"
+          ]
+        },
+        {
+          "id": "precise",
+          "raw": "Precise 1",
+          "label": "精准1",
+          "value": "1",
+          "summary": "花费瞄准标记重骰时，额外重掷X个骰。",
+          "full": "每次带有精准X关键词的单位在重掷攻击骰子步骤期间花费瞄准标记时， 每个花费的瞄准标记能够让它额外重掷最多X个攻击骰子。",
+          "timing": [
+            "attack"
+          ]
+        }
+      ]
     },
     {
       "id": "19512",
@@ -17413,7 +18450,20 @@
         "en": "3 {@icon.clan-saxon} units",
         "zh": "3 {@icon.clan-saxon} 支单位"
       },
-      "owner": "{@icon.clan-saxon} {@icon.rank-commander} or {@icon.clan-saxon} {@icon.rank-operative}"
+      "owner": "{@icon.clan-saxon} {@icon.rank-commander} or {@icon.clan-saxon} {@icon.rank-operative}",
+      "keywords": [
+        {
+          "id": "ram",
+          "raw": "Ram 1",
+          "label": "冲撞1",
+          "value": "1",
+          "summary": "该单位激活中，如果是凹口底座：进行过一次完整移动；普通底座：进行过移动。可将X个攻击结果改为暴击。",
+          "full": "单位用拥有冲撞X关键词的攻击池进行攻击时， 在修正攻击骰子步骤期间， 如果它满足以下任意一个条件， 则它可以将X个结果变更为 【暴击图标】 结果。• 单位队长拥有凹口底座， 并且在使用冲撞X进行攻击的同一激活期间， 该单位以它的速度进行至少1次完整标准移动。• 单位队长拥有非凹口底座， 并且在使用冲撞X进行攻击的同一激活期间， 该单位进行至少1次移动。",
+          "timing": [
+            "attack"
+          ]
+        }
+      ]
     },
     {
       "id": "19530",
@@ -17499,7 +18549,43 @@
         "en": "Lando Calrissian",
         "zh": "兰多·卡瑞辛"
       },
-      "owner": "Lando Calrissian"
+      "owner": "Lando Calrissian",
+      "keywords": [
+        {
+          "id": "infiltrate",
+          "raw": "Infiltrate",
+          "label": "渗透",
+          "value": null,
+          "summary": "激活开始时，若未部署，可将该单位完全置于友方领地内进行部署；",
+          "full": "当带有渗透关键词的单位开始其激活时， 如果其未部署， 其可以通过将该单位的单位队长放置到完全在友方领地内的位置来进行部署。 然后， 放置该单位中剩余的模型， 使它们与它们的单位队长保持凝聚， 并且完全在友方领地内。 当使用渗透放置模型时， 它们不能叠放在不可通过地形上。",
+          "timing": [
+            "activation"
+          ]
+        },
+        {
+          "id": "incognito",
+          "raw": "Incognito",
+          "label": "伪装",
+          "value": null,
+          "summary": "不能距离1外敌军攻击，不能争夺目标；攻击、防御或在激活开始主动放弃后，永久失去伪装。",
+          "full": "带有伪装关键词的单位不能被在它 1外的敌方单位攻击，不能争夺目标， 也不能提供守护。如果带有伪装关键词的单位进行了攻击， 或防御了攻击， 则游戏剩余时间内它失去 伪装关键词。 此外， 在带有伪装关键词的单位的激活开始时， 它可以选择在游戏剩余时间内失去伪装关键词。",
+          "timing": [
+            "global",
+            "activation"
+          ]
+        },
+        {
+          "id": "divulge",
+          "raw": "Divulge",
+          "label": "揭示",
+          "value": null,
+          "summary": "在卡牌指定阶段或步骤开始时展示并结算揭示效果；不算打出，步骤结束返回命令手牌，永久卡例外。",
+          "full": "带有揭示关键词的命令卡可在揭示所指定的阶段或步骤开始时展示，并结算揭示后的卡文。若提供多个选项，必须选择一个。如此展示不视为打出，且在揭示所处步骤结束时返回该玩家的命令手牌；带有永久的揭示卡不返回手牌，而是留在场上。玩家可揭示任意数量的命令卡。双方同时可揭示时蓝方优先。若放弃该次机会，该卡之后不能再揭示。具体时机以卡文指定内容为准。",
+          "timing": [
+            "setup"
+          ]
+        }
+      ]
     },
     {
       "id": "16621",
@@ -17526,7 +18612,20 @@
         "en": "3 Trooper Units",
         "zh": "3 支步兵单位"
       },
-      "owner": "Galactic Republic"
+      "owner": "Galactic Republic",
+      "keywords": [
+        {
+          "id": "demoralize",
+          "raw": "Demoralize 1",
+          "label": "震慑1",
+          "value": "1",
+          "summary": "重振后，向距离2内敌军合计添加最多X个压制标记。",
+          "full": "在带有震慑X关键词的单位重振后， 向在 2内的敌方单位添加总计最多X个压制标记。",
+          "timing": [
+            "activation"
+          ]
+        }
+      ]
     },
     {
       "id": "16623",
@@ -17553,7 +18652,20 @@
         "en": "2 Trooper Units",
         "zh": "2 支步兵单位"
       },
-      "owner": "Galactic Republic"
+      "owner": "Galactic Republic",
+      "keywords": [
+        {
+          "id": "agile",
+          "raw": "Agile 1",
+          "label": "敏捷1",
+          "value": "1",
+          "summary": "移动行动后，获得X个闪避标记。",
+          "full": "当带有敏捷X关键词的单位进行标准移动(作为行动或免费行动的一部分)时， 在效果结算后， 它获得X个闪避标记。",
+          "timing": [
+            "movement"
+          ]
+        }
+      ]
     },
     {
       "id": "70",
@@ -17605,7 +18717,103 @@
         "en": "R2-D2",
         "zh": "R2-D2"
       },
-      "owner": "R2-D2"
+      "owner": "R2-D2",
+      "weapons": [
+        {
+          "name": "Impromptu Immolation",
+          "minRange": 0,
+          "maxRange": 1,
+          "dice": {
+            "red": 0,
+            "black": 0,
+            "white": 2
+          },
+          "keywords": [
+            {
+              "name": "blast"
+            },
+            {
+              "name": "spray"
+            },
+            {
+              "name": "suppressive"
+            }
+          ],
+          "zh": {
+            "name": "Impromptu Immolation",
+            "keywords": [
+              {
+                "id": "blast",
+                "ruleId": "blast",
+                "label": "爆炸",
+                "summary": "攻击时，目标单位掩体骰不取消命中。",
+                "full": "应用闪避和掩护步骤期间， 如果该攻击池包含爆炸关键词，则防御单位不能使用轻掩护和重掩护来取消攻击池产出的命中【命中图标】 结果。",
+                "timing": [
+                  "defense"
+                ]
+              },
+              {
+                "id": "spray",
+                "ruleId": "spray",
+                "label": "喷射",
+                "summary": "防御单位有多少模型在视线中，攻击池中就加入多少该武器的攻击骰。",
+                "full": "当模型将拥有喷射关键词的武器添加到攻击池时， 该武器将自己的骰子添加若干次， 添加的次数等于防御单位中在使用该武器的模型视线中的模型数量。例如， 如果带有火焰喷射器的AT-RT攻击有3个死亡士兵的单位， 由于火焰喷射器拥有喷射关键词且攻击值为2个黑色骰子， 因此火焰喷射器会向攻击池贡献6个黑色攻击骰子。",
+                "timing": [
+                  "attack"
+                ]
+              },
+              {
+                "id": "suppressive",
+                "ruleId": "suppressive",
+                "label": "压制",
+                "summary": "攻击时，防御方额外获得1个压制标记。",
+                "full": "当单位防御拥有压制的攻击池时， 在分配压制标记给防御者步骤期间， 它获得额外1个压制标记。",
+                "timing": [
+                  "attack"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "keywords": [
+        {
+          "id": "blast",
+          "ruleId": "blast",
+          "label": "爆炸",
+          "summary": "攻击时，目标单位掩体骰不取消命中。",
+          "full": "应用闪避和掩护步骤期间， 如果该攻击池包含爆炸关键词，则防御单位不能使用轻掩护和重掩护来取消攻击池产出的命中【命中图标】 结果。",
+          "timing": [
+            "defense"
+          ],
+          "raw": "爆炸",
+          "value": null
+        },
+        {
+          "id": "spray",
+          "ruleId": "spray",
+          "label": "喷射",
+          "summary": "防御单位有多少模型在视线中，攻击池中就加入多少该武器的攻击骰。",
+          "full": "当模型将拥有喷射关键词的武器添加到攻击池时， 该武器将自己的骰子添加若干次， 添加的次数等于防御单位中在使用该武器的模型视线中的模型数量。例如， 如果带有火焰喷射器的AT-RT攻击有3个死亡士兵的单位， 由于火焰喷射器拥有喷射关键词且攻击值为2个黑色骰子， 因此火焰喷射器会向攻击池贡献6个黑色攻击骰子。",
+          "timing": [
+            "attack"
+          ],
+          "raw": "喷射",
+          "value": null
+        },
+        {
+          "id": "suppressive",
+          "ruleId": "suppressive",
+          "label": "压制",
+          "summary": "攻击时，防御方额外获得1个压制标记。",
+          "full": "当单位防御拥有压制的攻击池时， 在分配压制标记给防御者步骤期间， 它获得额外1个压制标记。",
+          "timing": [
+            "attack"
+          ],
+          "raw": "压制",
+          "value": null
+        }
+      ]
     },
     {
       "id": "16485",
@@ -17695,7 +18903,20 @@
         "en": "2 Trooper Units",
         "zh": "2 支步兵单位"
       },
-      "owner": "General Grievous"
+      "owner": "General Grievous",
+      "keywords": [
+        {
+          "id": "ruthless",
+          "raw": "Ruthless",
+          "label": "冷酷无情",
+          "value": null,
+          "summary": "距离2内且视线中、有正面命令标记的友方军团士兵可在激活开始承受1点伤害以免费执行1次行动。",
+          "full": "当带有正面朝上的命令标记的友方 【军团军阶图标】 士兵单位开始它的激活时， 如果它在带有冷酷无情关键词的单位2 内且在视线中， 则它可以承受1点伤害来进行1个免费行动。",
+          "timing": [
+            "activation"
+          ]
+        }
+      ]
     },
     {
       "id": "67",
@@ -17743,7 +18964,42 @@
         "en": "Count Dooku",
         "zh": "杜库伯爵"
       },
-      "owner": "Count Dooku"
+      "owner": "Count Dooku",
+      "keywords": [
+        {
+          "id": "relentless",
+          "raw": "Relentless",
+          "label": "追击",
+          "value": null,
+          "summary": "移动行动后，可免费攻击1次。",
+          "full": "拥有追击关键词的单位在其激活期间进行移动行动后， 可以进行一次免费攻击行动。",
+          "timing": [
+            "movement"
+          ]
+        },
+        {
+          "id": "versatile",
+          "raw": "Versatile",
+          "label": "多用途",
+          "value": null,
+          "summary": "交战中仍可用此武器远程攻击；",
+          "full": "即使单位处于交战中， 也能够用拥有多用途关键词的武器进行远程攻击。 如果带有多用途关键词的武器既是远程武器又是近战武器， 那么它能够用来进行远程攻击或近战攻击。",
+          "timing": [
+            "attack"
+          ]
+        },
+        {
+          "id": "arsenal",
+          "raw": "Arsenal 2",
+          "label": "军火库2",
+          "value": "2",
+          "summary": "可使用X件武器进行攻击；每件武器仅能加入1个攻击池。",
+          "full": "形成攻击池步骤期间， 带有军火库X关键词的单位能够贡献X个武器到攻击池。 每个武器或武器组合可以形成新的攻击池， 但每个武器只能添加到一个攻击池中。",
+          "timing": [
+            "attack"
+          ]
+        }
+      ]
     },
     {
       "id": "51",
@@ -17795,7 +19051,20 @@
         "en": "Obi-Wan Kenobi",
         "zh": "欧比-旺·克诺比"
       },
-      "owner": "Obi-Wan Kenobi"
+      "owner": "Obi-Wan Kenobi",
+      "keywords": [
+        {
+          "id": "nimble",
+          "raw": "Nimble",
+          "label": "灵巧",
+          "value": null,
+          "summary": "防御时若花费闪避标记，攻击结算后获得1个闪避标记。",
+          "full": "当带有灵巧关键词的单位防御攻击， 并且在该次攻击流程的任意时刻期间花费至少1个闪避标记时， 在该次攻击结算后， 它获得1个闪避标记。",
+          "timing": [
+            "defense"
+          ]
+        }
+      ]
     },
     {
       "id": "18904",
@@ -18005,7 +19274,31 @@
         "en": "Clone Commander Cody",
         "zh": "克隆人指挥官科迪"
       },
-      "owner": "Clone Commander Cody"
+      "owner": "Clone Commander Cody",
+      "keywords": [
+        {
+          "id": "suppressive",
+          "raw": "Suppressive",
+          "label": "压制",
+          "value": null,
+          "summary": "攻击时，防御方额外获得1个压制标记。",
+          "full": "当单位防御拥有压制的攻击池时， 在分配压制标记给防御者步骤期间， 它获得额外1个压制标记。",
+          "timing": [
+            "attack"
+          ]
+        },
+        {
+          "id": "impact",
+          "raw": "Impact 1",
+          "label": "冲击1",
+          "value": "1",
+          "summary": "攻击装甲单位时，修正攻击骰可将最多X个命中改为暴击。",
+          "full": "当单位攻击时， 如果它的攻击池拥有冲击X关键词， 且防御单位拥有装甲X关键词， 则在修正攻击骰子步骤期间， 攻击单位能够将最多X个 【命中图标】 结果修正为【暴击图标】 结果。",
+          "timing": [
+            "attack"
+          ]
+        }
+      ]
     },
     {
       "id": "6509",
@@ -18053,7 +19346,20 @@
         "en": "Ahsoka Tano & Sabine Wren",
         "zh": "阿索卡·塔诺及萨宾·雷恩"
       },
-      "owner": "Ahsoka Tano, Fulcrum"
+      "owner": "Ahsoka Tano, Fulcrum",
+      "keywords": [
+        {
+          "id": "teamwork",
+          "raw": "Teamwork",
+          "label": "团队合作：单位名称",
+          "value": null,
+          "summary": "在以下单位距离2内时，一方获得瞄准或闪避标记后，另一方获得1个同类型标记。",
+          "full": "当带有团队合作关键词的单位， 在拥有由团队合作关键词指定的单位名称的友方单位 2内时， 如果这两个单位中的任何一个获得1个或更多瞄准标记或1个或更多闪避标记，则另一个单位获得1个相同类型的标记。",
+          "timing": [
+            "global"
+          ]
+        }
+      ]
     },
     {
       "id": "16",
@@ -18153,7 +19459,20 @@
         "en": "Sabine Wren & 2 Troopers",
         "zh": "萨宾·雷恩及2 名步兵"
       },
-      "owner": "Sabine Wren"
+      "owner": "Sabine Wren",
+      "keywords": [
+        {
+          "id": "inspire",
+          "raw": "Inspire 1",
+          "label": "提振1",
+          "value": "1",
+          "summary": "激活结束时，距离2内其他友军移除合计最多X个压制标记。",
+          "full": "当带有提振X关键词的单位结束其激活时， 从在 2内的其他友方单位移除总计最多X个压制标记。",
+          "timing": [
+            "activation"
+          ]
+        }
+      ]
     },
     {
       "id": "42",
@@ -18205,7 +19524,20 @@
         "en": "Bossk",
         "zh": "博斯克"
       },
-      "owner": "Bossk"
+      "owner": "Bossk",
+      "keywords": [
+        {
+          "id": "sharpshooter",
+          "raw": "Sharpshooter 1",
+          "label": "精确射手1",
+          "value": "1",
+          "summary": "攻击时，防御者的掩护降低X级。",
+          "full": "确定掩护步骤期间， 带有精确射手X关键词的单位将防御者的掩护数值减去X。例如， 带有重掩护和1个压制标记的单位被带有精确射手1的单位攻击时， 则该单位有轻掩护。",
+          "timing": [
+            "attack"
+          ]
+        }
+      ]
     },
     {
       "id": "4120",
@@ -18305,7 +19637,20 @@
         "en": "Cassian Andor & K-2SO",
         "zh": "卡西安·安多及K-2SO"
       },
-      "owner": "K-2SO"
+      "owner": "K-2SO",
+      "keywords": [
+        {
+          "id": "guardian",
+          "raw": "Guardian 4",
+          "label": "护卫4",
+          "value": "4",
+          "summary": "距离1内且视线中的士兵防御远程攻击时，此单位可将X个命中分配给自己，正常进行防御并获得1个压制；压力值大于等于勇气值时不能使用。",
+          "full": "在拥有护卫X关键词的单位 1内且在视线中的友方士兵单位防御远程攻击时， 它可以在修正攻击骰子步骤期间取消最多X个命中 【命中图标】 结果。 每有一个以此方式取消的命中 【命中图标】 结果， 带有护卫X关键词的单位就投掷1个与其单位卡牌上的防御骰子相同的防御骰子。 在根据其激增图或使用激增标记转化任何防御激增 【防御激增图标】 结果后， 带有护卫X关键词的单位获得1个压制标记， 然后每有一个空白结果， 就承受1点伤害。 即使使用了护卫X关键词， 防御单位也如常获得一个压制标记。如果防御单位本身也有护卫X关键词， 则其他单位不能对该防御单位使用护卫X。 如果多个友方单位在攻击期间都能够使用护卫X关键词， 则控制这些单位的玩家先声明哪个单位使用护卫X关键词并结算其能力， 然后再选择是否声明另一个单位使用护卫X关键词。如果单位拥有的压制标记数量大于等于其 【图标】， 则该单位不能使用护卫X。穿刺X关键词能够用于取消使用护卫X的单位掷出的防御骰子上的格挡 【格挡图标】 结果； 将取消的格挡【格挡图标】 结果视为空白结果。 以此方式使用穿刺X后， 任何未使用的穿刺X值仍然能够用于取消防御单位掷出的格挡 【格挡图标】 结果。此外， 带有护卫X关键词的单位不能从守护受益， 并且忽略提供守护时的【军团军阶图标】 军阶要求。",
+          "timing": [
+            "defense"
+          ]
+        }
+      ]
     },
     {
       "id": "6510",
@@ -18353,7 +19698,20 @@
         "en": "Ahsoka Tano",
         "zh": "阿索卡·塔诺"
       },
-      "owner": "Ahsoka Tano, Fulcrum"
+      "owner": "Ahsoka Tano, Fulcrum",
+      "keywords": [
+        {
+          "id": "guardian",
+          "raw": "Guardian 2",
+          "label": "护卫2",
+          "value": "2",
+          "summary": "距离1内且视线中的士兵防御远程攻击时，此单位可将X个命中分配给自己，正常进行防御并获得1个压制；压力值大于等于勇气值时不能使用。",
+          "full": "在拥有护卫X关键词的单位 1内且在视线中的友方士兵单位防御远程攻击时， 它可以在修正攻击骰子步骤期间取消最多X个命中 【命中图标】 结果。 每有一个以此方式取消的命中 【命中图标】 结果， 带有护卫X关键词的单位就投掷1个与其单位卡牌上的防御骰子相同的防御骰子。 在根据其激增图或使用激增标记转化任何防御激增 【防御激增图标】 结果后， 带有护卫X关键词的单位获得1个压制标记， 然后每有一个空白结果， 就承受1点伤害。 即使使用了护卫X关键词， 防御单位也如常获得一个压制标记。如果防御单位本身也有护卫X关键词， 则其他单位不能对该防御单位使用护卫X。 如果多个友方单位在攻击期间都能够使用护卫X关键词， 则控制这些单位的玩家先声明哪个单位使用护卫X关键词并结算其能力， 然后再选择是否声明另一个单位使用护卫X关键词。如果单位拥有的压制标记数量大于等于其 【图标】， 则该单位不能使用护卫X。穿刺X关键词能够用于取消使用护卫X的单位掷出的防御骰子上的格挡 【格挡图标】 结果； 将取消的格挡【格挡图标】 结果视为空白结果。 以此方式使用穿刺X后， 任何未使用的穿刺X值仍然能够用于取消防御单位掷出的格挡 【格挡图标】 结果。此外， 带有护卫X关键词的单位不能从守护受益， 并且忽略提供守护时的【军团军阶图标】 军阶要求。",
+          "timing": [
+            "defense"
+          ]
+        }
+      ]
     },
     {
       "id": "47",
@@ -18461,7 +19819,20 @@
         "en": "",
         "zh": ""
       },
-      "owner": "Grogu"
+      "owner": "Grogu",
+      "keywords": [
+        {
+          "id": "deflect",
+          "raw": "Deflect",
+          "label": "反弹",
+          "value": null,
+          "summary": "防御远程攻击或使用护卫X时获得激增：格挡；若相应防御骰有至少1个激增，攻击者受到1点伤害。对仅由高速武器发起的攻击无效。",
+          "full": "带有反弹关键词的单位防御远程攻击或使用护卫X关键词期间， 其激增转化图获得【防御激增图标】：【格挡图标】。 此外， 在转换【防御激增图标】 结果之前的转化防御激增步骤期间， 如果防御掷骰中有至少1个 【防御激增图标】结果， 则攻击者承受1点伤害。 当带有反弹关键词的单位使用护卫X关键词时， 在转化任何防御激增前， 如果用护卫X掷出的骰子中有至少1个 【防御激增图标】 结果， 则攻击者承受1点伤害。如果反弹关键词导致攻击单位被击败，攻击仍会继续，防御者仍然会承受伤害。防御攻击或对攻击使用护卫X关键词期间，如果该次攻击仅由带有高速关键词的武器发起的，则反弹关键词没有效果。",
+          "timing": [
+            "defense"
+          ]
+        }
+      ]
     },
     {
       "id": "3052",
@@ -18513,7 +19884,20 @@
         "en": "Din Djarin",
         "zh": "丁·贾林"
       },
-      "owner": "Din Djarin"
+      "owner": "Din Djarin",
+      "keywords": [
+        {
+          "id": "relentless",
+          "raw": "Relentless",
+          "label": "追击",
+          "value": null,
+          "summary": "移动行动后，可免费攻击1次。",
+          "full": "拥有追击关键词的单位在其激活期间进行移动行动后， 可以进行一次免费攻击行动。",
+          "timing": [
+            "movement"
+          ]
+        }
+      ]
     },
     {
       "id": "81",
@@ -18565,7 +19949,21 @@
         "en": "Cassian Andor & 2 Trooper Units",
         "zh": "卡西安·安多及2 支步兵单位"
       },
-      "owner": "Cassian Andor"
+      "owner": "Cassian Andor",
+      "keywords": [
+        {
+          "id": "danger_sense",
+          "raw": "Danger Sense 1",
+          "label": "危险感知1",
+          "value": "1",
+          "summary": "可保留最多X个压制标记；每有1个压制多掷1个防御骰，最多额外X个。",
+          "full": "当带有危险感知X关键词的单位将要移除它任意数量的压制标记时， 它可以选择其中最多X个标记不移除(可以选择0个)。带有危险感知X关键词的单位防御攻击时， 在投掷防御骰子步骤期间， 它每拥有一个压制标记， 就投掷额外1个防御骰子， 最多额外X个骰子。",
+          "timing": [
+            "end_round",
+            "defense"
+          ]
+        }
+      ]
     },
     {
       "id": "55",
@@ -18617,7 +20015,54 @@
         "en": "Darth Vader",
         "zh": "达斯·维德"
       },
-      "owner": "Darth Vader"
+      "owner": "Darth Vader",
+      "keywords": [
+        {
+          "id": "infiltrate",
+          "raw": "Infiltrate",
+          "label": "渗透",
+          "value": null,
+          "summary": "激活开始时，若未部署，可将该单位完全置于友方领地内进行部署；",
+          "full": "当带有渗透关键词的单位开始其激活时， 如果其未部署， 其可以通过将该单位的单位队长放置到完全在友方领地内的位置来进行部署。 然后， 放置该单位中剩余的模型， 使它们与它们的单位队长保持凝聚， 并且完全在友方领地内。 当使用渗透放置模型时， 它们不能叠放在不可通过地形上。",
+          "timing": [
+            "activation"
+          ]
+        },
+        {
+          "id": "permanent",
+          "raw": "Permanent",
+          "label": "永久",
+          "value": null,
+          "summary": "结束阶段不弃置此命令卡；只要仍在场，其效果持续。",
+          "full": "带有永久关键词的命令卡在结束阶段不会像普通命令卡一样从场上弃置。只要该卡仍在场上，其效果持续生效。",
+          "timing": [
+            "global",
+            "end_round"
+          ]
+        },
+        {
+          "id": "reliable",
+          "raw": "Reliable 2",
+          "label": "可靠2",
+          "value": "2",
+          "summary": "激活阶段开始时，获得X个激增标记。",
+          "full": "在每个激活阶段 开始时， 带有可靠X关键词的单位获得X个激增标记。",
+          "timing": [
+            "activation_start"
+          ]
+        },
+        {
+          "id": "divulge",
+          "raw": "Divulge",
+          "label": "揭示",
+          "value": null,
+          "summary": "在卡牌指定阶段或步骤开始时展示并结算揭示效果；不算打出，步骤结束返回命令手牌，永久卡例外。",
+          "full": "带有揭示关键词的命令卡可在揭示所指定的阶段或步骤开始时展示，并结算揭示后的卡文。若提供多个选项，必须选择一个。如此展示不视为打出，且在揭示所处步骤结束时返回该玩家的命令手牌；带有永久的揭示卡不返回手牌，而是留在场上。玩家可揭示任意数量的命令卡。双方同时可揭示时蓝方优先。若放弃该次机会，该卡之后不能再揭示。具体时机以卡文指定内容为准。",
+          "timing": [
+            "setup"
+          ]
+        }
+      ]
     },
     {
       "id": "82",
@@ -18665,7 +20110,103 @@
         "en": "Iden Versio",
         "zh": "艾登·韦尔西奥"
       },
-      "owner": "Iden Versio"
+      "owner": "Iden Versio",
+      "weapons": [
+        {
+          "name": "Grenade Launcher",
+          "minRange": 1,
+          "maxRange": 2,
+          "dice": {
+            "red": 5,
+            "black": 0,
+            "white": 0
+          },
+          "keywords": [
+            {
+              "name": "blast"
+            },
+            {
+              "name": "scatter"
+            },
+            {
+              "name": "suppressive"
+            }
+          ],
+          "zh": {
+            "name": "榴弹发射器",
+            "keywords": [
+              {
+                "id": "blast",
+                "ruleId": "blast",
+                "label": "爆炸",
+                "summary": "攻击时，目标单位掩体骰不取消命中。",
+                "full": "应用闪避和掩护步骤期间， 如果该攻击池包含爆炸关键词，则防御单位不能使用轻掩护和重掩护来取消攻击池产出的命中【命中图标】 结果。",
+                "timing": [
+                  "defense"
+                ]
+              },
+              {
+                "id": "scatter",
+                "ruleId": "scatter",
+                "label": "分散",
+                "summary": "攻击小型底座士兵后，可重新放置防御单位的非队长模型并保持凝聚。",
+                "full": "当单位用拥有分散关键词的攻击池攻击小型底座士兵单位时， 在该次攻击结算后， 它可以放置防御单位中任意数量的非单位队长模型， 使它们保持凝聚。",
+                "timing": [
+                  "attack"
+                ]
+              },
+              {
+                "id": "suppressive",
+                "ruleId": "suppressive",
+                "label": "压制",
+                "summary": "攻击时，防御方额外获得1个压制标记。",
+                "full": "当单位防御拥有压制的攻击池时， 在分配压制标记给防御者步骤期间， 它获得额外1个压制标记。",
+                "timing": [
+                  "attack"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "keywords": [
+        {
+          "id": "blast",
+          "ruleId": "blast",
+          "label": "爆炸",
+          "summary": "攻击时，目标单位掩体骰不取消命中。",
+          "full": "应用闪避和掩护步骤期间， 如果该攻击池包含爆炸关键词，则防御单位不能使用轻掩护和重掩护来取消攻击池产出的命中【命中图标】 结果。",
+          "timing": [
+            "defense"
+          ],
+          "raw": "爆炸",
+          "value": null
+        },
+        {
+          "id": "scatter",
+          "ruleId": "scatter",
+          "label": "分散",
+          "summary": "攻击小型底座士兵后，可重新放置防御单位的非队长模型并保持凝聚。",
+          "full": "当单位用拥有分散关键词的攻击池攻击小型底座士兵单位时， 在该次攻击结算后， 它可以放置防御单位中任意数量的非单位队长模型， 使它们保持凝聚。",
+          "timing": [
+            "attack"
+          ],
+          "raw": "分散",
+          "value": null
+        },
+        {
+          "id": "suppressive",
+          "ruleId": "suppressive",
+          "label": "压制",
+          "summary": "攻击时，防御方额外获得1个压制标记。",
+          "full": "当单位防御拥有压制的攻击池时， 在分配压制标记给防御者步骤期间， 它获得额外1个压制标记。",
+          "timing": [
+            "attack"
+          ],
+          "raw": "压制",
+          "value": null
+        }
+      ]
     },
     {
       "id": "15",
@@ -18713,7 +20254,20 @@
         "en": "2 Vehicle Units",
         "zh": "2 支载具单位"
       },
-      "owner": "General Veers"
+      "owner": "General Veers",
+      "keywords": [
+        {
+          "id": "nimble",
+          "raw": "Nimble",
+          "label": "灵巧",
+          "value": null,
+          "summary": "防御时若花费闪避标记，攻击结算后获得1个闪避标记。",
+          "full": "当带有灵巧关键词的单位防御攻击， 并且在该次攻击流程的任意时刻期间花费至少1个闪避标记时， 在该次攻击结算后， 它获得1个闪避标记。",
+          "timing": [
+            "defense"
+          ]
+        }
+      ]
     },
     {
       "id": "66",
@@ -18813,7 +20367,141 @@
         "en": "Cad Bane",
         "zh": "凯德·贝恩"
       },
-      "owner": "Cad Bane"
+      "owner": "Cad Bane",
+      "weapons": [
+        {
+          "name": "Booby Trap",
+          "minRange": -2,
+          "dice": {
+            "red": 2,
+            "black": 2,
+            "white": 0
+          },
+          "keywords": [
+            {
+              "name": "blast"
+            },
+            {
+              "name": "critical_x",
+              "xValue": "4"
+            },
+            {
+              "name": "impact_x",
+              "xValue": "2"
+            },
+            {
+              "name": "suppressive"
+            }
+          ],
+          "maxRange": 1,
+          "zh": {
+            "name": "Booby Trap",
+            "keywords": [
+              {
+                "id": "blast",
+                "ruleId": "blast",
+                "label": "爆炸",
+                "summary": "攻击时，目标单位掩体骰不取消命中。",
+                "full": "应用闪避和掩护步骤期间， 如果该攻击池包含爆炸关键词，则防御单位不能使用轻掩护和重掩护来取消攻击池产出的命中【命中图标】 结果。",
+                "timing": [
+                  "defense"
+                ]
+              },
+              {
+                "id": "critical_x",
+                "ruleId": "critical",
+                "label": "暴击4",
+                "summary": "攻击的转换激增步骤中，将X个激增面改为暴击面。",
+                "full": "当单位攻击时， 如果暴击X关键词在攻击池中， 则在转化激增步骤期间， 它可以将最多X个【攻击激增图标】 结果转化为【暴击图标】 结果。",
+                "timing": [
+                  "attack"
+                ]
+              },
+              {
+                "id": "impact_x",
+                "ruleId": "impact",
+                "label": "冲击2",
+                "summary": "攻击装甲单位时，修正攻击骰可将最多X个命中改为暴击。",
+                "full": "当单位攻击时， 如果它的攻击池拥有冲击X关键词， 且防御单位拥有装甲X关键词， 则在修正攻击骰子步骤期间， 攻击单位能够将最多X个 【命中图标】 结果修正为【暴击图标】 结果。",
+                "timing": [
+                  "attack"
+                ]
+              },
+              {
+                "id": "suppressive",
+                "ruleId": "suppressive",
+                "label": "压制",
+                "summary": "攻击时，防御方额外获得1个压制标记。",
+                "full": "当单位防御拥有压制的攻击池时， 在分配压制标记给防御者步骤期间， 它获得额外1个压制标记。",
+                "timing": [
+                  "attack"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "keywords": [
+        {
+          "id": "divulge",
+          "raw": "Divulge",
+          "label": "揭示",
+          "value": null,
+          "summary": "在卡牌指定阶段或步骤开始时展示并结算揭示效果；不算打出，步骤结束返回命令手牌，永久卡例外。",
+          "full": "带有揭示关键词的命令卡可在揭示所指定的阶段或步骤开始时展示，并结算揭示后的卡文。若提供多个选项，必须选择一个。如此展示不视为打出，且在揭示所处步骤结束时返回该玩家的命令手牌；带有永久的揭示卡不返回手牌，而是留在场上。玩家可揭示任意数量的命令卡。双方同时可揭示时蓝方优先。若放弃该次机会，该卡之后不能再揭示。具体时机以卡文指定内容为准。",
+          "timing": [
+            "setup"
+          ]
+        },
+        {
+          "id": "blast",
+          "ruleId": "blast",
+          "label": "爆炸",
+          "summary": "攻击时，目标单位掩体骰不取消命中。",
+          "full": "应用闪避和掩护步骤期间， 如果该攻击池包含爆炸关键词，则防御单位不能使用轻掩护和重掩护来取消攻击池产出的命中【命中图标】 结果。",
+          "timing": [
+            "defense"
+          ],
+          "raw": "爆炸",
+          "value": null
+        },
+        {
+          "id": "critical",
+          "ruleId": "critical",
+          "label": "暴击4",
+          "summary": "攻击的转换激增步骤中，将X个激增面改为暴击面。",
+          "full": "当单位攻击时， 如果暴击X关键词在攻击池中， 则在转化激增步骤期间， 它可以将最多X个【攻击激增图标】 结果转化为【暴击图标】 结果。",
+          "timing": [
+            "attack"
+          ],
+          "raw": "暴击4",
+          "value": "4"
+        },
+        {
+          "id": "impact",
+          "ruleId": "impact",
+          "label": "冲击2",
+          "summary": "攻击装甲单位时，修正攻击骰可将最多X个命中改为暴击。",
+          "full": "当单位攻击时， 如果它的攻击池拥有冲击X关键词， 且防御单位拥有装甲X关键词， 则在修正攻击骰子步骤期间， 攻击单位能够将最多X个 【命中图标】 结果修正为【暴击图标】 结果。",
+          "timing": [
+            "attack"
+          ],
+          "raw": "冲击2",
+          "value": "2"
+        },
+        {
+          "id": "suppressive",
+          "ruleId": "suppressive",
+          "label": "压制",
+          "summary": "攻击时，防御方额外获得1个压制标记。",
+          "full": "当单位防御拥有压制的攻击池时， 在分配压制标记给防御者步骤期间， 它获得额外1个压制标记。",
+          "timing": [
+            "attack"
+          ],
+          "raw": "压制",
+          "value": null
+        }
+      ]
     },
     {
       "id": "48",
@@ -18865,7 +20553,156 @@
         "en": "Sabine Wren",
         "zh": "萨宾·雷恩"
       },
-      "owner": "Sabine Wren"
+      "owner": "Sabine Wren",
+      "weapons": [
+        {
+          "name": "Thermal Charge",
+          "minRange": -2,
+          "dice": {
+            "red": 1,
+            "black": 0,
+            "white": 1
+          },
+          "keywords": [
+            {
+              "name": "area_weapon",
+              "xValue": "Weapon"
+            },
+            {
+              "name": "blast"
+            },
+            {
+              "name": "critical_x",
+              "xValue": "2"
+            }
+          ],
+          "maxRange": 1,
+          "zh": {
+            "name": "Thermal Charge",
+            "keywords": [
+              {
+                "id": "area_weapon",
+                "ruleId": "area_weapon",
+                "label": "区域武器",
+                "summary": "对黄色距离图标指定范围内、视线中的每个友方和敌方单位分别远程攻击，包括交战单位；此武器必须单独组成攻击池。",
+                "full": "带有黄色距离图标的武器是区域武器。当使用区域武器时，对在距离图标上的数字指定距离内且在视线中的每个友方和敌方单位分别进行一次攻击，即使该单位在交战中。区域武器发起的攻击总是远程攻击。\n区域武器永远不能出现在单位发起的攻击池中，并且必须总是攻击池中唯一的武器。",
+                "timing": [
+                  "attack"
+                ],
+                "source": "local_supplement"
+              },
+              {
+                "id": "blast",
+                "ruleId": "blast",
+                "label": "爆炸",
+                "summary": "攻击时，目标单位掩体骰不取消命中。",
+                "full": "应用闪避和掩护步骤期间， 如果该攻击池包含爆炸关键词，则防御单位不能使用轻掩护和重掩护来取消攻击池产出的命中【命中图标】 结果。",
+                "timing": [
+                  "defense"
+                ]
+              },
+              {
+                "id": "critical_x",
+                "ruleId": "critical",
+                "label": "暴击2",
+                "summary": "攻击的转换激增步骤中，将X个激增面改为暴击面。",
+                "full": "当单位攻击时， 如果暴击X关键词在攻击池中， 则在转化激增步骤期间， 它可以将最多X个【攻击激增图标】 结果转化为【暴击图标】 结果。",
+                "timing": [
+                  "attack"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "keywords": [
+        {
+          "id": "permanent",
+          "raw": "Permanent",
+          "label": "永久",
+          "value": null,
+          "summary": "结束阶段不弃置此命令卡；只要仍在场，其效果持续。",
+          "full": "带有永久关键词的命令卡在结束阶段不会像普通命令卡一样从场上弃置。只要该卡仍在场上，其效果持续生效。",
+          "timing": [
+            "global",
+            "end_round"
+          ]
+        },
+        {
+          "id": "detonate",
+          "raw": "Detonate 2",
+          "label": "引爆2：炸药类型",
+          "value": "2",
+          "summary": "单位攻击、移动或行动后，可引爆最多X个指定类型的友方炸药；对范围和视线内各单位分别攻击，然后移除炸药。",
+          "full": "单位攻击、移动或执行行动后，拥有引爆X武器的各单位可引爆最多X个指定类型的友方炸药标记。引爆先于其他在移动或行动后结算的效果，但待命标记可以在引爆前花费。双方均可引爆时，由未操控刚执行攻击、移动或行动单位的玩家优先。引爆时，使用标记对应卡牌的区域武器、激增转换和武器词条，对炸药视线和射程内每支友方及敌方单位分别攻击。该炸药标记视为攻击单位，不能花费瞄准或修正攻击骰，不受布设单位能力影响。引爆后从战场移除标记。",
+          "timing": [
+            "activation",
+            "movement",
+            "attack"
+          ]
+        },
+        {
+          "id": "charge",
+          "raw": "Charge",
+          "label": "冲锋",
+          "value": null,
+          "summary": "移动进入近战后，可仅用近战武器对该单位免费攻击1次。",
+          "full": "拥有冲锋关键词的单位在其激活期间进行移动行动， 使其与敌方模型进入底座接触来开始近战后， 它可以只使用近战武器对该单位进行一次免费攻击行动。",
+          "timing": [
+            "movement"
+          ]
+        },
+        {
+          "id": "arm",
+          "raw": "Arm 2",
+          "label": "安设2：炸药标记类型",
+          "value": "2",
+          "summary": "安设行动：将X个指定类型、己方颜色的炸药标记放在队长视线内且完全位于距离1内；须平放，不能叠放目标、优势或其他炸药标记。",
+          "full": "安设X：炸药标记类型 (ARM X: CHARGE TOKEN TYPE)\n如果单位配备有拥有安设X：炸药标记类型关键词的卡牌，那么该单位能够进行安设X行动。当单位进行安设X行动时，该单位放置X个指定类型且与控制它的玩家颜色相同的炸药（优势）标记，放置的位置完全在它的单位队长1内且在视线中。\n炸药标记不能叠放在任何目标、优势或其他炸药标记上，并且必须放置在与该表面完全齐平的平坦表面上。",
+          "timing": [
+            "activation"
+          ],
+          "ruleId": "arm",
+          "source": "local_supplement"
+        },
+        {
+          "id": "area_weapon",
+          "ruleId": "area_weapon",
+          "label": "区域武器",
+          "summary": "对黄色距离图标指定范围内、视线中的每个友方和敌方单位分别远程攻击，包括交战单位；此武器必须单独组成攻击池。",
+          "full": "带有黄色距离图标的武器是区域武器。当使用区域武器时，对在距离图标上的数字指定距离内且在视线中的每个友方和敌方单位分别进行一次攻击，即使该单位在交战中。区域武器发起的攻击总是远程攻击。\n区域武器永远不能出现在单位发起的攻击池中，并且必须总是攻击池中唯一的武器。",
+          "timing": [
+            "attack"
+          ],
+          "raw": "area weapon：Weapon",
+          "value": "Weapon",
+          "source": "local_supplement"
+        },
+        {
+          "id": "blast",
+          "ruleId": "blast",
+          "label": "爆炸",
+          "summary": "攻击时，目标单位掩体骰不取消命中。",
+          "full": "应用闪避和掩护步骤期间， 如果该攻击池包含爆炸关键词，则防御单位不能使用轻掩护和重掩护来取消攻击池产出的命中【命中图标】 结果。",
+          "timing": [
+            "defense"
+          ],
+          "raw": "爆炸",
+          "value": null
+        },
+        {
+          "id": "critical",
+          "ruleId": "critical",
+          "label": "暴击2",
+          "summary": "攻击的转换激增步骤中，将X个激增面改为暴击面。",
+          "full": "当单位攻击时， 如果暴击X关键词在攻击池中， 则在转化激增步骤期间， 它可以将最多X个【攻击激增图标】 结果转化为【暴击图标】 结果。",
+          "timing": [
+            "attack"
+          ],
+          "raw": "暴击2",
+          "value": "2"
+        }
+      ]
     },
     {
       "id": "62",
@@ -19025,7 +20862,21 @@
         "en": "R2-D2 & 1 Trooper Unit",
         "zh": "R2-D2及1 支步兵单位"
       },
-      "owner": "R2-D2"
+      "owner": "R2-D2",
+      "keywords": [
+        {
+          "id": "smoke",
+          "raw": "Smoke 1",
+          "label": "烟雾1",
+          "value": "1",
+          "summary": "烟雾行动：在队长视线内、完全位于距离1内放置X个烟雾标记；附近步兵掩护提升，烟雾在结束阶段移除。",
+          "full": "拥有烟雾X的单位可以执行烟雾X行动，将X个烟雾标记放在其单位队长视线内且完全位于距离1内的平面上，不得与目标、优势、炸药或其他烟雾标记重叠。步兵单位队长在烟雾标记距离1内时，确定掩护步骤的掩护数值提高1。攻击步兵单位队长在烟雾标记距离1内时，防御单位的掩护数值也提高1。掩护提升可累积，同一单位不会被同一烟雾标记影响超过一次。烟雾标记在结束阶段的移除标记步骤移除。",
+          "timing": [
+            "activation",
+            "defense"
+          ]
+        }
+      ]
     },
     {
       "id": "91",
@@ -19077,7 +20928,31 @@
         "en": "Maul & 1 Trooper Unit",
         "zh": "摩尔及1 支步兵单位"
       },
-      "owner": "Maul"
+      "owner": "Maul",
+      "keywords": [
+        {
+          "id": "infiltrate",
+          "raw": "Infiltrate",
+          "label": "渗透",
+          "value": null,
+          "summary": "激活开始时，若未部署，可将该单位完全置于友方领地内进行部署；",
+          "full": "当带有渗透关键词的单位开始其激活时， 如果其未部署， 其可以通过将该单位的单位队长放置到完全在友方领地内的位置来进行部署。 然后， 放置该单位中剩余的模型， 使它们与它们的单位队长保持凝聚， 并且完全在友方领地内。 当使用渗透放置模型时， 它们不能叠放在不可通过地形上。",
+          "timing": [
+            "activation"
+          ]
+        },
+        {
+          "id": "divulge",
+          "raw": "Divulge",
+          "label": "揭示",
+          "value": null,
+          "summary": "在卡牌指定阶段或步骤开始时展示并结算揭示效果；不算打出，步骤结束返回命令手牌，永久卡例外。",
+          "full": "带有揭示关键词的命令卡可在揭示所指定的阶段或步骤开始时展示，并结算揭示后的卡文。若提供多个选项，必须选择一个。如此展示不视为打出，且在揭示所处步骤结束时返回该玩家的命令手牌；带有永久的揭示卡不返回手牌，而是留在场上。玩家可揭示任意数量的命令卡。双方同时可揭示时蓝方优先。若放弃该次机会，该卡之后不能再揭示。具体时机以卡文指定内容为准。",
+          "timing": [
+            "setup"
+          ]
+        }
+      ]
     },
     {
       "id": "29",
@@ -19133,7 +21008,79 @@
         "en": "Boba Fett",
         "zh": "波巴·费特"
       },
-      "owner": "Boba Fett"
+      "owner": "Boba Fett",
+      "weapons": [
+        {
+          "name": "Z-6 Jetpack Rocket",
+          "minRange": 3,
+          "maxRange": 4,
+          "dice": {
+            "red": 3,
+            "black": 0,
+            "white": 0
+          },
+          "keywords": [
+            {
+              "name": "blast"
+            },
+            {
+              "name": "impact_x",
+              "xValue": "2"
+            }
+          ],
+          "zh": {
+            "name": "Z-6 Jetpack Rocket",
+            "keywords": [
+              {
+                "id": "blast",
+                "ruleId": "blast",
+                "label": "爆炸",
+                "summary": "攻击时，目标单位掩体骰不取消命中。",
+                "full": "应用闪避和掩护步骤期间， 如果该攻击池包含爆炸关键词，则防御单位不能使用轻掩护和重掩护来取消攻击池产出的命中【命中图标】 结果。",
+                "timing": [
+                  "defense"
+                ]
+              },
+              {
+                "id": "impact_x",
+                "ruleId": "impact",
+                "label": "冲击2",
+                "summary": "攻击装甲单位时，修正攻击骰可将最多X个命中改为暴击。",
+                "full": "当单位攻击时， 如果它的攻击池拥有冲击X关键词， 且防御单位拥有装甲X关键词， 则在修正攻击骰子步骤期间， 攻击单位能够将最多X个 【命中图标】 结果修正为【暴击图标】 结果。",
+                "timing": [
+                  "attack"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "keywords": [
+        {
+          "id": "blast",
+          "ruleId": "blast",
+          "label": "爆炸",
+          "summary": "攻击时，目标单位掩体骰不取消命中。",
+          "full": "应用闪避和掩护步骤期间， 如果该攻击池包含爆炸关键词，则防御单位不能使用轻掩护和重掩护来取消攻击池产出的命中【命中图标】 结果。",
+          "timing": [
+            "defense"
+          ],
+          "raw": "爆炸",
+          "value": null
+        },
+        {
+          "id": "impact",
+          "ruleId": "impact",
+          "label": "冲击2",
+          "summary": "攻击装甲单位时，修正攻击骰可将最多X个命中改为暴击。",
+          "full": "当单位攻击时， 如果它的攻击池拥有冲击X关键词， 且防御单位拥有装甲X关键词， 则在修正攻击骰子步骤期间， 攻击单位能够将最多X个 【命中图标】 结果修正为【暴击图标】 结果。",
+          "timing": [
+            "attack"
+          ],
+          "raw": "冲击2",
+          "value": "2"
+        }
+      ]
     },
     {
       "id": "24",
@@ -19227,7 +21174,42 @@
         "en": "3 Droid Trooper Units or AI Units",
         "zh": "3 支机器人步兵单位或AI单位"
       },
-      "owner": "Kalani or Kraken"
+      "owner": "Kalani or Kraken",
+      "keywords": [
+        {
+          "id": "reinforcements",
+          "raw": "Reinforcements",
+          "label": "增援",
+          "value": null,
+          "summary": "第一回合结束阶段开始时，可进行1次速度1移动。",
+          "full": "在第一轮的 结束阶段 开始时， 带有增援关键词的单位可以进行一次速度1移动。",
+          "timing": [
+            "end_round"
+          ]
+        },
+        {
+          "id": "divulge",
+          "raw": "Divulge",
+          "label": "揭示",
+          "value": null,
+          "summary": "在卡牌指定阶段或步骤开始时展示并结算揭示效果；不算打出，步骤结束返回命令手牌，永久卡例外。",
+          "full": "带有揭示关键词的命令卡可在揭示所指定的阶段或步骤开始时展示，并结算揭示后的卡文。若提供多个选项，必须选择一个。如此展示不视为打出，且在揭示所处步骤结束时返回该玩家的命令手牌；带有永久的揭示卡不返回手牌，而是留在场上。玩家可揭示任意数量的命令卡。双方同时可揭示时蓝方优先。若放弃该次机会，该卡之后不能再揭示。具体时机以卡文指定内容为准。",
+          "timing": [
+            "setup"
+          ]
+        },
+        {
+          "id": "ai",
+          "raw": "AI",
+          "label": "AI：行动",
+          "value": null,
+          "summary": "行动步骤开始时，若满足：无正面命令标记，受压制，载具损坏，载具损失至少半数模型，必须先执行1个以下行动；免费行动不算。若均不能执行，少1个行动机会。",
+          "full": "在带有AI关键词的单位的进行行动步骤开始时， 如果它没有正面朝上的命令标记且满足以下条件之一， 则其必须进行其AI关键词中的一个行动：• 该单位处于压制中但不处于恐慌中。• 该单位拥有载具损坏标记。• 该单位是载具单位且其开始游戏时的模型中有一半或更多被击败。如果带有AI关键词的单位不能进行其列出的任何行动， 则其在进行行动步骤期间少进行1个行动。",
+          "timing": [
+            "activation"
+          ]
+        }
+      ]
     },
     {
       "id": "63",
@@ -19279,7 +21261,31 @@
         "en": "R2-D2",
         "zh": "R2-D2"
       },
-      "owner": "R2-D2"
+      "owner": "R2-D2",
+      "keywords": [
+        {
+          "id": "disengage",
+          "raw": "Disengage",
+          "label": "脱离交战",
+          "value": null,
+          "summary": "仅与1个敌方单位交战时，可正常移动。",
+          "full": "带有脱离交战关键词的士兵单位与单个敌方单位处于交战中时， 它能够如常进行移动。",
+          "timing": [
+            "movement"
+          ]
+        },
+        {
+          "id": "jump",
+          "raw": "Jump 1",
+          "label": "跳跃1",
+          "value": "1",
+          "summary": "移动行动时可执行跳跃X，忽略困难地形、高度X或以下地形及模型；可越过不可通过地形，但不能在其上结束。",
+          "full": "拥有跳跃X关键词的单位在任何它能够进行移动行动的时候， 都能够进行跳跃X卡牌行动。 该单位如常进行移动行动， 并且能够忽略高度X或更低的地形， 或在其顶部结束移动。 用跳跃X行动进行移动期间， 单位忽略高度小于等于X的困难地形和其他模型的效果。 当使用跳跃X行动进行移动时， 单位可以将移动工具叠放在不可通过地形上， 但不能在叠放在不可通过地形上的情况下结束它的移动。 当单位进行跳跃X行动时， 从该单位的起始位置测量高度。",
+          "timing": [
+            "movement"
+          ]
+        }
+      ]
     },
     {
       "id": "64",
@@ -19427,7 +21433,20 @@
         "en": "Gar Saxon & 2 Trooper Units",
         "zh": "加尔·萨克森及2 支步兵单位"
       },
-      "owner": "Gar Saxon"
+      "owner": "Gar Saxon",
+      "keywords": [
+        {
+          "id": "outmaneuver",
+          "raw": "Outmaneuver",
+          "label": "超机动",
+          "value": null,
+          "summary": "可花费闪避标记取消暴击。",
+          "full": "应用闪避和掩护步骤期间， 带有超机动关键词的单位能够花费闪避标记来取消 【暴击图标】 结果。",
+          "timing": [
+            "defense"
+          ]
+        }
+      ]
     },
     {
       "id": "12",
@@ -19531,7 +21550,20 @@
         "en": "Cassian Andor & 1 Trooper Unit",
         "zh": "卡西安·安多及1 支步兵单位"
       },
-      "owner": "Cassian Andor"
+      "owner": "Cassian Andor",
+      "keywords": [
+        {
+          "id": "indomitable",
+          "raw": "Indomitable",
+          "label": "不屈",
+          "value": null,
+          "summary": "重振时掷红色防御骰。",
+          "full": "当带有不屈关键词的单位重振时， 它不投掷白色防御骰子，改为投掷红色防御骰子。",
+          "timing": [
+            "activation"
+          ]
+        }
+      ]
     },
     {
       "id": "258",
@@ -19635,7 +21667,31 @@
         "en": "2 Droid Trooper Units or AI Units",
         "zh": "2 支机器人步兵单位或AI单位"
       },
-      "owner": "Kalani or Kraken"
+      "owner": "Kalani or Kraken",
+      "keywords": [
+        {
+          "id": "impervious",
+          "raw": "Impervious",
+          "label": "难以穿刺",
+          "value": null,
+          "summary": "防御时，攻击池的穿刺X降低1（最低0）。",
+          "full": "当一个以带有难以穿刺关键词为目标的攻击池结算时， 在修正防御骰子步骤， 将攻击池中的穿刺X关键词数值降低1，最低为0。",
+          "timing": [
+            "defense"
+          ]
+        },
+        {
+          "id": "disengage",
+          "raw": "Disengage",
+          "label": "脱离交战",
+          "value": null,
+          "summary": "仅与1个敌方单位交战时，可正常移动。",
+          "full": "带有脱离交战关键词的士兵单位与单个敌方单位处于交战中时， 它能够如常进行移动。",
+          "timing": [
+            "movement"
+          ]
+        }
+      ]
     },
     {
       "id": "59",
@@ -19795,7 +21851,20 @@
         "en": "Maul",
         "zh": "摩尔"
       },
-      "owner": "Maul"
+      "owner": "Maul",
+      "keywords": [
+        {
+          "id": "disengage",
+          "raw": "Disengage",
+          "label": "脱离交战",
+          "value": null,
+          "summary": "仅与1个敌方单位交战时，可正常移动。",
+          "full": "带有脱离交战关键词的士兵单位与单个敌方单位处于交战中时， 它能够如常进行移动。",
+          "timing": [
+            "movement"
+          ]
+        }
+      ]
     },
     {
       "id": "85",
@@ -19847,7 +21916,20 @@
         "en": "Cad Bane",
         "zh": "凯德·贝恩"
       },
-      "owner": "Cad Bane"
+      "owner": "Cad Bane",
+      "keywords": [
+        {
+          "id": "uncanny_luck",
+          "raw": "Uncanny Luck 2",
+          "label": "运气出奇2",
+          "value": "2",
+          "summary": "防御时可同时重掷X个防御骰；每个骰子仅能重掷1次。",
+          "full": "带有运气出奇X关键词的单位防御时， 在重掷防御骰子步骤期间， 它可以重掷最多X个防御骰子。 任何使用运气出奇X关键词重掷的骰子必须同时重掷， 并且每个骰子不能重掷超过一次。",
+          "timing": [
+            "defense"
+          ]
+        }
+      ]
     },
     {
       "id": "77",
@@ -19947,7 +22029,42 @@
         "en": "Yoda",
         "zh": "尤达"
       },
-      "owner": "yoda"
+      "owner": "yoda",
+      "keywords": [
+        {
+          "id": "disengage",
+          "raw": "Disengage",
+          "label": "脱离交战",
+          "value": null,
+          "summary": "仅与1个敌方单位交战时，可正常移动。",
+          "full": "带有脱离交战关键词的士兵单位与单个敌方单位处于交战中时， 它能够如常进行移动。",
+          "timing": [
+            "movement"
+          ]
+        },
+        {
+          "id": "charge",
+          "raw": "Charge",
+          "label": "冲锋",
+          "value": null,
+          "summary": "移动进入近战后，可仅用近战武器对该单位免费攻击1次。",
+          "full": "拥有冲锋关键词的单位在其激活期间进行移动行动， 使其与敌方模型进入底座接触来开始近战后， 它可以只使用近战武器对该单位进行一次免费攻击行动。",
+          "timing": [
+            "movement"
+          ]
+        },
+        {
+          "id": "jump",
+          "raw": "Jump 1",
+          "label": "跳跃1",
+          "value": "1",
+          "summary": "移动行动时可执行跳跃X，忽略困难地形、高度X或以下地形及模型；可越过不可通过地形，但不能在其上结束。",
+          "full": "拥有跳跃X关键词的单位在任何它能够进行移动行动的时候， 都能够进行跳跃X卡牌行动。 该单位如常进行移动行动， 并且能够忽略高度X或更低的地形， 或在其顶部结束移动。 用跳跃X行动进行移动期间， 单位忽略高度小于等于X的困难地形和其他模型的效果。 当使用跳跃X行动进行移动时， 单位可以将移动工具叠放在不可通过地形上， 但不能在叠放在不可通过地形上的情况下结束它的移动。 当单位进行跳跃X行动时， 从该单位的起始位置测量高度。",
+          "timing": [
+            "movement"
+          ]
+        }
+      ]
     },
     {
       "id": "6351",
@@ -20165,7 +22282,21 @@
         "en": "Padmé Amidala",
         "zh": "帕德梅·阿米达拉"
       },
-      "owner": "Padmé Amidala"
+      "owner": "Padmé Amidala",
+      "keywords": [
+        {
+          "id": "danger_sense",
+          "raw": "Danger Sense 2",
+          "label": "危险感知2",
+          "value": "2",
+          "summary": "可保留最多X个压制标记；每有1个压制多掷1个防御骰，最多额外X个。",
+          "full": "当带有危险感知X关键词的单位将要移除它任意数量的压制标记时， 它可以选择其中最多X个标记不移除(可以选择0个)。带有危险感知X关键词的单位防御攻击时， 在投掷防御骰子步骤期间， 它每拥有一个压制标记， 就投掷额外1个防御骰子， 最多额外X个骰子。",
+          "timing": [
+            "end_round",
+            "defense"
+          ]
+        }
+      ]
     },
     {
       "id": "9",
@@ -20398,7 +22529,66 @@
         "en": "Padmé Amidala",
         "zh": "帕德梅·阿米达拉"
       },
-      "owner": "Padmé Amidala"
+      "owner": "Padmé Amidala",
+      "keywords": [
+        {
+          "id": "secret_mission",
+          "raw": "Secret Mission",
+          "label": "秘密任务",
+          "value": null,
+          "summary": "指挥阶段开始时，若完全在敌方领地内，获得1个秘密任务标记（每单位每局最多1个）；结束阶段仍在敌方领地内时，移除标记获得1胜利点。",
+          "full": "在每个 指挥阶段 开始时， 如果带有秘密任务关键词的单位完全在敌方领地内， 它获得1个秘密任务标记。 一个单位每场游戏永远只能获得1个秘密任务标记。在结束阶段期间计分胜利点时， 如果有玩家控制了1个或更多拥有秘密任务标记且在敌方领地内的单位， 则该玩家可以选择将这些单位的秘密任务标记从游戏中移除。 每有一个以此方式移除的秘密任务标记， 该玩家计分1点胜利点。",
+          "timing": [
+            "command",
+            "end_round"
+          ]
+        },
+        {
+          "id": "infiltrate",
+          "raw": "Infiltrate",
+          "label": "渗透",
+          "value": null,
+          "summary": "激活开始时，若未部署，可将该单位完全置于友方领地内进行部署；",
+          "full": "当带有渗透关键词的单位开始其激活时， 如果其未部署， 其可以通过将该单位的单位队长放置到完全在友方领地内的位置来进行部署。 然后， 放置该单位中剩余的模型， 使它们与它们的单位队长保持凝聚， 并且完全在友方领地内。 当使用渗透放置模型时， 它们不能叠放在不可通过地形上。",
+          "timing": [
+            "activation"
+          ]
+        },
+        {
+          "id": "permanent",
+          "raw": "Permanent",
+          "label": "永久",
+          "value": null,
+          "summary": "结束阶段不弃置此命令卡；只要仍在场，其效果持续。",
+          "full": "带有永久关键词的命令卡在结束阶段不会像普通命令卡一样从场上弃置。只要该卡仍在场上，其效果持续生效。",
+          "timing": [
+            "global",
+            "end_round"
+          ]
+        },
+        {
+          "id": "inspire",
+          "raw": "Inspire 1",
+          "label": "提振1",
+          "value": "1",
+          "summary": "激活结束时，距离2内其他友军移除合计最多X个压制标记。",
+          "full": "当带有提振X关键词的单位结束其激活时， 从在 2内的其他友方单位移除总计最多X个压制标记。",
+          "timing": [
+            "activation"
+          ]
+        },
+        {
+          "id": "divulge",
+          "raw": "Divulge",
+          "label": "揭示",
+          "value": null,
+          "summary": "在卡牌指定阶段或步骤开始时展示并结算揭示效果；不算打出，步骤结束返回命令手牌，永久卡例外。",
+          "full": "带有揭示关键词的命令卡可在揭示所指定的阶段或步骤开始时展示，并结算揭示后的卡文。若提供多个选项，必须选择一个。如此展示不视为打出，且在揭示所处步骤结束时返回该玩家的命令手牌；带有永久的揭示卡不返回手牌，而是留在场上。玩家可揭示任意数量的命令卡。双方同时可揭示时蓝方优先。若放弃该次机会，该卡之后不能再揭示。具体时机以卡文指定内容为准。",
+          "timing": [
+            "setup"
+          ]
+        }
+      ]
     },
     {
       "id": "61",
@@ -20476,7 +22666,20 @@
         "en": "2 {@icon.rank-support} or {@icon.rank-heavy} Units",
         "zh": "2 {@icon.rank-support}或{@icon.rank-heavy} 支单位"
       },
-      "owner": "Rebel Alliance"
+      "owner": "Rebel Alliance",
+      "keywords": [
+        {
+          "id": "inspire",
+          "raw": "Inspire 2",
+          "label": "提振2",
+          "value": "2",
+          "summary": "激活结束时，距离2内其他友军移除合计最多X个压制标记。",
+          "full": "当带有提振X关键词的单位结束其激活时， 从在 2内的其他友方单位移除总计最多X个压制标记。",
+          "timing": [
+            "activation"
+          ]
+        }
+      ]
     },
     {
       "id": "1901",
@@ -20577,7 +22780,31 @@
         "en": "Jyn Erso & 1 Trooper Unit",
         "zh": "琴·厄索及1 支步兵单位"
       },
-      "owner": "Jyn Erso"
+      "owner": "Jyn Erso",
+      "keywords": [
+        {
+          "id": "teamwork",
+          "raw": "Teamwork",
+          "label": "团队合作：单位名称",
+          "value": null,
+          "summary": "在以下单位距离2内时，一方获得瞄准或闪避标记后，另一方获得1个同类型标记。",
+          "full": "当带有团队合作关键词的单位， 在拥有由团队合作关键词指定的单位名称的友方单位 2内时， 如果这两个单位中的任何一个获得1个或更多瞄准标记或1个或更多闪避标记，则另一个单位获得1个相同类型的标记。",
+          "timing": [
+            "global"
+          ]
+        },
+        {
+          "id": "inspire",
+          "raw": "Inspire 2",
+          "label": "提振2",
+          "value": "2",
+          "summary": "激活结束时，距离2内其他友军移除合计最多X个压制标记。",
+          "full": "当带有提振X关键词的单位结束其激活时， 从在 2内的其他友方单位移除总计最多X个压制标记。",
+          "timing": [
+            "activation"
+          ]
+        }
+      ]
     },
     {
       "id": "98",
@@ -20604,7 +22831,92 @@
         "en": "1 {@icon.rank-commander} OR 1 {@icon.rank-support} Unit",
         "zh": "1 {@icon.rank-commander}或1 {@icon.rank-support} 支单位"
       },
-      "owner": "Galactic Republic"
+      "owner": "Galactic Republic",
+      "weapons": [
+        {
+          "name": "Air Support",
+          "minRange": 4,
+          "maxRange": 6,
+          "dice": {
+            "red": 1,
+            "black": 2,
+            "white": 0
+          },
+          "keywords": [
+            {
+              "name": "beam_x",
+              "xValue": "2"
+            },
+            {
+              "name": "immune",
+              "colonValue": "Deflect"
+            }
+          ],
+          "zh": {
+            "name": "Air Support",
+            "keywords": [
+              {
+                "id": "beam_x",
+                "ruleId": "beam",
+                "label": "光束2",
+                "summary": "光束武器可额外攻击最多X个不同目标；新目标须在上一个目标距离1内且在你视线中，可超射程。不能与快枪手并用。",
+                "full": "在声明额外防御者步骤期间， 如果带有光束X关键词的武器在单位的攻击池中， 则该单位也可以声明最多X次额外的攻击， 这些攻击仅使用该带有光束X关键词的武器， 不论该武器是否已经添加到了一个攻击池中。 这些额外攻击不会产生更多的攻击。每次额外攻击必须针对不同的防御单位， 该防御单位必须在最后声明的防御单位 1内。 这些额外的攻击中， 防御单位必须在攻击单位的视线中， 但是可以不在带有光束X关键词的武器的最大距离内。单位不能在同一次攻击期间同时使用光束X和快枪手关键词。",
+                "timing": [
+                  "attack"
+                ]
+              },
+              {
+                "id": "immune",
+                "ruleId": "immune_deflect",
+                "label": "免疫：反弹",
+                "summary": "使用此攻击池攻击时，不会因反弹受到伤害。",
+                "full": "当单位用拥有免疫：反弹的攻击池攻击时，它不能承受来自反弹关键词的伤害。",
+                "timing": [
+                  "attack"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "keywords": [
+        {
+          "id": "field_commander",
+          "raw": "Field Commander",
+          "label": "战地指挥官",
+          "value": null,
+          "summary": "组建军队时可忽略最低指挥官要求；设置时若无指挥官，1个本单位获得指挥官标记。揭示非指挥官或特工专属命令卡时，可指定其为指挥官并下令；其3内同阵营或联盟友军检定恐慌时可将勇气视为2。",
+          "full": "组建军队期间，包括了带有战地指挥官关键词的单位的军队可以忽略最小【指挥官军阶图标】军阶要求。如果玩家的军队在设置期间未包含【指挥官军阶图标】单位，但包含了带有战地指挥官关键词的单位，则该单位获得一个指挥官标记。当玩家揭示非【指挥官军阶图标】且非【特工军阶图标】的专属指挥卡牌时，其可以指名一个带有战地指挥官关键词的友方单位成为指挥官并下达命令。带有战地指挥官关键词的单位不是【指挥官军阶图标】，只是在指挥阶段期间，结算用指挥卡牌下达命令时才算作【指挥官军阶图标】。带有战地指挥官关键词的单位在组建指挥手牌时视为其阵营或联盟的【指挥官军阶图标】。此外，如果一个友方单位在带有指挥官标记的单位3内，并且两个单位有相同的阵营或联盟，则该友方单位可以将带有战地指挥官关键词的单位视为【图标】为2的【指挥官军阶图标】单位。",
+          "timing": [
+            "global",
+            "command"
+          ]
+        },
+        {
+          "id": "beam",
+          "ruleId": "beam",
+          "label": "光束2",
+          "summary": "光束武器可额外攻击最多X个不同目标；新目标须在上一个目标距离1内且在你视线中，可超射程。不能与快枪手并用。",
+          "full": "在声明额外防御者步骤期间， 如果带有光束X关键词的武器在单位的攻击池中， 则该单位也可以声明最多X次额外的攻击， 这些攻击仅使用该带有光束X关键词的武器， 不论该武器是否已经添加到了一个攻击池中。 这些额外攻击不会产生更多的攻击。每次额外攻击必须针对不同的防御单位， 该防御单位必须在最后声明的防御单位 1内。 这些额外的攻击中， 防御单位必须在攻击单位的视线中， 但是可以不在带有光束X关键词的武器的最大距离内。单位不能在同一次攻击期间同时使用光束X和快枪手关键词。",
+          "timing": [
+            "attack"
+          ],
+          "raw": "光束2",
+          "value": "2"
+        },
+        {
+          "id": "immune_deflect",
+          "ruleId": "immune_deflect",
+          "label": "免疫：反弹",
+          "summary": "使用此攻击池攻击时，不会因反弹受到伤害。",
+          "full": "当单位用拥有免疫：反弹的攻击池攻击时，它不能承受来自反弹关键词的伤害。",
+          "timing": [
+            "attack"
+          ],
+          "raw": "免疫：反弹",
+          "value": null
+        }
+      ]
     },
     {
       "id": "27",
@@ -20784,7 +23096,42 @@
         "en": "Anakin Skywalker",
         "zh": "阿纳金·天行者"
       },
-      "owner": "Anakin Skywalker"
+      "owner": "Anakin Skywalker",
+      "keywords": [
+        {
+          "id": "prepared_position",
+          "raw": "Prepared Position",
+          "label": "预设阵地",
+          "value": null,
+          "summary": "游戏开始的预设阵地阶段，将单位完全置于友方领地内并获得1个闪避标记；",
+          "full": "在设置的在 预设阵地 部署步骤期间， 带有预设阵地 关键词的单位可以通过将该单位的单位队长放置到完全在友方领地内的位置来进行部署。 然后， 放置该单位中剩余的模型，使它们与它们的单位队长保持凝聚， 并且在友方领地内。 然后该单位获得1个闪避标记。 当使用预设阵地 放置模型时，它们不能叠放在不可通过地形上。",
+          "timing": [
+            "deployment"
+          ]
+        },
+        {
+          "id": "divulge",
+          "raw": "Divulge",
+          "label": "揭示",
+          "value": null,
+          "summary": "在卡牌指定阶段或步骤开始时展示并结算揭示效果；不算打出，步骤结束返回命令手牌，永久卡例外。",
+          "full": "带有揭示关键词的命令卡可在揭示所指定的阶段或步骤开始时展示，并结算揭示后的卡文。若提供多个选项，必须选择一个。如此展示不视为打出，且在揭示所处步骤结束时返回该玩家的命令手牌；带有永久的揭示卡不返回手牌，而是留在场上。玩家可揭示任意数量的命令卡。双方同时可揭示时蓝方优先。若放弃该次机会，该卡之后不能再揭示。具体时机以卡文指定内容为准。",
+          "timing": [
+            "setup"
+          ]
+        },
+        {
+          "id": "jump",
+          "raw": "Jump 2",
+          "label": "跳跃2",
+          "value": "2",
+          "summary": "移动行动时可执行跳跃X，忽略困难地形、高度X或以下地形及模型；可越过不可通过地形，但不能在其上结束。",
+          "full": "拥有跳跃X关键词的单位在任何它能够进行移动行动的时候， 都能够进行跳跃X卡牌行动。 该单位如常进行移动行动， 并且能够忽略高度X或更低的地形， 或在其顶部结束移动。 用跳跃X行动进行移动期间， 单位忽略高度小于等于X的困难地形和其他模型的效果。 当使用跳跃X行动进行移动时， 单位可以将移动工具叠放在不可通过地形上， 但不能在叠放在不可通过地形上的情况下结束它的移动。 当单位进行跳跃X行动时， 从该单位的起始位置测量高度。",
+          "timing": [
+            "movement"
+          ]
+        }
+      ]
     },
     {
       "id": "96",
@@ -20883,7 +23230,31 @@
         "en": "Iden Versio & 2 Trooper Units",
         "zh": "艾登·韦尔西奥及2 支步兵单位"
       },
-      "owner": "Iden Versio"
+      "owner": "Iden Versio",
+      "keywords": [
+        {
+          "id": "tactical",
+          "raw": "Tactical 1",
+          "label": "战术1",
+          "value": "1",
+          "summary": "移动行动后，获得X个瞄准标记。",
+          "full": "当带有战术X关键词的单位进行标准移动(作为行动或免费行动的一部分)时， 在效果结算后， 它获得X个瞄准标记。",
+          "timing": [
+            "movement"
+          ]
+        },
+        {
+          "id": "steady",
+          "raw": "Steady",
+          "label": "稳步",
+          "value": null,
+          "summary": "激活期间移动后，可仅使用远程武器免费攻击1次。",
+          "full": "拥有稳步关键词的单位在它的激活期间进行移动行动后，它可以进行一次免费攻击行动。 在此次攻击行动期间， 只有远程武器能够添加到攻击池中。",
+          "timing": [
+            "movement"
+          ]
+        }
+      ]
     },
     {
       "id": "95",
@@ -20910,7 +23281,92 @@
         "en": "1 {@icon.rank-commander} or {@icon.rank-heavy} Unit",
         "zh": "1 {@icon.rank-commander}或{@icon.rank-heavy} 支单位"
       },
-      "owner": "Separatist Alliance"
+      "owner": "Separatist Alliance",
+      "weapons": [
+        {
+          "name": "Orbital Bombardment",
+          "minRange": 4,
+          "maxRange": 6,
+          "dice": {
+            "red": 2,
+            "black": 2,
+            "white": 0
+          },
+          "keywords": [
+            {
+              "name": "immune",
+              "colon": true,
+              "colonValue": "Deflect"
+            },
+            {
+              "name": "suppressive"
+            }
+          ],
+          "zh": {
+            "name": "Orbital Bombardment",
+            "keywords": [
+              {
+                "id": "immune",
+                "ruleId": "immune_deflect",
+                "label": "免疫：反弹",
+                "summary": "使用此攻击池攻击时，不会因反弹受到伤害。",
+                "full": "当单位用拥有免疫：反弹的攻击池攻击时，它不能承受来自反弹关键词的伤害。",
+                "timing": [
+                  "attack"
+                ]
+              },
+              {
+                "id": "suppressive",
+                "ruleId": "suppressive",
+                "label": "压制",
+                "summary": "攻击时，防御方额外获得1个压制标记。",
+                "full": "当单位防御拥有压制的攻击池时， 在分配压制标记给防御者步骤期间， 它获得额外1个压制标记。",
+                "timing": [
+                  "attack"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "keywords": [
+        {
+          "id": "field_commander",
+          "raw": "Field Commander",
+          "label": "战地指挥官",
+          "value": null,
+          "summary": "组建军队时可忽略最低指挥官要求；设置时若无指挥官，1个本单位获得指挥官标记。揭示非指挥官或特工专属命令卡时，可指定其为指挥官并下令；其3内同阵营或联盟友军检定恐慌时可将勇气视为2。",
+          "full": "组建军队期间，包括了带有战地指挥官关键词的单位的军队可以忽略最小【指挥官军阶图标】军阶要求。如果玩家的军队在设置期间未包含【指挥官军阶图标】单位，但包含了带有战地指挥官关键词的单位，则该单位获得一个指挥官标记。当玩家揭示非【指挥官军阶图标】且非【特工军阶图标】的专属指挥卡牌时，其可以指名一个带有战地指挥官关键词的友方单位成为指挥官并下达命令。带有战地指挥官关键词的单位不是【指挥官军阶图标】，只是在指挥阶段期间，结算用指挥卡牌下达命令时才算作【指挥官军阶图标】。带有战地指挥官关键词的单位在组建指挥手牌时视为其阵营或联盟的【指挥官军阶图标】。此外，如果一个友方单位在带有指挥官标记的单位3内，并且两个单位有相同的阵营或联盟，则该友方单位可以将带有战地指挥官关键词的单位视为【图标】为2的【指挥官军阶图标】单位。",
+          "timing": [
+            "global",
+            "command"
+          ]
+        },
+        {
+          "id": "immune_deflect",
+          "ruleId": "immune_deflect",
+          "label": "免疫：反弹",
+          "summary": "使用此攻击池攻击时，不会因反弹受到伤害。",
+          "full": "当单位用拥有免疫：反弹的攻击池攻击时，它不能承受来自反弹关键词的伤害。",
+          "timing": [
+            "attack"
+          ],
+          "raw": "免疫：反弹",
+          "value": null
+        },
+        {
+          "id": "suppressive",
+          "ruleId": "suppressive",
+          "label": "压制",
+          "summary": "攻击时，防御方额外获得1个压制标记。",
+          "full": "当单位防御拥有压制的攻击池时， 在分配压制标记给防御者步骤期间， 它获得额外1个压制标记。",
+          "timing": [
+            "attack"
+          ],
+          "raw": "压制",
+          "value": null
+        }
+      ]
     },
     {
       "id": "44",
@@ -21416,7 +23872,32 @@
         "en": "3 {@icon.rank-special-forces} OR {@icon.rank-corps} Units",
         "zh": "3 {@icon.rank-special-forces}或{@icon.rank-corps} 支单位"
       },
-      "owner": "501st Legion"
+      "owner": "501st Legion",
+      "keywords": [
+        {
+          "id": "indomitable",
+          "raw": "Indomitable",
+          "label": "不屈",
+          "value": null,
+          "summary": "重振时掷红色防御骰。",
+          "full": "当带有不屈关键词的单位重振时， 它不投掷白色防御骰子，改为投掷红色防御骰子。",
+          "timing": [
+            "activation"
+          ]
+        },
+        {
+          "id": "permanent",
+          "raw": "Permanent",
+          "label": "永久",
+          "value": null,
+          "summary": "结束阶段不弃置此命令卡；只要仍在场，其效果持续。",
+          "full": "带有永久关键词的命令卡在结束阶段不会像普通命令卡一样从场上弃置。只要该卡仍在场上，其效果持续生效。",
+          "timing": [
+            "global",
+            "end_round"
+          ]
+        }
+      ]
     },
     {
       "id": "32",
@@ -21506,7 +23987,89 @@
         "en": "General Grievous",
         "zh": "格里弗斯将军"
       },
-      "owner": "General Grievous"
+      "owner": "General Grievous",
+      "weapons": [
+        {
+          "name": "Trophy Lightsabers",
+          "minRange": 0,
+          "maxRange": 1,
+          "dice": {
+            "red": 1,
+            "black": 2,
+            "white": 1
+          },
+          "keywords": [
+            {
+              "name": "suppressive"
+            },
+            {
+              "name": "versatile"
+            }
+          ],
+          "zh": {
+            "name": "战利品光剑",
+            "keywords": [
+              {
+                "id": "suppressive",
+                "ruleId": "suppressive",
+                "label": "压制",
+                "summary": "攻击时，防御方额外获得1个压制标记。",
+                "full": "当单位防御拥有压制的攻击池时， 在分配压制标记给防御者步骤期间， 它获得额外1个压制标记。",
+                "timing": [
+                  "attack"
+                ]
+              },
+              {
+                "id": "versatile",
+                "ruleId": "versatile",
+                "label": "多用途",
+                "summary": "交战中仍可用此武器远程攻击；",
+                "full": "即使单位处于交战中， 也能够用拥有多用途关键词的武器进行远程攻击。 如果带有多用途关键词的武器既是远程武器又是近战武器， 那么它能够用来进行远程攻击或近战攻击。",
+                "timing": [
+                  "attack"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "keywords": [
+        {
+          "id": "disengage",
+          "raw": "Disengage",
+          "label": "脱离交战",
+          "value": null,
+          "summary": "仅与1个敌方单位交战时，可正常移动。",
+          "full": "带有脱离交战关键词的士兵单位与单个敌方单位处于交战中时， 它能够如常进行移动。",
+          "timing": [
+            "movement"
+          ]
+        },
+        {
+          "id": "suppressive",
+          "ruleId": "suppressive",
+          "label": "压制",
+          "summary": "攻击时，防御方额外获得1个压制标记。",
+          "full": "当单位防御拥有压制的攻击池时， 在分配压制标记给防御者步骤期间， 它获得额外1个压制标记。",
+          "timing": [
+            "attack"
+          ],
+          "raw": "压制",
+          "value": null
+        },
+        {
+          "id": "versatile",
+          "ruleId": "versatile",
+          "label": "多用途",
+          "summary": "交战中仍可用此武器远程攻击；",
+          "full": "即使单位处于交战中， 也能够用拥有多用途关键词的武器进行远程攻击。 如果带有多用途关键词的武器既是远程武器又是近战武器， 那么它能够用来进行远程攻击或近战攻击。",
+          "timing": [
+            "attack"
+          ],
+          "raw": "多用途",
+          "value": null
+        }
+      ]
     },
     {
       "id": "46",
@@ -21558,7 +24121,145 @@
         "en": "Bossk",
         "zh": "博斯克"
       },
-      "owner": "Bossk"
+      "owner": "Bossk",
+      "weapons": [
+        {
+          "name": "Dioxis Charge",
+          "minRange": -2,
+          "dice": {
+            "red": 1,
+            "black": 1,
+            "white": 0
+          },
+          "keywords": [
+            {
+              "name": "blast"
+            },
+            {
+              "name": "critical_x",
+              "xValue": "2"
+            },
+            {
+              "name": "area_weapon",
+              "xValue": "Weapon"
+            }
+          ],
+          "maxRange": 1,
+          "zh": {
+            "name": "Dioxis Charge",
+            "keywords": [
+              {
+                "id": "blast",
+                "ruleId": "blast",
+                "label": "爆炸",
+                "summary": "攻击时，目标单位掩体骰不取消命中。",
+                "full": "应用闪避和掩护步骤期间， 如果该攻击池包含爆炸关键词，则防御单位不能使用轻掩护和重掩护来取消攻击池产出的命中【命中图标】 结果。",
+                "timing": [
+                  "defense"
+                ]
+              },
+              {
+                "id": "critical_x",
+                "ruleId": "critical",
+                "label": "暴击2",
+                "summary": "攻击的转换激增步骤中，将X个激增面改为暴击面。",
+                "full": "当单位攻击时， 如果暴击X关键词在攻击池中， 则在转化激增步骤期间， 它可以将最多X个【攻击激增图标】 结果转化为【暴击图标】 结果。",
+                "timing": [
+                  "attack"
+                ]
+              },
+              {
+                "id": "area_weapon",
+                "ruleId": "area_weapon",
+                "label": "区域武器",
+                "summary": "对黄色距离图标指定范围内、视线中的每个友方和敌方单位分别远程攻击，包括交战单位；此武器必须单独组成攻击池。",
+                "full": "带有黄色距离图标的武器是区域武器。当使用区域武器时，对在距离图标上的数字指定距离内且在视线中的每个友方和敌方单位分别进行一次攻击，即使该单位在交战中。区域武器发起的攻击总是远程攻击。\n区域武器永远不能出现在单位发起的攻击池中，并且必须总是攻击池中唯一的武器。",
+                "timing": [
+                  "attack"
+                ],
+                "source": "local_supplement"
+              }
+            ]
+          }
+        }
+      ],
+      "keywords": [
+        {
+          "id": "permanent",
+          "raw": "Permanent",
+          "label": "永久",
+          "value": null,
+          "summary": "结束阶段不弃置此命令卡；只要仍在场，其效果持续。",
+          "full": "带有永久关键词的命令卡在结束阶段不会像普通命令卡一样从场上弃置。只要该卡仍在场上，其效果持续生效。",
+          "timing": [
+            "global",
+            "end_round"
+          ]
+        },
+        {
+          "id": "detonate",
+          "raw": "Detonate 1",
+          "label": "引爆1：炸药类型",
+          "value": "1",
+          "summary": "单位攻击、移动或行动后，可引爆最多X个指定类型的友方炸药；对范围和视线内各单位分别攻击，然后移除炸药。",
+          "full": "单位攻击、移动或执行行动后，拥有引爆X武器的各单位可引爆最多X个指定类型的友方炸药标记。引爆先于其他在移动或行动后结算的效果，但待命标记可以在引爆前花费。双方均可引爆时，由未操控刚执行攻击、移动或行动单位的玩家优先。引爆时，使用标记对应卡牌的区域武器、激增转换和武器词条，对炸药视线和射程内每支友方及敌方单位分别攻击。该炸药标记视为攻击单位，不能花费瞄准或修正攻击骰，不受布设单位能力影响。引爆后从战场移除标记。",
+          "timing": [
+            "activation",
+            "movement",
+            "attack"
+          ]
+        },
+        {
+          "id": "arm",
+          "raw": "Arm 1",
+          "label": "安设1：炸药标记类型",
+          "value": "1",
+          "summary": "安设行动：将X个指定类型、己方颜色的炸药标记放在队长视线内且完全位于距离1内；须平放，不能叠放目标、优势或其他炸药标记。",
+          "full": "安设X：炸药标记类型 (ARM X: CHARGE TOKEN TYPE)\n如果单位配备有拥有安设X：炸药标记类型关键词的卡牌，那么该单位能够进行安设X行动。当单位进行安设X行动时，该单位放置X个指定类型且与控制它的玩家颜色相同的炸药（优势）标记，放置的位置完全在它的单位队长1内且在视线中。\n炸药标记不能叠放在任何目标、优势或其他炸药标记上，并且必须放置在与该表面完全齐平的平坦表面上。",
+          "timing": [
+            "activation"
+          ],
+          "ruleId": "arm",
+          "source": "local_supplement"
+        },
+        {
+          "id": "blast",
+          "ruleId": "blast",
+          "label": "爆炸",
+          "summary": "攻击时，目标单位掩体骰不取消命中。",
+          "full": "应用闪避和掩护步骤期间， 如果该攻击池包含爆炸关键词，则防御单位不能使用轻掩护和重掩护来取消攻击池产出的命中【命中图标】 结果。",
+          "timing": [
+            "defense"
+          ],
+          "raw": "爆炸",
+          "value": null
+        },
+        {
+          "id": "critical",
+          "ruleId": "critical",
+          "label": "暴击2",
+          "summary": "攻击的转换激增步骤中，将X个激增面改为暴击面。",
+          "full": "当单位攻击时， 如果暴击X关键词在攻击池中， 则在转化激增步骤期间， 它可以将最多X个【攻击激增图标】 结果转化为【暴击图标】 结果。",
+          "timing": [
+            "attack"
+          ],
+          "raw": "暴击2",
+          "value": "2"
+        },
+        {
+          "id": "area_weapon",
+          "ruleId": "area_weapon",
+          "label": "区域武器",
+          "summary": "对黄色距离图标指定范围内、视线中的每个友方和敌方单位分别远程攻击，包括交战单位；此武器必须单独组成攻击池。",
+          "full": "带有黄色距离图标的武器是区域武器。当使用区域武器时，对在距离图标上的数字指定距离内且在视线中的每个友方和敌方单位分别进行一次攻击，即使该单位在交战中。区域武器发起的攻击总是远程攻击。\n区域武器永远不能出现在单位发起的攻击池中，并且必须总是攻击池中唯一的武器。",
+          "timing": [
+            "attack"
+          ],
+          "raw": "area weapon：Weapon",
+          "value": "Weapon",
+          "source": "local_supplement"
+        }
+      ]
     },
     {
       "id": "2276",
@@ -21582,7 +24283,157 @@
         "en": "2 Units",
         "zh": "2 支单位"
       },
-      "owner": "Blizzard Force"
+      "owner": "Blizzard Force",
+      "weapons": [
+        {
+          "name": "Overwhelming Barrage",
+          "minRange": 4,
+          "maxRange": 6,
+          "dice": {
+            "red": 0,
+            "black": 4,
+            "white": 0
+          },
+          "keywords": [
+            {
+              "name": "beam_x",
+              "xValue": "1"
+            },
+            {
+              "name": "blast"
+            },
+            {
+              "name": "critical_x",
+              "xValue": "3"
+            },
+            {
+              "name": "immune",
+              "colon": true,
+              "colonValue": "Deflect"
+            },
+            {
+              "name": "suppressive"
+            }
+          ],
+          "zh": {
+            "name": "Overwhelming 弹幕发射器",
+            "keywords": [
+              {
+                "id": "beam_x",
+                "ruleId": "beam",
+                "label": "光束1",
+                "summary": "光束武器可额外攻击最多X个不同目标；新目标须在上一个目标距离1内且在你视线中，可超射程。不能与快枪手并用。",
+                "full": "在声明额外防御者步骤期间， 如果带有光束X关键词的武器在单位的攻击池中， 则该单位也可以声明最多X次额外的攻击， 这些攻击仅使用该带有光束X关键词的武器， 不论该武器是否已经添加到了一个攻击池中。 这些额外攻击不会产生更多的攻击。每次额外攻击必须针对不同的防御单位， 该防御单位必须在最后声明的防御单位 1内。 这些额外的攻击中， 防御单位必须在攻击单位的视线中， 但是可以不在带有光束X关键词的武器的最大距离内。单位不能在同一次攻击期间同时使用光束X和快枪手关键词。",
+                "timing": [
+                  "attack"
+                ]
+              },
+              {
+                "id": "blast",
+                "ruleId": "blast",
+                "label": "爆炸",
+                "summary": "攻击时，目标单位掩体骰不取消命中。",
+                "full": "应用闪避和掩护步骤期间， 如果该攻击池包含爆炸关键词，则防御单位不能使用轻掩护和重掩护来取消攻击池产出的命中【命中图标】 结果。",
+                "timing": [
+                  "defense"
+                ]
+              },
+              {
+                "id": "critical_x",
+                "ruleId": "critical",
+                "label": "暴击3",
+                "summary": "攻击的转换激增步骤中，将X个激增面改为暴击面。",
+                "full": "当单位攻击时， 如果暴击X关键词在攻击池中， 则在转化激增步骤期间， 它可以将最多X个【攻击激增图标】 结果转化为【暴击图标】 结果。",
+                "timing": [
+                  "attack"
+                ]
+              },
+              {
+                "id": "immune",
+                "ruleId": "immune_deflect",
+                "label": "免疫：反弹",
+                "summary": "使用此攻击池攻击时，不会因反弹受到伤害。",
+                "full": "当单位用拥有免疫：反弹的攻击池攻击时，它不能承受来自反弹关键词的伤害。",
+                "timing": [
+                  "attack"
+                ]
+              },
+              {
+                "id": "suppressive",
+                "ruleId": "suppressive",
+                "label": "压制",
+                "summary": "攻击时，防御方额外获得1个压制标记。",
+                "full": "当单位防御拥有压制的攻击池时， 在分配压制标记给防御者步骤期间， 它获得额外1个压制标记。",
+                "timing": [
+                  "attack"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "keywords": [
+        {
+          "id": "beam",
+          "ruleId": "beam",
+          "label": "光束1",
+          "summary": "光束武器可额外攻击最多X个不同目标；新目标须在上一个目标距离1内且在你视线中，可超射程。不能与快枪手并用。",
+          "full": "在声明额外防御者步骤期间， 如果带有光束X关键词的武器在单位的攻击池中， 则该单位也可以声明最多X次额外的攻击， 这些攻击仅使用该带有光束X关键词的武器， 不论该武器是否已经添加到了一个攻击池中。 这些额外攻击不会产生更多的攻击。每次额外攻击必须针对不同的防御单位， 该防御单位必须在最后声明的防御单位 1内。 这些额外的攻击中， 防御单位必须在攻击单位的视线中， 但是可以不在带有光束X关键词的武器的最大距离内。单位不能在同一次攻击期间同时使用光束X和快枪手关键词。",
+          "timing": [
+            "attack"
+          ],
+          "raw": "光束1",
+          "value": "1"
+        },
+        {
+          "id": "blast",
+          "ruleId": "blast",
+          "label": "爆炸",
+          "summary": "攻击时，目标单位掩体骰不取消命中。",
+          "full": "应用闪避和掩护步骤期间， 如果该攻击池包含爆炸关键词，则防御单位不能使用轻掩护和重掩护来取消攻击池产出的命中【命中图标】 结果。",
+          "timing": [
+            "defense"
+          ],
+          "raw": "爆炸",
+          "value": null
+        },
+        {
+          "id": "critical",
+          "ruleId": "critical",
+          "label": "暴击3",
+          "summary": "攻击的转换激增步骤中，将X个激增面改为暴击面。",
+          "full": "当单位攻击时， 如果暴击X关键词在攻击池中， 则在转化激增步骤期间， 它可以将最多X个【攻击激增图标】 结果转化为【暴击图标】 结果。",
+          "timing": [
+            "attack"
+          ],
+          "raw": "暴击3",
+          "value": "3"
+        },
+        {
+          "id": "immune_deflect",
+          "ruleId": "immune_deflect",
+          "label": "免疫：反弹",
+          "summary": "使用此攻击池攻击时，不会因反弹受到伤害。",
+          "full": "当单位用拥有免疫：反弹的攻击池攻击时，它不能承受来自反弹关键词的伤害。",
+          "timing": [
+            "attack"
+          ],
+          "raw": "免疫：反弹",
+          "value": null
+        },
+        {
+          "id": "suppressive",
+          "ruleId": "suppressive",
+          "label": "压制",
+          "summary": "攻击时，防御方额外获得1个压制标记。",
+          "full": "当单位防御拥有压制的攻击池时， 在分配压制标记给防御者步骤期间， 它获得额外1个压制标记。",
+          "timing": [
+            "attack"
+          ],
+          "raw": "压制",
+          "value": null
+        }
+      ]
     },
     {
       "id": "26",
@@ -21835,7 +24686,31 @@
         "en": "3 Units",
         "zh": "3 支单位"
       },
-      "owner": "Blizzard Force"
+      "owner": "Blizzard Force",
+      "keywords": [
+        {
+          "id": "suppressive",
+          "raw": "Suppressive",
+          "label": "压制",
+          "value": null,
+          "summary": "攻击时，防御方额外获得1个压制标记。",
+          "full": "当单位防御拥有压制的攻击池时， 在分配压制标记给防御者步骤期间， 它获得额外1个压制标记。",
+          "timing": [
+            "attack"
+          ]
+        },
+        {
+          "id": "spur",
+          "raw": "Spur",
+          "label": "鞭策",
+          "value": null,
+          "summary": "移动时可获得1个压制标记，使本次速度+1（最高3）；",
+          "full": "当带有鞭策关键词的单位进行移动时， 它可以获得1个压制标记来使它该次移动期间速度增加1， 最多到3。 当单位进行移动时， 在应用减少该单位速度的任何效果之前， 先应用增加该单位速度的任何效果。例如， 通常速度为1但有1个限制移动 标记的单位， 能够使用鞭策关键词来进行总速度为1的移动。 然而， 通常速度为1但有2个 限制移动 标记的单位， 不能使用鞭策关键词来进行移动， 因为其速度将仍然为0。",
+          "timing": [
+            "movement"
+          ]
+        }
+      ]
     },
     {
       "id": "2271",
@@ -21911,7 +24786,31 @@
         "en": "IG-11 or IG-88",
         "zh": "IG-11或IG-88"
       },
-      "owner": "IG-11 or IG-88"
+      "owner": "IG-11 or IG-88",
+      "keywords": [
+        {
+          "id": "demoralize",
+          "raw": "Demoralize 3",
+          "label": "震慑3",
+          "value": "3",
+          "summary": "重振后，向距离2内敌军合计添加最多X个压制标记。",
+          "full": "在带有震慑X关键词的单位重振后， 向在 2内的敌方单位添加总计最多X个压制标记。",
+          "timing": [
+            "activation"
+          ]
+        },
+        {
+          "id": "steady",
+          "raw": "Steady",
+          "label": "稳步",
+          "value": null,
+          "summary": "激活期间移动后，可仅使用远程武器免费攻击1次。",
+          "full": "拥有稳步关键词的单位在它的激活期间进行移动行动后，它可以进行一次免费攻击行动。 在此次攻击行动期间， 只有远程武器能够添加到攻击池中。",
+          "timing": [
+            "movement"
+          ]
+        }
+      ]
     },
     {
       "id": "3086",
@@ -21959,7 +24858,20 @@
         "en": "IG-11",
         "zh": "IG-11"
       },
-      "owner": "IG-11"
+      "owner": "IG-11",
+      "keywords": [
+        {
+          "id": "self_destruct",
+          "raw": "Self-Destruct 4",
+          "label": "自毁4",
+          "value": "4",
+          "summary": "仅在伤害达到血量（向上取整）时可用。对距离1内且视线中的每个单位各掷X个黑色攻击骰：每个激增或暴击造成1点伤害，每个命中给予1个压制标记；然后此单位被击败。",
+          "full": "仅当单位拥有的伤害标记数量大于等于它伤害阈值的一半(向上取整)时， 此单位才可以进行自毁X卡牌行动。 每有一个在 1内且在视线中的单位， 就为它投掷X个黑色攻击骰子， 在完全结算完每次掷骰后， 再为下一个单位投掷。 该次掷骰每掷出一个 【攻击激增图标】 结果或 【暴击图标】 结果， 该单位就承受1点伤害，然后每掷出一个 【命中图标】 结果， 就获得1个压制标记。 在所有掷骰结算后， 此单位被击败。",
+          "timing": [
+            "activation"
+          ]
+        }
+      ]
     },
     {
       "id": "3084",
@@ -22007,7 +24919,21 @@
         "en": "IG-88",
         "zh": "IG-88"
       },
-      "owner": "IG-88"
+      "owner": "IG-88",
+      "keywords": [
+        {
+          "id": "permanent",
+          "raw": "Permanent",
+          "label": "永久",
+          "value": null,
+          "summary": "结束阶段不弃置此命令卡；只要仍在场，其效果持续。",
+          "full": "带有永久关键词的命令卡在结束阶段不会像普通命令卡一样从场上弃置。只要该卡仍在场上，其效果持续生效。",
+          "timing": [
+            "global",
+            "end_round"
+          ]
+        }
+      ]
     },
     {
       "id": "4121",
@@ -22103,7 +25029,104 @@
         "en": "Asajj Ventress",
         "zh": "阿萨吉·文崔斯"
       },
-      "owner": "Asajj Ventress"
+      "owner": "Asajj Ventress",
+      "weapons": [
+        {
+          "name": "Force Choke",
+          "minRange": 0,
+          "maxRange": 1,
+          "dice": {
+            "black": 1,
+            "red": 0,
+            "white": 0
+          },
+          "keywords": [
+            {
+              "name": "critical_x",
+              "xValue": "4"
+            },
+            {
+              "name": "spray"
+            },
+            {
+              "name": "suppressive"
+            }
+          ],
+          "zh": {
+            "name": "原力扼喉",
+            "keywords": [
+              {
+                "id": "critical_x",
+                "ruleId": "critical",
+                "label": "暴击4",
+                "summary": "攻击的转换激增步骤中，将X个激增面改为暴击面。",
+                "full": "当单位攻击时， 如果暴击X关键词在攻击池中， 则在转化激增步骤期间， 它可以将最多X个【攻击激增图标】 结果转化为【暴击图标】 结果。",
+                "timing": [
+                  "attack"
+                ]
+              },
+              {
+                "id": "spray",
+                "ruleId": "spray",
+                "label": "喷射",
+                "summary": "防御单位有多少模型在视线中，攻击池中就加入多少该武器的攻击骰。",
+                "full": "当模型将拥有喷射关键词的武器添加到攻击池时， 该武器将自己的骰子添加若干次， 添加的次数等于防御单位中在使用该武器的模型视线中的模型数量。例如， 如果带有火焰喷射器的AT-RT攻击有3个死亡士兵的单位， 由于火焰喷射器拥有喷射关键词且攻击值为2个黑色骰子， 因此火焰喷射器会向攻击池贡献6个黑色攻击骰子。",
+                "timing": [
+                  "attack"
+                ]
+              },
+              {
+                "id": "suppressive",
+                "ruleId": "suppressive",
+                "label": "压制",
+                "summary": "攻击时，防御方额外获得1个压制标记。",
+                "full": "当单位防御拥有压制的攻击池时， 在分配压制标记给防御者步骤期间， 它获得额外1个压制标记。",
+                "timing": [
+                  "attack"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "keywords": [
+        {
+          "id": "critical",
+          "ruleId": "critical",
+          "label": "暴击4",
+          "summary": "攻击的转换激增步骤中，将X个激增面改为暴击面。",
+          "full": "当单位攻击时， 如果暴击X关键词在攻击池中， 则在转化激增步骤期间， 它可以将最多X个【攻击激增图标】 结果转化为【暴击图标】 结果。",
+          "timing": [
+            "attack"
+          ],
+          "raw": "暴击4",
+          "value": "4"
+        },
+        {
+          "id": "spray",
+          "ruleId": "spray",
+          "label": "喷射",
+          "summary": "防御单位有多少模型在视线中，攻击池中就加入多少该武器的攻击骰。",
+          "full": "当模型将拥有喷射关键词的武器添加到攻击池时， 该武器将自己的骰子添加若干次， 添加的次数等于防御单位中在使用该武器的模型视线中的模型数量。例如， 如果带有火焰喷射器的AT-RT攻击有3个死亡士兵的单位， 由于火焰喷射器拥有喷射关键词且攻击值为2个黑色骰子， 因此火焰喷射器会向攻击池贡献6个黑色攻击骰子。",
+          "timing": [
+            "attack"
+          ],
+          "raw": "喷射",
+          "value": null
+        },
+        {
+          "id": "suppressive",
+          "ruleId": "suppressive",
+          "label": "压制",
+          "summary": "攻击时，防御方额外获得1个压制标记。",
+          "full": "当单位防御拥有压制的攻击池时， 在分配压制标记给防御者步骤期间， 它获得额外1个压制标记。",
+          "timing": [
+            "attack"
+          ],
+          "raw": "压制",
+          "value": null
+        }
+      ]
     },
     {
       "id": "5184",
@@ -22247,7 +25270,88 @@
         "en": "No Units",
         "zh": "无单位"
       },
-      "owner": "Asajj Ventress"
+      "owner": "Asajj Ventress",
+      "keywords": [
+        {
+          "id": "makashi_mastery",
+          "raw": "Makashi Mastery",
+          "label": "马卡希精通",
+          "value": null,
+          "summary": "近战时，可令1件武器穿刺降低1来无视免疫穿刺和难以穿刺。",
+          "full": "带有马卡希精通关键词的单位进行近战攻击时， 在选择武器并收集骰子步骤期间， 它能够将攻击池中一个武器的穿刺X值减少1。 如果它这么做， 在此次攻击期间防御者不能使用免疫： 近战穿刺、 免疫： 穿刺和/或难以穿刺关键词。",
+          "timing": [
+            "attack"
+          ]
+        },
+        {
+          "id": "reinforcements",
+          "raw": "Reinforcements",
+          "label": "增援",
+          "value": null,
+          "summary": "第一回合结束阶段开始时，可进行1次速度1移动。",
+          "full": "在第一轮的 结束阶段 开始时， 带有增援关键词的单位可以进行一次速度1移动。",
+          "timing": [
+            "end_round"
+          ]
+        },
+        {
+          "id": "outmaneuver",
+          "raw": "Outmaneuver",
+          "label": "超机动",
+          "value": null,
+          "summary": "可花费闪避标记取消暴击。",
+          "full": "应用闪避和掩护步骤期间， 带有超机动关键词的单位能够花费闪避标记来取消 【暴击图标】 结果。",
+          "timing": [
+            "defense"
+          ]
+        },
+        {
+          "id": "demoralize",
+          "raw": "Demoralize 1",
+          "label": "震慑1",
+          "value": "1",
+          "summary": "重振后，向距离2内敌军合计添加最多X个压制标记。",
+          "full": "在带有震慑X关键词的单位重振后， 向在 2内的敌方单位添加总计最多X个压制标记。",
+          "timing": [
+            "activation"
+          ]
+        },
+        {
+          "id": "permanent",
+          "raw": "Permanent",
+          "label": "永久",
+          "value": null,
+          "summary": "结束阶段不弃置此命令卡；只要仍在场，其效果持续。",
+          "full": "带有永久关键词的命令卡在结束阶段不会像普通命令卡一样从场上弃置。只要该卡仍在场上，其效果持续生效。",
+          "timing": [
+            "global",
+            "end_round"
+          ]
+        },
+        {
+          "id": "divulge",
+          "raw": "Divulge",
+          "label": "揭示",
+          "value": null,
+          "summary": "在卡牌指定阶段或步骤开始时展示并结算揭示效果；不算打出，步骤结束返回命令手牌，永久卡例外。",
+          "full": "带有揭示关键词的命令卡可在揭示所指定的阶段或步骤开始时展示，并结算揭示后的卡文。若提供多个选项，必须选择一个。如此展示不视为打出，且在揭示所处步骤结束时返回该玩家的命令手牌；带有永久的揭示卡不返回手牌，而是留在场上。玩家可揭示任意数量的命令卡。双方同时可揭示时蓝方优先。若放弃该次机会，该卡之后不能再揭示。具体时机以卡文指定内容为准。",
+          "timing": [
+            "setup"
+          ]
+        },
+        {
+          "id": "bounty",
+          "raw": "Bounty",
+          "label": "赏金",
+          "value": null,
+          "summary": "设置时，选择1个敌方指挥官或特工并放置1个赏金标记；友方赏金单位以攻击或效果击败其后，获得1点胜利点。",
+          "full": "设置期间， 一个带有赏金关键词的单位选择一个敌方 【特工军阶图标】 或【指挥官军阶图标】 单位。 所选单位获得1个赏金标记。 在带有赏金关键词的友方单位用攻击或效果击败拥有1个或更多赏金标记的一个敌方单位后， 该友方单位的控制玩家计分1点胜利点。",
+          "timing": [
+            "setup",
+            "attack"
+          ]
+        }
+      ]
     },
     {
       "id": "7328",
@@ -22371,7 +25475,20 @@
         "en": "Seventh Sister & 2 Units",
         "zh": "七妹及2 支单位"
       },
-      "owner": "Seventh Sister"
+      "owner": "Seventh Sister",
+      "keywords": [
+        {
+          "id": "demoralize",
+          "raw": "Demoralize 1",
+          "label": "震慑1",
+          "value": "1",
+          "summary": "重振后，向距离2内敌军合计添加最多X个压制标记。",
+          "full": "在带有震慑X关键词的单位重振后， 向在 2内的敌方单位添加总计最多X个压制标记。",
+          "timing": [
+            "activation"
+          ]
+        }
+      ]
     },
     {
       "id": "6511",
@@ -22419,7 +25536,20 @@
         "en": "Ahsoka Tano & 2 Units",
         "zh": "阿索卡·塔诺及2 支单位"
       },
-      "owner": "Ahsoka Tano, Fulcrum"
+      "owner": "Ahsoka Tano, Fulcrum",
+      "keywords": [
+        {
+          "id": "inspire",
+          "raw": "Inspire 2",
+          "label": "提振2",
+          "value": "2",
+          "summary": "激活结束时，距离2内其他友军移除合计最多X个压制标记。",
+          "full": "当带有提振X关键词的单位结束其激活时， 从在 2内的其他友方单位移除总计最多X个压制标记。",
+          "timing": [
+            "activation"
+          ]
+        }
+      ]
     },
     {
       "id": "28",
@@ -22619,7 +25749,31 @@
         "en": "Major Marquand",
         "zh": "马夸德少校"
       },
-      "owner": "Major Marquand"
+      "owner": "Major Marquand",
+      "keywords": [
+        {
+          "id": "suppressive",
+          "raw": "Suppressive",
+          "label": "压制",
+          "value": null,
+          "summary": "攻击时，防御方额外获得1个压制标记。",
+          "full": "当单位防御拥有压制的攻击池时， 在分配压制标记给防御者步骤期间， 它获得额外1个压制标记。",
+          "timing": [
+            "attack"
+          ]
+        },
+        {
+          "id": "tactical",
+          "raw": "Tactical 1",
+          "label": "战术1",
+          "value": "1",
+          "summary": "移动行动后，获得X个瞄准标记。",
+          "full": "当带有战术X关键词的单位进行标准移动(作为行动或免费行动的一部分)时， 在效果结算后， 它获得X个瞄准标记。",
+          "timing": [
+            "movement"
+          ]
+        }
+      ]
     },
     {
       "id": "8117",
@@ -22763,7 +25917,42 @@
         "en": "Sun Fac",
         "zh": "桑·法克"
       },
-      "owner": "Sun Fac"
+      "owner": "Sun Fac",
+      "keywords": [
+        {
+          "id": "demoralize",
+          "raw": "Demoralize 1",
+          "label": "震慑1",
+          "value": "1",
+          "summary": "重振后，向距离2内敌军合计添加最多X个压制标记。",
+          "full": "在带有震慑X关键词的单位重振后， 向在 2内的敌方单位添加总计最多X个压制标记。",
+          "timing": [
+            "activation"
+          ]
+        },
+        {
+          "id": "agile",
+          "raw": "Agile 1",
+          "label": "敏捷1",
+          "value": "1",
+          "summary": "移动行动后，获得X个闪避标记。",
+          "full": "当带有敏捷X关键词的单位进行标准移动(作为行动或免费行动的一部分)时， 在效果结算后， 它获得X个闪避标记。",
+          "timing": [
+            "movement"
+          ]
+        },
+        {
+          "id": "jump",
+          "raw": "Jump 3",
+          "label": "跳跃3",
+          "value": "3",
+          "summary": "移动行动时可执行跳跃X，忽略困难地形、高度X或以下地形及模型；可越过不可通过地形，但不能在其上结束。",
+          "full": "拥有跳跃X关键词的单位在任何它能够进行移动行动的时候， 都能够进行跳跃X卡牌行动。 该单位如常进行移动行动， 并且能够忽略高度X或更低的地形， 或在其顶部结束移动。 用跳跃X行动进行移动期间， 单位忽略高度小于等于X的困难地形和其他模型的效果。 当使用跳跃X行动进行移动时， 单位可以将移动工具叠放在不可通过地形上， 但不能在叠放在不可通过地形上的情况下结束它的移动。 当单位进行跳跃X行动时， 从该单位的起始位置测量高度。",
+          "timing": [
+            "movement"
+          ]
+        }
+      ]
     },
     {
       "id": "9452",
@@ -22907,7 +26096,33 @@
         "en": "1 Unit",
         "zh": "1 支单位"
       },
-      "owner": "Poggle the Lesser"
+      "owner": "Poggle the Lesser",
+      "keywords": [
+        {
+          "id": "coordinate",
+          "raw": "Coordinate",
+          "label": "协同：单位名称/单位类型",
+          "value": null,
+          "summary": "接收命令后，向距离1内1个友军也下达命令；",
+          "full": "在带有协同关键词的单位接收命令后， 它可以向一个在1内的拥有指定单位名称或单位类型的友方单位下达一个命令。 如果单位拥有多个列出的单位名称或单位类型， 只能选列出的单位名称或单位类型中的1个来使用协同关键词下达命令。如果单位已经拥有协同关键词，并获得另一个此关键词，则该单位可以从这两个关键词中选择向哪个目标下达命令；它不会下达2个命令。",
+          "timing": [
+            "command"
+          ]
+        },
+        {
+          "id": "direct",
+          "raw": "Direct",
+          "label": "Direct",
+          "value": null,
+          "summary": "下达命令步骤时，向距离2内1个指定友军下达命令。",
+          "full": "指挥阶段 的下达命令步骤期间， 带有传令关键词的单位可以对在 2内的一个拥有指定单位名称或单位类型的友方单位下达一个命令。",
+          "timing": [
+            "command"
+          ],
+          "ruleId": "direct",
+          "source": "reviewed_dictionary"
+        }
+      ]
     },
     {
       "id": "9460",
@@ -23003,7 +26218,21 @@
         "en": "Fifth Brother & Seventh Sister",
         "zh": "五弟及七妹"
       },
-      "owner": "Fifth Brother"
+      "owner": "Fifth Brother",
+      "keywords": [
+        {
+          "id": "permanent",
+          "raw": "Permanent",
+          "label": "永久",
+          "value": null,
+          "summary": "结束阶段不弃置此命令卡；只要仍在场，其效果持续。",
+          "full": "带有永久关键词的命令卡在结束阶段不会像普通命令卡一样从场上弃置。只要该卡仍在场上，其效果持续生效。",
+          "timing": [
+            "global",
+            "end_round"
+          ]
+        }
+      ]
     },
     {
       "id": "2375",
@@ -23055,7 +26284,20 @@
         "en": "1 Unit",
         "zh": "1 支单位"
       },
-      "owner": "Boba Fett"
+      "owner": "Boba Fett",
+      "keywords": [
+        {
+          "id": "marksman",
+          "raw": "Marksman",
+          "label": "神枪手",
+          "value": null,
+          "summary": "可花费瞄准标记将：空白改命中；命中改暴击；",
+          "full": "转化攻击激增步骤期间， 在转化攻击激增后， 带有神枪手关键词的单位可以花费任意数量的瞄准标记。 每有一个以此方式花费的瞄准标记， 不重掷骰子， 改为将1个空白结果变更为一个 【命中图标】 结果， 或将1个【命中图标】 结果变更为一个 【暴击图标】 结果， 或花费2个瞄准标记来将1个空白结果变更为一个 【暴击图标】 结果。",
+          "timing": [
+            "attack"
+          ]
+        }
+      ]
     },
     {
       "id": "13",
@@ -23103,8 +26345,55 @@
         "en": "Leia Organa",
         "zh": "莱娅·奥加纳"
       },
-      "owner": "Leia Organa"
+      "owner": "Leia Organa",
+      "weapons": [
+        {
+          "name": "Bombardment",
+          "minRange": 4,
+          "maxRange": 6,
+          "dice": {
+            "red": 2,
+            "black": 0,
+            "white": 0
+          },
+          "keywords": [
+            {
+              "name": "immune",
+              "colonValue": "Deflect"
+            }
+          ],
+          "zh": {
+            "name": "Bombardment",
+            "keywords": [
+              {
+                "id": "immune",
+                "ruleId": "immune_deflect",
+                "label": "免疫：反弹",
+                "summary": "使用此攻击池攻击时，不会因反弹受到伤害。",
+                "full": "当单位用拥有免疫：反弹的攻击池攻击时，它不能承受来自反弹关键词的伤害。",
+                "timing": [
+                  "attack"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "keywords": [
+        {
+          "id": "immune_deflect",
+          "ruleId": "immune_deflect",
+          "label": "免疫：反弹",
+          "summary": "使用此攻击池攻击时，不会因反弹受到伤害。",
+          "full": "当单位用拥有免疫：反弹的攻击池攻击时，它不能承受来自反弹关键词的伤害。",
+          "timing": [
+            "attack"
+          ],
+          "raw": "免疫：反弹",
+          "value": null
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-11-10T08:35:02.529723+00:00"
+  "updatedAt": "2026-11-10T09:17:05.642171+00:00"
 }
