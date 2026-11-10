@@ -71,9 +71,9 @@ function renderForm(){
     i.oninput=()=>{draft.name=draft.name||{};draft.name[key]=i.value;setDirty()};
     box.append(field(label,i));
   }
-  const pips=mk('input');pips.type='number';pips.min='1';pips.max='4';pips.value=draft.pips??'';
+  const pips=mk('input');pips.type='number';pips.min='0';pips.max='9';pips.value=draft.pips??'';
   pips.oninput=()=>{draft.pips=pips.value===''?null:Number(pips.value);setDirty()};
-  box.append(field('打出点数（pips）',pips));
+  box.append(field('游戏点数 pips（卡面印刷，仅影响游戏进程）',pips));
   const slot=mk('input');slot.type='number';slot.min='1';slot.max='4';slot.value=draft.slotPips??'';
   slot.placeholder='留空 = 与 pips 相同';
   slot.oninput=()=>{draft.slotPips=slot.value===''?null:Number(slot.value);setDirty()};

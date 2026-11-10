@@ -16724,7 +16724,7 @@
         "en": "Insolence?! We are Pirates!",
         "zh": "放肆？！我们可是海盗！"
       },
-      "pips": 1,
+      "pips": 4,
       "factions": [
         14
       ],
@@ -21719,7 +21719,7 @@
         "en": "Sorry About the Mess",
         "zh": "抱歉把这儿弄乱了"
       },
-      "pips": 1,
+      "pips": 0,
       "factions": [
         1,
         2,
@@ -22819,7 +22819,7 @@
         "en": "We Make Weapons",
         "zh": "我们铸造兵器"
       },
-      "pips": 3,
+      "pips": 4,
       "factions": [
         1,
         2,
@@ -23105,5 +23105,6 @@
       },
       "owner": "Leia Organa"
     }
-  ]
+  ],
+  "updatedAt": "2026-11-10T08:35:02.529723+00:00"
 }

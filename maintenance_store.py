@@ -25,7 +25,7 @@ def validate(kind,card):
         if not isinstance(name,dict)or not isinstance(name.get('en'),str)or not name['en'].strip():raise ValueError('战术卡需要英文名称')
         if name.get('zh')is not None and not isinstance(name.get('zh'),str):raise ValueError('中文名称必须是字符串')
         pips=card.get('pips')
-        if type(pips)is not int or not 1<=pips<=4:raise ValueError('打出点数必须是 1–4 的整数')
+        if type(pips)is not int or not 0<=pips<=9:raise ValueError('游戏点数（pips）必须是 0–9 的整数')
         slot=card.get('slotPips')
         if slot is not None and (type(slot)is not int or not 1<=slot<=4):raise ValueError('写表槽位点数必须是 1–4 的整数或 null')
         if not isinstance(card.get('factions')or[],list)or any(type(f)is not int for f in card.get('factions')or[]):raise ValueError('factions 必须是军队 ID 数组')
