@@ -760,7 +760,9 @@ window.RulesCore = (() => {
     if (hand && (army.commandIds || []).length) {
       const pips = (army.commandIds || []).map(cid => {
         const c = (defs.commands || []).find(x => String(x.id) === String(cid));
-        return c && c.pips != null ? c.pips : null;
+        if (!c) return null;
+        const slotPips = c.slotPips != null ? c.slotPips : c.pips;
+        return slotPips != null ? slotPips : null;
       }).filter(p => p != null);
       for (const rule of hand) {
         const n = pips.filter(p => p === rule.pips).length;
@@ -790,10 +792,6 @@ window.RulesCore = (() => {
     }
 
     // effects (local)
-    for (const cid of army.commandIds || []) {
-      const cmd = (defs.commands || []).find(x => String(x.id) === String(cid));
-      if (cmd && cmd.points) basePoints += Number(cmd.points) || 0;
-    }
     let effectivePoints = basePoints;
     for (const x of sel) {
       const card = upgrades[x.cardId] || {};

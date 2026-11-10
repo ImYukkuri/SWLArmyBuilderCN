@@ -975,7 +975,8 @@ def validate_army(army):
         for cid in army.get("commandIds"):
             cmd = next((c for c in definitions.get("commands", []) if str(c.get("id")) == str(cid)), None)
             if cmd and cmd.get("pips") is not None:
-                pips.append(cmd["pips"])
+                slot_pips = cmd.get("slotPips")
+                pips.append(slot_pips if slot_pips is not None else cmd["pips"])
         for rule in hand:
             if pips.count(rule["pips"]) < rule.get("min", 0):
                 issue("invalid", "command_min", f"{rule['pips']} 点命令卡不足 {rule['min']} 张", None)
@@ -1004,12 +1005,6 @@ def validate_army(army):
             issue("invalid", "mercenary_pool", f"雇佣兵数量 {merc_count} 超过上限 {limit}", None)
         if bonus:
             issue("unknown", "mercenary_pool_semantics", "雇佣兵池额外名额叠加语义仍需核验", None)
-
-    # command cards also carry a list-building cost
-    for cid in army.get("commandIds", []):
-        cmd = next((c for c in definitions.get("commands", []) if str(c.get("id")) == str(cid)), None)
-        if cmd and cmd.get("points"):
-            base_points += int(cmd["points"] or 0)
 
     # effects: effective points / chooseOneKey / quantityLimitedBy (local)
     effective_points = base_points

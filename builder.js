@@ -222,7 +222,22 @@ function commandAvailable(cmd){
   const have=new Set((army.units||[]).map(i=>String(((data.units[i.unitId]||{}).upstream||{}).id||'')));
   return unlocks.some(u=>have.has(String(u.id)));
 }
-function commandSlots(){const mode=(data.pkg.modes||{})[army.mode]||{};const hand=mode.commandHand||[];const n=hand.reduce((a,r)=>a+(r.min||0),0);return n||7}
+function commandSlotPips(){
+  const mode=(data.pkg.modes||{})[army.mode]||{};
+  const hand=mode.commandHand||[];
+  const out=[];
+  for(const rule of hand){
+    const n=rule.min||0;
+    for(let i=0;i<n;i++)out.push(rule.pips);
+  }
+  return out.length?out:[1,1,2,2,3,3,4];
+}
+function commandSlots(){return commandSlotPips().length}
+function slotPipOf(cmd){return cmd?(cmd.slotPips!=null?cmd.slotPips:cmd.pips):null}
+function pipLabel(cmd){
+  const printed=cmd.pips, slot=slotPipOf(cmd);
+  return slot!=null&&slot!==printed?('P'+printed+' · 写表视作 P'+slot):('P'+printed);
+}
 function deckPicker(title,items,onPick){
   const overlay=el('div');overlay.className='pick-overlay';
   const box=el('div');box.className='pick-box';
@@ -239,7 +254,7 @@ function deckPicker(title,items,onPick){
       const b=el('button');b.type='button';b.className='pick-item';
       b.append(el('strong',it.label||it.id));
       if(it.sub)b.append(el('small',it.sub));
-      if(it.pips)b.append(el('span','P'+it.pips+(it.points?(' · '+it.points+'分'):'')));
+      if(it.badge)b.append(el('span',it.badge));
       b.onclick=()=>{onPick(it);overlay.remove()};
       list.append(b);
     }
@@ -250,12 +265,14 @@ function deckPicker(title,items,onPick){
   draw('');input.focus();
 }
 function openCommandSlot(index){
+  const wanted=commandSlotPips()[index];
   const picked=new Set((army.commandIds||[]).map(String));
   const items=(data.defs.commands||[])
     .filter(commandAvailable)
+    .filter(c=>slotPipOf(c)===wanted)
     .filter(c=>!picked.has(String(c.id))||String(army.commandIds[index])===String(c.id))
-    .sort((a,b)=>a.pips-b.pips||String(a.name.en).localeCompare(String(b.name.en)))
-    .map(c=>({id:String(c.id),label:commandName(c),sub:c.name.en,pips:c.pips,points:c.points||0}));
+    .sort((a,b)=>String(a.name.en).localeCompare(String(b.name.en)))
+    .map(c=>({id:String(c.id),label:commandName(c),sub:c.name.en,badge:pipLabel(c)}));
   deckPicker('选择战术卡 · 第 '+(index+1)+' 位',items,it=>{
     army.commandIds[index]=String(it.id);
     save();render();
@@ -285,15 +302,15 @@ function renderDeck(){
   head.append(el('span','已选 '+picked.length+'/'+commandSlots()));
   section.append(head);
   const grid=el('div');grid.className='command-slots';
-  const slots=commandSlots();
-  for(let i=0;i<slots;i++){
+  const slotPips=commandSlotPips();
+  for(let i=0;i<slotPips.length;i++){
     const card=commandOf(army.commandIds[i]);
     const b=el('button');b.type='button';b.className='command-slot'+(card?' filled':'');
     if(card){
-      b.append(el('span','P'+card.pips+(card.points?(' · 写表 '+card.points+' 分'):'')),el('strong',commandName(card)),el('small',(card.name&&card.name.en)||''));
+      b.append(el('span',pipLabel(card)),el('strong',commandName(card)),el('small',(card.name&&card.name.en)||''));
       b.title=card.name.en||'';
     }else{
-      b.append(el('span','空'),el('strong','+ 选择'));
+      b.append(el('span','P'+slotPips[i]+' 槽'),el('strong','+ 选择'));
     }
     b.onclick=()=>openCommandSlot(i);
     grid.append(b);
