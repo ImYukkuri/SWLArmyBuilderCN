@@ -215,12 +215,11 @@ function renderBrowser(){
       .filter(c=>!picked.has(String(c.id))||String(army.commandIds[idx])===String(c.id))
       .sort((a,b)=>String(a.name.en).localeCompare(String(b.name.en)));
     for(const c of list){
-      const b=el('button');b.type='button';b.className='card command-card';
-      if(c.image){const im=el('img');im.src=c.image;im.alt='';im.loading='lazy';b.append(im)}
-      const meta=el('div');meta.className='meta';
-      meta.append(el('strong',commandName(c)));
-      meta.append(pipDots(c.pips),el('span',(c.owner?ownerLabel(c):'通用')));
-      b.append(meta);
+      const b=el('button');b.type='button';b.className='command-slot filled'+(c.image?' with-art':'');
+      if(c.image){const art=el('img');art.className='slot-art';art.src=c.image;art.alt='';art.loading='lazy';b.append(art)}
+      const pip=document.createElement('span');pip.className='slot-pip';pip.append(pipDots(c.pips));b.append(pip);
+      b.append(commandMask(c));
+      b.title=((c.name&&c.name.en)||'')+' · '+(commandText(((c.description||{}).zh)||((c.description||{}).en)||''));
       b.onclick=()=>pickCommand(c,idx);
       grid.append(b);
     }
@@ -338,6 +337,19 @@ function ownerLabel(cmd){
   const names=facs.map(id=>{const a=(data.defs.armies||[]).find(x=>x.id===id);return a?((a.name&&(a.name.zh||a.name.en))||String(id)):String(id)});
   if(!names.length)return '通用';
   return names.length>3?names.slice(0,3).join(' / ')+' …':names.join(' / ');
+}
+function commandMask(card){
+  const mask=el('div');mask.className='slot-mask';
+  const nm=el('div',commandName(card));nm.className='mask-seg mask-name';mask.append(nm);
+  const orders=((card.orders||{}).zh)||((card.orders||{}).en)||'';
+  const od=el('div');od.className='mask-seg mask-orders';
+  const odk=el('span','下令');const odv=el('b');odv.append(ordersNodes(orders));if(!orders)odv.textContent='—';
+  od.append(odk,odv);mask.append(od);
+  const eff=commandText(((card.description||{}).zh)||((card.description||{}).en)||'');
+  const pp=el('div',eff||'—');pp.className='mask-seg mask-effect';mask.append(pp);
+  const ow=el('div');ow.className='mask-seg mask-owner';
+  const owk=el('span','所属');const owv=el('b',ownerLabel(card));ow.append(owk,owv);mask.append(ow);
+  return mask;
 }
 function commandText(text){
   if(!text)return '';
