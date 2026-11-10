@@ -170,8 +170,8 @@ class Handler(BaseHTTPRequestHandler):
             if path=='/api/catalog':
                 with LOCK:content=DATA.read_bytes()
                 return self.reply(200,{'revision':digest(content),'catalog':json.loads(content)})
-            if path in ['/api/upgrades','/api/armies']:return self.reply(200,maintenance_store.read(path.split('/')[-1]))
-            if path in ['/api/upgrades/history','/api/armies/history']:return self.reply(200,maintenance_store.history(path.split('/')[2]))
+            if path in ['/api/upgrades','/api/armies','/api/commands']:return self.reply(200,maintenance_store.read(path.split('/')[-1]))
+            if path in ['/api/upgrades/history','/api/armies/history','/api/commands/history']:return self.reply(200,maintenance_store.history(path.split('/')[2]))
             if path=='/api/upgrade-report':return self.reply(200,json.loads((ROOT/'data/upgrade-crosswalk.json').read_bytes()))
             if path=='/api/unit-options':
                 units=json.loads(DATA.read_bytes())['units'];upgrades=maintenance_store.read('upgrades')['catalog']['cards']
@@ -192,7 +192,7 @@ class Handler(BaseHTTPRequestHandler):
                 if key not in records:return self.reply(404,{'error':'没有此单位的提取依据'})
                 return self.reply(200,records[key])
             if path=='/api/history':return self.reply(200,[{'file':p.name,'size':p.stat().st_size}for p in sorted(HISTORY.glob('*.json'),reverse=True)])
-            files={'/':'index.html','/maintenance':'maintenance.html','/units':'units.html','/upgrades':'upgrades.html','/armies':'armies.html','/rules':'rules.html',**{'/'+name:name for name in ['index.html','maintenance.html','units.html','upgrades.html','armies.html','rules.html','dice-enums.js','combo.js','app.js','builder.js','builder.css','rules-core.js','rules.js','rule-editor.js','condition-editor.js','upgrade-editor.js','army-editor.js','editor-common.js','style.css']}}
+            files={'/':'index.html','/maintenance':'maintenance.html','/units':'units.html','/upgrades':'upgrades.html','/commands':'commands.html','/armies':'armies.html','/rules':'rules.html',**{'/'+name:name for name in ['index.html','maintenance.html','units.html','upgrades.html','armies.html','rules.html','dice-enums.js','combo.js','command-editor.js','app.js','builder.js','builder.css','rules-core.js','rules.js','rule-editor.js','condition-editor.js','upgrade-editor.js','army-editor.js','editor-common.js','style.css']}}
             if path in files:p=ROOT/files[path]
             elif path.startswith('/assets/'):
                 p=relative_asset(path[1:])
@@ -208,7 +208,7 @@ class Handler(BaseHTTPRequestHandler):
         if self.headers.get('Content-Type','').split(';')[0]!='application/json':return self.reply(415,{'error':'需要 application/json'})
         try:
             path=urlsplit(self.path).path
-            maxsize=20_000_000 if path in ['/api/upgrades/image','/api/units/image'] else 3_000_000
+            maxsize=20_000_000 if path in ['/api/upgrades/image','/api/units/image','/api/commands/image'] else 3_000_000
             size=int(self.headers.get('Content-Length','0'))
             if not 0<size<maxsize:raise ValueError('请求大小无效')
             data=json.loads(self.rfile.read(size))
@@ -219,6 +219,13 @@ class Handler(BaseHTTPRequestHandler):
                 head,_,b64=raw.partition(',')
                 if ';base64'not in head:raise ValueError('需要 base64 图片')
                 return self.reply(200,maintenance_store.save_image('upgrades',data['id'],base64.b64decode(b64),data['revision']))
+            if path=='/api/commands/image':
+                import base64
+                raw=data.get('dataUrl','')
+                if not isinstance(raw,str)or not raw.startswith('data:image/'):raise ValueError('需要图片 data URL')
+                head,_,b64=raw.partition(',')
+                if ';base64'not in head:raise ValueError('需要 base64 图片')
+                return self.reply(200,maintenance_store.save_image('commands',data['id'],base64.b64decode(b64),data['revision']))
             if path=='/api/units/image':
                 import base64
                 raw=data.get('dataUrl','')
@@ -227,9 +234,9 @@ class Handler(BaseHTTPRequestHandler):
                 if ';base64'not in head:raise ValueError('需要 base64 图片')
                 return self.reply(200,save_unit_image(data['id'],base64.b64decode(b64),data['revision']))
             if path=='/api/save':return self.reply(200,commit_card(copy.deepcopy(data['card']),data['revision'],bool(data.get('create'))))
-            if path in ['/api/upgrades/save','/api/armies/save','/api/armies/create']:
+            if path in ['/api/upgrades/save','/api/armies/save','/api/armies/create','/api/commands/save']:
                 kind=path.split('/')[2];return self.reply(200,maintenance_store.save(kind,copy.deepcopy(data['card']),data['revision'],path.endswith('/create')or bool(data.get('create'))))
-            if path in ['/api/upgrades/restore','/api/armies/restore']:
+            if path in ['/api/upgrades/restore','/api/armies/restore','/api/commands/restore']:
                 kind=path.split('/')[2];return self.reply(200,maintenance_store.restore(kind,data['snapshot'],data['id'],data['revision']))
             if path=='/api/armies/delete':return self.reply(200,maintenance_store.delete_army(data['id'],data['revision']))
             if path=='/api/armies/preview':

@@ -4,7 +4,7 @@ from datetime import datetime,timezone
 from pathlib import Path
 from rule_schema import validate_rules,KNOWN
 ROOT=Path(__file__).resolve().parent;LOCK=threading.Lock()
-CONFIG={'upgrades':('data/upgrades.json','cards'),'armies':('data/armies.json','armies')}
+CONFIG={'upgrades':('data/upgrades.json','cards'),'armies':('data/armies.json','armies'),'commands':('data/catalog-definitions.json','commands')}
 def encode(v):return (json.dumps(v,ensure_ascii=False,indent=2)+'\n').encode('utf8')
 def hashof(b):return hashlib.sha256(b).hexdigest()
 def write(path,content):
@@ -18,6 +18,26 @@ def read(kind):
     with LOCK:content=(ROOT/filename).read_bytes()
     return {'revision':hashof(content),'catalog':json.loads(content),'recordsKey':key}
 def validate(kind,card):
+    if kind=='commands':
+        if not isinstance(card,dict):raise ValueError('战术卡必须是 JSON 对象')
+        if not isinstance(card.get('id'),str)or not re.fullmatch(r'[a-z0-9][a-z0-9_-]{0,150}',card['id']):raise ValueError('战术卡 ID 无效')
+        name=card.get('name')
+        if not isinstance(name,dict)or not isinstance(name.get('en'),str)or not name['en'].strip():raise ValueError('战术卡需要英文名称')
+        if name.get('zh')is not None and not isinstance(name.get('zh'),str):raise ValueError('中文名称必须是字符串')
+        pips=card.get('pips')
+        if type(pips)is not int or not 1<=pips<=4:raise ValueError('打出点数必须是 1–4 的整数')
+        slot=card.get('slotPips')
+        if slot is not None and (type(slot)is not int or not 1<=slot<=4):raise ValueError('写表槽位点数必须是 1–4 的整数或 null')
+        if not isinstance(card.get('factions')or[],list)or any(type(f)is not int for f in card.get('factions')or[]):raise ValueError('factions 必须是军队 ID 数组')
+        for un in card.get('unlockedBy')or[]:
+            if not isinstance(un,dict)or 'id'not in un or un.get('propertyName')not in ('units','upgrades'):raise ValueError('unlockedBy 需要 {id, propertyName}')
+        for field in ('description','orders'):
+            value=card.get(field)
+            if value is not None and (not isinstance(value,dict)or any(not isinstance(value.get(k),str)for k in ('en','zh')if k in value)):raise ValueError(field+' 必须是 {en,zh} 文本对象')
+        image=card.get('image')
+        if image and (not isinstance(image,str)or not image.startswith('assets/')):
+            raise ValueError('卡图必须使用 assets/ 下的相对路径')
+        return
     if not isinstance(card,dict)or not isinstance(card.get('id'),str)or not re.fullmatch(r'[a-z0-9][a-z0-9_-]{0,150}',card['id']):raise ValueError('记录 ID 无效')
     if kind=='upgrades':
         if not isinstance(card.get('name'),dict)or any(not isinstance(card['name'].get(k),str)for k in ['en','zh'])or not card['name']['en'].strip():raise ValueError('升级卡需要中英文名称字段')
@@ -59,7 +79,7 @@ def save(kind,card,revision,create=False):
         old=path.read_bytes()
         if hashof(old)!=revision:raise FileExistsError('该模块源文件已被修改，请重新载入；草稿不会被覆盖。')
         catalog=json.loads(old);index=next((i for i,c in enumerate(catalog[key])if c['id']==card['id']),None)
-        if index is None and not(create and kind in ('armies','upgrades')):raise ValueError('没有此记录；不能修改固定 ID')
+        if index is None and not(create and kind in ('armies','upgrades','commands')):raise ValueError('没有此记录；不能修改固定 ID')
         if index is not None and create:raise ValueError('ID 已存在')
         stamp=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S.%fZ');snapshot=stamp+'-'+hashof(old)[:12]+'.json';write(ROOT/'history'/kind/snapshot,old)
         if index is None:catalog[key].append(copy.deepcopy(card))
@@ -88,8 +108,8 @@ def delete_army(record_id,revision):
 def save_image(kind, record_id, image_bytes, revision):
     import io
     from PIL import Image
-    if kind != "upgrades":
-        raise ValueError("只支持升级卡卡图")
+    if kind not in ("upgrades", "commands"):
+        raise ValueError("只支持升级卡与战术卡卡图")
     if not isinstance(record_id, str) or not re.fullmatch(r"[a-z0-9][a-z0-9_-]{0,150}", record_id):
         raise ValueError("记录 ID 无效")
     if not image_bytes:
@@ -111,7 +131,10 @@ def save_image(kind, record_id, image_bytes, revision):
         if index is None:
             raise ValueError("没有此记录；不能修改固定 ID")
         card = catalog[key][index]
-        rel = f"assets/upgrade-cards/{record_id}.webp"
+        if kind == "commands":
+            rel = f"assets/command-cards/{record_id}.webp"
+        else:
+            rel = f"assets/upgrade-cards/{record_id}.webp"
         abs_path = ROOT / rel
         abs_path.parent.mkdir(parents=True, exist_ok=True)
         tmp = abs_path.with_name("." + abs_path.name + "." + uuid.uuid4().hex + ".tmp")
@@ -120,7 +143,10 @@ def save_image(kind, record_id, image_bytes, revision):
             os.replace(tmp, abs_path)
         finally:
             tmp.unlink(missing_ok=True)
-        card.setdefault("assets", {})["front"] = rel
+        if kind == "commands":
+            card["image"] = rel
+        else:
+            card.setdefault("assets", {})["front"] = rel
         stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S.%fZ")
         snapshot = stamp + "-" + hashof(old)[:12] + ".json"
         write(ROOT / "history" / kind / snapshot, old)
