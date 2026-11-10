@@ -73,7 +73,21 @@ function renderForm(){
   const view=mk('button','查看大图');view.type='button';
   view.onclick=()=>{setTab('image')};
   const add=mk('button','新建战术卡');add.type='button';add.onclick=newCard;
-  actions.append(swap,view,add);
+  const del=mk('button','删除这张卡');del.type='button';del.className='danger';
+  del.onclick=async()=>{
+    if(!confirm('确定删除「'+(draft.name&&(draft.name.zh||draft.name.en)||draft.id)+'」？历史快照会保留。'))return;
+    try{
+      const res=await call('/api/commands/delete',{id:selected,revision});
+      revision=res.revision;
+      catalog.commands=catalog.commands.filter(c=>c.id!==selected);
+      dirty=false;$('#dirty').textContent='';
+      const first=(catalog.commands||[])[0];
+      if(first){selected=first.id;draft=JSON.parse(JSON.stringify(first));}
+      else{draft=null;selected=null}
+      renderForm();renderList();status('已删除；快照：history/commands/'+res.snapshot);
+    }catch(e){if(window.SaveUI)SaveUI.fail(e,reload);else status(e.message,true)}
+  };
+  actions.append(swap,view,add,del);
   box.append(actions);
   $('#title').textContent=(draft.name&&(draft.name.zh||draft.name.en))||draft.id;
   $('#subtitle').textContent=draft.id+' · '+(draft.owner||'通用');

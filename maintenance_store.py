@@ -86,6 +86,25 @@ def save(kind,card,revision,create=False):
         else:catalog[key][index]=copy.deepcopy(card)
         catalog['updatedAt']=datetime.now(timezone.utc).isoformat();content=encode(catalog);write(path,content)
         return {'revision':hashof(content),'card':card,'snapshot':snapshot}
+def delete(kind, record_id, revision):
+    filename, key = CONFIG[kind]
+    path = ROOT / filename
+    with LOCK:
+        old = path.read_bytes()
+        if hashof(old) != revision:
+            raise FileExistsError('该模块源文件已被修改，请重新载入后再删。')
+        catalog = json.loads(old)
+        index = next((i for i, c in enumerate(catalog[key]) if c['id'] == record_id), None)
+        if index is None:
+            raise ValueError('没有此记录')
+        stamp = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S.%fZ')
+        snapshot = stamp + '-' + hashof(old)[:12] + '.json'
+        write(ROOT / 'history' / kind / snapshot, old)
+        catalog[key].pop(index)
+        catalog['updatedAt'] = datetime.now(timezone.utc).isoformat()
+        content = encode(catalog)
+        write(path, content)
+        return {'revision': hashof(content), 'snapshot': snapshot}
 def history(kind):return [{'file':p.name,'size':p.stat().st_size}for p in sorted((ROOT/'history'/kind).glob('*.json'),reverse=True)]
 def restore(kind,name,record_id,revision):
     if not re.fullmatch(r'\d{8}T\d{6}\.\d{6}Z-[a-f0-9]{12}\.json',name):raise ValueError('历史文件名无效')

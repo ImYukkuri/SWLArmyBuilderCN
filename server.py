@@ -239,6 +239,7 @@ class Handler(BaseHTTPRequestHandler):
             if path in ['/api/upgrades/restore','/api/armies/restore','/api/commands/restore']:
                 kind=path.split('/')[2];return self.reply(200,maintenance_store.restore(kind,data['snapshot'],data['id'],data['revision']))
             if path=='/api/armies/delete':return self.reply(200,maintenance_store.delete_army(data['id'],data['revision']))
+            if path=='/api/commands/delete':return self.reply(200,maintenance_store.delete('commands',data['id'],data['revision']))
             if path=='/api/armies/preview':
                 from army_preview import preview
                 return self.reply(200,preview(data['card']))
