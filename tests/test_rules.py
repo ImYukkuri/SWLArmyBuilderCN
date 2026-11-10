@@ -62,6 +62,26 @@ class ValidateArmyTest(unittest.TestCase):
         self.assertEqual(rules.army_rank(units["empire-stormtroopers"], 7, pkg, defs, units), 2)
         self.assertIsNone(rules.army_rank(units["empire-shoretroopers"], 7, pkg, defs, units))
 
+    def test_slot_host_relaxation_respects_variants(self):
+        import copy
+        units, upgrades, defs = rules.load_cards()
+        pkg = copy.deepcopy(rules.load_package())
+        name_index = rules.build_name_index(upgrades, defs)
+
+        def codes(card_id, unit_id, army_id):
+            issues = rules.upgrade_eligibility(upgrades[card_id], units[unit_id],
+                                               {"armyId": army_id}, pkg, defs, name_index)
+            return {c for status, c, _ in issues if status == "invalid"}
+
+        # "Scout Troopers, Strike Team Only" must stay locked to the variant
+        self.assertIn("host_restriction", codes("dlt19x-scout", "empire-stormtroopers", 7))
+        self.assertNotIn("host_restriction", codes("dlt19x-scout", "empire-scout-strike", 7))
+        # Imperial Remnant relaxes the four plain host requirements only
+        self.assertNotIn("host_restriction", codes("shore-t21b", "empire-stormtroopers", 7))
+        self.assertNotIn("host_restriction", codes("dlt-19d", "empire-stormtroopers", 7))
+        # ...and only inside that battle force
+        self.assertIn("host_restriction", codes("shore-t21b", "empire-stormtroopers", 2))
+
     def test_bo_katan_darksaber_host_ok(self):
         army = {"mode": "standard", "armyId": 8, "pointsLimit": 1000, "units": [
             {"instanceId": "u1", "unitId": "mercenary-clan-kryze-bo-katan-kryze", "upgrades": [

@@ -331,6 +331,15 @@ window.RulesCore = (() => {
     }
     return data._nameToUpstream[normalizeKey(name)] || [];
   }
+  function sourceNameMatches(hostId, want, data) {
+    const src = ((data.defs && data.defs.sourceUnits) || []).find(s => String(s.id) === String(hostId));
+    if (!src) return false;
+    const full = (src.name && src.name.en) || "";
+    const target = String(want == null ? "" : want);
+    if (target.includes("·")) return normalizeKey(full) === normalizeKey(target);
+    if (full.includes("·")) return false;
+    return normalizeKey(full) === normalizeKey(target);
+  }
   function hostAliasAllows(card, unit, army, data, rule) {
     const ov = armyOverridesFor(data.pkg, army.armyId);
     const aliases = (ov && ov.slotHosts) || [];
@@ -338,18 +347,14 @@ window.RulesCore = (() => {
     const access = accessKeys(card, data.pkg, rule);
     const ctx = unitContext(unit);
     const predicates = data.pkg.predicates || {};
-    const cardHosts = hosts(rule, card) || [];
+    const cardHosts = (hosts(rule, card) || []).map(String);
     let allowed = false;
     for (const a of aliases) {
       if (!a || !a.slot || !access.includes(a.slot)) continue;
       if (!matchesTarget(unit, a.target)) continue;
       if (a.when && evaluate(a.when, ctx, predicates) !== true) continue;
-      const exclude = new Set();
-      for (const name of a.exclude || []) for (const id of unitUpstreamIdsByName(name, data)) exclude.add(id);
-      if (cardHosts.some(x => exclude.has(String(x)))) return false;
-      const include = new Set();
-      for (const name of a.include || []) for (const id of unitUpstreamIdsByName(name, data)) include.add(id);
-      if (cardHosts.some(x => include.has(String(x)))) allowed = true;
+      if (cardHosts.some(x => (a.exclude || []).some(n => sourceNameMatches(x, n, data)))) return false;
+      if (cardHosts.some(x => (a.include || []).some(n => sourceNameMatches(x, n, data)))) allowed = true;
     }
     return allowed;
   }

@@ -461,6 +461,23 @@ def _unit_upstream_ids_by_name(name, definitions):
     return out
 
 
+def source_name_matches(host_id, want, definitions):
+    """Match a card host (upstream id) against an include/exclude name.
+
+    A plain name only matches non-variant units; a name containing "·" matches
+    that exact variant (e.g. "Scout Troopers · Strike Team")."""
+    src = next((s for s in definitions.get("sourceUnits") or [] if str(s.get("id")) == str(host_id)), None)
+    if src is None:
+        return False
+    full = (src.get("name") or {}).get("en") or ""
+    target = "" if want is None else str(want)
+    if "·" in target:
+        return normalize_name(full) == normalize_name(target)
+    if "·" in full:
+        return False
+    return normalize_name(full) == normalize_name(target)
+
+
 def host_alias_allows(card, unit, army, package, definitions, rule):
     ov = army_overrides_for(package, army.get("armyId")) or {}
     aliases = ov.get("slotHosts") or []
@@ -478,15 +495,9 @@ def host_alias_allows(card, unit, army, package, definitions, rule):
             continue
         if a.get("when") is not None and evaluate(a["when"], ctx, predicates) is not True:
             continue
-        exclude = set()
-        for name in a.get("exclude") or []:
-            exclude.update(_unit_upstream_ids_by_name(name, definitions))
-        if any(ch in exclude for ch in card_hosts):
+        if any(source_name_matches(ch, n, definitions) for ch in card_hosts for n in (a.get("exclude") or [])):
             return False
-        include = set()
-        for name in a.get("include") or []:
-            include.update(_unit_upstream_ids_by_name(name, definitions))
-        if any(ch in include for ch in card_hosts):
+        if any(source_name_matches(ch, n, definitions) for ch in card_hosts for n in (a.get("include") or [])):
             allowed = True
     return allowed
 
