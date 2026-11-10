@@ -295,9 +295,12 @@ function openCommandCard(cmd,index){
   const zh=(cmd.description||{}).zh||'';
   const en=(cmd.description||{}).en||'';
   const ordersZh=(cmd.orders||{}).zh||'';
-  const own=el('span','所属：'+ownerLabel(cmd));own.className='view-meta';mask.append(own);
-  if(ordersZh){const od=el('span','下令：'+commandText(ordersZh));od.className='view-meta';mask.append(od)}
-  const eff=el('p',commandText(zh)||commandText(en)||'暂无效果文本');eff.className='view-effect';mask.append(eff);
+  const vn=el('div',commandName(cmd));vn.className='view-seg view-name';mask.append(vn);
+  const vo=el('div');vo.className='view-seg view-orders';
+  vo.append(el('span','下令'),el('b',commandText(ordersZh)||commandText((cmd.orders||{}).en||'')||'—'));mask.append(vo);
+  const ve=el('div',commandText(zh)||commandText(en)||'暂无效果文本');ve.className='view-seg view-effect';mask.append(ve);
+  const vw=el('div');vw.className='view-seg view-owner';
+  vw.append(el('span','所属'),el('b',ownerLabel(cmd)));mask.append(vw);
   figure.append(mask);
   box.append(head,figure);
   if(index!=null){
@@ -355,12 +358,14 @@ function renderDeck(){
       if(card.image){const art=el('img');art.className='slot-art';art.src=card.image;art.alt='';art.loading='lazy';b.append(art)}
       const pip=el('span',pipLabel(card));pip.className='slot-pip';b.append(pip);
       const mask=el('div');mask.className='slot-mask';
-      const nm=el('strong',commandName(card));nm.className='mask-name';mask.append(nm);
-      const own=el('span','所属：'+ownerLabel(card));own.className='mask-meta';mask.append(own);
+      const nm=el('div',commandName(card));nm.className='mask-seg mask-name';mask.append(nm);
       const orders=commandText(((card.orders||{}).zh)||((card.orders||{}).en)||'');
-      if(orders){const od=el('span','下令：'+orders);od.className='mask-meta';mask.append(od)}
+      const od=el('div');od.className='mask-seg mask-orders';
+      const odk=el('span','下令');const odv=el('b',orders||'—');od.append(odk,odv);mask.append(od);
       const eff=commandText(((card.description||{}).zh)||((card.description||{}).en)||'');
-      if(eff){const pp=el('p',eff);pp.className='mask-effect';mask.append(pp)}
+      const pp=el('div',eff||'—');pp.className='mask-seg mask-effect';mask.append(pp);
+      const ow=el('div');ow.className='mask-seg mask-owner';
+      const owk=el('span','所属');const owv=el('b',ownerLabel(card));ow.append(owk,owv);mask.append(ow);
       b.append(mask);
       b.title=((card.name&&card.name.en)||'')+' · '+eff;
     }else{
