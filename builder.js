@@ -217,12 +217,21 @@ function commandName(cmd){return (cmd.name&&(cmd.name.zh||cmd.name.en))||String(
 function commandAvailable(cmd){
   const facs=cmd.factions||[];
   if(facs.length&&!facs.includes(Number(army.armyId)))return false;
+  const title=String(cmd.titleMatch||'').trim().toLowerCase();
+  if(title){
+    for(const inst of (army.units||[])){
+      const u=data.units[inst.unitId];if(!u)continue;
+      const t=(((u.title||{}).en)||'').toLowerCase();
+      const n=(((u.name||{}).en)||'').toLowerCase();
+      if((t&&(t.includes(title)||title.includes(t)))||(n&&n.includes(title)))return true;
+    }
+    return false;
+  }
   const unlocks=(cmd.unlockedBy||[]).filter(u=>u&&u.propertyName==='units');
   if(!unlocks.length)return true;
   const have=new Set((army.units||[]).map(i=>String(((data.units[i.unitId]||{}).upstream||{}).id||'')));
-  return unlocks.some(u=>have.has(String(u.id)));
-}
-function commandSlotPips(){
+  return unlocks.every(u=>have.has(String(u.id)));
+}function commandSlotPips(){
   const mode=(data.pkg.modes||{})[army.mode]||{};
   const hand=mode.commandHand||[];
   const out=[];

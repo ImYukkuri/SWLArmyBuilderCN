@@ -956,6 +956,21 @@ def validate_army(army):
             issue("invalid", "command_missing", f"命令卡引用不存在：{cid}", None)
             continue
         name = (cmd.get("name") or {}).get("en") or cid
+        title_match = str(cmd.get("titleMatch") or "").strip()
+        if title_match:
+            key = normalize_name(title_match)
+            hit = False
+            for inst in army.get("units", []):
+                unit = units.get(inst.get("unitId"))
+                if not unit:
+                    continue
+                title = normalize_name((unit.get("title") or {}).get("en") or "")
+                unit_name = normalize_name((unit.get("name") or {}).get("en") or "")
+                if (title and (key in title or title in key)) or (unit_name and key in unit_name):
+                    hit = True
+                    break
+            if not hit:
+                issue("invalid", "command_title_match", "命令卡「" + name + "」需要称号包含「" + title_match + "」的单位", None)
         facs = [f for f in (cmd.get("factions") or [])]
         if facs and army.get("armyId") not in facs:
             issue("invalid", "command_faction", f"命令卡「{name}」不属于当前军队", None)

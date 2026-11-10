@@ -747,6 +747,17 @@ window.RulesCore = (() => {
       const cmd = (defs.commands || []).find(x => String(x.id) === String(cid));
       if (!cmd) { issue("invalid", "command_missing", `命令卡引用不存在：${cid}`, null); continue; }
       const name = (cmd.name && cmd.name.en) || cid;
+      const title = String(cmd.titleMatch || '').trim();
+      if (title) {
+        const key = normalizeKey(title);
+        const hit = (army.units || []).some(inst => {
+          const u = units[inst.unitId]; if (!u) return false;
+          const t = normalizeKey((u.title && u.title.en) || '');
+          const n = normalizeKey((u.name && u.name.en) || '');
+          return (t && (t.includes(key) || key.includes(t))) || (n && n.includes(key));
+        });
+        if (!hit) issue('invalid', 'command_title_match', '命令卡 ' + name + ' 需要称号包含 ' + cmd.titleMatch + ' 的单位', null);
+      }
       const facs = cmd.factions || [];
       if (facs.length && !facs.includes(army.armyId)) issue("invalid", "command_faction", `命令卡「${name}」不属于当前军队`, null);
       if ((cmd.campaigns || []).length) issue("unknown", "command_campaign", `命令卡「${name}」为战役卡，标准模式资格待核验`, null);

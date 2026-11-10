@@ -92,6 +92,9 @@ function renderForm(){
   const owner=mk('input');owner.value=draft.owner||'';
   owner.oninput=()=>{draft.owner=owner.value;setDirty()};
   box.append(field('卡面归属（owner 文本）',owner));
+  const title=mk('input');title.value=draft.titleMatch||'';title.placeholder='例如 Jedi Council / Imperial High Command';
+  title.oninput=()=>{draft.titleMatch=title.value;setDirty()};
+  box.append(field('称号包含匹配（titleMatch，留空不使用）',title));
 
   const facBox=mk('div');facBox.className='chips';
   const facs=new Set(draft.factions||[]);
