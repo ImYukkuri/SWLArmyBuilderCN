@@ -332,17 +332,13 @@ function openCommandCard(cmd,index){
   if(cmd.image){const img=el('img');img.src=cmd.image;img.alt=commandName(cmd);figure.append(img)}
   else figure.append(el('p','暂无卡图'));
   const mask=el('div');mask.className='card-view-mask';
-  const zh=(cmd.description||{}).zh||'';
-  const en=(cmd.description||{}).en||'';
-  const ordersZh=(cmd.orders||{}).zh||'';
-  const vn=el('div',commandName(cmd));vn.className='view-seg view-name';mask.append(vn);
-  const vo=el('div');vo.className='view-seg view-orders';
-  const vob=el('b');const vt=ordersZh||((cmd.orders||{}).en||'');
-  if(vt)vob.append(ordersNodes(vt));else vob.textContent='—';
-  vo.append(el('span','下令'),vob);mask.append(vo);
-  const ve=el('div',commandText(zh)||commandText(en)||'暂无效果文本');ve.className='view-seg view-effect';mask.append(ve);
-  const vw=el('div');vw.className='view-seg view-owner';
-  vw.append(el('span','所属'),el('b',ownerLabel(cmd)));mask.append(vw);
+  const titleRow=el('div');titleRow.className='view-title';titleRow.append(el('strong',commandName(cmd)));
+  const ozh=(cmd.orders||{}).zh||'';const oen=(cmd.orders||{}).en||'';
+  const tag=el('span','下令 · '+(commandText(ozh)||commandText(oen)||'—'));tag.className='view-tag';
+  const dzh=(cmd.description||{}).zh||'';const den=(cmd.description||{}).en||'';
+  const eff=el('p',commandText(dzh)||commandText(den)||'暂无效果文本');eff.className='view-effect';
+  const ownerLine=el('div','所属 · '+ownerLabel(cmd));ownerLine.className='view-owner';
+  mask.append(titleRow,tag,eff,ownerLine);
   figure.append(mask);
   box.append(head,figure);
   if(index!=null){
