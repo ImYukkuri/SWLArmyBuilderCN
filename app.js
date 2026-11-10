@@ -139,6 +139,12 @@ function renderDraftBanner(){
 }
 function renderForm(){
   $('#fields').replaceChildren();objectForm(Object.fromEntries(Object.entries(draft).filter(([k])=>!['assets','source','rules'].includes(k))),[],$('#fields'));
+  for(const key of ['factions','affiliationIds','upgradeSlots','conditionalUpgradeSlots','weapons','keywords']){
+    if(key in draft)continue;
+    const add=el('button','＋ 添加'+(labels[key]||key));add.className='minor';
+    add.onclick=()=>{draft[key]=[];setDirty();renderForm()};
+    $('#fields').append(add);
+  }
   $('#title').textContent=draft.name.zh||draft.name.en;$('#subtitle').textContent=draft.name.en+(draft.title.en?' / '+draft.title.en:'');
   if(draft.assets.front)$('#front').src=draft.assets.front;else $('#front').removeAttribute('src');if(draft.assets.portrait)$('#portrait').src=draft.assets.portrait;else $('#portrait').removeAttribute('src');renderDraftBanner();if($('#unit-image-upload'))$('#unit-image-upload').disabled=creating;
   $('#source').textContent='提取依据已归档至 data/extraction-evidence.json，单位运行数据不再重复保存 OCR 和武器 source。';

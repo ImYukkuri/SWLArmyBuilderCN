@@ -209,7 +209,8 @@ window.RuleEditor=(()=>{
     for(const [name,keys]of groups){
       const section=E('details');section.open=true;section.className='restriction-section';section.append(E('summary',name));
       for(const key of keys){seen.add(key);if(!(key in (rules||{})))continue;const block=E('div');block.dataset.ruleField=key;fields({get [key](){return rules[key]},set [key](v){rules[key]=v}},[],block);const remove=E('button','移除此限制项');remove.className='minor';remove.onclick=()=>{delete rules[key];notify();render(container,rules,defs,onchange,context)};block.append(remove);section.append(block)}
-      const options=keys.filter(k=>!(k in (rules||{}))&&k in defaults);
+      const known=new Set([...Object.keys(defaults),...groups.flatMap(g=>g[1]),...Object.keys(labels)]);
+      const options=keys.filter(k=>!(k in (rules||{}))&&known.has(k));
       if(options.length){const select=E('select');select.setAttribute('aria-label',name+'添加字段');for(const k of options){const op=E('option',labels[k]||k);op.value=k;select.append(op)}const add=E('button','添加限制');add.onclick=()=>{rules[select.value]=structuredClone(defaults[select.value]);notify();render(container,rules,defs,onchange,context)};const controls=E('div');controls.className='rule-add';controls.append(select,add);section.append(controls)}
       container.append(section);
     }

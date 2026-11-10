@@ -51,6 +51,17 @@ function renderImage(){
   const img=$('#card-image');
   if(draft&&draft.image){img.src=draft.image;img.hidden=false}else{img.removeAttribute('src');img.hidden=true}
 }
+function unitChipFor(unlock){
+  const upId=String(unlock&&unlock.id||'');
+  const unit=unitsById[upId];
+  const chip=mk('span');chip.className='unit-chip';
+  if(unit&&unit.assets&&unit.assets.portrait){const img=mk('img');img.src=unit.assets.portrait;img.alt='';chip.append(img)}
+  else{const ph=mk('span');ph.className='unit-chip-ph';ph.textContent='?';chip.append(ph)}
+  const name=unit?((unit.name&&(unit.name.zh||unit.name.en))||unit.id):('上游 '+upId);
+  chip.append(mk('b',name),mk('small','units:'+upId));
+  chip.title=name+' · units:'+upId;
+  return chip;
+}
 function field(label,control){const row=mk('label');row.className='field';row.append(mk('span',label),control);return row}
 function renderForm(){
   const box=$('#form');box.replaceChildren();
@@ -84,16 +95,23 @@ function renderForm(){
 
   const facBox=mk('div');facBox.className='chips';
   const facs=new Set(draft.factions||[]);
+  const facHint=mk('p','留空 = 不限制军队，只跟随解锁单位；点击标签开关。');facHint.className='hint';facBox.append(facHint);
+  const clearBtn=mk('button','清空军队');clearBtn.type='button';clearBtn.className='minor';
+  clearBtn.onclick=()=>{draft.factions=[];setDirty();renderForm()};
+  facBox.append(clearBtn);
+  const facRow=mk('div');facRow.className='chips-grid';facBox.append(facRow);
   for(const army of (defs&&defs.armies)||[]){
     const b=mk('button',army.name.zh||army.name.en);b.type='button';
     b.className='chip'+(facs.has(army.id)?' on':'');
+    b.setAttribute('aria-pressed',String(facs.has(army.id)));
     b.onclick=()=>{if(facs.has(army.id))facs.delete(army.id);else facs.add(army.id);draft.factions=[...facs];setDirty();renderForm()};
-    facBox.append(b);
+    facRow.append(b);
   }
   box.append(field('可用军队/战斗部队（factions）',facBox));
 
+  const unBox=mk('div');unBox.className='unit-chips';
   const unRow=mk('div');unRow.className='row-actions';
-  const unBtn=mk('button','选择解锁单位（'+((draft.unlockedBy||[]).length)+'）');unBtn.type='button';
+  const unBtn=mk('button','选择解锁单位（'+((draft.unlockedBy||[]).filter(u=>u.propertyName==='units').length)+'）');unBtn.type='button';
   unBtn.onclick=()=>{
     if(!window.UnitPicker){status('单位选择器未载入',true);return}
     const units=((defs&&defs.sourceUnits)||[]).map(s=>({id:s.id,name:s.name}));
@@ -103,9 +121,13 @@ function renderForm(){
       setDirty();renderForm();
     });
   };
-  unRow.append(unBtn);
-  if((draft.unlockedBy||[]).length){const s=mk('span',draft.unlockedBy.map(u=>u.propertyName+':'+u.id).join('  '));s.className='hint';unRow.append(s)}
-  box.append(field('解锁单位（unlockedBy）',unRow));
+  const unClear=mk('button','清空单位');unClear.type='button';unClear.className='minor';
+  unClear.onclick=()=>{draft.unlockedBy=[];setDirty();renderForm()};
+  unRow.append(unBtn,unClear);
+  unBox.append(unRow);
+  for(const un of (draft.unlockedBy||[]).filter(u=>u.propertyName==='units'))unBox.append(unitChipFor(un));
+  const unHint=mk('p','有解锁单位且军队留空 = 指挥卡只跟随这些单位，不受军队/战斗部队限制。');unHint.className='hint';unBox.append(unHint);
+  box.append(field('解锁单位（unlockedBy）',unBox));
 
   for(const [key,label] of [['orders','指令文本'],['description','效果文本']]){
     for(const lang of ['en','zh']){
@@ -114,9 +136,17 @@ function renderForm(){
       box.append(field(label+' · '+lang,t));
     }
   }
-  const image=mk('input');image.value=draft.image||'';
-  image.oninput=()=>{draft.image=image.value;setDirty()};
-  box.append(field('卡图路径',image));
+  const imgBox=mk('div');imgBox.className='form-image';
+  if(draft.image){const img=mk('img');img.src=draft.image;img.alt='';imgBox.append(img)}
+  else{const ph=mk('div');ph.className='form-image-ph';ph.textContent='暂无卡图';imgBox.append(ph)}
+  const imgActions=mk('div');imgActions.className='row-actions';
+  const upBtn=mk('button','上传 / 更换卡图');upBtn.type='button';
+  upBtn.onclick=()=>{$('#image-file').click()};
+  const path=mk('input');path.value=draft.image||'';path.placeholder='assets/command-cards/xxx.webp';
+  path.oninput=()=>{draft.image=path.value;setDirty()};
+  imgActions.append(upBtn,path);
+  imgBox.append(imgActions);
+  box.append(field('卡图',imgBox));
 }
 function setTab(name){
   tab=name;
@@ -145,12 +175,14 @@ function newCard(){
   renderForm();renderList();renderImage();$('#dirty').textContent='新建（未保存）';
   status('已创建草稿：填写后点击保存');
 }
+let unitsById={};
 async function reload(){
   if(dirty&&!confirm('放弃未保存修改并重新载入？'))return;
   try{
-    const res=await call('/api/commands');
+    const [res,unitsRes]=await Promise.all([call('/api/commands'),fetch('data/units.json').then(r=>r.json())]);
     catalog=res.catalog;revision=res.revision;
     defs=await fetch('data/catalog-definitions.json').then(r=>r.json());
+    unitsById=Object.fromEntries((unitsRes.units||[]).map(u=>[String((u.upstream||{}).id||''),u]));
     dirty=false;$('#dirty').textContent='';
     const first=(catalog.commands||[])[0];
     renderList();
@@ -158,7 +190,7 @@ async function reload(){
     status('');
   }catch(e){
     status(e.message,true);
-    try{catalog=await fetch('data/catalog-definitions.json').then(r=>r.json());defs=catalog;renderList();}catch(err){}
+    try{catalog=await fetch('data/catalog-definitions.json').then(r=>r.json());defs=catalog;unitsById={};renderList();}catch(err){}
   }
 }
 $('#save').onclick=async()=>{
