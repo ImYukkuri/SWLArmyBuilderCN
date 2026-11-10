@@ -302,8 +302,12 @@ function ordersNodes(text){
   return frag;
 }
 function ownerLabel(cmd){
+  if(cmd.owner&&String(cmd.owner).toLowerCase()==='generic')return '通用';
   if(cmd.owner)return cmd.owner;
-  const names=(cmd.factions||[]).map(id=>{const a=(data.defs.armies||[]).find(x=>x.id===id);return a?((a.name&&(a.name.zh||a.name.en))||String(id)):String(id)});
+  const armies=(data.defs.armies||[]).map(a=>a.id);
+  const facs=(cmd.factions||[]);
+  if(armies.length&&armies.every(id=>facs.includes(id)))return '通用';
+  const names=facs.map(id=>{const a=(data.defs.armies||[]).find(x=>x.id===id);return a?((a.name&&(a.name.zh||a.name.en))||String(id)):String(id)});
   if(!names.length)return '通用';
   return names.length>3?names.slice(0,3).join(' / ')+' …':names.join(' / ');
 }
