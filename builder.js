@@ -217,6 +217,11 @@ function renderFaction(){
 }
 function renderMode(){const sel=$('#mode');sel.value=army.mode;sel.onchange=()=>{army.mode=sel.value;army.pointsLimit=sel.value==='standard'?1000:600;save();render()}}
 function renderPoints(report){const limit=army.pointsLimit||1000;$('#points').textContent=report.basePoints+' / '+limit+' ('+(limit-report.basePoints)+')'}
+function pipDots(n){
+  const box=document.createElement('span');box.className='pip-dots';box.title='牌点 '+n;
+  for(let i=0;i<4;i++){const d=document.createElement('i');d.className='pip-dot'+(i<n?' on':'');box.append(d)}
+  return box;
+}
 function commandOf(id){return (data.defs.commands||[]).find(c=>String(c.id)===String(id))||null}
 function commandName(cmd){return (cmd.name&&(cmd.name.zh||cmd.name.en))||String(cmd.id)}
 function commandAvailable(cmd){
@@ -250,7 +255,7 @@ function commandSlots(){return commandSlotPips().length}
 function slotPipOf(cmd){return cmd?(cmd.slotPips!=null?cmd.slotPips:cmd.pips):null}
 function pipLabel(cmd){
   const printed=cmd.pips, slot=slotPipOf(cmd);
-  return slot!=null&&slot!==printed?('P'+printed+' · 写表视作 P'+slot):('P'+printed);
+  return slot!=null&&slot!==printed?('牌点 '+printed+' · 写表视作 '+slot):('牌点 '+printed);
 }
 function deckPicker(title,items,onPick){
   const overlay=el('div');overlay.className='pick-overlay';
@@ -320,7 +325,7 @@ function openCommandCard(cmd,index){
   const overlay=el('div');overlay.className='card-view-overlay';
   const box=el('div');box.className='card-view';
   const head=el('div');head.className='card-view-head';
-  head.append(el('strong',commandName(cmd)),el('span',pipLabel(cmd)));
+  head.append(el('strong',commandName(cmd)),pipDots(cmd.pips),el('span',pipLabel(cmd)));
   const close=el('button','×');close.type='button';close.className='pick-close';close.onclick=()=>overlay.remove();
   head.append(close);
   const figure=el('div');figure.className='card-view-figure';
@@ -412,7 +417,7 @@ function renderDeck(){
       rm.onclick=ev=>{ev.stopPropagation();army.commandIds[i]=null;save();render()};
       b.append(rm);
     }else{
-      b.append(el('span','P'+slotPips[i]+' 槽'),el('strong','+ 选择'));
+      b.append(el('span','牌点 '+slotPips[i]+' 槽'),el('strong','+ 选择'));
     }
     b.onclick=()=>card?openCommandCard(card,i):openCommandSlot(i);
     grid.append(b);
