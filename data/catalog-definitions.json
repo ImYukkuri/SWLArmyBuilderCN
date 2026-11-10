@@ -13183,7 +13183,7 @@
         "en": "Witch Magick",
         "zh": "女巫魔法"
       },
-      "pips": 1,
+      "pips": 3,
       "factions": [
         1,
         2,
@@ -13213,7 +13213,7 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1,
+      "slotPips": 3,
       "image": "assets/command-cards/1825.webp",
       "description": {
         "en": "While building a Command Hand, treat this card as though it has 1 pip. \n\n Remove up to 2 Wound tokens and any number of Poison tokens or Immobilize tokens from Maul. At the start of Maulʼs next Activation, he makes a Recover action.",
@@ -13643,7 +13643,7 @@
         "en": "Ace Up His Sleeve",
         "zh": "袖中王牌"
       },
-      "pips": 2,
+      "pips": 1,
       "factions": [
         1,
         2,
@@ -13673,7 +13673,7 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2,
+      "slotPips": 1,
       "image": "assets/command-cards/100.webp",
       "description": {
         "en": "While building a Command Hand, treat this card as though it has 2 pips. \n\n If this card is in your Command Hand, during the Resolve Command Card Effects step of the Command Phase, after revealing Command Cards but before resolving Command Card effects, you may return your revealed card to your Command Hand and play this card instead. Treat this card as having been selected, played, and revealed instead of that card.",
@@ -13763,7 +13763,7 @@
         "en": "At Last",
         "zh": "终于"
       },
-      "pips": 3,
+      "pips": 1,
       "factions": [
         1,
         2,
@@ -13797,7 +13797,7 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3,
+      "slotPips": 1,
       "image": "assets/command-cards/90.webp",
       "description": {
         "en": "While building a Command Hand, treat this card as though it has 3 pips. \n\n Maul gains 1 Aim token and gains Jedi Hunter this Round. At the start of Maulʼs next Activation, he may suffer 1 Wound.",
@@ -14475,13 +14475,13 @@
         "en": "Lead from the Front",
         "zh": "身先士卒"
       },
-      "pips": 2,
+      "pips": 1,
       "factions": [
         16
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 2,
+      "slotPips": 1,
       "image": "assets/command-cards/14377.webp",
       "description": {
         "en": "When building a Command Hand, treat this card as though it has 2 pips. When an allied {@icon.rank-commander} is issued an Order with this card, choose up to 3 other allied units within {@icon.range-1} of that {@icon.rank-commander} unit. Each chosen unit gains 1 Aim token or 1 Dodge token.",
@@ -21590,7 +21590,7 @@
         "en": "Sabotaged Communications",
         "zh": "破坏通讯"
       },
-      "pips": 1,
+      "pips": 2,
       "factions": [
         1,
         13,
@@ -21598,7 +21598,7 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 1,
+      "slotPips": 2,
       "image": "assets/command-cards/26.webp",
       "description": {
         "en": "When an opponent issues Orders using a Command Card this Round, they can issue only 1 Order with that card.",
@@ -22159,7 +22159,7 @@
         "en": "The Sith Will Rule",
         "zh": "西斯统治将临"
       },
-      "pips": 2,
+      "pips": 3,
       "factions": [
         1,
         2,
@@ -22189,7 +22189,7 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2,
+      "slotPips": 3,
       "image": "assets/command-cards/5185.webp",
       "description": {
         "en": "When building a Command Hand, treat this card as though it has 2 pips. Count Dooku gains 1 Aim token and 1 Dodge token. \n\n After Count Dookuʼs next Activation, if Asajj Ventress does not have a facedown Order token, she activates. After she activates, if she has a faceup Order token, flip it face down. If she does not have an Order token, assign her a facedown {@icon.rank-operative} Order token from your Order Pool, then shuffle your Order Pool.",
