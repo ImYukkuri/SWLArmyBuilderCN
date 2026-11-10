@@ -271,6 +271,7 @@ function deckPicker(title,items,onPick){
   draw('');input.focus();
 }
 const ORDER_GLYPH={'rank-commander':'5','rank-operative':'b','rank-corps':'6','rank-special-forces':'7','rank-special':'7','rank-support':'8','rank-heavy':'9'};
+const ORDER_NAME={'rank-commander':'指挥官','rank-operative':'特工','rank-corps':'核心','rank-special-forces':'特种','rank-special':'特种','rank-support':'支援','rank-heavy':'重型'};
 function ordersNodes(text){
   const frag=document.createDocumentFragment();
   const src=String(text||'');
@@ -279,7 +280,7 @@ function ordersNodes(text){
   while((m=re.exec(src))){
     if(m.index>last)frag.append(document.createTextNode(src.slice(last,m.index)));
     const glyph=ORDER_GLYPH[m[1]];
-    if(glyph){const sp=document.createElement('span');sp.className='rank-glyph';sp.textContent=glyph;frag.append(sp)}
+    if(glyph){const chip=document.createElement('span');chip.className='order-chip';const ic=document.createElement('i');ic.className='order-glyph';ic.textContent=glyph;chip.append(ic);const nm=document.createElement('em');nm.className='order-name';nm.textContent=ORDER_NAME[m[1]]||'';chip.append(nm);frag.append(chip)}
     last=re.lastIndex;
   }
   if(last<src.length)frag.append(document.createTextNode(src.slice(last)));
