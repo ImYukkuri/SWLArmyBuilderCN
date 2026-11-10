@@ -251,10 +251,16 @@ function deckPicker(title,items,onPick){
     const key=String(q||'').toLowerCase();
     for(const it of items){
       if(key&&!((it.label||'').toLowerCase().includes(key)||String(it.sub||'').toLowerCase().includes(key)))continue;
-      const b=el('button');b.type='button';b.className='pick-item';
-      b.append(el('strong',it.label||it.id));
-      if(it.sub)b.append(el('small',it.sub));
-      if(it.badge)b.append(el('span',it.badge));
+      const b=el('button');b.type='button';b.className='pick-item'+(it.image?' with-art':'');
+      if(it.image){const thumb=el('img');thumb.className='pick-thumb';thumb.src=it.image;thumb.alt='';thumb.loading='lazy';b.append(thumb)}
+      const body=el('span');body.className='pick-body';
+      const line=el('span');line.className='pick-line';
+      line.append(el('strong',it.label||it.id));
+      if(it.sub)line.append(el('small',it.sub));
+      if(it.badge){const bd=el('span',it.badge);bd.className='pick-badge';line.append(bd)}
+      body.append(line);
+      if(it.text)body.append(el('p',it.text));
+      b.append(body);
       b.onclick=()=>{onPick(it);overlay.remove()};
       list.append(b);
     }
@@ -267,7 +273,7 @@ function deckPicker(title,items,onPick){
 function commandText(text){
   if(!text)return '';
   const map={'rank-commander':'指挥官','rank-operative':'特工','rank-corps':'核心','rank-special-forces':'特种','rank-support':'支援','rank-heavy':'重型','rank-special':'特种'};
-  return String(text).replace(/\{@icon\.([a-z-]+)\}/g,(m,name)=>map[name]||'');
+  return String(text).replace(/\{@icon\.([a-z0-9-]+)\}/g,(m,name)=>map[name]||'');
 }
 function openCommandCard(cmd,index){
   const overlay=el('div');overlay.className='card-view-overlay';
@@ -304,7 +310,7 @@ function openCommandSlot(index){
     .filter(c=>slotPipOf(c)===wanted)
     .filter(c=>!picked.has(String(c.id))||String(army.commandIds[index])===String(c.id))
     .sort((a,b)=>String(a.name.en).localeCompare(String(b.name.en)))
-    .map(c=>({id:String(c.id),label:commandName(c),sub:c.name.en,badge:pipLabel(c)}));
+    .map(c=>({id:String(c.id),label:commandName(c),sub:c.name.en,badge:pipLabel(c),image:c.image||'',text:commandText(((c.description||{}).zh)||((c.description||{}).en)||'')}));
   deckPicker('选择战术卡 · 第 '+(index+1)+' 位',items,it=>{
     army.commandIds[index]=String(it.id);
     save();render();
