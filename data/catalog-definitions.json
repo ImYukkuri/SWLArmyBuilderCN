@@ -13181,7 +13181,7 @@
       "id": "1825",
       "name": {
         "en": "Witch Magick",
-        "zh": ""
+        "zh": "女巫魔法"
       },
       "pips": 1,
       "factions": [
@@ -13641,7 +13641,7 @@
       "id": "100",
       "name": {
         "en": "Ace Up His Sleeve",
-        "zh": ""
+        "zh": "袖中王牌"
       },
       "pips": 2,
       "factions": [
@@ -13761,7 +13761,7 @@
       "id": "90",
       "name": {
         "en": "At Last",
-        "zh": ""
+        "zh": "终于"
       },
       "pips": 3,
       "factions": [
@@ -14473,7 +14473,7 @@
       "id": "14377",
       "name": {
         "en": "Lead from the Front",
-        "zh": ""
+        "zh": "身先士卒"
       },
       "pips": 2,
       "factions": [
@@ -15340,7 +15340,16 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "description": {
+        "en": "When a {@icon.rank-corps} Trooper unit is issued an Order with this card, its Ranged weapons gain Suppressive until the end of the Round.\n\nAdditionally, when an enemy unit Panics this Round, after the effect is resolved, an allied {@icon.rank-corps} unit may make a Speed-1 Move.",
+        "zh": "当一支{@icon.rank-corps}士兵单位通过此卡获发命令时，其远程武器获得压制，直到本轮结束。\n\n此外，本轮当一支敌方单位恐慌时，在该效果结算后，一支友方{@icon.rank-corps}单位可以进行一次速度1移动。"
+      },
+      "orders": {
+        "en": "3 Trooper Units",
+        "zh": "3支士兵单位"
+      },
+      "owner": "Imperial Officer"
     },
     {
       "id": "17863",
@@ -15828,7 +15837,16 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "description": {
+        "en": "Divulge: Resolve Setup Effects step.\nPermanent. Choose 3 allied {@icon.faction-empire} units. The chosen units gain Reinforcements this Game.\n\nThis card cannot be selected during the Command Phase. When an enemy unit ends its Activation, you may discard this card. If you do, choose a non-Suppressed or non-Panicked allied unit within {@icon.range-2} of the enemy unit. The chosen unit may make a free Move action or Attack action.",
+        "zh": "揭示：结算设置效果步骤。\n永久。选择3支友方{@icon.faction-empire}单位。所选单位在本局游戏中获得增援。\n\n此卡不能在命令阶段被选择。当一支敌方单位结束激活时，你可以弃置此卡。若如此做，选择该敌方单位{@icon.range-2}内一支未被压制或未恐慌的友方单位。所选单位可以进行一次免费移动行动或攻击行动。"
+      },
+      "orders": {
+        "en": "No Units",
+        "zh": "无单位"
+      },
+      "owner": "Grand Admiral Thrawn"
     },
     {
       "id": "18310",
@@ -15866,7 +15884,16 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "description": {
+        "en": "Divulge: Resolve Setup Effects step.\nPermanent. When an allied {@icon.faction-empire} unit is issued an Order, it has Demoralize 1 until the end of the Round.\n\nAllied {@icon.faction-empire} units have Demoralize 1 this Round.",
+        "zh": "揭示：结算设置效果步骤。\n永久。当一支友方{@icon.faction-empire}单位获发命令时，它拥有震慑1，直到本轮结束。\n\n本轮友方{@icon.faction-empire}单位拥有震慑1。"
+      },
+      "orders": {
+        "en": "3 Units",
+        "zh": "3支单位"
+      },
+      "owner": "Grand Moff Tarkin"
     },
     {
       "id": "13729",
@@ -16020,7 +16047,16 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "description": {
+        "en": "This Round, when an enemy unit within {@icon.range-4} of General Tagge spends 1 or more Aim tokens, Dodge tokens, or Surge tokens, add 1 Aim token, 1 Dodge token, or 1 Surge token to Logistical Prowess. Then, if the enemy unit is in LOS of General Tagge, that enemy unit gains 1 Observation token.",
+        "zh": "本轮，塔格将军的{@icon.range-4}内一支敌方单位花费至少1个瞄准、闪避或激增标记时，在“后勤专长”上添加1个瞄准标记、1个闪避标记或1个激增标记。然后，若该敌方单位在塔格将军的视线中，该敌方单位获得1个观察标记。"
+      },
+      "orders": {
+        "en": "3 Units",
+        "zh": "3支单位"
+      },
+      "owner": "General Tagge"
     },
     {
       "id": "18902",
@@ -16154,7 +16190,16 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "description": {
+        "en": "This Round, when an allied {@icon.faction-empire} unit attacks, during the Form Attack Pools step it gains 1 Aim token if the defending unit does not have 1 or more facedown Order tokens.",
+        "zh": "本轮，当一支友方{@icon.faction-empire}单位攻击时，在组成攻击池步骤期间，若防御单位没有背面朝上的命令标记，该友方单位获得1个瞄准标记。"
+      },
+      "orders": {
+        "en": "3 Units",
+        "zh": "3支单位"
+      },
+      "owner": "Grand Admiral Thrawn"
     },
     {
       "id": "18906",
@@ -16200,7 +16245,16 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "description": {
+        "en": "When a unit issued an Order with this card starts its Activation this Round, it may gain 2 Aim tokens. If it does, at the end of that unit’s Activation, if it did not defeat at least 1 enemy unit during that Activation, it suffers 2 Wounds.\n\nDuring the End Phase, if 1 or more units issued an Order with this card defeated 1 or more enemy {@icon.rank-commander} or {@icon.rank-operative} units this Round, you score 1 VP.",
+        "zh": "本轮通过此卡获发命令的单位开始激活时，可以获得2个瞄准标记。若如此做，则在该单位激活结束时，若它在此次激活期间没有击败至少1支敌方单位，它受到2点伤害。\n\n在结束阶段，若至少1支通过此卡获发命令的单位在本轮击败了至少1支敌方{@icon.rank-commander}或{@icon.rank-operative}单位，你获得1胜利分。"
+      },
+      "orders": {
+        "en": "2 {@icon.faction-empire} Units",
+        "zh": "2支{@icon.faction-empire}单位"
+      },
+      "owner": "Imperial High Command"
     },
     {
       "id": "18905",
@@ -16668,7 +16722,7 @@
       "id": "19405",
       "name": {
         "en": "Insolence?! We are pirates!",
-        "zh": ""
+        "zh": "放肆？！我们可是海盗！"
       },
       "pips": 1,
       "factions": [
@@ -21534,7 +21588,7 @@
       "id": "26",
       "name": {
         "en": "Sabotaged Communications",
-        "zh": ""
+        "zh": "破坏通讯"
       },
       "pips": 1,
       "factions": [
@@ -21663,7 +21717,7 @@
       "id": "23",
       "name": {
         "en": "Sorry About the Mess",
-        "zh": ""
+        "zh": "抱歉把这儿弄乱了"
       },
       "pips": 1,
       "factions": [
@@ -22103,7 +22157,7 @@
       "id": "5185",
       "name": {
         "en": "The Sith Will Rule",
-        "zh": ""
+        "zh": "西斯统治将临"
       },
       "pips": 2,
       "factions": [
@@ -22763,7 +22817,7 @@
       "id": "9454",
       "name": {
         "en": "We Make Weapons",
-        "zh": ""
+        "zh": "我们铸造兵器"
       },
       "pips": 3,
       "factions": [
