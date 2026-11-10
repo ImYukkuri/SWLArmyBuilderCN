@@ -264,6 +264,38 @@ function deckPicker(title,items,onPick){
   box.append(head,list);overlay.append(box);document.body.append(overlay);
   draw('');input.focus();
 }
+function commandText(text){
+  if(!text)return '';
+  const map={'rank-commander':'指挥官','rank-operative':'特工','rank-corps':'核心','rank-special-forces':'特种','rank-support':'支援','rank-heavy':'重型','rank-special':'特种'};
+  return String(text).replace(/\{@icon\.([a-z-]+)\}/g,(m,name)=>map[name]||'');
+}
+function openCommandCard(cmd,index){
+  const overlay=el('div');overlay.className='card-view-overlay';
+  const box=el('div');box.className='card-view';
+  const head=el('div');head.className='card-view-head';
+  head.append(el('strong',commandName(cmd)),el('span',pipLabel(cmd)));
+  const close=el('button','×');close.type='button';close.className='pick-close';close.onclick=()=>overlay.remove();
+  head.append(close);
+  const figure=el('div');figure.className='card-view-figure';
+  if(cmd.image){const img=el('img');img.src=cmd.image;img.alt=commandName(cmd);figure.append(img)}
+  else figure.append(el('p','暂无卡图'));
+  const mask=el('div');mask.className='card-view-mask';
+  const zh=(cmd.description||{}).zh||'';
+  const en=(cmd.description||{}).en||'';
+  const ordersZh=(cmd.orders||{}).zh||'';
+  if(ordersZh)mask.append(el('em',commandText(ordersZh)));
+  mask.append(el('p',commandText(zh)||commandText(en)||'暂无效果文本'));
+  figure.append(mask);
+  box.append(head,figure);
+  if(index!=null){
+    const actions=el('div');actions.className='card-view-actions';
+    const swap=el('button','更换这张');swap.type='button';
+    swap.onclick=()=>{overlay.remove();openCommandSlot(index)};
+    actions.append(swap);
+    box.append(actions);
+  }
+  overlay.append(box);document.body.append(overlay);
+}
 function openCommandSlot(index){
   const wanted=commandSlotPips()[index];
   const picked=new Set((army.commandIds||[]).map(String));
@@ -312,7 +344,7 @@ function renderDeck(){
     }else{
       b.append(el('span','P'+slotPips[i]+' 槽'),el('strong','+ 选择'));
     }
-    b.onclick=()=>openCommandSlot(i);
+    b.onclick=()=>card?openCommandCard(card,i):openCommandSlot(i);
     grid.append(b);
   }
   section.append(grid);

@@ -12324,7 +12324,17 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/35.webp",
+      "description": {
+        "en": "This Round, each time an allied {@icon.rank-corps} unit makes a Ranged attack, after the attack is resolved, another allied unit within {@icon.range-2} may gain 1 Dodge token.",
+        "zh": "本轮友方{@icon.rank-corps}单位进行远程攻击后，在该攻击结算后，{@icon.range-2}内的另一支友方单位可以获得1个闪避标记。"
+      },
+      "orders": {
+        "en": "3 {@icon.rank-corps} Units",
+        "zh": "3 {@icon.rank-corps} 支单位"
+      },
+      "owner": "Rebel Alliance"
     },
     {
       "id": "57",
@@ -12362,7 +12372,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/57.webp",
+      "description": {
+        "en": "When a unit is issued an Order with this card, that unit gains 1 Dodge token. Until the end of the Round, each time Count Dooku makes a Ranged attack against a Trooper unit, after the attack is resolved, that unit makes a Speed-2 Move. You resolve this movement.",
+        "zh": "单位通过此卡获发命令时，获得1个闪避标记。直到本轮结束，杜库伯爵每次对步兵单位进行远程攻击后，在攻击结算后，该单位进行一次速度2移动，由你结算此移动。"
+      },
+      "orders": {
+        "en": "Count Dooku & 2 Units",
+        "zh": "杜库伯爵及2 支单位"
+      },
+      "owner": "Count Dooku"
     },
     {
       "id": "16488",
@@ -12418,7 +12438,17 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/37.webp",
+      "description": {
+        "en": "This Round, when an allied {@icon.rank-corps} unit spends 1 or more Aim tokens while making a Ranged attack, after the attack is resolved, choose another allied unit within {@icon.range-2}. The chosen unit may gain 1 Aim token.",
+        "zh": "本轮友方{@icon.rank-corps}单位进行远程攻击并花费至少1个瞄准标记后，在该攻击结算后，选择{@icon.range-2}内的另一支友方单位；所选单位可以获得1个瞄准标记。"
+      },
+      "orders": {
+        "en": "3 {@icon.rank-corps} Units",
+        "zh": "3 {@icon.rank-corps} 支单位"
+      },
+      "owner": "Galactic Empire"
     },
     {
       "id": "16487",
@@ -12578,7 +12608,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/2.webp",
+      "description": {
+        "en": "When Luke Skywalker is issued an Order with this card, he gains 1 Dodge token. At the start of Luke Skywalkerʼs next Activation, each allied Trooper unit within {@icon.range-3} of him may remove 1 Suppression token.",
+        "zh": "卢克·天行者通过此卡获发命令时，获得1个闪避标记。卢克下次激活开始时，其{@icon.range-3}内的每支友方步兵单位可以移除1个压制标记。"
+      },
+      "orders": {
+        "en": "Luke Skywalker & 2 Units",
+        "zh": "卢克·天行者及2 支单位"
+      },
+      "owner": "Luke Skywalker"
     },
     {
       "id": "1903",
@@ -12617,7 +12657,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/1903.webp",
+      "description": {
+        "en": "When issuing Orders with this card, you may choose to not issue up to 3 Orders. Then, for each Order not issued in this way, choose a different allied Mercenary unit within {@icon.range-3} of the nominated Commander. Each chosen unit gains 1 Dodge token.",
+        "zh": "通过此卡发出命令时，你可以选择最多不发出3道命令。每以此法少发出1道命令，选择被指定指挥官{@icon.range-3}内的一支不同友方雇佣兵单位。各所选单位获得1个闪避标记。"
+      },
+      "orders": {
+        "en": "3 Units",
+        "zh": "3 支单位"
+      },
+      "owner": "Mercenary {@icon.rank-commander} or {@icon.rank-operative}"
     },
     {
       "id": "1902",
@@ -12656,7 +12706,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/1902.webp",
+      "description": {
+        "en": "When issuing Orders with this card, you may choose to not issue up to 2 Orders. Then, for each Order not issued in this way, choose a different allied Mercenary unit within {@icon.range-3} of the nominated Commander. Each chosen unit gains 1 Aim token.",
+        "zh": "通过此卡发出命令时，你可以选择最多不发出2道命令。每以此法少发出1道命令，选择被指定指挥官{@icon.range-3}内的一支不同友方雇佣兵单位。各所选单位获得1个瞄准标记。"
+      },
+      "orders": {
+        "en": "2 Units",
+        "zh": "2 支单位"
+      },
+      "owner": "Mercenary {@icon.rank-commander} or {@icon.rank-operative}"
     },
     {
       "id": "1962",
@@ -12698,7 +12758,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/1962.webp",
+      "description": {
+        "en": "When Gar Saxon is issued an Order with this card, he gains 2 Aim tokens. Then choose an enemy {@icon.rank-commander} or {@icon.rank-operative} unit. The chosen unit gains 4 Observation tokens and 2 Suppression tokens.",
+        "zh": "加尔·萨克森通过此卡获发命令时，获得2个瞄准标记。然后选择一支敌方{@icon.rank-commander}或{@icon.rank-operative}单位；该单位获得4个观察及2个压制标记。"
+      },
+      "orders": {
+        "en": "Gar Saxon",
+        "zh": "加尔·萨克森"
+      },
+      "owner": "Gar Saxon"
     },
     {
       "id": "3083",
@@ -12736,7 +12806,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/3083.webp",
+      "description": {
+        "en": "Permanent. When IG-88 issues an Order to himself, he gains 1 Aim token. IG-88 gains Independent: Dodge 1.",
+        "zh": "永久。IG-88向自身发出命令时，获得1个瞄准标记。IG-88获得独立：闪避1。"
+      },
+      "orders": {
+        "en": "IG-88",
+        "zh": "IG-88"
+      },
+      "owner": "IG-88"
     },
     {
       "id": "1827",
@@ -12774,7 +12854,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/1827.webp",
+      "description": {
+        "en": "Place 1 Aim token and 3 Surge tokens on this card. Until the end of the Round, each time an enemy unit within {@icon.range-1} of Maul spends 1 or more Aim tokens, Dodge tokens, or Surge tokens, place 1 token of the same type on this card. Allied Mercenary units can spend tokens on this card as if they have those tokens.",
+        "zh": "在此卡上放置1个瞄准及3个激增标记。直到本轮结束，摩尔{@icon.range-1}内的敌方单位每次花费至少1个瞄准、闪避或激增标记时，在此卡上放置1个相同类型的标记。友方雇佣兵单位可以将此卡上的标记视为自身拥有的标记来花费。"
+      },
+      "orders": {
+        "en": "Maul & 2 Units",
+        "zh": "摩尔及2 支单位"
+      },
+      "owner": "Maul, A Rival"
     },
     {
       "id": "2378",
@@ -12816,7 +12906,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/2378.webp",
+      "description": {
+        "en": "During Din Djarin's next Activation, he gains the following action. \n\n {@icon.action} Choose up to 3 enemy units within {@icon.range-1} and in LOS. For each chosen unit, roll 1 white attack die for each miniature in that unit. That unit suffers 1 Wound for each {@icon.hit}, {@icon.critical}, and {@icon.surge} result rolled.",
+        "zh": "丁·贾林下次激活期间获得以下行动：{@icon.action}选择{@icon.range-1}内且在视线内的最多3支敌方单位。为每支所选单位的每个模型掷1枚白色攻击骰；每个{@icon.hit}、{@icon.critical}及{@icon.surge}结果使该单位受到1点伤害。"
+      },
+      "orders": {
+        "en": "Din Djarin",
+        "zh": "丁·贾林"
+      },
+      "owner": "Din Djarin"
     },
     {
       "id": "3087",
@@ -12854,7 +12954,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/3087.webp",
+      "description": {
+        "en": "IG-11 loses Gunslinger this Round. The first time IG-11 declares an Attack action during his next Activation, he makes 1 attack against each enemy unit within {@icon.range-2} and in LOS instead of attacking normally.",
+        "zh": "IG-11本轮失去快枪手。他在下次激活中首次宣告攻击行动时，改为对{@icon.range-2}内且在视线内的每支敌方单位各进行一次攻击，而非如常攻击。"
+      },
+      "orders": {
+        "en": "IG-11",
+        "zh": "IG-11"
+      },
+      "owner": "IG-11"
     },
     {
       "id": "19764",
@@ -12918,7 +13028,17 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/2270.webp",
+      "description": {
+        "en": "Until the end of the Round, each time an allied {@icon.rank-corps} unit makes a Ranged attack, after the action is resolved, if it spent 1 or more Aim tokens, another allied unit within {@icon.range-2} may gain 1 Aim token.",
+        "zh": "直到本轮结束，友方{@icon.rank-corps}单位每次进行远程攻击后，在该行动结算后，若其花费过至少1个瞄准标记，{@icon.range-2}内的另一支友方单位可以获得1个瞄准标记。"
+      },
+      "orders": {
+        "en": "2 {@icon.rank-corps} Units",
+        "zh": "2 {@icon.rank-corps} 支单位"
+      },
+      "owner": "Separatist Invasion"
     },
     {
       "id": "787",
@@ -12964,7 +13084,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/787.webp",
+      "description": {
+        "en": "At the end of the Command Phase, choose an opponent. The chosen opponent must choose 1 of their {@icon.rank-corps}, {@icon.rank-special-forces}, {@icon.rank-support} , or {@icon.rank-heavy} units with a faceup Order token, if able, and return that Order token to their Order Pool. \n\n The first time the chosen opponent would draw an Order token from their Order Pool this Round, you may force them to draw a token with a Rank of your choice instead.",
+        "zh": "命令阶段结束时，选择一名对手。若能如此做，该对手必须选择其一支拥有正面朝上命令标记的{@icon.rank-corps}、{@icon.rank-special-forces}、{@icon.rank-support}或{@icon.rank-heavy}单位，将该标记返回命令池。本轮所选对手首次将要从命令池抽标记时，你可以迫使其改为抽取一个你指定军阶的标记。"
+      },
+      "orders": {
+        "en": "Kalani or Kraken",
+        "zh": "卡拉尼或克拉肯"
+      },
+      "owner": "Kalani or Kraken"
     },
     {
       "id": "31",
@@ -13002,7 +13132,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/31.webp",
+      "description": {
+        "en": "At the start of this Roundʼs Activation Phase, place 3 random Order tokens from your Order Pool face down on this card. You may look at these Order tokens at any time. When you would draw an Order token from your Order Pool, you may choose 1 of the Order tokens on this card and use that token instead.",
+        "zh": "本轮激活阶段开始时，从你的命令池随机取3个命令标记，背面朝上放在此卡上。你随时可以查看这些标记。将要从命令池抽取命令标记时，你可以改为选择并使用此卡上的1个命令标记。"
+      },
+      "orders": {
+        "en": "Director Orson Krennic",
+        "zh": "奥森·克伦尼克主管"
+      },
+      "owner": "Director Orson Krennic"
     },
     {
       "id": "8",
@@ -13073,7 +13213,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/1825.webp",
+      "description": {
+        "en": "While building a Command Hand, treat this card as though it has 1 pip. \n\n Remove up to 2 Wound tokens and any number of Poison tokens or Immobilize tokens from Maul. At the start of Maulʼs next Activation, he makes a Recover action.",
+        "zh": "构建命令手牌时，将此卡视为1点。移除摩尔最多2个伤害标记，以及任意数量的毒素或定身标记。在摩尔下次激活开始时，他执行一次恢复行动。"
+      },
+      "orders": {
+        "en": "Maul",
+        "zh": "摩尔"
+      },
+      "owner": "Maul, A Rival"
     },
     {
       "id": "60",
@@ -13111,7 +13261,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/60.webp",
+      "description": {
+        "en": "This Round, Luke Skywalker gains the following free action. {@icon.free-action} Choose an allied non-{@icon.rank-commander}, non-{@icon.rank-operative} Trooper unit within {@icon.range-1}, or a Suppressed enemy non-{@icon.rank-commander}, non-{@icon.rank-operative} Trooper unit within {@icon.range-1}. If the chosen unit is an allied unit, make 1 free Move or Attack action with that unit. If the chosen unit is an enemy unit, it gains 3 Suppression tokens.",
+        "zh": "本轮卢克·天行者获得以下免费行动：{@icon.free-action}选择{@icon.range-1}内的一支友方非{@icon.rank-commander}、非{@icon.rank-operative}步兵单位，或{@icon.range-1}内一支被压制的敌方非{@icon.rank-commander}、非{@icon.rank-operative}步兵单位。若为友方单位，用该单位执行一次免费移动或攻击行动；若为敌方单位，它获得3个压制标记。"
+      },
+      "orders": {
+        "en": "Luke Skywalker",
+        "zh": "卢克·天行者"
+      },
+      "owner": "Luke Skywalker, Jedi Knight"
     },
     {
       "id": "30",
@@ -13187,7 +13347,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/10.webp",
+      "description": {
+        "en": "At the end of General Veersʼ next Activation, he may make an attack using the weapon below.",
+        "zh": "维尔斯将军的下次激活结束时，可以使用下方武器进行一次攻击。"
+      },
+      "orders": {
+        "en": "General Veers",
+        "zh": "维尔斯将军"
+      },
+      "owner": "General Veers"
     },
     {
       "id": "3051",
@@ -13229,7 +13399,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/3051.webp",
+      "description": {
+        "en": "Din Djarin gains 1 Aim token. \n\n This Round, when Din Djarin makes an Attack action, after that Attack action is resolved, he may make an attack against a different unit.",
+        "zh": "丁·贾林获得1个瞄准标记。本轮他执行攻击行动后，在该攻击行动结算后，可以对另一支不同单位进行一次攻击。"
+      },
+      "orders": {
+        "en": "Din Djarin",
+        "zh": "丁·贾林"
+      },
+      "owner": "Din Djarin"
     },
     {
       "id": "6350",
@@ -13289,7 +13469,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/540.webp",
+      "description": {
+        "en": "If Chewbacca is within {@icon.range-1} of an allied Yoda, and if that Yoda is on the battlefield, place that Yoda in base contact with Chewbacca. If you do, until the end of the Round, that Yoda cannot make Moves and each time Chewbacca Moves, after that Move is resolved, place that Yoda in base contact with Chewbacca. While an allied Yoda is in base contact with Chewbacca this Round, Chewbacca gains Deflect, can spend that Yodaʼs Dodge tokens, and rolls red defense dice while defending or using Guardian X.",
+        "zh": "若丘巴卡在友方尤达{@icon.range-1}内，且尤达在战场上，将尤达放置为与丘巴卡底座接触。若如此做，直到本轮结束，尤达不能移动；丘巴卡每次移动结算后，将尤达放置为与丘巴卡底座接触。本轮友方尤达与丘巴卡底座接触期间，丘巴卡获得反弹，可以花费尤达的闪避标记，并在防御或使用护卫X时掷红色防御骰。"
+      },
+      "orders": {
+        "en": "Chewbacca & Yoda",
+        "zh": "丘巴卡及尤达"
+      },
+      "owner": "Chewbacca"
     },
     {
       "id": "34",
@@ -13335,7 +13525,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/34.webp",
+      "description": {
+        "en": "At the end of Chewbacca's next Activation, if Luke Skywalker has a faceup Order token, he may activate. At the end of Luke Skywalker's next Activation, if Chewbacca has a faceup Order token, he may activate.",
+        "zh": "丘巴卡下次激活结束时，若卢克·天行者拥有正面朝上的命令标记，卢克可以激活。卢克下次激活结束时，若丘巴卡拥有正面朝上的命令标记，丘巴卡可以激活。"
+      },
+      "orders": {
+        "en": "Chewbacca & Luke Skywalker",
+        "zh": "丘巴卡及卢克·天行者"
+      },
+      "owner": "Chewbacca"
     },
     {
       "id": "2377",
@@ -13377,7 +13577,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/2377.webp",
+      "description": {
+        "en": "Each time an allied unit within {@icon.range-1} and in LOS of Boba Fett makes a Ranged attack this Round, if Boba Fett has a faceup Order token, add 1 black die to 1 of that unitʼs Attack Pools during the Form Attack Pool step.",
+        "zh": "本轮波巴·费特{@icon.range-1}内且在其视线内的友方单位每次进行远程攻击时，若波巴拥有正面朝上的命令标记，在组成攻击池步骤向该单位的1个攻击池加入1枚黑色骰子。"
+      },
+      "orders": {
+        "en": "Boba Fett & 2 Units",
+        "zh": "波巴·费特及2 支单位"
+      },
+      "owner": "Boba Fett"
     },
     {
       "id": "4122",
@@ -13415,7 +13625,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/4122.webp",
+      "description": {
+        "en": "Moff Gideon gains 1 Aim token and 1 Dodge token and gains Relentless this Round.",
+        "zh": "吉迪恩总督获得1个瞄准及1个闪避标记，并于本轮获得追击。"
+      },
+      "orders": {
+        "en": "Moff Gideon",
+        "zh": "吉迪恩总督"
+      },
+      "owner": "Moff Gideon"
     },
     {
       "id": "100",
@@ -13453,7 +13673,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/100.webp",
+      "description": {
+        "en": "While building a Command Hand, treat this card as though it has 2 pips. \n\n If this card is in your Command Hand, during the Resolve Command Card Effects step of the Command Phase, after revealing Command Cards but before resolving Command Card effects, you may return your revealed card to your Command Hand and play this card instead. Treat this card as having been selected, played, and revealed instead of that card.",
+        "zh": "构建命令手牌时，将此卡视为2点。若此卡在你的命令手牌中，在命令阶段的结算命令卡效果步骤，揭示命令卡后、结算效果前，你可以将已揭示的卡拿回命令手牌，改为打出此卡。将此卡视为代替原卡被选择、打出及揭示。"
+      },
+      "orders": {
+        "en": "Lando Calrissian & 1 Unit",
+        "zh": "兰多·卡瑞辛及1 支单位"
+      },
+      "owner": "Lando Calrissian"
     },
     {
       "id": "8113",
@@ -13467,7 +13697,17 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/8113.webp",
+      "description": {
+        "en": "When a unit is issued an Order with this card, it gains Disengage this Round.",
+        "zh": "单位通过此卡获发命令时，本轮获得脱离交战。"
+      },
+      "orders": {
+        "en": "2 Trooper Units",
+        "zh": "2 支步兵单位"
+      },
+      "owner": "Tempest Force"
     },
     {
       "id": "257",
@@ -13505,7 +13745,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/257.webp",
+      "description": {
+        "en": "When a unit is issued an Order with this card, it gains 1 Dodge token and gains Outmaneuver and Relentless this Round. \n\n At the start of the next End Phase, if Luminous Beings Are We is in your discard pile, return it to your Command Hand.",
+        "zh": "单位通过此卡获发命令时，获得1个闪避标记，本轮获得超机动及追击。在下一个结束阶段开始时，若“我们是光明的生命”在你的弃牌堆，将其拿回命令手牌。"
+      },
+      "orders": {
+        "en": "Yoda & 1 Trooper Unit",
+        "zh": "尤达及1 支步兵单位"
+      },
+      "owner": "yoda"
     },
     {
       "id": "90",
@@ -13547,7 +13797,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/90.webp",
+      "description": {
+        "en": "While building a Command Hand, treat this card as though it has 3 pips. \n\n Maul gains 1 Aim token and gains Jedi Hunter this Round. At the start of Maulʼs next Activation, he may suffer 1 Wound.",
+        "zh": "构建命令手牌时，将此卡视为3点。摩尔获得1个瞄准标记，本轮获得绝地猎手。摩尔下次激活开始时，可以受到1点伤害。"
+      },
+      "orders": {
+        "en": "Maul",
+        "zh": "摩尔"
+      },
+      "owner": "Maul"
     },
     {
       "id": "9458",
@@ -13585,7 +13845,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/9458.webp",
+      "description": {
+        "en": "When a unit is issued an Order with this card, it gains Dauntless this Round.",
+        "zh": "单位通过此卡获发命令时，本轮获得无畏。"
+      },
+      "orders": {
+        "en": "Fifth Brother & 2 Trooper Units",
+        "zh": "五弟及2 支步兵单位"
+      },
+      "owner": "Fifth Brother"
     },
     {
       "id": "3",
@@ -13632,7 +13902,17 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/8112.webp",
+      "description": {
+        "en": "Allied Vehicles gain Demoralize 1 this Round. The first time an allied Vehicle that has a faceup Order token ends a Move within {@icon.range-half}  of 1 or more enemy units this Round, choose 1 of those units. Roll 1 white defense die for each miniature in the chosen unit. The chosen unit suffers 1 Wound for every {@icon.surge-block} or {@icon.block} result in the roll.",
+        "zh": "友方载具本轮获得震慑1。本轮拥有正面朝上命令标记的友方载具首次在至少1支敌方单位{@icon.range-half}内结束移动时，选择其中1支单位，为所选单位每个模型掷1枚白色防御骰；每个{@icon.surge-block}或{@icon.block}结果使其受到1点伤害。"
+      },
+      "orders": {
+        "en": "1 Vehicle Unit",
+        "zh": "1 支载具单位"
+      },
+      "owner": "Tempest Force"
     },
     {
       "id": "2376",
@@ -13674,7 +13954,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/2376.webp",
+      "description": {
+        "en": "During his next Activation, Boba Fett cannot make Attack actions. At the end of Boba Fett's next Activation, he may make an attack with only the following weapon against each enemy unit within {@icon.range-1} and in LOS.",
+        "zh": "波巴·费特在下次激活期间不能执行攻击行动。该次激活结束时，他可以仅使用下方武器，对{@icon.range-1}内且在视线内的每支敌方单位各进行一次攻击。"
+      },
+      "orders": {
+        "en": "Boba Fett",
+        "zh": "波巴·费特"
+      },
+      "owner": "Boba Fett"
     },
     {
       "id": "22",
@@ -13716,7 +14006,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/22.webp",
+      "description": {
+        "en": "When this card is revealed, you may discard it to return an opponent's Command Card to their Command Hand and return to the Select and Play Command Card step. That  opponent cannot select the Command Card that was returned to their Command Hand.",
+        "zh": "揭示此卡时，你可以将其弃置，使一名对手的命令卡返回其命令手牌，并返回选择并打出命令卡步骤。该对手不能选择刚拿回的那张命令卡。"
+      },
+      "orders": {
+        "en": "Han Solo & 2 Units",
+        "zh": "汉·索洛及2 支单位"
+      },
+      "owner": "Han Solo"
     },
     {
       "id": "9459",
@@ -13754,7 +14054,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/9459.webp",
+      "description": {
+        "en": "This Round, Fifth Brother and Seventh Sister gain Indomitable and roll 1 extra defense die during the Roll Defense Die step while they are defending. Until the end of the Round, each time Seventh Sister is declared as the target of an attack, if she has a faceup Order token, she gains 1 Dodge token at the start of the Apply Dodge and Cover step.",
+        "zh": "本轮五弟及七妹获得不屈，且防御时在掷防御骰子步骤额外掷1枚防御骰。直到本轮结束，每当七妹被宣告为攻击目标时，若拥有正面朝上的命令标记，在应用闪避和掩护步骤开始时获得1个闪避标记。"
+      },
+      "orders": {
+        "en": "Fifth Brother & Seventh Sister",
+        "zh": "五弟及七妹"
+      },
+      "owner": "Seventh Sister"
     },
     {
       "id": "73",
@@ -13796,7 +14106,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/73.webp",
+      "description": {
+        "en": "Cassian Andor gains 1 Aim token, gains Gunslinger this Round, and may gain 1 Suppression token. During Cassian Andorʼs next Activation, he may make a free Attack action.",
+        "zh": "卡西安·安多获得1个瞄准标记，本轮获得快枪手，并可获得1个压制标记。卡西安下次激活期间，可以执行一次免费攻击行动。"
+      },
+      "orders": {
+        "en": "Cassian Andor",
+        "zh": "卡西安·安多"
+      },
+      "owner": "Cassian Andor"
     },
     {
       "id": "16620",
@@ -13834,7 +14154,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/16620.webp",
+      "description": {
+        "en": "When a unit is issued an Order with this card, it may gain 1 Suppression token. This Round, while an allied Trooper unit has a faceup Order token, it gains Danger Sense 2, Indomitable, and cannot be Suppressed or Panicked.",
+        "zh": "单位通过此卡获发命令时，可以获得1个压制标记。本轮友方步兵单位拥有正面朝上命令标记期间，获得危险感知2、不屈，且不会被压制或恐慌。"
+      },
+      "orders": {
+        "en": "3 Trooper Units",
+        "zh": "3 支步兵单位"
+      },
+      "owner": "Jyn Erso"
     },
     {
       "id": "16619",
@@ -13872,7 +14202,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/16619.webp",
+      "description": {
+        "en": "Jyn Erso gains Charge during her next Activation. Once this Round, when an enemy unit within {@icon.range-2} and in LOS of Jyn Erso starts its Activation, before its Rally step, Jyn Erso may gain 1 Suppression token. If she does, she may make a free Move action, and then may make a free Attack action.",
+        "zh": "琴·厄索在下次激活期间获得冲锋。本轮一次，当琴的{@icon.range-2}内且在视线内的一支敌方单位开始激活时，在其重整步骤前，琴可以获得1个压制标记。若如此做，她可以执行一次免费移动行动，然后可以执行一次免费攻击行动。"
+      },
+      "orders": {
+        "en": "Jyn Erso",
+        "zh": "琴·厄索"
+      },
+      "owner": "Jyn Erso"
     },
     {
       "id": "16624",
@@ -13910,7 +14250,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/16624.webp",
+      "description": {
+        "en": "Until the end of this Round, each time an allied unit with a faceup Order token makes an attack, if the defending unit is within {@icon.range-2}  and in LOS of Lando Calrissian and if the Attack Pool contains at least 1 Blank,  {@icon.surge}, and {@icon.hit} reults during the Reroll Dice step, you may change 1 {@icon.hit} result and 1 {@icon.surge} result in the Attack Pool into {@icon.critical} results.",
+        "zh": "直到本轮结束，拥有正面朝上命令标记的友方单位攻击时，若防御单位在兰多·卡瑞辛{@icon.range-2}内且在其视线内，且攻击池在重掷骰子步骤包含至少1个空白、1个{@icon.surge}及1个{@icon.hit}结果，你可以将攻击池中1个{@icon.hit}及1个{@icon.surge}结果改为{@icon.critical}结果。"
+      },
+      "orders": {
+        "en": "Lando Calrissian & 2 Units",
+        "zh": "兰多·卡瑞辛及2 支单位"
+      },
+      "owner": "Lando Calrissian"
     },
     {
       "id": "16622",
@@ -13927,7 +14277,17 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/16622.webp",
+      "description": {
+        "en": "When an allied unit is issued an Order with this card, if a {@icon.rank-commander} Wookiee Trooper unit issued that Order, and if the Ordered unit has 1 or more Wound tokens or has had 1 or more of its miniatures be defeated, the Ordered unit gains 1 Aim token, 1 Dodge token, and 1 Surge token.",
+        "zh": "友方单位通过此卡获发命令时，若命令由{@icon.rank-commander}伍基步兵单位发出，且获令单位拥有至少1个伤害标记或此前至少有1个模型被击败，则获令单位获得1个瞄准、1个闪避及1个激增标记。"
+      },
+      "orders": {
+        "en": "1 {@icon.rank-special-forces} Unit or {@icon.rank-support} Unit",
+        "zh": "1 {@icon.rank-special-forces} 支单位或{@icon.rank-support} 支单位"
+      },
+      "owner": "Galactic Republic"
     },
     {
       "id": "43",
@@ -13965,7 +14325,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/43.webp",
+      "description": {
+        "en": "At the start of this Roundʼs Activation Phase, choose up to 2 allied Trooper units that have faceup Order tokens. Each chosen unit may make a free Standby action.",
+        "zh": "本轮激活阶段开始时，选择最多2支拥有正面朝上命令标记的友方步兵单位。每支所选单位可以执行一次免费待命行动。"
+      },
+      "orders": {
+        "en": "2 Trooper Units",
+        "zh": "2 支步兵单位"
+      },
+      "owner": "Director Orson Krennic"
     },
     {
       "id": "19885",
@@ -14087,7 +14457,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/14378.webp",
+      "description": {
+        "en": "Anakin Skywalker gains Inspire 2 this Round. When a unit is issued an Order with this card, that unit gains 1 Aim token.",
+        "zh": "阿纳金·天行者本轮获得提振2。单位通过此卡获发命令时，获得1个瞄准标记。"
+      },
+      "orders": {
+        "en": "Anakin Skywalker & 2 Units",
+        "zh": "阿纳金·天行者及2 支单位"
+      },
+      "owner": "Anakin Skywalker"
     },
     {
       "id": "14377",
@@ -14101,7 +14481,17 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/14377.webp",
+      "description": {
+        "en": "When building a Command Hand, treat this card as though it has 2 pips. When an allied {@icon.rank-commander} is issued an Order with this card, choose up to 3 other allied units within {@icon.range-1} of that {@icon.rank-commander} unit. Each chosen unit gains 1 Aim token or 1 Dodge token.",
+        "zh": "构建命令手牌时，将此卡视为2点。友方{@icon.rank-commander}通过此卡获发命令时，选择该{@icon.rank-commander}单位{@icon.range-1}内的最多3支其他友方单位。每支所选单位获得1个瞄准或1个闪避标记。"
+      },
+      "orders": {
+        "en": "1 {@icon.rank-commander} Unit",
+        "zh": "1 {@icon.rank-commander} 支单位"
+      },
+      "owner": "501st Legion"
     },
     {
       "id": "20008",
@@ -14229,7 +14619,17 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/8114.webp",
+      "description": {
+        "en": "When a unit is issued an Order with this card, it gains 1 Aim token for each enemy unit within {@icon.range-1} of it. Then, if it did not gain any Aim tokens this way, it gains 1 Standby token.",
+        "zh": "单位通过此卡获发命令时，其{@icon.range-1}内每有1支敌方单位，获得1个瞄准标记。若没有以此法获得任何瞄准标记，则获得1个待命标记。"
+      },
+      "orders": {
+        "en": "3 Units",
+        "zh": "3 支单位"
+      },
+      "owner": "Tempest Force"
     },
     {
       "id": "38",
@@ -14247,7 +14647,17 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/38.webp",
+      "description": {
+        "en": "Each time an allied {@icon.rank-support} unit or {@icon.rank-heavy} unit makes an attack against a unit that has a faceup Order token this Round, after the attack is resolved, shuffle the defending unitʼs Order token back into that playerʼs Order Pool.",
+        "zh": "本轮每当友方{@icon.rank-support}或{@icon.rank-heavy}单位攻击拥有正面朝上命令标记的单位时，在该攻击结算后，将防御单位的命令标记洗回其玩家的命令池。"
+      },
+      "orders": {
+        "en": "2 {@icon.rank-support} or {@icon.rank-heavy} Units",
+        "zh": "2 {@icon.rank-support}或{@icon.rank-heavy} 支单位"
+      },
+      "owner": "Galactic Empire"
     },
     {
       "id": "74",
@@ -14285,7 +14695,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/74.webp",
+      "description": {
+        "en": "Iden Versio gains 1 Aim token and gains Sharpshooter 2 this Round. \n\n At the end of Iden Versio's next Activation, she gains 1 Dodge token and 1 Standby token.",
+        "zh": "艾登·韦尔西奥获得1个瞄准标记，本轮获得精确射手2。她下次激活结束时，获得1个闪避及1个待命标记。"
+      },
+      "orders": {
+        "en": "Iden Versio",
+        "zh": "艾登·韦尔西奥"
+      },
+      "owner": "Iden Versio"
     },
     {
       "id": "20052",
@@ -14449,7 +14869,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/104.webp",
+      "description": {
+        "en": "This Round, each time an allied unit with a faceup Order token makes a Ranged attack, after that attack is resolved, the defending unit gains 1 Observation token. Additonally, until the end of the Round, each time an allied unit declares an attack against an enemy unit that has 1 or more Observation tokens, the attacking unit may spend one of those tokens. If it does, the Attack Pool gains Suppressive.",
+        "zh": "本轮拥有正面朝上命令标记的友方单位进行远程攻击后，防御单位获得1个观察标记。此外，直到本轮结束，友方单位宣告攻击拥有至少1个观察标记的敌方单位时，攻击单位可以花费其中1个观察标记。若如此做，攻击池获得压制。"
+      },
+      "orders": {
+        "en": "3 Units",
+        "zh": "3 支单位"
+      },
+      "owner": "Agent Kallus"
     },
     {
       "id": "93",
@@ -14466,7 +14896,17 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/93.webp",
+      "description": {
+        "en": "When an allied Vehicle unit is issued an Order with this card, choose an allied Clone Trooper unit within {@icon.range-2} of that Vehicle. The nominated {@icon.rank-commander} issues the chosen unit an Order.",
+        "zh": "友方载具单位通过此卡获发命令时，选择该载具{@icon.range-2}内的一支友方克隆人士兵单位。被指定的{@icon.rank-commander}向所选单位发出命令。"
+      },
+      "orders": {
+        "en": "1 Vehicle Unit",
+        "zh": "1 支载具单位"
+      },
+      "owner": "Galactic Republic"
     },
     {
       "id": "2136",
@@ -14480,7 +14920,17 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/2136.webp",
+      "description": {
+        "en": "This Round, each time an allied {@icon.rank-special-forces} or {@icon.rank-support}  unit makes an attack against a unit that has a faceup Order token, after the attack is resolved, shuffle that token back into its controlling player's Order Pool.",
+        "zh": "本轮友方{@icon.rank-special-forces}或{@icon.rank-support}单位攻击拥有正面朝上命令标记的单位后，在攻击结算后，将该标记洗回其控制玩家的命令池。"
+      },
+      "orders": {
+        "en": "2 {@icon.rank-special-forces} OR {@icon.rank-support} Units",
+        "zh": "2 {@icon.rank-special-forces}或{@icon.rank-support} 支单位"
+      },
+      "owner": "501st Legion"
     },
     {
       "id": "65",
@@ -14518,7 +14968,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/65.webp",
+      "description": {
+        "en": "This Round, each time an allied Clone Trooper unit with a faceup Order token makes an Aim action during its Activation, it may increase the maximum {@icon.rangeInfinite} of each of its Ranged weapons by 1, to a maximum of 4, until the end of that Activation.",
+        "zh": "本轮拥有正面朝上命令标记的友方克隆人士兵单位在激活期间执行瞄准行动时，可以使其每件远程武器的最大{@icon.rangeInfinite}增加1，最高为4，直到该次激活结束。"
+      },
+      "orders": {
+        "en": "2 Trooper Units",
+        "zh": "2 支步兵单位"
+      },
+      "owner": "Clone Captain Rex"
     },
     {
       "id": "54",
@@ -14560,7 +15020,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/54.webp",
+      "description": {
+        "en": "Obi-Wan Kenobi gains 1 Dodge token for each other allied Trooper unit within {@icon.range-1}. This Round, Obi-Wan Kenobi can use Guardian X during enemy melee attacks.",
+        "zh": "欧比-旺·克诺比{@icon.range-1}内每有1支其他友方步兵单位，他获得1个闪避标记。本轮他可以在敌方近战攻击期间使用护卫X。"
+      },
+      "orders": {
+        "en": "2 Trooper Units",
+        "zh": "2 支步兵单位"
+      },
+      "owner": "Obi-Wan Kenobi"
     },
     {
       "id": "1963",
@@ -14602,7 +15072,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/1963.webp",
+      "description": {
+        "en": "When a unit is issued an Order with this card, it gains 1 Aim token. \n\n Gar Saxon and allied {@icon.rank-special-forces} units gain Indomitable this Round.",
+        "zh": "单位通过此卡获发命令时，获得1个瞄准标记。加尔·萨克森及友方{@icon.rank-special-forces}单位本轮获得不屈。"
+      },
+      "orders": {
+        "en": "Gar Saxon & 2 Trooper Units",
+        "zh": "加尔·萨克森及2 支步兵单位"
+      },
+      "owner": "Gar Saxon"
     },
     {
       "id": "58",
@@ -14640,7 +15120,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/58.webp",
+      "description": {
+        "en": "Clone Captain Rex gains 2 Surge tokens and gains Inspire 2 this Round. At the start of Clone Captain Rexʼs next Activation, he may make a Recover action.",
+        "zh": "克隆人上尉雷克斯获得2个激增标记，本轮获得提振2。雷克斯下次激活开始时，可以执行一次恢复行动。"
+      },
+      "orders": {
+        "en": "4 Clone Trooper Units",
+        "zh": "4 支克隆人士兵单位"
+      },
+      "owner": "Clone Captain Rex"
     },
     {
       "id": "6508",
@@ -14678,7 +15168,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/6508.webp",
+      "description": {
+        "en": "Ahsoka Tano gains Agile 1 this Round. Until the end of the Round, each time Ahsoka Tano makes an attack, during the Form Attack Pool step, add 1 white die to the Attack Pool for each Dodge token that she has, to a maximum of 3.",
+        "zh": "阿索卡·塔诺本轮获得敏捷1。直到本轮结束，她每次攻击时，在组成攻击池步骤，每拥有1个闪避标记，向攻击池加入1枚白色骰子，最多加入3枚。"
+      },
+      "orders": {
+        "en": "Ahsoka Tano",
+        "zh": "阿索卡·塔诺"
+      },
+      "owner": "Ahsoka Tano, Fulcrum"
     },
     {
       "id": "7330",
@@ -14716,7 +15216,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/7330.webp",
+      "description": {
+        "en": "Permanent. Wicket gains Teamwork:  Leia Organa. When an{@icon.faction-ewoks}{@icon.rank-commander} issues Orders, you may choose an allied {@icon.faction-rebel} unit within {@icon.range-1}  of that {@icon.rank-commander} and that {@icon.rank-commander} issues the chosen unit an Order. When a {@icon.faction-rebel} {@icon.rank-commander} issues Orders, you may choose an allied {@icon.faction-ewoks} unit within {@icon.range-1} of that {@icon.rank-commander} and that {@icon.rank-commander} issues the chosen unit an Order.",
+        "zh": "永久。威基特获得团队合作：莱娅·奥加纳。{@icon.faction-ewoks}{@icon.rank-commander}发出命令时，你可以选择该{@icon.rank-commander}{@icon.range-1}内的一支友方{@icon.faction-rebel}单位，该{@icon.rank-commander}向其发出命令。{@icon.faction-rebel}{@icon.rank-commander}发出命令时，你可以选择该{@icon.rank-commander}{@icon.range-1}内的一支友方{@icon.faction-ewoks}单位，该{@icon.rank-commander}向其发出命令。"
+      },
+      "orders": {
+        "en": "Leia Organa & Wicket",
+        "zh": "莱娅·奥加纳及威基特"
+      },
+      "owner": "Leia Organa"
     },
     {
       "id": "7327",
@@ -15222,7 +15732,17 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/18222.webp",
+      "description": {
+        "en": "When a Trooper unit is issued an Order with this card, it may remove up 1 to Suppression token or make a Speed-1 Move. When a Vehicle unit is issued an Order with this card, it may gain 1 Aim token or 1 Dodge token.",
+        "zh": "步兵单位通过此卡获发命令时，可以移除最多1个压制标记或进行一次速度1移动。载具单位通过此卡获发命令时，可以获得1个瞄准或1个闪避标记。"
+      },
+      "orders": {
+        "en": "3 Units",
+        "zh": "3 支单位"
+      },
+      "owner": "212th Attack Battalion"
     },
     {
       "id": "18221",
@@ -15236,7 +15756,17 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/18221.webp",
+      "description": {
+        "en": "This Round, each allied Trooper unit gains {@icon.action}Observe 1. \n\n Additionally, during the Remove Tokens step of the next End Phase, if an enemy unit with 1 or more Observation tokens has LOS to 1 or more allied units, the enemy unit does not remove any Observation tokens.",
+        "zh": "本轮每支友方步兵单位获得{@icon.action}观察1。此外，在下一个结束阶段的移除标记步骤，若拥有至少1个观察标记的敌方单位能看到至少1支友方单位，该敌方单位不移除任何观察标记。"
+      },
+      "orders": {
+        "en": "2 Vehicles or {@icon.rank-special-forces} Units",
+        "zh": "2 Vehicles或{@icon.rank-special-forces} 支单位"
+      },
+      "owner": "212th Attack Battalion"
     },
     {
       "id": "18220",
@@ -15250,7 +15780,17 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/18220.webp",
+      "description": {
+        "en": "Divulge: Setup. Choose up to 2 {@icon.rank-corps} Clone Trooper units. Each chosen unit gains Infiltrate this game. Then, for each {@icon.rank-special-forces}  unit in your army, choose a different Vehicle unit. Each chosen Vehicle unit gains Scout 1 this Game.",
+        "zh": "揭示：设置。选择最多2支{@icon.rank-corps}克隆人士兵单位，所选单位本局获得渗透。然后，你的军队每有1支{@icon.rank-special-forces}单位，选择一支不同的载具单位；各所选载具本局获得侦察1。"
+      },
+      "orders": {
+        "en": "1 Unit",
+        "zh": "1 支单位"
+      },
+      "owner": "212th Attack Battalion"
     },
     {
       "id": "18309",
@@ -15368,7 +15908,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/13729.webp",
+      "description": {
+        "en": "This Round: \n\n While The Bad Batch contains Hunter, it increase its maximum Speed by 1. \n\n While it contains Tech, it gains Tactical 1. \n\n While it contains Echo, it gains Reliable 1. \n\n While it contains Crosshair, it gains Precise 1. \n\n While it contains Omega, it gains Inspire 1. \n\n While it contains Wrecker, its weapons gain Suppressive.",
+        "zh": "本轮，异等小队包含猎人时，最大速度增加1；包含技师时，获得战术1；包含回声时，获得可靠1；包含准星时，获得精准1；包含欧米伽时，获得提振1；包含破坏者时，其武器获得压制。"
+      },
+      "orders": {
+        "en": "The Bad Batch",
+        "zh": "异等小队"
+      },
+      "owner": "The Bad Batch"
     },
     {
       "id": "18903",
@@ -15675,7 +16225,17 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/97.webp",
+      "description": {
+        "en": "When a unit is issued an Order with this card, it may gain 1 Surge token or remove 1 Suppression token.",
+        "zh": "单位通过此卡获发命令时，可以获得1个激增标记或移除1个压制标记。"
+      },
+      "orders": {
+        "en": "3 Clone Trooper Units",
+        "zh": "3 支克隆人士兵单位"
+      },
+      "owner": "Galactic Republic"
     },
     {
       "id": "19076",
@@ -16086,7 +16646,17 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/19405.webp",
+      "description": {
+        "en": "While building a Command Hand, treat this card as though it has 1 pip. \n\n This Round, when an allied {@icon.faction-raiders} Trooper unit within {@icon.range-2} and in LOS of Hondo Ohnaka makes an attack, if Hondo Ohnaka is not Suppressed or Panicked, he may gain 1 Suppression token during the Roll Attack Dice step. If he does, that allied {@icon.faction-raiders} Trooper unit gains {@icon.surge} :{@icon.critical} during that attack.",
+        "zh": "构建命令手牌时，将此卡视为1点。本轮洪多·奥纳卡{@icon.range-2}内且在其视线内的友方{@icon.faction-raiders}步兵单位攻击时，若洪多未被压制或恐慌，可以在掷攻击骰子步骤获得1个压制标记。若如此做，该友方{@icon.faction-raiders}步兵单位此次攻击获得{@icon.surge}：{@icon.critical}。"
+      },
+      "orders": {
+        "en": "Hondo Ohnaka",
+        "zh": "洪多·奥纳卡"
+      },
+      "owner": "The Ohnaka Gang"
     },
     {
       "id": "19406",
@@ -16100,7 +16670,17 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/19406.webp",
+      "description": {
+        "en": "When a unit is issued an Order with this card, it may make a free Move action or gain 1 Aim token or 1 Dodge token.",
+        "zh": "单位通过此卡获发命令时，可以执行一次免费移动行动，或获得1个瞄准或1个闪避标记。"
+      },
+      "orders": {
+        "en": "2 Vehicle Units",
+        "zh": "2 支载具单位"
+      },
+      "owner": "The Ohnaka Gang"
     },
     {
       "id": "19407",
@@ -16114,7 +16694,17 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/19407.webp",
+      "description": {
+        "en": "This Round, allied {@icon.faction-raiders} units have Eyes on the Prize: Low Profile and Nimble.",
+        "zh": "本轮友方{@icon.faction-raiders}单位拥有紧盯奖赏：低姿态及灵巧。"
+      },
+      "orders": {
+        "en": "3 Units",
+        "zh": "3 支单位"
+      },
+      "owner": "The Ohnaka Gang"
     },
     {
       "id": "99",
@@ -16156,7 +16746,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/99.webp",
+      "description": {
+        "en": "Agent Kallus gains Hold the Line this Round. Additionally, until the end of the Round, enemy Trooper units that are Engaged with Agent Kallus cannot Move, except to Pivot.",
+        "zh": "卡勒斯特工本轮获得坚守战线。此外，直到本轮结束，与他交战的敌方步兵单位不能移动，但可以转向。"
+      },
+      "orders": {
+        "en": "Agent Kallus",
+        "zh": "卡勒斯特工"
+      },
+      "owner": "Agent Kallus"
     },
     {
       "id": "19485",
@@ -16347,7 +16947,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/19518.webp",
+      "description": {
+        "en": "When a unit is issued an Order with this card, it gains 1 Aim token or 1 Dodge token. \n\n This round when an allied {@icon.clan-wren} unit spends 1 or more Aim tokens or Dodge tokens, after the effect is resolved, choose another allied {@icon.clan-wren} unit within {@icon.range-2}. The chosen unit gains 1 token of the same type.",
+        "zh": "单位通过此卡获发命令时，获得1个瞄准或1个闪避标记。本轮友方{@icon.clan-wren}单位花费至少1个瞄准或闪避标记后，在效果结算后，选择{@icon.range-2}内的另一支友方{@icon.clan-wren}单位；所选单位获得1个相同类型的标记。"
+      },
+      "orders": {
+        "en": "3 {@icon.clan-wren} units",
+        "zh": "3 {@icon.clan-wren} 支单位"
+      },
+      "owner": "{@icon.clan-wren}{@icon.rank-commander} or {@icon.clan-wren}{@icon.rank-operative}"
     },
     {
       "id": "19517",
@@ -16361,7 +16971,17 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/19517.webp",
+      "description": {
+        "en": "When a unit is issued an Order with this card, it gains Inspire 2 this Round and may make a Speed-1 Move. \n\n This Round, when a unit issued an Order by this card attacks, during the Form Attack Pool step it may add X black attack dice to 1 of its Attack Pools to a maximum of 5, where X is the number of Suppression tokens on other allied Mandalorian Trooper units within {@icon.range-2} of the attacking unit.",
+        "zh": "单位通过此卡获发命令时，本轮获得提振2，并可进行一次速度1移动。本轮通过此卡获发命令的单位攻击时，在组成攻击池步骤，可以向其1个攻击池加入X枚黑色攻击骰，最多5枚；X为攻击单位{@icon.range-2}内其他友方曼达洛步兵单位拥有的压制标记总数。"
+      },
+      "orders": {
+        "en": "1 Mandalorian Trooper Unit",
+        "zh": "1 支曼达洛步兵单位"
+      },
+      "owner": "Mandalorian Clans"
     },
     {
       "id": "19514",
@@ -16399,7 +17019,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/19514.webp",
+      "description": {
+        "en": "Allied {@icon.clan-wren}{@icon.rank-commander} and {@icon.clan-wren}{@icon.rank-operative} units gain Guardian 1: {@icon.clan-wren} until the end of the Round. Additionally, when an allied {@icon.clan-wren} unit uses Guardian X this Round, after the effect is resolved, choose an allied {@icon.clan-wren} unit within {@icon.range-1} of that unit. The chosen unit gains 1 Aim token.",
+        "zh": "友方{@icon.clan-wren}{@icon.rank-commander}及{@icon.clan-wren}{@icon.rank-operative}单位获得护卫1：{@icon.clan-wren}，直到本轮结束。此外，本轮友方{@icon.clan-wren}单位使用护卫X后，在效果结算后，选择该单位{@icon.range-1}内的一支友方{@icon.clan-wren}单位；所选单位获得1个瞄准标记。"
+      },
+      "orders": {
+        "en": "1 {@icon.clan-wren}{@icon.rank-commander} or {@icon.clan-wren}{@icon.rank-operative}",
+        "zh": "1 {@icon.clan-wren}{@icon.rank-commander}或{@icon.clan-wren}{@icon.rank-operative}"
+      },
+      "owner": "Ursa Wren"
     },
     {
       "id": "19513",
@@ -16437,7 +17067,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/19513.webp",
+      "description": {
+        "en": "Sabine Wren has Steady this Round. \n\n This Round, Sabine Wren gains the following free action: \n\n {@icon.free-action} Place 1 allied Graffiti token within {@icon.range-1} and in LOS of Sabine Wren, touching a piece of non-area terrain.",
+        "zh": "萨宾·雷恩本轮拥有稳步。本轮萨宾获得以下免费行动：{@icon.free-action}在萨宾{@icon.range-1}内且在视线内放置1个友方涂鸦标记，接触一块非区域地形。"
+      },
+      "orders": {
+        "en": "Sabine Wren & 1 {@icon.clan-wren} unit",
+        "zh": "萨宾·雷恩及1 {@icon.clan-wren} 支单位"
+      },
+      "owner": "Sabine Wren, Back in the Fold"
     },
     {
       "id": "19510",
@@ -16451,7 +17091,17 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/19510.webp",
+      "description": {
+        "en": "When a unit with the Jump X keyword is issued an Order with this card, it may make a {@icon.action}Jump 2 action. \n\n This Round, when an allied unit that has a faceup Order token and the Jump X keyword attacks, it gains Death From Above until the end of the Round.",
+        "zh": "拥有跳跃X关键词的单位通过此卡获发命令时，可以执行一次{@icon.action}跳跃2行动。本轮拥有正面朝上命令标记及跳跃X关键词的友方单位攻击时，获得死亡天降，直到本轮结束。"
+      },
+      "orders": {
+        "en": "2 Units",
+        "zh": "2 支单位"
+      },
+      "owner": "Mandalorian Clans"
     },
     {
       "id": "19519",
@@ -16465,7 +17115,17 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/19519.webp",
+      "description": {
+        "en": "When a unit is issued an Order with this card, it gains Charge this Round. The weapons of allied Mandalorian Trooper units gainVersatile this Round.",
+        "zh": "单位通过此卡获发命令时，本轮获得冲锋。友方曼达洛步兵单位的武器本轮获得多用途。"
+      },
+      "orders": {
+        "en": "3 Units",
+        "zh": "3 支单位"
+      },
+      "owner": "Mandalorian Clans"
     },
     {
       "id": "19515",
@@ -16504,7 +17164,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/19515.webp",
+      "description": {
+        "en": "This Round, each time an allied {@icon.clan-covert} unit makes an attack against a unit that has a faceup Order token, after the attack is resolved, that unitʼs controlling player shuffles that unitʼs Order token into their Order Pool, then the defending unit gains 1 Suppression token. \n\n Divulge: Resolve Setup Effects step. Choose up to 2 allied {@icon.clan-covert} units. The chosen units have Infiltrate this Game.",
+        "zh": "本轮友方{@icon.clan-covert}单位每次攻击拥有正面朝上命令标记的单位后，在攻击结算后，防御单位的控制玩家将其命令标记洗入自己的命令池，然后防御单位获得1个压制标记。揭示：结算设置效果步骤。选择最多2支友方{@icon.clan-covert}单位；所选单位本局拥有渗透。"
+      },
+      "orders": {
+        "en": "2 {@icon.clan-covert} units",
+        "zh": "2 {@icon.clan-covert} 支单位"
+      },
+      "owner": "{@icon.clan-covert} {@icon.rank-commander} or {@icon.clan-covert} {@icon.rank-operative}"
     },
     {
       "id": "19516",
@@ -16542,7 +17212,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/19516.webp",
+      "description": {
+        "en": "At the start of the next Activation Phase, choose another allied {@icon.clan-saxon} unit within {@icon.range-2} of Rook Kast, if able. Rook Kast and the chosen unit each gain 1 Standby token. \n\n This Round, when Rook Kast or the chosen unit spends or removes 1 or more Standby tokens, they gain 1 Aim token and 1 Dodge token.",
+        "zh": "下一个激活阶段开始时，若能如此做，选择鲁克·卡斯特{@icon.range-2}内的另一支友方{@icon.clan-saxon}单位。鲁克与所选单位各获得1个待命标记。本轮鲁克或所选单位花费或移除至少1个待命标记时，获得1个瞄准及1个闪避标记。"
+      },
+      "orders": {
+        "en": "Rook Kast & 1 {@icon.clan-saxon} unit",
+        "zh": "鲁克·卡斯特及1 {@icon.clan-saxon} 支单位"
+      },
+      "owner": "Rook Kast"
     },
     {
       "id": "19511",
@@ -16581,7 +17261,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/19511.webp",
+      "description": {
+        "en": "This Round, while an allied {@icon.clan-kryze} unit is within {@icon.range-1} of another allied {@icon.clan-kryze} unit, those units gain Precise 1 and Outmaneuver.",
+        "zh": "本轮友方{@icon.clan-kryze}单位位于另一支友方{@icon.clan-kryze}单位{@icon.range-1}内时，这些单位获得精准1及超机动。"
+      },
+      "orders": {
+        "en": "2 {@icon.clan-kryze} units",
+        "zh": "2 {@icon.clan-kryze} 支单位"
+      },
+      "owner": "{@icon.clan-kryze}{@icon.rank-commander} or {@icon.clan-kryze}{@icon.rank-operative}"
     },
     {
       "id": "19512",
@@ -16620,7 +17310,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/19512.webp",
+      "description": {
+        "en": "When a unit is issued an Order with this card, it gains 1 Aim token or 1 Surge token. \n\n This Round, when an allied {@icon.clan-saxon} unit makes a Melee attack, the Attack Pool gains Ram 1.",
+        "zh": "单位通过此卡获发命令时，获得1个瞄准或1个激增标记。本轮友方{@icon.clan-saxon}单位进行近战攻击时，攻击池获得冲撞1。"
+      },
+      "orders": {
+        "en": "3 {@icon.clan-saxon} units",
+        "zh": "3 {@icon.clan-saxon} 支单位"
+      },
+      "owner": "{@icon.clan-saxon} {@icon.rank-commander} or {@icon.clan-saxon} {@icon.rank-operative}"
     },
     {
       "id": "19530",
@@ -16696,7 +17396,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/16618.webp",
+      "description": {
+        "en": "At the start of Lando Calrissian's next Activation, he may choose up to 1 enemy unit within {@icon.range-2} and in LOS. If he does, roll 2 red attack dice and resolve the effect shown below for each matching result: \n\n Blank: The chosen unit gains 2 Immobilize tokens. \n\n {@icon.hit} or {@icon.surge}: The chosen unit gains 1 Immobilize token. \n\n {@icon.critical}: Lando Calrissian gains 2 Immobilize tokens. \n\n Divulge: Resolve Setup Effects step. Lando Calrissian gains Infiltrate and Incognito this Game.",
+        "zh": "兰多·卡瑞辛下次激活开始时，可以选择{@icon.range-2}内且在视线内的最多1支敌方单位。若如此做，掷2枚红色攻击骰，每个对应结果结算如下效果：空白，所选单位获得2个定身标记；{@icon.hit}或{@icon.surge}，所选单位获得1个定身标记；{@icon.critical}，兰多获得2个定身标记。揭示：结算设置效果步骤。兰多本局获得渗透及伪装。"
+      },
+      "orders": {
+        "en": "Lando Calrissian",
+        "zh": "兰多·卡瑞辛"
+      },
+      "owner": "Lando Calrissian"
     },
     {
       "id": "16621",
@@ -16713,7 +17423,17 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/16621.webp",
+      "description": {
+        "en": "When an allied Wookiee Trooper unit is issued an Order with this card, if a {@icon.rank-commander} Wookiee Trooper unit issued that Order, the Ordered unit gains Demoralize 1 this Round.",
+        "zh": "友方伍基步兵单位通过此卡获发命令时，若该命令由{@icon.rank-commander}伍基步兵单位发出，获令单位本轮获得震慑1。"
+      },
+      "orders": {
+        "en": "3 Trooper Units",
+        "zh": "3 支步兵单位"
+      },
+      "owner": "Galactic Republic"
     },
     {
       "id": "16623",
@@ -16730,7 +17450,17 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/16623.webp",
+      "description": {
+        "en": "When an allied Wookiee Trooper unit is issued an Order with this card, if a {@icon.rank-commander} Wookiee Trooper unit issued that Order, the Ordered unit gains Agile 1 this Round.",
+        "zh": "友方伍基步兵单位通过此卡获发命令时，若该命令由{@icon.rank-commander}伍基步兵单位发出，获令单位本轮获得敏捷1。"
+      },
+      "orders": {
+        "en": "2 Trooper Units",
+        "zh": "2 支步兵单位"
+      },
+      "owner": "Galactic Republic"
     },
     {
       "id": "70",
@@ -16772,7 +17502,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/70.webp",
+      "description": {
+        "en": "When R2-D2 makes an attack this Round, after the attack is resolved, he may make a free Move action. During R2-D2's next Activation, he gains the weapon below.",
+        "zh": "R2-D2本轮攻击后，在该攻击结算后，可以执行一次免费移动行动。R2-D2在下次激活期间获得下方武器。"
+      },
+      "orders": {
+        "en": "R2-D2",
+        "zh": "R2-D2"
+      },
+      "owner": "R2-D2"
     },
     {
       "id": "16485",
@@ -16852,7 +17592,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/50.webp",
+      "description": {
+        "en": "General Grievous gains Ruthless this Round. When an allied unit is issued an Order with this card, that unit and each other allied Trooper unit within {@icon.range-1} and in LOS of that unit gains 1 Surge token.",
+        "zh": "格里弗斯将军本轮获得冷酷无情。友方单位通过此卡获发命令时，该单位及其{@icon.range-1}内且在其视线内的每支其他友方步兵单位各获得1个激增标记。"
+      },
+      "orders": {
+        "en": "2 Trooper Units",
+        "zh": "2 支步兵单位"
+      },
+      "owner": "General Grievous"
     },
     {
       "id": "67",
@@ -16890,7 +17640,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/67.webp",
+      "description": {
+        "en": "This Round, Count Dooku gains Arsenal 2 and Relentless and each of his Ranged weapons gains Versatile. Until the end of the Round, each time Count Dooku makes an attack, after the attack is resolved, each defending unit gains 2 Suppression tokens.",
+        "zh": "本轮杜库伯爵获得军火库2及追击，其每件远程武器获得多用途。直到本轮结束，杜库每次攻击后，在攻击结算后，每支防御单位获得2个压制标记。"
+      },
+      "orders": {
+        "en": "Count Dooku",
+        "zh": "杜库伯爵"
+      },
+      "owner": "Count Dooku"
     },
     {
       "id": "51",
@@ -16932,7 +17692,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/51.webp",
+      "description": {
+        "en": "Obi-Wan Kenobi gains Nimble this Round. At the start of the next Activation Phase, Obi-Wan Kenobi may gain 1 Aim token, 1 Dodge token, 1 Standby token, or 1 Surge token for each enemy unit within {@icon.range-2}.",
+        "zh": "欧比-旺·克诺比本轮获得灵巧。下一个激活阶段开始时，其{@icon.range-2}内每有1支敌方单位，可以获得1个瞄准、闪避、待命或激增标记。"
+      },
+      "orders": {
+        "en": "Obi-Wan Kenobi",
+        "zh": "欧比-旺·克诺比"
+      },
+      "owner": "Obi-Wan Kenobi"
     },
     {
       "id": "18904",
@@ -17084,7 +17854,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/18.webp",
+      "description": {
+        "en": "When a unit is issued an Order with this card, it may make a Speed-1 Move.",
+        "zh": "单位通过此卡获发命令时，可以进行一次速度1移动。"
+      },
+      "orders": {
+        "en": "2 Troopers",
+        "zh": "2 名步兵"
+      },
+      "owner": "Leia Organa"
     },
     {
       "id": "6131",
@@ -17122,7 +17902,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/6131.webp",
+      "description": {
+        "en": "During his next Activation, Clone Commander Cody may make his {@icon.free-action} actions up to 2 times. This Round, each time an allied unit declares an attack against an enemy unit that has 1 or more Observation tokens, the allied unit may spend 1 of those tokens. If it does, that attack gains Suppressive if the enemy unit is a Trooper unit, or Impact 1 if the enemy unit is a Vehicle unit.",
+        "zh": "克隆人指挥官科迪下次激活期间，他的各{@icon.free-action}行动可以执行最多2次。本轮友方单位宣告攻击拥有至少1个观察标记的敌方单位时，可以花费其中1个观察标记。若如此做，若敌方单位为步兵，此次攻击获得压制；若为载具，则获得冲击1。"
+      },
+      "orders": {
+        "en": "Clone Commander Cody",
+        "zh": "克隆人指挥官科迪"
+      },
+      "owner": "Clone Commander Cody"
     },
     {
       "id": "6509",
@@ -17160,7 +17950,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/6509.webp",
+      "description": {
+        "en": "Ahsoka Tano gains Teamwork: Sabine Wren this Round. At the start of Ahsoka Tano's next Activation, Sabine Wren may make a Speed-2 Move. At the start of Sabine Wren's next Activation, Ahsoka Tano may make a Speed-2 Move.",
+        "zh": "阿索卡·塔诺本轮获得团队合作：萨宾·雷恩。阿索卡下次激活开始时，萨宾可以进行一次速度2移动；萨宾下次激活开始时，阿索卡可以进行一次速度2移动。"
+      },
+      "orders": {
+        "en": "Ahsoka Tano & Sabine Wren",
+        "zh": "阿索卡·塔诺及萨宾·雷恩"
+      },
+      "owner": "Ahsoka Tano, Fulcrum"
     },
     {
       "id": "16",
@@ -17198,7 +17998,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/16.webp",
+      "description": {
+        "en": "When an allied unit is issued an Order with this card, it may make a Recover action.",
+        "zh": "友方单位通过此卡获发命令时，可以执行一次恢复行动。"
+      },
+      "orders": {
+        "en": "General Veers & 2 Units",
+        "zh": "维尔斯将军及2 支单位"
+      },
+      "owner": "General Veers"
     },
     {
       "id": "41",
@@ -17240,7 +18050,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/41.webp",
+      "description": {
+        "en": "Sabine Wren gains Inspire 1 this Round. Each time Sabine Wren issues an Order to a {@icon.rank-commander} , {@icon.rank-operative} , or {@icon.rank-special-forces} unit this Round, she gains either 1 Aim token or 1 Dodge token.",
+        "zh": "萨宾·雷恩本轮获得提振1。本轮萨宾每次向{@icon.rank-commander}、{@icon.rank-operative}或{@icon.rank-special-forces}单位发出命令时，获得1个瞄准或1个闪避标记。"
+      },
+      "orders": {
+        "en": "Sabine Wren & 2 Troopers",
+        "zh": "萨宾·雷恩及2 名步兵"
+      },
+      "owner": "Sabine Wren"
     },
     {
       "id": "42",
@@ -17282,7 +18102,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/42.webp",
+      "description": {
+        "en": "Bossk gains Sharpshooter 1 this Round. Until the end of the Round, each time an enemy unit ends its Activation, Bossk gains 1 Aim token.",
+        "zh": "博斯克本轮获得精确射手1。直到本轮结束，每支敌方单位激活结束时，博斯克获得1个瞄准标记。"
+      },
+      "orders": {
+        "en": "Bossk",
+        "zh": "博斯克"
+      },
+      "owner": "Bossk"
     },
     {
       "id": "4120",
@@ -17320,7 +18150,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/4120.webp",
+      "description": {
+        "en": "When a unit is issued an Order with this card, it gains 1 Standby token.",
+        "zh": "单位通过此卡获发命令时，获得1个待命标记。"
+      },
+      "orders": {
+        "en": "3 {@icon.rank-corps} or {@icon.rank-heavy} Units",
+        "zh": "3 {@icon.rank-corps}或{@icon.rank-heavy} 支单位"
+      },
+      "owner": "Moff Gideon"
     },
     {
       "id": "80",
@@ -17362,7 +18202,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/80.webp",
+      "description": {
+        "en": "K-2SO gains Guardian 4 this Round. At the end of K-2SO's next Activation, you may choose another allied {@icon.rank-commander} or {@icon.rank-operative} unit within {@icon.range-1} and in K-2SO's LOS. If you do, K-2SO is defeated and enemy units cannot make Ranged attacks against the chosen unit until the end of this Round.",
+        "zh": "K-2SO本轮获得护卫4。K-2SO下次激活结束时，你可以选择另一支在其{@icon.range-1}内且在其视线内的友方{@icon.rank-commander}或{@icon.rank-operative}单位。若如此做，K-2SO被击败，直到本轮结束敌方单位不能对所选单位进行远程攻击。"
+      },
+      "orders": {
+        "en": "Cassian Andor & K-2SO",
+        "zh": "卡西安·安多及K-2SO"
+      },
+      "owner": "K-2SO"
     },
     {
       "id": "6510",
@@ -17400,7 +18250,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/6510.webp",
+      "description": {
+        "en": "Ahsoka Tano gains Guardian 2 this Round. Until the end of the Round, each time another allied small-base Trooper unit within {@icon.range-1} of Ahsoka Tano is declared as a defending unit, that defending unit may gain 1 Dodge token.",
+        "zh": "阿索卡·塔诺本轮获得护卫2。直到本轮结束，她{@icon.range-1}内的另一支友方小型底座步兵单位被宣告为防御单位时，该单位可以获得1个闪避标记。"
+      },
+      "orders": {
+        "en": "Ahsoka Tano",
+        "zh": "阿索卡·塔诺"
+      },
+      "owner": "Ahsoka Tano, Fulcrum"
     },
     {
       "id": "47",
@@ -17442,7 +18302,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/47.webp",
+      "description": {
+        "en": "At the start of Sabine Wren's next Activation, she may make a Recover action. \n\n This Round, Sabine Wren gains the following free action. \n\n {@icon.free-action} Place 1 Graffiti token within {@icon.range-1} and in LOS of Sabine Wren, touching a piece of non-area terrain.",
+        "zh": "萨宾·雷恩下次激活开始时，可以执行一次恢复行动。本轮她获得以下免费行动：{@icon.free-action}在萨宾{@icon.range-1}内且在视线内放置1个涂鸦标记，接触一块非区域地形。"
+      },
+      "orders": {
+        "en": "Sabine Wren",
+        "zh": "萨宾·雷恩"
+      },
+      "owner": "Sabine Wren"
     },
     {
       "id": "3050",
@@ -17488,7 +18358,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/3050.webp",
+      "description": {
+        "en": "This card cannot be selected during the Command Phase. When an allied unit within {@icon.range-1} and in LOS of Grogu is declared as a defender against a Ranged attack, you may discard this card from your Command Hand. If you do, the defending unit gains 2 Dodge tokens and gains Deflect until the attack is resolved.",
+        "zh": "此卡不能在命令阶段选择。格罗古{@icon.range-1}内且在其视线内的友方单位被宣告为远程攻击的防御方时，你可以从命令手牌弃置此卡。若如此做，防御单位获得2个闪避标记，并获得反弹，直到该攻击结算完毕。"
+      },
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "owner": "Grogu"
     },
     {
       "id": "3052",
@@ -17530,7 +18410,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/3052.webp",
+      "description": {
+        "en": "Din Djarin gains 1 Dodge token and gains Relentless this Round.",
+        "zh": "丁·贾林获得1个闪避标记，本轮获得追击。"
+      },
+      "orders": {
+        "en": "Din Djarin",
+        "zh": "丁·贾林"
+      },
+      "owner": "Din Djarin"
     },
     {
       "id": "81",
@@ -17572,7 +18462,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/81.webp",
+      "description": {
+        "en": "Each time Cassian Andor issues an Order to a {@icon.rank-commander}, {@icon.rank-operative}, or {@icon.rank-special-forces} unit this Round, that unit may make a Recover action, gains Danger Sense 1 until the end of the Round, and may gain 1 Suppression token.",
+        "zh": "本轮卡西安·安多每次向{@icon.rank-commander}、{@icon.rank-operative}或{@icon.rank-special-forces}单位发出命令时，该单位可以执行一次恢复行动，获得危险感知1直到本轮结束，并可获得1个压制标记。"
+      },
+      "orders": {
+        "en": "Cassian Andor & 2 Trooper Units",
+        "zh": "卡西安·安多及2 支步兵单位"
+      },
+      "owner": "Cassian Andor"
     },
     {
       "id": "55",
@@ -17614,7 +18514,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/55.webp",
+      "description": {
+        "en": "Permanent. If this card was not Divulged, Darth Vader gains Reliable 2. \n\n Divulge: Resolve Setup Effects step. Darth Vader gains Infiltrate this Game. This card must be selected during Round 1.",
+        "zh": "永久。若此卡未被揭示，达斯·维德获得可靠2。揭示：结算设置效果步骤。达斯·维德本局获得渗透。此卡必须在第1轮选择。"
+      },
+      "orders": {
+        "en": "Darth Vader",
+        "zh": "达斯·维德"
+      },
+      "owner": "Darth Vader"
     },
     {
       "id": "82",
@@ -17652,7 +18562,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/82.webp",
+      "description": {
+        "en": "When Iden Versio starts her Activation this Round, she makes a Recover action. During Iden Versio's Activation this Round, she gains the weapon below.",
+        "zh": "艾登·韦尔西奥本轮开始激活时，执行一次恢复行动。她本轮激活期间，获得下方武器。"
+      },
+      "orders": {
+        "en": "Iden Versio",
+        "zh": "艾登·韦尔西奥"
+      },
+      "owner": "Iden Versio"
     },
     {
       "id": "15",
@@ -17690,7 +18610,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/15.webp",
+      "description": {
+        "en": "When an allied Vehicle unit is issued an Order with this card, it gains 1 Dodge token. Allied Vehicle units gain Nimble this Round.",
+        "zh": "友方载具单位通过此卡获发命令时，获得1个闪避标记。友方载具单位本轮获得灵巧。"
+      },
+      "orders": {
+        "en": "2 Vehicle Units",
+        "zh": "2 支载具单位"
+      },
+      "owner": "General Veers"
     },
     {
       "id": "66",
@@ -17728,7 +18658,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/66.webp",
+      "description": {
+        "en": "At the start of the Activation Phase this Round, if Count Dooku has a faceup Order token, you may return it to your Order Pool. If you do, choose up to 2 enemy units within {@icon.range-2} and return their Order tokens to the opposing player's Order Pool.",
+        "zh": "本轮激活阶段开始时，若杜库伯爵拥有正面朝上的命令标记，你可以将其返回命令池。若如此做，选择{@icon.range-2}内的最多2支敌方单位，将其命令标记返回对方玩家的命令池。"
+      },
+      "orders": {
+        "en": "Count Dooku & 1 Unit",
+        "zh": "杜库伯爵及1 支单位"
+      },
+      "owner": "Count Dooku"
     },
     {
       "id": "75",
@@ -17770,7 +18710,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/75.webp",
+      "description": {
+        "en": "If this card was not Divulged, place 1 Bane token within {@icon.range-1} of Cad Bane and not within {@icon.range-1} of all enemy units. \n\n Divulge: Resolve Setup Effects step. Place 3 Bane tokens on the battlefield not within {@icon.range-1} of enemy Territory. Cad Bane cannot Deploy or make any actions until an allied Here I Am token is revealed. This card must be selected during Round 1.",
+        "zh": "若此卡未被揭示，在凯德·贝恩{@icon.range-1}内且不在任何敌方单位{@icon.range-1}内放置1个贝恩标记。揭示：结算设置效果步骤。在战场放置3个贝恩标记，不能在敌方领土{@icon.range-1}内。揭示一个友方“我在这里”标记之前，凯德不能部署或执行任何行动。此卡必须在第1轮选择。"
+      },
+      "orders": {
+        "en": "Cad Bane",
+        "zh": "凯德·贝恩"
+      },
+      "owner": "Cad Bane"
     },
     {
       "id": "48",
@@ -17812,7 +18762,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/48.webp",
+      "description": {
+        "en": "Permanent. During the Round in which this card was played, Sabine Wren gains {@icon.action}Arm 2: Thermal Charge. After Sabine Wren makes this action, she may make a Speed-1 Move. \n\n Until the end of the Game, Sabine Wren gains Detonate 2: Thermal Charge. Do not discard this card from play.",
+        "zh": "永久。打出此卡的这一轮，萨宾·雷恩获得{@icon.action}布设2：热能炸药。她执行该行动后，可以进行一次速度1移动。直到本局游戏结束，萨宾获得引爆2：热能炸药。不要将此卡从游戏区域弃置。"
+      },
+      "orders": {
+        "en": "Sabine Wren",
+        "zh": "萨宾·雷恩"
+      },
+      "owner": "Sabine Wren"
     },
     {
       "id": "62",
@@ -17858,7 +18818,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/62.webp",
+      "description": {
+        "en": "Luke Skywalker gains 1 Dodge token. Until the end of the Round, each time Luke Skywalker defends, he rolls a number of additional white defense dice during the Roll Defense Dice step equal to his {@icon.courage} minus the number of Suppression tokens he has.",
+        "zh": "卢克·天行者获得1个闪避标记。直到本轮结束，卢克每次防御时，在掷防御骰子步骤额外掷若干白色防御骰，数量等于其{@icon.courage}减去拥有的压制标记数量。"
+      },
+      "orders": {
+        "en": "Luke Skywalker",
+        "zh": "卢克·天行者"
+      },
+      "owner": "Luke Skywalker"
     },
     {
       "id": "1",
@@ -17900,7 +18870,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/1.webp",
+      "description": {
+        "en": "This Round, when an allied non-Darth Vader Trooper unit that has a faceup Order token starts its Activation, it may suffer 1 Wound. If it does, it may make 1 additional action during that Activation.",
+        "zh": "本轮拥有正面朝上命令标记、且并非达斯·维德的友方步兵单位开始激活时，可以受到1点伤害；若如此做，该次激活可以额外执行1次行动。"
+      },
+      "orders": {
+        "en": "2 Trooper Units",
+        "zh": "2 支步兵单位"
+      },
+      "owner": "Darth Vader"
     },
     {
       "id": "68",
@@ -17942,7 +18922,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/68.webp",
+      "description": {
+        "en": "When R2-D2 issues an Order to another unit with this card, that unit may make a Speed-1 Move. At the start of the next Activation Phase, R2-D2 may make a {@icon.free-action}Smoke 1 free action.",
+        "zh": "R2-D2通过此卡向另一支单位发出命令时，该单位可以进行一次速度1移动。下一个激活阶段开始时，R2-D2可以执行一次{@icon.free-action}烟雾1免费行动。"
+      },
+      "orders": {
+        "en": "R2-D2 & 1 Trooper Unit",
+        "zh": "R2-D2及1 支步兵单位"
+      },
+      "owner": "R2-D2"
     },
     {
       "id": "91",
@@ -17984,7 +18974,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/91.webp",
+      "description": {
+        "en": "This Round, Maul cannot make attacks and enemy units not within {@icon.range-2} of Maul cannot attack him. \n\n Divulge: Resolve Setup Effects step. Maul gains Infiltrate this Game.",
+        "zh": "本轮摩尔不能攻击，且不在他{@icon.range-2}内的敌方单位不能攻击他。揭示：结算设置效果步骤。摩尔本局获得渗透。"
+      },
+      "orders": {
+        "en": "Maul & 1 Trooper Unit",
+        "zh": "摩尔及1 支步兵单位"
+      },
+      "owner": "Maul"
     },
     {
       "id": "29",
@@ -18030,7 +19030,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/29.webp",
+      "description": {
+        "en": "This Round, Boba Fett gains the weapon below during his Activation.",
+        "zh": "本轮波巴·费特激活期间，获得下方武器。"
+      },
+      "orders": {
+        "en": "Boba Fett",
+        "zh": "波巴·费特"
+      },
+      "owner": "Boba Fett"
     },
     {
       "id": "24",
@@ -18114,7 +19124,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/786.webp",
+      "description": {
+        "en": "If this card was not Divulged, at the start of the next Activation Phase, choose up to 2 allied units that have faceup Order tokens. Each chosen unit makes a Recover action. \n\n Divulge: Resolve Setup Effects step. Choose up to 3 allied units with AI. Each chosen unit gains Reinforcements this Game.",
+        "zh": "若此卡未被揭示，在下一个激活阶段开始时，选择最多2支拥有正面朝上命令标记的友方单位。每支所选单位执行一次恢复行动。揭示：结算设置效果步骤。选择最多3支拥有AI的友方单位；各所选单位本局获得增援。"
+      },
+      "orders": {
+        "en": "3 Droid Trooper Units or AI Units",
+        "zh": "3 支机器人步兵单位或AI单位"
+      },
+      "owner": "Kalani or Kraken"
     },
     {
       "id": "63",
@@ -18156,7 +19176,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/63.webp",
+      "description": {
+        "en": "This Round, R2-D2 increases his maximum Speed by 1 and gains Disengage and {@icon.action}Jump 1. When R2-D2 is issued an Order with this card, R2-D2 gains 1 Dodge token and 1 Suppression token.",
+        "zh": "本轮R2-D2最大速度增加1，并获得脱离交战及{@icon.action}跳跃1。R2-D2通过此卡获发命令时，获得1个闪避及1个压制标记。"
+      },
+      "orders": {
+        "en": "R2-D2",
+        "zh": "R2-D2"
+      },
+      "owner": "R2-D2"
     },
     {
       "id": "64",
@@ -18194,7 +19224,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/64.webp",
+      "description": {
+        "en": "Once per Activation this Round while Clone Captain Rex has a faceup Order token, when another allied unit attacks an enemy unit within {@icon.range-2} and in LOS of Clone Captain Rex, add 3 red attack dice to the allied unit's Attack Pool during the Form Attack pool step.",
+        "zh": "本轮每次激活一次，雷克斯拥有正面朝上命令标记期间，另一支友方单位攻击距离雷克斯{@icon.range-2}内且在其视线内的敌方单位时，在组成攻击池步骤，向该友方单位的攻击池加入3枚红色攻击骰。"
+      },
+      "orders": {
+        "en": "Clone Captain Rex",
+        "zh": "克隆人上尉雷克斯"
+      },
+      "owner": "Clone Captain Rex"
     },
     {
       "id": "19",
@@ -18232,7 +19272,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/19.webp",
+      "description": {
+        "en": "After Leia Organaʼs next Activation, you may choose an allied unit within {@icon.range-2} of Leia Organa that has a faceup Order token. If you do, the chosen unit activates.",
+        "zh": "莱娅·奥加纳下次激活后，你可以选择距离莱娅{@icon.range-2}内、拥有正面朝上命令标记的一支友方单位。若如此做，所选单位激活。"
+      },
+      "orders": {
+        "en": "Leia Organa & 2 Units",
+        "zh": "莱娅·奥加纳及2 支单位"
+      },
+      "owner": "Leia Organa"
     },
     {
       "id": "1961",
@@ -18274,7 +19324,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/1961.webp",
+      "description": {
+        "en": "This Round, Gar Saxon cannot issue Orders to allied units that are not within {@icon.range-1} of him. When a unit is issued an Order with this card, it gains 1 Dodge token. \n\n Gar Saxon and allied {@icon.rank-special-forces} units gain Outmaneuver this Round.",
+        "zh": "本轮加尔·萨克森不能向不在其{@icon.range-1}内的友方单位发出命令。单位通过此卡获发命令时，获得1个闪避标记。加尔及友方{@icon.rank-special-forces}单位本轮获得超机动。"
+      },
+      "orders": {
+        "en": "Gar Saxon & 2 Trooper Units",
+        "zh": "加尔·萨克森及2 支步兵单位"
+      },
+      "owner": "Gar Saxon"
     },
     {
       "id": "12",
@@ -18316,7 +19376,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/12.webp",
+      "description": {
+        "en": "At the start of each of Darth Vader's Activations this Round, he gains 1 Dodge token. At the end of Darth Vader's first Activation this Round, he may suffer 1 Wound. If he does, shuffle his Order token into the Order Pool. During Darth Vader's second Activation this Round, he makes 1 fewer action.",
+        "zh": "本轮达斯·维德每次激活开始时，获得1个闪避标记。他本轮第1次激活结束时，可以受到1点伤害；若如此做，将其命令标记洗入命令池。达斯·维德本轮第2次激活时少执行1次行动。"
+      },
+      "orders": {
+        "en": "Darth Vader",
+        "zh": "达斯·维德"
+      },
+      "owner": "Darth Vader"
     },
     {
       "id": "79",
@@ -18358,7 +19428,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/79.webp",
+      "description": {
+        "en": "When a {@icon.rank-commander} or {@icon.rank-operative} unit is issued an Order with this card, that unit gains Indomitable until the end of the Round and gains 1 Aim token, Dodge token, or Suppression token for each Wound token that unit has, to a maximum of 3.",
+        "zh": "{@icon.rank-commander}或{@icon.rank-operative}单位通过此卡获发命令时，获得不屈直到本轮结束，且每拥有1个伤害标记，获得1个瞄准、闪避或压制标记，最多获得3个。"
+      },
+      "orders": {
+        "en": "Cassian Andor & 1 Trooper Unit",
+        "zh": "卡西安·安多及1 支步兵单位"
+      },
+      "owner": "Cassian Andor"
     },
     {
       "id": "258",
@@ -18396,7 +19476,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/258.webp",
+      "description": {
+        "en": "Yoda gains 2 Aim tokens, 2 Dodge tokens, and 2 Surge tokens. Yoda cannot make attacks this Round. Until the end of the Round, allied units within {@icon.range-3} of Yoda can spend Yodaʼs Aim tokens, Dodge tokens, and Surge tokens. At the start of the next End Phase, if Size Matters Not is in your discard pile, return it to your Command Hand.",
+        "zh": "尤达获得2个瞄准、2个闪避及2个激增标记。尤达本轮不能攻击。直到本轮结束，尤达{@icon.range-3}内的友方单位可以花费尤达的瞄准、闪避及激增标记。在下一个结束阶段开始时，若“大小无关紧要”在你的弃牌堆，将其拿回命令手牌。"
+      },
+      "orders": {
+        "en": "Each Eligible Unit",
+        "zh": "每支符合条件的单位"
+      },
+      "owner": "yoda"
     },
     {
       "id": "785",
@@ -18442,7 +19532,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/785.webp",
+      "description": {
+        "en": "When a unit is issued an Order with this card, that unit gains 1 Dodge token and gains Disengage and Impervious this Round.",
+        "zh": "单位通过此卡获发命令时，获得1个闪避标记，本轮获得脱离交战及难以穿刺。"
+      },
+      "orders": {
+        "en": "2 Droid Trooper Units or AI Units",
+        "zh": "2 支机器人步兵单位或AI单位"
+      },
+      "owner": "Kalani or Kraken"
     },
     {
       "id": "59",
@@ -18484,7 +19584,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/59.webp",
+      "description": {
+        "en": "This Round, Darth Vader gains the following free action. \n\n {@icon.free-action} Choose another non-{@icon.rank-heavy} unit within {@icon.range-1}. Place the chosen unitʼs unit leader on the battlefield within {@icon.range-half} and within Height 1 of its current position. Then place the rest of the chosen unit in cohesion with the unit leader. Then, if it is an enemy unit, roll 1 white defense die for each miniature in the unit. That unit suffers 1 Wound for each {@icon.block} and {@icon.surge-block} result in the roll.",
+        "zh": "本轮达斯·维德获得以下免费行动。{@icon.free-action}选择{@icon.range-1}内的另一支非{@icon.rank-heavy}单位。将所选单位的队长放置在其当前位置{@icon.range-half}内且高度差不超过1的战场位置，然后使其余模型与队长保持队形。若所选为敌方单位，为其每个模型掷1枚白色防御骰；每个{@icon.block}及{@icon.surge-block}结果使该单位受到1点伤害。"
+      },
+      "orders": {
+        "en": "Darth Vader",
+        "zh": "达斯·维德"
+      },
+      "owner": "Darth Vader"
     },
     {
       "id": "20",
@@ -18530,7 +19640,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/20.webp",
+      "description": {
+        "en": "This Round, while Boba Fett is Engaged, he can make Moves as normal if any unit he is Engaged with has 1 or more Immobilize tokens. During Boba Fettʼs next Activation, he gains the following free action. \n\n {@icon.free-action} Choose an enemy Trooper unit within {@icon.range-1} and in LOS. The chosen unit gains 2 Immobilize tokens and 2 Suppression tokens.",
+        "zh": "本轮波巴·费特交战期间，若与其交战的任意单位拥有至少1个定身标记，他仍可如常移动。在波巴下次激活期间，获得以下免费行动：{@icon.free-action}选择{@icon.range-1}内且在视线内的一支敌方步兵单位。所选单位获得2个定身及2个压制标记。"
+      },
+      "orders": {
+        "en": "Boba Fett",
+        "zh": "波巴·费特"
+      },
+      "owner": "Boba Fett"
     },
     {
       "id": "92",
@@ -18572,7 +19692,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/92.webp",
+      "description": {
+        "en": "Maul gains 1 Dodge token and gains Disengage this Round. While Maul is Engaged with an enemy unit this Round, that unit cannot spend Aim tokens, Dodge tokens, Standby tokens, or Surge tokens.",
+        "zh": "摩尔获得1个闪避标记，本轮获得脱离交战。本轮与摩尔交战的敌方单位不能花费瞄准、闪避、待命或激增标记。"
+      },
+      "orders": {
+        "en": "Maul",
+        "zh": "摩尔"
+      },
+      "owner": "Maul"
     },
     {
       "id": "85",
@@ -18614,7 +19744,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/85.webp",
+      "description": {
+        "en": "Cad Bane gains Uncanny Luck 2 this Round. During Cad Baneʼs Activation this Round, he can make up to 2 Attack actions instead of the normal 1.",
+        "zh": "凯德·贝恩本轮获得运气出奇2。本轮凯德激活期间可以执行最多2次攻击行动，而非通常的1次。"
+      },
+      "orders": {
+        "en": "Cad Bane",
+        "zh": "凯德·贝恩"
+      },
+      "owner": "Cad Bane"
     },
     {
       "id": "77",
@@ -18656,7 +19796,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/77.webp",
+      "description": {
+        "en": "At the start and end of Cad Baneʼs next Activation, he may remove any number of Suppression tokens. For each Suppression token removed in this way, choose another unit within {@icon.range-2} of him. The chosen unit gains 1 Suppression token. Each time an enemy Trooper unit gains 1 or more Suppression tokens in this way, if it has no Immobilize tokens, it gains 1 Immobilize token.",
+        "zh": "凯德·贝恩下次激活开始及结束时，可以移除任意数量的压制标记。每以此法移除1个压制标记，选择他{@icon.range-2}内的另一支单位；所选单位获得1个压制标记。敌方步兵单位每以此法获得至少1个压制标记时，若没有定身标记，则获得1个定身标记。"
+      },
+      "orders": {
+        "en": "Cad Bane & 1 Unit",
+        "zh": "凯德·贝恩及1 支单位"
+      },
+      "owner": "Cad Bane"
     },
     {
       "id": "256",
@@ -18694,7 +19844,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/256.webp",
+      "description": {
+        "en": "This Round, Yoda gains Jump 1, Charge, Disengage, and treats his maximum Speed as 3. \n\n During his next Activation, Yoda can make any of his {@icon.action} or {@icon.free-action} up to 2 times. \n\n At the start of the next End Phase, if There Is No Try is in your discard pile, return it to your Command Hand.",
+        "zh": "本轮尤达获得跳跃1、冲锋及脱离交战，最大速度视为3。下次激活期间，尤达的各{@icon.action}或{@icon.free-action}可以执行最多2次。在下一个结束阶段开始时，若“没有试试看”在你的弃牌堆，将其拿回命令手牌。"
+      },
+      "orders": {
+        "en": "Yoda",
+        "zh": "尤达"
+      },
+      "owner": "yoda"
     },
     {
       "id": "6351",
@@ -18750,7 +19910,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/49.webp",
+      "description": {
+        "en": "When a unit is issued an Order with this card, that unit gains 1 Surge token for each other allied unit within {@icon.range-1} of it.",
+        "zh": "单位通过此卡获发命令时，其{@icon.range-1}内每有1支其他友方单位，获得1个激增标记。"
+      },
+      "orders": {
+        "en": "Obi-Wan Kenobi & 2 Units",
+        "zh": "欧比-旺·克诺比及2 支单位"
+      },
+      "owner": "Obi-Wan Kenobi"
     },
     {
       "id": "53",
@@ -18792,7 +19962,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/53.webp",
+      "description": {
+        "en": "When a unit is issued an Order with this card, that unit gains 1 Surge token for each of your opponentʼs defeated units.",
+        "zh": "单位通过此卡获发命令时，对手每有1支被击败的单位，该单位获得1个激增标记。"
+      },
+      "orders": {
+        "en": "General Grievous & 2 Units",
+        "zh": "格里弗斯将军及2 支单位"
+      },
+      "owner": "General Grievous"
     },
     {
       "id": "14",
@@ -18834,7 +20014,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/14.webp",
+      "description": {
+        "en": "This Round, each time an enemy unit makes an attack, it must attack a Trooper unit that has a faceup Order token, if able. Allied Trooper units that have faceup Order tokens do not benefit from Backup this Round.",
+        "zh": "本轮敌方单位每次攻击时，若能如此做，必须攻击一支拥有正面朝上命令标记的步兵单位。拥有正面朝上命令标记的友方步兵单位本轮不能受益于后援。"
+      },
+      "orders": {
+        "en": "Han Solo & 1 Unit",
+        "zh": "汉·索洛及1 支单位"
+      },
+      "owner": "Han Solo"
     },
     {
       "id": "76",
@@ -18872,7 +20062,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/76.webp",
+      "description": {
+        "en": "Padmé Amidala gains Danger Sense 2 this Round. At the start of the next Activation Phase, allied Trooper units within {@icon.range-2} of Padmé Amidala may remove any number of Suppression tokens. Then, for each Suppression token removed in this way, Padmé Amidala gains 1 Suppression token. Finally, for each Suppression token she gained in this way, she gains 1 Dodge token, to a maximum of 2 Dodge tokens.",
+        "zh": "帕德梅·阿米达拉本轮获得危险感知2。下一个激活阶段开始时，她{@icon.range-2}内的友方步兵单位可以移除任意数量的压制标记。然后，每以此法移除1个压制标记，帕德梅获得1个压制标记。最后，她每以此法获得1个压制标记，获得1个闪避标记，最多获得2个闪避标记。"
+      },
+      "orders": {
+        "en": "Padmé Amidala",
+        "zh": "帕德梅·阿米达拉"
+      },
+      "owner": "Padmé Amidala"
     },
     {
       "id": "9",
@@ -18943,7 +20143,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/56.webp",
+      "description": {
+        "en": "This Round, Luke Skywalker gains {@icon.surge-block} : {@icon.block} and cannot make attacks. Choose up to 2 enemy Trooper units within {@icon.range-1} of Luke Skywalker. The chosen units cannot make attacks until the end of the Round.",
+        "zh": "本轮卢克·天行者获得{@icon.surge-block}：{@icon.block}，且不能攻击。选择卢克{@icon.range-1}内的最多2支敌方步兵单位；所选单位直到本轮结束不能攻击。"
+      },
+      "orders": {
+        "en": "Luke Skywalker",
+        "zh": "卢克·天行者"
+      },
+      "owner": "Luke Skywalker, Jedi Knight"
     },
     {
       "id": "89",
@@ -18985,7 +20195,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/89.webp",
+      "description": {
+        "en": "This Round, each time Anakin Skywalker attacks a unit that has a facedown Order token, during the Form Attack Pool step, he adds 6 white attack dice to his Attack Pool.",
+        "zh": "本轮阿纳金·天行者攻击拥有背面朝上命令标记的单位时，在组成攻击池步骤，向其攻击池加入6枚白色攻击骰。"
+      },
+      "orders": {
+        "en": "Anakin Skywalker & 1 Unit",
+        "zh": "阿纳金·天行者及1 支单位"
+      },
+      "owner": "Anakin Skywalker"
     },
     {
       "id": "25",
@@ -19075,7 +20295,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/78.webp",
+      "description": {
+        "en": "Permanent. If this card was Divulged, Padmé Amidala gains Secret Mission. If it was not, she gains Inspire 1. \n\n Divulge: Resolve Setup Effects step. Padmé Amidala gains Infiltrate this game. This card must be selected during Round 1.",
+        "zh": "永久。若此卡被揭示，帕德梅·阿米达拉获得秘密任务；若未被揭示，则获得提振1。揭示：结算设置效果步骤。帕德梅本局获得渗透。此卡必须在第1轮选择。"
+      },
+      "orders": {
+        "en": "Padmé Amidala",
+        "zh": "帕德梅·阿米达拉"
+      },
+      "owner": "Padmé Amidala"
     },
     {
       "id": "61",
@@ -19117,7 +20347,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/61.webp",
+      "description": {
+        "en": "This Round, when Darth Vader suffers 1 or more Wounds from an enemy attack, after the effect is resolved, the attacking unit suffers an equal number of Wounds.",
+        "zh": "本轮达斯·维德因敌方攻击受到至少1点伤害时，在该效果结算后，攻击单位受到等量伤害。"
+      },
+      "orders": {
+        "en": "Darth Vader",
+        "zh": "达斯·维德"
+      },
+      "owner": "Darth Vader"
     },
     {
       "id": "36",
@@ -19133,7 +20373,17 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/36.webp",
+      "description": {
+        "en": "Allied {@icon.rank-support} and {@icon.rank-heavy} units gain Inspire 2 this Round.",
+        "zh": "友方{@icon.rank-support}及{@icon.rank-heavy}单位本轮获得提振2。"
+      },
+      "orders": {
+        "en": "2 {@icon.rank-support} or {@icon.rank-heavy} Units",
+        "zh": "2 {@icon.rank-support}或{@icon.rank-heavy} 支单位"
+      },
+      "owner": "Rebel Alliance"
     },
     {
       "id": "1901",
@@ -19172,7 +20422,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/1901.webp",
+      "description": {
+        "en": "This Round, at the start of the Activation Phase, choose 1 Order token from your Order Pool and place it face down on this card. Then shuffle your Order Pool. You may look at this token at any time. This Round, when you would draw an Order token from your Order Pool, you may use the Order token on this card instead.",
+        "zh": "本轮激活阶段开始时，从你的命令池选择1个命令标记，背面朝上放在此卡上，然后洗混命令池。你可以随时查看此标记。本轮将要从命令池抽取命令标记时，你可以改为使用此卡上的命令标记。"
+      },
+      "orders": {
+        "en": "No Units",
+        "zh": "无单位"
+      },
+      "owner": "Mercenary {@icon.rank-commander} or {@icon.rank-operative}"
     },
     {
       "id": "40",
@@ -19214,7 +20474,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/40.webp",
+      "description": {
+        "en": "Jyn Erso gains Inspire 2 this Round. When a non-Jyn Erso Trooper unit is issued an Order with this card, that unit gains Teamwork: Jyn Erso until the end of the Round.",
+        "zh": "琴·厄索本轮获得提振2。并非琴·厄索的步兵单位通过此卡获发命令时，获得团队合作：琴·厄索，直到本轮结束。"
+      },
+      "orders": {
+        "en": "Jyn Erso & 1 Trooper Unit",
+        "zh": "琴·厄索及1 支步兵单位"
+      },
+      "owner": "Jyn Erso"
     },
     {
       "id": "98",
@@ -19231,7 +20501,17 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/98.webp",
+      "description": {
+        "en": "Once this Round, at the end of an allied {@icon.rank-commander}'s Activation or an allied Field Commander unit's Activation, that unit may make an attack using the weapon below.",
+        "zh": "本轮一次，在友方{@icon.rank-commander}或友方战地指挥官单位激活结束时，该单位可以使用下方武器进行一次攻击。"
+      },
+      "orders": {
+        "en": "1 {@icon.rank-commander} OR 1 {@icon.rank-support} Unit",
+        "zh": "1 {@icon.rank-commander}或1 {@icon.rank-support} 支单位"
+      },
+      "owner": "Galactic Republic"
     },
     {
       "id": "27",
@@ -19249,7 +20529,17 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/27.webp",
+      "description": {
+        "en": "When an enemy unit is issued an Order with a Command Card this Round, that unit gains 1 Suppression token.",
+        "zh": "本轮敌方单位通过命令卡获发命令时，该单位获得1个压制标记。"
+      },
+      "orders": {
+        "en": "1 {@icon.rank-operative} or 1 {@icon.rank-special-forces} Unit",
+        "zh": "1 {@icon.rank-operative}或1 {@icon.rank-special-forces} 支单位"
+      },
+      "owner": "Galactic Empire"
     },
     {
       "id": "1826",
@@ -19287,7 +20577,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/1826.webp",
+      "description": {
+        "en": "Maul gains 1 Dodge token. Each other Trooper unit within {@icon.range-1} of Maul gains 1 Suppression token. Until the end of the Round, each time an allied Trooper unit starts its Activation within {@icon.range-1} of Maul, it skips its Rally step and cannot be Suppressed or Panicked this Round.",
+        "zh": "摩尔获得1个闪避标记。他{@icon.range-1}内的每支其他步兵单位获得1个压制标记。直到本轮结束，友方步兵单位在摩尔{@icon.range-1}内开始激活时，跳过重整步骤，且本轮不会被压制或恐慌。"
+      },
+      "orders": {
+        "en": "Maul & 1 Unit",
+        "zh": "摩尔及1 支单位"
+      },
+      "owner": "Maul, A Rival"
     },
     {
       "id": "4",
@@ -19329,7 +20629,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/4.webp",
+      "description": {
+        "en": "Darth Vader gains 1 Dodge token. At the start of Darth Vader's next Activation, each enemy Trooper unit within {@icon.range-2} of him gains 3 Suppression tokens.",
+        "zh": "达斯·维德获得1个闪避标记。他下次激活开始时，距离他{@icon.range-2}内的每支敌方步兵单位获得3个压制标记。"
+      },
+      "orders": {
+        "en": "Darth Vader & 2 Units",
+        "zh": "达斯·维德及2 支单位"
+      },
+      "owner": "Darth Vader"
     },
     {
       "id": "88",
@@ -19371,7 +20681,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/88.webp",
+      "description": {
+        "en": "Anakin Skywalker gains {@icon.free-action}Jump 2 this Round. During Anakin Skywalker's next Activation, he can make up to 2 Attack Actions \n\n Divulge: Resolve Setup Effects step. Anakin Skywalker gains Prepared Position this game",
+        "zh": "阿纳金·天行者本轮获得{@icon.free-action}跳跃2。他下次激活期间可以执行最多2次攻击行动。揭示：结算设置效果步骤。阿纳金本局获得预设阵地。"
+      },
+      "orders": {
+        "en": "Anakin Skywalker",
+        "zh": "阿纳金·天行者"
+      },
+      "owner": "Anakin Skywalker"
     },
     {
       "id": "96",
@@ -19388,7 +20708,17 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/96.webp",
+      "description": {
+        "en": "When an allied Vehicle unit is issued an Order this Round, choose an allied Droid Trooper unit within {@icon.range-2} of that Vehicle. The chosen unit issues an Order to itself.",
+        "zh": "本轮友方载具单位获发命令时，选择该载具{@icon.range-2}内的一支友方机器人步兵单位。所选单位向自身发出命令。"
+      },
+      "orders": {
+        "en": "1 Vehicle Unit",
+        "zh": "1 支载具单位"
+      },
+      "owner": "Separatist Alliancen"
     },
     {
       "id": "2274",
@@ -19402,7 +20732,17 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/2274.webp",
+      "description": {
+        "en": "When an allied unit is issued an Order with this card, that unit may make a Recover action.",
+        "zh": "友方单位通过此卡获发命令时，可以执行一次恢复行动。"
+      },
+      "orders": {
+        "en": "2 Units",
+        "zh": "2 支单位"
+      },
+      "owner": "Echo Base Defenders"
     },
     {
       "id": "84",
@@ -19440,7 +20780,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/84.webp",
+      "description": {
+        "en": "This Round, when Iden Versio or an allied {@icon.rank-special-forces} unit that has a faceup Order token starts its Activation, it may reduce its maximum Speed to 1 until the end of that Activation. If it does, it gains Steady and Tactical 1 until the end of that Activation.",
+        "zh": "本轮艾登·韦尔西奥或拥有正面朝上命令标记的友方{@icon.rank-special-forces}单位开始激活时，可以将最大速度降至1，直到该次激活结束。若如此做，获得稳步及战术1，直到该次激活结束。"
+      },
+      "orders": {
+        "en": "Iden Versio & 2 Trooper Units",
+        "zh": "艾登·韦尔西奥及2 支步兵单位"
+      },
+      "owner": "Iden Versio"
     },
     {
       "id": "95",
@@ -19457,7 +20807,17 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/95.webp",
+      "description": {
+        "en": "Once this Round, at the end of an allied {@icon.rank-commander} unitʼs Activation or an allied Field Commander unitʼs Activation, it may make an attack using the weapon below.",
+        "zh": "本轮一次，在一支友方{@icon.rank-commander}单位或友方战地指挥官单位的激活结束时，该单位可以使用下方武器进行一次攻击。"
+      },
+      "orders": {
+        "en": "1 {@icon.rank-commander} or {@icon.rank-heavy} Unit",
+        "zh": "1 {@icon.rank-commander}或{@icon.rank-heavy} 支单位"
+      },
+      "owner": "Separatist Alliance"
     },
     {
       "id": "44",
@@ -19495,7 +20855,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/44.webp",
+      "description": {
+        "en": "Each Trooper unit on the battlefield gains 2 Suppression tokens. Then, if it is Round 4 or 5, each Trooper unit gains 1 additional Suppression token.",
+        "zh": "战场上的每支步兵单位获得2个压制标记。然后，若当前为第4或第5轮，每支步兵单位额外获得1个压制标记。"
+      },
+      "orders": {
+        "en": "Director Orson Krennic & 2 Units",
+        "zh": "奥森·克伦尼克主管及2 支单位"
+      },
+      "owner": "Director Orson Krennic"
     },
     {
       "id": "6348",
@@ -19555,7 +20925,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/33.webp",
+      "description": {
+        "en": "This Round, each time an allied Leia Organa makes a Ranged attack, if Chewbacca has LOS to and is within {@icon.range-3} of the defender during the Form Attack Pool step, add 1 of Chewbacca's Ranged weapons to the Attack Pool.",
+        "zh": "本轮友方莱娅·奥加纳每次进行远程攻击时，若在组成攻击池步骤，丘巴卡在防御单位{@icon.range-3}内且能看到防御单位，将丘巴卡的1件远程武器加入该攻击池。"
+      },
+      "orders": {
+        "en": "Chewbacca & Leia Organa",
+        "zh": "丘巴卡及莱娅·奥加纳"
+      },
+      "owner": "Chewbacca"
     },
     {
       "id": "39",
@@ -19607,7 +20987,17 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/2272.webp",
+      "description": {
+        "en": "When an allied Trooper unit is issued an Order with this card, it gains 1 Aim token and 1 Standby token.",
+        "zh": "友方步兵单位通过此卡获发命令时，获得1个瞄准及1个待命标记。"
+      },
+      "orders": {
+        "en": "3 {@icon.rank-corps} Units or {@icon.rank-support} Units",
+        "zh": "3 {@icon.rank-corps} 支单位或{@icon.rank-support} 支单位"
+      },
+      "owner": "Echo Base Defenders"
     },
     {
       "id": "86",
@@ -19645,7 +21035,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/86.webp",
+      "description": {
+        "en": "When a unit is issued an Order with this card, that unit may make a Speed-1 Move, gain 1 Aim token, gain 1 Dodge token, or gain 1 Surge token.",
+        "zh": "单位通过此卡获发命令时，可以进行一次速度1移动，或获得1个瞄准、1个闪避或1个激增标记。"
+      },
+      "orders": {
+        "en": "Padmé Amidala & 1 Trooper Unit",
+        "zh": "帕德梅·阿米达拉及1 支步兵单位"
+      },
+      "owner": "Padmé Amidala"
     },
     {
       "id": "45",
@@ -19687,7 +21087,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/45.webp",
+      "description": {
+        "en": "During Bosskʼs next Activation, he can make up to 2 Attack actions instead of the normal 1. Once during Bosskʼs next Activation, he may suffer 1 Wound. If he does, he may make a free Move action.",
+        "zh": "博斯克下次激活期间，可以执行最多2次攻击行动，而非通常的1次。该次激活期间一次，他可以受到1点伤害；若如此做，可以执行一次免费移动行动。"
+      },
+      "orders": {
+        "en": "Bossk",
+        "zh": "博斯克"
+      },
+      "owner": "Bossk"
     },
     {
       "id": "7",
@@ -19766,7 +21176,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/11.webp",
+      "description": {
+        "en": "When Luke Skywalker makes his first attack this Round, after the attack sequence is resolved, he may make a free attack action, even if he has already made an attack action that Turn.",
+        "zh": "卢克·天行者本轮首次攻击时，在该攻击序列结算后，可以执行一次免费攻击行动，即使本回合已经执行过攻击行动。"
+      },
+      "orders": {
+        "en": "Luke Skywalker",
+        "zh": "卢克·天行者"
+      },
+      "owner": "Luke Skywalker"
     },
     {
       "id": "6",
@@ -19812,7 +21232,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/6.webp",
+      "description": {
+        "en": "When a unit is issued an Order with this card, it gains 1 Dodge token.",
+        "zh": "单位通过此卡获发命令时，获得1个闪避标记。"
+      },
+      "orders": {
+        "en": "2 Trooper Units",
+        "zh": "2 支步兵单位"
+      },
+      "owner": "Luke Skywalker"
     },
     {
       "id": "83",
@@ -19850,7 +21280,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/83.webp",
+      "description": {
+        "en": "This Round, Iden Versio gains the following free action. \n\n {@icon.free-action} Choose an enemy Trooper unit within {@icon.range-1} and in LOS of an allied Iden's ID10 Seeker Droid. \n\n The chosen unit gains 3 Suppression tokens. Then, if the chosen unit is a {@icon.rank-corps} unit that has not activated this Round, flip its Order token facedown, if able. If that {@icon.rank-corps} unitʼs Order token could not be flipped face down, instead assign it a facedown {@icon.rank-corps} Order token from its controlling player's Order Pool.",
+        "zh": "本轮艾登·韦尔西奥获得以下免费行动。{@icon.free-action}选择距离友方“艾登的ID10追踪机器人”{@icon.range-1}内且在其视线内的一支敌方步兵单位。所选单位获得3个压制标记。若它是本轮尚未激活的{@icon.rank-corps}单位，则尽可能将其命令标记翻至背面朝上；若该{@icon.rank-corps}单位的命令标记无法翻转，则改为从其控制玩家的命令池分配给它1个背面朝上的{@icon.rank-corps}命令标记。"
+      },
+      "orders": {
+        "en": "Iden Versio",
+        "zh": "艾登·韦尔西奥"
+      },
+      "owner": "Iden Versio"
     },
     {
       "id": "2135",
@@ -19864,7 +21304,17 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/2135.webp",
+      "description": {
+        "en": "Permanent. Allied units within {@icon.range-2} of Anakin Skywalker and/or an allied Clone Captain Rex gain Indomitable.",
+        "zh": "永久。阿纳金·天行者及／或友方克隆人上尉雷克斯{@icon.range-2}内的友方单位获得不屈。"
+      },
+      "orders": {
+        "en": "3 {@icon.rank-special-forces} OR {@icon.rank-corps} Units",
+        "zh": "3 {@icon.rank-special-forces}或{@icon.rank-corps} 支单位"
+      },
+      "owner": "501st Legion"
     },
     {
       "id": "32",
@@ -19944,7 +21394,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/52.webp",
+      "description": {
+        "en": "General Grievous gains 1 Dodge token and gains Disengage this Round. At the end of General Grievousʼ next Activation he may make an attack against each enemy unit within {@icon.range-1} and in LOS using the weapon below.",
+        "zh": "格里弗斯将军获得1个闪避标记，本轮获得脱离交战。他下次激活结束时，可以使用下方武器，对{@icon.range-1}内且在视线内的每支敌方单位各进行一次攻击。"
+      },
+      "orders": {
+        "en": "General Grievous",
+        "zh": "格里弗斯将军"
+      },
+      "owner": "General Grievous"
     },
     {
       "id": "46",
@@ -19986,7 +21446,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/46.webp",
+      "description": {
+        "en": "Permanent. During the Round this card is played, Bossk gains {@icon.action}Arm 1: Dioxis Charge. After Bossk makes this action, he may make a Speed-1 Move. Until the end of the Game, Bossk gains Detonate 1: Dioxis Charge. After a Trooper unit defends against a Dioxis Charge attack, that unit gains 1 Poison token. Do not discard this card from play.",
+        "zh": "永久。打出此卡的这一轮，博斯克获得{@icon.action}布设1：双噁毒气炸药。他执行该行动后，可以进行一次速度1移动。直到本局结束，博斯克获得引爆1：双噁毒气炸药。步兵单位防御双噁毒气炸药攻击后，获得1个毒素标记。不要将此卡从游戏区域弃置。"
+      },
+      "orders": {
+        "en": "Bossk",
+        "zh": "博斯克"
+      },
+      "owner": "Bossk"
     },
     {
       "id": "2276",
@@ -20000,7 +21470,17 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/2276.webp",
+      "description": {
+        "en": "Once this Round, at the end of an allied {@icon.rank-commander} unitʼs Activation, that unit may make an attack using the weapon below.",
+        "zh": "本轮一次，在友方{@icon.rank-commander}单位激活结束时，该单位可以使用下方武器进行一次攻击。"
+      },
+      "orders": {
+        "en": "2 Units",
+        "zh": "2 支单位"
+      },
+      "owner": "Blizzard Force"
     },
     {
       "id": "26",
@@ -20016,7 +21496,17 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/26.webp",
+      "description": {
+        "en": "When an opponent issues Orders using a Command Card this Round, they can issue only 1 Order with that card.",
+        "zh": "本轮对手通过命令卡发出命令时，只能通过该卡发出1道命令。"
+      },
+      "orders": {
+        "en": "1 {@icon.rank-operative} or {@icon.rank-special-forces} Unit",
+        "zh": "1 {@icon.rank-operative}或{@icon.rank-special-forces} 支单位"
+      },
+      "owner": "Rebel Alliance"
     },
     {
       "id": "2275",
@@ -20030,7 +21520,17 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/2275.webp",
+      "description": {
+        "en": "This Round, each enemy unit cannot remove more than 1 Suppression token during its Rally step.",
+        "zh": "本轮敌方单位在各自的重整步骤不能移除超过1个压制标记。"
+      },
+      "orders": {
+        "en": "2 Units",
+        "zh": "2 支单位"
+      },
+      "owner": "Blizzard Force"
     },
     {
       "id": "103",
@@ -20072,7 +21572,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/103.webp",
+      "description": {
+        "en": "Declare a number and choose an opponent. Set this card aside. Then, the chosen opponent sets aside, faceup, all Command Cards in their Command Hand that have the declared number of pips. During the End Phase, do not discard this card. After the chosen opponent plays a Command Card in a subsequent Round, they return the set-aside Command Cards to their Command Hand. Then discard this card.",
+        "zh": "宣告一个数字并选择一名对手。将此卡置于一旁。然后所选对手将命令手牌中所有点数为该数字的命令卡正面朝上置于一旁。结束阶段不弃置此卡。在之后某一轮，所选对手打出命令卡后，将先前置于一旁的命令卡拿回命令手牌，然后弃置此卡。"
+      },
+      "orders": {
+        "en": "Agent Kallus & 1 Unit",
+        "zh": "卡勒斯特工及1 支单位"
+      },
+      "owner": "Agent Kallus"
     },
     {
       "id": "94",
@@ -20089,7 +21599,17 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/94.webp",
+      "description": {
+        "en": "When a unit is issued an Order with this card, it gains 1 Dodge token or 1 Surge token.",
+        "zh": "单位通过此卡获发命令时，获得1个闪避或1个激增标记。"
+      },
+      "orders": {
+        "en": "3 Droid Trooper Units",
+        "zh": "3 支机器人步兵单位"
+      },
+      "owner": "Separatist Alliance"
     },
     {
       "id": "23",
@@ -20131,7 +21651,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/23.webp",
+      "description": {
+        "en": "When building a Command Hand, treat this  card as though it has 1 Pip. When Han Solo is issued an Order with this card, he gains 1 Aim token and 1 Dodge token.",
+        "zh": "构建命令手牌时，将此卡视为1点。汉·索洛通过此卡获发命令时，获得1个瞄准及1个闪避标记。"
+      },
+      "orders": {
+        "en": "Han Solo",
+        "zh": "汉·索洛"
+      },
+      "owner": "Han Solo"
     },
     {
       "id": "2273",
@@ -20145,7 +21675,17 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/2273.webp",
+      "description": {
+        "en": "At the end of this Command Phase, choose an opponent. The chosen opponent must choose 1 of their non-{@icon.rank-commander} units that has a faceup Order token, if able, and return that unit's Order token to their Order Pool.",
+        "zh": "本次命令阶段结束时，选择一名对手。若能如此做，所选对手必须选择其一支拥有正面朝上命令标记的非{@icon.rank-commander}单位，将该单位的命令标记返回其命令池。"
+      },
+      "orders": {
+        "en": "1 Unit",
+        "zh": "1 支单位"
+      },
+      "owner": "Echo Base Defenders"
     },
     {
       "id": "2269",
@@ -20159,7 +21699,17 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/2269.webp",
+      "description": {
+        "en": "When a unit is issued an Order with this card, it gains 1 Standby token.",
+        "zh": "单位通过此卡获发命令时，获得1个待命标记。"
+      },
+      "orders": {
+        "en": "1 {@icon.rank-heavy} OR {@icon.rank-support} Unit",
+        "zh": "1 {@icon.rank-heavy}或{@icon.rank-support} 支单位"
+      },
+      "owner": "Separatist Invasion"
     },
     {
       "id": "2277",
@@ -20173,7 +21723,17 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/2277.webp",
+      "description": {
+        "en": "When an {@icon.rank-corps} Trooper unit is issued an Order with this card, until the end of the Round, it gains Spur, and its weapons gain Suppressive.",
+        "zh": "{@icon.rank-corps}步兵单位通过此卡获发命令时，直到本轮结束获得鞭策，且其武器获得压制。"
+      },
+      "orders": {
+        "en": "3 Units",
+        "zh": "3 支单位"
+      },
+      "owner": "Blizzard Force"
     },
     {
       "id": "2271",
@@ -20187,7 +21747,17 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/2271.webp",
+      "description": {
+        "en": "When a unit is issued an Order with this card, it may make a Speed-1 Move.",
+        "zh": "单位通过此卡获发命令时，可以进行一次速度1移动。"
+      },
+      "orders": {
+        "en": "3 {@icon.rank-corps} Units",
+        "zh": "3 {@icon.rank-corps} 支单位"
+      },
+      "owner": "Separatist Invasion"
     },
     {
       "id": "3085",
@@ -20229,7 +21799,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/3085.webp",
+      "description": {
+        "en": "When a unit is issued an Order with this card, it gains 1 Aim token and gains Demoralize 3  and Steady this Round.",
+        "zh": "单位通过此卡获发命令时，获得1个瞄准标记，本轮获得震慑3及稳步。"
+      },
+      "orders": {
+        "en": "IG-11 or IG-88",
+        "zh": "IG-11或IG-88"
+      },
+      "owner": "IG-11 or IG-88"
     },
     {
       "id": "3086",
@@ -20267,7 +21847,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/3086.webp",
+      "description": {
+        "en": "When building a Command Hand, if your army includes IG-11, this card must be included. This Round, IG-11 gains {@icon.free-action} Self-Destruct 4 and must make a {@icon.free-action} Self-Destruct 4 action during his Activation, if able.",
+        "zh": "构建命令手牌时，若你的军队包含IG-11，则必须包含此卡。本轮IG-11获得{@icon.free-action}自毁4，且在激活期间必须尽可能执行一次{@icon.free-action}自毁4行动。"
+      },
+      "orders": {
+        "en": "IG-11",
+        "zh": "IG-11"
+      },
+      "owner": "IG-11"
     },
     {
       "id": "3084",
@@ -20305,7 +21895,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/3084.webp",
+      "description": {
+        "en": "Permanent. When IG-88 makes an attack against a unit that has 1 or more Bounty tokens, the defending unit cannot spend tokens during that attack. \n\n IG-88 is not defeated when he is assigned Wound tokens equal to his Wound threshold. At the start of the End Phase, if IG-88 has a number of Wound tokens equal to or exceeding his Wound threshold, he is defeated.",
+        "zh": "永久。IG-88攻击拥有至少1个赏金标记的单位时，防御单位在该攻击期间不能花费标记。IG-88被分配等于其伤害阈值的伤害标记时不会被击败。在结束阶段开始时，若他的伤害标记数量达到或超过伤害阈值，则被击败。"
+      },
+      "orders": {
+        "en": "IG-88",
+        "zh": "IG-88"
+      },
+      "owner": "IG-88"
     },
     {
       "id": "4121",
@@ -20343,7 +21943,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/4121.webp",
+      "description": {
+        "en": "This card cannot be chosen during the first Round. After Orders have been issued, choose an allied Imperial Dark Troopers unit that has a faceup Order token. Remove the chosen unit from the battlefield, keeping all its tokens, then place it on the battlefield not within {@icon.range-2} of any enemy units. Then flip the chosen unit's Order token facedown.",
+        "zh": "此卡不能在第1轮选择。发出命令后，选择一支拥有正面朝上命令标记的友方帝国黑暗士兵单位。将其从战场移除并保留所有标记，然后放置回战场，不能在任何敌方单位{@icon.range-2}内。然后将所选单位的命令标记翻至背面朝上。"
+      },
+      "orders": {
+        "en": "2 Units",
+        "zh": "2 支单位"
+      },
+      "owner": "Moff Gideon"
     },
     {
       "id": "5183",
@@ -20381,7 +21991,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/5183.webp",
+      "description": {
+        "en": "At the start of Asajj Ventress' next Activation, she makes a Recover action. At the end of Asajj Ventress' next Activation, she may make an attack using the weapon below.",
+        "zh": "阿萨吉·文崔斯下次激活开始时，执行一次恢复行动；该次激活结束时，可以使用下方武器进行一次攻击。"
+      },
+      "orders": {
+        "en": "Asajj Ventress",
+        "zh": "阿萨吉·文崔斯"
+      },
+      "owner": "Asajj Ventress"
     },
     {
       "id": "5184",
@@ -20419,7 +22039,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/5184.webp",
+      "description": {
+        "en": "Asajj Ventress gains Jedi Hunter this Round. Until the end of the Round, each time Asajj Ventress makes an attack, during the Roll Attack Dice step, she may gain up to 4 Suppression tokens before rolling dice. She gains 1 Dodge token for each Suppression token gained in this way.",
+        "zh": "阿萨吉·文崔斯本轮获得绝地猎手。直到本轮结束，她每次攻击时，可以在掷攻击骰子步骤掷骰前获得最多4个压制标记；每以此法获得1个压制标记，获得1个闪避标记。"
+      },
+      "orders": {
+        "en": "Asajj Ventress",
+        "zh": "阿萨吉·文崔斯"
+      },
+      "owner": "Asajj Ventress"
     },
     {
       "id": "5185",
@@ -20457,7 +22087,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/5185.webp",
+      "description": {
+        "en": "When building a Command Hand, treat this card as though it has 2 pips. Count Dooku gains 1 Aim token and 1 Dodge token. \n\n After Count Dookuʼs next Activation, if Asajj Ventress does not have a facedown Order token, she activates. After she activates, if she has a faceup Order token, flip it face down. If she does not have an Order token, assign her a facedown {@icon.rank-operative} Order token from your Order Pool, then shuffle your Order Pool.",
+        "zh": "构建命令手牌时，将此卡视为2点。杜库伯爵获得1个瞄准及1个闪避标记。杜库下次激活后，若阿萨吉·文崔斯没有背面朝上的命令标记，则她激活。她激活后，若有正面朝上的命令标记，将其翻至背面朝上；若没有命令标记，从你的命令池给她分配1个背面朝上的{@icon.rank-operative}命令标记，然后洗混命令池。"
+      },
+      "orders": {
+        "en": "Count Dooku",
+        "zh": "杜库伯爵"
+      },
+      "owner": "Count Dooku"
     },
     {
       "id": "5182",
@@ -20495,7 +22135,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/5182.webp",
+      "description": {
+        "en": "You must Divulge this card. It stays in play. Divulge: Resolve Setup Effects step. Choose 1 of the following effects to resolve: \n\n• Permanent. Asajj Ventress gains Bounty and Reinforcements. \n\n• Permanent. Asajj Ventress gains Demoralize 1, Makashi Mastery, and Outmaneuver.",
+        "zh": "你必须揭示此卡。此卡留在游戏区域。揭示：结算设置效果步骤。选择并结算一项：永久，阿萨吉·文崔斯获得赏金及增援；或永久，阿萨吉获得震慑1、马卡希精通及超机动。"
+      },
+      "orders": {
+        "en": "No Units",
+        "zh": "无单位"
+      },
+      "owner": "Asajj Ventress"
     },
     {
       "id": "7328",
@@ -20609,7 +22259,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/9461.webp",
+      "description": {
+        "en": "Seventh Sister gains Demoralize 1 this Round. Until the end of the Round, each time a Suppressed enemy unit within {@icon.range-1} of Seventh Sister spends an Aim token to re-roll 1 or more dice, that unit re-rolls 1 fewer die.",
+        "zh": "七妹本轮获得震慑1。直到本轮结束，距离七妹{@icon.range-1}内被压制的敌方单位花费瞄准标记重掷至少1枚骰子时，少重掷1枚骰子。"
+      },
+      "orders": {
+        "en": "Seventh Sister & 2 Units",
+        "zh": "七妹及2 支单位"
+      },
+      "owner": "Seventh Sister"
     },
     {
       "id": "6511",
@@ -20647,7 +22307,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/6511.webp",
+      "description": {
+        "en": "When a small-base Trooper unit is issued an Order with this card, it gains either 1 Aim token or 1 Dodge token. Ahsoka Tano gains Inspire 2 this Round. At the start of Ahsoka Tano's next Activation, she makes a Recover action.",
+        "zh": "小型底座步兵单位通过此卡获发命令时，获得1个瞄准或1个闪避标记。阿索卡·塔诺本轮获得提振2，并在下次激活开始时执行一次恢复行动。"
+      },
+      "orders": {
+        "en": "Ahsoka Tano & 2 Units",
+        "zh": "阿索卡·塔诺及2 支单位"
+      },
+      "owner": "Ahsoka Tano, Fulcrum"
     },
     {
       "id": "28",
@@ -20693,7 +22363,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/28.webp",
+      "description": {
+        "en": "Choose 1 of Han Soloʼs Command Cards in your discard pile. Return that card to your Command Hand.",
+        "zh": "从你的弃牌堆中选择汉·索洛的1张命令卡，将其拿回你的命令手牌。"
+      },
+      "orders": {
+        "en": "Chewbacca & Han Solo",
+        "zh": "丘巴卡及汉·索洛"
+      },
+      "owner": "Chewbacca"
     },
     {
       "id": "6129",
@@ -20731,7 +22411,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/6129.webp",
+      "description": {
+        "en": "During Clone Commander Cody's next Activation, he may make his {@icon.free-action} actions up to 2 times. This Round, each time an allied Vehicle unit declares an attack against an enemy unit that has 1 or more Observation tokens, the allied unit may spend 1 of those tokens. If it does, after the attack is resolved, an allied Clone Trooper unit within {@icon.range-1} of that Vehicle may make a Speed-1 Move.",
+        "zh": "克隆人指挥官科迪下次激活期间，他的各{@icon.free-action}行动可以执行最多2次。本轮友方载具宣告攻击拥有至少1个观察标记的敌方单位时，可以花费其中1个观察标记。若如此做，攻击结算后，该载具{@icon.range-1}内的一支友方克隆人士兵单位可以进行一次速度1移动。"
+      },
+      "orders": {
+        "en": "2 Trooper Units & 2 Vehicle Units",
+        "zh": "2 支步兵单位及2 支载具单位"
+      },
+      "owner": "Clone Commander Cody"
     },
     {
       "id": "6130",
@@ -20769,7 +22459,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/6130.webp",
+      "description": {
+        "en": "This Round, each time a unit that was issued an Order with this card suffers 1 or more Wounds from an enemy attack while within {@icon.range-1} of Clone Commander Cody, after the attack is resolved, if Clone Commander Cody is within {@icon.range-4} of the attacking enemy unit and has LOS to it, he may make an attack against that unit.",
+        "zh": "本轮通过此卡获发命令的单位在科迪{@icon.range-1}内因敌方攻击受到至少1点伤害后，在该攻击结算后，若科迪在攻击敌方单位{@icon.range-4}内且能看到它，可以对该单位进行一次攻击。"
+      },
+      "orders": {
+        "en": "Clone Commander Cody & 1 Trooper Unit",
+        "zh": "克隆人指挥官科迪及1 支步兵单位"
+      },
+      "owner": "Clone Commander Cody"
     },
     {
       "id": "8115",
@@ -20807,7 +22507,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/8115.webp",
+      "description": {
+        "en": "Until the end of the Round, Major Marquand gains Tactical 1 and his weapons gain Suppressive. During his next Activation, Major Marquand reduces his maximum Speed by 1, to a minimum of 1.",
+        "zh": "直到本轮结束，马夸德少校获得战术1，其武器获得压制。在他下次激活期间，最大速度降低1，最低为1。"
+      },
+      "orders": {
+        "en": "Major Marquand",
+        "zh": "马夸德少校"
+      },
+      "owner": "Major Marquand"
     },
     {
       "id": "8117",
@@ -20845,7 +22555,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/8117.webp",
+      "description": {
+        "en": "Until the end of the Round, each time another allied Vehicle unit starts its Activation within {@icon.range-1} of Major Marquand, it may choose and resolve 1 of the following effects: \n• If the Vehicle unit is in Major Marquandʼs front arc or is undeployed, it may gain 1 Dodge token. \n• If the Vehicle unit is in Major Marquandʼs side arc, it may gain 1 Aim token. \n• If the Vehicle unit is in Major Marquandʼs rear arc, it may make a Speed-1 Move.",
+        "zh": "直到本轮结束，另一支友方载具单位在马夸德少校{@icon.range-1}内开始激活时，可以选择并结算一项：若在他的前射界内或尚未部署，获得1个闪避标记；若在侧射界内，获得1个瞄准标记；若在后射界内，进行一次速度1移动。"
+      },
+      "orders": {
+        "en": "3 Vehicle Units",
+        "zh": "3 支载具单位"
+      },
+      "owner": "Major Marquand"
     },
     {
       "id": "8116",
@@ -20883,7 +22603,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/8116.webp",
+      "description": {
+        "en": "At the start of Major Marquandʼs next Activation, each other allied Vehicle unit within {@icon.range-1} of him may make a free Pivot. Then those units may make a Speed-1 Move.",
+        "zh": "马夸德少校下次激活开始时，他{@icon.range-1}内的每支其他友方载具单位可以免费转向，然后这些单位可以进行一次速度1移动。"
+      },
+      "orders": {
+        "en": "Major Marquand",
+        "zh": "马夸德少校"
+      },
+      "owner": "Major Marquand"
     },
     {
       "id": "9451",
@@ -20921,7 +22651,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/9451.webp",
+      "description": {
+        "en": "At the start of the Activation Phase, choose up to 2 allied Geonosian Warrior units within {@icon.range-2} of Sun Fac. Each chosen unit may {@icon.action}Jump 3. Sun Fac gains Agile 1 and Demoralize 1 this Round.",
+        "zh": "激活阶段开始时，选择桑·法克{@icon.range-2}内的最多2支友方吉奥诺西斯战士单位。各所选单位可以执行{@icon.action}跳跃3。桑·法克本轮获得敏捷1及震慑1。"
+      },
+      "orders": {
+        "en": "Sun Fac",
+        "zh": "桑·法克"
+      },
+      "owner": "Sun Fac"
     },
     {
       "id": "9452",
@@ -20959,7 +22699,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/9452.webp",
+      "description": {
+        "en": "This Round, each time an allied {@icon.rank-corps}  Trooper unit makes an attack, if the defending unit is within {@icon.range-2} and in LOS of Poggle the Lesser during the Roll Attack Dice step, the attacking unit gains {@icon.surge} : {@icon.critical} during that attack.",
+        "zh": "本轮友方{@icon.rank-corps}步兵单位每次攻击时，若在掷攻击骰子步骤，防御单位位于小波格尔{@icon.range-2}内且在其视线内，攻击单位此次攻击获得{@icon.surge}：{@icon.critical}。"
+      },
+      "orders": {
+        "en": "Poggle the Lesser",
+        "zh": "小波格尔"
+      },
+      "owner": "Poggle the Lesser"
     },
     {
       "id": "9454",
@@ -20997,7 +22747,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3
+      "slotPips": 3,
+      "image": "assets/command-cards/9454.webp",
+      "description": {
+        "en": "When building a Command Hand, treat this card as though it has 3 pips. \n\n When a {@icon.rank-corps} Droid Trooper unit is issued an Order with this card, you may choose to return its Order token to the Order Pool. If you do, you may return 1 defeated miniature to the unit with no Wound tokens and remove 1 Suppression token from the unit.",
+        "zh": "构建命令手牌时，将此卡视为3点。{@icon.rank-corps}机器人步兵单位通过此卡获发命令时，你可以选择将其命令标记返回命令池。若如此做，可以为该单位复原1个被击败且不带伤害标记的模型，并移除该单位1个压制标记。"
+      },
+      "orders": {
+        "en": "4 Droid Trooper Units",
+        "zh": "4 支机器人步兵单位"
+      },
+      "owner": "Poggle the Lesser"
     },
     {
       "id": "9453",
@@ -21035,7 +22795,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/9453.webp",
+      "description": {
+        "en": "Sun Fac loses Direct: Geonosian Warriors this Round, and Sun Fac and allied Geonosian Warrior units gain Coordinate: Geonosian Warriors this Round. At the start of each allied Geonosian Warrior unitʼs next Activation, if it has a faceup Order token it gains 1 Aim token and 1 Dodge token.",
+        "zh": "桑·法克本轮失去传令：吉奥诺西斯战士；桑·法克及友方吉奥诺西斯战士单位本轮获得协同：吉奥诺西斯战士。每支友方吉奥诺西斯战士单位的下次激活开始时，若拥有正面朝上的命令标记，获得1个瞄准及1个闪避标记。"
+      },
+      "orders": {
+        "en": "1 Unit",
+        "zh": "1 支单位"
+      },
+      "owner": "Poggle the Lesser"
     },
     {
       "id": "9460",
@@ -21073,7 +22843,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/9460.webp",
+      "description": {
+        "en": "When a unit is issued an Order with this card, it makes a Recover action. This Round, each time Seventh Sister attacks a {@icon.rank-commander} or {@icon.rank-operative} unit that has 1 or more facedown Order tokens, at the start of the Roll Attack Dice step she may gain up to 2 Suppression tokens. If she does, she gains 1 Aim token for each Suppression token gained in this way.",
+        "zh": "单位通过此卡获发命令时，执行一次恢复行动。本轮七妹攻击拥有至少1个背面朝上命令标记的{@icon.rank-commander}或{@icon.rank-operative}单位时，在掷攻击骰子步骤开始时，可以获得最多2个压制标记；每以此法获得1个压制标记，获得1个瞄准标记。"
+      },
+      "orders": {
+        "en": "Fifth Brother & Seventh Sister",
+        "zh": "五弟及七妹"
+      },
+      "owner": "Seventh Sister"
     },
     {
       "id": "9457",
@@ -21111,7 +22891,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 2
+      "slotPips": 2,
+      "image": "assets/command-cards/9457.webp",
+      "description": {
+        "en": "Permanent. Each time Fifth Brother gains 1 or more Aim tokens, Seventh Sister gains 1 Dodge token. Each time Fifth Brother gains 1 or more Dodge tokens, Seventh Sister gains 1 Aim token. When either of those units would gain 1 or more Aim tokens or Dodge tokens, the other unit may gain 1 Immobilize token. If it does, the first unit gains 1 additional token of the same type.",
+        "zh": "永久。每当五弟获得至少1个瞄准标记时，七妹获得1个闪避标记；每当五弟获得至少1个闪避标记时，七妹获得1个瞄准标记。其中任一单位将要获得至少1个瞄准或闪避标记时，另一单位可以获得1个定身标记。若如此做，前者额外获得1个相同类型的标记。"
+      },
+      "orders": {
+        "en": "Fifth Brother & Seventh Sister",
+        "zh": "五弟及七妹"
+      },
+      "owner": "Fifth Brother"
     },
     {
       "id": "2375",
@@ -21153,7 +22943,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/2375.webp",
+      "description": {
+        "en": "At the start of the next Activation Phase, if Boba Fett has a faceup Order token, an allied unit within {@icon.range-1} of Boba Fett may make a Speed-1 Move. Otherwise, Boba Fett gains 1 Aim token and, until the end of the Round, increases the Range of his Ranged weapons by 1 to a maximum of 5 and gains Marksman.",
+        "zh": "下一个激活阶段开始时，若波巴·费特拥有正面朝上的命令标记，其{@icon.range-1}内的一支友方单位可以进行一次速度1移动。否则，波巴获得1个瞄准标记，且直到本轮结束，其远程武器射程增加1，最高为5，并获得神枪手。"
+      },
+      "orders": {
+        "en": "1 Unit",
+        "zh": "1 支单位"
+      },
+      "owner": "Boba Fett"
     },
     {
       "id": "13",
@@ -21191,7 +22991,17 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1
+      "slotPips": 1,
+      "image": "assets/command-cards/13.webp",
+      "description": {
+        "en": "At the end of Leia Organa's next Activation, she may make up to 3 attacks against different enemy units using the weapon below.",
+        "zh": "莱娅·奥加纳下次激活结束时，可以使用下方武器，对不同敌方单位进行最多3次攻击。"
+      },
+      "orders": {
+        "en": "Leia Organa",
+        "zh": "莱娅·奥加纳"
+      },
+      "owner": "Leia Organa"
     }
   ]
 }
