@@ -94,8 +94,8 @@ function unitNameOptions(){return ((defs.sourceUnits||[]).map(s=>s.name.en)).sli
 
 function renderAllowedUnits(box,bf,rerender){
   const sec=el('div');sec.className='bf-section';
-  sec.append(el('h3','允许单位（按名字）'));
-  const hint=el('p','归属来自单位卡 factions；同名单位按「名字 + 军阶」共享归属（例如两张达斯·维达只有同军阶的版本会一起获得）。要改归属请到单位卡编辑器。');
+  sec.append(el('h3','允许单位（按名字 · 按军阶）'));
+  const hint=el('p','默认按单位卡里的「可加入军队」自动汇总；在这里可以逐个军阶增加或移除单位名称。同名单位会一起生效。');
   hint.className='hint';sec.append(hint);
   if(!bfData){
     const loading=el('p','正在载入单位数据…');loading.className='hint';sec.append(loading);box.append(sec);
@@ -103,29 +103,43 @@ function renderAllowedUnits(box,bf,rerender){
     return;
   }
   const rankName={1:'指挥官',6:'特工',2:'核心',3:'特种部队',4:'支援',5:'重型'};
-  const rows={};
+  const derived={};
   for(const u of Object.values(bfData.units||{})){
     const rank=window.RulesCore?window.RulesCore.armyRank(u,Number(bfId),rules,defs,bfData.units):null;
     if(rank==null) continue;
     const name=(u.name&&u.name.en)||u.id;
-    rows[rank]=rows[rank]||{};
-    (rows[rank][name]=rows[rank][name]||[]).push(u.id);
+    (derived[rank]=derived[rank]||[]).includes(name)||derived[rank].push(name);
   }
+  const explicit=(bf.allowedUnits&&typeof bf.allowedUnits==='object')?bf.allowedUnits:null;
+  const source=explicit||derived;
+  const materialize=()=>{
+    if(bf.allowedUnits) return bf.allowedUnits;
+    const copy={};
+    for(const [rank,names] of Object.entries(derived)) copy[rank]=names.slice();
+    bf.allowedUnits=copy;
+    return bf.allowedUnits;
+  };
   let total=0;
   for(const rank of [1,6,2,3,4,5]){
-    const names=rows[rank];if(!names) continue;
+    const names=source[rank]||source[String(rank)]||[];
+    total+=names.length;
     const fs=el('fieldset');fs.className='restriction-section';
-    fs.append(el('legend',(rankName[rank]||rank)+' · rank '+rank+' · '+Object.keys(names).length+' 个名字'));
-    for(const [name,ids] of Object.entries(names)){
-      total+=ids.length;
-      const row=el('div');row.className='bf-row';
-      const strong=el('strong',name);strong.style.minWidth='220px';
-      const small=el('span',ids.join(' / '));small.className='hint';
-      row.append(strong,small);fs.append(row);
-    }
+    fs.append(el('legend',(rankName[rank]||rank)+' · rank '+rank+' · '+names.length+' 个名字'));
+    fs.append(unitMultiField('允许单位',names,v=>{
+      const target=materialize();
+      if(v.length) target[rank]=v; else delete target[rank];
+      setDirty();
+      rerender();
+    }));
     sec.append(fs);
   }
-  const sum=el('p','共 '+total+' 张单位卡可加入该部队。');sum.className='hint';sec.append(sum);
+  const sum=el('p','当前共 '+total+' 个允许单位名称'+(explicit?'（已自定义）':'（按卡牌归属自动汇总）'));
+  sum.className='hint';sec.append(sum);
+  if(explicit){
+    const reset=el('button','恢复默认（按卡牌归属）');reset.type='button';
+    reset.onclick=()=>{delete bf.allowedUnits;setDirty();rerender()};
+    sec.append(reset);
+  }
   box.append(sec);
 }
 
@@ -150,13 +164,13 @@ function renderOverrides(box,bf,rerender){
   const id=bfId;
   const data=ov[id]=ov[id]||{};
   const sec=el('div');sec.className='bf-section';
-  sec.append(el('h3','军表覆盖层 armyOverrides['+id+']'));
-  const hint=el('p','基线来自卡牌数据；这里只写「相对通常情况」的增量。deny 优先于 include。');hint.className='hint';sec.append(hint);
+  sec.append(el('h3','本部队专属规则（覆盖默认行为）'));
+  const hint=el('p','下面的规则只对「'+ (bf.name||'本部队') +'」生效，是在通用规则之上叠加的增量：先应用「排除 / 移除」，再应用「纳入 / 新增」——也就是禁止优先。');hint.className='hint';sec.append(hint);
 
   /* unitCaps */
   const caps=data.unitCaps=data.unitCaps||[];
   const capBox=el('fieldset');capBox.className='restriction-section';
-  capBox.append(el('legend','数量上限 unitCaps（覆盖单位自身 limit）'));
+  capBox.append(el('legend','单位数量上限（覆盖单位自身的数量限制）'));
   const dl=el('datalist');dl.id='bf-unit-names';for(const n of unitNameOptions()){const o=el('option');o.value=n;dl.append(o)}
   capBox.append(dl);
   caps.forEach((cap,i)=>{
@@ -170,12 +184,12 @@ function renderOverrides(box,bf,rerender){
   /* slotHosts */
   const hosts=data.slotHosts=data.slotHosts||[];
   const hostBox=el('fieldset');hostBox.className='restriction-section';
-  hostBox.append(el('legend','槽位宿主放宽 slotHosts（include 放宽 / exclude 收回）'));
+  hostBox.append(el('legend','槽位可用单位（纳入 = 允许额外使用；排除 = 禁止原本可用的）'));
   hosts.forEach((h,i)=>{
     h.target=h.target||{};
     const slot=bfSelect(slotOptions(),h.slot,v=>h.slot=v);
     const types=bfMulti(unitTypeOptions(),h.target.unitTypes||[],v=>h.target.unitTypes=v.map(Number));
-    hostBox.append(el('div','槽位'),slot,el('div','目标单位类型'),types,unitMultiField('放宽（include）',h.include||[],v=>h.include=v),bfRow([unitMultiField('收回（exclude）',h.exclude||[],v=>h.exclude=v),bfDel(hosts,i,rerender)]));
+    hostBox.append(el('div','槽位'),slot,el('div','目标单位类型'),types,unitMultiField('纳入',h.include||[],v=>h.include=v),bfRow([unitMultiField('排除',h.exclude||[],v=>h.exclude=v),bfDel(hosts,i,rerender)]));
   });
   hostBox.append(bfAdd('宿主放宽',()=>hosts,()=>({slot:'heavy_weapon',target:{unitTypes:[1]},include:[],exclude:[]}),rerender));
   sec.append(hostBox);
@@ -183,7 +197,7 @@ function renderOverrides(box,bf,rerender){
   /* slots add/deny */
   const slots=data.slots=data.slots||[];
   const slotBox=el('fieldset');slotBox.className='restriction-section';
-  slotBox.append(el('legend','槽位归属 slots（add 本来没有→有 / deny 本来有→没有）'));
+  slotBox.append(el('legend','槽位增减（新增 = 给单位加槽；移除 = 去掉原有的槽）'));
   slots.forEach((r,i)=>{
     const op=bfSelect([['deny','deny 收回'],['add','add 追加']],r.op,v=>r.op=v);
     const slot=bfSelect(slotOptions(),r.slot,v=>r.slot=v);
@@ -196,7 +210,7 @@ function renderOverrides(box,bf,rerender){
   /* keywords */
   const kws=data.keywords=data.keywords||[];
   const kwBox=el('fieldset');kwBox.className='restriction-section';
-  kwBox.append(el('legend','关键词 keywords（ban 禁用 / remove 剔除）'));
+  kwBox.append(el('legend','关键词规则（禁用 = 不许出现；移除 = 该单位失去此关键词）'));
   const kwdl=el('datalist');kwdl.id='bf-keywords';for(const [v,t] of keywordOptions()){const o=el('option');o.value=v;o.label=t;kwdl.append(o)}
   kwBox.append(kwdl);
   kws.forEach((r,i)=>{
@@ -266,7 +280,7 @@ function renderBattleForces(){
   const bf=rules.battleForces[bfId];
   const head=el('div');head.className='bf-head';
   head.append(el('h2',bf.name||''));
-  const sub=el('p',(bf.parentFaction||'')+' · '+(bf.status||''));sub.className='hint';head.append(sub);
+  const sub=el('p','所属阵营：'+(bf.parentFaction||'未标注')+' · 规则类型：'+(bf.status==='quotas_only'?'仅军阶配额':'规则 + 配额'));sub.className='hint';head.append(sub);
   main.append(head);
 
   /* quotas */

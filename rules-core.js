@@ -361,6 +361,16 @@ window.RulesCore = (() => {
     return a ? a.id : null;
   }
   function armyRank(unit, armyId, pkg, defs, units) {
+    const bf = ((pkg && pkg.battleForces) || {})[String(armyId)] || {};
+    const allowed = bf.allowedUnits;
+    if (allowed && typeof allowed === "object") {
+      const name = normalizeKey((unit.name && unit.name.en) || "");
+      const keys = Object.keys(allowed).sort((a, b) => Number(a) - Number(b));
+      for (const key of keys) {
+        if ((allowed[key] || []).some(n => normalizeKey(n) === name)) return Number(key);
+      }
+      return null;
+    }
     const direct = (unit.factions || []).find(f => f.id === armyId);
     if (direct) return direct.rankId;
     const pid = parentFactionId(armyId, pkg, defs);

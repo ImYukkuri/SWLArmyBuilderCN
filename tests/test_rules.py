@@ -53,6 +53,15 @@ class ValidateArmyTest(unittest.TestCase):
         report = rules.validate_army(army)
         self.assertIn("slot_mismatch", [i["code"] for i in report["issues"]])
 
+    def test_allowed_units_override_by_rank(self):
+        import copy
+        units, _, defs = rules.load_cards()
+        pkg = copy.deepcopy(rules.load_package())
+        self.assertEqual(rules.army_rank(units["empire-stormtroopers"], 7, pkg, defs, units), 2)
+        pkg.setdefault("battleForces", {}).setdefault("7", {})["allowedUnits"] = {"2": ["Stormtroopers"]}
+        self.assertEqual(rules.army_rank(units["empire-stormtroopers"], 7, pkg, defs, units), 2)
+        self.assertIsNone(rules.army_rank(units["empire-shoretroopers"], 7, pkg, defs, units))
+
     def test_bo_katan_darksaber_host_ok(self):
         army = {"mode": "standard", "armyId": 8, "pointsLimit": 1000, "units": [
             {"instanceId": "u1", "unitId": "mercenary-clan-kryze-bo-katan-kryze", "upgrades": [

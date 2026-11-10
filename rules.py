@@ -513,6 +513,14 @@ def unit_rank_in_army(unit, army_id, package, definitions):
 
 
 def army_rank(unit, army_id, package, definitions, units):
+    bf = (package.get("battleForces") or {}).get(str(army_id)) or {}
+    allowed = bf.get("allowedUnits")
+    if isinstance(allowed, dict):
+        name = normalize_name((unit.get("name") or {}).get("en") or "")
+        for key in sorted(allowed.keys(), key=lambda k: int(k) if str(k).isdigit() else 99):
+            if any(normalize_name(n) == name for n in allowed.get(key) or []):
+                return int(key) if str(key).isdigit() else None
+        return None
     rank = unit_rank_in_army(unit, army_id, package, definitions)
     if rank is None:
         return None
