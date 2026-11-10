@@ -12560,7 +12560,7 @@
       "id": "16486",
       "name": {
         "en": "You Are Beaten",
-        "zh": "你已败北"
+        "zh": "你被打败了"
       },
       "pips": 1,
       "factions": [
@@ -13273,7 +13273,7 @@
       "id": "8",
       "name": {
         "en": "Standing Orders",
-        "zh": "常备命令"
+        "zh": "常规指令"
       },
       "pips": 4,
       "factions": [
@@ -13308,7 +13308,8 @@
       "description": {
         "en": "At the end of the Command Phase, return this card to your hand.",
         "zh": "命令阶段结束时，将此卡返回你的手牌。"
-      }
+      },
+      "image": "assets/command-cards/8.webp"
     },
     {
       "id": "1825",
@@ -17671,49 +17672,6 @@
         "zh": "普洛·孔通过此卡获发命令时，可以执行2次{@icon.free-action}分心免费行动。\n\n直到回合结束，另一支通过此卡获发命令的友方单位在普洛·孔{@icon.range-2}内开始激活时，普洛·孔可以进行一次速度1移动。"
       },
       "image": "assets/command-cards/19078.webp"
-    },
-    {
-      "id": "19316",
-      "name": {
-        "en": "Standing Orders",
-        "zh": "常备命令"
-      },
-      "pips": 4,
-      "factions": [
-        1,
-        2,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12,
-        13,
-        14,
-        15,
-        16,
-        17,
-        18,
-        19,
-        20,
-        21
-      ],
-      "unlockedBy": null,
-      "campaigns": [
-        "tours-of-duty"
-      ],
-      "slotPips": 4,
-      "orders": {
-        "en": "Paragon",
-        "zh": "典范"
-      },
-      "description": {
-        "en": "Your Paragon may make a Speed-1 Move or gain 1 Aim token or 1 Dodge token.\n\nAt the end of the Command Phase, return this card to your Command Hand.",
-        "zh": "你的典范可以进行一次速度1移动，或获得1个瞄准标记，或获得1个闪避标记。\n\n命令阶段结束时，将此卡返回你的命令手牌。"
-      }
     },
     {
       "id": "19405",
@@ -24755,7 +24713,7 @@
         "en": "Sabotaged Communications",
         "zh": "破坏通讯"
       },
-      "pips": 2,
+      "pips": 1,
       "factions": [
         1,
         13,
@@ -24763,7 +24721,7 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 2,
+      "slotPips": 1,
       "image": "assets/command-cards/26.webp",
       "description": {
         "en": "When an opponent issues Orders using a Command Card this Round, they can issue only 1 Order with that card.",
@@ -26725,5 +26683,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-11-10T10:33:03.160174+00:00"
+  "updatedAt": "2026-11-10T19:07:40.784831+00:00"
 }
