@@ -1,0 +1,2591 @@
+{
+  "schema": "swl-command-cards/fill-template-v1",
+  "note": "只含文本不完整的卡；填写 orders/description 的中英文即可，图标用 {@icon.rank-xxx} 标记",
+  "cards": [
+    {
+      "id": "16486",
+      "name": {
+        "en": "You Are Beaten",
+        "zh": ""
+      },
+      "pips": 1,
+      "slotPips": 1,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 29671,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "19764",
+      "name": {
+        "en": "Wisdom of the Council",
+        "zh": ""
+      },
+      "pips": 1,
+      "slotPips": 1,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 33777,
+          "propertyName": "units"
+        },
+        {
+          "id": 33575,
+          "propertyName": "units"
+        },
+        {
+          "id": 33791,
+          "propertyName": "units"
+        },
+        {
+          "id": 33794,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "8",
+      "name": {
+        "en": "Standing Orders",
+        "zh": ""
+      },
+      "pips": 4,
+      "slotPips": 4,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "30",
+      "name": {
+        "en": "Rebellious",
+        "zh": ""
+      },
+      "pips": 1,
+      "slotPips": 1,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 27,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "6350",
+      "name": {
+        "en": "Hiding in Plain Sight",
+        "zh": ""
+      },
+      "pips": 2,
+      "slotPips": 2,
+      "factions": [
+        18
+      ],
+      "unlockedBy": [],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "3",
+      "name": {
+        "en": "Push",
+        "zh": ""
+      },
+      "pips": 2,
+      "slotPips": 2,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "19885",
+      "name": {
+        "en": "I Smell Fear... and it Smells Good",
+        "zh": ""
+      },
+      "pips": 2,
+      "slotPips": 2,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 35770,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "19886",
+      "name": {
+        "en": "We Shall Start with Revenge",
+        "zh": ""
+      },
+      "pips": 1,
+      "slotPips": 1,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 33792,
+          "propertyName": "units"
+        },
+        {
+          "id": 33793,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "20008",
+      "name": {
+        "en": "Wookiee Life Debt",
+        "zh": ""
+      },
+      "pips": 2,
+      "slotPips": 2,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 33775,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "20009",
+      "name": {
+        "en": "Never Tell me the Odds",
+        "zh": ""
+      },
+      "pips": 1,
+      "slotPips": 1,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 33775,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "20010",
+      "name": {
+        "en": "Boring Conversation Anyway",
+        "zh": ""
+      },
+      "pips": 3,
+      "slotPips": 3,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 33775,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "20052",
+      "name": {
+        "en": "Into the Breach",
+        "zh": ""
+      },
+      "pips": 1,
+      "slotPips": 1,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 36283,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "20054",
+      "name": {
+        "en": "I'm Sorry Master, I Didn't Catch That",
+        "zh": ""
+      },
+      "pips": 2,
+      "slotPips": 2,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 33769,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "20053",
+      "name": {
+        "en": "Evasive Action",
+        "zh": ""
+      },
+      "pips": 2,
+      "slotPips": 2,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 33769,
+          "propertyName": "units"
+        },
+        {
+          "id": 36283,
+          "propertyName": "units"
+        },
+        {
+          "id": 33776,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "7327",
+      "name": {
+        "en": "Sneaky Scouting",
+        "zh": ""
+      },
+      "pips": 2,
+      "slotPips": 2,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 15015,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "17862",
+      "name": {
+        "en": "Fearsome Oration",
+        "zh": ""
+      },
+      "pips": 1,
+      "slotPips": 1,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 31667,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "17863",
+      "name": {
+        "en": "Diversionary Tactics",
+        "zh": ""
+      },
+      "pips": 3,
+      "slotPips": 3,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 31669,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "17864",
+      "name": {
+        "en": "Battlefield Reconnaissance",
+        "zh": ""
+      },
+      "pips": 2,
+      "slotPips": 2,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 31670,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "17929",
+      "name": {
+        "en": "Flow of the Force",
+        "zh": ""
+      },
+      "pips": 1,
+      "slotPips": 1,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 31842,
+          "propertyName": "units"
+        },
+        {
+          "id": 31843,
+          "propertyName": "units"
+        },
+        {
+          "id": 33776,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "17928",
+      "name": {
+        "en": "Affirmative, General!",
+        "zh": ""
+      },
+      "pips": 3,
+      "slotPips": 3,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 31842,
+          "propertyName": "units"
+        },
+        {
+          "id": 31843,
+          "propertyName": "units"
+        },
+        {
+          "id": 33776,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "17930",
+      "name": {
+        "en": "Tactical Download",
+        "zh": ""
+      },
+      "pips": 3,
+      "slotPips": 3,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 31844,
+          "propertyName": "units"
+        },
+        {
+          "id": 31845,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "17931",
+      "name": {
+        "en": "Exterminate",
+        "zh": ""
+      },
+      "pips": 1,
+      "slotPips": 1,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 31844,
+          "propertyName": "units"
+        },
+        {
+          "id": 31845,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "18067",
+      "name": {
+        "en": "Full Throttle",
+        "zh": ""
+      },
+      "pips": 3,
+      "slotPips": 3,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 45,
+          "propertyName": "units"
+        },
+        {
+          "id": 32232,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "18068",
+      "name": {
+        "en": "Pincer Attack",
+        "zh": ""
+      },
+      "pips": 2,
+      "slotPips": 2,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 45,
+          "propertyName": "units"
+        },
+        {
+          "id": 32232,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "18069",
+      "name": {
+        "en": "I'll Do it Myself!",
+        "zh": ""
+      },
+      "pips": 1,
+      "slotPips": 1,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 45,
+          "propertyName": "units"
+        },
+        {
+          "id": 32232,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "18903",
+      "name": {
+        "en": "Not Out of it Yet",
+        "zh": ""
+      },
+      "pips": 3,
+      "slotPips": 3,
+      "factions": [
+        1,
+        13,
+        18
+      ],
+      "unlockedBy": [],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "18905",
+      "name": {
+        "en": "See You In Hell",
+        "zh": ""
+      },
+      "pips": 1,
+      "slotPips": 1,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 32594,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "19076",
+      "name": {
+        "en": "For the Cause",
+        "zh": ""
+      },
+      "pips": 1,
+      "slotPips": 1,
+      "factions": [
+        5,
+        11,
+        15,
+        20
+      ],
+      "unlockedBy": [],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "19074",
+      "name": {
+        "en": "A Disturbance in the Force",
+        "zh": ""
+      },
+      "pips": 2,
+      "slotPips": 2,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 33777,
+          "propertyName": "units"
+        },
+        {
+          "id": 33575,
+          "propertyName": "units"
+        },
+        {
+          "id": 33791,
+          "propertyName": "units"
+        },
+        {
+          "id": 33794,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "19079",
+      "name": {
+        "en": "This Party's Over",
+        "zh": ""
+      },
+      "pips": 1,
+      "slotPips": 1,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 33575,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "19080",
+      "name": {
+        "en": "Unity Wins Wars",
+        "zh": ""
+      },
+      "pips": 3,
+      "slotPips": 3,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 33794,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "19081",
+      "name": {
+        "en": "We Shall Start with Revenge",
+        "zh": ""
+      },
+      "pips": 1,
+      "slotPips": 1,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 33793,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "19077",
+      "name": {
+        "en": "Force of Will",
+        "zh": ""
+      },
+      "pips": 3,
+      "slotPips": 3,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 33777,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "19078",
+      "name": {
+        "en": "I Don't Believe in Chance",
+        "zh": ""
+      },
+      "pips": 2,
+      "slotPips": 2,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 33791,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "19316",
+      "name": {
+        "en": "Standing Orders",
+        "zh": ""
+      },
+      "pips": 4,
+      "slotPips": 4,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "19317",
+      "name": {
+        "en": "Objective Complete!",
+        "zh": ""
+      },
+      "pips": 3,
+      "slotPips": 3,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "19318",
+      "name": {
+        "en": "Enemy Down!",
+        "zh": ""
+      },
+      "pips": 2,
+      "slotPips": 2,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "19319",
+      "name": {
+        "en": "The Best of Us",
+        "zh": ""
+      },
+      "pips": 1,
+      "slotPips": 1,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "19485",
+      "name": {
+        "en": "Both Hunter and Prey",
+        "zh": ""
+      },
+      "pips": 2,
+      "slotPips": 2,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 33795,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "19486",
+      "name": {
+        "en": "Mandalore Will Survive",
+        "zh": ""
+      },
+      "pips": 3,
+      "slotPips": 3,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 33771,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "19483",
+      "name": {
+        "en": "Go, There Are Too Many...",
+        "zh": ""
+      },
+      "pips": 1,
+      "slotPips": 1,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 33790,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "19530",
+      "name": {
+        "en": "Honor and Strength",
+        "zh": ""
+      },
+      "pips": 3,
+      "slotPips": 3,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 33789,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "16485",
+      "name": {
+        "en": "Revenge Is Not the Jedi Way",
+        "zh": ""
+      },
+      "pips": 2,
+      "slotPips": 2,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 29671,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "18904",
+      "name": {
+        "en": "On Patrol",
+        "zh": ""
+      },
+      "pips": 2,
+      "slotPips": 2,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 32593,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "19484",
+      "name": {
+        "en": "We Shape Ourselves",
+        "zh": ""
+      },
+      "pips": 3,
+      "slotPips": 3,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 33795,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "19531",
+      "name": {
+        "en": "No Escape",
+        "zh": ""
+      },
+      "pips": 1,
+      "slotPips": 1,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 33787,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "3050",
+      "name": {
+        "en": "The Hand Thing",
+        "zh": "挥手那招"
+      },
+      "pips": 2,
+      "slotPips": 2,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 6178,
+          "propertyName": "units"
+        },
+        {
+          "id": 6179,
+          "propertyName": "units"
+        },
+        {
+          "id": 34881,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "Grogu",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "24",
+      "name": {
+        "en": "And Now You Will Die",
+        "zh": ""
+      },
+      "pips": 1,
+      "slotPips": 1,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 20,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "6351",
+      "name": {
+        "en": "For the Tribe",
+        "zh": ""
+      },
+      "pips": 3,
+      "slotPips": 3,
+      "factions": [
+        18
+      ],
+      "unlockedBy": [],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "9",
+      "name": {
+        "en": "Assault",
+        "zh": ""
+      },
+      "pips": 3,
+      "slotPips": 3,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "25",
+      "name": {
+        "en": "An Entire Legion",
+        "zh": ""
+      },
+      "pips": 3,
+      "slotPips": 3,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 20,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "6349",
+      "name": {
+        "en": "Log Traps",
+        "zh": ""
+      },
+      "pips": 1,
+      "slotPips": 1,
+      "factions": [
+        18
+      ],
+      "unlockedBy": [],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "6348",
+      "name": {
+        "en": "Arboreal Assault",
+        "zh": ""
+      },
+      "pips": 1,
+      "slotPips": 1,
+      "factions": [
+        18
+      ],
+      "unlockedBy": [],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "39",
+      "name": {
+        "en": "Complete the Mission",
+        "zh": ""
+      },
+      "pips": 3,
+      "slotPips": 3,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 27,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "32",
+      "name": {
+        "en": "Give in to Your Anger",
+        "zh": ""
+      },
+      "pips": 2,
+      "slotPips": 2,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 20,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "7328",
+      "name": {
+        "en": "Close Call",
+        "zh": ""
+      },
+      "pips": 1,
+      "slotPips": 1,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 15015,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    },
+    {
+      "id": "7326",
+      "name": {
+        "en": "Courageous Counterattack",
+        "zh": ""
+      },
+      "pips": 3,
+      "slotPips": 3,
+      "factions": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "unlockedBy": [
+        {
+          "id": 15015,
+          "propertyName": "units"
+        }
+      ],
+      "titleMatch": "",
+      "owner": "",
+      "orders": {
+        "en": "",
+        "zh": ""
+      },
+      "description": {
+        "en": "",
+        "zh": ""
+      }
+    }
+  ]
+}
