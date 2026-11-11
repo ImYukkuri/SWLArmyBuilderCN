@@ -101,9 +101,17 @@ window.ConditionEditor = (() => {
       return;
     }
     if (node && typeof node === 'object' && 'field' in node) {
-      const f = inputWithDatalist('cond-field', node.field, FIELDS, '字段');
+      const f = { input: E('select'), dl: null };
+      f.input.className = 'cond-field';
+      for (const [v, label] of FIELDS) { const op = E('option', v + ' · ' + label); op.value = v; f.input.append(op); }
+      if (!FIELDS.some(([v]) => v === node.field)) { const op = E('option', '待确认：' + node.field); op.value = node.field; f.input.append(op); }
+      f.input.value = node.field;
       f.input.onchange = () => { node.field = f.input.value; onChange(); rerender(); };
-      const o = inputWithDatalist('cond-op', node.op || 'eq', OPS, '操作符');
+      const o = { input: E('select'), dl: null };
+      o.input.className = 'cond-op';
+      for (const [v, label] of OPS) { const op = E('option', label + ' · ' + v); op.value = v; o.input.append(op); }
+      if (!OPS.some(([v]) => v === node.op)) { const op = E('option', '待确认：' + node.op); op.value = node.op || ''; o.input.append(op); }
+      o.input.value = node.op || 'eq';
       o.input.onchange = () => { node.op = o.input.value; onChange(); rerender(); };
       const v = inputWithDatalist('cond-value', Array.isArray(node.value) ? node.value.join(', ') : node.value, tableFor(node.field, defs), '值（in 用逗号分隔）');
       v.input.onchange = () => { node.value = parseValue(v.input.value, node.op || 'eq'); onChange(); };
