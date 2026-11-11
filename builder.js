@@ -240,7 +240,7 @@ function renderUnits(){
       const chosen=(inst.upgrades||[]).find(x=>x.slotIndex===i);
       if(chosen){
         const c=data.upgrades[chosen.upgradeId];const chip=el('span');chip.className='slot-chip filled';const nm=el('span',c?(c.name.zh||c.name.en):chosen.upgradeId);nm.className='upg-name';if(c)nm.onclick=e=>{e.stopPropagation();openUpgradeDialog(c)};chip.append(nm);
-        for(const k of (c&&c.keywords)||[]){const kc=kwChip(k.id||k);if(kc)chip.append(kc)}
+        for(const k of (c&&c.keywords)||[]){const kc=kwChip(k.id||k);if(kc){kc.title='来自 '+(c.name&&(c.name.zh||c.name.en)||c.id)+' · '+kc.title;chip.append(kc)}}
         const x=el('span','×');x.className='x';x.onclick=e=>{e.stopPropagation();inst.upgrades=inst.upgrades.filter(y=>y!==chosen);save();render()};chip.append(x);slots.append(chip);
       }else{
         const def=slotDef(rec.key);const chip=el('span');chip.className='slot-chip';const glyph=el('span',def&&def.iconGlyph?def.iconGlyph:'');glyph.className='slot-glyph';chip.append(glyph,el('span',slotName(rec.key)));
