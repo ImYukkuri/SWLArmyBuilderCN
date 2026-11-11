@@ -143,6 +143,34 @@ function renderRankBar(report){
     bar.append(chip);
   }
 }
+function keywordRef(id){
+  return (data.defs.keywords||[]).find(k=>String(k.id)===String(id));
+}
+function kwChip(kid){
+  const kw=keywordRef(kid);if(!kw)return null;
+  const label=(kw.name&&(kw.name.zh||kw.name.en))||kid;
+  const chip=el('span',label);chip.className='kw-chip';chip.title=kw.summary||kw.full||label;
+  return chip;
+}
+function diceText(d){
+  const d2=d||{};
+  const parts=[];if(d2.red)parts.push(d2.red+'R');if(d2.black)parts.push(d2.black+'B');if(d2.white)parts.push(d2.white+'W');
+  return parts.join(' ');
+}
+function rangeText(r){
+  if(!r)return '—';
+  const mn=r.min??null,mx=r.max??null;
+  if(mn===null)return '—';
+  if(mx===null||mx===mn)return String(mn);
+  return mn+'-'+mx;
+}
+function weaponLine(w){
+  const name=(w.name&&(w.name.zh||w.name.en))||'武器';
+  const line=el('span');line.className='weapon-line';
+  line.append(el('b',name),el('i','射程 '+rangeText(w.range)),el('i','骰 '+diceText(w.dice)));
+  for(const k of (w.keywords||[])){const c=kwChip(k.id||k);if(c)line.append(c)}
+  return line;
+}
 function renderUnits(){
   const box=$('#army-units');box.replaceChildren();
   const rankIdx=r=>{const i=RANK_ORDER.indexOf(r);return i<0?99:i};
@@ -166,6 +194,7 @@ function renderUnits(){
       const chosen=(inst.upgrades||[]).find(x=>x.slotIndex===i);
       if(chosen){
         const c=data.upgrades[chosen.upgradeId];const chip=el('span');chip.className='slot-chip filled';chip.append(el('span',c?(c.name.zh||c.name.en):chosen.upgradeId));
+        for(const k of (c&&c.keywords)||[]){const kc=kwChip(k.id||k);if(kc)chip.append(kc)}
         const x=el('span','×');x.className='x';x.onclick=e=>{e.stopPropagation();inst.upgrades=inst.upgrades.filter(y=>y!==chosen);save();render()};chip.append(x);slots.append(chip);
       }else{
         const def=slotDef(rec.key);const chip=el('span');chip.className='slot-chip';const glyph=el('span',def&&def.iconGlyph?def.iconGlyph:'');glyph.className='slot-glyph';chip.append(glyph,el('span',slotName(rec.key)));
@@ -179,6 +208,9 @@ function renderUnits(){
       const x=el('span','×');x.className='x';x.onclick=e=>{e.stopPropagation();inst.upgrades=inst.upgrades.filter(y=>y!==ch);save();render()};chip.append(x);slots.append(chip);
     }
     main.append(slots);
+    const weaponsBox=el('div');weaponsBox.className='weapons';
+    for(const w of (u.weapons||[])){if(!w||!(w.name&&(w.name.zh||w.name.en)))continue;weaponsBox.append(weaponLine(w))}
+    if(weaponsBox.children.length)main.append(weaponsBox);
     const pts=el('div',String((u.points||0)+(inst.upgrades||[]).reduce((s,x)=>s+((data.upgrades[x.upgradeId]||{}).points||0),0)));pts.className='pts';
     const ops=el('div');ops.className='ops';
     if(isUnique(u)){const t=el('button','🗑');t.className='trash';t.onclick=e=>{e.stopPropagation();army.units=army.units.filter(x=>x!==inst);save();render()};ops.append(t)}
