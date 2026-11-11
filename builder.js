@@ -222,6 +222,7 @@ function renderUnits(){
   const sorted=[...army.units].sort((a,b)=>{const ua=data.units[a.unitId],ub=data.units[b.unitId];return rankIdx(ua?rankOf(ua,army.armyId):null)-rankIdx(ub?rankOf(ub,army.armyId):null)});
   for(const inst of sorted){
     const u=data.units[inst.unitId];const row=el('div');row.className='unit-row'+(u&&unitAvailability(u).orphan?' orphan':'');
+    if(document.body.classList.contains('collapse-all'))row.classList.add('collapsed');
     if(!u){row.append(el('span','失效单位：'+inst.unitId));box.append(row);continue}
     const rank=rankOf(u,army.armyId);
     const portrait=el('img');portrait.className='portrait';portrait.src=u.assets&&u.assets.portrait?u.assets.portrait:'';portrait.alt='';portrait.onerror=()=>portrait.style.visibility='hidden';
@@ -261,6 +262,7 @@ function renderUnits(){
     if(ukw.children.length)main.append(ukw);
     const pts=el('div',String((u.points||0)+(inst.upgrades||[]).reduce((s,x)=>s+((data.upgrades[x.upgradeId]||{}).points||0),0)));pts.className='pts';
     const ops=el('div');ops.className='ops';
+    const tgl=el('button',row.classList.contains('collapsed')?'▸':'▾');tgl.className='row-toggle';tgl.title='折叠/展开';tgl.onclick=e=>{e.stopPropagation();row.classList.toggle('collapsed');tgl.textContent=row.classList.contains('collapsed')?'▸':'▾'};ops.append(tgl);
     if(isUnique(u)){const t=el('button','🗑');t.className='trash';t.onclick=e=>{e.stopPropagation();army.units=army.units.filter(x=>x!==inst);save();render()};ops.append(t)}
     else{const minus=el('button','−1');minus.onclick=e=>{e.stopPropagation();army.units=army.units.filter(x=>x!==inst);save();render()};const plus=el('button','+1');plus.onclick=e=>{e.stopPropagation();army.units.push({instanceId:uid(),unitId:inst.unitId,upgrades:JSON.parse(JSON.stringify(inst.upgrades||[]))});save();render()};ops.append(minus,plus)}
     row.append(portrait,tag,main,pts,ops);box.append(row);
@@ -338,7 +340,7 @@ function wireViewActions(){
   ex.textContent=expanded?'收起':'展开';
   ex.onclick=()=>{
     expanded=!expanded;
-    document.body.classList.toggle('expand-all',expanded);
+    document.body.classList.toggle('collapse-all',expanded);
     ex.textContent=expanded?'收起':'展开';
     renderUnits();
   };
