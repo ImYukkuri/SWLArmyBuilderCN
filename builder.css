@@ -1,13 +1,13 @@
 /* List builder — one shared card browser for unit cards (landscape) and upgrade cards (portrait). */
 .builder-shell{max-width:1320px;margin:0 auto;padding:16px 18px 90px}
-.builder-top{display:flex;align-items:flex-end;gap:20px;flex-wrap:wrap;padding:8px 2px 4px}
+.builder-top{background:#141c28;border:1px solid var(--sw-line);padding:10px 16px;margin-bottom:10px}
 .bf-field{display:flex;flex-direction:column;gap:4px}
 .bf-field>span{font-size:12px;color:var(--muted)}
 .bf-field select{min-width:140px;background:#0d1520;border:1px solid #344961;border-radius:6px;padding:6px 9px;color:var(--ink)}
-.points-badge{margin-left:auto;font-size:16px;font-weight:700;color:var(--ink);padding-bottom:4px}
+.points-badge{background:#1a2230;border:1px solid var(--sw-line-strong);color:var(--sw-accent);padding:6px 12px;font-family:var(--sw-font-mono)}
 .info-btn{width:26px;height:26px;border-radius:50%;padding:0;font-weight:700;color:#7fd6ff;border-color:#3d6f92;background:#132838}
 .rank-bar{display:flex;gap:18px;justify-content:flex-end;align-items:flex-start;padding:6px 2px 10px;border-bottom:1px solid var(--line)}
-.rank-chip{position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;width:46px;background:none;border:0;border-radius:0;height:auto;padding:0;cursor:pointer}
+.rank-chip{background:#141c28;border:1px solid var(--sw-line);padding:4px 8px;cursor:pointer;transition:border-color .12s ease,box-shadow .12s ease}
 .rank-chip .rank-icon{font:26px/1 LegionSymbols;color:var(--ink);display:block}
 .rank-chip .rank-name{font-size:10px;line-height:1.2;color:var(--muted);letter-spacing:.04em}
 .rank-chip:hover .rank-icon,.rank-chip.active .rank-icon{color:var(--accent)}
@@ -16,7 +16,7 @@
 .rank-chip .badge.bad{background:#c23b3b;color:#fff}
 .builder-body{display:grid;grid-template-columns:minmax(0,1fr) 460px;gap:18px;margin-top:8px}
 .army-list{display:flex;flex-direction:column}
-.unit-row{display:flex;align-items:center;gap:10px;padding:7px 6px;border-bottom:1px solid #202e40;cursor:pointer}
+.unit-row{position:relative;background:#141c28;border:1px solid var(--sw-line);border-left:3px solid var(--sw-accent);padding:10px 12px;margin:6px 0;transition:border-color .12s ease,transform .12s ease}
 .unit-row:hover{background:#142032}
 .unit-row.orphan{background:#2a1418;border-left:3px solid #c23b3b;border-bottom-color:#5a3030}
 .unit-row.orphan .name{color:#ffb5b5}
@@ -39,7 +39,7 @@
 .unit-row .ops{display:flex;gap:5px;align-items:center;justify-content:flex-end;width:80px}
 .unit-row .ops button{padding:2px 7px;font-size:12px}
 .unit-row .ops .trash{padding:3px 7px;border-color:#5a3030;background:#2a1518;color:#ffb5b5}
-.card-browser{position:sticky;top:12px;align-self:start;background:#101a29;border:1px solid var(--line);border-radius:10px;padding:12px;max-height:calc(100vh - 40px);overflow:auto}
+.card-browser{background:#141c28}
 .browser-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
 .browser-head h3{font-size:14px;color:var(--ink)}
 .browser-head button{padding:2px 8px}
@@ -58,7 +58,7 @@
 .card .meta span{color:var(--muted)}
 .card-grid.units .card .meta strong{white-space:normal}
 .issue{font-size:12px}
-@media(max-width:980px){.builder-body{grid-template-columns:1fr}.card-browser{position:static;max-height:none}}
+@media(max-width:980px){.builder-body{grid-template-columns:1fr}.card-browser{background:#141c28}}
 @media(max-width:640px){.unit-row .slots{display:none}.rank-tag{display:none}}
 
 .statusbar{min-height:20px;font-size:12px;color:var(--accent);padding:2px 2px 6px}
@@ -70,34 +70,24 @@
 
 .slot-chip.extra{border-style:dashed;background:#3a2f18;border-color:#c9a24b;color:#ffe2a8}
 .slot-chip.extra:hover{border-color:#e8c36a;color:#ffedc4}
-@media (max-width: 900px){.builder-body{flex-direction:column}.army-col{width:100%}.card-browser{width:100%;margin-top:10px;position:static}}.unit-row .name .unit-title{margin-left:6px;font-size:11px;color:#9AA7B4;font-style:italic;white-space:nowrap}.unit-row .name{display:flex;align-items:baseline;gap:2px;flex-wrap:wrap}.kw-chip{display:inline-block;padding:1px 6px;border:1px solid #3a4757;border-radius:6px;background:#293441;color:#9AA7B4;font-size:10px;line-height:1.4}.slot-chip.filled .kw-chip{margin-left:4px}.weapons{display:flex;flex-direction:column;gap:2px;margin-top:4px}.weapon-line{display:flex;align-items:center;gap:6px;font-size:11px;color:#C9D4DE}.weapon-line b{color:#F1F3F5}.weapon-line i{font-style:normal;color:#9AA7B4}
+@media (max-width: 900px){.builder-body{flex-direction:column}.army-col{width:100%}.card-browser{background:#141c28}}.unit-row .name .unit-title{margin-left:6px;font-size:11px;color:#9AA7B4;font-style:italic;white-space:nowrap}.unit-row .name{display:flex;align-items:baseline;gap:2px;flex-wrap:wrap}.kw-chip{display:inline-block;padding:1px 6px;border:1px solid #3a4757;border-radius:6px;background:#293441;color:#9AA7B4;font-size:10px;line-height:1.4}.slot-chip.filled .kw-chip{margin-left:4px}.weapons{display:flex;flex-direction:column;gap:2px;margin-top:4px}.weapon-line{display:flex;align-items:center;gap:6px;font-size:11px;color:#C9D4DE}.weapon-line b{color:#F1F3F5}.weapon-line i{font-style:normal;color:#9AA7B4}
 /* ============ Imperial Starfleet Terminal · builder skin ============ */
-.builder-shell{position:relative;min-height:100vh;background:
-  radial-gradient(900px 420px at 85% -8%, rgba(240,180,41,.08), transparent 55%),
-  repeating-linear-gradient(0deg, rgba(143,163,184,.028) 0 1px, transparent 1px 3px),
-  linear-gradient(180deg,#0b1119,#0d1520);}
-.builder-shell::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:999;
-  background:repeating-linear-gradient(0deg, rgba(11,17,25,.06) 0 2px, transparent 2px 4px);opacity:.35}
-.builder-top{background:linear-gradient(180deg,#141c28,#101722);border:1px solid var(--sw-line);
-  clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,18px 100%,0 calc(100% - 18px));
-  padding:10px 16px;margin-bottom:10px}
+.builder-shell{position:relative;min-height:100vh;background:#0b1119;}
+
+.builder-top{background:#141c28;border:1px solid var(--sw-line);padding:10px 16px;margin-bottom:10px}
 .builder-top .bf-field select{background:#0b1119;border:1px solid var(--sw-line-strong);color:var(--sw-accent);
   font-family:var(--sw-font-mono);letter-spacing:.05em}
-.points-badge{background:linear-gradient(180deg,#3a2f10,#241d08);border:1px solid var(--sw-line-strong);
-  color:var(--sw-accent);clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,0 100%);padding:6px 12px;font-family:var(--sw-font-mono)}
-.rank-chip{background:linear-gradient(180deg,#141c28,#101722);border:1px solid var(--sw-line);
-  clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%);padding:4px 8px;cursor:pointer;transition:border-color .12s ease,box-shadow .12s ease}
+.points-badge{background:#1a2230;border:1px solid var(--sw-line-strong);color:var(--sw-accent);padding:6px 12px;font-family:var(--sw-font-mono)}
+.rank-chip{background:#141c28;border:1px solid var(--sw-line);padding:4px 8px;cursor:pointer;transition:border-color .12s ease,box-shadow .12s ease}
 .rank-chip:hover{border-color:var(--sw-accent);box-shadow:var(--sw-glow)}
 .rank-chip.active{border-color:var(--sw-accent);box-shadow:var(--sw-glow)}
-.unit-row{position:relative;background:linear-gradient(180deg,#141c28,#101722);border:1px solid var(--sw-line);
-  border-left:3px solid var(--sw-accent);clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,0 100%);
-  padding:10px 12px;margin:6px 0;transition:border-color .12s ease,transform .12s ease}
+.unit-row{position:relative;background:#141c28;border:1px solid var(--sw-line);border-left:3px solid var(--sw-accent);padding:10px 12px;margin:6px 0;transition:border-color .12s ease,transform .12s ease}
 .unit-row:hover{border-color:rgba(240,180,41,.5);transform:translateY(-1px)}
 .command-slot{border-radius:var(--sw-radius);border:1px solid var(--sw-line);overflow:hidden;transition:border-color .12s ease,box-shadow .12s ease}
 .command-slot:hover{border-color:var(--sw-accent);box-shadow:var(--sw-glow)}
 .command-group-label{font-family:var(--sw-font-display);text-transform:uppercase;letter-spacing:.08em;
   color:var(--sw-accent);font-size:12px;margin:10px 0 4px}
-.deck-section{background:linear-gradient(180deg,#141c28,#101722);padding:12px;margin-top:10px}
-.card-browser{background:linear-gradient(180deg,#141c28,#0e1520)}
+.deck-section{background:#141c28;padding:12px;margin-top:10px}
+.card-browser{background:#141c28}
 .card-browser .browser-head{border-bottom:1px solid var(--sw-line)}
 .info-btn{background:#0b1119;border:1px solid var(--sw-line-strong);color:var(--sw-accent)}

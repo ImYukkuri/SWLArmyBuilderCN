@@ -41,16 +41,16 @@ body{
 }
 /* corner-cut sci-fi panels */
 .card-browser,.deck-section,.detail,.list,.pick-box,.unit-picker{
-  background:linear-gradient(180deg,var(--sw-panel),var(--sw-bg));
+  background:var(--sw-panel);
   border:1px solid var(--sw-line);
   border-radius:var(--sw-radius);
 }
 .card-browser,.deck-section,.pick-box,.unit-picker{
-  clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,14px 100%,0 calc(100% - 14px));
+  
 }
 /* buttons & tags: imperial cursor language */
 button{font-family:var(--sw-font-body)}
-button.primary{border:1px solid var(--sw-line-strong);background:linear-gradient(180deg,#3a2f10,#241d08);color:var(--sw-accent);letter-spacing:.04em}
+button.primary{border:1px solid var(--sw-line-strong);background:#1a2230;color:var(--sw-accent);letter-spacing:.04em}
 button.primary:hover{box-shadow:var(--sw-glow);border-color:var(--sw-accent)}
 .chip,.kw-chip,.slot-chip,.unit-kw .kw-chip,.rank-tag{
   border:1px solid var(--sw-line);border-radius:6px;background:var(--sw-panel-2);color:var(--sw-muted);
