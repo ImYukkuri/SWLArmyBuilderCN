@@ -110,3 +110,36 @@
   .deck-panel .command-slots{grid-template-columns:repeat(2,minmax(0,1fr))}
   .card-browser{position:static;max-height:none}
 }
+
+/* ============ 自由发挥版：横向流动 + 清晰层级 ============ */
+#army-units{display:flex;flex-direction:column;gap:10px}
+.unit-row{display:grid;grid-template-columns:64px minmax(0,1fr);gap:14px;align-items:flex-start;
+  padding:14px 16px;border-radius:10px;background:#141c28;border:1px solid var(--sw-line);
+  border-left:3px solid var(--sw-accent);box-shadow:0 1px 0 rgba(0,0,0,.4)}
+.unit-row:hover{transform:none;box-shadow:0 1px 0 rgba(0,0,0,.4)}
+.unit-row .portrait{width:64px;height:92px;border-radius:6px;object-fit:cover}
+.unit-row .main{gap:8px}
+.unit-row .name{align-items:baseline;gap:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.unit-row .name > span:first-child{font-size:16px;font-weight:600;letter-spacing:.02em}
+.unit-row .unit-title{font-size:12px}
+.unit-row .name small{font-size:13px;color:var(--sw-accent);font-family:var(--sw-font-mono)}
+.unit-row .slots{display:flex;flex-wrap:wrap;gap:6px}
+.unit-row .slot-chip{white-space:nowrap;display:inline-flex;align-items:center;gap:4px;padding:2px 8px;font-size:11px}
+.unit-row .weapons{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:2px 16px;margin-top:2px}
+.weapon-line{white-space:nowrap;font-size:11px}
+.unit-row .unit-kws{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.kw-chip{white-space:nowrap}
+@media (max-width:900px){.unit-row{grid-template-columns:52px minmax(0,1fr);padding:10px 12px}
+  .unit-row .portrait{width:52px;height:74px}.unit-row .weapons{grid-template-columns:1fr}}
+
+/* ===== 强制横向满宽布局（覆盖早期规则） ===== */
+.army-list,#army-units{display:flex!important;flex-direction:column!important;gap:10px!important;width:100%!important}
+.unit-row{display:flex!important;width:100%!important;box-sizing:border-box;align-items:flex-start!important;gap:14px!important;
+  grid-template-columns:none!important;padding:14px 16px!important}
+.unit-row .portrait{flex:0 0 64px!important;width:64px!important;height:92px!important;margin:0!important}
+.unit-row .main{flex:1 1 auto!important;min-width:0!important;width:auto!important;display:flex!important;flex-direction:column!important;gap:8px!important}
+.unit-row .name{display:flex!important;flex-wrap:wrap!important;align-items:baseline!important;gap:8px!important;white-space:normal!important}
+.unit-row .slots{display:flex!important;flex-wrap:wrap!important;gap:6px!important;width:auto!important}
+.unit-row .weapons{display:grid!important;grid-template-columns:repeat(auto-fill,minmax(250px,1fr))!important;gap:2px 16px!important}
+.unit-row .unit-kws{display:flex!important;flex-wrap:wrap!important;gap:6px!important}
+.unit-row .rank-tag{align-self:flex-start}
