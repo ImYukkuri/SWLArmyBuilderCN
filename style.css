@@ -61,3 +61,19 @@ button.primary:hover{box-shadow:var(--sw-glow);border-color:var(--sw-accent)}
 .slot-chip.filled{border-color:rgba(240,180,41,.35);color:var(--sw-ink)}
 a{color:var(--sw-accent)}
 h1,h2,h3,.brand{font-family:var(--sw-font-display);letter-spacing:.05em;text-transform:uppercase}
+
+/* ============ 军阶图标统一尺寸 & 布局微调 ============ */
+:root{--rank-glyph:22px}
+.rank-icon,.order-glyph{font-family:LegionSymbols;font-size:var(--rank-glyph)!important;line-height:1!important;width:1em;height:1em;display:inline-flex;align-items:center;justify-content:center}
+.card-view-mask .order-glyph{font-size:calc(var(--rank-glyph) * .8)!important}
+.rank-bar{display:flex;gap:8px;align-items:stretch}
+.rank-chip{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:52px;padding:6px 8px}
+.command-slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.command-slot{min-height:150px}
+.deck-section{padding:12px}
+.unit-row{gap:8px}
+.unit-row .main{display:flex;flex-direction:column;gap:6px;min-width:0}
+.unit-row .name{flex-wrap:wrap}
+.card-browser{padding:0}
+.card-browser .browser-head{padding:10px 12px}
+.card-browser .card-grid{padding:10px;gap:10px}
