@@ -790,8 +790,7 @@ window.RulesCore = (() => {
       }
       const unitUnlocks = (cmd.unlockedBy || []).filter(x => x && x.propertyName === 'units');
       if (unitUnlocks.length) {
-        const mode = cmd.requireAllUnits ? 'every' : 'some';
-        const hit = unitUnlocks[mode](un => armyUnits.some(u => {
+        const hit = unitUnlocks.some(un => armyUnits.some(u => {
           if (un.id != null) { const up = (u.upstream || {}).id; return up != null && String(un.id) === String(up); }
           const prop = un.property, val = un.value;
           if (prop === 'faction') return Number(u.factionId) === Number(val);

@@ -13139,8 +13139,7 @@
         "en": "At the start of the next Activation Phase, roll 5 red attack dice. For each {@icon.critical} and {@icon.surge} result rolled, issue an Order to an allied {@icon.faction-gar} unit that does not have a faceup Order token. For each {@icon.hit} result rolled, 1 allied unit may remove 1 Suppression token. For each Blank result rolled, 1 allied unit may gain 1 Aim token or 1 Dodge token.",
         "zh": "下一激活阶段开始时，投掷5枚红色攻击骰。每掷出1个{@icon.critical}或{@icon.surge}结果，向一支没有正面朝上命令标记的友方{@icon.faction-gar}单位发布一个命令。每掷出1个{@icon.hit}结果，1支友方单位可以移除1个压制标记。每掷出1个空白结果，1支友方单位可以获得1个瞄准标记或1个闪避标记。"
       },
-      "image": "assets/command-cards/19764.webp",
-      "requireAllUnits": true
+      "image": "assets/command-cards/19764.webp"
     },
     {
       "id": "2270",
@@ -17284,8 +17283,7 @@
         "zh": "2支{@icon.faction-empire}单位"
       },
       "owner": "Imperial High Command",
-      "image": "assets/command-cards/18906.webp",
-      "requireAllUnits": true
+      "image": "assets/command-cards/18906.webp"
     },
     {
       "id": "18905",
@@ -17444,8 +17442,7 @@
         "en": "This Round, while a unit issued an Order with this card has a faceup Order token, it has Danger Sense 1 and Indomitable. Until the end of the Round, when an allied unit with 1 or more {@icon.slot-force} upgrade slots spends or loses a Standby token this Round, after the effect is resolved, that unit gains 1 Aim token or 1 Dodge token.",
         "zh": "本轮通过此卡获发命令的单位拥有正面朝上的命令标记期间，拥有危险感知1和不屈。\n\n直到回合结束，拥有至少1个{@icon.slot-force}升级槽位的友方单位花费或失去一个待命标记时，在该效果结算后，该单位获得1个瞄准标记或1个闪避标记。"
       },
-      "image": "assets/command-cards/19074.webp",
-      "requireAllUnits": true
+      "image": "assets/command-cards/19074.webp"
     },
     {
       "id": "19079",
