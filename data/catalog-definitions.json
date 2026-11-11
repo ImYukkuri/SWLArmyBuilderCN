@@ -12388,7 +12388,7 @@
       "id": "16488",
       "name": {
         "en": "Stories, So Many of Them True",
-        "zh": "故事多着呢，真事也不少"
+        "zh": "好多故事，还不少是真的"
       },
       "pips": 3,
       "factions": [
@@ -12422,9 +12422,9 @@
       "campaigns": [],
       "slotPips": 3,
       "image": "assets/command-cards/16488.webp",
-      "owner": "杭多·欧纳卡",
+      "owner": "杭多·奥纳卡",
       "orders": {
-        "en": "杭多·欧纳卡",
+        "en": "杭多·奥纳卡",
         "zh": "Hondo Ohnaka"
       },
       "description": {
@@ -13139,7 +13139,8 @@
         "en": "At the start of the next Activation Phase, roll 5 red attack dice. For each {@icon.critical} and {@icon.surge} result rolled, issue an Order to an allied {@icon.faction-gar} unit that does not have a faceup Order token. For each {@icon.hit} result rolled, 1 allied unit may remove 1 Suppression token. For each Blank result rolled, 1 allied unit may gain 1 Aim token or 1 Dodge token.",
         "zh": "下一激活阶段开始时，投掷5枚红色攻击骰。每掷出1个{@icon.critical}或{@icon.surge}结果，向一支没有正面朝上命令标记的友方{@icon.faction-gar}单位发布一个命令。每掷出1个{@icon.hit}结果，1支友方单位可以移除1个压制标记。每掷出1个空白结果，1支友方单位可以获得1个瞄准标记或1个闪避标记。"
       },
-      "image": "assets/command-cards/19764.webp"
+      "image": "assets/command-cards/19764.webp",
+      "requireAllUnits": true
     },
     {
       "id": "2270",
@@ -13834,7 +13835,7 @@
       "id": "4122",
       "name": {
         "en": "Die at My Hand",
-        "zh": "由我终结"
+        "zh": "死于我手"
       },
       "pips": 1,
       "factions": [
@@ -14868,13 +14869,14 @@
       "description": {
         "en": "Choose up to 2 enemy units. Each chosen unit gains 1 Ploy token. This Round, at the start of each allied unit's Activation, you may choose an enemy unit that has 1 or more Ploy tokens. If you do, remove 1 of those Ploy tokens and resolve 1 of the effects below:\n• The chosen unit loses 1 green token.\n• The chosen unit gains 2 Suppression tokens.\n• If the chosen unit has a faceup Order token, shuffle it into that Opponent's Order Pool.",
         "zh": "选择最多2支敌方单位。每支所选单位获得1个计谋标记。本轮每支友方单位激活开始时，你可以选择一支拥有至少1个计谋标记的敌方单位。若如此做，移除其中1个计谋标记，并结算以下1项效果：\n• 所选单位失去1个绿色标记。\n• 所选单位获得2个压制标记。\n• 若所选单位拥有正面朝上的命令标记，将其洗入该对手的命令池。"
-      }
+      },
+      "image": "assets/command-cards/19885.webp"
     },
     {
       "id": "19886",
       "name": {
         "en": "We Shall Start with Revenge",
-        "zh": "先从复仇开始"
+        "zh": "我们先从复仇开始"
       },
       "pips": 1,
       "factions": [
@@ -15014,7 +15016,7 @@
       "id": "20008",
       "name": {
         "en": "Wookiee Life Debt",
-        "zh": "伍基人的救命之恩"
+        "zh": "舍命伍基"
       },
       "pips": 2,
       "factions": [
@@ -15155,7 +15157,7 @@
       "id": "8114",
       "name": {
         "en": "Constantly Alert",
-        "zh": "持续警戒"
+        "zh": "持续化警戒"
       },
       "pips": 3,
       "factions": [
@@ -15268,7 +15270,7 @@
       "id": "20052",
       "name": {
         "en": "Into the Breach",
-        "zh": "冲入缺口"
+        "zh": "破敌深入"
       },
       "pips": 1,
       "factions": [
@@ -15315,7 +15317,7 @@
       "id": "20054",
       "name": {
         "en": "I'm Sorry Master, I Didn't Catch That",
-        "zh": "抱歉，师父，我没听清"
+        "zh": "抱歉师父，刚才没听清"
       },
       "pips": 2,
       "factions": [
@@ -15362,7 +15364,7 @@
       "id": "20053",
       "name": {
         "en": "Evasive Action",
-        "zh": "规避行动"
+        "zh": "规避动作"
       },
       "pips": 2,
       "factions": [
@@ -15509,7 +15511,7 @@
       "id": "2136",
       "name": {
         "en": "Tactical Planning",
-        "zh": "战术计划"
+        "zh": "战术规划"
       },
       "pips": 2,
       "factions": [
@@ -15946,7 +15948,8 @@
       "description": {
         "en": "Choose up to 2 enemy units within {@icon.range-2} of Wicket. Each chosen unit gains 2 Observation tokens. Until the end of the Round, each time an allied unit declares an attack against a unit that has 1 or more Observation tokens, you may spend 1 Observation token on that enemy unit. If you do, the Attack Pool gains {@icon.surge} : {@icon.hit} for that attack.",
         "zh": "选择最多2支位于威基特{@icon.range-2}内的敌方单位。每支所选单位获得2个观察标记。直到回合结束，每当友方单位宣告攻击一支拥有至少1个观察标记的单位时，你可以花费该敌方单位的1个观察标记。若如此做，该次攻击的攻击池获得{@icon.surge}：{@icon.hit}。"
-      }
+      },
+      "image": "assets/command-cards/7327.webp"
     },
     {
       "id": "17862",
@@ -16154,7 +16157,7 @@
       "id": "17929",
       "name": {
         "en": "Flow of the Force",
-        "zh": "原力之流"
+        "zh": "原力流动"
       },
       "pips": 1,
       "factions": [
@@ -16202,7 +16205,8 @@
       "description": {
         "en": "When a unit is issued an Order with this card, it may make a Recover action. Then it gains 1 Aim token, 1 Dodge token, and 1 Standby token.",
         "zh": "单位通过此卡获发命令时，可以执行一次恢复行动。然后，该单位获得1个瞄准标记、1个闪避标记和1个待命标记。"
-      }
+      },
+      "image": "assets/command-cards/17929.webp"
     },
     {
       "id": "17928",
@@ -16467,7 +16471,7 @@
       "id": "18069",
       "name": {
         "en": "I'll Do it Myself!",
-        "zh": "我亲自来！"
+        "zh": "我亲自出马！"
       },
       "pips": 1,
       "factions": [
@@ -16542,7 +16546,7 @@
       "id": "18221",
       "name": {
         "en": "Recon Division",
-        "zh": "侦察部队"
+        "zh": "侦察分队"
       },
       "pips": 2,
       "factions": [
@@ -16723,7 +16727,7 @@
       "id": "18310",
       "name": {
         "en": "Fear Will Keep Them in Line",
-        "zh": "恐惧使他们服从"
+        "zh": "恐惧将使他们服从"
       },
       "pips": 3,
       "factions": [
@@ -16800,7 +16804,8 @@
           ],
           "value": "1"
         }
-      ]
+      ],
+      "image": "assets/command-cards/18310.webp"
     },
     {
       "id": "13729",
@@ -16915,7 +16920,7 @@
       "id": "18903",
       "name": {
         "en": "Not Out of it Yet",
-        "zh": "还没出局"
+        "zh": "尚未脱困"
       },
       "pips": 3,
       "factions": [
@@ -17279,13 +17284,14 @@
         "zh": "2支{@icon.faction-empire}单位"
       },
       "owner": "Imperial High Command",
-      "image": "assets/command-cards/18906.webp"
+      "image": "assets/command-cards/18906.webp",
+      "requireAllUnits": true
     },
     {
       "id": "18905",
       "name": {
         "en": "See You In Hell",
-        "zh": "地狱见"
+        "zh": "地狱再会"
       },
       "pips": 1,
       "factions": [
@@ -17378,13 +17384,14 @@
       "description": {
         "en": "You must nominate a {@icon.rank-commander} unit as Commander to play this card. When a unit is issued an Order with this card, it gains 1 Surge token.",
         "zh": "你必须指定一支{@icon.rank-commander}单位作为指挥官，才能打出此卡。单位通过此卡获发命令时，获得1个激增标记。"
-      }
+      },
+      "image": "assets/command-cards/19076.webp"
     },
     {
       "id": "19074",
       "name": {
         "en": "A Disturbance in the Force",
-        "zh": "原力中的扰动"
+        "zh": "原力的一丝扰动"
       },
       "pips": 2,
       "factions": [
@@ -17437,7 +17444,8 @@
         "en": "This Round, while a unit issued an Order with this card has a faceup Order token, it has Danger Sense 1 and Indomitable. Until the end of the Round, when an allied unit with 1 or more {@icon.slot-force} upgrade slots spends or loses a Standby token this Round, after the effect is resolved, that unit gains 1 Aim token or 1 Dodge token.",
         "zh": "本轮通过此卡获发命令的单位拥有正面朝上的命令标记期间，拥有危险感知1和不屈。\n\n直到回合结束，拥有至少1个{@icon.slot-force}升级槽位的友方单位花费或失去一个待命标记时，在该效果结算后，该单位获得1个瞄准标记或1个闪避标记。"
       },
-      "image": "assets/command-cards/19074.webp"
+      "image": "assets/command-cards/19074.webp",
+      "requireAllUnits": true
     },
     {
       "id": "19079",
@@ -17490,7 +17498,7 @@
       "id": "19080",
       "name": {
         "en": "Unity Wins Wars",
-        "zh": "团结赢得战争"
+        "zh": "联合赢得战争"
       },
       "pips": 3,
       "factions": [
@@ -17537,7 +17545,7 @@
       "id": "19081",
       "name": {
         "en": "We Shall Start with Revenge",
-        "zh": "先从复仇开始"
+        "zh": "我们从复仇开始"
       },
       "pips": 1,
       "factions": [
@@ -17577,7 +17585,8 @@
       "description": {
         "en": "Savage Opress may suffer up to the current Round number in Wounds. Then, for each Wound token Savage Opress has, Savage Opress gains 1 Aim token. Finally, for each Wound token Maul has, Maul gains 1 Aim token.\n\nChoose 1 of Maul's Command Cards in your Discard pile, if able. Return the chosen Command Card to your Command Hand.",
         "zh": "萨瓦奇·奥普雷斯可以承受不超过当前回合数的伤害。然后，萨瓦奇·奥普雷斯每拥有1个伤害标记，便获得1个瞄准标记。最后，摩尔每拥有1个伤害标记，便获得1个瞄准标记。\n\n若能如此做，从你的弃牌堆中选择1张摩尔的命令卡，将所选命令卡返回你的命令手牌。"
-      }
+      },
+      "image": "assets/command-cards/19081.webp"
     },
     {
       "id": "19077",
@@ -17630,7 +17639,7 @@
       "id": "19078",
       "name": {
         "en": "I Don't Believe in Chance",
-        "zh": "我不相信巧合"
+        "zh": "我不相信概率"
       },
       "pips": 2,
       "factions": [
@@ -18159,7 +18168,7 @@
       "id": "19514",
       "name": {
         "en": "No One Threatens Our Family",
-        "zh": "没人能威胁我们的家人"
+        "zh": "没人能威胁我们家人"
       },
       "pips": 1,
       "factions": [
@@ -19321,7 +19330,7 @@
       "id": "19484",
       "name": {
         "en": "We Shape Ourselves",
-        "zh": "塑造我们自己"
+        "zh": "我们打造自己的"
       },
       "pips": 3,
       "factions": [
@@ -21929,7 +21938,7 @@
       "id": "59",
       "name": {
         "en": "Vader's Might",
-        "zh": "维德之威"
+        "zh": "维达之力"
       },
       "pips": 1,
       "factions": [
@@ -23798,7 +23807,7 @@
       "id": "2272",
       "name": {
         "en": "Hold at Any Cost",
-        "zh": "不计代价守住"
+        "zh": "不计代价"
       },
       "pips": 3,
       "factions": [
@@ -24213,7 +24222,7 @@
       "id": "52",
       "name": {
         "en": "Trained in Your Jedi Arts",
-        "zh": "我练过你们的绝地招式"
+        "zh": "我练过你们绝地的招式"
       },
       "pips": 1,
       "factions": [
@@ -26683,5 +26692,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-11-10T19:07:40.784831+00:00"
+  "updatedAt": "2026-11-10T20:05:53.726475+00:00"
 }

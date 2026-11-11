@@ -1029,7 +1029,8 @@ def validate_army(army):
                 if prop == "keywords":
                     return any(str((k or {}).get("id")) == str(val) for k in (u.get("keywords") or []))
                 return False
-            if not any(_hit(un, u) for un in unit_unlocks for u in army_units):
+            mode = all if cmd.get("requireAllUnits") else any
+            if not mode(_hit(un, u) for un in unit_unlocks for u in army_units):
                 issue("invalid", "command_unlock", f"命令卡「{name}」需要匹配的解锁单位", None)
         for un in cmd.get("unlockedBy") or []:
             if un.get("propertyName") == "upgrades" and str(un.get("id")) not in selected_upgrade_upstream:

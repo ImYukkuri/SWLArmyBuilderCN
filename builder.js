@@ -286,7 +286,8 @@ function commandAvailable(cmd){
   }
   const unlocks=(cmd.unlockedBy||[]).filter(x=>x&&x.propertyName==='units');
   if(unlocks.length){
-    const hit=unlocks.some(x=>units.some(u=>unitMatchesUnlock(x,u)));
+    const mode=cmd.requireAllUnits?'every':'some';
+    const hit=unlocks[mode](x=>units.some(u=>unitMatchesUnlock(x,u)));
     if(!hit)return false;
   }
   return true;
