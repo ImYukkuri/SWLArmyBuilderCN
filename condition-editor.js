@@ -4,6 +4,7 @@ window.ConditionEditor = (() => {
   const E = (tag, text) => { const n = document.createElement(tag); if (text !== undefined) n.textContent = text; return n; };
   const FIELDS = [
     ['unit.unitTypeId', '单位类型'], ['unit.factionId', '阵营'], ['unit.affiliationIds', '组织'],
+    ['unit.title', '称号（含匹配用 contains）'], ['unit.name', '单位名称'],
     ['unit.keywords', '关键词'], ['unit.rankId', '军阶'], ['unit.upstreamId', '上游单位 ID'],
     ['unit.defenseDie', '防御骰'], ['unit.divisions', '光暗标签'], ['unit.id', '单位内部 ID'],
   ];

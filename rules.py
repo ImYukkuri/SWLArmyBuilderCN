@@ -132,6 +132,8 @@ def _unit_context(unit, package):
             "rankId": unit.get("rankId"),
             "affiliationIds": [str(a) for a in (unit.get("affiliationIds") or [])],
             "keywords": [k.get("id") for k in unit.get("keywords", []) if isinstance(k, dict)],
+            "title": (unit.get("title") or {}).get("en") or "",
+            "name": (unit.get("name") or {}).get("en") or "",
         }
     }
 

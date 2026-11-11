@@ -75,6 +75,8 @@ window.RulesCore = (() => {
       rankId: unit.rankId,
       affiliationIds: (unit.affiliationIds || []).map(String),
       keywords: (unit.keywords || []).map(k => k && k.id),
+      title: ((unit.title || {}).en) || "",
+      name: ((unit.name || {}).en) || "",
     } };
   }
   function slotGrantsFor(pkg, unit, inst, upgrades) {
