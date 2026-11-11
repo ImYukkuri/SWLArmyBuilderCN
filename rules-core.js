@@ -771,12 +771,39 @@ window.RulesCore = (() => {
         if (!hit) issue('invalid', 'command_title_match', '命令卡 ' + name + ' 需要称号包含 ' + cmd.titleMatch + ' 的单位', null);
       }
       const facs = cmd.factions || [];
-      if (facs.length && !facs.includes(army.armyId)) issue("invalid", "command_faction", `命令卡「${name}」不属于当前军队`, null);
+      const armyId = Number(army.armyId);
+      if (facs.length && !facs.includes(armyId)) {
+        const bf = (pkg.battleForces || {})[String(armyId)] || {};
+        const parentName = bf.parentFaction;
+        const parentArmy = parentName ? (defs.armies || []).find(a => (a.name && (a.name.en === parentName || a.name.zh === parentName))) : null;
+        if (!parentArmy || !facs.includes(parentArmy.id)) issue("invalid", "command_faction", `命令卡「${name}」不属于当前军队`, null);
+      }
       if ((cmd.campaigns || []).length) issue("unknown", "command_campaign", `命令卡「${name}」为战役卡，标准模式资格待核验`, null);
+      const armyUnits = (army.units || []).map(i => units[i.unitId]).filter(Boolean);
+      if (cmd.mercenary) {
+        const merc = armyUnits.some(u => (u.keywords || []).some(k => k && k.id === 'mercenary') || (u.factions || []).some(f => f && (f.tierPools || []).includes('mercenary')));
+        if (!merc) issue("invalid", "command_mercenary", `命令卡「${name}」需要军表中有雇佣兵单位`, null);
+      }
+      if (cmd.condition) {
+        const preds = pkg.predicates || {};
+        if (!armyUnits.some(u => evaluate(cmd.condition, unitContext(u), preds) === true)) issue("invalid", "command_condition", `命令卡「${name}」需要满足单位条件`, null);
+      }
+      const unitUnlocks = (cmd.unlockedBy || []).filter(x => x && x.propertyName === 'units');
+      if (unitUnlocks.length) {
+        const hit = unitUnlocks.some(un => armyUnits.some(u => {
+          if (un.id != null) { const up = (u.upstream || {}).id; return up != null && String(un.id) === String(up); }
+          const prop = un.property, val = un.value;
+          if (prop === 'faction') return Number(u.factionId) === Number(val);
+          if (prop === 'affiliation') return (u.affiliationIds || []).map(String).includes(String(val));
+          if (prop === 'unitType') return Number(u.unitTypeId) === Number(val);
+          if (prop === 'rank') return Number(u.rankId) === Number(val);
+          if (prop === 'keywords') return (u.keywords || []).some(k => k && String(k.id) === String(val));
+          return false;
+        }));
+        if (!hit) issue("invalid", "command_unlock", `命令卡「${name}」需要匹配的解锁单位`, null);
+      }
       for (const un of cmd.unlockedBy || []) {
-        const target = String(un.id), prop = un.propertyName;
-        if (prop === "units" && !armyUnitUpstream.has(target)) issue("invalid", "command_unlock", `命令卡「${name}」需要包含解锁单位（上游 ${target}）`, null);
-        else if (prop === "upgrades" && !selectedUpgradeUpstream.has(target)) issue("invalid", "command_unlock", `命令卡「${name}」需要包含解锁升级（上游 ${target}）`, null);
+        if (un.propertyName === "upgrades" && !selectedUpgradeUpstream.has(String(un.id))) issue("invalid", "command_unlock", `命令卡「${name}」需要包含解锁升级（上游 ${un.id}）`, null);
       }
     }
     const hand = mode.commandHand;
@@ -881,5 +908,5 @@ window.RulesCore = (() => {
     return { status: hasInvalid ? "invalid" : (hasUnknown ? "unknown" : "valid"), basePoints, effectivePoints, rankCounts: maxCounts, issues };
   }
 
-  return { Dice, evaluate, validateArmy, upgradeEligibility, entourageExemptions, armyRank, slotKey, accessKeys, slotGrantsFor, dedicatedSlotKeys, slotListFor, restrictionConditionOk, requiredPropertiesOk, normRp, buildNameIndex, unavailableSets };
+  return { Dice, evaluate, validateArmy, unitContext, upgradeEligibility, entourageExemptions, armyRank, slotKey, accessKeys, slotGrantsFor, dedicatedSlotKeys, slotListFor, restrictionConditionOk, requiredPropertiesOk, normRp, buildNameIndex, unavailableSets };
 })();

@@ -251,32 +251,45 @@ function pipDots(n){
 }
 function commandOf(id){return (data.defs.commands||[]).find(c=>String(c.id)===String(id))||null}
 function commandName(cmd){return (cmd.name&&(cmd.name.zh||cmd.name.en))||String(cmd.id)}
+function unitMatchesUnlock(entry,u){
+  if(!entry||!u)return false;
+  if(entry.id!=null)return String(entry.id)===String(((u.upstream||{}).id||' '));
+  const prop=entry.property, val=entry.value;
+  if(prop==='faction')return Number(u.factionId)===Number(val);
+  if(prop==='affiliation')return (u.affiliationIds||[]).map(String).includes(String(val));
+  if(prop==='unitType')return Number(u.unitTypeId)===Number(val);
+  if(prop==='rank')return Number(u.rankId)===Number(val);
+  if(prop==='keywords')return (u.keywords||[]).some(k=>k&&String(k.id)===String(val));
+  return false;
+}
+function isMercenaryUnit(u){
+  if(!u)return false;
+  if((u.keywords||[]).some(k=>k&&k.id==='mercenary'))return true;
+  return (u.factions||[]).some(f=>f&&(f.tierPools||[]).includes('mercenary'));
+}
 function commandAvailable(cmd){
   const facs=cmd.factions||[];
-  if(facs.length&&!facs.includes(Number(army.armyId)))return false;
-  const title=String(cmd.titleMatch||'').trim().toLowerCase();
-  if(title){
-    for(const inst of (army.units||[])){
-      const u=data.units[inst.unitId];if(!u)continue;
-      const t=(((u.title||{}).en)||'').toLowerCase();
-      const n=(((u.name||{}).en)||'').toLowerCase();
-      if((t&&(t.includes(title)||title.includes(t)))||(n&&n.includes(title)))return true;
-    }
-    return false;
+  const armyId=Number(army.armyId);
+  const parent=(data.defs.armies||[]).find(a=>a.id===armyId)?null:null;
+  if(facs.length&&!facs.includes(armyId)){
+    const bf=(data.pkg.battleForces||{})[String(armyId)];
+    const parentName=bf&&bf.parentFaction;
+    const parentArmy=parentName?(data.defs.armies||[]).find(a=>(a.name&&(a.name.en===parentName||a.name.zh===parentName))):null;
+    if(!(parentArmy&&facs.includes(parentArmy.id)))return false;
   }
-  const unlocks=(cmd.unlockedBy||[]).filter(u=>u&&u.propertyName==='units');
-  if(!unlocks.length)return true;
-  const have=new Set((army.units||[]).map(i=>String(((data.units[i.unitId]||{}).upstream||{}).id||'')));
-  return unlocks.every(u=>have.has(String(u.id)));
-}function commandSlotPips(){
-  const mode=(data.pkg.modes||{})[army.mode]||{};
-  const hand=mode.commandHand||[];
-  const out=[];
-  for(const rule of hand){
-    const n=rule.min||0;
-    for(let i=0;i<n;i++)out.push(rule.pips);
+  const units=(army.units||[]).map(i=>data.units[i.unitId]).filter(Boolean);
+  if(cmd.mercenary&&!units.some(isMercenaryUnit))return false;
+  if(cmd.condition){
+    const preds=data.pkg.predicates||{};
+    const ok=units.some(u=>RulesCore.evaluate(cmd.condition,RulesCore.unitContext(u),preds)===true);
+    if(!ok)return false;
   }
-  return out.length?out:[1,1,2,2,3,3,4];
+  const unlocks=(cmd.unlockedBy||[]).filter(x=>x&&x.propertyName==='units');
+  if(unlocks.length){
+    const hit=unlocks.some(x=>units.some(u=>unitMatchesUnlock(x,u)));
+    if(!hit)return false;
+  }
+  return true;
 }
 function commandSlots(){return commandSlotPips().length}
 function slotPipOf(cmd){return cmd?(cmd.slotPips!=null?cmd.slotPips:cmd.pips):null}

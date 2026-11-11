@@ -1,6 +1,6 @@
 {
   "schema": "swl-unit-catalog/v2",
-  "updatedAt": "2026-11-06T10:22:38.186277+00:00",
+  "updatedAt": "2026-11-09T19:59:19.061496+00:00",
   "definitions": "catalog-definitions.json",
   "referenceVersion": "2026.11.04.0",
   "units": [
@@ -70,7 +70,11 @@
         },
         {
           "id": "entourage",
-          "parameter": "Kraken"
+          "parameter": "Kraken",
+          "parameterRef": {
+            "kind": "unit",
+            "id": "separatists-kraken"
+          }
         },
         {
           "id": "equip",
@@ -143,6 +147,9 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "19885"
       ]
     },
     {
@@ -246,7 +253,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "separatists-geonosian-engineer",
@@ -373,7 +381,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "separatists-aat",
@@ -516,7 +525,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "separatists-aqua-droids",
@@ -638,7 +648,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "separatists-asajj",
@@ -757,6 +768,11 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "5183",
+        "5184",
+        "5182"
       ]
     },
     {
@@ -891,7 +907,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "separatists-b2",
@@ -1018,7 +1035,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "separatists-bx",
@@ -1163,7 +1181,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "separatists-bx-strike",
@@ -1302,7 +1321,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "separatists-dooku",
@@ -1451,6 +1471,12 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "57",
+        "67",
+        "66",
+        "5185"
       ]
     },
     {
@@ -1563,7 +1589,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "separatists-droidekas",
@@ -1685,7 +1712,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "separatists-dsd1-dwarf",
@@ -1795,7 +1823,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "separatists-geonosian",
@@ -1916,7 +1945,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "separatists-grievous-wheelbike",
@@ -1995,7 +2025,11 @@
         },
         {
           "id": "entourage",
-          "parameter": "TSMEU-6 Wheel Bikes"
+          "parameter": "TSMEU-6 Wheel Bikes",
+          "parameterRef": {
+            "kind": "unit",
+            "id": "separatists-tsmeu-wheel-bikes"
+          }
         },
         {
           "id": "immune_melee_pierce"
@@ -2081,6 +2115,14 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "18067",
+        "18068",
+        "18069",
+        "50",
+        "53",
+        "52"
       ]
     },
     {
@@ -2239,6 +2281,14 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "18067",
+        "18068",
+        "18069",
+        "50",
+        "53",
+        "52"
       ]
     },
     {
@@ -2373,6 +2423,11 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "787",
+        "786",
+        "785"
       ]
     },
     {
@@ -2517,6 +2572,11 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "787",
+        "786",
+        "785"
       ]
     },
     {
@@ -2635,7 +2695,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "separatists-magna",
@@ -2775,7 +2836,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "separatists-magnaguard-prototype",
@@ -2894,7 +2956,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "separatists-maul",
@@ -3014,6 +3077,11 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "90",
+        "91",
+        "92"
       ]
     },
     {
@@ -3156,7 +3224,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "separatists-persuader-prototype",
@@ -3311,7 +3380,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "separatists-poggle",
@@ -3379,7 +3449,11 @@
         },
         {
           "id": "entourage",
-          "parameter": "B2 Super Battle Droids"
+          "parameter": "B2 Super Battle Droids",
+          "parameterRef": {
+            "kind": "unit",
+            "id": "separatists-b2"
+          }
         },
         {
           "id": "override"
@@ -3435,6 +3509,11 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "9452",
+        "9454",
+        "9453"
       ]
     },
     {
@@ -3509,7 +3588,11 @@
         },
         {
           "id": "retinue",
-          "parameter": "Poggle THE Lesser"
+          "parameter": "Poggle THE Lesser",
+          "parameterRef": {
+            "kind": "unit",
+            "id": "separatists-poggle"
+          }
         },
         {
           "id": "scale"
@@ -3574,6 +3657,9 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "9451"
       ]
     },
     {
@@ -3711,6 +3797,10 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "17930",
+        "17931"
       ]
     },
     {
@@ -3845,6 +3935,10 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "17930",
+        "17931"
       ]
     },
     {
@@ -3967,7 +4061,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "separatists-save-opress-cis",
@@ -4040,7 +4135,11 @@
         },
         {
           "id": "retinue",
-          "parameter": "Count Dooku"
+          "parameter": "Count Dooku",
+          "parameterRef": {
+            "kind": "unit",
+            "id": "separatists-dooku"
+          }
         }
       ],
       "weapons": [
@@ -4115,6 +4214,9 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "19886"
       ]
     },
     {
@@ -4242,7 +4344,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "separatists-tsmeu-wheel-bikes",
@@ -4386,7 +4489,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "empire-74-z-speeder",
@@ -4521,7 +4625,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "empire-at-st",
@@ -4658,7 +4763,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "empire-dark-troopers",
@@ -4790,7 +4896,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "empire-darth-vader-apprentice",
@@ -4939,6 +5046,14 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "55",
+        "1",
+        "12",
+        "59",
+        "61",
+        "4"
       ]
     },
     {
@@ -5073,6 +5188,14 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "55",
+        "1",
+        "12",
+        "59",
+        "61",
+        "4"
       ]
     },
     {
@@ -5226,7 +5349,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "empire-dewback",
@@ -5335,7 +5459,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "empire-df-90-mortar",
@@ -5394,7 +5519,11 @@
       "keywords": [
         {
           "id": "detachment",
-          "parameter": "Shoretroopers"
+          "parameter": "Shoretroopers",
+          "parameterRef": {
+            "kind": "unit",
+            "id": "empire-shoretroopers"
+          }
         },
         {
           "id": "pending_fire_support"
@@ -5472,7 +5601,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "empire-e-web",
@@ -5615,7 +5745,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "empire-fifth-brother",
@@ -5754,6 +5885,10 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "9458",
+        "9457"
       ]
     },
     {
@@ -5882,6 +6017,11 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "18899",
+        "18900",
+        "18906"
       ]
     },
     {
@@ -5951,7 +6091,11 @@
         },
         {
           "id": "entourage",
-          "parameter": "Imperial Dark Troopers"
+          "parameter": "Imperial Dark Troopers",
+          "parameterRef": {
+            "kind": "unit",
+            "id": "empire-dark-troopers"
+          }
         },
         {
           "id": "ruthless"
@@ -6017,6 +6161,11 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "4122",
+        "4120",
+        "4121"
       ]
     },
     {
@@ -6148,6 +6297,12 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "18309",
+        "18898",
+        "18901",
+        "18906"
       ]
     },
     {
@@ -6246,6 +6401,11 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "18310",
+        "18902",
+        "18906"
       ]
     },
     {
@@ -6382,7 +6542,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "empire-iden-versio",
@@ -6550,6 +6711,12 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "74",
+        "82",
+        "84",
+        "83"
       ]
     },
     {
@@ -6677,6 +6844,9 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "17862"
       ]
     },
     {
@@ -6813,6 +6983,9 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "17861"
       ]
     },
     {
@@ -6939,7 +7112,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "empire-inferno-squad",
@@ -7015,7 +7189,11 @@
         },
         {
           "id": "retinue",
-          "parameter": "Iden Versio"
+          "parameter": "Iden Versio",
+          "parameterRef": {
+            "kind": "unit",
+            "id": "empire-iden-versio"
+          }
         }
       ],
       "weapons": [
@@ -7074,7 +7252,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "empire-kallus",
@@ -7200,6 +7379,11 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "104",
+        "99",
+        "103"
       ]
     },
     {
@@ -7324,7 +7508,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "empire-marquand",
@@ -7497,6 +7682,11 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "8115",
+        "8117",
+        "8116"
       ]
     },
     {
@@ -7567,7 +7757,11 @@
         },
         {
           "id": "entourage",
-          "parameter": "Imperial Death Troopers"
+          "parameter": "Imperial Death Troopers",
+          "parameterRef": {
+            "kind": "unit",
+            "id": "empire-death-troopers"
+          }
         },
         {
           "id": "exemplar"
@@ -7620,6 +7814,11 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "31",
+        "43",
+        "44"
       ]
     },
     {
@@ -7739,7 +7938,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "empire-riot-squad",
@@ -7865,7 +8065,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "empire-scout",
@@ -8002,7 +8203,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "empire-scout-strike",
@@ -8143,7 +8345,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "empire-seventh-sister",
@@ -8299,6 +8502,11 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "9459",
+        "9461",
+        "9460"
       ]
     },
     {
@@ -8439,7 +8647,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "empire-snowtroopers",
@@ -8571,7 +8780,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "empire-special-forces",
@@ -8692,7 +8902,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "empire-stormtroopers",
@@ -8838,7 +9049,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "empire-stormtroopers-hwu",
@@ -8955,7 +9167,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "empire-tx-225",
@@ -9101,7 +9314,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "empire-veers",
@@ -9230,6 +9444,11 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "10",
+        "16",
+        "15"
       ]
     },
     {
@@ -9382,6 +9601,11 @@
       },
       "divisions": [
         "Light"
+      ],
+      "commandIds": [
+        "20053",
+        "17929",
+        "17928"
       ]
     },
     {
@@ -9508,6 +9732,11 @@
       },
       "divisions": [
         "Light"
+      ],
+      "commandIds": [
+        "19764",
+        "19074",
+        "19077"
       ]
     },
     {
@@ -9661,6 +9890,11 @@
       },
       "divisions": [
         "Light"
+      ],
+      "commandIds": [
+        "19764",
+        "19074",
+        "19079"
       ]
     },
     {
@@ -9798,6 +10032,11 @@
       },
       "divisions": [
         "Light"
+      ],
+      "commandIds": [
+        "16484",
+        "16486",
+        "16485"
       ]
     },
     {
@@ -9830,8 +10069,8 @@
         "resilienceSymbol": "dash"
       },
       "assets": {
-        "front": "assets/unit-cards/gar/originals/anakin-barc_front.webp",
-        "portrait": "assets/portraits/republic-anakin-barc-5d337cc7745970a06797.webp",
+        "front": "assets/unit-cards/republic-anakin-barc.webp",
+        "portrait": "assets/portraits/republic-anakin-barc-5f2ea7a447baba88acbb.webp",
         "portraitCrop": [
           0.669,
           0.174,
@@ -9926,7 +10165,7 @@
           },
           "keywords": [
             {
-              "id": "pending_fixen_front",
+              "id": "fixed_front",
               "parameter": "FRONT"
             },
             {
@@ -9953,6 +10192,13 @@
       },
       "divisions": [
         "Light"
+      ],
+      "commandIds": [
+        "14378",
+        "20054",
+        "20053",
+        "89",
+        "88"
       ]
     },
     {
@@ -10080,6 +10326,11 @@
       },
       "divisions": [
         "Light"
+      ],
+      "commandIds": [
+        "14378",
+        "89",
+        "88"
       ]
     },
     {
@@ -10199,7 +10450,8 @@
       },
       "divisions": [
         "Light"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "republic-arc-troopers-strike",
@@ -10323,7 +10575,8 @@
       },
       "divisions": [
         "Light"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "republic-arf-troopers",
@@ -10450,7 +10703,8 @@
       },
       "divisions": [
         "Light"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "republic-at-rt-gar",
@@ -10587,7 +10841,8 @@
       },
       "divisions": [
         "Light"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "republic-bad-batch-gar",
@@ -10748,6 +11003,9 @@
       },
       "divisions": [
         "Light"
+      ],
+      "commandIds": [
+        "13729"
       ]
     },
     {
@@ -10880,7 +11138,8 @@
       },
       "divisions": [
         "Light"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "republic-c3po",
@@ -11010,7 +11269,8 @@
       },
       "divisions": [
         "Light"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "republic-chewbacca-gar",
@@ -11160,6 +11420,12 @@
       },
       "divisions": [
         "Light"
+      ],
+      "commandIds": [
+        "540",
+        "34",
+        "33",
+        "28"
       ]
     },
     {
@@ -11291,7 +11557,8 @@
       },
       "divisions": [
         "Light"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "republic-clone-commander-leadership",
@@ -11409,7 +11676,8 @@
       },
       "divisions": [
         "Light"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "republic-clone-commandos",
@@ -11549,7 +11817,8 @@
       },
       "divisions": [
         "Light"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "republic-clone-trooper",
@@ -11683,7 +11952,8 @@
       },
       "divisions": [
         "Light"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "republic-clonetrooper-marksmen",
@@ -11819,7 +12089,8 @@
       },
       "divisions": [
         "Light"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "republic-cody",
@@ -11959,6 +12230,11 @@
       },
       "divisions": [
         "Light"
+      ],
+      "commandIds": [
+        "6131",
+        "6129",
+        "6130"
       ]
     },
     {
@@ -12108,7 +12384,8 @@
       },
       "divisions": [
         "Light"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "republic-isp",
@@ -12218,7 +12495,8 @@
       },
       "divisions": [
         "Light"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "republic-jedi-knight",
@@ -12325,6 +12603,10 @@
       },
       "divisions": [
         "Light"
+      ],
+      "commandIds": [
+        "17929",
+        "17928"
       ]
     },
     {
@@ -12435,6 +12717,10 @@
       },
       "divisions": [
         "Light"
+      ],
+      "commandIds": [
+        "17929",
+        "17928"
       ]
     },
     {
@@ -12563,7 +12849,8 @@
       },
       "divisions": [
         "Light"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "republic-obiwan",
@@ -12695,6 +12982,11 @@
       },
       "divisions": [
         "Light"
+      ],
+      "commandIds": [
+        "54",
+        "51",
+        "49"
       ]
     },
     {
@@ -12819,6 +13111,11 @@
       },
       "divisions": [
         "Light"
+      ],
+      "commandIds": [
+        "76",
+        "78",
+        "86"
       ]
     },
     {
@@ -12930,6 +13227,11 @@
       },
       "divisions": [
         "Light"
+      ],
+      "commandIds": [
+        "70",
+        "68",
+        "63"
       ]
     },
     {
@@ -13034,7 +13336,8 @@
       },
       "divisions": [
         "Light"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "republic-raddaugh",
@@ -13141,7 +13444,8 @@
       },
       "divisions": [
         "Light"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "republic-rex",
@@ -13270,6 +13574,11 @@
       },
       "divisions": [
         "Light"
+      ],
+      "commandIds": [
+        "65",
+        "58",
+        "64"
       ]
     },
     {
@@ -13398,7 +13707,8 @@
       },
       "divisions": [
         "Light"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "republic-wookiee-kashyyk",
@@ -13514,7 +13824,8 @@
       },
       "divisions": [
         "Light"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "republic-wookiee-noble",
@@ -13633,7 +13944,8 @@
       },
       "divisions": [
         "Light"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "republic-yoda",
@@ -13776,6 +14088,11 @@
       },
       "divisions": [
         "Light"
+      ],
+      "commandIds": [
+        "257",
+        "258",
+        "256"
       ]
     },
     {
@@ -13902,6 +14219,11 @@
       },
       "divisions": [
         "Light"
+      ],
+      "commandIds": [
+        "19764",
+        "19074",
+        "19078"
       ]
     },
     {
@@ -14029,6 +14351,11 @@
       },
       "divisions": [
         "Light"
+      ],
+      "commandIds": [
+        "19764",
+        "19074",
+        "19080"
       ]
     },
     {
@@ -14170,6 +14497,11 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "1901"
       ]
     },
     {
@@ -14291,6 +14623,11 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "1901"
       ]
     },
     {
@@ -14469,6 +14806,16 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "2378",
+        "3051",
+        "19515",
+        "3050",
+        "3052",
+        "1901"
       ]
     },
     {
@@ -14575,6 +14922,9 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "19515"
       ]
     },
     {
@@ -14716,6 +15066,13 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "19483",
+        "19515",
+        "1901"
       ]
     },
     {
@@ -14848,6 +15205,14 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "19485",
+        "19515",
+        "19484",
+        "1901"
       ]
     },
     {
@@ -14992,6 +15357,12 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "19511",
+        "1901"
       ]
     },
     {
@@ -15135,6 +15506,14 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "19486",
+        "19487",
+        "19511",
+        "1901"
       ]
     },
     {
@@ -15279,6 +15658,12 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "19511",
+        "1901"
       ]
     },
     {
@@ -15428,6 +15813,15 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "1962",
+        "1963",
+        "19512",
+        "1961",
+        "1901"
       ]
     },
     {
@@ -15550,6 +15944,13 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "19516",
+        "19512",
+        "1901"
       ]
     },
     {
@@ -15674,6 +16075,12 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "19512",
+        "1901"
       ]
     },
     {
@@ -15817,6 +16224,12 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "19518",
+        "1901"
       ]
     },
     {
@@ -15940,6 +16353,16 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "19518",
+        "19513",
+        "41",
+        "47",
+        "48",
+        "1901"
       ]
     },
     {
@@ -16026,7 +16449,11 @@
         },
         {
           "id": "entourage",
-          "parameter": "Clan Wren Veterans"
+          "parameter": "Clan Wren Veterans",
+          "parameterRef": {
+            "kind": "unit",
+            "id": "mercenary-clan-wren-clan-wren-veterans"
+          }
         },
         {
           "id": "impervious"
@@ -16070,6 +16497,13 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "19518",
+        "19514",
+        "1901"
       ]
     },
     {
@@ -16263,6 +16697,12 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "19531",
+        "1901"
       ]
     },
     {
@@ -16421,6 +16861,12 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "19530",
+        "1901"
       ]
     },
     {
@@ -16549,6 +16995,11 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "1901"
       ]
     },
     {
@@ -16695,6 +17146,11 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "1901"
       ]
     },
     {
@@ -16856,6 +17312,11 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "1901"
       ]
     },
     {
@@ -16944,6 +17405,11 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "1901"
       ]
     },
     {
@@ -17116,6 +17582,15 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "540",
+        "34",
+        "1901",
+        "33",
+        "28"
       ]
     },
     {
@@ -17231,6 +17706,11 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "1901"
       ]
     },
     {
@@ -17374,6 +17854,11 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "1901"
       ]
     },
     {
@@ -17488,6 +17973,11 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "1901"
       ]
     },
     {
@@ -17646,6 +18136,14 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "7327",
+        "1901",
+        "7328",
+        "7326"
       ]
     },
     {
@@ -17787,6 +18285,14 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "1962",
+        "1963",
+        "1961",
+        "1901"
       ]
     },
     {
@@ -17909,6 +18415,11 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "1901"
       ]
     },
     {
@@ -18036,6 +18547,17 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "1827",
+        "1825",
+        "90",
+        "91",
+        "92",
+        "1901",
+        "1826"
       ]
     },
     {
@@ -18185,6 +18707,13 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "19886",
+        "19081",
+        "1901"
       ]
     },
     {
@@ -18346,6 +18875,11 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "1901"
       ]
     },
     {
@@ -18516,6 +19050,11 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "1901"
       ]
     },
     {
@@ -18612,6 +19151,11 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "1901"
       ]
     },
     {
@@ -18793,6 +19337,13 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "16488",
+        "16487",
+        "1903",
+        "1902",
+        "1901"
       ]
     },
     {
@@ -18943,6 +19494,11 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "1901"
       ]
     },
     {
@@ -19116,6 +19672,11 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "1901"
       ]
     },
     {
@@ -19302,6 +19863,11 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "1901"
       ]
     },
     {
@@ -19425,6 +19991,14 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "20008",
+        "20009",
+        "20010",
+        "1901"
       ]
     },
     {
@@ -19588,6 +20162,12 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "13729",
+        "1901"
       ]
     },
     {
@@ -19743,6 +20323,16 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "2377",
+        "2376",
+        "29",
+        "20",
+        "1901",
+        "2375"
       ]
     },
     {
@@ -19918,6 +20508,16 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "2377",
+        "2376",
+        "29",
+        "20",
+        "1901",
+        "2375"
       ]
     },
     {
@@ -20081,6 +20681,14 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "42",
+        "1901",
+        "45",
+        "46"
       ]
     },
     {
@@ -20244,6 +20852,14 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "75",
+        "85",
+        "77",
+        "1901"
       ]
     },
     {
@@ -20418,6 +21034,15 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "3087",
+        "3050",
+        "1901",
+        "3085",
+        "3086"
       ]
     },
     {
@@ -20580,6 +21205,14 @@
       },
       "divisions": [
         "Dark"
+      ],
+      "commandIds": [
+        "1903",
+        "1902",
+        "3083",
+        "1901",
+        "3085",
+        "3084"
       ]
     },
     {
@@ -20705,7 +21338,8 @@
       },
       "divisions": [
         "Dark"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "rebels-1-4-fd-laser-cannon-team",
@@ -20848,7 +21482,8 @@
       },
       "divisions": [
         "Light"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "rebels-a-a5-speeder-truck-rebel",
@@ -20938,7 +21573,8 @@
       },
       "divisions": [
         "Light"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "rebels-ahsoka",
@@ -21062,6 +21698,12 @@
       },
       "divisions": [
         "Light"
+      ],
+      "commandIds": [
+        "6508",
+        "6509",
+        "6510",
+        "6511"
       ]
     },
     {
@@ -21182,7 +21824,8 @@
       },
       "divisions": [
         "Light"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "rebels-c-3po-cyborg",
@@ -21312,7 +21955,8 @@
       },
       "divisions": [
         "Light"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "rebels-cassian",
@@ -21454,6 +22098,11 @@
       },
       "divisions": [
         "Light"
+      ],
+      "commandIds": [
+        "73",
+        "81",
+        "79"
       ]
     },
     {
@@ -21603,6 +22252,12 @@
       },
       "divisions": [
         "Light"
+      ],
+      "commandIds": [
+        "540",
+        "34",
+        "33",
+        "28"
       ]
     },
     {
@@ -21728,7 +22383,8 @@
       },
       "divisions": [
         "Light"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "rebels-fleet-troopers",
@@ -21840,7 +22496,8 @@
       },
       "divisions": [
         "Light"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "rebels-guerilla-troopers",
@@ -21966,7 +22623,8 @@
       },
       "divisions": [
         "Light"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "rebels-han-solo-tauntaun",
@@ -22116,6 +22774,12 @@
       },
       "divisions": [
         "Light"
+      ],
+      "commandIds": [
+        "22",
+        "18905",
+        "14",
+        "23"
       ]
     },
     {
@@ -22257,6 +22921,11 @@
       },
       "divisions": [
         "Light"
+      ],
+      "commandIds": [
+        "16620",
+        "16619",
+        "40"
       ]
     },
     {
@@ -22322,7 +22991,11 @@
         },
         {
           "id": "detachment",
-          "parameter": "Cassian Andor"
+          "parameter": "Cassian Andor",
+          "parameterRef": {
+            "kind": "unit",
+            "id": "rebels-cassian"
+          }
         },
         {
           "id": "incognito"
@@ -22379,6 +23052,9 @@
       },
       "divisions": [
         "Light"
+      ],
+      "commandIds": [
+        "80"
       ]
     },
     {
@@ -22508,6 +23184,11 @@
       },
       "divisions": [
         "Light"
+      ],
+      "commandIds": [
+        "100",
+        "16624",
+        "16618"
       ]
     },
     {
@@ -22640,6 +23321,12 @@
       },
       "divisions": [
         "Light"
+      ],
+      "commandIds": [
+        "7330",
+        "18",
+        "19",
+        "13"
       ]
     },
     {
@@ -22767,6 +23454,14 @@
       },
       "divisions": [
         "Light"
+      ],
+      "commandIds": [
+        "2",
+        "60",
+        "62",
+        "56",
+        "11",
+        "6"
       ]
     },
     {
@@ -22926,6 +23621,13 @@
       },
       "divisions": [
         "Light"
+      ],
+      "commandIds": [
+        "2",
+        "18904",
+        "62",
+        "11",
+        "6"
       ]
     },
     {
@@ -23082,6 +23784,12 @@
       },
       "divisions": [
         "Light"
+      ],
+      "commandIds": [
+        "2",
+        "62",
+        "11",
+        "6"
       ]
     },
     {
@@ -23146,7 +23854,11 @@
       "keywords": [
         {
           "id": "detachment",
-          "parameter": "Rebel Veterans"
+          "parameter": "Rebel Veterans",
+          "parameterRef": {
+            "kind": "unit",
+            "id": "rebels-rebel-veterans"
+          }
         },
         {
           "id": "pending_fire_support"
@@ -23225,7 +23937,8 @@
       },
       "divisions": [
         "Light"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "rebels-r2d2-hero",
@@ -23339,6 +24052,11 @@
       },
       "divisions": [
         "Light"
+      ],
+      "commandIds": [
+        "70",
+        "68",
+        "63"
       ]
     },
     {
@@ -23461,6 +24179,9 @@
       },
       "divisions": [
         "Light"
+      ],
+      "commandIds": [
+        "17864"
       ]
     },
     {
@@ -23581,6 +24302,9 @@
       },
       "divisions": [
         "Light"
+      ],
+      "commandIds": [
+        "17863"
       ]
     },
     {
@@ -23712,7 +24436,8 @@
       },
       "divisions": [
         "Light"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "rebels-rebel-troopers",
@@ -23853,7 +24578,8 @@
       },
       "divisions": [
         "Light"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "rebels-rebel-veterans",
@@ -23996,7 +24722,8 @@
       },
       "divisions": [
         "Light"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "rebels-sabine",
@@ -24111,6 +24838,11 @@
       },
       "divisions": [
         "Light"
+      ],
+      "commandIds": [
+        "41",
+        "47",
+        "48"
       ]
     },
     {
@@ -24257,7 +24989,8 @@
       },
       "divisions": [
         "Light"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "rebels-solo",
@@ -24395,6 +25128,11 @@
       },
       "divisions": [
         "Light"
+      ],
+      "commandIds": [
+        "22",
+        "14",
+        "23"
       ]
     },
     {
@@ -24514,7 +25252,8 @@
       },
       "divisions": [
         "Light"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "rebels-tauntaun-riders",
@@ -24641,7 +25380,8 @@
       },
       "divisions": [
         "Light"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "rebels-wookiee-freedom",
@@ -24757,7 +25497,8 @@
       },
       "divisions": [
         "Light"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "rebels-wookiee-resistance",
@@ -24869,7 +25610,8 @@
       },
       "divisions": [
         "Light"
-      ]
+      ],
+      "commandIds": []
     },
     {
       "id": "rebels-x-34-landspeeder",
@@ -24973,7 +25715,140 @@
       },
       "divisions": [
         "Light"
-      ]
+      ],
+      "commandIds": []
+    },
+    {
+      "id": "new-unit-mw9obgc9",
+      "name": {
+        "en": "Obi-Wan Kenobi",
+        "zh": "欧比-旺·克诺比"
+      },
+      "title": {
+        "en": "Mounted Jedi General",
+        "zh": "绝地飞车将军"
+      },
+      "points": 140,
+      "upgradeSlots": [
+        5,
+        5,
+        9,
+        10,
+        6
+      ],
+      "stats": {
+        "models": 1,
+        "wounds": 6,
+        "courage": null,
+        "resilience": null,
+        "speed": 3,
+        "defenseDie": "red",
+        "attackSurge": "none",
+        "defenseSurge": "block"
+      },
+      "assets": {
+        "front": "assets/unit-cards/new-unit-mw9obgc9.webp",
+        "portrait": "assets/portraits/new-unit-mw9obgc9-85b361e7357fdacb543f.webp",
+        "portraitCrop": [
+          0.669,
+          0.174,
+          0.998,
+          0.725
+        ]
+      },
+      "review": {
+        "status": "needs_review",
+        "notes": "",
+        "issues": [
+          "复制自 republic-obiwan，待校对"
+        ]
+      },
+      "factionId": 4,
+      "factions": [
+        {
+          "id": 4,
+          "rankId": 1
+        },
+        {
+          "id": 12,
+          "rankId": 1
+        }
+      ],
+      "affiliationIds": [],
+      "rankId": 1,
+      "unitTypeId": 2,
+      "keywords": [
+        {
+          "id": "aid",
+          "value": null,
+          "action": "none"
+        },
+        {
+          "id": "command_vehicle",
+          "value": 3
+        },
+        {
+          "id": "cover",
+          "value": 1
+        },
+        {
+          "id": "entourage",
+          "value": 3
+        },
+        {
+          "id": "immune_pierce"
+        },
+        {
+          "id": "master_of_the_force",
+          "value": 1
+        }
+      ],
+      "weapons": [
+        {
+          "name": {
+            "en": "OBi1-WAN's Lightsaber",
+            "zh": ""
+          },
+          "range": {
+            "min": 0,
+            "max": 0
+          },
+          "dice": {
+            "red": 2,
+            "black": 2,
+            "white": 2
+          },
+          "keywords": [
+            {
+              "id": "critical",
+              "value": 2
+            },
+            {
+              "id": "impact",
+              "value": 2
+            },
+            {
+              "id": "pierce",
+              "value": 2
+            }
+          ]
+        }
+      ],
+      "usage": "army_unit",
+      "rules": {
+        "unavailableWith": [
+          "Obi-Wan Kenobi",
+          {
+            "id": "36283",
+            "propertyName": "units"
+          }
+        ],
+        "unlimited": false
+      },
+      "divisions": [
+        "Light"
+      ],
+      "commandIds": []
     }
   ]
 }

@@ -984,17 +984,56 @@ def validate_army(army):
             if not hit:
                 issue("invalid", "command_title_match", "命令卡「" + name + "」需要称号包含「" + title_match + "」的单位", None)
         facs = [f for f in (cmd.get("factions") or [])]
-        if facs and army.get("armyId") not in facs:
-            issue("invalid", "command_faction", f"命令卡「{name}」不属于当前军队", None)
+        army_id = army.get("armyId")
+        if facs and army_id not in facs:
+            bf = (package.get("battleForces") or {}).get(str(army_id)) or {}
+            parent_name = bf.get("parentFaction")
+            parent_id = None
+            for a in definitions.get("armies") or []:
+                nm = a.get("name") or {}
+                if parent_name and parent_name in (nm.get("en"), nm.get("zh")):
+                    parent_id = a.get("id")
+            if parent_id is None or parent_id not in facs:
+                issue("invalid", "command_faction", f"命令卡「{name}」不属于当前军队", None)
         if cmd.get("campaigns"):
             issue("unknown", "command_campaign", f"命令卡「{name}」为战役卡，标准模式资格待核验", None)
+        army_units = [units.get(inst.get("unitId")) for inst in army.get("units", [])]
+        army_units = [u for u in army_units if u]
+        if cmd.get("mercenary"):
+            def _merc(u):
+                if any((k or {}).get("id") == "mercenary" for k in (u.get("keywords") or [])):
+                    return True
+                return any("mercenary" in ((f or {}).get("tierPools") or []) for f in (u.get("factions") or []))
+            if not any(_merc(u) for u in army_units):
+                issue("invalid", "command_mercenary", f"命令卡「{name}」需要军表中有雇佣兵单位", None)
+        cond = cmd.get("condition")
+        if cond:
+            preds = package.get("predicates") or {}
+            if not any(evaluate(cond, _unit_context(u, package), preds) is True for u in army_units):
+                issue("invalid", "command_condition", f"命令卡「{name}」需要满足单位条件", None)
+        unit_unlocks = [un for un in (cmd.get("unlockedBy") or []) if un.get("propertyName") == "units"]
+        if unit_unlocks:
+            def _hit(un, u):
+                if un.get("id") is not None:
+                    up_id = (u.get("upstream") or {}).get("id")
+                    return up_id is not None and str(un.get("id")) == str(up_id)
+                prop, val = un.get("property"), un.get("value")
+                if prop == "faction":
+                    return u.get("factionId") == val
+                if prop == "affiliation":
+                    return str(val) in [str(a) for a in (u.get("affiliationIds") or [])]
+                if prop == "unitType":
+                    return u.get("unitTypeId") == val
+                if prop == "rank":
+                    return u.get("rankId") == val
+                if prop == "keywords":
+                    return any(str((k or {}).get("id")) == str(val) for k in (u.get("keywords") or []))
+                return False
+            if not any(_hit(un, u) for un in unit_unlocks for u in army_units):
+                issue("invalid", "command_unlock", f"命令卡「{name}」需要匹配的解锁单位", None)
         for un in cmd.get("unlockedBy") or []:
-            target = str(un.get("id"))
-            prop = un.get("propertyName")
-            if prop == "units" and target not in army_unit_upstream_ids:
-                issue("invalid", "command_unlock", f"命令卡「{name}」需要包含解锁单位（上游 {target}）", None)
-            elif prop == "upgrades" and target not in selected_upgrade_upstream:
-                issue("invalid", "command_unlock", f"命令卡「{name}」需要包含解锁升级（上游 {target}）", None)
+            if un.get("propertyName") == "upgrades" and str(un.get("id")) not in selected_upgrade_upstream:
+                issue("invalid", "command_unlock", f"命令卡「{name}」需要包含解锁升级（上游 {un.get('id')}）", None)
 
     hand = mode.get("commandHand")
     if hand and army.get("commandIds"):
