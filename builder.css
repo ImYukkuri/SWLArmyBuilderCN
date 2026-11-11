@@ -143,3 +143,4 @@
 .unit-row .weapons{display:grid!important;grid-template-columns:repeat(auto-fill,minmax(250px,1fr))!important;gap:2px 16px!important}
 .unit-row .unit-kws{display:flex!important;flex-wrap:wrap!important;gap:6px!important}
 .unit-row .rank-tag{align-self:flex-start}
+.view-actions{display:flex;gap:6px;margin:0 0 8px}.view-actions button{background:#141c28;border:1px solid var(--sw-line);color:var(--sw-muted);border-radius:6px;padding:4px 10px;font-size:12px;cursor:pointer}.view-actions button:hover{border-color:var(--sw-accent);color:var(--sw-ink)}body.compact .unit-row .weapons,body.compact .unit-row .unit-kws{display:none}body.compact .unit-row .slots{display:none}

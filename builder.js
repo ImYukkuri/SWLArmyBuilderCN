@@ -30,6 +30,7 @@ function load(){
     data.nameIndex=RulesCore.buildNameIndex(data.upgrades,data.defs);
     restore();
     army.commandIds=army.commandIds||[];
+    wireViewActions();
     const pipsList=commandSlotPips();
     const p4=pipsList.lastIndexOf(4);
     if(p4>=0&&!army.commandIds[p4])army.commandIds[p4]='8';
@@ -289,6 +290,26 @@ function renderIssues(report){
   const box=$('#issues');box.replaceChildren();
   const h=el('p',report.status==='invalid'?'存在明确问题':report.status==='valid'?'规则范围内通过':'规则覆盖待确认');h.className='issue '+report.status;box.append(h);
   for(const i of report.issues){const p=el('p',(i.instanceId?'['+i.instanceId+'] ':'')+i.message);p.className='issue '+i.status;box.append(p)}
+}
+function wireViewActions(){
+  const t=$('#view-toggle'),ex=$('#view-expand');
+  if(!t||!ex)return;
+  let compact=document.body.classList.contains('compact');
+  t.textContent=compact?'详情视图':'简略视图';
+  t.onclick=()=>{
+    compact=!compact;
+    document.body.classList.toggle('compact',compact);
+    t.textContent=compact?'详情视图':'简略视图';
+    renderUnits();
+  };
+  let expanded=false;
+  ex.textContent=expanded?'收起':'展开';
+  ex.onclick=()=>{
+    expanded=!expanded;
+    document.body.classList.toggle('expand-all',expanded);
+    ex.textContent=expanded?'收起':'展开';
+    renderUnits();
+  };
 }
 function renderFaction(){
   const sel=$('#faction');sel.replaceChildren();
