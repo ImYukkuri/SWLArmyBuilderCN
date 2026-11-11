@@ -323,6 +323,13 @@ function commandAvailable(cmd){
   }
   return true;
 }
+function commandSlotPips(){
+  const mode=(data.pkg.modes||{})[army.mode]||{};
+  const hand=mode.commandHand||[];
+  const out=[];
+  for(const rule of hand){const n=rule.min||0;for(let i=0;i<n;i++)out.push(rule.pips)}
+  return out.length?out:[1,1,2,2,3,3,4];
+}
 function commandSlots(){return commandSlotPips().length}
 function slotPipOf(cmd){return cmd?(cmd.slotPips!=null?cmd.slotPips:cmd.pips):null}
 function pipLabel(cmd){
