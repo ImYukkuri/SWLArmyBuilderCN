@@ -211,6 +211,9 @@ function renderUnits(){
     const weaponsBox=el('div');weaponsBox.className='weapons';
     for(const w of (u.weapons||[])){if(!w||!(w.name&&(w.name.zh||w.name.en)))continue;weaponsBox.append(weaponLine(w))}
     if(weaponsBox.children.length)main.append(weaponsBox);
+    const ukw=el('div');ukw.className='unit-kws';
+    for(const k of (u.keywords||[])){const id=(k&&k.id)?k.id:k;const c=kwChip(id);if(c){const wrap=el('span');wrap.className='unit-kw';wrap.append(c);if(k&&k.value!=null)wrap.append(el('i',k.value));ukw.append(wrap)}}
+    if(ukw.children.length)main.append(ukw);
     const pts=el('div',String((u.points||0)+(inst.upgrades||[]).reduce((s,x)=>s+((data.upgrades[x.upgradeId]||{}).points||0),0)));pts.className='pts';
     const ops=el('div');ops.className='ops';
     if(isUnique(u)){const t=el('button','🗑');t.className='trash';t.onclick=e=>{e.stopPropagation();army.units=army.units.filter(x=>x!==inst);save();render()};ops.append(t)}
@@ -277,8 +280,9 @@ function renderFaction(){
 function renderMode(){const sel=$('#mode');sel.value=army.mode;sel.onchange=()=>{army.mode=sel.value;army.pointsLimit=sel.value==='standard'?1000:600;save();render()}}
 function renderPoints(report){const limit=army.pointsLimit||1000;$('#points').textContent=report.basePoints+' / '+limit+' ('+(limit-report.basePoints)+')'}
 function pipDots(n){
-  const box=document.createElement('span');box.className='pip-badge';box.title='牌点 '+n;
-  for(let i=0;i<(Number(n)||0);i++){const d=document.createElement('i');box.append(d)}
+  const box=document.createElement('span');
+  box.className='pip-badge pip-'+(Number(n)||0);
+  box.title='牌点 '+n;
   return box;
 }
 function commandOf(id){return (data.defs.commands||[]).find(c=>String(c.id)===String(id))||null}
