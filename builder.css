@@ -91,3 +91,22 @@
 .card-browser{background:#141c28}
 .card-browser .browser-head{border-bottom:1px solid var(--sw-line)}
 .info-btn{background:#0b1119;border:1px solid var(--sw-line-strong);color:var(--sw-accent)}
+
+/* ============ 整体重新设计：横向利用 + 立体层次 ============ */
+#army-units{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-items:start}
+.unit-row{display:grid;grid-template-columns:56px 1fr;gap:10px;align-items:start;
+  background:#141c28;border:1px solid var(--sw-line);border-radius:10px;padding:12px;
+  box-shadow:0 2px 0 rgba(0,0,0,.35),0 10px 22px rgba(0,0,0,.22);transition:transform .14s ease,box-shadow .14s ease,border-color .14s ease}
+.unit-row:hover{transform:translateY(-2px);border-color:rgba(240,180,41,.45);box-shadow:0 4px 0 rgba(0,0,0,.35),0 16px 30px rgba(0,0,0,.3)}
+.unit-row .portrait{width:56px;height:80px;object-fit:cover;border-radius:6px;border:1px solid var(--sw-line)}
+.deck-panel .command-slots{grid-template-columns:repeat(4,minmax(0,1fr))}
+.card-browser{position:sticky;top:12px;max-height:calc(100vh - 24px);overflow:auto;border-radius:10px;
+  box-shadow:0 2px 0 rgba(0,0,0,.35),0 12px 26px rgba(0,0,0,.28)}
+.card-browser .card-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:10px}
+.card-browser .card-grid.units,.card-browser .card-grid.upgrades{grid-template-columns:repeat(2,minmax(0,1fr))}
+.rank-bar{position:sticky;top:0;z-index:5;background:#0b1119;padding:8px 2px;box-shadow:0 8px 18px rgba(0,0,0,.35)}
+@media (max-width:900px){
+  #army-units{grid-template-columns:1fr}
+  .deck-panel .command-slots{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .card-browser{position:static;max-height:none}
+}
