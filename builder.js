@@ -153,6 +153,7 @@ function kwChip(kid){
   const chip=el('button',label);chip.type='button';chip.className='kw-chip';
   chip.title=(kw.summary||kw.full||label);
   chip.onclick=e=>{e.stopPropagation();openKeywordDialog(kw)};
+  chip.dataset.t=(kw.timing||[]).join(',');
   return chip;
 }
 function openKeywordDialog(kw){
@@ -168,6 +169,24 @@ function openKeywordDialog(kw){
   if(kw.summary){const p1=el('p',kw.summary);p1.className='kw-summary';body.append(p1)}
   if(kw.full){const p2=el('p',kw.full);p2.className='kw-full';body.append(p2)}
   box.append(head,tbox,body);overlay.append(box);
+  overlay.onclick=e=>{if(e.target===overlay)overlay.remove()};
+  document.body.append(overlay);
+}
+function openUpgradeDialog(c){
+  if(!c)return;
+  const old=document.getElementById('upg-dialog');if(old)old.remove();
+  const overlay=el('div');overlay.id='upg-dialog';overlay.className='kw-overlay';
+  const box=el('div');box.className='kw-dialog';
+  const head=el('div');head.className='kw-head';
+  const pts=(c.points!=null?' '+c.points+' 分':'');
+  head.append(el('strong',(c.name&&(c.name.zh||c.name.en)||c.id)+pts));
+  const close=el('button','×');close.type='button';close.className='kw-close';close.onclick=()=>overlay.remove();head.append(close);
+  const body=el('div');body.className='kw-body';
+  const desc=(c.description&&(c.description.zh||c.description.en))||'';
+  if(desc){const p=el('p',commandText(desc));p.className='kw-full';body.append(p)}
+  if((c.keywords||[]).length){const kb=el('div');kb.className='kw-timing';for(const k of c.keywords){const kc=kwChip(k.id||k);if(kc)kb.append(kc)}body.append(kb)}
+  if((c.weapons||[]).length){for(const w of c.weapons){body.append(weaponLine(w))}}
+  box.append(head,body);overlay.append(box);
   overlay.onclick=e=>{if(e.target===overlay)overlay.remove()};
   document.body.append(overlay);
 }
@@ -213,7 +232,7 @@ function renderUnits(){
     records.forEach((rec,i)=>{
       const chosen=(inst.upgrades||[]).find(x=>x.slotIndex===i);
       if(chosen){
-        const c=data.upgrades[chosen.upgradeId];const chip=el('span');chip.className='slot-chip filled';chip.append(el('span',c?(c.name.zh||c.name.en):chosen.upgradeId));
+        const c=data.upgrades[chosen.upgradeId];const chip=el('span');chip.className='slot-chip filled';const nm=el('span',c?(c.name.zh||c.name.en):chosen.upgradeId);nm.className='upg-name';if(c)nm.onclick=e=>{e.stopPropagation();openUpgradeDialog(c)};chip.append(nm);
         for(const k of (c&&c.keywords)||[]){const kc=kwChip(k.id||k);if(kc)chip.append(kc)}
         const x=el('span','×');x.className='x';x.onclick=e=>{e.stopPropagation();inst.upgrades=inst.upgrades.filter(y=>y!==chosen);save();render()};chip.append(x);slots.append(chip);
       }else{
