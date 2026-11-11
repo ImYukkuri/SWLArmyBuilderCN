@@ -71,3 +71,33 @@
 .slot-chip.extra{border-style:dashed;background:#3a2f18;border-color:#c9a24b;color:#ffe2a8}
 .slot-chip.extra:hover{border-color:#e8c36a;color:#ffedc4}
 @media (max-width: 900px){.builder-body{flex-direction:column}.army-col{width:100%}.card-browser{width:100%;margin-top:10px;position:static}}.unit-row .name .unit-title{margin-left:6px;font-size:11px;color:#9AA7B4;font-style:italic;white-space:nowrap}.unit-row .name{display:flex;align-items:baseline;gap:2px;flex-wrap:wrap}.kw-chip{display:inline-block;padding:1px 6px;border:1px solid #3a4757;border-radius:6px;background:#293441;color:#9AA7B4;font-size:10px;line-height:1.4}.slot-chip.filled .kw-chip{margin-left:4px}.weapons{display:flex;flex-direction:column;gap:2px;margin-top:4px}.weapon-line{display:flex;align-items:center;gap:6px;font-size:11px;color:#C9D4DE}.weapon-line b{color:#F1F3F5}.weapon-line i{font-style:normal;color:#9AA7B4}
+/* ============ Imperial Starfleet Terminal · builder skin ============ */
+.builder-shell{position:relative;min-height:100vh;background:
+  radial-gradient(900px 420px at 85% -8%, rgba(240,180,41,.08), transparent 55%),
+  repeating-linear-gradient(0deg, rgba(143,163,184,.028) 0 1px, transparent 1px 3px),
+  linear-gradient(180deg,#0b1119,#0d1520);}
+.builder-shell::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:999;
+  background:repeating-linear-gradient(0deg, rgba(11,17,25,.06) 0 2px, transparent 2px 4px);opacity:.35}
+.builder-top{background:linear-gradient(180deg,#141c28,#101722);border:1px solid var(--sw-line);
+  clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,18px 100%,0 calc(100% - 18px));
+  padding:10px 16px;margin-bottom:10px}
+.builder-top .bf-field select{background:#0b1119;border:1px solid var(--sw-line-strong);color:var(--sw-accent);
+  font-family:var(--sw-font-mono);letter-spacing:.05em}
+.points-badge{background:linear-gradient(180deg,#3a2f10,#241d08);border:1px solid var(--sw-line-strong);
+  color:var(--sw-accent);clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,0 100%);padding:6px 12px;font-family:var(--sw-font-mono)}
+.rank-chip{background:linear-gradient(180deg,#141c28,#101722);border:1px solid var(--sw-line);
+  clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%);padding:4px 8px;cursor:pointer;transition:border-color .12s ease,box-shadow .12s ease}
+.rank-chip:hover{border-color:var(--sw-accent);box-shadow:var(--sw-glow)}
+.rank-chip.active{border-color:var(--sw-accent);box-shadow:var(--sw-glow)}
+.unit-row{position:relative;background:linear-gradient(180deg,#141c28,#101722);border:1px solid var(--sw-line);
+  border-left:3px solid var(--sw-accent);clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,0 100%);
+  padding:10px 12px;margin:6px 0;transition:border-color .12s ease,transform .12s ease}
+.unit-row:hover{border-color:rgba(240,180,41,.5);transform:translateY(-1px)}
+.command-slot{border-radius:var(--sw-radius);border:1px solid var(--sw-line);overflow:hidden;transition:border-color .12s ease,box-shadow .12s ease}
+.command-slot:hover{border-color:var(--sw-accent);box-shadow:var(--sw-glow)}
+.command-group-label{font-family:var(--sw-font-display);text-transform:uppercase;letter-spacing:.08em;
+  color:var(--sw-accent);font-size:12px;margin:10px 0 4px}
+.deck-section{background:linear-gradient(180deg,#141c28,#101722);padding:12px;margin-top:10px}
+.card-browser{background:linear-gradient(180deg,#141c28,#0e1520)}
+.card-browser .browser-head{border-bottom:1px solid var(--sw-line)}
+.info-btn{background:#0b1119;border:1px solid var(--sw-line-strong);color:var(--sw-accent)}
