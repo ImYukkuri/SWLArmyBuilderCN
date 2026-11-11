@@ -149,9 +149,28 @@ function keywordRef(id){
 function kwChip(kid){
   const kw=keywordRef(kid);if(!kw)return null;
   const label=(kw.name&&(kw.name.zh||kw.name.en))||kid;
-  const chip=el('span',label);chip.className='kw-chip';chip.title=kw.summary||kw.full||label;
+  const chip=el('button',label);chip.type='button';chip.className='kw-chip';
+  chip.title=(kw.summary||kw.full||label);
+  chip.onclick=e=>{e.stopPropagation();openKeywordDialog(kw)};
   return chip;
 }
+function openKeywordDialog(kw){
+  const old=document.getElementById('kw-dialog');if(old)old.remove();
+  const overlay=el('div');overlay.id='kw-dialog';overlay.className='kw-overlay';
+  const box=el('div');box.className='kw-dialog';
+  const head=el('div');head.className='kw-head';
+  head.append(el('strong',(kw.name&&(kw.name.zh||kw.name.en))||kw.id));
+  const close=el('button','×');close.type='button';close.className='kw-close';close.onclick=()=>overlay.remove();head.append(close);
+  const tbox=el('div');tbox.className='kw-timing';
+  for(const t of (kw.timing||[])){const b=el('span',TIMING_LABEL[t]||t);b.className='kw-timing-badge';tbox.append(b)}
+  const body=el('div');body.className='kw-body';
+  if(kw.summary){const p1=el('p',kw.summary);p1.className='kw-summary';body.append(p1)}
+  if(kw.full){const p2=el('p',kw.full);p2.className='kw-full';body.append(p2)}
+  box.append(head,tbox,body);overlay.append(box);
+  overlay.onclick=e=>{if(e.target===overlay)overlay.remove()};
+  document.body.append(overlay);
+}
+const TIMING_LABEL={global:'全局/组军',setup:'设置',deployment:'部署',command:'命令阶段',activation_start:'激活开始',activation:'激活',activation_end:'激活结束',movement:'移动',attack:'攻击',defense:'防御',end_round:'回合结束',unclassified:'未分类'};
 function diceText(d){
   const d2=d||{};
   const parts=[];if(d2.red)parts.push(d2.red+'R');if(d2.black)parts.push(d2.black+'B');if(d2.white)parts.push(d2.white+'W');
