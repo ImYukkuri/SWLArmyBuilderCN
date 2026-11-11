@@ -136,8 +136,12 @@ def _unit_context(unit, package):
             "rankId": unit.get("rankId"),
             "affiliationIds": [str(a) for a in (unit.get("affiliationIds") or [])],
             "keywords": [k.get("id") for k in unit.get("keywords", []) if isinstance(k, dict)],
-            "title": (unit.get("title") or {}).get("en") or "",
-            "name": (unit.get("name") or {}).get("en") or "",
+            "title": (((unit.get("title") or {}).get("en") or "") + " " + ((unit.get("title") or {}).get("zh") or "")).strip(),
+            "titleEn": (unit.get("title") or {}).get("en") or "",
+            "titleZh": (unit.get("title") or {}).get("zh") or "",
+            "name": (((unit.get("name") or {}).get("en") or "") + " " + ((unit.get("name") or {}).get("zh") or "")).strip(),
+            "nameEn": (unit.get("name") or {}).get("en") or "",
+            "nameZh": (unit.get("name") or {}).get("zh") or "",
         }
     }
 
@@ -597,7 +601,9 @@ def upgrade_eligibility(card, unit, army, package, definitions, name_index, equi
     out = []
     hosts = upstream_hosts(rule, card)
     alias_ok = host_alias_allows(card, unit, army, package, definitions, rule)
-    if hosts is not None and str(unit.get("upstream", {}).get("id", "")) not in hosts and not alias_ok:
+    printed_condition = (card.get("restrictions") or {}).get("condition")
+    condition_governs_host = printed_condition is not None and condition_is_host_only(printed_condition)
+    if hosts is not None and str(unit.get("upstream", {}).get("id", "")) not in hosts and not alias_ok and not condition_governs_host:
         out.append(("invalid", "host_restriction", "此升级仅限特定角色/版本"))
     facs = (card.get("rules") or {}).get("factions")
     if facs and army.get("armyId") not in [int(f) for f in facs]:

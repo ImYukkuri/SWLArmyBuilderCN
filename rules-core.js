@@ -79,8 +79,12 @@ window.RulesCore = (() => {
       rankId: unit.rankId,
       affiliationIds: (unit.affiliationIds || []).map(String),
       keywords: (unit.keywords || []).map(k => k && k.id),
-      title: ((unit.title || {}).en) || "",
-      name: ((unit.name || {}).en) || "",
+      title: (((unit.title || {}).en || "") + " " + ((unit.title || {}).zh || "")).trim(),
+      titleEn: ((unit.title || {}).en) || "",
+      titleZh: ((unit.title || {}).zh) || "",
+      name: (((unit.name || {}).en || "") + " " + ((unit.name || {}).zh || "")).trim(),
+      nameEn: ((unit.name || {}).en) || "",
+      nameZh: ((unit.name || {}).zh) || "",
     } };
   }
   function slotGrantsFor(pkg, unit, inst, upgrades) {
@@ -425,7 +429,9 @@ window.RulesCore = (() => {
     const add = (status, code, message) => issues.push({ status, code, message });
     const h = hosts(rule, card);
     const aliasOk = hostAliasAllows(card, unit, army, data, rule);
-    if (h != null && !h.includes(String(unit.upstream && unit.upstream.id || "")) && !aliasOk) {
+    const printedCondition = (card.restrictions || {}).condition;
+    const conditionGovernsHost = printedCondition != null && conditionIsHostOnly(printedCondition);
+    if (h != null && !h.includes(String(unit.upstream && unit.upstream.id || "")) && !aliasOk && !conditionGovernsHost) {
       add("invalid", "host_restriction", "此升级仅限特定角色/版本");
     }
     const facs = (card.rules || {}).factions;
