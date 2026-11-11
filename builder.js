@@ -172,10 +172,11 @@ function openKeywordDialog(kw){
   overlay.onclick=e=>{if(e.target===overlay)overlay.remove()};
   document.body.append(overlay);
 }
-function applyKwFilter(t){
+function applyKwFilter(sel){
+  const list=sel&&sel.length?sel:null;
   for(const chip of document.querySelectorAll('.kw-chip')){
     const ts=(chip.dataset.t||'').split(',').filter(Boolean);
-    chip.hidden=!!t&&!ts.includes(t);
+    chip.hidden=!!list&&!ts.some(t=>list.includes(t));
   }
 }
 function openUpgradeDialog(c){
@@ -332,9 +333,16 @@ function wireViewActions(){
   const tf=$('#timing-filter');
   if(tf){
     tf.replaceChildren();
-    const opt0=el('option','全部时机');opt0.value='';tf.append(opt0);
-    for(const [k,v] of Object.entries(TIMING_LABEL)){const op=el('option',v);op.value=k;tf.append(op)}
-    tf.onchange=()=>applyKwFilter(tf.value);
+    const sel=new Set();
+    for(const [k,v] of Object.entries(TIMING_LABEL)){
+      const b=el('button',v);b.type='button';b.className='tf-btn';b.dataset.t=k;
+      b.onclick=()=>{
+        if(sel.has(k))sel.delete(k);else sel.add(k);
+        b.classList.toggle('on',sel.has(k));
+        applyKwFilter(sel.size?[...sel]:null);
+      };
+      tf.append(b);
+    }
   }
   let expanded=false;
   ex.textContent=expanded?'收起':'展开';
