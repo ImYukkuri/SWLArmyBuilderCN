@@ -154,7 +154,12 @@ function renderUnits(){
     const portrait=el('img');portrait.className='portrait';portrait.src=u.assets&&u.assets.portrait?u.assets.portrait:'';portrait.alt='';portrait.onerror=()=>portrait.style.visibility='hidden';
     const tag=el('span',RANK_SHORT[rank]||'—');tag.className='rank-tag';
     const main=el('div');main.className='main';
-    const nameRow=el('div');nameRow.className='name';nameRow.append(el('span',u.name.zh||u.name.en),el('small','（'+(u.points||0)+'）'));main.append(nameRow);
+    const nameRow=el('div');nameRow.className='name';
+    nameRow.append(el('span',u.name.zh||u.name.en));
+    const titleTxt=(u.title&&(u.title.zh||u.title.en))||'';
+    if(titleTxt){const t=el('span',titleTxt);t.className='unit-title';nameRow.append(t)}
+    nameRow.append(el('small','（'+(u.points||0)+'）'));
+    main.append(nameRow);
     const slots=el('div');slots.className='slots';
     const records=unitSlotRecords(u,inst);
     records.forEach((rec,i)=>{
