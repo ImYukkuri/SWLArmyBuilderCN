@@ -172,6 +172,12 @@ function openKeywordDialog(kw){
   overlay.onclick=e=>{if(e.target===overlay)overlay.remove()};
   document.body.append(overlay);
 }
+function applyKwFilter(t){
+  for(const chip of document.querySelectorAll('.kw-chip')){
+    const ts=(chip.dataset.t||'').split(',').filter(Boolean);
+    chip.hidden=!!t&&!ts.includes(t);
+  }
+}
 function openUpgradeDialog(c){
   if(!c)return;
   const old=document.getElementById('upg-dialog');if(old)old.remove();
@@ -321,6 +327,13 @@ function wireViewActions(){
     t.textContent=compact?'详情视图':'简略视图';
     renderUnits();
   };
+  const tf=$('#timing-filter');
+  if(tf){
+    tf.replaceChildren();
+    const opt0=el('option','全部时机');opt0.value='';tf.append(opt0);
+    for(const [k,v] of Object.entries(TIMING_LABEL)){const op=el('option',v);op.value=k;tf.append(op)}
+    tf.onchange=()=>applyKwFilter(tf.value);
+  }
   let expanded=false;
   ex.textContent=expanded?'收起':'展开';
   ex.onclick=()=>{
