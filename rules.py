@@ -89,7 +89,11 @@ def evaluate(cond, ctx: dict, predicates: dict | None = None):
             if op == "in":
                 return actual in value
             if op == "contains":
-                return any(str(x) == str(value) for x in actual) if isinstance(actual, list) else None
+                if isinstance(actual, list):
+                    return any(str(x) == str(value) for x in actual)
+                if isinstance(actual, str):
+                    return str(value).lower() in actual.lower()
+                return None
             if op == "gte":
                 return actual >= value
             if op == "lte":

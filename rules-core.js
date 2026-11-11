@@ -42,7 +42,11 @@ window.RulesCore = (() => {
       try {
         if (op === "eq") return actual === value;
         if (op === "in") return Array.isArray(value) && value.includes(actual);
-        if (op === "contains") return Array.isArray(actual) ? actual.some(x => String(x) === String(value)) : null;
+        if (op === "contains") {
+          if (Array.isArray(actual)) return actual.some(x => String(x) === String(value));
+          if (typeof actual === "string") return actual.toLowerCase().includes(String(value).toLowerCase());
+          return null;
+        }
         if (op === "gte") return actual >= value;
         if (op === "lte") return actual <= value;
       } catch (e) { return null; }
