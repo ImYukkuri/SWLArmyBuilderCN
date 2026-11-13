@@ -1,4 +1,4 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>规则库 · SWL 维护中心</title><link rel="stylesheet" href="style.css"></head><body>
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>规则库 · SWL 维护中心</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="editor.css"></head><body>
 <header><div><span class="eyebrow">SWL ARMY BUILDER CN / RULE LIBRARY</span><h1>规则库</h1><nav class="module-nav"><a href="index.html">写表器</a><a href="maintenance.html">数据维护</a><a href="units.html">单位卡</a><a href="upgrades.html">升级卡</a><a href="commands.html">战术卡</a><a href="armies.html">军表</a><a class="active" href="rules.html">规则库</a></nav></div><button id="reload">重新载入</button><button id="save" class="primary">保存规则包</button></header>
 <main><aside class="catalog"><p class="hint">规则包 <code>data/slot-rules.json</code> 是语义约束的单一来源：槽位注册表、专用槽授予、角色限定、唯一性/互斥、模式配额与雇佣兵池。</p><nav id="sections"></nav></aside>
 <section class="workspace"><div class="editbar"><div><h2 id="title">载入中…</h2><p id="subtitle"></p></div><span id="dirty"></span></div><p id="status" role="status"></p>
@@ -10,4 +10,4 @@
 <div id="modes-pane" hidden><pre id="modes-pre"></pre></div>
 <div id="dictionary-pane" hidden><div id="dictionary"></div></div>
 <div id="json-pane" hidden><textarea id="raw-json" aria-label="规则包 JSON" spellcheck="false"></textarea><button id="apply-json">应用 JSON</button></div>
-</section></main><script src="dice-enums.js"></script><script src="combo.js"></script><script src="rules-core.js"></script><script src="editor-common.js"></script><script src="rules.js"></script></body></html>
+</section></main><script src="dice-enums.js"></script><script src="combo.js"></script><script src="editor-shell.js"></script><script src="rules-core.js"></script><script src="editor-common.js"></script><script src="rules.js"></script></body></html>

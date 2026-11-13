@@ -1,0 +1,152 @@
+/* Maintenance forms use the roster's readable slate palette and card symbols. */
+body.maintenance-editor { --bg:#eef1f4;--panel:#fff;--line:#d2dde5;--ink:#253540;--muted:#607486;--accent:#285d79;--sw-ink:#253540;--sw-muted:#607486;--sw-accent:#285d79; background:var(--bg);color:var(--ink);padding-top:var(--editor-tools-height,170px);font:14px/1.6 "Microsoft YaHei","Segoe UI",sans-serif; }
+.maintenance-editor h1,.maintenance-editor h2,.maintenance-editor h3 {font-family:inherit;letter-spacing:0;text-transform:none;}
+.maintenance-editor button {background:#f5f8fa;color:var(--ink);border:1px solid #c5d3de;border-radius:4px;letter-spacing:0;}
+.maintenance-editor button.primary {background:#285d79;border-color:#285d79;color:#fff;box-shadow:none;}
+.maintenance-editor button:disabled {cursor:not-allowed;}
+.maintenance-editor input,.maintenance-editor textarea,.maintenance-editor select {background:#fff;color:var(--ink);border:1px solid #b9cad7;min-width:0;}
+.maintenance-editor input:focus-visible,.maintenance-editor textarea:focus-visible,.maintenance-editor button:focus-visible {outline:2px solid #548cba;outline-offset:2px;}
+.editor-fixed-tools {position:fixed;inset:0 0 auto;z-index:40;background:#f8fafc;border-bottom:1px solid #bacbd8;box-shadow:0 2px 7px #243d5310;}
+.maintenance-editor .editor-navigation {position:static;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:8px 24px;background:#263d4c;color:#fff;border:0;}
+.editor-navigation > div:first-child {display:flex;align-items:center;gap:24px;min-width:0;}
+.editor-navigation h1 {font-size:15px;white-space:nowrap;}
+.editor-navigation .eyebrow,.editor-navigation .logo {display:none;}
+.editor-navigation .module-nav,.editor-navigation .tabs-nav {margin:0;gap:14px;}
+.editor-navigation a {font-size:12px;color:#c3d1dc;text-decoration:none;white-space:nowrap;}
+.editor-navigation a.active,.editor-navigation a[aria-current] {color:#fff;}
+.editor-navigation #counts {font-size:11px;color:#c3d1dc;white-space:nowrap;}
+.editor-navigation .row-actions:empty {display:none;}
+.editor-action-line {display:flex;align-items:center;gap:14px;padding:10px 24px;}
+.editor-current {flex:1;min-width:0;}
+.editor-current h2 {font-size:19px;line-height:1.4;overflow-wrap:anywhere;}
+.editor-current #subtitle {font-size:11px;overflow-wrap:anywhere;}
+.editor-global-actions {display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
+.editor-global-actions #save {order:-1;}
+.editor-action-line #dirty {color:#886023;flex:none;}
+.editor-fixed-tools > .tabs {display:flex;gap:3px;margin:0;padding:0 24px;flex-wrap:nowrap;overflow-x:auto;}
+.editor-fixed-tools .tabs button {border:0;border-bottom:3px solid transparent;border-radius:0;background:transparent;font-size:12px;white-space:nowrap;padding:8px 12px;}
+.editor-fixed-tools .tabs button[aria-pressed=true] {border-bottom-color:var(--accent);color:var(--accent);background:#e7eff5;}
+.maintenance-editor main {grid-template-columns:250px minmax(0,1fr);}
+.maintenance-editor main > section.workspace {display:block;padding:20px 24px;}
+.maintenance-editor .catalog {top:var(--editor-tools-height);height:calc(100dvh - var(--editor-tools-height));background:#f7f9fb;padding:16px 12px;}
+.maintenance-editor #list button,.maintenance-editor .card-row {color:var(--ink);background:transparent;border-color:transparent;}
+.maintenance-editor #list button.active,.maintenance-editor .card-row.active {background:#e3edf4;border-color:#aac3d5;}
+.maintenance-editor .editor-grid {grid-template-columns:minmax(220px,30%) minmax(0,1fr);gap:24px;}
+.maintenance-editor #fields,.maintenance-editor #form {min-width:0;}
+.maintenance-editor #fields > details,.maintenance-editor fieldset {background:#fff;border:1px solid #d2dde5;border-radius:4px;}
+.maintenance-editor .field {grid-template-columns:110px minmax(0,1fr);}
+.maintenance-editor .minor {color:#526c80;}
+.maintenance-editor .issue {background:#f8f0e2;color:#7c5e30;}
+.maintenance-editor #issues {max-height:100px;}
+.maintenance-editor .restriction-section {background:#fff;border:1px solid #cbd8e1;}
+.maintenance-editor .rule-item {background:#f2f6f9;border-left:2px solid #98b3c7;}
+.maintenance-editor .rule-chip {color:#45647d;background:#e9f0f5;border:0;border-radius:3px;}
+.maintenance-editor .draft-banner {background:#fff5dd;color:#806028;}
+.maintenance-editor .draft-banner.bad {background:#f9e8e8;color:#903d3d;}
+.maintenance-editor #status.error {color:#a53f43;}
+.maintenance-editor .detail,.maintenance-editor .list {background:#fff;border-color:#d2dde5;}
+.maintenance-editor .app > .toolbar {padding:12px 24px;margin:0;}
+.maintenance-editor .app > main.workspace {grid-template-columns:280px minmax(0,1fr);padding:0 24px 24px;}
+.maintenance-editor .workspace .list {position:sticky;top:calc(var(--editor-tools-height) + 12px);max-height:calc(100dvh - var(--editor-tools-height) - 24px);}
+.maintenance-editor .detail {padding:18px;}
+.maintenance-editor .chip,.maintenance-editor .unit-chip {background:#eef4f8;color:#46637a;border-color:#c6d6e1;}
+.maintenance-editor .chip.on {background:#285d79;color:#fff;}
+.maintenance-editor .bf-section {background:#fff;border-color:#cad9e4;}
+.maintenance-editor .reference-details > summary {color:#285d79;}
+.maintenance-editor :is(input,button,select,textarea,details,.stats-editor,.weapons-editor,.weapon-editor) {scroll-margin-top:calc(var(--editor-tools-height) + 14px);}
+.stats-editor,.weapons-editor {margin:20px 0;}
+.stats-editor h3,.weapons-editor h3 {font-size:15px;border-bottom:2px solid #a7bdce;padding:0 0 7px;margin-bottom:10px;}
+.stats-matrix {display:flex;flex-wrap:wrap;background:#e3edf4;padding:12px 8px;gap:8px;}
+.metric-input {display:flex;flex-direction:column;gap:5px;min-width:0;}
+.metric-input > span {display:flex;align-items:center;gap:5px;font-size:11px;white-space:nowrap;color:#5b7284;}
+.metric-input input {font-variant-numeric:tabular-nums;}
+.stats-matrix > .metric-input {flex:1 1 75px;}
+.stats-matrix input {font-size:22px;font-weight:600;text-align:center;padding:3px;width:100%;}
+.stats-matrix input::placeholder {font-size:13px;font-weight:400;}
+.stats-matrix select {font-size:10px;padding:2px;}
+.form-icon {width:17px;height:17px;flex:none;}
+.form-symbol {font:18px/1 LegionSymbols;}
+.stats-conversions {background:#f7fafc;padding:10px;display:flex;gap:12px;flex-wrap:wrap;border-bottom:1px solid #cbd8e1;}
+.conversion-row {flex:1 1 180px;}
+.conversion-row > span {display:block;font-size:11px;color:#5b7284;margin-bottom:5px;}
+.metric-choice {display:flex;gap:3px;flex-wrap:wrap;}
+.metric-choice button {display:flex;align-items:center;justify-content:center;gap:4px;padding:6px 9px;font-size:11px;min-height:32px;}
+.metric-choice button[aria-pressed=true] {border-color:#477a9d;background:#d8e7f2;color:#224b68;}
+.form-die {display:inline-block;width:12px;height:12px;transform:rotate(45deg);border:1px solid #7a8792;flex:none;margin:2px;}
+.form-die.red {background:#b7484e;border-color:#aa3e44;}
+.form-die.black {background:#212b34;border-color:#6d7e8b;}
+.form-die.white {background:#fff;}
+.form-die.defense {transform:none;border-radius:2px;}
+.weapon-editor {border:1px solid #9caebb;background:#fff;border-radius:4px;margin:12px 0;overflow:hidden;}
+.weapon-editor-head {display:flex;align-items:center;gap:12px;padding:12px;}
+.weapon-names {display:flex;flex:1;gap:10px;min-width:0;}
+.weapon-names > label {flex:1;}
+.weapon-names input {font-size:13px;font-weight:600;}
+.weapon-data-strip {display:flex;gap:18px;flex-wrap:wrap;background:#263540;padding:12px;color:#fff;align-items:end;}
+.weapon-range-inputs {display:grid;grid-template-columns:1fr 1fr;gap:6px;flex:1 1 160px;}
+.weapon-range-preview {grid-column:1/-1;justify-self:start;background:#326a91;color:#fff;font-size:11px;padding:2px 8px;border-radius:3px;}
+.weapon-range-preview.melee {background:#a94550;}
+.weapon-range-preview.mixed {background:linear-gradient(100deg,#a94550,#326a91);}
+.weapon-dice-inputs {display:flex;gap:7px;flex:1 1 210px;}
+.weapon-dice-inputs > label {flex:1;}
+.weapon-data-strip .metric-input > span {color:#d0dce6;}
+.weapon-data-strip input {background:#f5f8fa;font-size:19px;padding:3px 6px;text-align:center;}
+.weapon-edit-hint {padding:6px 12px;font-size:10px;color:#5f7383;background:#f0f5f8;}
+.weapon-keyword-editor {padding:8px 12px;}
+.weapon-keyword-row {display:grid;grid-template-columns:minmax(120px,1fr) 65px minmax(70px,.6fr) auto;align-items:end;gap:8px;margin-bottom:8px;}
+.weapon-keyword-row .combo-trigger {font-size:12px;}
+.variable-dice {padding:2px;font-weight:700;}
+.variable-dice[aria-pressed=true] {background:#e6c27a;color:#263540;border-color:#e6c27a;}
+.option-control {display:flex;align-items:center;gap:5px;min-width:0;}
+.option-control > .combo,.option-control > select,.option-control > input {flex:1;min-width:0;}
+.option-manual {flex:none;font-size:10px;}
+.maintenance-editor .combo-trigger {background:#fff;color:var(--ink);border-color:#b9cad7;}
+.maintenance-editor .combo-label {white-space:normal;overflow-wrap:anywhere;}
+.maintenance-editor .combo-panel {z-index:100;max-height:min(340px,70dvh);background:#fff;color:var(--ink);border-color:#9fb8ca;box-shadow:0 8px 24px #253d5326;}
+.maintenance-editor .combo-option {white-space:normal;overflow-wrap:anywhere;min-height:34px;}
+.maintenance-editor .combo-option.active,.maintenance-editor .combo-option:hover {background:#e3edf4;}
+.maintenance-editor .combo-option.selected {color:#285d79;font-weight:600;}
+.condition-values {margin:8px 0;}
+.condition-value-row {display:flex;gap:8px;margin:6px 0;}
+.condition-value-row > .option-control {flex:1;}
+@media(max-width:1150px) {
+  .maintenance-editor .editor-grid {grid-template-columns:1fr;}
+  .maintenance-editor .editor-grid > div:first-child {max-width:480px;}
+  .editor-navigation #counts {display:none;}
+  .editor-global-actions button {font-size:12px;padding:6px 9px;}
+}
+@media(max-width:700px) {
+  .maintenance-editor .editor-navigation {padding:7px 12px;display:block;}
+  .editor-navigation > div:first-child {display:block;}
+  .editor-navigation h1 {display:none;}
+  .editor-navigation .module-nav,.editor-navigation .tabs-nav {display:flex;flex-wrap:nowrap;overflow:auto;gap:12px;}
+  .editor-action-line {padding:8px 12px;gap:5px;flex-wrap:wrap;}
+  .editor-current {flex:1 1 65%;}
+  .editor-current h2 {font-size:16px;}
+  .editor-current #subtitle {display:none;}
+  .editor-global-actions {flex:1 1 100%;gap:5px;}
+  .editor-global-actions button {min-height:36px;}
+  .editor-fixed-tools > .tabs {padding:0 7px;}
+  .maintenance-editor main {display:block;}
+  .maintenance-editor main > section.workspace {padding:14px 12px;}
+  .maintenance-editor .catalog {position:static;height:230px;}
+  .maintenance-editor #list {grid-template-columns:1fr;}
+  .maintenance-editor .field {grid-template-columns:90px minmax(0,1fr);}
+  .maintenance-editor .app > main.workspace {display:block;padding:0 12px;}
+  .maintenance-editor .workspace .list {position:static;max-height:230px;margin-bottom:12px;}
+  .maintenance-editor .detail {padding:12px;}
+  .weapon-editor-head {align-items:flex-start;gap:8px;}
+  .stats-matrix {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));}
+  .weapon-names {flex-direction:column;gap:6px;}
+  .weapon-keyword-row {grid-template-columns:minmax(0,1fr) 55px auto;}
+  .weapon-keyword-row > .option-control {grid-column:1/-1;}
+  .weapon-data-strip {gap:10px;}
+  .option-control {flex-wrap:wrap;}
+  .option-control > .combo {flex-basis:100%;}
+}
+
+.maintenance-editor #keyword-params {grid-column:1/-1;}
+.editor-global-actions .card-actions {display:flex;gap:5px;margin:0;}
+
+.maintenance-editor .editor-feedback {margin:0;padding:4px 24px;font-size:12px;min-height:0;}
+.maintenance-editor .editor-feedback:empty {display:none;}

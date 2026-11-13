@@ -12,13 +12,18 @@ DIST = ROOT / "dist"
 FILES = [
     "index.html",
     "builder.js",
+    "builder-view.js",
+    "builder-model.js",
+    "builder-library.js",
+    "builder-home.js",
+    "dice-enums.js",
     "rules-core.js",
     "builder.css",
-    "style.css",
     "data/units.json",
     "data/upgrades.json",
     "data/catalog-definitions.json",
     "data/slot-rules.json",
+    "data/battle-deck.json",
 ]
 DIRS = ["assets"]
 

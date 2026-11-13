@@ -498,6 +498,61 @@ window.RulesCore = (() => {
       }
     }
   }
+
+  // Character names are shared across unique unit/upgrade versions. A comma
+  // suffix is a title only when the prefix is an existing unique unit name.
+  // Required unique children reserve their characters even before equipping.
+  function characterConflicts(army, data) {
+    const { units, upgrades, pkg } = data;
+    const uniqueUpgrade = c => c?.rules?.unique === true ||
+      pkg.upgradeRules?.[String(c?.upstream?.id)]?.armyUnique === true;
+    const known = new Set(Object.values(units).filter(u => u.rules?.unlimited === false)
+      .map(u => normalizeKey(u.name?.en || u.id)));
+    const names = card => {
+      const full = card.name?.en || card.id;
+      const result = new Set([normalizeKey(full)]);
+      const base = normalizeKey(full.split(",")[0]);
+      if (known.has(base)) result.add(base);
+      return result;
+    };
+    const seen = new Map(), conflicts = [], pairs = new Set();
+    function claim(keys, owner, instanceId, label) {
+      for (const key of keys) {
+        const previous = seen.get(key);
+        if (previous && previous.owner !== owner) {
+          const pair = [previous.owner, owner].sort().join("|");
+          if (!pairs.has(pair)) {
+            pairs.add(pair);
+            conflicts.push({ instanceId, message: "独特角色「" + label + "」与「" + previous.label + "」重复（包含组合单位的必带角色）。" });
+          }
+        } else if (!previous) seen.set(key, { owner, label });
+      }
+    }
+    for (const inst of army.units || []) {
+      const u = units[inst.unitId];
+      if (!u) continue;
+      const children = pkg.unitRules?.[String(u.upstream?.id)]?.requiredChildren ??
+        u.rules?.requiredChildren ?? [];
+      const required = new Set(children.filter(c => c.elementPropertyName === "upgrades")
+        .map(c => String(c.id)));
+      const reserved = new Set();
+      for (const c of Object.values(upgrades)) {
+        if (required.has(String(c.upstream?.id)) && uniqueUpgrade(c)) {
+          for (const key of names(c)) reserved.add(key);
+        }
+      }
+      if (u.rules?.unlimited === false) for (const key of names(u)) reserved.add(key);
+      claim(reserved, inst.instanceId, inst.instanceId, u.name?.zh || u.name?.en || u.id);
+      for (const ch of inst.upgrades || []) {
+        const c = upgrades[ch.upgradeId];
+        if (!c || !uniqueUpgrade(c)) continue;
+        const owner = required.has(String(c.upstream?.id)) ? inst.instanceId : ch.instanceId;
+        claim(names(c), owner, ch.instanceId, c.name?.zh || c.name?.en || c.id);
+      }
+    }
+    return conflicts;
+  }
+
   function validateArmy(army, data) {
     const { units, upgrades, defs, pkg } = data;
     const issues = [];
@@ -658,6 +713,10 @@ window.RulesCore = (() => {
         const key = normalizeKey((card.name && card.name.en) || cardId);
         if (uniqueUnitKeys.has(key)) issue("invalid", "cross_type_duplicate", `独特卡「${(card.name && card.name.en) || cardId}」与同名单位在同一军表`, ckey);
       }
+    }
+
+    for (const conflict of characterConflicts(army, {units, upgrades, pkg})) {
+      issue("invalid", "character_duplicate", conflict.message, conflict.instanceId);
     }
 
     // rank counting with exemptions (local)
@@ -890,14 +949,14 @@ window.RulesCore = (() => {
           }
         }
       }
-      for (const inst of army.units || []) {
-        const u = units[inst.unitId];
-        if (!u) continue;
-        const cap = unitCapFor(u, pkg, army.armyId);
-        if (cap == null) continue;
-        const copies = (army.units || []).filter(x => x.unitId === inst.unitId).length;
-        if (copies > cap) issue("invalid", "unit_limit_exceeded", `「${(u.name && u.name.en) || u.id}」最多 ${cap} 个（当前 ${copies}）`, null);
-      }
+    }
+    for (const inst of army.units || []) {
+      const u = units[inst.unitId];
+      if (!u) continue;
+      const cap = unitCapFor(u, pkg, army.armyId);
+      if (cap == null) continue;
+      const copies = (army.units || []).filter(x => x.unitId === inst.unitId).length;
+      if (copies > cap) issue("invalid", "unit_limit_exceeded", `「${(u.name && u.name.en) || u.id}」最多 ${cap} 个（当前 ${copies}）`, null);
     }
     if (bf) battleForceChecks(army, bf, units, upgrades, defs, issue);
     if (effectivePoints > pointsLimit) issue("invalid", "points_limit", `有效费用 ${effectivePoints} 超过上限 ${pointsLimit}`, null);
@@ -908,5 +967,5 @@ window.RulesCore = (() => {
     return { status: hasInvalid ? "invalid" : (hasUnknown ? "unknown" : "valid"), basePoints, effectivePoints, rankCounts: maxCounts, issues };
   }
 
-  return { Dice, evaluate, validateArmy, unitContext, upgradeEligibility, entourageExemptions, armyRank, slotKey, accessKeys, slotGrantsFor, dedicatedSlotKeys, slotListFor, restrictionConditionOk, requiredPropertiesOk, normRp, buildNameIndex, unavailableSets };
+  return { Dice, evaluate, validateArmy, unitContext, upgradeEligibility, entourageExemptions, armyRank, slotKey, accessKeys, slotGrantsFor, dedicatedSlotKeys, slotListFor, restrictionConditionOk, requiredPropertiesOk, normRp, buildNameIndex, unavailableSets, unitCapFor };
 })();

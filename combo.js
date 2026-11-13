@@ -2,6 +2,8 @@
 (() => {
   const SKIP = new Set(['search','faction','review-filter','slot-filter','match-filter','mode']);
   const seen = new WeakSet();
+  const entries = new Map();
+  let sequence = 0;
   let current = null;
 
   function enhance(select) {
@@ -16,6 +18,7 @@
     trigger.className = 'combo-trigger';
     trigger.setAttribute('aria-haspopup', 'listbox');
     trigger.setAttribute('aria-expanded', 'false');
+    trigger.setAttribute('aria-label', select.getAttribute('aria-label') || '选择项目');
     const label = document.createElement('span');
     label.className = 'combo-label';
     const caret = document.createElement('span');
@@ -33,6 +36,9 @@
     const list = document.createElement('ul');
     list.className = 'combo-list';
     list.setAttribute('role', 'listbox');
+    list.id = 'combo-list-' + (++sequence);
+    trigger.setAttribute('aria-controls',list.id);
+    search.setAttribute('aria-label','搜索'+(select.getAttribute('aria-label')||'项目'));
     panel.append(search, list);
 
     select.parentNode.insertBefore(wrap, select);
@@ -42,6 +48,7 @@
 
     let items = [];
     const syncLabel = () => {
+      trigger.disabled=select.disabled;
       const op = select.selectedOptions && select.selectedOptions[0];
       label.textContent = op ? (op.textContent || '').trim() : '';
     };
@@ -55,10 +62,11 @@
         li.className = 'combo-option';
         li.setAttribute('role', 'option');
         li.dataset.value = it.value;
+        li.setAttribute('aria-selected',String(it.value===select.value));
         li.textContent = it.text;
         if (it.value === select.value) li.classList.add('selected', 'active');
         if (it.disabled) li.classList.add('disabled');
-        li.addEventListener('mousedown', e => { e.preventDefault(); choose(it); });
+        li.addEventListener('click', e => { e.preventDefault(); choose(it); });
         list.append(li);
       }
       if (!filtered.length) {
@@ -71,6 +79,8 @@
 
     const choose = it => {
       if (!it || it.disabled) return;
+      close();
+      trigger.focus();
       if (select.value !== it.value) {
         select.value = it.value;
         select.dispatchEvent(new Event('change', { bubbles: true }));
@@ -81,8 +91,9 @@
 
     const position = () => {
       const r = trigger.getBoundingClientRect();
-      panel.style.width = Math.max(r.width, 220) + 'px';
-      panel.style.left = r.left + 'px';
+      const width = Math.min(Math.max(r.width, 220), window.innerWidth - 16);
+      panel.style.width = width + 'px';
+      panel.style.left = Math.max(8, Math.min(r.left, window.innerWidth - width - 8)) + 'px';
       const spaceBelow = window.innerHeight - r.bottom;
       if (spaceBelow > 240 || spaceBelow > r.top) {
         panel.style.top = (r.bottom + 4) + 'px';
@@ -97,6 +108,7 @@
     const api = { close: () => close() };
 
     function open() {
+      if(select.disabled || !select.isConnected)return;
       if (current && current !== api) current.close();
       items = [...select.options].map(o => ({ value: o.value, text: (o.textContent || '').trim(), disabled: o.disabled }));
       panel.hidden = false;
@@ -119,7 +131,7 @@
       window.removeEventListener('resize', position);
     };
 
-    trigger.addEventListener('click', () => (panel.hidden ? open() : close()));
+    trigger.addEventListener('click', e => { e.preventDefault(); panel.hidden ? open() : close(); });
     search.addEventListener('input', () => render(search.value));
     search.addEventListener('keydown', e => {
       const opts = [...list.querySelectorAll('.combo-option:not(.disabled)')];
@@ -144,6 +156,8 @@
     });
 
     select.addEventListener('change', syncLabel);
+    const watcher=new MutationObserver(syncLabel);watcher.observe(select,{childList:true,subtree:true,attributes:true,attributeFilter:['disabled','label','selected']});
+    entries.set(select,()=>{close();panel.remove();watcher.disconnect();entries.delete(select);});
     syncLabel();
   }
 
@@ -155,6 +169,7 @@
   document.addEventListener('DOMContentLoaded', () => {
     enhanceAll(document.body);
     new MutationObserver(muts => {
+      for(const [select,destroy]of entries)if(!select.isConnected)destroy();
       for (const m of muts) for (const n of m.addedNodes) {
         if (n.nodeType !== 1) continue;
         if (n.tagName === 'SELECT') enhance(n);

@@ -12388,7 +12388,7 @@
       "id": "16488",
       "name": {
         "en": "Stories, So Many of Them True",
-        "zh": "好多故事，还不少是真的"
+        "zh": "好多故事，不少还是真的"
       },
       "pips": 3,
       "factions": [
@@ -12512,7 +12512,7 @@
       "id": "16484",
       "name": {
         "en": "I Go Where I'm Needed",
-        "zh": "哪有需要我就去哪"
+        "zh": "需要我时我会来的"
       },
       "pips": 3,
       "factions": [
@@ -13273,7 +13273,7 @@
       "id": "8",
       "name": {
         "en": "Standing Orders",
-        "zh": "常规指令"
+        "zh": "待机命令"
       },
       "pips": 4,
       "factions": [
@@ -14571,7 +14571,7 @@
       "id": "16620",
       "name": {
         "en": "Rebellions Are Built on Hope",
-        "zh": "义军建立于希望之上"
+        "zh": "义军建于希望之上"
       },
       "pips": 3,
       "factions": [
@@ -14772,7 +14772,7 @@
       },
       "orders": {
         "en": "1 {@icon.rank-special-forces} Unit or {@icon.rank-support} Unit",
-        "zh": "1 {@icon.rank-special-forces} 支单位或{@icon.rank-support} 支单位"
+        "zh": "1 {@icon.rank-special-forces} 单位或{@icon.rank-support} 单位"
       },
       "owner": "Galactic Republic"
     },
@@ -14828,7 +14828,7 @@
       "id": "19885",
       "name": {
         "en": "I Smell Fear... and it Smells Good",
-        "zh": "我闻到了恐惧……味道真不错"
+        "zh": "我闻到了恐惧……闻起来真不错"
       },
       "pips": 2,
       "factions": [
@@ -17495,7 +17495,7 @@
       "id": "19080",
       "name": {
         "en": "Unity Wins Wars",
-        "zh": "联合赢得战争"
+        "zh": "团结赢得战争"
       },
       "pips": 3,
       "factions": [
@@ -17707,7 +17707,7 @@
       "id": "19406",
       "name": {
         "en": "Speak Softly and Drive a Big Tank",
-        "zh": "温和说话，开辆大坦克"
+        "zh": "温和说话，开大坦克"
       },
       "pips": 2,
       "factions": [
@@ -19327,7 +19327,7 @@
       "id": "19484",
       "name": {
         "en": "We Shape Ourselves",
-        "zh": "我们打造自己的"
+        "zh": "我们武装自己"
       },
       "pips": 3,
       "factions": [
@@ -26689,5 +26689,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-11-10T20:05:53.726475+00:00"
+  "updatedAt": "2026-11-11T10:33:15.783211+00:00"
 }

@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "python server.py --port 8770",
-    "test": "python -m unittest discover -s tests -v",
+    "test": "python -m unittest discover -s tests -v && node --test tests/builder-model.test.cjs tests/builder-library.test.cjs tests/editor-options.test.cjs",
+    "build": "python tools/build_public.py",
     "extract": "python prepare.py && node ocr.cjs && python prepare_weapons.py && node ocr_weapons.cjs && python image_fields.py && node ocr_digits.cjs && node ocr_numbers.cjs && python materialize.py"
   },
   "keywords": [],

@@ -1,7 +1,7 @@
 {
   "schema": "swl-upgrades/v1",
   "referenceVersion": "2026.11.04.0",
-  "updatedAt": "2026-11-09T12:02:08.535706+00:00",
+  "updatedAt": "2026-11-11T07:17:12.873615+00:00",
   "cards": [
     {
       "id": "21b-medical-droid",
@@ -13304,6 +13304,14 @@
         "locallyUnique": true,
         "unavailableWithIds": [
           "Crosshair"
+        ],
+        "requiredProperties": [
+          [
+            {
+              "property": "faction",
+              "value": 4
+            }
+          ]
         ]
       },
       "review": {
@@ -14548,7 +14556,6 @@
       },
       "rules": {
         "availableIn": [
-          26,
           25981
         ],
         "unique": false,
@@ -18647,7 +18654,7 @@
       "id": "force-adept",
       "name": {
         "en": "•Jedi Training, Force Adept",
-        "zh": "•绝地训练·原力专精"
+        "zh": "绝地训练，原力专精"
       },
       "points": 5,
       "slotIds": [
@@ -18677,11 +18684,6 @@
         "front": "assets/upgrade-cards/force-adept.webp"
       },
       "rules": {
-        "availableIn": [
-          31842,
-          31843,
-          33776
-        ],
         "limit": 2,
         "addProperties": [
           [
@@ -18739,19 +18741,14 @@
         "condition": {
           "any": [
             {
-              "field": "unit.upstreamId",
-              "op": "in",
-              "value": [
-                "31843",
-                "33776"
-              ]
+              "field": "unit.title",
+              "op": "contains",
+              "value": "绝地武士"
             },
             {
-              "field": "unit.upstreamId",
-              "op": "in",
-              "value": [
-                "31842"
-              ]
+              "field": "unit.name",
+              "op": "contains",
+              "value": "绝地武士"
             }
           ]
         },
@@ -31688,11 +31685,6 @@
         "front": "assets/upgrade-cards/master-duelist.webp"
       },
       "rules": {
-        "availableIn": [
-          31842,
-          31843,
-          33776
-        ],
         "limit": 2,
         "addProperties": [
           [
@@ -31744,19 +31736,14 @@
         "condition": {
           "any": [
             {
-              "field": "unit.upstreamId",
-              "op": "in",
-              "value": [
-                "31843",
-                "33776"
-              ]
+              "field": "unit.title",
+              "op": "contains",
+              "value": "绝地武士"
             },
             {
-              "field": "unit.upstreamId",
-              "op": "in",
-              "value": [
-                "31842"
-              ]
+              "field": "unit.name",
+              "op": "contains",
+              "value": "绝地武士"
             }
           ]
         },
@@ -33130,11 +33117,6 @@
         "front": "assets/upgrade-cards/peacekeeping-mission.webp"
       },
       "rules": {
-        "availableIn": [
-          31842,
-          31843,
-          33776
-        ],
         "limit": 2,
         "addProperties": [
           [
@@ -33188,19 +33170,14 @@
         "condition": {
           "any": [
             {
-              "field": "unit.upstreamId",
-              "op": "in",
-              "value": [
-                "31843",
-                "33776"
-              ]
+              "field": "unit.title",
+              "op": "contains",
+              "value": "绝地武士"
             },
             {
-              "field": "unit.upstreamId",
-              "op": "in",
-              "value": [
-                "31842"
-              ]
+              "field": "unit.name",
+              "op": "contains",
+              "value": "绝地武士"
             }
           ]
         },
@@ -44545,11 +44522,6 @@
         "front": "assets/upgrade-cards/tactical-acument.webp"
       },
       "rules": {
-        "availableIn": [
-          31842,
-          31843,
-          33776
-        ],
         "limit": 2,
         "addProperties": [
           [
@@ -44601,19 +44573,14 @@
         "condition": {
           "any": [
             {
-              "field": "unit.upstreamId",
-              "op": "in",
-              "value": [
-                "31843",
-                "33776"
-              ]
+              "field": "unit.title",
+              "op": "contains",
+              "value": "绝地武士"
             },
             {
-              "field": "unit.upstreamId",
-              "op": "in",
-              "value": [
-                "31842"
-              ]
+              "field": "unit.name",
+              "op": "contains",
+              "value": "绝地武士"
             }
           ]
         },

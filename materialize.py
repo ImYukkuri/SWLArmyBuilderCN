@@ -11,6 +11,7 @@ from prepare import ROOT,WORK,REGIONS
 from server import make_portrait,validate,encoded,atomic
 from enrich_catalog import fill_names,apply_actions
 from action_icons import detect_lines
+from weapon_range import parse_weapon_range
 
 def load(path):return json.loads((ROOT/path).read_text(encoding='utf8'))
 def norm(s):return re.sub(r'[^a-z0-9]+','',unicodedata.normalize('NFKD',s).encode('ascii','ignore').decode().lower())
@@ -176,15 +177,8 @@ def build():
             ks=split_keywords(wp[f'w{i}_rules']['text']);top=round(row['top']*726)
             dx=350 if j['layout']=='counterpart'else 0;colors=[im.getpixel((x,y))for y in range(top+9,min(725,top+35))for x in range(405+dx,475+dx)]
             red=sum(r>g*1.4 and r>90 for r,g,b in colors);blue=sum(b>r*1.15 and b>80 for r,g,b in colors)
-            range_raw=wp[f'w{i}_range']['text'];nums=[int(n)for n in re.findall(r'\d+',range_raw)]
-            # The range symbol may be OCR'd as 6/8. Read only the suffix 1–N.
-            rr=re.search(r'([0-6])\s*-\s*([1-6])',range_raw)
-            if red>100 and blue<100:rmin=rmax=0
-            elif rr:
-                rmin,rmax=map(int,rr.groups());rmin=0 if red>100 else rmin
-                if rmin>rmax:rmin=rmax=None
-            elif len(nums)==1 and nums[0]<=6:rmin=rmax=nums[0]
-            else:rmin=rmax=None
+            range_raw=wp[f'w{i}_range']['text']
+            rmin,rmax=parse_weapon_range(range_raw,red,blue)
             dice={'red':0,'black':0,'white':0};die_sources=[]
             for die in shapes['weaponDice'][i]:
                 d=digits[die['image']];v=int(d['text'])if d['text'].isdigit()and 0<int(d['text'])<=6 else None

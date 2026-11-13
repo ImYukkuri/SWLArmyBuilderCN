@@ -66,13 +66,13 @@ function unitChipFor(unlock){
 function field(label,control){const row=mk('label');row.className='field';row.append(mk('span',label),control);return row}
 function renderForm(){
   const box=$('#form');box.replaceChildren();
+  document.querySelector('.editor-global-actions .card-actions')?.remove();
   if(!draft){box.append(mk('p','左侧选择一张战术卡'));return}
   const actions=mk('div');actions.className='row-actions card-actions';
   const swap=mk('button','修改 / 上传卡图');swap.type='button';
   swap.onclick=()=>{setTab('image');$('#image-file').click()};
   const view=mk('button','查看大图');view.type='button';
   view.onclick=()=>{setTab('image')};
-  const add=mk('button','新建战术卡');add.type='button';add.onclick=newCard;
   const del=mk('button','删除这张卡');del.type='button';del.className='danger';
   del.onclick=async()=>{
     if(!confirm('确定删除「'+(draft.name&&(draft.name.zh||draft.name.en)||draft.id)+'」？历史快照会保留。'))return;
@@ -87,8 +87,8 @@ function renderForm(){
       renderForm();renderList();status('已删除；快照：history/commands/'+res.snapshot);
     }catch(e){if(window.SaveUI)SaveUI.fail(e,reload);else status(e.message,true)}
   };
-  actions.append(swap,view,add,del);
-  box.append(actions);
+  actions.append(swap,view,del);
+  (document.querySelector('.editor-global-actions')||box).append(actions);
   $('#title').textContent=(draft.name&&(draft.name.zh||draft.name.en))||draft.id;
   $('#subtitle').textContent=draft.id+' · '+(draft.owner||'通用');
   const idInput=mk('input');idInput.value=draft.id;idInput.disabled=true;box.append(field('固定 ID',idInput));
