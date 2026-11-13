@@ -1051,37 +1051,6 @@ body.sheet-open {
   overflow: hidden;
 }
 
-.mission-slots {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0;
-  margin-top: 18px;
-  border-top: 1px solid var(--line);
-}
-
-.mission-slot {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  border: 0;
-  border-radius: 0;
-  border-bottom: 1px solid var(--line);
-  padding: 14px;
-  background: transparent;
-  text-align: left;
-}
-
-.mission-slot small {
-  font-size: 11px;
-  color: var(--muted);
-}
-
-.mission-slot b {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--accent);
-}
-
 .grouped-army-list {
   background: transparent;
   border-radius: 0;
@@ -3662,18 +3631,66 @@ body.sheet-open {
     padding: 12px;
   }
 }
-.roster-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 0}.roster-actions button{background:#141c28;border:1px solid var(--sw-line);color:var(--sw-muted);border-radius:6px;padding:5px 12px;font-size:12px;cursor:pointer}.roster-actions button:hover{border-color:var(--sw-accent);color:var(--sw-ink)}#roster-share-status{font-size:11px;color:var(--sw-muted);overflow:hidden;text-overflow:ellipsis;max-width:280px;white-space:nowrap}.deck-pick-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;padding:12px}.deck-pick-card{display:flex;flex-direction:column;gap:4px;background:#141c28;border:1px solid var(--sw-line);border-radius:8px;padding:8px;cursor:pointer;color:var(--sw-ink)}.deck-pick-card img{width:100%;aspect-ratio:5/7;object-fit:cover;border-radius:6px;background:#0b1119}.deck-pick-card:hover{border-color:var(--sw-accent)}.deck-pick-rules{font-size:11px;color:var(--sw-muted);line-height:1.4;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.mission-slot{display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px}.mission-slot img{width:64px;height:88px;object-fit:cover;border-radius:6px;border:1px solid var(--sw-line);background:#0b1119}
-/* ============ 战场牌三列卡图布局 + 工具条可读样式 ============ */
-.mission-slots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px;border-top:1px solid var(--sw-line);padding-top:12px}
-.mission-slot{display:flex;flex-direction:column;gap:6px;border:1px solid var(--sw-line);border-radius:8px;padding:8px;background:#141c28;text-align:left;cursor:pointer}
-.mission-slot:hover{border-color:var(--sw-accent)}
-.mission-slot small{font-size:11px;color:var(--sw-muted)}
-.mission-slot b{font-size:12px;font-weight:600;color:var(--sw-ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.mission-slot img{width:100%;aspect-ratio:5/7;object-fit:cover;border-radius:6px;background:#0b1119;border:1px solid var(--sw-line)}
-.deck-pick-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:14px}
-.deck-pick-card img{width:100%;aspect-ratio:5/7;object-fit:cover;border-radius:8px;background:#0b1119;border:1px solid var(--sw-line)}
-.deck-pick-card span{font-size:13px;font-weight:600;color:var(--sw-ink)}
-.roster-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 0}
-.roster-actions button{background:var(--sw-panel-2);border:1px solid var(--sw-line);color:var(--sw-ink);border-radius:6px;padding:6px 14px;font-size:12px;cursor:pointer;transition:border-color .12s ease,color .12s ease}
-.roster-actions button:hover{border-color:var(--sw-accent);color:var(--sw-accent)}
-#roster-share-status{font-size:11px;color:var(--sw-muted);overflow:hidden;text-overflow:ellipsis;max-width:300px;white-space:nowrap}
+/* Battle cards retain their full printed faces in both selection and roster. */
+.roster-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 0; }
+.roster-actions button { padding: 6px 14px; font-size: 12px; color: var(--ink); background: var(--paper); }
+#roster-share-status { font-size: 11px; color: var(--muted); overflow-wrap: anywhere; }
+.mission-sections { margin-top: 24px; border-top: 1px solid var(--line); }
+.mission-section { padding-top: 16px; }
+.mission-heading { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 8px; }
+.mission-heading h3 { font-size: 15px; font-weight: 600; }
+.mission-heading > span { color: var(--muted); font: 13px var(--numeric); }
+.mission-slots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; align-items: start; }
+.mission-slot { position: relative; min-width: 0; }
+.mission-card, .deck-pick-card { display: flex; flex-direction: column; width: 100%; min-width: 0; padding: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 7px; background: var(--paper); text-align: left; }
+.battle-card-art { display: block; width: 100%; background: #e6ebef; }
+.battle-card-art img { display: block; width: 100%; height: auto; object-fit: contain; }
+.battle-card-caption { display: flex; gap: 6px; align-items: baseline; justify-content: space-between; width: 100%; padding: 6px 8px; font-size: 12px; line-height: 1.5; overflow-wrap: anywhere; }
+.mission-placeholder { display: grid; place-items: center; width: 100%; min-height: 82px; font-size: 22px; color: var(--accent); }
+.mission-slot.empty .mission-card { border-style: dashed; background: #f8fafc; }
+.mission-slot.empty .battle-card-caption { justify-content: center; color: var(--muted); }
+.mission-card:hover, .deck-pick-card:hover { border-color: var(--accent); }
+.mission-slot.unavailable .mission-card { border-color: #b58e60; }
+.mission-unavailable { padding: 0 7px 6px; color: var(--warning); font-size: 10px; }
+.mission-card-actions { position: absolute; top: 5px; right: 5px; display: flex; gap: 4px; }
+.mission-card-actions button { border: 1px solid #ffffffa6; background: #253540e6; color: white; padding: 3px 7px; min-height: 28px; font-size: 11px; }
+.missing-card-art { display: grid; place-items: center; aspect-ratio: 726 / 1039; padding: 12px; font-size: 12px; color: var(--muted); }
+.deck-picker-dialog { width: min(1100px, calc(100vw - 32px)); max-width: none; max-height: 92dvh; padding: 0; overflow: auto; }
+.deck-picker-dialog > .dialog-head { position: sticky; top: 0; z-index: 2; padding: 16px 20px; background: var(--paper); border-bottom: 1px solid var(--line); }
+.deck-picker-dialog h2 { font-size: 20px; }
+.deck-picker-context { color: var(--muted); font-size: 13px; margin-top: 4px; }
+.deck-picker-dialog .dialog-head > button { font-size: 24px; border: 0; padding: 0 8px; }
+.deck-pick-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(185px, 1fr)); gap: 16px; padding: 20px; align-items: start; }
+.deck-pick-card[aria-pressed=true] { border-color: var(--accent); }
+.deck-pick-card:disabled { opacity: .62; cursor: default; }
+.deck-selected { flex: none; font-size: 11px; color: var(--accent); }
+
+/* A stable art crop keeps equipped slots compact while providing a separate image action. */
+.compact-slot .slot-art { position: relative; flex: 0 0 32px; width: 32px; height: 32px; margin: 3px; padding: 0; border: 1px solid #9fb7c6; border-radius: 50%; overflow: hidden; background: var(--pale); }
+.slot-art img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; transform: scale(1.35); }
+.slot-art.has-portrait img { object-position: 50% 30%; transform: none; }
+.slot-art span { display: block; font-size: 8px; line-height: 1.15; }
+.compact-slot.filled .slot-name { flex: 1; }
+.image-dialog { width: min(760px, calc(100vw - 24px)); }
+.image-card-effect { margin-top: 16px; border-top: 1px solid var(--line); padding-top: 12px; font-size: 14px; line-height: 1.8; white-space: pre-line; }
+.image-card-effect h3 { font-size: 15px; margin-bottom: 6px; }
+.image-dialog > .candidate-tags { margin-top: 12px; }
+.counterpart-heading { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; color: var(--accent); font-weight: 600; margin: 5px 0; }
+.counterpart-heading span { font-weight: 400; font-size: 12px; color: var(--muted); }
+.counterpart-effect-rule { margin-top: 5px; }
+.counterpart-effect-rule strong { font-weight: 600; }
+.upgrade-candidate > .upgrade-effect { margin-top: 10px; font-size: 13px; line-height: 1.8; }
+.rule-tabs { display: flex; gap: 4px; margin-top: 8px; border-bottom: 1px solid var(--line); }
+.rule-tabs button { border: 0; border-bottom: 2px solid transparent; border-radius: 0; color: var(--muted); padding: 7px 12px; background: transparent; }
+.rule-tabs button[aria-selected=true] { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+.rule-tabs + .popover-rule { border-top: 0; }
+@media (max-width: 760px) {
+  .mission-slots { gap: 6px; }
+  .battle-card-caption { font-size: 11px; padding: 5px; }
+  .mission-card-actions { top: 3px; right: 3px; gap: 2px; }
+  .mission-card-actions button { min-height: 28px; padding: 2px 5px; }
+  .deck-picker-dialog { width: calc(100vw - 12px); max-height: 96dvh; }
+  .deck-picker-dialog > .dialog-head { padding: 12px; }
+  .deck-pick-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 10px; gap: 10px; }
+  .image-card-effect { font-size: 14px; }
+}

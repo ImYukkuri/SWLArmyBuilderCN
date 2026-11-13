@@ -14,6 +14,28 @@ const data = {
   upgrades: Object.fromEntries(read("upgrades.json").cards.map((c) => [c.id, c])),
 };
 const library = BuilderLibrary;
+test("battle decks migrate legacy single picks without changing the saved source", () => {
+  const old = { primary: "deployment-13", secondary: "objective-1", advantage: "condition-1" };
+  assert.deepEqual(library.normalizeDeck(old), {
+    primary: ["deployment-13"], secondary: ["objective-1"], advantage: ["condition-1"],
+  });
+  assert.equal(old.primary, "deployment-13");
+  assert.deepEqual(library.normalizeDeck({ deployment: "deployment-13" }).primary, ["deployment-13"]);
+});
+test("three independent battle-card categories support replacement and removal with no duplicate picks", () => {
+  let deck = {};
+  for (const kind of ["primary", "secondary", "advantage"]) {
+    for (let i = 0; i < 3; i++) deck = library.setDeckCard(deck, kind, i, `${kind}-${i}`);
+    assert.throws(() => library.setDeckCard(deck, kind, 3, "fourth"), /3/);
+    assert.throws(() => library.setDeckCard(deck, kind, 1, `${kind}-0`), /重复/);
+  }
+  const replacement = library.setDeckCard(deck, "primary", 1, "replacement");
+  assert.deepEqual(replacement.primary, ["primary-0", "replacement", "primary-2"]);
+  assert.deepEqual(deck.primary, ["primary-0", "primary-1", "primary-2"]);
+  assert.deepEqual(library.setDeckCard(replacement, "primary", 0, null).primary, ["replacement", "primary-2"]);
+  assert.deepEqual(replacement.advantage, deck.advantage);
+  assert.deepEqual(library.normalizeDeck(JSON.parse(JSON.stringify(replacement))), replacement);
+});
 let sequence = 0;
 const uid = () => `saved-${++sequence}`,
   now = "2026-01-01T00:00:00.000Z";

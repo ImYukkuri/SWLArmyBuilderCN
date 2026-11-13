@@ -278,5 +278,31 @@ window.BuilderModel = (() => {
       return { ok: false, reason: [...new Set(errors.map((i) => i.message))].join("；") };
     return { ok: true, draft, count: ids.length, ids, warnings: [...new Set(warnings)] };
   }
-  return { signature, groups, uniqueUpgrade, copyable, addUnit, duplicate, equip };
+  // Join presentation only. Eligibility, cost and stored upgrade IDs keep using the upgrade.
+  function upgradePresentation(card, data, host = null) {
+    if (!card || card.counterpart || card.usage !== "counterpart") return card;
+    const sourceId = String(card.upstream?.id || "");
+    const units = Object.values(data.units).filter((u) =>
+      (u.isCounterpart || u.usage === "counterpart") && u.upstream?.collection === "upgrades");
+    let matches = units.filter((u) => sourceId && String(u.upstream.id) === sourceId);
+    if (!matches.length) {
+      const variants = new Set((card.rules?.unavailableWith || []).filter((v) =>
+        v && typeof v === "object" && v.propertyName === "upgrades").map((v) => String(v.id)));
+      matches = units.filter((u) => variants.has(String(u.upstream.id)) && u.name?.en === card.name?.en);
+    }
+    const unit = matches.find((u) => u.factionId === host?.factionId) || matches[0];
+    if (!unit) return card;
+    const combine = (a = [], b = []) => [...new Map([...a, ...b].map((v) =>
+      [JSON.stringify(canonical(v)), v])).values()];
+    return {
+      ...card,
+      name: { en: card.name?.en || unit.name?.en, zh: card.name?.zh || unit.name?.zh },
+      assets: { ...card.assets, front: card.assets?.front || unit.assets?.front,
+        portrait: card.assets?.portrait || unit.assets?.portrait },
+      keywords: combine(card.keywords, unit.keywords),
+      weapons: combine(card.weapons, unit.weapons),
+      counterpart: unit,
+    };
+  }
+  return { signature, groups, uniqueUpgrade, copyable, addUnit, duplicate, equip, upgradePresentation };
 })();

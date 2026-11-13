@@ -65,9 +65,33 @@ window.BuilderLibrary = (() => {
     value.mode = modeForPoints(value.pointsLimit);
     value.commandIds ||= [];
     value.options ||= [];
-    value.deck ||= {};
+    value.deck = normalizeDeck(value.deck);
     for (const inst of value.units) inst.upgrades ||= [];
     return value;
+  }
+  const DECK_KINDS = ["primary", "secondary", "advantage"];
+  function normalizeDeck(deck = {}) {
+    const result = { ...(deck || {}) };
+    for (const kind of DECK_KINDS) {
+      const selected = result[kind] ?? (kind === "primary" ? result.deployment : null);
+      result[kind] = [...new Set((Array.isArray(selected) ? selected : [selected])
+        .filter((id) => typeof id === "string" || typeof id === "number").map(String))];
+    }
+    return result;
+  }
+  function setDeckCard(deck, kind, index, id) {
+    if (!DECK_KINDS.includes(kind)) throw Error("未知任务卡类别。");
+    const result = normalizeDeck(deck), selected = result[kind];
+    if (!Number.isInteger(index) || index < 0 || index > selected.length)
+      throw Error("任务卡槽位已变化，请重新选择。");
+    if (id == null) selected.splice(index, 1);
+    else {
+      if (index >= 3) throw Error("每类最多选择 3 张卡。");
+      if (selected.some((value, i) => i !== index && value === String(id)))
+        throw Error("同一类别不能重复选择同一张卡。");
+      selected[index] = String(id);
+    }
+    return result;
   }
   function create(factionId, name, data, makeId, now) {
     if (!FACTIONS.some((f) => f.id === Number(factionId))) throw Error("请选择一个势力。");
@@ -78,7 +102,7 @@ window.BuilderLibrary = (() => {
       units: [],
       commandIds: [],
       options: [],
-      deck: {},
+      deck: normalizeDeck(),
     };
     const hand = configuration(army, data).rules.commandHand || [];
     const pips = hand.flatMap((r) => Array(r.min || 0).fill(r.pips));
@@ -161,6 +185,8 @@ window.BuilderLibrary = (() => {
     modeForPoints,
     configuration,
     normalize,
+    normalizeDeck,
+    setDeckCard,
     create,
     read,
     writeRecord,

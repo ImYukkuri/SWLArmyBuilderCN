@@ -262,6 +262,7 @@
     },
     {
       "id": "deployment-16",
+      "image": "assets/battle-deck/primary/Intercept the Signals.png",
       "upstreamId": "16",
       "name": {
         "en": "Intercept Signals",
@@ -337,6 +338,7 @@
     },
     {
       "id": "deployment-20",
+      "image": "assets/battle-deck/primary/Intercept the Signals.png",
       "upstreamId": "20",
       "name": {
         "en": "Intercept Signals",
@@ -784,6 +786,7 @@
     },
     {
       "id": "deployment-16",
+      "image": "assets/battle-deck/primary/Intercept the Signals.png",
       "upstreamId": "16",
       "name": {
         "en": "Intercept Signals",
@@ -859,6 +862,7 @@
     },
     {
       "id": "deployment-20",
+      "image": "assets/battle-deck/primary/Intercept the Signals.png",
       "upstreamId": "20",
       "name": {
         "en": "Intercept Signals",

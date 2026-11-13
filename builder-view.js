@@ -4,7 +4,7 @@ const node = (tag, cls, text) => {
   if (cls) n.className = cls;
   return n;
 };
-const named = (v) => (typeof v === "string" ? v : v?.zh || v?.en || "");
+const named = (v) => (typeof v === "string" ? v : textParts(v?.zh).trim() ? v.zh : v?.en || "");
 const textParts = (v) => (Array.isArray(v) ? v : [v]).filter(Boolean).join("\n");
 const assetPath = (path) => (path ? DATA_BASE + path : "");
 const cardView = {
@@ -323,7 +323,7 @@ function renderBrowser() {
     $("#browser-context").textContent =
       named(u.name) + " / " + slotName(browser.slotKey) + "槽位";
     $("#browser-category").textContent = "升级资料库";
-    currentCandidates = Object.values(data.upgrades).filter((c) =>
+    currentCandidates = Object.values(data.upgrades).map((c) => displayUpgrade(c, inst)).filter((c) =>
       accessOf(c).includes(browser.slotKey),
     );
   } else {
@@ -425,36 +425,54 @@ function renderDeck() {
     }
   });
   deck.append(list);
-  const mission = node("div", "mission-slots");
-  for (const [kind, label] of [
-    ["primary", "主要目标"],
-    ["secondary", "次要目标"],
-    ["advantage", "优势"],
-    ["deployment", "部署"],
-  ]) {
-    const source =
-      kind === "advantage"
-        ? data.deckData.conditions
-        : kind === "deployment"
-          ? data.deckData.deployments
-          : kind === "primary"
-            ? data.deckData.primary || data.deckData.deployments
-            : data.deckData.secondary || data.deckData.objectives;
-    const value = (source || []).find((x) => x.id === army.deck?.[kind]);
-    const b = node("button", "mission-slot");
-    b.append(node("small", null, label));
-    if (value && value.image) {
-      const im = document.createElement("img");
-      im.src = value.image;
-      im.alt = named(value.name);
-      im.loading = "lazy";
-      b.append(im);
+  const missions = node("div", "mission-sections");
+  const selections = BuilderLibrary.normalizeDeck(army.deck);
+  for (const [kind, label] of [["primary", "主要任务"], ["secondary", "次要任务"], ["advantage", "优势"]]) {
+    const selected = selections[kind];
+    const section = node("section", "mission-section");
+    section.dataset.kind = kind;
+    const heading = node("div", "mission-heading");
+    heading.append(node("h3", null, label), node("span", null, selected.length + " / 3"));
+    const slots = node("div", "mission-slots");
+    for (let index = 0; index < Math.max(3, selected.length); index++) {
+      const card = deckCatalog(kind).find((x) => String(x.id) === selected[index]);
+      const slot = node("div", "mission-slot" + (selected[index] ? " filled" : " empty"));
+      const unavailable = card && ((card.modes?.length && !card.modes.includes(army.mode)) ||
+        (card.armyIds?.length && !card.armyIds.includes(Number(army.armyId))));
+      slot.classList.toggle("unavailable", !!unavailable);
+      slot.dataset.index = index;
+      const choose = node("button", "mission-card");
+      choose.setAttribute("aria-label", `${selected[index] ? "替换" : "选择"}${label}第 ${index + 1} 张`);
+      if (card) choose.append(battleCardArt(card), node("span", "battle-card-caption", named(card.name)));
+      else choose.append(node("span", "mission-placeholder", selected[index] ? "卡牌资料不可用" : "＋"),
+        node("span", "battle-card-caption", selected[index] || `选择第 ${index + 1} 张`));
+      if (unavailable) choose.append(node("small", "mission-unavailable", "不适用当前配置 · 点击更换"));
+      choose.disabled = index >= 3 || index > selected.length;
+      choose.onclick = () => openDeckSlot(kind, label, index);
+      slot.append(choose);
+      if (selected[index]) {
+        const actions = node("div", "mission-card-actions");
+        if (card?.image) {
+          const preview = node("button", null, "查看");
+          preview.setAttribute("aria-label", "查看" + named(card.name) + "大图");
+          preview.onclick = () => showImage(card);
+          actions.append(preview);
+        }
+        const remove = node("button", null, "×");
+        remove.setAttribute("aria-label", `移除${label}第 ${index + 1} 张`);
+        remove.onclick = () => {
+          army.deck = BuilderLibrary.setDeckCard(army.deck, kind, index, null);
+          render();
+        };
+        actions.append(remove);
+        slot.append(actions);
+      }
+      slots.append(slot);
     }
-    b.append(node("b", null, value ? named(value.name) : "＋ 选择"));
-    b.onclick = () => openDeckSlot(kind, label);
-    mission.append(b);
+    section.append(heading, slots);
+    missions.append(section);
   }
-  deck.append(mission);
+  deck.append(missions);
 }
 
 function renderPoints(report) {
@@ -581,8 +599,30 @@ function perUnitPoints(inst) {
   );
 }
 
+function displayUpgrade(c, inst = null) {
+  const host = data.units[inst?.unitId || army?.units.find((i) => i.instanceId === browser?.unitInstanceId)?.unitId];
+  return BuilderModel.upgradePresentation(c, data, host);
+}
+
+function battleCardArt(card) {
+  const frame = node("span", "battle-card-art");
+  if (card.image) {
+    const image = node("img");
+    // Reserve the printed face while lazy loading; primary cards include their map.
+    image.width = 726;
+    image.height = card.image.includes("/primary/") ? 1450 : 1039;
+    image.src = assetPath(card.image);
+    image.alt = named(card.name) + "卡图";
+    image.loading = "lazy";
+    frame.append(image);
+  } else frame.append(node("span", "missing-card-art", named(card.name) + " · 暂无卡图"));
+  return frame;
+}
+
 function artButton(c, cls = "unit-art") {
+  c = displayUpgrade(c);
   const b = node("button", cls);
+  b.classList.toggle("has-portrait", !!c.assets?.portrait);
   b.setAttribute("aria-label", "查看" + named(c.name) + "完整卡图");
   b.title = "查看完整卡图";
   const src = c.assets?.portrait || c.assets?.front || c.image;
@@ -608,6 +648,7 @@ function artButton(c, cls = "unit-art") {
 }
 
 function showImage(c) {
+  c = displayUpgrade(c);
   imageDialog.replaceChildren();
   const h = node("div", "dialog-head");
   h.append(node("h2", null, named(c.name)));
@@ -619,7 +660,40 @@ function showImage(c) {
   im.src = assetPath(c.assets?.front || c.image);
   im.alt = named(c.name) + "完整卡图";
   imageDialog.append(h, im);
+  const effect = upgradeEffect(c);
+  const rules = textParts(named(c.rules));
+  if (effect.childNodes.length || rules) {
+    const section = node("section", "image-card-effect");
+    section.append(node("h3", null, "卡牌效果"));
+    if (effect.childNodes.length) section.append(effect);
+    else section.append(proseNode(rules));
+    imageDialog.append(section);
+  }
+  if (c.keywords?.length) imageDialog.append(ruleTags(c.keywords.map((k) =>
+    ({ ...(typeof k === "string" ? { id: k } : k), origins: c.counterpart ? [c] : [] }))));
   showDialog(imageDialog);
+}
+
+function upgradeEffect(c) {
+  const effect = node("div", "upgrade-effect");
+  const description = textParts(named(c.description));
+  if (description) effect.append(proseNode(description));
+  if (c.counterpart) {
+    const heading = node("p", "counterpart-heading", "伙伴单位 · " + named(c.counterpart.name));
+    const stats = c.counterpart.stats;
+    if (stats?.models != null) heading.append(node("span", null, "模型 " + stats.models));
+    if (stats?.wounds != null) heading.append(node("span", null, "生命 " + stats.wounds));
+    effect.append(heading);
+    for (const k of uniqueRules(c.counterpart.keywords)) {
+      const { ref, label } = ruleInfo(k);
+      const text = ref?.summary || ref?.full;
+      if (!text) continue;
+      const row = node("p", "counterpart-effect-rule");
+      row.append(node("strong", null, label + "："), proseNode(text));
+      effect.append(row);
+    }
+  }
+  return effect;
 }
 
 function usageBadges(c) {
@@ -668,7 +742,7 @@ function keywordEntries(inst) {
   };
   for (const k of u?.keywords || []) add(k, null);
   for (const choice of inst.upgrades) {
-    const c = data.upgrades[choice.upgradeId];
+    const c = displayUpgrade(data.upgrades[choice.upgradeId], inst);
     for (const k of c?.keywords || []) add(k, c);
   }
   return [...map.values()];
@@ -853,7 +927,7 @@ function unitWeapons(inst, forceOpen = false, timing = false) {
     list = [
       ...(u?.weapons || []).map((w) => ({ w, origin: null })),
       ...inst.upgrades.flatMap((ch) => {
-        const c = data.upgrades[ch.upgradeId];
+        const c = displayUpgrade(data.upgrades[ch.upgradeId], inst);
         return (c?.weapons || []).map((w) => ({ w, origin: c }));
       }),
     ];
@@ -881,6 +955,7 @@ function weaponRows(ws) {
 }
 
 function upgradeDetail(c, { forceOpen = false, compact = false } = {}) {
+  c = displayUpgrade(c);
   const box = node("article", "upgrade-detail");
   const h = node("div", "upgrade-line");
   h.append(artButton(c, "upgrade-art"), node("b", null, named(c.name)));
@@ -889,12 +964,8 @@ function upgradeDetail(c, { forceOpen = false, compact = false } = {}) {
   h.append(usageBadges(c));
   if (c.points != null) h.append(node("span", "upgrade-cost", c.points + " 分"));
   box.append(h);
-  const desc = textParts(named(c.description));
-  if (desc) {
-    const p = node("div", "upgrade-effect");
-    p.append(proseNode(desc));
-    box.append(p);
-  }
+  const effect = upgradeEffect(c);
+  if (effect.childNodes.length) box.append(effect);
   if (!compact) {
     const req = textParts(
       c.restrictions?.text?.zh || c.requirementsText || c.restrictions?.text?.en,
@@ -965,20 +1036,42 @@ function openRule(k, anchor) {
       (ref?.timing || []).map((t) => TIMING_LABEL[t] || t).join(" / "),
     ),
   );
-  for (const [label, value] of [
-    ["词条简写", ref?.summary],
-    ["完整规则", ref?.full],
-  ])
-    if (value) {
-      const section = node("section", "popover-rule");
-      section.append(node("h4", null, label));
-      const p = node("div");
-      p.append(proseNode(value));
-      section.append(p);
-      rulePop.append(section);
-    }
-  if (!ref?.summary && !ref?.full)
-    rulePop.append(node("p", "popover-rule", "现有资料没有关联释义。"));
+  const tabs = node("div", "rule-tabs");
+  tabs.setAttribute("role", "tablist");
+  tabs.setAttribute("aria-label", "词条说明长度");
+  const panel = node("section", "popover-rule");
+  panel.id = "rule-text-panel";
+  panel.setAttribute("role", "tabpanel");
+  panel.tabIndex = 0;
+  const content = node("div");
+  panel.append(content);
+  const buttons = [];
+  for (const [key, title, text] of [["summary", "简写", ref?.summary], ["full", "完整规则", ref?.full]]) {
+    const button = node("button", null, title);
+    button.id = "rule-tab-" + key;
+    button.setAttribute("role", "tab");
+    button.setAttribute("aria-controls", panel.id);
+    button.onclick = () => {
+      for (const tab of buttons) {
+        tab.setAttribute("aria-selected", String(tab === button));
+        tab.tabIndex = tab === button ? 0 : -1;
+      }
+      panel.setAttribute("aria-labelledby", button.id);
+      content.replaceChildren(proseNode(text || (key === "summary" && ref?.full
+        ? "暂无简写，可切换完整规则。" : "现有资料没有关联释义。")));
+      if (!rulePop.hidden) positionRulePopover(anchor);
+    };
+    button.onkeydown = (e) => {
+      if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(e.key)) return;
+      e.preventDefault();
+      const next = e.key === "Home" ? buttons[0] : e.key === "End" ? buttons[1] : buttons.find((b) => b !== button);
+      next.click(); next.focus();
+    };
+    buttons.push(button);
+    tabs.append(button);
+  }
+  buttons[0].click();
+  rulePop.append(tabs, panel);
   for (const c of k.origins || []) {
     const src = node("section", "popover-source");
     src.append(
@@ -987,9 +1080,14 @@ function openRule(k, anchor) {
     );
     rulePop.append(src);
   }
-  const parent = anchor?.closest("dialog") || modalStack.at(-1);
+  const parent = anchor?.closest("dialog") || modalStack.filter((dialog) => dialog.open).at(-1);
   (parent || document.body).append(rulePop);
   rulePop.hidden = false;
+  positionRulePopover(anchor);
+  close.focus();
+}
+
+function positionRulePopover(anchor) {
   const r = anchor?.getBoundingClientRect() || {
     left: 20,
     top: 100,
@@ -1003,7 +1101,6 @@ function openRule(k, anchor) {
   rulePop.style.left = Math.min(Math.max(12, r.left), innerWidth - width - 12) + "px";
   rulePop.style.top =
     Math.max(12, Math.min(r.bottom + 9, innerHeight - height - 12)) + "px";
-  close.focus();
 }
 
 function selectGroupSlot(group, index, key, trigger) {
@@ -1030,7 +1127,7 @@ function expandedContents(inst, { forceOpen = false } = {}) {
     const section = node("section", "selected-upgrades");
     section.append(node("h4", "compact-section-title", "升级卡"));
     for (const ch of inst.upgrades) {
-      const c = data.upgrades[ch.upgradeId];
+      const c = displayUpgrade(data.upgrades[ch.upgradeId], inst);
       if (c) section.append(upgradeDetail(c, { forceOpen, compact: true }));
     }
     out.append(section);
@@ -1162,6 +1259,7 @@ function candidateStatus(state) {
 }
 
 function upgradeCandidate(c) {
+  c = displayUpgrade(c);
   const state = itemState(c),
     item = node("article", "candidate upgrade-candidate " + state.kind);
   item.dataset.id = c.id;
@@ -1178,12 +1276,8 @@ function upgradeCandidate(c) {
     p.append(node("b", null, "使用要求"), proseNode(req));
     item.append(p);
   }
-  const effect = textParts(named(c.description));
-  if (effect) {
-    const p = node("div", "effect");
-    p.append(proseNode(effect));
-    item.append(p);
-  }
+  const effect = upgradeEffect(c);
+  if (effect.childNodes.length) item.append(effect);
   const tags = node("div", "upgrade-tags");
   for (const k of uniqueRules(c.keywords))
     tags.append(tag({ ...(typeof k === "string" ? { id: k } : k), origins: [c] }));
@@ -1350,7 +1444,7 @@ function slotStrip(group, { readonly = false } = {}) {
   const records = unitSlotRecords(u, inst),
     displayed = new Set();
   function slot(rec, index, chosen, orphan = false) {
-    const c = chosen && data.upgrades[chosen.upgradeId];
+    const c = chosen && displayUpgrade(data.upgrades[chosen.upgradeId], inst);
     const name = chosen
       ? c
         ? named(c.name)
@@ -1363,6 +1457,7 @@ function slotStrip(group, { readonly = false } = {}) {
     const locked =
       !chosen && rec.unlockedBy && !instUpstreamIds(inst).has(String(rec.unlockedBy));
     row.dataset.slotIndex = index;
+    if (c) row.append(artButton(c, "slot-art"));
     const label = node(readonly || orphan ? "span" : "button", "slot-name");
     label.append(
       node("span", "slot-glyph", rec ? slotDef(rec.key)?.iconGlyph || "+" : "!"),
@@ -1688,7 +1783,7 @@ function wireEditor() {
         hideRule();
         return;
       }
-      const popup = !rulePop.hidden ? rulePop : modalStack.at(-1);
+      const popup = !rulePop.hidden ? rulePop : modalStack.filter((dialog) => dialog.open).at(-1);
       const panel =
         popup ||
         (document.body.classList.contains("sheet-open") ? $("#card-browser") : null);

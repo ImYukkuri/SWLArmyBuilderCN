@@ -461,53 +461,53 @@ function ownerLabel(cmd) {
   return names.length > 3 ? names.slice(0, 3).join(" / ") + " …" : names.join(" / ");
 }
 
-function deckPicker(title, items, onPick){
-  const old=document.getElementById('deck-picker');if(old)old.remove();
-  const overlay=el('div');overlay.id='deck-picker';overlay.className='kw-overlay';
-  const box=el('div');box.className='kw-dialog deck-picker-box';
-  const head=el('div');head.className='kw-head';head.append(el('strong',title));
-  const close=el('button','×');close.type='button';close.className='kw-close';close.onclick=()=>overlay.remove();head.append(close);
-  const grid=el('div');grid.className='deck-pick-grid';
-  for(const it of items){
-    const b=el('button');b.type='button';b.className='deck-pick-card';b.title=it.sub||it.label;
-    if(it.image){const im=el('img');im.src=it.image;im.alt=it.label;im.loading='lazy';b.append(im)}
-    b.append(el('span',it.label));
-    if(it.rules&&(it.rules.zh||it.rules.en)){const r=el('small',it.rules.zh||it.rules.en);r.className='deck-pick-rules';b.append(r)}
-    b.onclick=()=>{overlay.remove();onPick(it)};
-    grid.append(b);
-  }
-  box.append(head,grid);overlay.append(box);
-  overlay.onclick=e=>{if(e.target===overlay)overlay.remove()};
-  document.body.append(overlay);
+function deckCatalog(kind) {
+  return (kind === "primary" ? data.deckData.primary || data.deckData.deployments
+    : kind === "secondary" ? data.deckData.secondary || data.deckData.objectives
+      : data.deckData.conditions) || [];
 }
-function openDeckSlot(kind, label) {
-  army.deck = army.deck || {};
-  const source =
-    kind === "advantage"
-      ? data.deckData.conditions
-      : kind === "deployment"
-        ? data.deckData.deployments
-        : kind === "primary"
-          ? data.deckData.primary || data.deckData.deployments
-          : data.deckData.secondary || data.deckData.objectives;
-  const items = (source || [])
-    .filter((x) => {
-      if (x.armyIds && x.armyIds.length && !x.armyIds.includes(Number(army.armyId)))
-        return false;
-      return true;
-    })
-    .map((x) => ({
-      id: x.id,
-      label: (x.name && (x.name.zh || x.name.en)) || x.id,
-      sub: (x.name && x.name.en) || "",
-      image: x.image || "",
-      rules: x.rules || null,
-    }));
-  deckPicker("选择" + label, items, (it) => {
-    army.deck[kind] = it.id;
-    save();
-    render();
-  });
+function openDeckSlot(kind, label, index = 0) {
+  document.getElementById("deck-picker")?.close();
+  const selected = BuilderLibrary.normalizeDeck(army.deck)[kind];
+  const dialog = node("dialog", "deck-picker-dialog");
+  dialog.id = "deck-picker";
+  dialog.setAttribute("aria-labelledby", "deck-picker-title");
+  const head = node("div", "dialog-head");
+  const heading = node("div");
+  const title = node("h2", null, "选择" + label);
+  title.id = "deck-picker-title";
+  heading.append(title, node("p", "deck-picker-context",
+    `第 ${index + 1} 张 · 已选 ${selected.length} / 3 · 点击卡图${selected[index] ? "替换" : "加入"}`));
+  const close = node("button", null, "×");
+  close.setAttribute("aria-label", "关闭任务卡选择");
+  close.onclick = () => dialog.close();
+  head.append(heading, close);
+  const grid = node("div", "deck-pick-grid");
+  for (const card of deckCatalog(kind)) {
+    if (card.armyIds?.length && !card.armyIds.includes(Number(army.armyId))) continue;
+    if (card.modes?.length && !card.modes.includes(army.mode)) continue;
+    const existing = selected.indexOf(String(card.id));
+    const button = node("button", "deck-pick-card");
+    button.dataset.id = card.id;
+    button.disabled = existing >= 0 && existing !== index;
+    button.setAttribute("aria-pressed", String(existing >= 0));
+    button.setAttribute("aria-label", named(card.name) + (existing >= 0 ? "，已选" : "，选择"));
+    button.append(battleCardArt(card));
+    const caption = node("span", "battle-card-caption", named(card.name));
+    if (existing >= 0) caption.append(node("b", "deck-selected", "已选"));
+    button.append(caption);
+    button.onclick = () => {
+      army.deck = BuilderLibrary.setDeckCard(army.deck, kind, index, card.id);
+      dialog.close();
+      render();
+    };
+    grid.append(button);
+  }
+  dialog.append(head, grid);
+  dialog.addEventListener("click", (e) => { if (e.target === dialog) dialog.close(); });
+  dialog.addEventListener("close", () => dialog.remove(), { once: true });
+  document.body.append(dialog);
+  showDialog(dialog);
 }
 
 function save() {

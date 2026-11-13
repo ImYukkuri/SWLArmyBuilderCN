@@ -15,6 +15,34 @@ const data = {
   pkg: read("slot-rules.json"),
 };
 data.nameIndex = RulesCore.buildNameIndex(data.upgrades, data.defs);
+test("counterpart upgrades display existing unit art and abilities while retaining upgrade identity and rules", () => {
+  const before = JSON.stringify(data);
+  for (const id of ["upstream-167", "upstream-131", "upstream-15628", "upstream-22586", "upstream-3649"]) {
+    const raw = data.upgrades[id];
+    const view = BuilderModel.upgradePresentation(raw, data, { factionId: 1 });
+    assert.equal(view.id, raw.id);
+    assert.equal(view.points, raw.points);
+    assert.deepEqual(view.rules, raw.rules);
+    assert(view.assets.front);
+    assert(view.keywords.length > 0);
+    assert(view.counterpart);
+  }
+  const rebel = BuilderModel.upgradePresentation(data.upgrades['upstream-131'], data, { factionId: 1 });
+  assert.equal(rebel.counterpart.id, 'rebels-c-3po-cyborg');
+  const empire = BuilderModel.upgradePresentation(data.upgrades['upstream-167'], data);
+  assert.equal(empire.weapons[0].range.min, 0);
+  assert.equal(JSON.stringify(data), before);
+});
+test("counterpart presentation keeps explicit upgrade content and never links an unreferenced namesake", () => {
+  const raw = data.upgrades['upstream-167'];
+  const card = {...raw, description:{zh:['Original effect']}, assets:{front:'original.webp'}, keywords:[{id:'shielded',value:1}]};
+  const view = BuilderModel.upgradePresentation(card, data);
+  assert.deepEqual(view.description, card.description);
+  assert.equal(view.assets.front,'original.webp');
+  assert.equal(view.keywords.filter(k=>k.id==='shielded').length,1);
+  const unknown = {...raw, upstream:{collection:'upgrades',id:'unmatched'}};
+  assert.equal(BuilderModel.upgradePresentation(unknown,data),unknown);
+});
 let sequence = 0;
 const uid = () => `instance-${++sequence}`;
 const unit = (id = "empire-stormtroopers") => ({ instanceId: uid(), unitId: id, upgrades: [] });
