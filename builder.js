@@ -487,7 +487,9 @@ function openDeckSlot(kind, label) {
       ? data.deckData.conditions
       : kind === "deployment"
         ? data.deckData.deployments
-        : data.deckData.objectives;
+        : kind === "primary"
+          ? data.deckData.primary || data.deckData.deployments
+          : data.deckData.secondary || data.deckData.objectives;
   const items = (source || [])
     .filter((x) => {
       if (x.armyIds && x.armyIds.length && !x.armyIds.includes(Number(army.armyId)))

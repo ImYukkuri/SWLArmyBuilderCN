@@ -437,13 +437,20 @@ function renderDeck() {
         ? data.deckData.conditions
         : kind === "deployment"
           ? data.deckData.deployments
-          : data.deckData.objectives;
+          : kind === "primary"
+            ? data.deckData.primary || data.deckData.deployments
+            : data.deckData.secondary || data.deckData.objectives;
     const value = (source || []).find((x) => x.id === army.deck?.[kind]);
     const b = node("button", "mission-slot");
-    b.append(
-      node("small", null, label),
-      node("b", null, value ? named(value.name) : "＋ 选择"),
-    );
+    b.append(node("small", null, label));
+    if (value && value.image) {
+      const im = document.createElement("img");
+      im.src = value.image;
+      im.alt = named(value.name);
+      im.loading = "lazy";
+      b.append(im);
+    }
+    b.append(node("b", null, value ? named(value.name) : "＋ 选择"));
     b.onclick = () => openDeckSlot(kind, label);
     mission.append(b);
   }

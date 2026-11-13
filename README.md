@@ -14,7 +14,7 @@ python tools/build_public.py   # 生成 dist/
 ```
 
 `dist/` 只包含写表器需要的文件：`index.html`、`builder.js`、`rules-core.js`、
-`builder.css`、`style.css`、`data/*.json`、`assets/`。推送 `main` 分支后，
+`builder.css`、`data/*.json`、`assets/`。推送 `main` 分支后，
 `.github/workflows/deploy-pages.yml` 会自动构建并发布到 GitHub Pages；
 发布版不含数据编辑器入口链接。
 
@@ -69,7 +69,7 @@ python server.py --port 8770
 
 `python tools/build_public.py` 只用于生成要发布到 GitHub Pages 的 `dist/` 静态快照。
 Pages 是静态托管，无法读你本地的 `data/*.json`，所以**只有更新线上数据时**
-才需要重建 `dist/` 并推送 `main`。
+才需要推送 `main`，由 GitHub Actions 自动重建 `dist/` 并部署。
 
 ## 维护中心（编辑器模块）
 

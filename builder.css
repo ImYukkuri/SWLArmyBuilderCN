@@ -3662,4 +3662,18 @@ body.sheet-open {
     padding: 12px;
   }
 }
-.roster-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 0}.roster-actions button{background:#141c28;border:1px solid var(--sw-line);color:var(--sw-muted);border-radius:6px;padding:5px 12px;font-size:12px;cursor:pointer}.roster-actions button:hover{border-color:var(--sw-accent);color:var(--sw-ink)}#roster-share-status{font-size:11px;color:var(--sw-muted);overflow:hidden;text-overflow:ellipsis;max-width:280px;white-space:nowrap}.deck-pick-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;padding:12px}.deck-pick-card{display:flex;flex-direction:column;gap:4px;background:#141c28;border:1px solid var(--sw-line);border-radius:8px;padding:8px;cursor:pointer;color:var(--sw-ink)}.deck-pick-card img{width:100%;aspect-ratio:5/7;object-fit:cover;border-radius:6px;background:#0b1119}.deck-pick-card:hover{border-color:var(--sw-accent)}.deck-pick-rules{font-size:11px;color:var(--sw-muted);line-height:1.4;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.roster-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 0}.roster-actions button{background:#141c28;border:1px solid var(--sw-line);color:var(--sw-muted);border-radius:6px;padding:5px 12px;font-size:12px;cursor:pointer}.roster-actions button:hover{border-color:var(--sw-accent);color:var(--sw-ink)}#roster-share-status{font-size:11px;color:var(--sw-muted);overflow:hidden;text-overflow:ellipsis;max-width:280px;white-space:nowrap}.deck-pick-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;padding:12px}.deck-pick-card{display:flex;flex-direction:column;gap:4px;background:#141c28;border:1px solid var(--sw-line);border-radius:8px;padding:8px;cursor:pointer;color:var(--sw-ink)}.deck-pick-card img{width:100%;aspect-ratio:5/7;object-fit:cover;border-radius:6px;background:#0b1119}.deck-pick-card:hover{border-color:var(--sw-accent)}.deck-pick-rules{font-size:11px;color:var(--sw-muted);line-height:1.4;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.mission-slot{display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px}.mission-slot img{width:64px;height:88px;object-fit:cover;border-radius:6px;border:1px solid var(--sw-line);background:#0b1119}
+/* ============ 战场牌三列卡图布局 + 工具条可读样式 ============ */
+.mission-slots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px;border-top:1px solid var(--sw-line);padding-top:12px}
+.mission-slot{display:flex;flex-direction:column;gap:6px;border:1px solid var(--sw-line);border-radius:8px;padding:8px;background:#141c28;text-align:left;cursor:pointer}
+.mission-slot:hover{border-color:var(--sw-accent)}
+.mission-slot small{font-size:11px;color:var(--sw-muted)}
+.mission-slot b{font-size:12px;font-weight:600;color:var(--sw-ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mission-slot img{width:100%;aspect-ratio:5/7;object-fit:cover;border-radius:6px;background:#0b1119;border:1px solid var(--sw-line)}
+.deck-pick-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:14px}
+.deck-pick-card img{width:100%;aspect-ratio:5/7;object-fit:cover;border-radius:8px;background:#0b1119;border:1px solid var(--sw-line)}
+.deck-pick-card span{font-size:13px;font-weight:600;color:var(--sw-ink)}
+.roster-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 0}
+.roster-actions button{background:var(--sw-panel-2);border:1px solid var(--sw-line);color:var(--sw-ink);border-radius:6px;padding:6px 14px;font-size:12px;cursor:pointer;transition:border-color .12s ease,color .12s ease}
+.roster-actions button:hover{border-color:var(--sw-accent);color:var(--sw-accent)}
+#roster-share-status{font-size:11px;color:var(--sw-muted);overflow:hidden;text-overflow:ellipsis;max-width:300px;white-space:nowrap}
