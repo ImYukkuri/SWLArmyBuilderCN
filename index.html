@@ -1,23 +1,208 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SWL Army Builder CN · 写表器</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="builder.css"></head><body>
-<div class="builder-shell">
-  <div class="builder-top">
-    <div class="bf-field"><span>Battleforce:</span><select id="faction" aria-label="Battleforce"></select></div>
-    <div class="bf-field"><span>Mode:</span><select id="mode" aria-label="Mode"><option value="standard">STANDARD</option><option value="recon">RECON</option></select></div>
-    <div class="points-badge" id="points">0 / 1000 (1000)</div>
-    <span id="issue-count" class="issue-count"></span>
-    <button id="info" class="info-btn" title="校验结果">i</button>
-    <nav class="module-nav" style="margin-left:auto"><a class="active" href="index.html">写表器</a><a href="maintenance.html">数据维护</a></nav>
-  </div>
-  <div class="statusbar" id="status" role="status"></div>
-  <div class="rank-bar" id="rank-bar"></div>
-  <div class="builder-body">
-    <div class="army-col"><div class="view-actions"><button type="button" id="view-toggle" title="切换简略/详情">简略视图</button><button type="button" id="view-expand" title="展开/收起单位详情">展开</button><div class="tf-buttons" id="timing-filter" title="按词条时机过滤（多选，空=全部）"></div></div><div class="army-list" id="army-units"></div><div class="deck-panel" id="deck-panel"></div></div>
-    <aside class="card-browser" id="card-browser">
-      <div class="browser-head"><h3 id="browser-title">点击军阶或槽位查看卡牌</h3><button id="browser-close" hidden>×</button></div>
-      <div class="card-grid" id="card-grid"></div>
-    </aside>
-  </div>
-  <div class="issues-panel" id="issues-panel" hidden><div id="issues" class="issues"></div></div>
-</div>
-<script src="dice-enums.js"></script>
-<script src="rules-core.js"></script><script src="builder.js"></script></body></html>
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>军团 · 军表编辑器</title>
+    <link rel="stylesheet" href="builder.css" />
+  </head>
+  <body>
+    <header class="masthead">
+      <a class="brand" href="#home"
+        ><span class="brand-symbol" aria-hidden="true">✳</span><b>军团<span>编制档案</span></b></a
+      >
+      <nav class="module-nav"><a href="maintenance.html">数据维护</a></nav>
+      <span class="edition">Star Wars Legion</span>
+    </header>
+    <div class="app-status">
+      <div id="status" class="statusbar" role="status" aria-live="polite">正在载入军表资料…</div>
+    </div>
+    <main id="library-page" class="library-page" hidden>
+      <div class="library-heading">
+        <div>
+          <h1>你的军团，从这里集结</h1>
+          <p>选择势力建立新军表，或继续编辑已保存的编制。</p>
+        </div>
+        <span class="storage-label">军表保存在当前浏览器</span>
+      </div>
+      <section aria-labelledby="new-army-heading">
+        <div class="library-section-head">
+          <h2 id="new-army-heading">新建军表</h2>
+          <span>选择势力 · 默认 1000 分</span>
+        </div>
+        <div id="faction-choices" class="faction-choices"></div>
+      </section>
+      <section class="saved-section" aria-labelledby="saved-heading">
+        <div class="library-section-head">
+          <div>
+            <h2 id="saved-heading">已保存的军表 <span id="saved-count"></span></h2>
+            <p>单位、升级与战术卡会随军表一起保存。</p>
+          </div>
+          <label class="saved-search"
+            ><span>查找军表</span
+            ><input
+              id="saved-search"
+              type="search"
+              placeholder="名称或势力"
+              aria-label="搜索已保存军表"
+          /></label>
+        </div>
+        <div id="library-notice" class="library-notice" role="status" hidden></div>
+        <div id="saved-rosters" class="saved-rosters"></div>
+      </section>
+    </main>
+    <main id="editor-page" class="workspace" hidden>
+      <div class="editor-navigation">
+        <button id="back-library" class="text-button">‹ 势力与军表</button>
+        <div class="save-actions">
+          <span id="save-state" role="status"></span
+          ><button id="save-roster" class="choose-button">保存军表</button>
+        </div>
+      </div>
+      <section class="army-header">
+        <div class="army-identity">
+          <div class="army-caption">
+            <i></i><span id="faction-en"></span><b id="faction-label"></b>
+          </div>
+          <h1 id="army-title">
+            <label class="sr-only" for="roster-name">军表名称</label
+            ><input id="roster-name" aria-label="军表名称" maxlength="100" autocomplete="off" />
+          </h1>
+          <div class="setup-fields">
+            <label
+              >战斗部队<select id="battleforce" aria-label="战斗部队">
+                <option value="">无 · 基础规则</option>
+              </select></label
+            >
+            <label
+              >分数上限<input
+                id="points-limit"
+                type="number"
+                min="1"
+                step="1"
+                value="1000"
+                inputmode="numeric"
+                aria-label="分数上限"
+            /></label>
+            <span id="rule-mode" class="rule-mode"></span>
+          </div>
+          <p id="rules-context" class="rules-context"></p>
+        </div>
+        <div class="army-summary">
+          <div class="points-readout">
+            <span>军表总分</span>
+            <div id="points"></div>
+            <div class="points-track"><i id="points-fill"></i></div>
+          </div>
+          <div class="summary-count"><b id="summary-units">0</b><span>单位</span></div>
+          <div class="summary-count">
+            <b id="summary-commands">0<span> / 7</span></b
+            ><span>战术卡</span>
+          </div>
+          <button id="info" class="validation-btn" aria-label="查看军表校验">
+            <span id="issue-count"></span><span>查看校验</span>
+          </button>
+        </div>
+      </section>
+      <div class="roster-actions" id="roster-actions">
+        <button type="button" id="roster-export">导出 JSON</button>
+        <button type="button" id="roster-import">导入 JSON</button>
+        <button type="button" id="roster-share">生成分享链接</button>
+        <input type="file" id="roster-file" accept=".json,application/json" hidden />
+        <span id="roster-share-status"></span>
+      </div>
+      <nav class="rank-nav" aria-label="添加单位">
+        <div class="rank-label">添加单位<span>点击下方军阶</span></div>
+        <div id="rank-bar"></div>
+        <div class="rank-caption">点击军阶添加单位<br />点击单位槽位配置升级</div>
+      </nav>
+      <div id="composition-rules" class="composition-rules"></div>
+      <div class="builder-body">
+        <section class="army-col" aria-labelledby="roster-heading">
+          <div class="column-head">
+            <div>
+              <h2 id="roster-heading">当前军表</h2>
+              <p>单位、装备与战术指令</p>
+            </div>
+            <button class="text-button" id="view-toggle">全部展开</button>
+          </div>
+          <div class="card-display-tools">
+            <label class="explanation-switch"
+              ><input type="checkbox" id="open-explanations" />打开词条释义</label
+            >
+          </div>
+          <div id="army-units" class="army-list"></div>
+          <div id="deck-panel"></div>
+          <p class="draft-note">军表自动保存在当前浏览器。</p>
+        </section>
+        <div id="browser-backdrop" class="browser-backdrop" hidden></div>
+        <aside id="card-browser" class="card-browser" aria-labelledby="browser-title">
+          <div class="browser-top">
+            <div class="browser-heading">
+              <span id="browser-category">候选资料库</span
+              ><button id="browser-close" aria-label="关闭选择面板">×</button>
+            </div>
+            <h2 id="browser-title">选择单位</h2>
+            <p id="browser-context"></p>
+            <div class="search-row">
+              <label class="search"
+                ><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                  <circle cx="10" cy="10" r="6" />
+                  <path d="m15 15 5 5" /></svg
+                ><input
+                  id="candidate-search"
+                  type="search"
+                  aria-label="搜索候选项"
+                  placeholder="搜索名称、词条或武器" /></label
+              ><select id="candidate-sort" aria-label="候选排序">
+                <option value="name">名称排序</option>
+                <option value="points">点数升序</option>
+              </select>
+            </div>
+            <div class="result-controls">
+              <span id="result-count"></span
+              ><label><input id="show-unavailable" type="checkbox" />显示不可选</label>
+            </div>
+            <label class="batch-apply" id="batch-apply" hidden
+              ><input type="checkbox" id="apply-all-units" /><span id="batch-label"></span
+            ></label>
+          </div>
+          <div id="card-grid" class="card-grid"></div>
+          <div class="browser-foot">
+            <span>查看词条可展开完整规则</span><span>选择后自动更新军表</span>
+          </div>
+        </aside>
+      </div>
+      <dialog id="issues-panel" aria-label="军表校验">
+        <div class="column-head">
+          <h2>军表校验</h2>
+          <button id="issues-close" class="text-button">关闭</button>
+        </div>
+        <div id="issues"></div>
+      </dialog>
+    </main>
+    <script>
+      window.addEventListener(
+        "error",
+        function (event) {
+          if (event.target && event.target.tagName === "SCRIPT") {
+            var status = document.getElementById("status");
+            status.textContent =
+              "页面组件未能载入：" +
+              event.target.getAttribute("src") +
+              "。请重启本地服务器后刷新页面。";
+            status.classList.add("error");
+          }
+        },
+        true,
+      );
+    </script>
+    <script src="dice-enums.js"></script>
+    <script src="rules-core.js"></script>
+    <script src="builder-model.js"></script>
+    <script src="builder-library.js"></script>
+    <script src="builder.js"></script>
+    <script src="builder-view.js"></script>
+    <script src="builder-home.js"></script>
+  </body>
+</html>
