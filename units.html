@@ -2,8 +2,25 @@
 <header><div><span class="eyebrow">SWL ARMY BUILDER CN / DATA STUDIO</span><h1>单位卡资料库</h1><nav class="module-nav"><a href="index.html">写表器</a><a href="maintenance.html">数据维护</a><a class="active" href="units.html">单位卡</a><a href="upgrades.html">升级卡</a><a href="commands.html">战术卡</a><a href="armies.html">军表</a><a href="rules.html">规则库</a></nav></div><div id="counts"></div><button id="new-unit" class="primary">新建单位卡</button><button id="copy-unit">复制当前单位</button><button id="reload">重新载入</button><button id="export">导出全部 JSON</button></header>
 <main><aside class="catalog"><input id="search" placeholder="搜索中文、英文、称号或 ID" aria-label="搜索单位"><div class="filters"><select id="faction" aria-label="阵营"><option value="">所有阵营</option></select><select id="review-filter" aria-label="校对状态"><option value="">全部状态</option><option value="needs_review">待校对</option><option value="reviewed">已校对</option></select></div><nav id="list" aria-label="单位卡列表"></nav></aside>
 <section class="workspace"><div class="editbar"><div><h2 id="title">载入中…</h2><p id="subtitle"></p></div><span id="dirty"></span><button id="save" class="primary">保存到源文件</button></div><p id="status" role="status" aria-live="polite"></p><div id="draft-banner" class="draft-banner" hidden></div><div class="tabs"><button data-tab="form" aria-pressed="true">字段编辑</button><button data-tab="rules" aria-pressed="false">规则限制</button><button data-tab="json" aria-pressed="false">原始 JSON</button><button data-tab="history" aria-pressed="false">文件历史</button><button data-tab="refs" aria-pressed="false">ID 对照 / 数据差异</button></div>
-<div id="form-pane"><section id="issues"></section><div class="editor-grid"><div><div class="section-heading">卡面与立绘</div><img id="front" alt="单位卡原图"><div class="image-tools"><button id="unit-image-upload" type="button">上传 / 更换卡图</button><input id="unit-image-file" type="file" accept="image/*" hidden></div><img id="portrait" alt="单位正面立绘"><p class="hint">原图不会修改。裁剪范围使用 0–1 比例，保存后生成独立立绘；历史版本仍保留原裁图。</p><div id="crop-controls"></div><details><summary>字段说明与提取依据</summary><div id="source"></div></details></div><div id="fields"></div><div id="keyword-params"></div></div></div>
+<div id="form-pane"><section id="issues"></section><div class="editor-grid"><div><div class="section-heading">卡面与缩略图</div>
+<div class="crop-home"><section id="portrait-editor" class="portrait-editor" aria-label="缩略图裁剪">
+  <div class="crop-toolbar"><strong>缩略图取景</strong><span>固定 4:5</span><button id="crop-enlarge" type="button">放大调整</button></div>
+  <div class="crop-stage" tabindex="0" role="group" aria-label="点击卡图定位裁剪框，拖动或用方向键移动" aria-describedby="crop-help">
+    <img id="front" alt="单位卡原图" draggable="false"><div class="crop-outline" hidden aria-hidden="true"><span>4:5</span></div>
+  </div>
+  <div class="crop-preview-row"><canvas id="portrait" width="240" height="300" role="img" aria-label="缩略图实时预览"></canvas>
+    <div class="crop-settings"><label for="crop-size">取景范围 <output id="crop-size-value" for="crop-size"></output></label>
+      <input id="crop-size" type="range" min="10" max="100" step="0.1" value="50">
+      <div class="crop-range-label"><span>局部</span><span>全景</span></div>
+      <p class="crop-position"></p><button id="crop-reset" type="button">还原位置</button>
+    </div>
+  </div>
+  <p id="crop-help" class="hint crop-feedback" role="status"></p>
+</section></div>
+<div class="image-tools"><button id="unit-image-upload" type="button">上传 / 更换卡图</button><input id="unit-image-file" type="file" accept="image/*" hidden></div>
+<p class="hint">原图保持完整，保存后生成独立缩略图。</p>
+<details><summary>字段说明与提取依据</summary><div id="source"></div></details></div><div id="fields"></div><div id="keyword-params"></div></div></div>
 <div id="rules-pane" hidden><div id="condition-editor"></div><div id="unit-rules"></div></div><div id="json-pane" hidden><p class="hint">编辑当前单位的完整 JSON，所有字段均可修改。切回字段编辑前会校验语法；保存写入 data/units.json。</p><textarea id="raw-json" spellcheck="false" aria-label="当前单位 JSON"></textarea><button id="apply-json">应用 JSON 到字段编辑</button></div>
 <div id="history-pane" hidden><p class="hint">每次保存前会在 history/ 保存完整源文件。恢复只替换当前单位，恢复前同样创建备份。</p><div id="history"></div></div>
 <div id="refs-pane" hidden><p class="hint">卡牌所属阵营与可加入军队是不同的 ID 表；军阶 ID 与排序也不同。条件槽仅记录，不执行解锁。专用槽不能替代普通训练或装备槽。</p><div id="reference-tables"></div><h3>当前单位数据差异</h3><pre id="comparison"></pre><details><summary>原始提取依据（归档）</summary><pre id="evidence"></pre></details></div></section></main><script src="dice-enums.js"></script><script src="combo.js"></script><script src="editor-shell.js"></script>
-<script src="editor-options.js"></script><script src="editor-forms.js"></script><script src="condition-editor.js"></script><script src="rule-editor.js"></script><script src="app.js"></script></body></html>
+<script src="editor-options.js"></script><script src="editor-forms.js"></script><script src="condition-editor.js"></script><script src="rule-editor.js"></script><dialog id="crop-dialog" class="crop-dialog" aria-label="放大调整缩略图"><div class="crop-dialog-heading"><h2>选择缩略图取景</h2><button class="crop-dialog-close" type="button">完成调整</button></div></dialog><script src="portrait-crop.js"></script><script src="app.js"></script></body></html>

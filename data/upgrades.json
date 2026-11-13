@@ -54818,7 +54818,7 @@
       "id": "upstream-131",
       "name": {
         "en": "C-3PO",
-        "zh": ""
+        "zh": "C-3PO"
       },
       "points": 15,
       "slotIds": [
@@ -54827,13 +54827,52 @@
       "usage": "counterpart",
       "description": {
         "en": [],
-        "zh": []
+        "zh": [
+          "将1个C-3PO搭档模型加入R2-D2所在单位。该模型有2点生命；在场时，合并单位获得下列搭档词条与能力。"
+        ]
       },
       "requirementsText": [],
-      "keywords": [],
-      "weapons": [],
+      "keywords": [
+        {
+          "id": "calculate_odds",
+          "action": "action"
+        },
+        {
+          "id": "pending_distract",
+          "action": "free-action"
+        },
+        {
+          "id": "counterpart",
+          "parameter": "R2-D2"
+        }
+      ],
+      "weapons": [
+        {
+          "name": {
+            "en": "Clumsy Kick",
+            "zh": "笨拙踢击"
+          },
+          "range": {
+            "min": 0,
+            "max": 0
+          },
+          "dice": {
+            "red": 0,
+            "black": 0,
+            "white": 1
+          },
+          "keywords": []
+        }
+      ],
       "assets": {
-        "front": null
+        "front": "assets/unit-cards/gar/originals/c3po_front.webp",
+        "portrait": "assets/portraits/republic-c3po-1882b968a2b1d44e4c94.webp",
+        "portraitCrop": [
+          0.005,
+          0.2,
+          0.333,
+          0.915
+        ]
       },
       "rules": {
         "availableIn": [
@@ -54872,9 +54911,7 @@
       "review": {
         "status": "needs_review",
         "notes": "",
-        "issues": [
-          "仅有上游结构化记录；缺少本地卡图/中文对应。"
-        ]
+        "issues": []
       },
       "restrictions": {
         "text": {
@@ -55152,7 +55189,7 @@
       "id": "upstream-22586",
       "name": {
         "en": "Grogu",
-        "zh": ""
+        "zh": "古古"
       },
       "points": 17,
       "slotIds": [
@@ -55161,13 +55198,40 @@
       "usage": "counterpart",
       "description": {
         "en": [],
-        "zh": []
+        "zh": [
+          "将1个古古搭档模型加入丁·贾林所在单位。该模型有1点生命；在场时，合并单位获得下列搭档词条与能力。"
+        ]
       },
       "requirementsText": [],
-      "keywords": [],
+      "keywords": [
+        {
+          "id": "mercenary",
+          "parameter": "义军同盟"
+        },
+        {
+          "id": "counterpart",
+          "parameter": "DIN DJARIN"
+        },
+        {
+          "id": "hunted"
+        },
+        {
+          "id": "latent_power"
+        },
+        {
+          "id": "small"
+        }
+      ],
       "weapons": [],
       "assets": {
-        "front": null
+        "front": "assets/unit-cards/mercenary/clan_covert/originals/grogu-covert_front.webp",
+        "portrait": "assets/portraits/mercenary-clan-covert-grogu-covert-2831b21f8cc7e6d6f838.webp",
+        "portraitCrop": [
+          0.005,
+          0.2,
+          0.333,
+          0.915
+        ]
       },
       "rules": {
         "availableIn": [
@@ -55211,9 +55275,7 @@
       "review": {
         "status": "needs_review",
         "notes": "",
-        "issues": [
-          "仅有上游结构化记录；缺少本地卡图/中文对应。"
-        ]
+        "issues": []
       },
       "restrictions": {
         "text": {
@@ -55230,7 +55292,7 @@
       "id": "upstream-3649",
       "name": {
         "en": "Grogu",
-        "zh": ""
+        "zh": "古古"
       },
       "points": 17,
       "slotIds": [
@@ -55239,13 +55301,40 @@
       "usage": "counterpart",
       "description": {
         "en": [],
-        "zh": []
+        "zh": [
+          "将1个古古搭档模型加入丁·贾林所在单位。该模型有1点生命；在场时，合并单位获得下列搭档词条与能力。"
+        ]
       },
       "requirementsText": [],
-      "keywords": [],
+      "keywords": [
+        {
+          "id": "mercenary",
+          "parameter": "义军同盟"
+        },
+        {
+          "id": "counterpart",
+          "parameter": "DIN DJARIN"
+        },
+        {
+          "id": "hunted"
+        },
+        {
+          "id": "latent_power"
+        },
+        {
+          "id": "small"
+        }
+      ],
       "weapons": [],
       "assets": {
-        "front": null
+        "front": "assets/unit-cards/mercenary/clan_covert/originals/grogu-covert_front.webp",
+        "portrait": "assets/portraits/mercenary-clan-covert-grogu-covert-2831b21f8cc7e6d6f838.webp",
+        "portraitCrop": [
+          0.005,
+          0.2,
+          0.333,
+          0.915
+        ]
       },
       "rules": {
         "availableIn": [
@@ -55289,9 +55378,7 @@
       "review": {
         "status": "needs_review",
         "notes": "",
-        "issues": [
-          "仅有上游结构化记录；缺少本地卡图/中文对应。"
-        ]
+        "issues": []
       },
       "restrictions": {
         "text": {
@@ -55456,7 +55543,7 @@
       "id": "upstream-167",
       "name": {
         "en": "Iden's ID10 Seeker Droid",
-        "zh": ""
+        "zh": "伊登的ID10搜索机器人"
       },
       "points": 0,
       "slotIds": [
@@ -55465,13 +55552,64 @@
       "usage": "counterpart",
       "description": {
         "en": [],
-        "zh": []
+        "zh": [
+          "将1个伊登的ID10搜索机器人搭档模型加入伊登·韦尔西奥所在单位。该模型有1点生命；在场时，合并单位获得下列搭档词条与能力。"
+        ]
       },
       "requirementsText": [],
-      "keywords": [],
-      "weapons": [],
+      "keywords": [
+        {
+          "id": "observe",
+          "value": 1,
+          "action": "free-action"
+        },
+        {
+          "id": "counterpart",
+          "parameter": "IDEN VERSIO"
+        },
+        {
+          "id": "recharge",
+          "value": 1
+        },
+        {
+          "id": "shielded",
+          "value": 1
+        },
+        {
+          "id": "small"
+        }
+      ],
+      "weapons": [
+        {
+          "name": {
+            "en": "Electro-Shock",
+            "zh": "电击"
+          },
+          "range": {
+            "min": 0,
+            "max": 1
+          },
+          "dice": {
+            "red": 0,
+            "black": 0,
+            "white": 3
+          },
+          "keywords": [
+            {
+              "id": "suppressive"
+            }
+          ]
+        }
+      ],
       "assets": {
-        "front": null
+        "front": "assets/unit-cards/empire/originals/id10-seeker_front.webp",
+        "portrait": "assets/portraits/empire-id10-seeker-6ede0662714642f5b97c.webp",
+        "portraitCrop": [
+          0.005,
+          0.2,
+          0.333,
+          0.915
+        ]
       },
       "rules": {
         "availableIn": [
@@ -55508,9 +55646,7 @@
       "review": {
         "status": "needs_review",
         "notes": "",
-        "issues": [
-          "仅有上游结构化记录；缺少本地卡图/中文对应。"
-        ]
+        "issues": []
       },
       "restrictions": {
         "text": {
@@ -56005,7 +56141,7 @@
       "id": "upstream-15628",
       "name": {
         "en": "Omega",
-        "zh": ""
+        "zh": "欧米伽"
       },
       "points": 10,
       "slotIds": [
@@ -56014,13 +56150,51 @@
       "usage": "counterpart",
       "description": {
         "en": [],
-        "zh": []
+        "zh": [
+          "将1个欧米伽搭档模型加入残次品小队所在单位。该模型有1点生命；在场时，合并单位获得下列搭档词条与能力。"
+        ]
       },
       "requirementsText": [],
-      "keywords": [],
-      "weapons": [],
+      "keywords": [
+        {
+          "id": "mercenary",
+          "parameter": "义军同盟"
+        },
+        {
+          "id": "counterpart",
+          "parameter": "THE BAD BATCH"
+        },
+        {
+          "id": "pending_i_m_part_of_the_squad_too"
+        }
+      ],
+      "weapons": [
+        {
+          "name": {
+            "en": "Zygerrian Energy Bow",
+            "zh": "扎格里亚能量弓"
+          },
+          "range": {
+            "min": 0,
+            "max": 2
+          },
+          "dice": {
+            "red": 0,
+            "black": 0,
+            "white": 2
+          },
+          "keywords": []
+        }
+      ],
       "assets": {
-        "front": "assets/upgrade-cards/upstream-15628.webp"
+        "front": "assets/upgrade-cards/upstream-15628.webp",
+        "portrait": "assets/portraits/mercenary-rogue-omega-ea9b3d80ae3b98ff24cf.webp",
+        "portraitCrop": [
+          0.005,
+          0.2,
+          0.333,
+          0.915
+        ]
       },
       "rules": {
         "availableIn": [
@@ -56057,9 +56231,7 @@
       "review": {
         "status": "needs_review",
         "notes": "",
-        "issues": [
-          "仅有上游结构化记录；缺少本地卡图/中文对应。"
-        ]
+        "issues": []
       },
       "restrictions": {
         "text": {

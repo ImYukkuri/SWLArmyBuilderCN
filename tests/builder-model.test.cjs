@@ -15,6 +15,24 @@ const data = {
   pkg: read("slot-rules.json"),
 };
 data.nameIndex = RulesCore.buildNameIndex(data.upgrades, data.defs);
+test("every counterpart has persisted art, effects, and resolved summaries/full rules", () => {
+  const cards = Object.values(data.upgrades).filter(c=>c.usage === 'counterpart');
+  assert.equal(cards.length, 5);
+  for (const card of cards) {
+    assert(card.name.zh, card.id);
+    assert(card.description.zh.join('').length > 20, card.id);
+    assert(fs.existsSync(path.join(root,card.assets.front)), card.id);
+    assert(fs.existsSync(path.join(root,card.assets.portrait)), card.id);
+    for (const host of [{factionId:1},{factionId:4}]) {
+      const view=BuilderModel.upgradePresentation(card,data,host);
+      assert.equal(view.keywords.length, new Set(view.keywords.map(k=>JSON.stringify(k))).size);
+      for (const k of view.keywords) {
+        const ref=data.defs.keywords.find(d=>d.id===k.id);
+        assert(ref?.name.zh && ref.summary && ref.full, card.id+' / '+k.id);
+      }
+    }
+  }
+});
 test("counterpart upgrades display existing unit art and abilities while retaining upgrade identity and rules", () => {
   const before = JSON.stringify(data);
   for (const id of ["upstream-167", "upstream-131", "upstream-15628", "upstream-22586", "upstream-3649"]) {

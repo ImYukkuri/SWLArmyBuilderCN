@@ -3008,12 +3008,15 @@
       "id": "pending_distract",
       "name": {
         "en": "Distract",
-        "zh": ""
+        "zh": "分散注意"
       },
-      "summary": "",
-      "full": "As a Free Card action, a unit with the Distract keyword can choose an enemy Trooper unit within Range 2 and in LOS. Until the end of the Round, when the chosen enemy unit makes an attack, it must attack the unit that used the Distract action, if able.\nWhile the chosen enemy unit is attacking the unit with the Distract keyword, each miniature in the enemy unit must choose an eligible weapon to contribute to an Attack Pool. The enemy unit may only declare additional defenders and form additional Attack Pools if, after first forming an Attack Pool with eligible weapons, there are still weapons usable by miniatures in the unit that were not eligible to be added to the first Attack Pool.\nWhen a unit uses the Distract keyword, if it has the Inconspicuous keyword, it loses Inconspicuous until the end of the Round.",
-      "timing": [],
-      "status": "english_only",
+      "summary": "免费行动：指定距离2内且视线中的敌方步兵；本回合其攻击时若能攻击本单位，就必须如此做。使用后失去不起眼至回合结束。",
+      "full": "免费行动：选择距离2内且视线中的一支敌方步兵单位。本回合结束前，该敌军攻击时，若能够攻击使用此能力的单位，就必须以它为目标。\n该敌军的每个模型都必须优先使用符合条件的武器组成攻击池。只有仍有模型可使用、但不能加入此攻击池的武器时，才能用这些武器另选防御者并组成其他攻击池。\n使用分散注意的单位若拥有不起眼，则失去不起眼直到本回合结束。",
+      "timing": [
+        "activation",
+        "attack"
+      ],
+      "status": "reviewed",
       "upstreamIds": [
         125
       ]
@@ -3250,13 +3253,15 @@
     {
       "id": "pending_i_m_part_of_the_squad_too",
       "name": {
-        "en": "I’m Part Of THE Squad Too",
-        "zh": ""
+        "en": "I'm Part of the Squad Too",
+        "zh": "我也是小队的一员"
       },
-      "summary": "",
-      "full": "A unit with the I’m Part of the Squad Too keyword is contesting an objective token if its unit leader is at Range 1 of that token instead of Range 1/2.",
-      "timing": [],
-      "status": "english_only",
+      "summary": "争夺目标的距离由½扩大到1，以单位队长测量。",
+      "full": "拥有此词条的单位在其单位队长距离目标标记1内时即可争夺该目标，替代通常的距离½要求。",
+      "timing": [
+        "global"
+      ],
+      "status": "reviewed",
       "upstreamIds": [
         131
       ]
@@ -3462,13 +3467,15 @@
     {
       "id": "counterpart",
       "name": {
-        "en": "counterpart",
+        "en": "Counterpart",
         "zh": "搭档"
       },
-      "summary": "",
-      "full": "",
-      "timing": [],
-      "status": "needs_review"
+      "summary": "作为模型加入指定单位，共享双方词条；各自使用自己的生命和武器。搭档被击败后移除其能力。",
+      "full": "搭档模型加入另一单位，组成一个合并单位。军阶、单位类型、防御骰、勇气、激增转换和速度使用母单位卡；搭档卡的不同单位类型只用于装备升级。\n合并单位共享双方卡上的词条；各模型使用自己卡上的生命和武器。指挥卡赋予的武器仅供非搭档模型使用。\n只剩单位队长这一名非搭档模型时，可向队长分配伤害。分配给非搭档模型的伤害可以改分给未被击败的搭档；若会击败最后一名非搭档模型，则必须改分给搭档。\n搭档装备的无武器升级供全单位使用，有武器升级仅供装备者使用。搭档被击败后，失去其卡牌的词条、能力、效果及其无武器升级的共享效果。",
+      "timing": [
+        "global"
+      ],
+      "status": "reviewed"
     },
     {
       "id": "resiliency",

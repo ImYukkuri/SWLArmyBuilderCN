@@ -1,4 +1,40 @@
 /* Maintenance forms use the roster's readable slate palette and card symbols. */
+.portrait-editor { min-width:0; margin-bottom:14px; }
+.crop-toolbar { display:flex; gap:8px; align-items:center; margin-bottom:8px; font-size:12px; }
+.crop-toolbar > span { color:var(--muted); }
+.crop-toolbar button { margin-left:auto; padding:4px 8px; }
+.crop-stage { position:relative; align-self:start; overflow:hidden; cursor:crosshair; touch-action:none; user-select:none; background:#dce4ea; border-radius:4px; min-height:48px; }
+.crop-stage[aria-disabled=true] { cursor:default; }
+.crop-stage #front { display:block; width:100%; max-width:none; margin:0; border-radius:0; }
+.crop-stage:focus-visible { outline:3px solid var(--accent); outline-offset:3px; }
+.crop-outline { position:absolute; border:2px solid #fff; outline:1px solid #285d79; box-shadow:0 0 0 2000px #16293688; pointer-events:none; }
+.crop-outline::before,.crop-outline::after { content:''; position:absolute; inset:33.333% 0; border-block:1px solid #ffffff70; }
+.crop-outline::after { inset:0 33.333%; border-block:0; border-inline:1px solid #ffffff70; }
+.crop-outline > span { position:absolute; top:4px; left:4px; padding:0 4px; font-size:10px; color:#fff; background:#253540c9; }
+.crop-preview-row { display:flex; gap:16px; align-items:center; margin-top:14px; }
+.crop-preview-row #portrait { width:80px; height:100px; max-height:none; border-radius:4px; background:#dce4ea; flex:none; }
+.crop-settings { flex:1; min-width:0; font-size:12px; }
+.crop-settings label,.crop-range-label { display:flex; justify-content:space-between; gap:8px; }
+.crop-settings input[type=range] { width:100%; padding:0; margin:7px 0 0; accent-color:var(--accent); cursor:pointer; }
+.crop-settings button { margin-top:6px; padding:3px 8px; font-size:12px; }
+.crop-range-label,.crop-position { color:var(--muted); font-size:11px; }
+.crop-feedback { margin-top:10px; min-height:38px; }
+.crop-dialog { width:min(1060px,calc(100vw - 24px)); max-height:calc(100dvh - 24px); padding:18px; border:1px solid var(--line); border-radius:8px; color:var(--ink); background:#f8fafc; }
+.crop-dialog::backdrop { background:#172f46aa; }
+.crop-dialog-heading { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:14px; }
+.crop-dialog-heading h2 { font-size:18px; }
+.crop-dialog .portrait-editor { display:grid; grid-template-columns:minmax(0,1fr) 190px; gap:10px 20px; margin:0; }
+.crop-dialog .crop-toolbar { grid-column:1/-1; }
+.crop-dialog #crop-enlarge { display:none; }
+.crop-dialog .crop-preview-row { flex-direction:column; align-self:start; align-items:stretch; margin-top:0; }
+.crop-dialog .crop-preview-row #portrait { width:120px; height:150px; align-self:center; }
+.crop-dialog .crop-feedback { grid-column:1/-1; }
+@media(max-width:600px) {
+  .crop-dialog { padding:12px; }
+  .crop-dialog .portrait-editor { display:block; }
+  .crop-dialog .crop-preview-row { flex-direction:row; margin-top:14px; }
+  .crop-dialog .crop-preview-row #portrait { width:80px; height:100px; }
+}
 body.maintenance-editor { --bg:#eef1f4;--panel:#fff;--line:#d2dde5;--ink:#253540;--muted:#607486;--accent:#285d79;--sw-ink:#253540;--sw-muted:#607486;--sw-accent:#285d79; background:var(--bg);color:var(--ink);padding-top:var(--editor-tools-height,170px);font:14px/1.6 "Microsoft YaHei","Segoe UI",sans-serif; }
 .maintenance-editor h1,.maintenance-editor h2,.maintenance-editor h3 {font-family:inherit;letter-spacing:0;text-transform:none;}
 .maintenance-editor button {background:#f5f8fa;color:var(--ink);border:1px solid #c5d3de;border-radius:4px;letter-spacing:0;}

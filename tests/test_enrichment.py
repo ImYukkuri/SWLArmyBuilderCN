@@ -10,7 +10,7 @@ class EnrichmentTest(unittest.TestCase):
         cls.units=json.loads((ROOT/'data/units.json').read_bytes())['units']
         cls.jobs=json.loads((ROOT/'work/weapon-jobs.json').read_bytes())
     def test_same_keyword_different_printed_actions(self):
-        expected=[('rebels-luke-skywalker-hero','jump','action'),('separatists-geonosian','jump','free-action'),('separatists-geonosian-engineer','jump','free-action'),('empire-id10-seeker','observe','free-action'),('republic-c3po','calculate_odds','action'),('republic-c3po','Distrract','free-action')]
+        expected=[('rebels-luke-skywalker-hero','jump','action'),('separatists-geonosian','jump','free-action'),('separatists-geonosian-engineer','jump','free-action'),('empire-id10-seeker','observe','free-action'),('republic-c3po','calculate_odds','action'),('republic-c3po','pending_distract','free-action')]
         for uid,key,action in expected:
             card=next(c for c in self.units if c['id']==uid)
             rule=next(k for k in card['keywords']if k.get('id')==key or k.get('id')=='pending_'+key.lower())

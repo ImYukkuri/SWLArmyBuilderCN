@@ -6444,8 +6444,7 @@
         "status": "needs_review",
         "notes": "",
         "issues": [
-          "机器提取初稿：请对照原图校对全部数值、图标与词条。",
-          "词条未匹配：Counterpart: Iden Versio"
+          "机器提取初稿：请对照原图校对全部数值、图标与词条。"
         ]
       },
       "factionId": 2,
@@ -6478,7 +6477,7 @@
           "action": "free-action"
         },
         {
-          "id": "pending_counterpart_iden_versio",
+          "id": "counterpart",
           "parameter": "IDEN VERSIO"
         },
         {
@@ -11177,8 +11176,7 @@
         "status": "needs_review",
         "notes": "",
         "issues": [
-          "机器提取初稿：请对照原图校对全部数值、图标与词条。",
-          "词条未匹配：Distrract；Counterpart: R2-D2"
+          "机器提取初稿：请对照原图校对全部数值、图标与词条。"
         ]
       },
       "factionId": 4,
@@ -11214,19 +11212,19 @@
           "action": "action"
         },
         {
-          "id": "pending_distrract",
+          "id": "pending_distract",
           "action": "free-action"
         },
         {
-          "id": "pending_counterpart_r2_d2",
+          "id": "counterpart",
           "parameter": "R2-D2"
         }
       ],
       "weapons": [
         {
           "name": {
-            "en": "Coomsviien",
-            "zh": ""
+            "en": "Clumsy Kick",
+            "zh": "笨拙踢击"
           },
           "range": {
             "min": 0,
@@ -14855,7 +14853,6 @@
         "notes": "",
         "issues": [
           "机器提取初稿：请对照原图校对全部数值、图标与词条。",
-          "词条未匹配：Counterpart: DIN Djarin",
           "卡面未发现武器栏；部分单位需通过 Equip 获得武器，请校对。"
         ]
       },
@@ -14875,10 +14872,10 @@
       "keywords": [
         {
           "id": "mercenary",
-          "parameter": "Q)"
+          "parameter": "义军同盟"
         },
         {
-          "id": "pending_counterpart_din_djarin",
+          "id": "counterpart",
           "parameter": "DIN DJARIN"
         },
         {
@@ -21251,8 +21248,7 @@
         "status": "needs_review",
         "notes": "",
         "issues": [
-          "机器提取初稿：请对照原图校对全部数值、图标与词条。",
-          "词条未匹配：Counterpart: THE BAD Batch；I’m Part Of THE Squad Too"
+          "机器提取初稿：请对照原图校对全部数值、图标与词条。"
         ]
       },
       "factionId": 3,
@@ -21283,10 +21279,10 @@
       "keywords": [
         {
           "id": "mercenary",
-          "parameter": ""
+          "parameter": "义军同盟"
         },
         {
-          "id": "pending_counterpart_the_bad_batch",
+          "id": "counterpart",
           "parameter": "THE BAD BATCH"
         },
         {
@@ -21297,7 +21293,7 @@
         {
           "name": {
             "en": "Zygerrian Energy Bow",
-            "zh": ""
+            "zh": "扎格里亚能量弓"
           },
           "range": {
             "min": 0,
@@ -21863,8 +21859,7 @@
         "status": "needs_review",
         "notes": "",
         "issues": [
-          "机器提取初稿：请对照原图校对全部数值、图标与词条。",
-          "词条未匹配：DD Distract；Counterpart: R2-D2"
+          "机器提取初稿：请对照原图校对全部数值、图标与词条。"
         ]
       },
       "factionId": 1,
@@ -21900,19 +21895,19 @@
           "action": "action"
         },
         {
-          "id": "pending_dd_distract",
+          "id": "pending_distract",
           "action": "free-action"
         },
         {
-          "id": "pending_counterpart_r2_d2",
+          "id": "counterpart",
           "parameter": "R2-D2"
         }
       ],
       "weapons": [
         {
           "name": {
-            "en": "Coomsviien",
-            "zh": ""
+            "en": "Clumsy Kick",
+            "zh": "笨拙踢击"
           },
           "range": {
             "min": 0,

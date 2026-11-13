@@ -2,8 +2,25 @@
 const node = (tag, cls, text) => {
   const n = el(tag, text);
   if (cls) n.className = cls;
+  if (typeof text === "string" && /行动/.test(text)) n.replaceChildren(actionText(text));
   return n;
 };
+// Shared by plain labels, rule text and icon substitutions; longest label wins.
+function actionText(text) {
+  const out = document.createDocumentFragment();
+  let pos = 0;
+  for (const match of text.matchAll(/免费行动(?:\s*[：:]\s*横置)?|行动/g)) {
+    out.append(document.createTextNode(text.slice(pos, match.index)));
+    const mark = document.createElement("span");
+    mark.className = "action-mark";
+    mark.textContent = match[0].replace(/\s*[：:]\s*/, "：");
+    mark.dataset.action = match[0].includes("横置") ? "free-exhaust" : match[0].startsWith("免费") ? "free" : "normal";
+    out.append(mark);
+    pos = match.index + match[0].length;
+  }
+  out.append(document.createTextNode(text.slice(pos)));
+  return out;
+}
 const named = (v) => (typeof v === "string" ? v : textParts(v?.zh).trim() ? v.zh : v?.en || "");
 const textParts = (v) => (Array.isArray(v) ? v : [v]).filter(Boolean).join("\n");
 const assetPath = (path) => (path ? DATA_BASE + path : "");
@@ -92,7 +109,7 @@ function proseNode(raw) {
   };
   let pos = 0;
   for (const m of text.matchAll(/\{@icon\.([\w-]+)\}/g)) {
-    box.append(document.createTextNode(text.slice(pos, m.index)));
+    box.append(actionText(text.slice(pos, m.index)));
     const token = node("span", "inline-token");
     if (ORDER_GLYPH[m[1]]) {
       token.append(
@@ -100,12 +117,11 @@ function proseNode(raw) {
         document.createTextNode(labels[m[1]] || m[1]),
       );
     } else
-      token.textContent =
-        labels[m[1]] || (/^range-/.test(m[1]) ? "距离 " + m[1].slice(6) : m[1]);
+      token.append(actionText(labels[m[1]] || (/^range-/.test(m[1]) ? "距离 " + m[1].slice(6) : m[1])));
     box.append(token);
     pos = m.index + m[0].length;
   }
-  box.append(document.createTextNode(text.slice(pos)));
+  box.append(actionText(text.slice(pos)));
   return box;
 }
 
@@ -772,10 +788,10 @@ function tag(k, { forceOpen = false, timing = false } = {}) {
       node(
         "span",
         "rule-action",
-        info.item.action === "free-action" ? "免费行动 " : "行动 ",
+        info.item.action === "free-action" ? "免费行动" : "行动",
       ),
     );
-  main.append(document.createTextNode(info.label));
+  main.append(actionText(info.label));
   if (k.origins?.length)
     main.append(
       node(
