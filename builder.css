@@ -3716,3 +3716,24 @@ body.sheet-open {
   .deck-pick-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 10px; gap: 10px; }
   .image-card-effect { font-size: 14px; }
 }
+
+/* Rank totals remain the primary readout at desktop and touch widths. */
+.rank-chip { display:grid; grid-template-columns:22px minmax(0,1fr) 16px; grid-template-areas:"symbol count add" "name name name"; gap:3px 8px; min-height:82px; padding:8px 10px; }
+.rank-chip > .rank-icon { grid-area:symbol; min-width:0; font-size:21px; color:var(--muted); }
+.rank-chip .rank-total { grid-area:count; display:block; color:#156b93; font:700 34px/1.05 var(--numeric); font-variant-numeric:tabular-nums; text-align:center; }
+.rank-chip.empty .rank-total { color:#8395a2; font-size:29px; }
+.rank-chip .rank-name { grid-area:name; display:flex; align-items:baseline; justify-content:center; gap:3px 8px; font-size:13px; }
+.rank-chip .rank-quota { font-size:10px; color:var(--muted); font-weight:400; }
+.rank-chip .rank-add { grid-area:add; color:var(--accent); font-size:20px; font-weight:400; }
+.rank-chip.active .rank-total,.rank-chip.active .rank-name,.rank-chip.active .rank-add,.rank-chip.active > .rank-icon { color:white; }
+.rank-chip.active .rank-quota { color:#d8e7ef; }
+.rank-chip.invalid:not(.active) .rank-total { color:#b44e3d; }
+.command-unit-requirements { display:flex; flex-wrap:wrap; gap:3px 9px; padding-top:5px; margin-top:5px; border-top:1px solid #cdd9e0; font-size:11px; }
+.command-unit-requirements > span:first-child { color:#c5d4de; }
+.command-unit-requirements .met { color:#b3e4ce; }
+.command-unit-requirements .missing { color:#ffbcaa; }
+@media(max-width:760px){
+  .rank-chip { min-height:78px; padding:7px 8px; gap:3px 5px; }
+  .rank-chip .rank-total { font-size:31px; }
+  .rank-chip .rank-name { font-size:12px; gap:2px 5px; }
+}

@@ -30,7 +30,8 @@
 | `pips` | int | 卡面印刷的游戏点数，0–9 均可（0/4 等特殊值按卡面保留） |
 | `slotPips` | int / null | 写表占用槽位点数（1–4），null 表示跟随 pips；卡面写「写表时视作 X pip」才填 X |
 | `factions` | int[] | 可用军队/战斗部队 ID；**空数组 = 不限制军队** |
-| `unlockedBy` | null 或 `[{id, propertyName:"units"}]` | 解锁单位（上游单位 ID）；**多个单位 = 全部在场才能用** |
+| `unlockedBy` | null 或 `[{id, propertyName:"units"}]` | 原有解锁候选：单位列表满足任意一项（兼容同一角色的不同版本）；升级引用仍各自必需 |
+| `requiredUnitGroups` | 上游单位 ID 的二维数组，可省略 | 所有组须同时满足；组内任一版本即可。例：`[[15,32594],[4,46,32593]]` 表示汉索罗和卢克各有一个版本编入 |
 | `titleMatch` | string | 称号包含匹配；军队中任一单位称号/名字包含此词即可；留空不使用 |
 | `owner` | string | 卡面归属文字（显示用） |
 | `orders` | {en, zh} | 下令单位文本 |
@@ -54,8 +55,9 @@
 
 1. 先查 `factions`：非空时，军队/战斗部队 ID 必须在列表里。
 2. 再查 `titleMatch`：非空时，军队里任一单位「称号包含词 / 词包含称号 / 名字包含词」即通过。
-3. 最后查 `unlockedBy`：非空时，**每个** `units` 项对应的上游 ID 都必须出现在军表里。
-4. 若 factions、titleMatch、unlockedBy 全空 → 通用卡。
+3. `unlockedBy`：单位候选满足任意一项；原有升级解锁要求逐项检查。
+4. `requiredUnitGroups`：每组至少一个单位的上游 ID 必须出现在军表；各组条件同时满足。选择器默认隐藏未满足条件的卡，勾选“显示不可选”可查看缺少的角色。移除必需单位后，已选卡保留但标为不满足条件。
+5. 若 factions、titleMatch、unlockedBy、requiredUnitGroups 全空 → 通用卡。
 
 军队留空 + unlockedBy 有单位 = 只跟随这些单位。
 军队留空 + titleMatch 有词 = 只跟随称号命中的单位。
@@ -71,3 +73,7 @@
 3. 图标按上面的标记表写，数字/单位保留原文。
 4. 完成后输出一个「id → 卡」的 JSON，导入时逐字段覆盖 `catalog-definitions.json` 里对应卡，不改其它字段。
 5. 校验：`python -X utf8 -m unittest discover -s tests -q`；重建：`python tools/build_public.py`。
+
+## 多单位条件编辑
+
+指挥卡资料库中，“解锁单位 · 满足其一”保留原有候选逻辑；“必须同时存在的单位”中每个条件组代表一项必需角色，可选择多个可替代版本。单位选择器支持中文、英文、称号、军阶和 ID 搜索，显示缩略图、称号及已选状态。取消不会修改草稿；确认后随卡牌保存。

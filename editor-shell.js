@@ -35,11 +35,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   document.body.prepend(shell);
   editor?.remove();
-  const measure = () =>
-    document.documentElement.style.setProperty(
-      "--editor-tools-height",
-      Math.ceil(shell.getBoundingClientRect().height) + "px",
-    );
+  let measuredHeight = "";
+  const measure = () => {
+    const height = Math.ceil(shell.getBoundingClientRect().height) + "px";
+    if (height === measuredHeight) return;
+    measuredHeight = height;
+    document.documentElement.style.setProperty("--editor-tools-height", height);
+  };
   new ResizeObserver(measure).observe(shell);
   measure();
   document.addEventListener("keydown", (e) => {

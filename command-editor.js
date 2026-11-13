@@ -58,12 +58,43 @@ function unitChipFor(unlock){
   const chip=mk('span');chip.className='unit-chip';
   if(unit&&unit.assets&&unit.assets.portrait){const img=mk('img');img.src=unit.assets.portrait;img.alt='';chip.append(img)}
   else{const ph=mk('span');ph.className='unit-chip-ph';ph.textContent='?';chip.append(ph)}
-  const name=unit?((unit.name&&(unit.name.zh||unit.name.en))||unit.id):('上游 '+upId);
-  chip.append(mk('b',name),mk('small','units:'+upId));
+  const source=defs?.sourceUnits?.find(u=>String(u.id)===upId);
+  const name=unit?((unit.name&&(unit.name.zh||unit.name.en))||unit.id):(source?.name?.zh||source?.name?.en||'上游 '+upId);
+  const body=mk('span');body.append(mk('b',name),mk('small',unit?.title?.zh||unit?.title?.en||source?.name?.en||'units:'+upId));
+  chip.append(body);
   chip.title=name+' · units:'+upId;
   return chip;
 }
 function field(label,control){const row=mk('label');row.className='field';row.append(mk('span',label),control);return row}
+function unitChoices(){
+  return (defs?.sourceUnits||[]).map(source=>{
+    const unit=unitsById[String(source.id)];
+    if(!unit)return {id:source.id,name:source.name};
+    const faction=defs.factions?.find(f=>f.id===unit.factionId), rank=defs.ranks?.find(r=>r.id===unit.rankId);
+    return {...unit,id:source.id,context:[faction?.name.zh,rank?.name.zh].filter(Boolean).join(' / ')};
+  });
+}
+function requiredUnitGroupsEditor(){
+  const section=mk('fieldset');section.className='command-requirement-editor';
+  section.append(mk('legend','必须同时存在的单位'));
+  const hint=mk('p','所有条件组都要满足；每组选择的是可互相替代的单位版本。例如：汉索罗一组，卢克一组。');hint.className='hint';section.append(hint);
+  const groups=draft.requiredUnitGroups||[];
+  const edit=index=>UnitPicker.openMulti(unitChoices(),groups[index]||[],ids=>{
+    if(!ids.length){status('每组至少选择一个单位版本；不再需要的条件可直接移除。',true);return;}
+    const next=groups.map(g=>[...g]);next[index]=ids.map(Number);draft.requiredUnitGroups=next;
+    setDirty();renderForm();
+  },{title:'选择第 '+(index+1)+' 组的单位版本',hint:'本组任意一个版本编入军表即可满足；不同条件组必须同时满足。'});
+  groups.forEach((ids,index)=>{
+    const row=mk('div');row.className='command-requirement-group';
+    const header=mk('div');header.className='requirement-group-head';header.append(mk('b','条件 '+(index+1)),mk('span','以下版本任选其一'));
+    const change=mk('button','选择 / 修改版本');change.type='button';change.onclick=()=>edit(index);
+    const remove=mk('button','移除此组');remove.type='button';remove.onclick=()=>{draft.requiredUnitGroups=groups.filter((_,i)=>i!==index);setDirty();renderForm();};header.append(change,remove);
+    const chips=mk('div');chips.className='unit-chips';for(const id of ids)chips.append(unitChipFor({id}));
+    row.append(header,chips);section.append(row);
+  });
+  const add=mk('button','＋ 添加必需单位组');add.type='button';add.onclick=()=>edit(groups.length);section.append(add);
+  return section;
+}
 function renderForm(){
   const box=$('#form');box.replaceChildren();
   document.querySelector('.editor-global-actions .card-actions')?.remove();
@@ -132,20 +163,20 @@ function renderForm(){
   const unBtn=mk('button','选择解锁单位（'+((draft.unlockedBy||[]).filter(u=>u.propertyName==='units').length)+'）');unBtn.type='button';
   unBtn.onclick=()=>{
     if(!window.UnitPicker){status('单位选择器未载入',true);return}
-    const units=((defs&&defs.sourceUnits)||[]).map(s=>({id:s.id,name:s.name}));
+    const units=unitChoices();
     const selectedIds=(draft.unlockedBy||[]).filter(u=>u.propertyName==='units').map(u=>String(u.id));
     window.UnitPicker.openMulti(units,selectedIds,ids=>{
-      draft.unlockedBy=ids.map(id=>({id:Number(id),propertyName:'units'}));
+      draft.unlockedBy=[...(draft.unlockedBy||[]).filter(x=>x.propertyName!=='units'||x.id==null),...ids.map(id=>({id:Number(id),propertyName:'units'}))];
       setDirty();renderForm();
     });
   };
   const unClear=mk('button','清空单位');unClear.type='button';unClear.className='minor';
-  unClear.onclick=()=>{draft.unlockedBy=[];setDirty();renderForm()};
+  unClear.onclick=()=>{draft.unlockedBy=(draft.unlockedBy||[]).filter(x=>x.propertyName!=='units'||x.id==null);setDirty();renderForm()};
   unRow.append(unBtn,unClear);
   unBox.append(unRow);
   for(const un of (draft.unlockedBy||[]).filter(u=>u.propertyName==='units'))unBox.append(unitChipFor(un));
-  const unHint=mk('p','有解锁单位且军队留空 = 指挥卡只跟随这些单位，不受军队/战斗部队限制。');unHint.className='hint';unBox.append(unHint);
-  box.append(field('解锁单位（unlockedBy）',unBox));
+  const unHint=mk('p','此列表满足任意一项即可。要求多个角色同时编入时，请在下方分别添加必需单位组。');unHint.className='hint';unBox.append(unHint);
+  box.append(field('解锁单位 · 满足其一',unBox),requiredUnitGroupsEditor());
 
   for(const [key,label] of [['orders','指令文本'],['description','效果文本']]){
     for(const lang of ['en','zh']){
@@ -200,7 +231,7 @@ async function reload(){
     const [res,unitsRes]=await Promise.all([call('/api/commands'),fetch('data/units.json').then(r=>r.json())]);
     catalog=res.catalog;revision=res.revision;
     defs=await fetch('data/catalog-definitions.json').then(r=>r.json());
-    unitsById=Object.fromEntries((unitsRes.units||[]).map(u=>[String((u.upstream||{}).id||''),u]));
+    unitsById=Object.fromEntries((unitsRes.units||[]).filter(u=>u.upstream?.collection==='units').map(u=>[String(u.upstream.id),u]));
     dirty=false;$('#dirty').textContent='';
     const first=(catalog.commands||[])[0];
     renderList();
@@ -249,6 +280,7 @@ $('#image-file').onchange=async()=>{
   }catch(e){if(window.SaveUI)SaveUI.fail(e,reload);else status(e.message,true)}
   finally{busy=false;$('#image-upload').disabled=false;$('#image-file').value=''}
 };
-for(const id of ['search','pip-filter','art-filter']){const n=$('#'+id);n.oninput=renderList;n.onchange=renderList}
+// Search already redraws on input. Redrawing again on blur removes a clicked card before click fires.
+for(const id of ['search','pip-filter','art-filter']){const n=$('#'+id);if(n.tagName==='SELECT')n.onchange=renderList;else n.oninput=renderList;}
 window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue=''}});
 reload();

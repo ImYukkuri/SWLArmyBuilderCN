@@ -375,14 +375,17 @@ function renderRankBar(report) {
     );
     if (report.issues.some((i) => i.status === "invalid" && Number(i.rank) === rank))
       b.classList.add("invalid");
-    const text = node("span", "rank-name", "＋ " + RANK_SHORT[rank]);
+    b.dataset.rank = rank;
+    b.classList.toggle("empty", count === 0);
+    const text = node("span", "rank-name", RANK_SHORT[rank]);
     const limits = quota ? (quota.min ?? 0) + "–" + (quota.max ?? "不限") : "未设配额";
     text.append(
-      node("span", "rank-total", count + " 已编入"),
-      node("span", "rank-quota", limits),
+      node("span", "rank-quota", "配额 " + limits),
     );
-    b.append(node("span", "rank-icon", RANK_GLYPH[rank]), text);
-    b.title = "添加" + RANK_SHORT[rank] + "单位；允许数量 " + limits;
+    const countDisplay = node("strong", "rank-total", count || "—");
+    countDisplay.setAttribute("aria-label", "当前 " + count + " 个单位");
+    b.append(node("span", "rank-icon", RANK_GLYPH[rank]), countDisplay, text, node("span", "rank-add", "+"));
+    b.title = "当前 " + count + " 个" + RANK_SHORT[rank] + "单位；允许数量 " + limits + "；点击添加";
     b.onclick = () => selectContext({ mode: "units", rank }, b);
     bar.append(b);
   }
@@ -1592,6 +1595,17 @@ function commandCard(card, { state, slotIndex = null }) {
   expand.onclick = () => fold(false, true);
   const overlay = node("div", "command-overlay");
   overlay.append(commandBody(card, { keywords: false, collapse }));
+  const requirements = RulesCore.commandUnitRequirements(card, army, data.units, data.defs);
+  if (requirements.length) {
+    const line = node("div", "command-unit-requirements");
+    line.append(node("span", null, "同时编入"));
+    for (const group of requirements) {
+      const item = node("span", group.met ? "met" : "missing", (group.met ? "✓ " : "○ ") + group.label);
+      item.title = group.met ? "已满足" : "尚未编入：本组任选一个版本";
+      line.append(item);
+    }
+    overlay.append(line);
+  }
   if (card.slotPips != null && card.slotPips !== card.pips)
     overlay.append(
       node("p", "eligibility-note", "组军占用 " + card.slotPips + " 牌点槽位"),

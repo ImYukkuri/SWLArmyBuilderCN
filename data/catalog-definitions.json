@@ -16945,7 +16945,18 @@
         "en": "Han Solo and Luke Skywalker may each make a Speed-1 Move. This Round, when Luke Skywalker begins his Activation while within {@icon.range-2} of Han Solo, he gains 1 Aim token and 1 Dodge token. Additionally, when Han Solo begins his Activation while within {@icon.range-2} of Luke Skywalker this Round, he gains 1 Aim token and 1 Dodge token.",
         "zh": "汉·索洛和卢克·天行者可以各自进行一次速度1移动。\n\n本轮卢克·天行者在汉·索洛{@icon.range-2}内开始激活时，获得1个瞄准标记和1个闪避标记。此外，本轮汉·索洛在卢克·天行者{@icon.range-2}内开始激活时，获得1个瞄准标记和1个闪避标记。"
       },
-      "image": "assets/command-cards/18903.webp"
+      "image": "assets/command-cards/18903.webp",
+      "requiredUnitGroups": [
+        [
+          15,
+          32594
+        ],
+        [
+          4,
+          46,
+          32593
+        ]
+      ]
     },
     {
       "id": "18898",

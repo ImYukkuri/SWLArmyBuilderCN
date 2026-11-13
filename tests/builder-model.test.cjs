@@ -15,6 +15,28 @@ const data = {
   pkg: read("slot-rules.json"),
 };
 data.nameIndex = RulesCore.buildNameIndex(data.upgrades, data.defs);
+test("Not Out of it Yet requires both character groups, allowing each printed unit version", () => {
+  const cmd = data.defs.commands.find(c=>c.id==='18903');
+  const hans=['rebels-solo','rebels-han-solo-tauntaun'];
+  const lukes=['rebels-luke-skywalker-hero','rebels-luke-skywalker-jedi','rebels-luke-tauntaun'];
+  const check=(ids,expected)=>{
+    const army={armyId:1,mode:'standard',pointsLimit:1000,units:ids.map((unitId,i)=>({unitId,instanceId:'req-'+i,upgrades:[]})),commandIds:[cmd.id],options:[]};
+    const before=JSON.stringify(army);
+    assert.equal(RulesCore.commandUnitRequirements(cmd,army,data.units,data.defs).every(g=>g.met),expected);
+    assert.equal(!RulesCore.validateArmy(army,data).issues.some(i=>i.code==='command_required_units'),expected);
+    assert.equal(JSON.stringify(army),before);
+  };
+  check([],false);
+  for(const han of hans){check([han],false);for(const luke of lukes)check([han,luke],true);}
+  for(const luke of lukes)check([luke],false);
+  check([hans[0],hans[0]],false);
+});
+test("ordinary command alternatives still unlock with one version; counterpart namespaces do not satisfy unit groups",()=>{
+  const army={armyId:1,mode:'standard',pointsLimit:1000,units:[{unitId:'rebels-luke-skywalker-hero',instanceId:'a',upgrades:[]}],commandIds:['11'],options:[]};
+  assert(!RulesCore.validateArmy(army,data).issues.some(i=>i.code==='command_unlock'));
+  const fake={id:'counterpart-test',upstream:{collection:'upgrades',id:'15'}};
+  assert.equal(RulesCore.commandUnitRequirements({requiredUnitGroups:[[15]]},{units:[{unitId:fake.id}]},{[fake.id]:fake},data.defs)[0].met,false);
+});
 test("every counterpart has persisted art, effects, and resolved summaries/full rules", () => {
   const cards = Object.values(data.upgrades).filter(c=>c.usage === 'counterpart');
   assert.equal(cards.length, 5);

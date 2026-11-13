@@ -818,6 +818,9 @@ window.RulesCore = (() => {
       const cmd = (defs.commands || []).find(x => String(x.id) === String(cid));
       if (!cmd) { issue("invalid", "command_missing", `命令卡引用不存在：${cid}`, null); continue; }
       const name = (cmd.name && cmd.name.en) || cid;
+      const missingUnits = commandUnitRequirements(cmd, army, units, defs).filter(g => !g.met);
+      if (missingUnits.length) issue('invalid', 'command_required_units',
+        `命令卡「${name}」还需加入：${missingUnits.map(g => g.label).join('、')}（每组任选一个版本，所有组都须满足）`, null);
       const title = String(cmd.titleMatch || '').trim();
       if (title) {
         const key = normalizeKey(title);
@@ -967,5 +970,20 @@ window.RulesCore = (() => {
     return { status: hasInvalid ? "invalid" : (hasUnknown ? "unknown" : "valid"), basePoints, effectivePoints, rankCounts: maxCounts, issues };
   }
 
-  return { Dice, evaluate, validateArmy, unitContext, upgradeEligibility, entourageExemptions, armyRank, slotKey, accessKeys, slotGrantsFor, dedicatedSlotKeys, slotListFor, restrictionConditionOk, requiredPropertiesOk, normRp, buildNameIndex, unavailableSets, unitCapFor };
+  // Groups are ANDed; alternate unit versions inside a group are ORed.
+  // Counterpart upgrades are a separate namespace and cannot satisfy a unit ID.
+  function commandUnitRequirements(command, army, units, defs) {
+    const present = new Set((army.units || []).map(i => units[i.unitId]).filter(u =>
+      u && u.upstream?.collection === 'units').map(u => String(u.upstream.id)));
+    return (command.requiredUnitGroups || []).map(unitIds => {
+      const names = unitIds.map(id => {
+        const unit = Object.values(units).find(u => u.upstream?.collection === 'units' && String(u.upstream.id) === String(id));
+        const source = (defs.sourceUnits || []).find(u => String(u.id) === String(id));
+        return unit?.name?.zh || unit?.name?.en || source?.name?.zh || source?.name?.en?.split(' · ')[0] || '单位 ' + id;
+      });
+      return { unitIds, label: [...new Set(names)].join(' / '), met: unitIds.some(id => present.has(String(id))) };
+    });
+  }
+
+  return { Dice, evaluate, validateArmy, unitContext, upgradeEligibility, entourageExemptions, armyRank, slotKey, accessKeys, slotGrantsFor, dedicatedSlotKeys, slotListFor, restrictionConditionOk, requiredPropertiesOk, normRp, buildNameIndex, unavailableSets, unitCapFor, commandUnitRequirements };
 })();

@@ -999,6 +999,17 @@ def validate_army(army):
             issue("unknown", "command_campaign", f"命令卡「{name}」为战役卡，标准模式资格待核验", None)
         army_units = [units.get(inst.get("unitId")) for inst in army.get("units", [])]
         army_units = [u for u in army_units if u]
+        present_unit_ids = {str(u['upstream']['id']) for u in army_units if (u.get('upstream') or {}).get('collection') == 'units'}
+        for group in cmd.get('requiredUnitGroups') or []:
+            if not any(str(uid) in present_unit_ids for uid in group):
+                names = []
+                for uid in group:
+                    local = next((u for u in units.values() if (u.get('upstream') or {}).get('collection') == 'units' and str(u['upstream']['id']) == str(uid)), None)
+                    source = next((u for u in definitions.get('sourceUnits', []) if str(u['id']) == str(uid)), None)
+                    nm = (local or source or {}).get('name') or {}
+                    label = nm.get('zh') or nm.get('en') or f'单位 {uid}'
+                    if label not in names: names.append(label)
+                issue('invalid', 'command_required_units', f'命令卡「{name}」还需加入：{" / ".join(names)}（本组任选一个版本，所有组都须满足）', None)
         if cmd.get("mercenary"):
             def _merc(u):
                 if any((k or {}).get("id") == "mercenary" for k in (u.get("keywords") or [])):

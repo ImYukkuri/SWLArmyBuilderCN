@@ -179,117 +179,81 @@
   });
 })();
 
-/* Multi-select unit picker dialog (shared by the rule editors). */
+/* Search and selection are shared by command conditions and rule editors. */
 window.UnitPicker = (() => {
-  function ensureStyle() {
-    if (document.getElementById('unit-picker-style')) return;
-    const style = document.createElement('style');
-    style.id = 'unit-picker-style';
-    style.textContent =
-      '.unit-picker-overlay{position:fixed;inset:0;background:rgba(15,23,42,.45);display:flex;align-items:center;justify-content:center;z-index:1000}' +
-      '.unit-picker{background:#fff;border-radius:12px;width:min(460px,92vw);max-height:82vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.35)}' +
-      '.unit-picker-head{display:flex;gap:8px;padding:12px;border-bottom:1px solid #e5e7eb;align-items:center}' +
-      '.unit-picker-head strong{white-space:nowrap}' +
-      '.unit-picker-head input{flex:1;padding:8px 10px;border:1px solid #d1d5db;border-radius:8px;font-size:14px}' +
-      '.unit-picker-close{border:0;background:transparent;font-size:20px;cursor:pointer;padding:4px 8px}' +
-      '.unit-picker-list{overflow:auto;padding:8px;display:flex;flex-direction:column;gap:4px}' +
-      '.unit-picker-list .empty{padding:16px;color:#6b7280;text-align:center}' +
-      '.unit-picker-item{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:8px 10px;border:1px solid #e5e7eb;border-radius:8px;background:#f9fafb;cursor:pointer;text-align:left;font-size:14px}' +
-      '.unit-picker-item:hover{background:#eef2ff;border-color:#c7d2fe}' +
-      '.unit-picker-item.selected{background:#e0e7ff;border-color:#818cf8}' +
-      '.unit-picker-item small{color:#6b7280}' +
-      '.unit-picker-foot{display:flex;gap:8px;padding:10px 12px;border-top:1px solid #e5e7eb}' +
-      '.unit-picker-foot button{padding:6px 14px;border-radius:8px;border:1px solid #d1d5db;background:#f9fafb;cursor:pointer}' +
-      '.unit-picker-foot .primary{background:#4f46e5;color:#fff;border-color:#4f46e5;margin-left:auto}';
-    document.head.append(style);
-  }
-
-  function openMulti(units, selected, onConfirm) {
-    ensureStyle();
-    const overlay = document.createElement('div');
-    overlay.className = 'unit-picker-overlay';
-    const dialog = document.createElement('div');
-    dialog.className = 'unit-picker';
-    const head = document.createElement('div');
-    head.className = 'unit-picker-head';
-    const title = document.createElement('strong');
-    title.textContent = '选择单位（可多选）';
-    const input = document.createElement('input');
-    input.placeholder = '搜索 ID / 中文名 / 英文名';
-    const closeBtn = document.createElement('button');
-    closeBtn.type = 'button';
-    closeBtn.className = 'unit-picker-close';
-    closeBtn.textContent = '×';
-    head.append(title, input, closeBtn);
-    const list = document.createElement('div');
-    list.className = 'unit-picker-list';
-    const foot = document.createElement('div');
-    foot.className = 'unit-picker-foot';
-    const clearBtn = document.createElement('button');
-    clearBtn.type = 'button';
-    clearBtn.textContent = '清空';
-    const cancelBtn = document.createElement('button');
-    cancelBtn.type = 'button';
-    cancelBtn.textContent = '取消';
-    const okBtn = document.createElement('button');
-    okBtn.type = 'button';
-    okBtn.className = 'primary';
-    okBtn.textContent = '确定';
-    foot.append(clearBtn, cancelBtn, okBtn);
-    dialog.append(head, list, foot);
-    overlay.append(dialog);
-
-    const sel = new Set((selected || []).map(String));
-    const items = units || [];
-
-    function draw(filter) {
-      list.replaceChildren();
-      const f = String(filter || '').trim().toLowerCase();
-      const rows = items.filter(it => {
-        if (!f) return true;
-        return String(it.id).toLowerCase().includes(f) ||
-          ((it.name && it.name.zh) || '').toLowerCase().includes(f) ||
-          ((it.name && it.name.en) || '').toLowerCase().includes(f);
-      }).slice(0, 300);
-      if (!rows.length) {
-        const p = document.createElement('p');
-        p.className = 'empty';
-        p.textContent = '无匹配单位';
-        list.append(p);
-        return;
+  let current = null;
+  const node = (tag, cls, text) => {
+    const n = document.createElement(tag); if (cls) n.className = cls;
+    if (text != null) n.textContent = text; return n;
+  };
+  function openMulti(units, selected, onConfirm, options = {}) {
+    current?.close();
+    const opener = document.activeElement;
+    const dialog = node('dialog', 'unit-picker'); current = dialog;
+    dialog.setAttribute('aria-label', options.title || '选择单位版本');
+    const head = node('div', 'unit-picker-head');
+    const title = node('div'); title.append(node('h2', null, options.title || '选择单位版本'),
+      node('p', null, options.hint || '可多选；搜索名称、称号、军阶或 ID。'));
+    const close = node('button', 'unit-picker-close', '×'); close.type = 'button';
+    close.setAttribute('aria-label','关闭单位选择'); close.onclick=()=>dialog.close(); head.append(title,close);
+    const search = node('input', 'unit-picker-search');search.type='search';
+    search.placeholder='搜索中文 / 英文 / 称号 / ID';search.setAttribute('aria-label','搜索单位版本');
+    const selectedArea = node('div', 'unit-picker-selected'); selectedArea.setAttribute('aria-label','已选单位版本');
+    const tools=node('div','unit-picker-tools'), result=node('span');
+    const onlyLabel=node('label'), only=node('input');only.type='checkbox';onlyLabel.append(only,document.createTextNode('只看已选'));
+    tools.append(result,onlyLabel);
+    const list = node('div', 'unit-picker-list');
+    const foot=node('div','unit-picker-foot'), count=node('span');count.setAttribute('role','status');
+    const clear=node('button',null,'清空'),cancel=node('button',null,'取消'),confirm=node('button','primary','确认选择');
+    for(const button of [clear,cancel,confirm])button.type='button';
+    foot.append(count,clear,cancel,confirm);dialog.append(head,search,selectedArea,tools,list,foot);
+    const sel=new Set((selected||[]).map(String));
+    const items=[...new Map((units||[]).map(u=>[String(u.id),u])).values()];
+    const byId=new Map(items.map(u=>[String(u.id),u]));
+    const label = u => u?.name?.zh || u?.name?.en || String(u?.id || '');
+    function updateSelection() {
+      selectedArea.replaceChildren();
+      for(const id of sel){
+        const u=byId.get(id), name=label(u)||'单位 '+id;
+        const version=u?.title?.zh||u?.title?.en||'';
+        const chip=node('button',null,name+(version?' · '+version:'')+' ×');chip.type='button';chip.title=version||id;
+        chip.setAttribute('aria-label','移除 '+name+' '+id);
+        chip.onclick=()=>{sel.delete(id);draw();search.focus();};selectedArea.append(chip);
       }
-      for (const it of rows) {
-        const b = document.createElement('button');
-        b.type = 'button';
-        b.className = 'unit-picker-item' + (sel.has(String(it.id)) ? ' selected' : '');
-        const strong = document.createElement('strong');
-        strong.textContent = (it.name && (it.name.zh || it.name.en)) || it.id;
-        const small = document.createElement('small');
-        small.textContent = ((it.name && it.name.en) || '') + ' · ' + it.id;
-        b.append(strong, small);
-        b.onclick = () => {
-          const id = String(it.id);
-          if (sel.has(id)) sel.delete(id); else sel.add(id);
-          draw(input.value);
-        };
-        list.append(b);
+      selectedArea.hidden=!sel.size;count.textContent='已选 '+sel.size+' 个版本';
+      for(const row of list.querySelectorAll('.unit-picker-item')){
+        const chosen=sel.has(row.dataset.id);row.classList.toggle('selected',chosen);
+        row.setAttribute('aria-pressed',String(chosen));row.querySelector('.unit-picker-check').textContent=chosen?'✓':'＋';
       }
     }
-
-    function close() { overlay.remove(); }
-    closeBtn.onclick = close;
-    cancelBtn.onclick = close;
-    clearBtn.onclick = () => { sel.clear(); draw(input.value); };
-    okBtn.onclick = () => { onConfirm([...sel]); close(); };
-    input.addEventListener('input', () => draw(input.value));
-    overlay.addEventListener('mousedown', e => { if (e.target === overlay) close(); });
-
-    document.body.append(overlay);
-    draw('');
-    input.focus();
+    function draw() {
+      list.replaceChildren();const q=search.value.trim().toLocaleLowerCase();
+      const rows=items.filter(u=>(!only.checked||sel.has(String(u.id)))&&(!q||
+        [u.id,u.name?.zh,u.name?.en,u.title?.zh,u.title?.en,u.context].filter(Boolean).join(' ').toLocaleLowerCase().includes(q)));
+      result.textContent=rows.length+' 个可选版本';
+      if(!rows.length)list.append(node('p','empty','没有匹配的单位版本。'));
+      for(const u of rows){
+        const row=node('button','unit-picker-item');row.type='button';row.dataset.id=String(u.id);
+        if(u.assets?.portrait){const img=node('img');img.src=u.assets.portrait;img.alt='';img.loading='lazy';row.append(img);}
+        else row.append(node('span','unit-picker-art-placeholder','◇'));
+        const body=node('span','unit-picker-body');body.append(node('strong',null,label(u)));
+        if(u.name?.en)body.append(node('span','unit-picker-english',u.name.en));
+        const subtitle=[u.title?.zh||u.title?.en,u.context].filter(Boolean).join(' · ');
+        if(subtitle)body.append(node('small',null,subtitle));
+        body.append(node('small','unit-picker-id','ID '+u.id));
+        row.append(body,node('span','unit-picker-check'));
+        row.onclick=()=>{const id=String(u.id);if(sel.has(id))sel.delete(id);else sel.add(id);if(only.checked)draw();else updateSelection();};
+        list.append(row);
+      }
+      updateSelection();
+    }
+    search.oninput=draw;only.onchange=draw;clear.onclick=()=>{sel.clear();draw();};cancel.onclick=()=>dialog.close();
+    confirm.onclick=()=>{const ids=[...sel];dialog.close();onConfirm(ids);};
+    dialog.addEventListener('close',()=>{dialog.remove();if(current===dialog)current=null;if(opener?.isConnected)opener.focus();});
+    dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}});
+    document.body.append(dialog);draw();dialog.showModal();search.focus();
   }
-
-  return { openMulti };
+  return {openMulti};
 })();
 
 /* Save feedback: distinguish "saved" from "save refused because the file moved on". */

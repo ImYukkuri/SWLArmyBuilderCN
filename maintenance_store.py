@@ -31,6 +31,12 @@ def validate(kind,card):
         if not isinstance(card.get('factions')or[],list)or any(type(f)is not int for f in card.get('factions')or[]):raise ValueError('factions 必须是军队 ID 数组')
         for un in card.get('unlockedBy')or[]:
             if not isinstance(un,dict)or 'id'not in un or un.get('propertyName')not in ('units','upgrades'):raise ValueError('unlockedBy 需要 {id, propertyName}')
+        groups=card.get('requiredUnitGroups',[])
+        if not isinstance(groups,list):raise ValueError('必须同时存在的单位条件需要分组数组')
+        for group in groups:
+            if not isinstance(group,list)or not group:raise ValueError('每个必需单位组至少选择一个单位版本')
+            if any(type(uid)not in (int,str)or not str(uid).isdigit()or int(uid)<=0 for uid in group):raise ValueError('必需单位组需要有效的上游单位 ID')
+            if len({str(uid)for uid in group})!=len(group):raise ValueError('同一条件组不能重复选择同一单位版本')
         for field in ('description','orders'):
             value=card.get(field)
             if value is not None and (not isinstance(value,dict)or any(not isinstance(value.get(k),str)for k in ('en','zh')if k in value)):raise ValueError(field+' 必须是 {en,zh} 文本对象')

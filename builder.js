@@ -403,6 +403,7 @@ function isMercenaryUnit(u) {
 }
 
 function commandAvailable(cmd) {
+  if (RulesCore.commandUnitRequirements(cmd, army, data.units, data.defs).some(g => !g.met)) return false;
   const facs = cmd.factions || [];
   const armyId = Number(army.armyId);
   const parent = (data.defs.armies || []).find((a) => a.id === armyId) ? null : null;
@@ -609,15 +610,17 @@ function computeItemState(card) {
   }
   const chosen = String(army.commandIds[browser.slotIndex]) === String(card.id);
   const taken = army.commandIds.map(String).includes(String(card.id));
-  return chosen
-    ? { kind: "chosen", label: "已选择", ok: false }
-    : !commandAvailable(card)
+  return !commandAvailable(card)
       ? {
           kind: "blocked",
           label: "不满足要求",
-          reason: "当前军队或在场单位不满足此卡的使用条件。",
+          reason: RulesCore.commandUnitRequirements(card, army, data.units, data.defs).some(g => !g.met)
+            ? "还需加入：" + RulesCore.commandUnitRequirements(card, army, data.units, data.defs).filter(g => !g.met).map(g => g.label).join("、")
+            : "当前军队或在场单位不满足此卡的使用条件。",
           ok: false,
         }
+      : chosen
+        ? { kind: "chosen", label: "已选择", ok: false }
       : taken
         ? {
             kind: "blocked",

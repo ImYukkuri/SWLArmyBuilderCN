@@ -23,10 +23,15 @@ window.PortraitCrop = (() => {
     const reset = root.querySelector('#crop-reset'), enlarge = root.querySelector('#crop-enlarge');
     const dialog = document.querySelector('#crop-dialog'), home = root.parentNode;
     let box = null, original = null, drag = null, generation = 0, ready = false;
+    let pendingPaint = 0;
+    const shade = document.createElement('div'); shade.className='crop-shade';shade.setAttribute('aria-hidden','true');
+    for(const edge of ['top','bottom','left','right']){const part=document.createElement('i');part.className=edge;shade.append(part);}
+    stage.insertBefore(shade,outline);
     const scale = () => (box[2] - box[0]) * image.naturalWidth / Math.min(image.naturalWidth, image.naturalHeight * ratio);
     function paint(changed = false) {
       if (!ready) return;
       const [l, t, r, b] = box;
+      for(const [key,value] of Object.entries({left:l,top:t,right:1-r,bottom:1-b}))stage.style.setProperty('--crop-'+key,value*100+'%');
       outline.hidden = false;
       Object.assign(outline.style, {left: l * 100 + '%', top: t * 100 + '%', width: (r-l)*100+'%', height:(b-t)*100+'%'});
       preview.getContext('2d').drawImage(image, l*image.naturalWidth, t*image.naturalHeight,
@@ -43,9 +48,11 @@ window.PortraitCrop = (() => {
       const r = stage.getBoundingClientRect();
       return [(e.clientX-r.left)/r.width, (e.clientY-r.top)/r.height];
     }
-    function move(cx, cy, size = scale()) {
+    function move(cx, cy, size = scale(), deferred = false) {
       box = frame(cx, cy, size, image.naturalWidth, image.naturalHeight);
-      paint(true);
+      // Pointer events can arrive faster than display frames; serialize the draft once per frame.
+      if(deferred){if(!pendingPaint)pendingPaint=requestAnimationFrame(()=>{pendingPaint=0;paint(true);});}
+      else {if(pendingPaint)cancelAnimationFrame(pendingPaint);pendingPaint=0;paint(true);}
     }
     stage.addEventListener('pointerdown', e => {
       if (!ready || (e.pointerType === 'mouse' && e.button !== 0)) return;
@@ -61,12 +68,13 @@ window.PortraitCrop = (() => {
       if (!drag || drag.id !== e.pointerId) return;
       if (Math.hypot(e.clientX-drag.startX,e.clientY-drag.startY) > 3) drag.moved = true;
       if (!drag.moved) return;
-      const [x,y] = point(e); move(x+drag.dx, y+drag.dy);
+      const [x,y] = point(e); move(x+drag.dx, y+drag.dy, scale(), true);
     });
     const finish = e => {
       if (drag?.id !== e.pointerId) return;
       // A click inside the frame also places its centre at the clicked point.
       if (e.type === 'pointerup' && !drag.moved) {const [x,y]=point(e);move(x,y);}
+      if(pendingPaint){cancelAnimationFrame(pendingPaint);pendingPaint=0;paint(true);}
       drag = null;
       if (stage.hasPointerCapture(e.pointerId)) stage.releasePointerCapture(e.pointerId);
     };
@@ -84,10 +92,13 @@ window.PortraitCrop = (() => {
     reset.addEventListener('click', () => {if (ready) {box=[...original];paint(true);}});
     enlarge.addEventListener('click', () => {dialog.append(root); dialog.showModal(); stage.focus();});
     dialog.querySelector('.crop-dialog-close').addEventListener('click', () => dialog.close());
+    dialog.addEventListener('close',()=>{if(pendingPaint){cancelAnimationFrame(pendingPaint);pendingPaint=0;paint(true);}});
     dialog.addEventListener('close', () => {home.prepend(root);enlarge.focus();});
     function load(src, savedBox) {
+      if(pendingPaint){cancelAnimationFrame(pendingPaint);pendingPaint=0;}
       const request = ++generation;
       ready = false; box = null; drag = null; outline.hidden = true;
+      for(const edge of ['left','right','top','bottom'])stage.style.setProperty('--crop-'+edge,'0%');
       slider.disabled = reset.disabled = enlarge.disabled = true;
       stage.setAttribute('aria-disabled', 'true');
       preview.getContext('2d').clearRect(0,0,preview.width,preview.height);
