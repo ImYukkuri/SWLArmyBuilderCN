@@ -7,143 +7,208 @@
       "upstreamId": "13",
       "name": {
         "en": "Marked Targets",
-        "zh": ""
+        "zh": "标记目标"
       },
       "modes": [
         "standard"
-      ]
+      ],
+      "rules": {
+        "en": "token is defeated, after the effect is resolved,\nthat unit's opposing player scores 1 VP.",
+        "zh": "部署：从蓝方玩家开始，双方各选择2个友方单位和2个敌方单位；不得选择已被选过的单位。每个被选单位获得1个标记目标标记。\n计分：带有标记目标标记的单位被击败且效果结算后，其对手得1分。"
+      },
+      "image": "assets/battle-deck/secondary/Marked Targets.png"
     },
     {
       "id": "objective-14",
       "upstreamId": "14",
       "name": {
         "en": "Sweep and Clear",
-        "zh": ""
+        "zh": "清扫与肃清"
       },
       "modes": [
         "standard"
-      ]
+      ],
+      "rules": {
+        "en": "Blue Player Red Player\ni =\nContested 1 VP 1 VP\nTerritory\nag -",
+        "zh": "每回合每位玩家一次：当一个敌方单位被友方单位攻击击败时，该友方单位的控制玩家可以在下方标记一个未标记的格子。只能标记与攻击单位队长所在领地相对应的格子。争夺领地：双方各得1分。"
+      },
+      "image": "assets/battle-deck/secondary/Sweep and Clear.png"
     },
     {
       "id": "objective-15",
       "upstreamId": "15",
       "name": {
         "en": "Bring Them to Heel",
-        "zh": ""
+        "zh": "迫使其就范"
       },
       "modes": [
         "standard"
-      ]
+      ],
+      "rules": {
+        "en": "init anc: oF oainiinde inna ees a Ee el eT Se ee\nmay mark 1 of their unmarked spaces on the\nchart below if the condition listed in the leftmost\ncolumn of that spaces row is met.\nBlue Player Red Player\n\nAn enemy unit is 2 VPs 2 VPs\n\nPanicked.\n\nAll enemy units 2 VPs 2 VPs\n\nthat can gain\n\nSuppression\n\ntokens have 1 or\n\nmore Suppression\n\ntokens.",
+        "zh": "计分：从第二回合开始，每个回合结束阶段，若压制标记数量达到或超过勇气值的敌方单位数量多于友方单位数量，得1分。\n每回合每位玩家一次：当一个单位获得至少1个压制标记时，对手可在下表中标记一个尚未标记的格子，但必须满足该行最左列条件。敌方单位陷入恐慌：双方各得2分。所有能获得压制标记的敌方单位都至少有1个压制标记：双方各得2分。"
+      },
+      "image": "assets/battle-deck/secondary/Bring Them to Heel.png"
     },
     {
       "id": "objective-16",
       "upstreamId": "16",
       "name": {
         "en": "Surface Scan",
-        "zh": ""
+        "zh": "地表扫描"
       },
       "modes": [
         "standard"
-      ]
+      ],
+      "rules": {
+        "en": "Territory, and are not Contesting a POI that is\nwithin allied Territory, they score 1 VP.\nDuring the End Phase, if an allied unit holding\na Scanner is Contesting an unclaimed enemy\nScanner, that unit's controlling player scores\n\n2 VPs. Each player may score a maximum of\n\n2 VPs in this way per game.\n\nSpecial Rules: Each unit gains > CLAIM\n(SCANNER). Units cannot claim enemy\nScanners. Each unit can hold only 1 Scanner at\na time.",
+        "zh": "部署：从蓝方玩家开始，双方各选择2个友方单位。每个被选单位获得一个友方扫描器（资产）。\n计分：从第二回合开始，每个回合结束阶段，若玩家控制2个各自携带扫描器的单位，且这些单位不在友方领地内，也未争夺位于友方领地内的兴趣点，得1分。回合结束阶段，若携带扫描器的友方单位正在争夺一个未被认领的敌方扫描器，其控制玩家得2分；每位玩家每局最多以此方式得2分。\n特殊规则：每个单位获得“索取（扫描器）”行动，且不能索取敌方扫描器。每个单位同一时间最多携带1个扫描器。"
+      },
+      "image": "assets/battle-deck/secondary/Surface Scan.png"
     },
     {
       "id": "objective-17",
       "upstreamId": "17",
       "name": {
         "en": "Destroy Enemy Base",
-        "zh": ""
+        "zh": "摧毁敌方基地"
       },
       "modes": [
         "standard"
-      ]
+      ],
+      "rules": {
+        "en": "4 VPs if the enemy Base was destroyed during\nthat End Phase.\n\nSpecial Rules: Each unit gains > CLAIM\n(BomB). Each unit can hold only 1 Bomb.\n\nAt the start of the End Phase, if 1 or more\nallied units holding a Bomb are Contesting an\nenemy Base that you are Securing, remove all\nBombs held by allied units Contesting that Base\nfrom the game. Then that Base is destroyed and\nremoved from the battlefield.",
+        "zh": "部署：从蓝方玩家开始，双方各在距离战场边缘至少1处放置一个友方基地（兴趣点），然后各选择1个友方单位。每个被选单位获得一个炸弹（资产）。\n计分：每个回合结束阶段，若敌方基地在本阶段被摧毁，得4分。\n特殊规则：每个单位获得“索取（炸弹）”行动；每个单位最多携带1个炸弹。回合结束阶段开始时，若携带炸弹的一个或多个友方单位正在争夺你所控制的敌方基地，移除这些单位携带的所有炸弹，然后摧毁该基地并将其移出战场。"
+      },
+      "image": "assets/battle-deck/secondary/Destroy Enemy Base.png"
     },
     {
       "id": "objective-18",
       "upstreamId": "18",
       "name": {
         "en": "Recon Mission",
-        "zh": ""
+        "zh": "侦察任务"
       },
       "modes": [
         "standard"
-      ]
+      ],
+      "rules": {
+        "en": "is within € and has LOS to 2 or more enemy\nunits, that allied unit's controlling player scores\n1 VP. Each player can score a maximum of 1 VP\nin this way each Round.\n\nSpecial Rules: Each unit gains §> CLAIM\n(SCANNER). Units cannot claim enemy\nScanners.\n\nIf an allied unit is holding a Scanner, at the end\nof that unit's Activation, each enemy unit within\n© and in LOS of that allied unit’s unit leader\ngains 1 Observation token.",
+        "zh": "部署：从蓝方玩家开始，双方各选择1个友方单位。每个被选单位获得一个友方扫描器（资产）。\n计分：从第二回合开始，每个友方单位激活结束时，若其携带扫描器，且单位队长距离至少2个敌方单位不超过2并具有视线，则其控制玩家得1分；每位玩家每回合最多以此方式得1分。\n特殊规则：每个单位获得“索取（扫描器）”行动，且不能索取敌方扫描器。若友方单位携带扫描器，则该单位激活结束时，视线内且距离其单位队长2以内的每个敌方单位获得1个观察标记。"
+      },
+      "image": "assets/battle-deck/secondary/Recon Mission.png"
     },
     {
       "id": "objective-21",
       "upstreamId": "21",
       "name": {
         "en": "Recon Mission",
-        "zh": ""
+        "zh": "侦察任务"
       },
       "modes": [
         "recon"
-      ]
+      ],
+      "rules": {
+        "en": "is within € and has LOS to 2 or more enemy\nunits, that allied unit's controlling player scores\n1 VP. Each player can score a maximum of 1 VP\nin this way each Round.\n\nSpecial Rules: Each unit gains §> CLAIM\n(SCANNER). Units cannot claim enemy\nScanners.\n\nIf an allied unit is holding a Scanner, at the end\nof that unit's Activation, each enemy unit within\n© and in LOS of that allied unit’s unit leader\ngains 1 Observation token.",
+        "zh": "部署：从蓝方玩家开始，双方各选择1个友方单位。每个被选单位获得一个友方扫描器（资产）。\n计分：从第二回合开始，每个友方单位激活结束时，若其携带扫描器，且单位队长距离至少2个敌方单位不超过2并具有视线，则其控制玩家得1分；每位玩家每回合最多以此方式得1分。\n特殊规则：每个单位获得“索取（扫描器）”行动，且不能索取敌方扫描器。若友方单位携带扫描器，则该单位激活结束时，视线内且距离其单位队长2以内的每个敌方单位获得1个观察标记。"
+      },
+      "image": "assets/battle-deck/secondary/Recon Mission.png"
     },
     {
       "id": "objective-20",
       "upstreamId": "20",
       "name": {
         "en": "Surface Scan",
-        "zh": ""
+        "zh": "地表扫描"
       },
       "modes": [
         "recon"
-      ]
+      ],
+      "rules": {
+        "en": "Territory, and are not Contesting a POI that is\nwithin allied Territory, they score 1 VP.\nDuring the End Phase, if an allied unit holding\na Scanner is Contesting an unclaimed enemy\nScanner, that unit's controlling player scores\n\n2 VPs. Each player may score a maximum of\n\n2 VPs in this way per game.\n\nSpecial Rules: Each unit gains > CLAIM\n(SCANNER). Units cannot claim enemy\nScanners. Each unit can hold only 1 Scanner at\na time.",
+        "zh": "部署：从蓝方玩家开始，双方各选择2个友方单位。每个被选单位获得一个友方扫描器（资产）。\n计分：从第二回合开始，每个回合结束阶段，若玩家控制2个各自携带扫描器的单位，且这些单位不在友方领地内，也未争夺位于友方领地内的兴趣点，得1分。回合结束阶段，若携带扫描器的友方单位正在争夺一个未被认领的敌方扫描器，其控制玩家得2分；每位玩家每局最多以此方式得2分。\n特殊规则：每个单位获得“索取（扫描器）”行动，且不能索取敌方扫描器。每个单位同一时间最多携带1个扫描器。"
+      },
+      "image": "assets/battle-deck/secondary/Surface Scan.png"
     },
     {
       "id": "objective-19",
       "upstreamId": "19",
       "name": {
         "en": "Bring Them to Heel",
-        "zh": ""
+        "zh": "迫使其就范"
       },
       "modes": [
         "recon"
-      ]
+      ],
+      "rules": {
+        "en": "init anc: oF oainiinde inna ees a Ee el eT Se ee\nmay mark 1 of their unmarked spaces on the\nchart below if the condition listed in the leftmost\ncolumn of that spaces row is met.\nBlue Player Red Player\n\nAn enemy unit is 2 VPs 2 VPs\n\nPanicked.\n\nAll enemy units 2 VPs 2 VPs\n\nthat can gain\n\nSuppression\n\ntokens have 1 or\n\nmore Suppression\n\ntokens.",
+        "zh": "计分：从第二回合开始，每个回合结束阶段，若压制标记数量达到或超过勇气值的敌方单位数量多于友方单位数量，得1分。\n每回合每位玩家一次：当一个单位获得至少1个压制标记时，对手可在下表中标记一个尚未标记的格子，但必须满足该行最左列条件。敌方单位陷入恐慌：双方各得2分。所有能获得压制标记的敌方单位都至少有1个压制标记：双方各得2分。"
+      },
+      "image": "assets/battle-deck/secondary/Bring Them to Heel.png"
     },
     {
       "id": "objective-22",
       "upstreamId": "22",
       "name": {
         "en": "Supply Run",
-        "zh": ""
+        "zh": "补给运输"
       },
       "modes": [
         "standard"
-      ]
+      ],
+      "rules": {
+        "en": "start of each allied unit’s Activation, if that unit\nis contesting a POI and is holding a Supply\nCache, its Controlling player may choose to\nremove that Supply Cache from the Game. If\nthey do, that player scores 1 VP. If it is the fourth\nor fifth Round, that player scores 1 additional\nVP.\n\nSpecial Rules: Each Trooper unit gains\n\nA CLaim (SuppLy CacHE). Each unit can hold\nonly 1 Supply Cache at a time.",
+        "zh": "部署：从蓝方玩家开始，双方各在争夺领地内放置2个补给箱（资产），位置须距每条边至少1，且距其他补给箱至少1。\n计分：从第二回合开始，每个友方单位激活开始时，若其正在争夺兴趣点并携带补给箱，其控制玩家可将该补给箱移出游戏；若如此，得1分。若在第四或第五回合，额外得1分。\n特殊规则：每个士兵单位获得“索取（补给箱）”行动。每个单位同一时间最多携带1个补给箱。"
+      },
+      "image": "assets/battle-deck/secondary/Supply Run.png"
     },
     {
       "id": "objective-23",
       "upstreamId": "23",
       "name": {
         "en": "Failed Negotiations",
-        "zh": ""
+        "zh": "谈判破裂"
       },
       "modes": [
         "standard"
-      ]
+      ],
+      "rules": {
+        "en": "Scoring: Starting in the second Round, during\nthe End Phase, players score 1 VP for each unit\nthey control holding 1 or more Prisoners that is\nwithin 1; of the Exchange. 0\nSpecial Rules: A unit that has 1 or more\nPrisoners increases its & by 1. At the start of\nthe first Activation Phase, units that are holding\n1 or more Prisoners gain INCOGNITO until the\nend of the Round. -\nAdditionally, each A and YAY Trooper unit -\ngains 4p CLAIM (PRISONER). !\n\na Jif iv",
+        "zh": "部署：在战场中央放置一个交易所（兴趣点），即使那里已有目标标记也照常放置。从蓝方玩家开始，双方各选择一个友方士兵单位；每个被选单位获得一个友方囚犯（资产）。\n计分：从第二回合开始，每个回合结束阶段，你控制的每个携带至少1名囚犯且距离交易所1以内的单位得1分。\n特殊规则：携带囚犯的单位勇气值增加1。第一激活阶段开始时，携带至少1名囚犯的单位获得隐匿，直到回合结束。每个友方士兵单位获得“索取（囚犯）”行动。"
+      },
+      "image": "assets/battle-deck/secondary/Failed Negotiations.png"
     },
     {
       "id": "objective-24",
       "upstreamId": "24",
       "name": {
         "en": "Retrieve the Data",
-        "zh": ""
+        "zh": "取回数据"
       },
       "modes": [
         "standard"
-      ]
+      ],
+      "rules": {
+        "en": "Scoring: Starting in the second Round, during\nthe End Phase, players score 1 VP foreach\nData Core they are Securing that has 2 or more\nSuppression tokens. After scoring VPs, if a -\nplayer is Securing a Data Core with 2 or more\nSuppression tokens, remove that Data Core from\nthe battlefield. _\nSpecial Rules: Each unit gains 4» DATA -\nRECOVERY (Place 1 Suppression token on a Data\nCore this unit is Contesting).",
+        "zh": "部署：将一个数据核心（资产）放在战场中央，即使那里已有目标标记也照常放置。从蓝方玩家开始，双方各在争夺领地内放置2个数据核心，位置须距离每条边至少1，且距离其他数据核心至少1。\n计分：从第二回合开始，每个回合结束阶段，你控制且有至少2个压制标记的数据核心各得1分。计分后，移除你控制且有至少2个压制标记的数据核心。\n特殊规则：每个单位获得“数据回收”行动（在该单位正在争夺的数据核心上放置1个压制标记）。"
+      },
+      "image": "assets/battle-deck/secondary/Retrieve the Data.png"
     },
     {
       "id": "objective-25",
       "upstreamId": "25",
       "name": {
         "en": "Align the Relay",
-        "zh": ""
+        "zh": "校准中继站"
       },
       "modes": [
         "standard"
-      ]
+      ],
+      "rules": {
+        "en": "Materia. Tc Ai es Ble er en i 6 i\nScoring: Starting in the second Round,\nduring the End Phase, players score 1 VP if\nthey Control 2 or more Comms Relays, and 1\nadditional VP if they Control 4 or more Comms\nRelays.\n\nSpecial Rules: Each unit gains 4ALIGN RELAY\n(Choose a Comms Relay this unit is Contesting.\nYou now control that Comms Relay.)\n\nA Comms Relay Controlled by a player is\nControlled by that player until another player\nControls it. i",
+        "zh": "部署：将一个通讯中继器（资产）放在战场中央，即使那里已有目标标记也照常放置。然后从蓝方玩家开始，双方各放置2个通讯中继器，位置须在两条长边6以内、短边1以外，且距其他通讯中继器至少1。\n计分：从第二回合开始，每个回合结束阶段，控制至少2个通讯中继器得1分，控制至少4个再得1分。\n特殊规则：每个单位获得“校准中继站”行动（选择该单位正在争夺的一个通讯中继器；你现在控制该中继器）。玩家控制的通讯中继器会一直由其控制，直到另一玩家控制它。"
+      },
+      "image": "assets/battle-deck/secondary/Align the Relay.png"
     }
   ],
   "deployments": [
@@ -152,33 +217,48 @@
       "upstreamId": "13",
       "name": {
         "en": "Close the Pocket",
-        "zh": ""
+        "zh": "合围"
       },
       "modes": [
         "standard"
-      ]
+      ],
+      "rules": {
+        "en": "Setup: race 5 StocKkpiles (rUl) as shown on the\nClose the Pocket Map Card.\n\nScoring: Starting in the second Round, during\neach End Phase, players score 2 VPs if they\nSecure the center Stockpile and score 1 VP for\neach non-center Stockpile they Secure.",
+        "zh": "部署：按《合围》地图卡所示放置3个补给堆（兴趣点）。\n计分：从第二回合开始，每个回合结束阶段，若你控制中央补给堆得2分；你控制的每个非中央补给堆得1分。"
+      },
+      "image": "assets/battle-deck/primary/Close the Pocket.png"
     },
     {
       "id": "deployment-14",
       "upstreamId": "14",
       "name": {
         "en": "Bunker Assault",
-        "zh": ""
+        "zh": "碉堡突击"
       },
       "modes": [
         "standard"
-      ]
+      ],
+      "rules": {
+        "en": "2€etup: lace 4 bunkers (FU1) as snown on tne\nBunker Assault Map Card. The 2 Bunkers set\nup furthest from allied Territory are enemy\nBunkers.\n\nScoring: Starting in the second Round, during\neach End Phase, players score 1 VP for each\nBunker they Secure. Additionally, players score\n3 VPs for each enemy Bunker that was\ndestroyed during that End Phase.\n\nSpecial Rules: Starting in the second Round,\nat the start of the End Phase, each player places\n1 Wound token on each enemy Bunker they\nSecure, starting with the Blue player. Then for\neach enemy Bunker a player Secures, if at least\n1 of the Contesting units is an allied vAw, A,\nor YAY unit, place an additional Wound token\non that Bunker. Then each Bunker that has\n\n3 or more Wound tokens on it is destroyed\n\nand removed from the battlefield.",
+        "zh": "部署：按《碉堡突击》地图卡所示放置4个碉堡（兴趣点）。距离友方领地最远的2个碉堡为敌方碉堡。\n计分：从第二回合开始，每个回合结束阶段，你控制的每个碉堡得1分；本阶段被摧毁的每个敌方碉堡另得3分。\n特殊规则：从第二回合开始，回合结束阶段开始时，双方从蓝方玩家开始，依次在自己控制的每个敌方碉堡上放置1个伤害标记。若至少一个争夺该碉堡的单位是友方载具、士兵或特种单位，则额外放置1个伤害标记。拥有3个或更多伤害标记的碉堡被摧毁并移出战场。"
+      },
+      "image": "assets/battle-deck/primary/Bunker Assault.png"
     },
     {
       "id": "deployment-15",
       "upstreamId": "15",
       "name": {
         "en": "Breakthrough",
-        "zh": ""
+        "zh": "突破"
       },
       "modes": [
         "standard"
-      ]
+      ],
+      "rules": {
+        "en": "setup: lace 4 Lheckpoints (rol) as snown on\nthe Breakthrough Map Card.\n\nScoring: Starting in the second Round, during\neach End Phase, players score 1 VP for each\nCheckpoint within allied Territory that is not\nContested by an enemy unit. Additionally,\nplayers score 2 VP for each Checkpoint within\nenemy Territory they Secure.",
+        "zh": "部署：按《突破》地图卡所示放置4个检查点（兴趣点）。\n计分：从第二回合开始，每个回合结束阶段，玩家控制的每个未被敌方单位争夺的友方领地检查点得1分。此外，每个被你控制且位于敌方领地的检查点得2分。"
+      },
+      "image": "assets/battle-deck/primary/Breakthrough.png"
     },
     {
       "id": "deployment-16",
@@ -196,44 +276,64 @@
       "upstreamId": "17",
       "name": {
         "en": "Recover the Research",
-        "zh": ""
+        "zh": "回收研究资料"
       },
       "modes": [
         "standard"
-      ]
+      ],
+      "rules": {
+        "en": "setup: riace 6 Labs (F'U1) as shown on the\nRecover the Research Map Card.\n\nScoring: Starting in the second Round, during\neach End Phase, players score 1 VP if allied\nunits Contest 2 Labs, 2 VPs if allied units\nContest 3 Labs, or 3 VPs if allied units Contest\n4 or more Labs.",
+        "zh": "部署：按《回收研究资料》地图卡所示放置6个实验室（兴趣点）。\n计分：从第二回合开始，每个回合结束阶段，若友方单位争夺2个实验室得1分，争夺3个得2分，争夺至少4个得3分。"
+      },
+      "image": "assets/battle-deck/primary/Recover the Research.png"
     },
     {
       "id": "deployment-19",
       "upstreamId": "19",
       "name": {
         "en": "Shifting Priorities",
-        "zh": ""
+        "zh": "转移重点"
       },
       "modes": [
         "standard"
-      ]
+      ],
+      "rules": {
+        "en": "setup: rlace o> rriority largets (FUl) as Snown\non the Shifting Priorities Map Card.\n\nScoring: Starting in the second Round, during\neach End Phase, players score 1 VP for each\nPriority Target they Secure.\n\nSpecial Rules: Starting in the second Round,\nat the end of each End Phase, players take turns\nplacing each Priority Target Secured by their\nopponent within @ of its current position,\nstarting with the Blue player. Each Priority\nTarget may be placed this way only once per\nRound.",
+        "zh": "部署：按《转移重点》地图卡所示放置5个优先目标（兴趣点）。\n计分：从第二回合开始，每个回合结束阶段，你控制的每个优先目标得1分。\n特殊规则：从第二回合开始，每个回合结束阶段结束时，双方轮流将对手控制的每个优先目标移动至其当前位置距离1以内，从蓝方玩家开始。每个优先目标每回合只能如此移动一次。"
+      },
+      "image": "assets/battle-deck/primary/Shifting Priorities.png"
     },
     {
       "id": "deployment-22",
       "upstreamId": "22",
       "name": {
         "en": "Close the Pocket",
-        "zh": ""
+        "zh": "合围"
       },
       "modes": [
         "recon"
-      ]
+      ],
+      "rules": {
+        "en": "Setup: race 5 StocKkpiles (rUl) as shown on the\nClose the Pocket Map Card.\n\nScoring: Starting in the second Round, during\neach End Phase, players score 2 VPs if they\nSecure the center Stockpile and score 1 VP for\neach non-center Stockpile they Secure.",
+        "zh": "部署：按《合围》地图卡所示放置3个补给堆（兴趣点）。\n计分：从第二回合开始，每个回合结束阶段，若你控制中央补给堆得2分；你控制的每个非中央补给堆得1分。"
+      },
+      "image": "assets/battle-deck/primary/Close the Pocket.png"
     },
     {
       "id": "deployment-21",
       "upstreamId": "21",
       "name": {
         "en": "Bunker Assault",
-        "zh": ""
+        "zh": "碉堡突击"
       },
       "modes": [
         "recon"
-      ]
+      ],
+      "rules": {
+        "en": "2€etup: lace 4 bunkers (FU1) as snown on tne\nBunker Assault Map Card. The 2 Bunkers set\nup furthest from allied Territory are enemy\nBunkers.\n\nScoring: Starting in the second Round, during\neach End Phase, players score 1 VP for each\nBunker they Secure. Additionally, players score\n3 VPs for each enemy Bunker that was\ndestroyed during that End Phase.\n\nSpecial Rules: Starting in the second Round,\nat the start of the End Phase, each player places\n1 Wound token on each enemy Bunker they\nSecure, starting with the Blue player. Then for\neach enemy Bunker a player Secures, if at least\n1 of the Contesting units is an allied vAw, A,\nor YAY unit, place an additional Wound token\non that Bunker. Then each Bunker that has\n\n3 or more Wound tokens on it is destroyed\n\nand removed from the battlefield.",
+        "zh": "部署：按《碉堡突击》地图卡所示放置4个碉堡（兴趣点）。距离友方领地最远的2个碉堡为敌方碉堡。\n计分：从第二回合开始，每个回合结束阶段，你控制的每个碉堡得1分；本阶段被摧毁的每个敌方碉堡另得3分。\n特殊规则：从第二回合开始，回合结束阶段开始时，双方从蓝方玩家开始，依次在自己控制的每个敌方碉堡上放置1个伤害标记。若至少一个争夺该碉堡的单位是友方载具、士兵或特种单位，则额外放置1个伤害标记。拥有3个或更多伤害标记的碉堡被摧毁并移出战场。"
+      },
+      "image": "assets/battle-deck/primary/Bunker Assault.png"
     },
     {
       "id": "deployment-20",
@@ -251,44 +351,64 @@
       "upstreamId": "24",
       "name": {
         "en": "Contact, Contact!",
-        "zh": ""
+        "zh": "接敌！接敌！"
       },
       "modes": [
         "standard"
-      ]
+      ],
+      "rules": {
+        "en": "setup: Place 5 Listening Posts (POL) as shown\non the Contact, Contact! Map Card.\nSpecial Rules: Units Contesting 1 or more\nListening Posts have PRECISE 1.\nScoring: Starting in the second Round, during\neach End Phase, players score 1 VP foreach\nListening Post they Secure in allied or Contested\nTerritory and 2 VP for each Listening Post they\nSecure in enemy Territory.",
+        "zh": "部署：按《接敌！接敌！》地图卡所示放置5个监听哨（兴趣点）。\n特殊规则：争夺至少一个监听哨的单位获得精准1。\n计分：从第二回合开始，每个回合结束阶段，你控制的每个位于友方或争夺领地的监听哨得1分；每个位于敌方领地的监听哨得2分。"
+      },
+      "image": "assets/battle-deck/primary/Contact, Contact!.png"
     },
     {
       "id": "deployment-25",
       "upstreamId": "25",
       "name": {
         "en": "Payload",
-        "zh": ""
+        "zh": "有效载荷"
       },
       "modes": [
         "standard"
-      ]
+      ],
+      "rules": {
+        "en": "Setup: Place 3 Bomb Carts (POI) as shown on\nthe Payload Map Card.\nScoring: Starting in the second Round, during\neach End Phase, players score 1 VP for each\nBomb Cart they Secure. Then, players take turns\nplacing each Bomb Cart they Secured that is\n\nnot in enemy Territory within @ of its current\nposition, starting with the Blue player. Each\nBomb Cart may be placed this way only once\nper Round. After all Bomb Carts, if any, have\nbeen placed, players score 2 VP for each Bomb\nCart that is within enemy Territory.",
+        "zh": "部署：按《有效载荷》地图卡所示放置3辆炸弹车（兴趣点）。\n计分：从第二回合开始，每个回合结束阶段，你控制的每辆炸弹车得1分。然后双方轮流将自己控制且不在敌方领地内的炸弹车移动至其当前位置距离1以内的位置，从蓝方玩家开始；每辆炸弹车每回合只能如此移动一次。全部炸弹车移动后，每辆位于敌方领地内的炸弹车得2分。"
+      },
+      "image": "assets/battle-deck/primary/Payload.png"
     },
     {
       "id": "deployment-26",
       "upstreamId": "26",
       "name": {
         "en": "Cauldron",
-        "zh": ""
+        "zh": "坩埚"
       },
       "modes": [
         "standard"
-      ]
+      ],
+      "rules": {
+        "en": "Setup: Place 6 Waypoints (POI) as shown on\nthe Cauldron Map Card.\n\nScoring: Starting in the second Round, during\ncach End Phase, cach player scores 1 VP\n\nfor each Waypoint they Secure within allied\nTerritory and 1VP for each Waypoint they\nSecure that is completely within Contested\nTerritory and that is within € of another\nWaypoint they Secure. Additionally, a player\nscores | VP if they Secure both Waypoints that\nare completely within Contested Territory.\nSpecial Rules: During the End Phase, units\nContesting 1 or more Waypoints remove 1 fewer\nSuppression token during the Remove Tokens\nstep.",
+        "zh": "部署：按《坩埚》地图卡所示放置6个航点（兴趣点）。\n计分：从第二回合开始，每个回合结束阶段，你控制的每个位于友方领地内的航点得1分；你控制的每个位于争夺领地内且距离另一个你控制的航点1以内的航点也得1分。若你控制的两个航点都完全位于争夺领地内，额外得1分。\n特殊规则：回合结束阶段，争夺至少一个航点的单位在移除标记步骤中少移除1个压制标记。"
+      },
+      "image": "assets/battle-deck/primary/Cauldron.png"
     },
     {
       "id": "deployment-23",
       "upstreamId": "23",
       "name": {
         "en": "Outflank",
-        "zh": ""
+        "zh": "迂回"
       },
       "modes": [
         "standard"
-      ]
+      ],
+      "rules": {
+        "en": "Setup: Place 4 Flags (POI) as shown on the\nOutflank Map Card.\n\nStarting with the Blue player, each player\nchooses up to 3 of their non-vAw units that are\nnot being transported. Each chosen unit gains a\nVanguard token.\n\nScoring: Starting in the second Round, during\neach End Phase, players score 1 VP for each\nFlag they Secure. Additionally, if a player\ncontrols 2 or more units with Vanguard tokens\nthat are Contesting Flags Secured by that player,\nthat player scores 1 additional VP.\n\nSpecial Rules: Units with Vanguard tokens\nmust Deploy into the portion of a player's\nTerritory that is touching the short battlefield\nedges. Unless they are Deployed using the\nTRANSPORT keyword, only units with\nVanguard tokens may Deploy in this portion of\na player’ territory.",
+        "zh": "部署：按《迂回》地图卡所示放置4面旗帜（兴趣点）。从蓝方玩家开始，双方各选择最多3个未被运输的非载具单位。每个被选单位获得1个先锋标记。\n计分：从第二回合开始，每个回合结束阶段，你控制的每面旗帜得1分。若你控制的至少2个带有先锋标记的单位正在争夺你控制的旗帜，额外得1分。\n特殊规则：带有先锋标记的单位必须部署在接触战场短边的玩家领地部分。除非通过运输关键词部署，否则只有带有先锋标记的单位可以部署在该区域。"
+      },
+      "image": "assets/battle-deck/primary/Outflank.png"
     }
   ],
   "conditions": [
@@ -297,106 +417,151 @@
       "upstreamId": "13",
       "name": {
         "en": "Advanced Intel",
-        "zh": ""
+        "zh": "高级情报"
       },
       "modes": [
         "standard"
-      ]
+      ],
+      "rules": {
+        "en": "Special Rules: At the start of the first Activation\nPhase, add 1 Advantage token to your Pass Pool.",
+        "zh": "在第一激活阶段开始时，将1个优势标记加入你的跳过池。"
+      },
+      "image": "assets/battle-deck/advantage/Advanced Intel.png"
     },
     {
       "id": "condition-14",
       "upstreamId": "14",
       "name": {
         "en": "Fortified Position",
-        "zh": ""
+        "zh": "坚固阵地"
       },
       "modes": [
         "standard"
-      ]
+      ],
+      "rules": {
+        "en": "cL 2020202 SRS E AE. Sees\nEAE ST 1 1\nSetup: During Setup, you may place up to\n\n3 barricades within allied or Contested Territory\nand not within §P of each other.",
+        "zh": "部署阶段，你可以放置最多3个路障，位置须在友方领地或争夺领地内，且彼此距离至少为1。"
+      },
+      "image": "assets/battle-deck/advantage/Fortified Position.png"
     },
     {
       "id": "condition-15",
       "upstreamId": "15",
       "name": {
         "en": "Cunning Deployment",
-        "zh": ""
+        "zh": "狡猾部署"
       },
       "modes": [
         "standard"
-      ]
+      ],
+      "rules": {
+        "en": "OO \\ 1 VA Nema\nFa Th ee SR TOR\nSpecial Rules: At the start of the first Activation\nPhase, choose 3 allied units. Each chosen unit\n\ngains 1 Dodge token.",
+        "zh": "第一激活阶段开始时，选择3个友方单位。每个被选单位获得1个闪避标记。"
+      },
+      "image": "assets/battle-deck/advantage/Cunning Deployment.png"
     },
     {
       "id": "condition-16",
       "upstreamId": "16",
       "name": {
         "en": "Garrison",
-        "zh": ""
+        "zh": "驻军"
       },
       "modes": [
         "standard"
-      ]
+      ],
+      "rules": {
+        "en": "TE TT Ta Ty\nSetup: During Setup, choose up to 1 of your\n\nA units without PREPARED POSITION.\n\nThe chosen unit gains PREPARED POSITION\n\nthis game.",
+        "zh": "部署阶段，选择最多1个尚未拥有“预设阵地”的己方单位。该单位本局游戏获得预设阵地。"
+      },
+      "image": "assets/battle-deck/advantage/Garrison.png"
     },
     {
       "id": "condition-17",
       "upstreamId": "17",
       "name": {
         "en": "Ordnance",
-        "zh": ""
+        "zh": "军械弹药"
       },
       "modes": [
         "standard"
-      ]
+      ],
+      "rules": {
+        "en": "i i i ee i ie SEs ME IO JE 0 TS ee eee\nVehicle unit type suffers 2 Wounds for each £%\nresult and 1 Wound for each 3 result rolled.\n\nEach other unit within §} of that token gains\n1 Suppression token for each Lt and 3 result\nrolled. Then remove that Ordnance token from\n\n‘the game. |",
+        "zh": "每局一次，在命令阶段结束时，你可以在战场上放置一个友方军械标记（优势）。回合结束阶段开始时，若该标记仍在战场上，投掷3个黑色攻击骰。标记1距离内拥有装甲/装甲X关键词或载具类型的单位，每个暴击结果承受2点伤害、每个命中结果承受1点伤害；其他单位每个暴击或命中结果获得1个压制标记。然后移除该军械标记。"
+      },
+      "image": "assets/battle-deck/advantage/Ordnance.png"
     },
     {
       "id": "condition-18",
       "upstreamId": "18",
       "name": {
         "en": "Strafing Run",
-        "zh": ""
+        "zh": "扫射攻击"
       },
       "modes": [
         "standard"
-      ]
+      ],
+      "rules": {
+        "en": "Tool. Then roll 4 black attack dice. Each unit\n\nthat contains 1 or more miniatures that were\noverlapped by the tool or that overlap the token\ngains 1 Suppression token for each Lt and 3\nresult rolled. Then remove that Air Support token\nfrom the game.",
+        "zh": "每局一次，在命令阶段结束时，你可以在战场上放置一个友方空中支援标记（优势）。回合结束阶段开始时，若该标记仍在战场上，从该标记测量至距离8内任意位置，并记录射程尺覆盖的模型。然后投掷4个黑色攻击骰。每个被射程尺覆盖或与标记重叠的单位，每有一个暴击或命中结果就获得1个压制标记。然后移除空中支援标记。"
+      },
+      "image": "assets/battle-deck/advantage/Strafing Run.png"
     },
     {
       "id": "condition-20",
       "upstreamId": "20",
       "name": {
         "en": "Cunning Deployment",
-        "zh": ""
+        "zh": "狡猾部署"
       },
       "modes": [
         "recon"
-      ]
+      ],
+      "rules": {
+        "en": "OO \\ 1 VA Nema\nFa Th ee SR TOR\nSpecial Rules: At the start of the first Activation\nPhase, choose 3 allied units. Each chosen unit\n\ngains 1 Dodge token.",
+        "zh": "第一激活阶段开始时，选择3个友方单位。每个被选单位获得1个闪避标记。"
+      },
+      "image": "assets/battle-deck/advantage/Cunning Deployment.png"
     },
     {
       "id": "condition-19",
       "upstreamId": "19",
       "name": {
         "en": "Advanced Intel",
-        "zh": ""
+        "zh": "高级情报"
       },
       "modes": [
         "recon"
-      ]
+      ],
+      "rules": {
+        "en": "Special Rules: At the start of the first Activation\nPhase, add 1 Advantage token to your Pass Pool.",
+        "zh": "在第一激活阶段开始时，将1个优势标记加入你的跳过池。"
+      },
+      "image": "assets/battle-deck/advantage/Advanced Intel.png"
     },
     {
       "id": "condition-21",
       "upstreamId": "21",
       "name": {
         "en": "Fortified Position",
-        "zh": ""
+        "zh": "坚固阵地"
       },
       "modes": [
         "recon"
-      ]
+      ],
+      "rules": {
+        "en": "cL 2020202 SRS E AE. Sees\nEAE ST 1 1\nSetup: During Setup, you may place up to\n\n3 barricades within allied or Contested Territory\nand not within §P of each other.",
+        "zh": "部署阶段，你可以放置最多3个路障，位置须在友方领地或争夺领地内，且彼此距离至少为1。"
+      },
+      "image": "assets/battle-deck/advantage/Fortified Position.png"
     },
     {
       "id": "condition-28",
       "upstreamId": "28",
       "name": {
         "en": "Scrambled Orders",
-        "zh": ""
+        "zh": "混乱命令"
       },
       "modes": [
         "standard"
@@ -405,14 +570,19 @@
         1,
         13,
         18
-      ]
+      ],
+      "rules": {
+        "en": "Enemy units within € of 1 or more Comms\nScramblers cannot be issued Orders. Go\nEnemy units gain 4 DESTROY COMMS\nSCRAMBLER (Remove an enemy Comms\nScrambler within @ from the battlefield).",
+        "zh": "部署阶段，在战场上放置一个友方通讯干扰器（优势）。距离1内的敌方单位不能被发布命令。敌方单位获得“摧毁通讯干扰器”（移除距离1内一个敌方通讯干扰器）的行动。"
+      },
+      "image": "assets/battle-deck/advantage/Scrambled Orders.png"
     },
     {
       "id": "condition-29",
       "upstreamId": "29",
       "name": {
         "en": "Extreme Discipline",
-        "zh": ""
+        "zh": "极端纪律"
       },
       "modes": [
         "standard"
@@ -423,14 +593,19 @@
         19,
         17,
         7
-      ]
+      ],
+      "rules": {
+        "en": "When an allied unt gains 1 or more suppression\ntokens, after the effect is resolved. vou may\nremove | Advantage token on this card. If you\ndo, the allied unit removes all of its Suppression\ntokens, then suffers | Wound.",
+        "zh": "仅限帝国阵营。部署阶段将2个优势标记放在此卡上。当友方单位获得压制标记后，你可以移除此卡上的1个优势标记；若如此，该单位移除所有压制标记，然后承受1点伤害。"
+      },
+      "image": "assets/battle-deck/advantage/Extreme Discipline.png"
     },
     {
       "id": "condition-26",
       "upstreamId": "26",
       "name": {
         "en": "Rapid Deployment",
-        "zh": ""
+        "zh": "快速部署"
       },
       "modes": [
         "standard"
@@ -440,14 +615,19 @@
         21,
         12,
         16
-      ]
+      ],
+      "rules": {
+        "en": "Special Rules: &) Only.\nAt the start of the first Activation Phase, choose\nup to 2 allied A Clone Trooper units. The\nchosen units gain REINFORCEMENTS.",
+        "zh": "仅限共和国阵营。第一激活阶段开始时，选择最多2个友方克隆人士兵单位。被选单位获得增援。"
+      },
+      "image": "assets/battle-deck/advantage/Rapid Deployment.png"
     },
     {
       "id": "condition-22",
       "upstreamId": "22",
       "name": {
         "en": "Black Ops",
-        "zh": ""
+        "zh": "黑色行动"
       },
       "modes": [
         "standard"
@@ -458,14 +638,19 @@
         19,
         17,
         7
-      ]
+      ],
+      "rules": {
+        "en": "CI1005€ all allied a Or \"A™ 1I00pCT UniL\nwith 6 or fewer miniatures. If the chosen unit\nhas INFILTRATE, it gains 1 Aim token and 1\nDodge token. If the chosen unit does not have\nINFILTRATE, it gains INFILTRATE.",
+        "zh": "仅限帝国阵营。第一激活阶段开始时，选择一个最多有6个模型的友方士兵单位。若其拥有渗透，则获得1个瞄准和1个闪避标记；否则，该单位获得渗透。"
+      },
+      "image": "assets/battle-deck/advantage/Black Ops.png"
     },
     {
       "id": "condition-23",
       "upstreamId": "23",
       "name": {
         "en": "Command Override",
-        "zh": ""
+        "zh": "指挥覆盖"
       },
       "modes": [
         "standard"
@@ -475,14 +660,19 @@
         11,
         15,
         20
-      ]
+      ],
+      "rules": {
+        "en": "LUTE tC ISSUE UTACTS SCP O01 UC Lolninana\nPhase, you may remove 1 of the Advantage\ntokens on this card. If you do, choose an allied\nunit with the Af keyword. The chosen unit issues\nan Order to itself.",
+        "zh": "仅限分离主义阵营。部署阶段放置2个优势标记在此卡上。命令阶段的发布命令步骤中，你可以移除此卡上的1个优势标记；若如此，选择一个带有人工智能关键词的友方单位，该单位向自己发布一个命令。"
+      },
+      "image": "assets/battle-deck/advantage/Command Override.png"
     },
     {
       "id": "condition-24",
       "upstreamId": "24",
       "name": {
         "en": "Coordinated Strike",
-        "zh": ""
+        "zh": "协同打击"
       },
       "modes": [
         "standard"
@@ -492,14 +682,19 @@
         21,
         12,
         16
-      ]
+      ],
+      "rules": {
+        "en": "LULIng tic IS5UcC UIdActs S5L1ep 01 Ul Lominand\nPhase, you may remove 1 Advantage token on\nthis card. If you do, choose up to 2 allied 38\nunits. Each unit gains COORDINATE: CLONE\nTROOPER or COORDINATE: ‘¥) VEHICLE.",
+        "zh": "仅限共和国阵营。部署阶段将1个优势标记放在此卡上。命令阶段的发布命令步骤中，你可以移除此卡上的1个优势标记；若如此，选择最多2个友方单位。每个单位获得“协同：克隆人士兵”或“协同：载具”。"
+      },
+      "image": "assets/battle-deck/advantage/Coordinated Strike.png"
     },
     {
       "id": "condition-25",
       "upstreamId": "25",
       "name": {
         "en": "No Time to Lose",
-        "zh": ""
+        "zh": "刻不容缓"
       },
       "modes": [
         "standard"
@@ -508,14 +703,19 @@
         1,
         13,
         18
-      ]
+      ],
+      "rules": {
+        "en": "Have 1 OI INOIC AAVAIIAEC LORCIIS Hl OUI \"ads\nPool, you may spend 1 of those Advantage\ntokens. If you do, the activating unit gains 1\nAim token and 1 Dodge token, or makes a free\nRecover action.",
+        "zh": "友方单位激活开始时，若你的跳过池中有至少1个优势标记，你可以花费其中1个。若如此，该激活单位获得1个瞄准和1个闪避标记，或进行一次免费恢复行动。"
+      },
+      "image": "assets/battle-deck/advantage/No Time to Lose.png"
     },
     {
       "id": "condition-27",
       "upstreamId": "27",
       "name": {
         "en": "Armored Assault",
-        "zh": ""
+        "zh": "装甲突击"
       },
       "modes": [
         "standard"
@@ -525,7 +725,12 @@
         11,
         15,
         20
-      ]
+      ],
+      "rules": {
+        "en": "Special Rules: ¥ Only.\n\nAt the start of the first Activation Phase, choose\nup to 3 allied Vehicle units. Each chosen Vehicle\nunit gains 1 Aim token.",
+        "zh": "仅限分离主义阵营。第一激活阶段开始时，选择最多3个友方载具单位。每个被选单位获得1个瞄准标记。"
+      },
+      "image": "assets/battle-deck/advantage/Armored Assault.png"
     }
   ]
 }
