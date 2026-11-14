@@ -958,7 +958,7 @@ def validate_army(army):
     for combo in mode.get("combined", []) or []:
         total = sum(max_counts.get(t, 0) for t in combo.get("tiers", []))
         if total > combo.get("maximum", 99):
-            issue("invalid", "rank_combined", f"军阶组合 {combo.get('tiers')} 合计超过上限 {combo['maximum']}", None)
+            issue("invalid", "rank_combined", f"军阶组合 {combo.get('tiers')} 合计超过上限 {combo['maximum']}", None, {"ranks": combo.get('tiers', [])})
 
     # command cards: faction / unlock / campaign
     selected_upgrade_upstream = {x["upstream_id"] for x in sel}

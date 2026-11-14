@@ -32,6 +32,7 @@ const cardView = {
   explanations: false,
   tags: new Set(),
   applyAll: false,
+  battleText: (() => { try { return localStorage.getItem("swl-battle-text") === "true"; } catch { return false; } })(),
 };
 const stateCache = new Map();
 const modalStack = [];
@@ -373,19 +374,21 @@ function renderRankBar(report) {
       "aria-pressed",
       String(browser?.mode === "units" && browser.rank === rank),
     );
-    if (report.issues.some((i) => i.status === "invalid" && Number(i.rank) === rank))
+    const rankIssues = report.issues.filter((i) => i.status === "invalid" &&
+      (Number(i.rank) === rank || (i.ranks || []).map(Number).includes(rank)));
+    if (rankIssues.length)
       b.classList.add("invalid");
     b.dataset.rank = rank;
     b.classList.toggle("empty", count === 0);
     const text = node("span", "rank-name", RANK_SHORT[rank]);
     const limits = quota ? (quota.min ?? 0) + "–" + (quota.max ?? "不限") : "未设配额";
-    text.append(
-      node("span", "rank-quota", "配额 " + limits),
-    );
+    const total = node("span", "rank-count");
     const countDisplay = node("strong", "rank-total", count || "—");
     countDisplay.setAttribute("aria-label", "当前 " + count + " 个单位");
-    b.append(node("span", "rank-icon", RANK_GLYPH[rank]), countDisplay, text, node("span", "rank-add", "+"));
+    total.append(countDisplay, node("span", "rank-quota", "（/" + (quota?.max ?? "∞") + "）"));
+    b.append(node("span", "rank-icon", RANK_GLYPH[rank]), text, total, node("span", "rank-add", "+"));
     b.title = "当前 " + count + " 个" + RANK_SHORT[rank] + "单位；允许数量 " + limits + "；点击添加";
+    if (rankIssues.length) b.title += "\n" + rankIssues.map(i => i.message).join("\n");
     b.onclick = () => selectContext({ mode: "units", rank }, b);
     bar.append(b);
   }
@@ -445,6 +448,10 @@ function renderDeck() {
   });
   deck.append(list);
   const missions = node("div", "mission-sections");
+  const missionTools = node("div", "mission-tools");
+  missionTools.append(node("h2", null, "任务与优势"), battleTextToggle());
+  missions.append(missionTools);
+  missions.classList.toggle("text-mode", cardView.battleText);
   const selections = BuilderLibrary.normalizeDeck(army.deck);
   for (const [kind, label] of [["primary", "主要任务"], ["secondary", "次要任务"], ["advantage", "优势"]]) {
     const selected = selections[kind];
@@ -625,17 +632,59 @@ function displayUpgrade(c, inst = null) {
 
 function battleCardArt(card) {
   const frame = node("span", "battle-card-art");
-  if (card.image) {
-    const image = node("img");
-    // Reserve the printed face while lazy loading; primary cards include their map.
-    image.width = 726;
-    image.height = card.image.includes("/primary/") ? 1450 : 1039;
-    image.src = assetPath(card.image);
-    image.alt = named(card.name) + "卡图";
-    image.loading = "lazy";
-    frame.append(image);
-  } else frame.append(node("span", "missing-card-art", named(card.name) + " · 暂无卡图"));
+  const rules = textParts(named(card.rules)).trim();
+  if (!rules) {
+    if (card.image) {
+      const im = node("img"); im.src = assetPath(card.image); im.alt = named(card.name) + "卡图"; im.loading = "lazy";
+      frame.append(im);
+    } else frame.append(node("span", "missing-card-art", named(card.name) + " · 暂无卡图或规则文本"));
+    return frame;
+  }
+  const kind = card.image?.includes("/primary/") ? "primary" : card.image?.includes("/advantage/") ? "advantage" : "secondary";
+  frame.dataset.kind = kind;
+  const face = node("span", "battle-card-face");
+  const title = node("span", "battle-face-title");
+  title.append(node("strong", null, named(card.name)), node("small", null, card.name?.en));
+  face.append(title);
+  if (kind === "advantage" && card.image) {
+    // Keep the printed illustration; its lower edge differs by card layout.
+    const shortArt = {"Ordnance": 60, "Strafing Run": 56, "Scrambled Orders": 84,
+      "No Time to Lose": 84, "Black Ops": 84, "Extreme Discipline": 84,
+      "Coordinated Strike": 84, "Command Override": 84};
+    const art = node("span", "battle-illustration");
+    art.style.setProperty("--art-height", (shortArt[card.name.en] || 107) - 11 + "cqw");
+    const im = node("img");im.src = assetPath(card.image);im.alt = named(card.name) + "卡图";im.loading = "lazy";
+    art.append(im);face.append(art);
+  }
+  const paper = node("span", "battle-card-paper");
+  for (const line of rules.split(/\n+/)) {
+    const p = node("span", "battle-rule-line");
+    const match = line.match(/^(部署|计分|特殊规则|计分格|任意领地|友方领地|争夺领地|敌方领地|敌方单位恐慌|所有敌方单位受压制)：(.*)$/);
+    if (match) p.append(node("b", null, match[1] + "："), proseNode(match[2]));
+    else p.append(proseNode(line));
+    paper.append(p);
+  }
+  face.append(paper);
+  if (kind === "primary" && card.image) {
+    const map = node("span", "battle-card-map");
+    const im = node("img"); im.src = assetPath(card.image); im.alt = named(card.name) + "部署地图";im.loading = "lazy";
+    map.append(im);face.append(map);
+  }
+  frame.append(face);
   return frame;
+}
+
+function battleTextToggle() {
+  const label = node("label", "battle-text-toggle");
+  const input = node("input");input.type = "checkbox";input.checked = cardView.battleText;
+  input.onchange = () => {
+    cardView.battleText = input.checked;
+    try { localStorage.setItem("swl-battle-text", String(input.checked)); } catch {}
+    document.querySelectorAll(".mission-sections,.deck-picker-dialog").forEach(n => n.classList.toggle("text-mode", input.checked));
+    document.querySelectorAll(".battle-text-toggle input").forEach(n => n.checked = input.checked);
+  };
+  label.append(input, document.createTextNode("文字版"));
+  return label;
 }
 
 function artButton(c, cls = "unit-art") {
@@ -675,13 +724,16 @@ function showImage(c) {
   close.setAttribute("aria-label", "关闭卡图");
   close.onclick = () => imageDialog.close();
   h.append(close);
-  const im = node("img", "full-card-image");
-  im.src = assetPath(c.assets?.front || c.image);
-  im.alt = named(c.name) + "完整卡图";
+  const battle = c.image?.startsWith("assets/battle-deck/");
+  const im = battle ? battleCardArt(c) : node("img", "full-card-image");
+  if (!battle) {
+    im.src = assetPath(c.assets?.front || c.image);
+    im.alt = named(c.name) + "完整卡图";
+  }
   imageDialog.append(h, im);
   const effect = upgradeEffect(c);
   const rules = textParts(named(c.rules));
-  if (effect.childNodes.length || rules) {
+  if (!battle && (effect.childNodes.length || rules)) {
     const section = node("section", "image-card-effect");
     section.append(node("h3", null, "卡牌效果"));
     if (effect.childNodes.length) section.append(effect);

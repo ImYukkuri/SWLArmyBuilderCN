@@ -809,7 +809,7 @@ window.RulesCore = (() => {
     for (const combo of mode.combined || []) {
       let total = 0;
       for (const t of combo.tiers || []) total += maxCounts[t] || 0;
-      if (total > combo.maximum) issue("invalid", "rank_combined", `军阶组合 ${combo.tiers} 合计超过上限 ${combo.maximum}`, null);
+      if (total > combo.maximum) issue("invalid", "rank_combined", `军阶组合 ${combo.tiers} 合计超过上限 ${combo.maximum}`, null, { ranks: combo.tiers });
     }
 
     // command cards

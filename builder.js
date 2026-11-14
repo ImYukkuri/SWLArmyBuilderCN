@@ -472,17 +472,18 @@ function openDeckSlot(kind, label, index = 0) {
   const selected = BuilderLibrary.normalizeDeck(army.deck)[kind];
   const dialog = node("dialog", "deck-picker-dialog");
   dialog.id = "deck-picker";
+  dialog.classList.toggle("text-mode", cardView.battleText);
   dialog.setAttribute("aria-labelledby", "deck-picker-title");
   const head = node("div", "dialog-head");
   const heading = node("div");
   const title = node("h2", null, "选择" + label);
   title.id = "deck-picker-title";
   heading.append(title, node("p", "deck-picker-context",
-    `第 ${index + 1} 张 · 已选 ${selected.length} / 3 · 点击卡图${selected[index] ? "替换" : "加入"}`));
+    `第 ${index + 1} 张 · 已选 ${selected.length} / 3 · 点击卡片${selected[index] ? "替换" : "加入"}`));
   const close = node("button", null, "×");
   close.setAttribute("aria-label", "关闭任务卡选择");
   close.onclick = () => dialog.close();
-  head.append(heading, close);
+  head.append(heading, battleTextToggle(), close);
   const grid = node("div", "deck-pick-grid");
   for (const card of deckCatalog(kind)) {
     if (card.armyIds?.length && !card.armyIds.includes(Number(army.armyId))) continue;
