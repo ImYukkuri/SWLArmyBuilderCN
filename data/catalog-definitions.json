@@ -3327,10 +3327,13 @@
         "en": "noncombatant",
         "zh": "非战斗人员"
       },
-      "summary": "",
-      "full": "",
-      "timing": [],
-      "status": "needs_review"
+      "summary": "该模型无法攻击，受到伤害时，如可能，伤害优先分配给队长以外的其他模型。",
+      "full": "带有非战斗人员关键词的模型不能添加任何武器到攻击池中，并且如可能，必须将承受的任何伤害分配给没有非战斗人员关键词的非单位队长模型。如果带有非战斗人员关键词的模型已经有1个或更多伤害标记，则在分配伤害时，必须先分配给它，再分配给没有伤害标记的模型。如果带有非战斗人员关键词的单位中的单位队长模型被击败，则除非单位中已经没有其他不带有非战斗人员关键词的模型，否则非战斗人员模型不能被新的单位队长模型替换。",
+      "timing": [
+        "defense",
+        "attack"
+      ],
+      "status": "reviewed"
     },
     {
       "id": "capacity",
@@ -13354,7 +13357,7 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3,
+      "slotPips": 1,
       "image": "assets/command-cards/1825.webp",
       "description": {
         "en": "While building a Command Hand, treat this card as though it has 1 pip. \n\n Remove up to 2 Wound tokens and any number of Poison tokens or Immobilize tokens from Maul. At the start of Maulʼs next Activation, he makes a Recover action.",
@@ -26707,5 +26710,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-11-11T10:33:15.783211+00:00"
+  "updatedAt": "2026-11-14T13:17:01.714029+00:00"
 }

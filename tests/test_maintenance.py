@@ -10,17 +10,21 @@ class MaintenanceTest(unittest.TestCase):
     def setUpClass(cls):
         cls.cards=json.loads((store.ROOT/'data/upgrades.json').read_bytes())['cards'];cls.units=json.loads((store.ROOT/'data/units.json').read_bytes())['units']
     def test_all_records_and_images(self):
-        self.assertEqual(len(self.cards),535)
-        fronts=[c['assets']['front'] for c in self.cards if c['assets'].get('front')]
+        self.assertEqual(len(self.cards),528)
+        faces=[face for c in self.cards for face in ([c,c['back']] if c.get('dualSided') else [c])]
+        self.assertEqual(len(faces),535)
+        fronts=[c['assets']['front'] for c in faces if c['assets'].get('front')]
         self.assertGreaterEqual(len(fronts),503)
         for f in fronts:self.assertTrue((store.ROOT/f).is_file(),f)
         for c in self.cards:store.validate('upgrades',c)
         covered={c['upstream']['id']for c in self.cards if c.get('upstream')}
         for c in self.cards:covered.update(str(x) for x in (c.get('upstreamAliases') or []))
+        for c in self.cards:
+            if c.get('back',{}).get('source',{}).get('upstream'):covered.add(c['back']['source']['upstream']['id'])
         self.assertEqual(covered,{str(c['id'])for c in json.loads((store.ROOT/'references/upstream/legion.json').read_bytes())['data']['upgrades']})
     def test_shared_keyword_references(self):
         definitions=json.loads((store.ROOT/'data/catalog-definitions.json').read_bytes());known={k['id']for k in definitions['keywords']}
-        for c in self.cards:
+        for c in [face for card in self.cards for face in ([card,card['back']] if card.get('dualSided') else [card])]:
             for w in c['weapons']:
                 self.assertEqual(set(w['name']),{'en','zh'});self.assertNotIn('zh',w)
             for k in c['keywords']+[k for w in c['weapons']for k in w['keywords']]:

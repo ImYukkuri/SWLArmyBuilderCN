@@ -3,6 +3,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 global.window = global;
+require("../upgrade-faces.js");
 require("../dice-enums.js");
 require("../rules-core.js");
 require("../builder-library.js");

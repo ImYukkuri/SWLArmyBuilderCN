@@ -10,8 +10,12 @@
 纯静态、只读，无需 Python。发布流程：
 
 ```powershell
+python tools/release.py prepare # 用户要求上传时，先整理 CHANGELOG.md 并准备版本
 python tools/build_public.py   # 生成 dist/
+python tools/release.py check   # 检查版本与更新日志一致
 ```
+
+版本与日志归档规则见 [VERSIONING.md](VERSIONING.md)，发布记录见 [CHANGELOG.md](CHANGELOG.md)。
 
 `dist/` 只包含写表器需要的文件：`index.html`、`builder.js`、`rules-core.js`、
 `builder.css`、`data/*.json`、`assets/`。推送 `main` 分支后，

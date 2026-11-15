@@ -4,7 +4,8 @@ from datetime import datetime,timezone
 from pathlib import Path
 from rule_schema import validate_rules,KNOWN
 ROOT=Path(__file__).resolve().parent;LOCK=threading.Lock()
-CONFIG={'upgrades':('data/upgrades.json','cards'),'armies':('data/armies.json','armies'),'commands':('data/catalog-definitions.json','commands')}
+CONFIG={'upgrades':('data/upgrades.json','cards'),'armies':('data/armies.json','armies'),'commands':('data/catalog-definitions.json','commands'),'keywords':('data/catalog-definitions.json','keywords')}
+KEYWORD_TIMINGS={'global','setup','deployment','command','activation_start','activation','activation_end','movement','attack','defense','end_round'}
 def encode(v):return (json.dumps(v,ensure_ascii=False,indent=2)+'\n').encode('utf8')
 def hashof(b):return hashlib.sha256(b).hexdigest()
 def write(path,content):
@@ -18,6 +19,17 @@ def read(kind):
     with LOCK:content=(ROOT/filename).read_bytes()
     return {'revision':hashof(content),'catalog':json.loads(content),'recordsKey':key}
 def validate(kind,card):
+    if kind=='keywords':
+        if not isinstance(card,dict)or not isinstance(card.get('id'),str)or not re.fullmatch(r'[a-z0-9][a-z0-9_-]{0,150}',card['id']):raise ValueError('词条 ID 只能包含小写字母、数字、下划线和连字符')
+        name=card.get('name')
+        if not isinstance(name,dict)or any(not isinstance(name.get(lang),str)for lang in ('en','zh'))or not any(name[lang].strip()for lang in ('en','zh')):raise ValueError('请填写至少一个词条名称；中英文名称字段必须是文本')
+        for field in ('summary','full'):
+            if not isinstance(card.get(field),str):raise ValueError('简写和完整规则必须是文本')
+        timing=card.get('timing')
+        if not isinstance(timing,list)or any(not isinstance(t,str)or t not in KEYWORD_TIMINGS for t in timing)or len(timing)!=len(set(timing)):raise ValueError('请选择有效且不重复的词条时机')
+        if card.get('status')not in (None,'needs_review','reviewed','unresolved','english_only'):raise ValueError('词条校对状态无效')
+        if 'upstreamIds'in card and (not isinstance(card['upstreamIds'],list)or any(type(i)is not int or i<=0 for i in card['upstreamIds'])):raise ValueError('上游词条 ID 必须是正整数数组')
+        return
     if kind=='commands':
         if not isinstance(card,dict):raise ValueError('战术卡必须是 JSON 对象')
         if not isinstance(card.get('id'),str)or not re.fullmatch(r'[a-z0-9][a-z0-9_-]{0,150}',card['id']):raise ValueError('战术卡 ID 无效')
@@ -61,6 +73,20 @@ def validate(kind,card):
         for k in ['keywords','weapons','requirementsText']:
             if not isinstance(card.get(k),list):raise ValueError(k+' 必须为数组')
         if not isinstance(card.get('review'),dict)or card['review'].get('status')not in ['needs_review','reviewed']:raise ValueError('校对状态无效')
+        if 'dualSided' in card and type(card['dualSided']) is not bool:raise ValueError('dualSided 必须为布尔值')
+        if card.get('back') is not None:
+            back=card['back']
+            if not isinstance(back,dict):raise ValueError('背面必须为对象')
+            if any(k in back for k in ('points','slotIds','rules','restrictions','id','dualSided','back')):raise ValueError('费用、槽位与选择规则由两面共用，不能写入背面')
+            if back.get('legacyId') is not None and (not isinstance(back['legacyId'],str) or not re.fullmatch(r'[a-z0-9][a-z0-9_-]{0,150}',back['legacyId']) or back['legacyId']==card['id']):raise ValueError('背面旧 ID 无效')
+            # Validate the printed face with the same schema and shared constraints.
+            face={**card,**{k:back.get(k) for k in ('name','description','keywords','weapons','assets')}}
+            face.pop('back',None);face.pop('dualSided',None)
+            if not card.get('dualSided') and isinstance(face.get('name'),dict) and face['name'].get('en')=='':
+                face['name']={**face['name'],'en':'Unpublished face'}
+            validate('upgrades',face)
+        elif card.get('dualSided'):raise ValueError('双面卡需要背面名称、卡文、词条、武器与卡图字段')
+
     else:
         if not isinstance(card.get('name'),str)or not card['name'].strip():raise ValueError('军表需要名称')
         if card.get('mode')not in ['standard','recon']:raise ValueError('模式无效')
@@ -78,6 +104,7 @@ def validate(kind,card):
                 if not isinstance(c,dict)or not isinstance(c.get('upgradeId'),str)or not isinstance(c.get('instanceId'),str):raise ValueError('军表升级需 upgradeId 与 instanceId')
                 if c['instanceId']in instances:raise ValueError('升级实例 ID 不能重复')
                 instances.add(c['instanceId'])
+                if c.get('face','front') not in ('front','back'):raise ValueError('升级朝向必须为 front 或 back')
         validate_rules(card.get('rules',{}))
 def save(kind,card,revision,create=False):
     validate(kind,card);filename,key=CONFIG[kind];path=ROOT/filename
@@ -85,7 +112,7 @@ def save(kind,card,revision,create=False):
         old=path.read_bytes()
         if hashof(old)!=revision:raise FileExistsError('该模块源文件已被修改，请重新载入；草稿不会被覆盖。')
         catalog=json.loads(old);index=next((i for i,c in enumerate(catalog[key])if c['id']==card['id']),None)
-        if index is None and not(create and kind in ('armies','upgrades','commands')):raise ValueError('没有此记录；不能修改固定 ID')
+        if index is None and not(create and kind in ('armies','upgrades','commands','keywords')):raise ValueError('没有此记录；不能修改固定 ID')
         if index is not None and create:raise ValueError('ID 已存在')
         stamp=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S.%fZ');snapshot=stamp+'-'+hashof(old)[:12]+'.json';write(ROOT/'history'/kind/snapshot,old)
         if index is None:catalog[key].append(copy.deepcopy(card))
@@ -130,13 +157,15 @@ def delete_army(record_id,revision):
         return {'revision':hashof(content),'snapshot':snapshot}
 
 
-def save_image(kind, record_id, image_bytes, revision):
+def save_image(kind, record_id, image_bytes, revision, face="front"):
     import io
     from PIL import Image
     if kind not in ("upgrades", "commands"):
         raise ValueError("只支持升级卡与战术卡卡图")
     if not isinstance(record_id, str) or not re.fullmatch(r"[a-z0-9][a-z0-9_-]{0,150}", record_id):
         raise ValueError("记录 ID 无效")
+    if face not in ("front", "back") or (kind != "upgrades" and face != "front"):
+        raise ValueError("卡图面向无效")
     if not image_bytes:
         raise ValueError("图片为空")
     try:
@@ -156,10 +185,12 @@ def save_image(kind, record_id, image_bytes, revision):
         if index is None:
             raise ValueError("没有此记录；不能修改固定 ID")
         card = catalog[key][index]
+        if face == "back" and not (card.get("dualSided") and card.get("back")):
+            raise ValueError("请先保存双面卡及背面数据")
         if kind == "commands":
             rel = f"assets/command-cards/{record_id}.webp"
         else:
-            rel = f"assets/upgrade-cards/{record_id}.webp"
+            rel = f"assets/upgrade-cards/{record_id}-{face}-{hashof(image_bytes)[:12]}.webp"
         abs_path = ROOT / rel
         abs_path.parent.mkdir(parents=True, exist_ok=True)
         tmp = abs_path.with_name("." + abs_path.name + "." + uuid.uuid4().hex + ".tmp")
@@ -171,7 +202,9 @@ def save_image(kind, record_id, image_bytes, revision):
         if kind == "commands":
             card["image"] = rel
         else:
-            card.setdefault("assets", {})["front"] = rel
+            printed = card["back"] if face == "back" else card
+            printed.setdefault("assets", {})["front"] = rel
+            printed["assets"].pop("portrait", None)
         stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S.%fZ")
         snapshot = stamp + "-" + hashof(old)[:12] + ".json"
         write(ROOT / "history" / kind / snapshot, old)

@@ -1,6 +1,6 @@
 {
   "schema": "swl-unit-catalog/v2",
-  "updatedAt": "2026-11-13T08:42:42.184477+00:00",
+  "updatedAt": "2026-11-14T03:42:04.164543+00:00",
   "definitions": "catalog-definitions.json",
   "referenceVersion": "2026.11.04.0",
   "units": [
@@ -413,12 +413,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/cis/originals/aat_front.webp",
-        "portrait": "assets/portraits/separatists-aat-e2c876a30fdb989e63aa.webp",
+        "portrait": "assets/portraits/separatists-aat-f7f4e12290a477a9edd2.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6704451193352451,
+          0.10318595976972328,
+          0.999445119335245,
+          0.6923044170699986
         ]
       },
       "review": {
@@ -680,12 +680,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/cis/originals/asajj_front.webp",
-        "portrait": "assets/portraits/separatists-asajj-75eb8a953813c91199ac.webp",
+        "portrait": "assets/portraits/separatists-asajj-b01fa490e450fccea434.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6675548806647549,
+          0.10525615223292878,
+          0.9965548806647548,
+          0.6943746095332042
         ]
       },
       "review": {
@@ -14708,9 +14708,6 @@
       "rankId": 6,
       "unitTypeId": 9,
       "keywords": [
-        {
-          "id": "ai"
-        },
         {
           "id": "mercenary",
           "parameter": "Q)"

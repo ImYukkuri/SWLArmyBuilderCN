@@ -80,7 +80,7 @@ async function load() {
     ]);
     data = {
       units: Object.fromEntries(uj.units.map((u) => [u.id, u])),
-      upgrades: Object.fromEntries(gj.cards.map((c) => [c.id, c])),
+      upgrades: UpgradeFaces.index(gj.cards),
       defs: dj,
       pkg: pj,
       deckData: bj,
@@ -520,6 +520,7 @@ function restore() {
 }
 function render() {
   if (!data || !army || !activeRecord) return;
+  UpgradeFaces.normalizeArmy(army, data);
   army.mode = BuilderLibrary.modeForPoints(army.pointsLimit);
   const report = RulesCore.validateArmy(army, data);
   invalidUnitIds = invalidMarks(report).units;
@@ -563,12 +564,13 @@ function removeOne(group) {
   render();
 }
 function prepareUpgrade(card) {
-  return BuilderModel.equip(army, data, browser, card.id, cardView.applyAll, uid);
+  return BuilderModel.equip(army, data, browser, card.id, cardView.applyAll, uid, card._face);
 }
 function itemState(card) {
-  if (stateCache.has(card.id)) return stateCache.get(card.id);
+  const key = card.id + ":" + (card._face || "front");
+  if (stateCache.has(key)) return stateCache.get(key);
   const state = computeItemState(card);
-  stateCache.set(card.id, state);
+  stateCache.set(key, state);
   return state;
 }
 function computeItemState(card) {
@@ -591,7 +593,8 @@ function computeItemState(card) {
     const first = army.units.find((i) => i.instanceId === browser.unitInstanceId);
     if (
       first?.upgrades.some(
-        (ch) => ch.slotIndex === browser.slotIndex && ch.upgradeId === card.id,
+        (ch) => ch.slotIndex === browser.slotIndex && ch.upgradeId === card.id &&
+          (!UpgradeFaces.isDual(card) || (ch.face || "front") === (card._face || "front")),
       )
     )
       return { kind: "chosen", label: "已选入当前槽位", ok: false };
@@ -643,7 +646,7 @@ function choose(card) {
     }
     army = result.draft;
     setStatus("已加入 " + named(card.name));
-    render();
+    closeBrowser();
     return;
   }
   if (browser.mode === "upgrades") {

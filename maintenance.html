@@ -5,18 +5,20 @@
 <a class="module-card" href="upgrades.html"><span class="eyebrow">02 / UPGRADE LIBRARY</span><h2>升级卡</h2><p>浏览卡图和中文卡文，维护槽位、宿主条件与卡文。</p><p class="module-count" id="count-upgrades">载入中…</p></a>
 <a class="module-card" href="commands.html"><span class="eyebrow">03 / COMMAND DECK</span><h2>战术卡</h2><p>维护指挥卡：点数、可用军队、解锁单位、指令与效果文本、卡图。</p><p class="module-count">251 张指挥卡</p></a><a class="module-card" href="armies.html"><span class="eyebrow">03 / ARMY LIBRARY</span><h2>军表</h2><p>维护军表草稿与单位/升级实例，查看问题与费用。</p><p class="module-count" id="count-armies">载入中…</p></a>
 <a class="module-card" href="rules.html"><span class="eyebrow">04 / RULE LIBRARY</span><h2>规则库</h2><p>维护语义槽位、槽位授予、角色限定、唯一性/互斥、模式配额与战斗部队骨架。</p><p class="module-count" id="count-rules">载入中…</p></a>
+<a class="module-card" href="keywords.html"><span class="eyebrow">KEYWORD LIBRARY</span><h2>词条编辑器</h2><p>编写简写、完整规则与效果文本，设置触发时机，查看关联卡牌和保存历史。</p><p class="module-count" id="count-keywords">载入中…</p></a>
 </div><div class="notice">数据维护走 <code>python server.py --port 8770</code>（保存、历史、冲突检测需要它）；写表器主页 <code>index.html</code> 是纯静态，可直接用 Live Server 打开。</div></div>
 
 <script>
 (async()=>{
   const load=p=>fetch(p).then(r=>r.ok?r.json():null).catch(()=>null);
-  const [units,upgrades,armies,rules]=await Promise.all([
-    load('data/units.json'),load('data/upgrades.json'),load('data/armies.json'),load('data/slot-rules.json')
+  const [units,upgrades,armies,rules,definitions]=await Promise.all([
+    load('data/units.json'),load('data/upgrades.json'),load('data/armies.json'),load('data/slot-rules.json'),load('data/catalog-definitions.json')
   ]);
   const set=(id,text)=>{const n=document.getElementById(id);if(n)n.textContent=text};
   if(units){const u=units.units||[];set('count-units','共 '+u.length+' 张 · 已校对 '+u.filter(x=>x.review&&x.review.status==='reviewed').length+' 张')}
   if(upgrades){const c=upgrades.cards||[];set('count-upgrades','共 '+c.length+' 张 · 缺卡图 '+c.filter(x=>!x.assets||!x.assets.front).length+' 张')}
   if(armies){const a=armies.armies||[];set('count-armies','共 '+a.length+' 份')}
+  if(definitions){const k=definitions.keywords||[];set('count-keywords','共 '+k.length+' 条 · 待补文字 '+k.filter(x=>!x.summary?.trim()||!x.full?.trim()).length+' 条')}
   if(rules){const s=rules.slots||[];const grants=((upgrades&&upgrades.cards)||[]).reduce((n,c)=>n+(((c.rules||{}).slotGrants)||[]).length,0);set('count-rules','语义槽位 '+s.length+' 类 · 槽位授予 '+grants+' 条')}
 })();
 </script>

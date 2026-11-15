@@ -8,6 +8,7 @@ snapshot is a development-time source only and is not loaded at runtime.
 from __future__ import annotations
 
 import json
+from upgrade_schema import normalize_army_faces
 import re
 from pathlib import Path
 
@@ -635,6 +636,7 @@ def upgrade_eligibility(card, unit, army, package, definitions, name_index, equi
 def validate_army(army):
     package = load_package()
     units, upgrades, definitions = load_cards()
+    army = normalize_army_faces(army, upgrades, units)
 
     issues = []
     base_points = 0

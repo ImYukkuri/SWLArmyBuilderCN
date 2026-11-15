@@ -1,7 +1,7 @@
 {
   "schema": "swl-upgrades/v1",
   "referenceVersion": "2026.11.04.0",
-  "updatedAt": "2026-11-11T07:17:12.873615+00:00",
+  "updatedAt": "2026-11-13T20:05:27.003703+00:00",
   "cards": [
     {
       "id": "21b-medical-droid",
@@ -3940,117 +3940,71 @@
           "imageSha256": "b4e53d57dac8414331e19768421f94dc52de052ac4cd8294f8b3dbc3dc965771"
         },
         "image": "assets/upgrade-cards/b2-anti-infantry-missile.webp"
-      }
-    },
-    {
-      "id": "b2-anti-infantry-missile-flipside",
-      "name": {
-        "en": "Anti-Armor Missile Pod Rocket Droid",
-        "zh": "反装甲导弹舱火箭机器人"
       },
-      "points": 24,
-      "slotIds": [
-        4
-      ],
-      "usage": "unit_upgrade",
-      "description": {
-        "en": [
-          "Add 1 Missile Pod B2 Super Rocket Battle",
-          "Droid Miniature."
-        ],
-        "zh": [
-          "加入1个导弹舱B2超级火箭战斗机器人模型。"
-        ]
-      },
-      "requirementsText": [
-        "B2超级火箭战斗机器人限定"
-      ],
-      "keywords": [],
-      "weapons": [
-        {
-          "name": {
-            "en": "Anti-Armor Missile Pods",
-            "zh": "反装甲导弹舱"
-          },
-          "range": {
-            "min": 1,
-            "max": 3
-          },
-          "dice": {
-            "red": 0,
-            "black": 0,
-            "white": 3
-          },
-          "keywords": [
-            {
-              "id": "anti_materiel",
-              "value": 3
-            },
-            {
-              "id": "impact",
-              "value": 3
-            }
-          ]
-        }
-      ],
-      "assets": {
-        "front": "assets/upgrade-cards/b2-anti-infantry-missile-flipside.webp"
-      },
-      "rules": {
-        "availableIn": [
-          35769
-        ],
-        "slotTypes": [
-          4
-        ],
-        "locallyUnique": true
-      },
-      "review": {
-        "status": "needs_review",
-        "notes": "",
-        "issues": [
-          "机器限制已导入；执行语义和卡面仍需校对。"
-        ]
-      },
-      "matching": {
-        "status": "matched",
-        "candidates": []
-      },
-      "upstream": {
-        "collection": "upgrades",
-        "id": "23145"
-      },
-      "selectionGroup": "upgrade:23145",
-      "restrictions": {
-        "text": {
+      "dualSided": true,
+      "back": {
+        "name": {
+          "en": "Anti-Armor Missile Pod Rocket Droid",
+          "zh": "反装甲导弹舱火箭机器人"
+        },
+        "description": {
           "en": [
-            "B2 Super Rocket Battle Droids Only"
+            "Add 1 Missile Pod B2 Super Rocket Battle",
+            "Droid Miniature."
           ],
           "zh": [
-            "B2超级火箭战斗机器人限定"
+            "加入1个导弹舱B2超级火箭战斗机器人模型。"
           ]
         },
-        "zhReview": "legacy_unverified",
-        "sources": [
-          "references/upgrades-slim.json#requirements"
+        "keywords": [],
+        "weapons": [
+          {
+            "name": {
+              "en": "Anti-Armor Missile Pods",
+              "zh": "反装甲导弹舱"
+            },
+            "range": {
+              "min": 1,
+              "max": 3
+            },
+            "dice": {
+              "red": 0,
+              "black": 0,
+              "white": 3
+            },
+            "keywords": [
+              {
+                "id": "anti_materiel",
+                "value": 3
+              },
+              {
+                "id": "impact",
+                "value": 3
+              }
+            ]
+          }
         ],
-        "verification": "text_matched",
-        "condition": {
-          "field": "unit.upstreamId",
-          "op": "in",
-          "value": [
-            "35769"
-          ]
+        "assets": {
+          "front": "assets/upgrade-cards/b2-anti-infantry-missile-flipside.webp"
         },
-        "ocrEvidence": {
-          "file": "work/upgrade-restrictions/ocr-v3.json",
-          "key": "b2-anti-infantry-missile-flipside",
-          "textSimilarity": 1.0,
-          "containsIcons": false,
-          "iconsVerified": false,
-          "imageSha256": "e7d640311bfc5074f43e1373292e91d07ca144b558498c0ca3e93e310ceb610e"
-        },
-        "image": "assets/upgrade-cards/b2-anti-infantry-missile-flipside.webp"
+        "legacyId": "b2-anti-infantry-missile-flipside",
+        "source": {
+          "upstream": {
+            "collection": "upgrades",
+            "id": "23145"
+          },
+          "matching": {
+            "status": "matched",
+            "candidates": []
+          },
+          "review": {
+            "status": "needs_review",
+            "notes": "",
+            "issues": [
+              "机器限制已导入；执行语义和卡面仍需校对。"
+            ]
+          }
+        }
       }
     },
     {
@@ -5453,117 +5407,65 @@
           "imageSha256": "a65223248051f254cdc0908d85723d2a926504ca520a7ec2013d790cba12824b"
         },
         "image": "assets/upgrade-cards/battleshield-1.webp"
-      }
-    },
-    {
-      "id": "battleshield-2",
-      "name": {
-        "en": "Battle Shield Wookiee",
-        "zh": "战盾伍基人"
       },
-      "points": 26,
-      "slotIds": [
-        4
-      ],
-      "usage": "unit_upgrade",
-      "description": {
-        "en": [
-          "Add 1 Battle Shield Wookiee miniature.",
-          "At the start of this unit's Activation, you may",
-          "flip this card."
-        ],
-        "zh": [
-          "加入1个战盾伍基人模型。本单位激活开始时，你可以翻转此卡。"
-        ]
-      },
-      "requirementsText": [
-        "伍基战士限定"
-      ],
-      "keywords": [],
-      "weapons": [
-        {
-          "name": {
-            "en": "Battle Shield",
-            "zh": "战盾"
-          },
-          "range": {
-            "min": 0,
-            "max": 0
-          },
-          "dice": {
-            "red": 2,
-            "black": 0,
-            "white": 0
-          },
-          "keywords": []
-        }
-      ],
-      "assets": {
-        "front": "assets/upgrade-cards/battleshield-2.webp"
-      },
-      "rules": {
-        "availableIn": [
-          24,
-          1527,
-          1529,
-          1563
-        ],
-        "slotTypes": [
-          4
-        ],
-        "locallyUnique": true
-      },
-      "review": {
-        "status": "needs_review",
-        "notes": "",
-        "issues": [
-          "机器限制已导入；执行语义和卡面仍需校对。"
-        ]
-      },
-      "matching": {
-        "status": "matched",
-        "candidates": [
-          "413"
-        ]
-      },
-      "upstream": {
-        "collection": "upgrades",
-        "id": "413"
-      },
-      "selectionGroup": "upgrade:413",
-      "restrictions": {
-        "text": {
+      "dualSided": true,
+      "back": {
+        "name": {
+          "en": "Battle Shield Wookiee",
+          "zh": "战盾伍基人"
+        },
+        "description": {
           "en": [
-            "Wookiee Warriors Only"
+            "Add 1 Battle Shield Wookiee miniature.",
+            "At the start of this unit's Activation, you may",
+            "flip this card."
           ],
           "zh": [
-            "伍基战士限定"
+            "加入1个战盾伍基人模型。本单位激活开始时，你可以翻转此卡。"
           ]
         },
-        "zhReview": "legacy_unverified",
-        "sources": [
-          "references/upgrades-slim.json#requirements"
+        "keywords": [],
+        "weapons": [
+          {
+            "name": {
+              "en": "Battle Shield",
+              "zh": "战盾"
+            },
+            "range": {
+              "min": 0,
+              "max": 0
+            },
+            "dice": {
+              "red": 2,
+              "black": 0,
+              "white": 0
+            },
+            "keywords": []
+          }
         ],
-        "verification": "text_matched",
-        "condition": {
-          "field": "unit.upstreamId",
-          "op": "in",
-          "value": [
-            "1527",
-            "1529",
-            "1563",
-            "24"
-          ]
+        "assets": {
+          "front": "assets/upgrade-cards/battleshield-2.webp"
         },
-        "ocrEvidence": {
-          "file": "work/upgrade-restrictions/ocr-v3.json",
-          "key": "battleshield-2",
-          "textSimilarity": 1.0,
-          "containsIcons": false,
-          "iconsVerified": false,
-          "imageSha256": "b8b7ca089790aeba6586c11b60f1da064f2c7e650df8eacda71cee54d360e781"
-        },
-        "image": "assets/upgrade-cards/battleshield-2.webp"
+        "legacyId": "battleshield-2",
+        "source": {
+          "upstream": {
+            "collection": "upgrades",
+            "id": "413"
+          },
+          "matching": {
+            "status": "matched",
+            "candidates": [
+              "413"
+            ]
+          },
+          "review": {
+            "status": "needs_review",
+            "notes": "",
+            "issues": [
+              "机器限制已导入；执行语义和卡面仍需校对。"
+            ]
+          }
+        }
       }
     },
     {
@@ -6910,131 +6812,79 @@
           "imageSha256": "dbf2b979a2d1a949d688fe4e882bd32c7240af06775d1ba26baefd40bcb3669f"
         },
         "image": "assets/upgrade-cards/cassian-a280-pistol.webp"
-      }
-    },
-    {
-      "id": "cassian-a280-sniper",
-      "name": {
-        "en": "A280, Rifle Config",
-        "zh": "A280步枪配置"
       },
-      "points": 0,
-      "slotIds": [
-        12
-      ],
-      "usage": "unit_upgrade",
-      "description": {
-        "en": [
-          "Reconfigure."
-        ],
-        "zh": [
-          "重新配置。"
-        ]
-      },
-      "requirementsText": [
-        "卡西安·安多限定"
-      ],
-      "keywords": [
-        {
-          "id": "reconfigure"
-        }
-      ],
-      "weapons": [
-        {
-          "name": {
-            "en": "A280 Rifle",
-            "zh": "A280 步枪"
-          },
-          "range": {
-            "min": 1,
-            "max": 6
-          },
-          "dice": {
-            "red": 1,
-            "black": 1,
-            "white": 0
-          },
-          "keywords": [
-            {
-              "id": "cumbersome"
-            },
-            {
-              "id": "high_velocity",
-              "value": "Velocity"
-            },
-            {
-              "id": "pierce",
-              "value": 1
-            }
-          ]
-        }
-      ],
-      "assets": {
-        "front": "assets/upgrade-cards/cassian-a280-sniper.webp"
-      },
-      "rules": {
-        "availableIn": [
-          57,
-          29930
-        ],
-        "unique": false,
-        "slotTypes": [
-          12
-        ],
-        "locallyUnique": true
-      },
-      "review": {
-        "status": "needs_review",
-        "notes": "",
-        "issues": [
-          "机器限制已导入；执行语义和卡面仍需校对。"
-        ]
-      },
-      "matching": {
-        "status": "matched",
-        "candidates": [
-          "142"
-        ]
-      },
-      "upstream": {
-        "collection": "upgrades",
-        "id": "142"
-      },
-      "selectionGroup": "upgrade:142",
-      "restrictions": {
-        "text": {
+      "dualSided": true,
+      "back": {
+        "name": {
+          "en": "A280, Rifle Config",
+          "zh": "A280步枪配置"
+        },
+        "description": {
           "en": [
-            "Cassian Andor Only"
+            "Reconfigure."
           ],
           "zh": [
-            "卡西安·安多限定"
+            "重新配置。"
           ]
         },
-        "zhReview": "legacy_unverified",
-        "sources": [
-          "references/upgrades-slim.json#requirements"
+        "keywords": [
+          {
+            "id": "reconfigure"
+          }
         ],
-        "verification": "text_matched",
-        "condition": null,
-        "candidateCondition": {
-          "field": "unit.upstreamId",
-          "op": "in",
-          "value": [
-            "29930"
-          ]
-        },
-        "unmappedReasons": [
-          "printed restriction and source availability differ; do not activate subset"
+        "weapons": [
+          {
+            "name": {
+              "en": "A280 Rifle",
+              "zh": "A280 步枪"
+            },
+            "range": {
+              "min": 1,
+              "max": 6
+            },
+            "dice": {
+              "red": 1,
+              "black": 1,
+              "white": 0
+            },
+            "keywords": [
+              {
+                "id": "cumbersome"
+              },
+              {
+                "id": "high_velocity",
+                "value": "Velocity"
+              },
+              {
+                "id": "pierce",
+                "value": 1
+              }
+            ]
+          }
         ],
-        "ocrEvidence": {
-          "file": "work/upgrade-restrictions/ocr-v3.json",
-          "key": "cassian-a280-sniper",
-          "textSimilarity": 0.9697,
-          "containsIcons": false,
-          "iconsVerified": false,
-          "imageSha256": "bb4b2773a2436cc2d9e43c2d570727f5603ecccc0a43568c242007d7fdb561de"
+        "assets": {
+          "front": "assets/upgrade-cards/cassian-a280-sniper.webp"
         },
-        "image": "assets/upgrade-cards/cassian-a280-sniper.webp"
+        "legacyId": "cassian-a280-sniper",
+        "source": {
+          "upstream": {
+            "collection": "upgrades",
+            "id": "142"
+          },
+          "matching": {
+            "status": "matched",
+            "candidates": [
+              "142"
+            ]
+          },
+          "review": {
+            "status": "needs_review",
+            "notes": "",
+            "issues": [
+              "机器限制已导入；执行语义和卡面仍需校对。"
+            ]
+          }
+        }
       }
     },
     {
@@ -7193,148 +7043,79 @@
           "imageSha256": "86d187f80ff4fa6273ea1c1b2fddb681e8aef450b865d0c9d1e3da364d5fc670"
         },
         "image": "assets/upgrade-cards/cassian-andor.webp"
-      }
-    },
-    {
-      "id": "cassian-andor-2",
-      "name": {
-        "en": "Cassian Andor",
-        "zh": "卡西安·安多"
       },
-      "points": 25,
-      "slotIds": [
-        4
-      ],
-      "usage": "unit_upgrade",
-      "description": {
-        "en": [
-          "This card starts the game with the other side faceup.",
-          "{@icon.faction-rebel}{@icon.rank-corps} Unit Only.",
-          "Add 1 Cassian Andor miniature.",
-          "Leader.",
-          "This unit changes its {@icon.courage} to \"–\".",
-          "This unit has Uncanny Luck 1.",
-          "Once per Turn, when this unit forms an Attack",
-          "Pool, add 1 white attack die to the Attack Pool",
-          "for each miniature from this unit that was",
-          "previously defeated."
-        ],
-        "zh": [
-          "游戏开始时，此卡另一面朝上。仅限{@icon.faction-rebel}{@icon.rank-corps}单位。加入1个卡西安·安多模型。队长。本单位{@icon.courage}改为“–”。本单位拥有运气出奇1。每回合一次，本单位组成攻击池时，此前本单位每有1个模型被击败，向攻击池加入1枚白色攻击骰。"
-        ]
-      },
-      "requirementsText": [],
-      "keywords": [
-        {
-          "id": "leader"
+      "dualSided": true,
+      "back": {
+        "name": {
+          "en": "Cassian Andor",
+          "zh": "卡西安·安多"
         },
-        {
-          "id": "uncanny_luck"
-        }
-      ],
-      "weapons": [
-        {
-          "name": {
-            "en": "Black Ops",
-            "zh": "秘密行动"
-          },
-          "range": {
-            "min": 0,
-            "max": 2
-          },
-          "dice": {
-            "red": 2,
-            "black": 0,
-            "white": 0
-          },
-          "keywords": []
-        }
-      ],
-      "assets": {
-        "front": "assets/upgrade-cards/cassian-andor-2.webp"
-      },
-      "rules": {
-        "unavailableWith": [
-          "Cassian Andor"
-        ],
-        "requiresTier": [
-          2
-        ],
-        "unique": true,
-        "limit": 1,
-        "chooseOneKey": "leader",
-        "factions": [
-          1,
-          2,
-          4,
-          5
-        ],
-        "slotTypes": [
-          4
-        ],
-        "locallyUnique": true,
-        "unavailableWithIds": [
-          "Cassian Andor"
-        ]
-      },
-      "review": {
-        "status": "needs_review",
-        "notes": "",
-        "issues": [
-          "机器限制已导入；执行语义和卡面仍需校对。"
-        ]
-      },
-      "matching": {
-        "status": "matched",
-        "candidates": [
-          "20800"
-        ]
-      },
-      "upstream": {
-        "collection": "upgrades",
-        "id": "20800"
-      },
-      "selectionGroup": "upgrade:20800",
-      "restrictions": {
-        "text": {
+        "description": {
           "en": [
-            "{@icon.faction-rebel}{@icon.rank-corps} Unit Only."
+            "This card starts the game with the other side faceup.",
+            "{@icon.faction-rebel}{@icon.rank-corps} Unit Only.",
+            "Add 1 Cassian Andor miniature.",
+            "Leader.",
+            "This unit changes its {@icon.courage} to \"–\".",
+            "This unit has Uncanny Luck 1.",
+            "Once per Turn, when this unit forms an Attack",
+            "Pool, add 1 white attack die to the Attack Pool",
+            "for each miniature from this unit that was",
+            "previously defeated."
           ],
-          "zh": []
-        },
-        "zhReview": "legacy_unverified",
-        "sources": [
-          "description.en#leading-restriction"
-        ],
-        "verification": "visually_checked",
-        "condition": {
-          "all": [
-            {
-              "field": "unit.factionId",
-              "op": "eq",
-              "value": 1
-            },
-            {
-              "field": "unit.rankId",
-              "op": "eq",
-              "value": 2
-            }
+          "zh": [
+            "游戏开始时，此卡另一面朝上。仅限{@icon.faction-rebel}{@icon.rank-corps}单位。加入1个卡西安·安多模型。队长。本单位{@icon.courage}改为“–”。本单位拥有运气出奇1。每回合一次，本单位组成攻击池时，此前本单位每有1个模型被击败，向攻击池加入1枚白色攻击骰。"
           ]
         },
-        "visualReview": {
-          "checkedAt": "2026-11-07",
-          "method": "visual_comparison",
-          "iconsVerified": true
+        "keywords": [
+          {
+            "id": "leader"
+          },
+          {
+            "id": "uncanny_luck"
+          }
+        ],
+        "weapons": [
+          {
+            "name": {
+              "en": "Black Ops",
+              "zh": "秘密行动"
+            },
+            "range": {
+              "min": 0,
+              "max": 2
+            },
+            "dice": {
+              "red": 2,
+              "black": 0,
+              "white": 0
+            },
+            "keywords": []
+          }
+        ],
+        "assets": {
+          "front": "assets/upgrade-cards/cassian-andor-2.webp"
         },
-        "ocrEvidence": {
-          "file": "work/upgrade-restrictions/ocr-v3.json",
-          "key": "cassian-andor-2",
-          "textSimilarity": 0.8889,
-          "containsIcons": true,
-          "iconsVerified": true,
-          "imageSha256": "04d0a745b9fdcb22690773cf8b806cde824bfedf499350c36f4d67fa92997f6c"
-        },
-        "image": "assets/upgrade-cards/cassian-andor-2.webp"
+        "legacyId": "cassian-andor-2",
+        "source": {
+          "upstream": {
+            "collection": "upgrades",
+            "id": "20800"
+          },
+          "matching": {
+            "status": "matched",
+            "candidates": [
+              "20800"
+            ]
+          },
+          "review": {
+            "status": "needs_review",
+            "notes": "",
+            "issues": [
+              "机器限制已导入；执行语义和卡面仍需校对。"
+            ]
+          }
+        }
       }
     },
     {
@@ -10166,7 +9947,7 @@
       "id": "clone-shock-pilot",
       "name": {
         "en": "Clone Shock Trooper Pilot",
-        "zh": "克隆人突击兵驾驶员"
+        "zh": "冲击部队驾驶员"
       },
       "points": 4,
       "slotIds": [
@@ -10504,7 +10285,7 @@
       "id": "clone-veteran-pilot",
       "name": {
         "en": "Veteran Clone Pilot",
-        "zh": "老练克隆人驾驶员"
+        "zh": "克隆人驾驶员老兵"
       },
       "points": 7,
       "slotIds": [
@@ -11296,7 +11077,7 @@
       "id": "command-inspiring",
       "name": {
         "en": "Inspiring Presence",
-        "zh": "鼓舞人心的存在"
+        "zh": "领袖风范"
       },
       "points": 5,
       "slotIds": [
@@ -11525,7 +11306,7 @@
       "id": "command-trusted-agent",
       "name": {
         "en": "Trusted Agent",
-        "zh": "可信代理人"
+        "zh": "信赖特工"
       },
       "points": 5,
       "slotIds": [
@@ -11616,7 +11397,7 @@
       "id": "command-underworld",
       "name": {
         "en": "Underworld Connections",
-        "zh": "地下世界关系"
+        "zh": "地下联系"
       },
       "points": 5,
       "slotIds": [
@@ -12141,126 +11922,75 @@
           "imageSha256": "c1d48bf1dd30d4e19f96fe4325f0796da13349a0df0ee520c1e2f70bc5d713b3"
         },
         "image": "assets/upgrade-cards/commandos-sniper-a.webp"
-      }
-    },
-    {
-      "id": "commandos-sniper-b",
-      "name": {
-        "en": "DC-17m ICWS Anti-Armor Configuration",
-        "zh": "DC-17m ICWS反装甲配置"
       },
-      "points": 0,
-      "slotIds": [
-        2
-      ],
-      "usage": "unit_upgrade",
-      "description": {
-        "en": [
-          "Reconfigure.",
-          "At the start of this unit's Activation,",
-          "you may flip this card."
-        ],
-        "zh": [
-          "重新配置。本单位激活开始时，你可以翻转此卡。"
-        ]
-      },
-      "requirementsText": [
-        "克隆人突击队限定"
-      ],
-      "keywords": [
-        {
-          "id": "reconfigure"
-        }
-      ],
-      "weapons": [
-        {
-          "name": {
-            "en": "DC-17m ICWS Launcher",
-            "zh": "DC-17m ICWS 发射器"
-          },
-          "range": {
-            "min": 1,
-            "max": 2
-          },
-          "dice": {
-            "red": 0,
-            "black": 2,
-            "white": 0
-          },
-          "keywords": [
-            {
-              "id": "impact",
-              "value": 1
-            },
-            {
-              "id": "scatter"
-            }
-          ]
-        }
-      ],
-      "assets": {
-        "front": "assets/upgrade-cards/commandos-sniper-b.webp"
-      },
-      "rules": {
-        "availableIn": [
-          23656,
-          24084
-        ],
-        "slotTypes": [
-          2
-        ],
-        "locallyUnique": true
-      },
-      "review": {
-        "status": "needs_review",
-        "notes": "",
-        "issues": [
-          "机器限制已导入；执行语义和卡面仍需校对。"
-        ]
-      },
-      "matching": {
-        "status": "matched",
-        "candidates": []
-      },
-      "upstream": {
-        "collection": "upgrades",
-        "id": "15012"
-      },
-      "selectionGroup": "upgrade:15012",
-      "restrictions": {
-        "text": {
+      "dualSided": true,
+      "back": {
+        "name": {
+          "en": "DC-17m ICWS Anti-Armor Configuration",
+          "zh": "DC-17m ICWS反装甲配置"
+        },
+        "description": {
           "en": [
-            "Clone Commandos Only"
+            "Reconfigure.",
+            "At the start of this unit's Activation,",
+            "you may flip this card."
           ],
           "zh": [
-            "克隆人突击队限定"
+            "重新配置。本单位激活开始时，你可以翻转此卡。"
           ]
         },
-        "zhReview": "legacy_unverified",
-        "sources": [
-          "references/upgrades-slim.json#requirements"
+        "keywords": [
+          {
+            "id": "reconfigure"
+          }
         ],
-        "verification": "text_matched",
-        "condition": null,
-        "candidateCondition": {
-          "field": "unit.upstreamId",
-          "op": "in",
-          "value": [
-            "23656"
-          ]
-        },
-        "unmappedReasons": [
-          "printed restriction and source availability differ; do not activate subset"
+        "weapons": [
+          {
+            "name": {
+              "en": "DC-17m ICWS Launcher",
+              "zh": "DC-17m ICWS 发射器"
+            },
+            "range": {
+              "min": 1,
+              "max": 2
+            },
+            "dice": {
+              "red": 0,
+              "black": 2,
+              "white": 0
+            },
+            "keywords": [
+              {
+                "id": "impact",
+                "value": 1
+              },
+              {
+                "id": "scatter"
+              }
+            ]
+          }
         ],
-        "ocrEvidence": {
-          "file": "work/upgrade-restrictions/ocr-v3.json",
-          "key": "commandos-sniper-b",
-          "textSimilarity": 1.0,
-          "containsIcons": false,
-          "iconsVerified": false,
-          "imageSha256": "041e3b59a86208d8d3f1541f9d27413f8dfb272113911dd388b5ea309b1ace6d"
+        "assets": {
+          "front": "assets/upgrade-cards/commandos-sniper-b.webp"
         },
-        "image": "assets/upgrade-cards/commandos-sniper-b.webp"
+        "legacyId": "commandos-sniper-b",
+        "source": {
+          "upstream": {
+            "collection": "upgrades",
+            "id": "15012"
+          },
+          "matching": {
+            "status": "matched",
+            "candidates": []
+          },
+          "review": {
+            "status": "needs_review",
+            "notes": "",
+            "issues": [
+              "机器限制已导入；执行语义和卡面仍需校对。"
+            ]
+          }
+        }
       }
     },
     {
@@ -12359,7 +12089,7 @@
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "comms-control-array",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "464d9c1ee729c04505bbeb633f9402a008aabfeaadf3b1e78e4f7769d4e8dc7d"
@@ -12371,7 +12101,7 @@
       "id": "comms-emergency",
       "name": {
         "en": "Emergency Transponder",
-        "zh": "应急应答器"
+        "zh": "紧急应答器"
       },
       "points": 4,
       "slotIds": [
@@ -12445,7 +12175,7 @@
       "id": "comms-hacked",
       "name": {
         "en": "Hacked Comms Unit",
-        "zh": "被入侵的通信装置"
+        "zh": "破解通信单元"
       },
       "points": 5,
       "slotIds": [
@@ -12518,7 +12248,7 @@
       "id": "comms-hq",
       "name": {
         "en": "•HQ Uplink",
-        "zh": "总部上行链路"
+        "zh": "总部直传链路"
       },
       "points": 10,
       "slotIds": [
@@ -12664,7 +12394,7 @@
       "id": "comms-linked-targeting",
       "name": {
         "en": "Linked Targeting Array",
-        "zh": "联动瞄准阵列"
+        "zh": "互联瞄准阵列"
       },
       "points": 5,
       "slotIds": [
@@ -12899,7 +12629,7 @@
       "id": "comms-spotter-uplink",
       "name": {
         "en": "Spotter Uplink",
-        "zh": "观测员上行链路"
+        "zh": "观瞄上行链路"
       },
       "points": 3,
       "slotIds": [
@@ -14249,11 +13979,7 @@
         "limit": 1,
         "factions": [
           1,
-          2,
-          4,
-          5,
-          8,
-          9
+          8
         ],
         "slotTypes": [
           12
@@ -15315,101 +15041,66 @@
           "imageSha256": "02cfc23e7d81eb5cf84e85166faef47e2f4ed311f4336fee83013dc8f8f90670"
         },
         "image": "assets/upgrade-cards/e-11d-focused-fire.webp"
-      }
-    },
-    {
-      "id": "e-11d-grenade-launcher",
-      "name": {
-        "en": "E-11D Grenade Launcher Fire Configuration",
-        "zh": "E-11D榴弹发射配置"
       },
-      "points": 0,
-      "slotIds": [],
-      "usage": "unit_upgrade",
-      "description": {
-        "en": [
-          "Reconfigure."
-        ],
-        "zh": [
-          "重新配置。"
-        ]
-      },
-      "requirementsText": [
-        "帝国死亡士兵限定"
-      ],
-      "keywords": [
-        {
-          "id": "reconfigure"
-        }
-      ],
-      "weapons": [
-        {
-          "name": {
-            "en": "E-11D Grenade Launcher",
-            "zh": "E-11D 榴弹发射器"
-          },
-          "range": {
-            "min": 1,
-            "max": 2
-          },
-          "dice": {
-            "red": 1,
-            "black": 0,
-            "white": 0
-          },
-          "keywords": [
-            {
-              "id": "blast"
-            }
-          ]
-        }
-      ],
-      "assets": {
-        "front": "assets/upgrade-cards/e-11d-grenade-launcher.webp"
-      },
-      "rules": {},
-      "review": {
-        "status": "needs_review",
-        "notes": "",
-        "issues": [
-          "未匹配上游机器约束；战役卡或卡面别名请人工校对，不能视为无限制。",
-          "机器限制已导入；执行语义和卡面仍需校对。"
-        ]
-      },
-      "matching": {
-        "status": "unmatched",
-        "candidates": []
-      },
-      "restrictions": {
-        "text": {
+      "dualSided": true,
+      "back": {
+        "name": {
+          "en": "E-11D Grenade Launcher Fire Configuration",
+          "zh": "E-11D榴弹发射配置"
+        },
+        "description": {
           "en": [
-            "Imperial Death Troopers Only"
+            "Reconfigure."
           ],
           "zh": [
-            "帝国死亡士兵限定"
+            "重新配置。"
           ]
         },
-        "zhReview": "legacy_unverified",
-        "sources": [
-          "references/upgrades-slim.json#requirements"
+        "keywords": [
+          {
+            "id": "reconfigure"
+          }
         ],
-        "verification": "text_matched",
-        "condition": {
-          "field": "unit.upstreamId",
-          "op": "in",
-          "value": [
-            "30"
-          ]
+        "weapons": [
+          {
+            "name": {
+              "en": "E-11D Grenade Launcher",
+              "zh": "E-11D 榴弹发射器"
+            },
+            "range": {
+              "min": 1,
+              "max": 2
+            },
+            "dice": {
+              "red": 1,
+              "black": 0,
+              "white": 0
+            },
+            "keywords": [
+              {
+                "id": "blast"
+              }
+            ]
+          }
+        ],
+        "assets": {
+          "front": "assets/upgrade-cards/e-11d-grenade-launcher.webp"
         },
-        "ocrEvidence": {
-          "file": "work/upgrade-restrictions/ocr-v3.json",
-          "key": "e-11d-grenade-launcher",
-          "textSimilarity": 1.0,
-          "containsIcons": false,
-          "iconsVerified": false,
-          "imageSha256": "edf15598690aede272b3b0d32b714e85a657e9eb9d62d9d6977fa33b3b70b531"
-        },
-        "image": "assets/upgrade-cards/e-11d-grenade-launcher.webp"
+        "legacyId": "e-11d-grenade-launcher",
+        "source": {
+          "matching": {
+            "status": "unmatched",
+            "candidates": []
+          },
+          "review": {
+            "status": "needs_review",
+            "notes": "",
+            "issues": [
+              "未匹配上游机器约束；战役卡或卡面别名请人工校对，不能视为无限制。",
+              "机器限制已导入；执行语义和卡面仍需校对。"
+            ]
+          }
+        }
       }
     },
     {
@@ -17749,7 +17440,7 @@
       "id": "first-sergeant-arbmab",
       "name": {
         "en": "First Sergeant Arbmab",
-        "zh": "一级军士阿布马布"
+        "zh": "一等军士阿布马布"
       },
       "points": 5,
       "slotIds": [
@@ -18654,7 +18345,7 @@
       "id": "force-adept",
       "name": {
         "en": "•Jedi Training, Force Adept",
-        "zh": "绝地训练，原力专精"
+        "zh": "绝地训练，原力精通"
       },
       "points": 5,
       "slotIds": [
@@ -18767,7 +18458,7 @@
       "id": "force-agility",
       "name": {
         "en": "Force Agility",
-        "zh": "原力敏捷"
+        "zh": "原力迅捷"
       },
       "points": 8,
       "slotIds": [
@@ -19161,7 +18852,7 @@
       "id": "force-clairvoyance",
       "name": {
         "en": "Clairvoyance",
-        "zh": "洞察先机"
+        "zh": "洞察"
       },
       "points": 10,
       "slotIds": [
@@ -19422,7 +19113,7 @@
       "id": "force-enhanced-defense",
       "name": {
         "en": "Force Enhanced Defense",
-        "zh": "原力强化防御"
+        "zh": "原力防御"
       },
       "points": 5,
       "slotIds": [
@@ -19861,7 +19552,7 @@
       "id": "force-push",
       "name": {
         "en": "Force Push",
-        "zh": "原力推击"
+        "zh": "原力推拉"
       },
       "points": 40,
       "slotIds": [
@@ -20414,7 +20105,7 @@
       "id": "full-beskar-armor",
       "name": {
         "en": "Full Beskar Armor",
-        "zh": "全套贝斯卡护甲"
+        "zh": "全贝斯卡护甲"
       },
       "points": 10,
       "slotIds": [
@@ -20503,7 +20194,7 @@
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "full-beskar-armor",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "015cd451ae2d21ac77210a8b0717ec33137e867ae754011a71a912503eb75392"
@@ -21773,7 +21464,7 @@
       "id": "gear-ascension",
       "name": {
         "en": "Ascension Cables",
-        "zh": "攀升缆索"
+        "zh": "攀爬缆索"
       },
       "points": 4,
       "slotIds": [
@@ -21858,7 +21549,7 @@
       "id": "gear-binoculars",
       "name": {
         "en": "Electrobinoculars",
-        "zh": "电子双筒望远镜"
+        "zh": "电子望远镜"
       },
       "points": 8,
       "slotIds": [
@@ -22393,7 +22084,7 @@
       "id": "gear-grappling",
       "name": {
         "en": "Grappling Hooks",
-        "zh": "攀爬钩"
+        "zh": "攀爬钩爪"
       },
       "points": 2,
       "slotIds": [
@@ -23379,125 +23070,74 @@
           "imageSha256": "ce8eaceab89c9c65dedcb79aa1b8e280ffc0f11966bf4d986f3e77c1a254e7d9"
         },
         "image": "assets/upgrade-cards/geonosian-pike-1.webp"
-      }
-    },
-    {
-      "id": "geonosian-pike-2",
-      "name": {
-        "en": "Force Pike Warrior",
-        "zh": "力矛战士"
       },
-      "points": 15,
-      "slotIds": [
-        4
-      ],
-      "usage": "unit_upgrade",
-      "description": {
-        "en": [
-          "Add 1 Force Pike Warrior miniature.",
-          "When this unit makes an Attack action,",
-          "you may flip this card before theDeclare",
-          "Defenders step."
-        ],
-        "zh": [
-          "加入1个力矛战士模型。本单位执行攻击行动时，可以在宣告防御方步骤之前翻转此卡。"
-        ]
-      },
-      "requirementsText": [
-        "吉奥诺西斯战士限定"
-      ],
-      "keywords": [],
-      "weapons": [
-        {
-          "name": {
-            "en": "Force Pike",
-            "zh": "力矛"
-          },
-          "range": {
-            "min": -1,
-            "max": 0
-          },
-          "dice": {
-            "red": 0,
-            "black": 1,
-            "white": 2
-          },
-          "keywords": [
-            {
-              "id": "overrun",
-              "value": 1
-            },
-            {
-              "id": "suppressive"
-            }
-          ]
-        }
-      ],
-      "assets": {
-        "front": "assets/upgrade-cards/geonosian-pike-2.webp"
-      },
-      "rules": {
-        "availableIn": [
-          19103
-        ],
-        "slotTypes": [
-          4
-        ],
-        "locallyUnique": true
-      },
-      "review": {
-        "status": "needs_review",
-        "notes": "",
-        "issues": [
-          "机器限制已导入；执行语义和卡面仍需校对。"
-        ]
-      },
-      "matching": {
-        "status": "matched",
-        "candidates": [
-          "11865"
-        ]
-      },
-      "upstream": {
-        "collection": "upgrades",
-        "id": "11865"
-      },
-      "selectionGroup": "upgrade:11865",
-      "restrictions": {
-        "text": {
+      "dualSided": true,
+      "back": {
+        "name": {
+          "en": "Force Pike Warrior",
+          "zh": "力矛战士"
+        },
+        "description": {
           "en": [
-            "Geonosian Warriors Only"
+            "Add 1 Force Pike Warrior miniature.",
+            "When this unit makes an Attack action,",
+            "you may flip this card before theDeclare",
+            "Defenders step."
           ],
           "zh": [
-            "吉奥诺西斯战士限定"
+            "加入1个力矛战士模型。本单位执行攻击行动时，可以在宣告防御方步骤之前翻转此卡。"
           ]
         },
-        "zhReview": "legacy_unverified",
-        "sources": [
-          "references/upgrades-slim.json#requirements"
+        "keywords": [],
+        "weapons": [
+          {
+            "name": {
+              "en": "Force Pike",
+              "zh": "力矛"
+            },
+            "range": {
+              "min": -1,
+              "max": 0
+            },
+            "dice": {
+              "red": 0,
+              "black": 1,
+              "white": 2
+            },
+            "keywords": [
+              {
+                "id": "overrun",
+                "value": 1
+              },
+              {
+                "id": "suppressive"
+              }
+            ]
+          }
         ],
-        "verification": "text_matched",
-        "condition": null,
-        "candidateCondition": {
-          "field": "unit.upstreamId",
-          "op": "in",
-          "value": [
-            "19103",
-            "34054"
-          ]
+        "assets": {
+          "front": "assets/upgrade-cards/geonosian-pike-2.webp"
         },
-        "unmappedReasons": [
-          "printed restriction and source availability differ; do not activate subset"
-        ],
-        "ocrEvidence": {
-          "file": "work/upgrade-restrictions/ocr-v3.json",
-          "key": "geonosian-pike-2",
-          "textSimilarity": 1.0,
-          "containsIcons": false,
-          "iconsVerified": false,
-          "imageSha256": "8be18c81ed681f52933c37df299945356829ad3a4d4ddd337a19d1e0b972db83"
-        },
-        "image": "assets/upgrade-cards/geonosian-pike-2.webp"
+        "legacyId": "geonosian-pike-2",
+        "source": {
+          "upstream": {
+            "collection": "upgrades",
+            "id": "11865"
+          },
+          "matching": {
+            "status": "matched",
+            "candidates": [
+              "11865"
+            ]
+          },
+          "review": {
+            "status": "needs_review",
+            "notes": "",
+            "issues": [
+              "机器限制已导入；执行语义和卡面仍需校对。"
+            ]
+          }
+        }
       }
     },
     {
@@ -26509,7 +26149,7 @@
       "id": "helping-hand",
       "name": {
         "en": "Helping Hand",
-        "zh": "援手"
+        "zh": "援助之手"
       },
       "points": 5,
       "slotIds": [
@@ -27287,7 +26927,7 @@
       "id": "imperial-hammers",
       "name": {
         "en": "Imperial Hammers Elite Armor Pilot",
-        "zh": "帝国之锤精锐装甲驾驶员"
+        "zh": "帝国之锤精锐驾驶员"
       },
       "points": 10,
       "slotIds": [
@@ -30710,7 +30350,7 @@
       "id": "lying-in-wait",
       "name": {
         "en": "Lying in Wait",
-        "zh": "伏击待命"
+        "zh": "卧倒待命"
       },
       "points": 5,
       "slotIds": [
@@ -30814,7 +30454,7 @@
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "lying-in-wait",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "29b470d732dbb94fb70bec36e67eaac95f0753c5811c8cc7eca85b4ce082b54b"
@@ -33875,7 +33515,7 @@
       "id": "pilot-raid-leader",
       "name": {
         "en": "Raiding Party Leader",
-        "zh": "突袭队队长"
+        "zh": "劫掠小队队长"
       },
       "points": 10,
       "slotIds": [
@@ -42014,7 +41654,7 @@
       "id": "squadron-leader",
       "name": {
         "en": "Squadron Leader",
-        "zh": "中队长"
+        "zh": "载具中队队长"
       },
       "points": 10,
       "slotIds": [
@@ -42125,7 +41765,7 @@
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "squadron-leader",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "37a61f9bbcfe1d2cc99d012a2f116e62873354a8d7c229adf920c68c4984d4f2"
@@ -44599,7 +44239,7 @@
       "id": "tank-hunting-munitions",
       "name": {
         "en": "Tank Hunting Munitions",
-        "zh": "猎坦弹药"
+        "zh": "坦克杀手弹药"
       },
       "points": 3,
       "slotIds": [
@@ -49993,7 +49633,7 @@
       "id": "training-fray",
       "name": {
         "en": "Into the Fray",
-        "zh": "投身战团"
+        "zh": "投身战场"
       },
       "points": 4,
       "slotIds": [
@@ -50356,7 +49996,7 @@
       "id": "training-offensive",
       "name": {
         "en": "Offensive Push",
-        "zh": "进攻推进"
+        "zh": "攻势推进"
       },
       "points": 6,
       "slotIds": [
@@ -50441,7 +50081,7 @@
       "id": "training-overwatch",
       "name": {
         "en": "Overwatch",
-        "zh": "警戒射击"
+        "zh": "警戒监视"
       },
       "points": 4,
       "slotIds": [
@@ -50703,7 +50343,7 @@
       "id": "training-situational",
       "name": {
         "en": "Situational Awareness",
-        "zh": "战场态势感知"
+        "zh": "态势感知"
       },
       "points": 4,
       "slotIds": [

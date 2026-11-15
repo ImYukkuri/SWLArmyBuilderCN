@@ -1,6 +1,26 @@
 """Normalize legacy upgrade terms onto the unit editor's shared keyword IDs."""
 import copy,re
 
+def normalize_army_faces(army, upgrades, units):
+    """Return a copy with legacy back IDs mapped to one physical upgrade."""
+    result=copy.deepcopy(army)
+    aliases={c['back']['legacyId']:c for c in upgrades.values()
+             if c.get('dualSided') and c.get('back',{}).get('legacyId')}
+    for inst in result.get('units',[]):
+        for choice in inst.get('upgrades',[]):
+            old=choice.get('upgradeId');card=aliases.get(old) or upgrades.get(old)
+            if not card:continue
+            if old in aliases:
+                choice['upgradeId']=card['id'];choice['face']='back'
+                slots=(units.get(inst.get('unitId')) or {}).get('upgradeSlots',[])
+                sources=[s.get('id') if isinstance(s,dict) else s for s in slots]
+                index=choice.get('slotIndex',-1)
+                if 0<=index<len(sources) and sources[index] not in card['slotIds']:
+                    free=next((i for i,s in enumerate(sources) if s in card['slotIds'] and not any(c is not choice and c.get('slotIndex')==i for c in inst['upgrades'])),None)
+                    if free is not None:choice['slotIndex']=free
+            if card.get('dualSided'):choice['face']='back' if choice.get('face')=='back' else 'front'
+    return result
+
 def reference(term,definitions):
     known={k['id']:k for k in definitions['keywords']}
     candidates=[term.get('ruleId'),term.get('id'),re.sub(r'_x$','',term.get('id',''))]

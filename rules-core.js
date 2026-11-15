@@ -555,6 +555,7 @@ window.RulesCore = (() => {
 
   function validateArmy(army, data) {
     const { units, upgrades, defs, pkg } = data;
+    if (window.UpgradeFaces) army = UpgradeFaces.normalizeArmy(structuredClone(army), {...data, upgrades: UpgradeFaces.index(Object.values(upgrades))});
     const issues = [];
     const issue = (status, code, message, instanceId, extra) => issues.push({ status, code, message, instanceId, ...(extra || {}) });
     const nameIndex = buildNameIndex(upgrades, defs);

@@ -4,6 +4,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 const root = path.resolve(__dirname, "..");
 global.window = global;
+require("../upgrade-faces.js");
 require("../dice-enums.js");
 require("../rules-core.js");
 require("../builder-model.js");

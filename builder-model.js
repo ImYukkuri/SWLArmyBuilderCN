@@ -202,7 +202,7 @@ window.BuilderModel = (() => {
     return { ok: true, draft, instanceId: copy.instanceId };
   }
 
-  function equip(army, data, context, cardId, applyAll, makeId) {
+  function equip(army, data, context, cardId, applyAll, makeId, face = "front") {
     const card = data.upgrades[cardId];
     const first = army.units.find((i) => i.instanceId === context.unitInstanceId);
     if (!first || !card) return { ok: false, reason: "所选单位或升级已不存在。" };
@@ -271,6 +271,7 @@ window.BuilderModel = (() => {
         instanceId: makeId(),
         upgradeId: card.id,
         slotIndex: context.slotIndex,
+        ...(card.dualSided ? {face: face === "back" ? "back" : "front"} : {}),
       });
     }
     const errors = newErrors(army, draft, data);

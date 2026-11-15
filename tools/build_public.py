@@ -14,6 +14,7 @@ FILES = [
     "builder.js",
     "builder-view.js",
     "builder-model.js",
+    "upgrade-faces.js",
     "builder-library.js",
     "builder-home.js",
     "dice-enums.js",

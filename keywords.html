@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>词条编辑器 · SWL 维护中心</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="editor.css">
+  <link rel="stylesheet" href="keyword-editor.css">
+</head>
+<body class="keyword-editor">
+  <header>
+    <div><h1>词条编辑器</h1>
+      <nav class="module-nav" aria-label="数据维护导航">
+        <a href="index.html">写表器</a><a href="maintenance.html">数据维护</a>
+        <a href="units.html">单位卡</a><a href="upgrades.html">升级卡</a>
+        <a href="commands.html">战术卡</a><a href="armies.html">军表</a>
+        <a href="rules.html">规则库</a><a href="keywords.html" aria-current="page">词条</a>
+      </nav>
+    </div>
+    <button id="new-keyword" disabled>新建词条</button>
+    <button id="reload">重新载入</button>
+    <button id="export" disabled>导出当前词条</button>
+  </header>
+  <main class="keyword-workspace">
+    <aside class="keyword-library" aria-label="词条资料库">
+      <label class="keyword-search">查找词条<input id="search" type="search" placeholder="名称、ID 或效果正文"></label>
+      <div class="keyword-filters">
+        <select id="timing-filter" data-no-combo="true" aria-label="按时机筛选"><option value="">全部时机</option><option value="unclassified">未分类</option></select>
+        <select id="content-filter" data-no-combo="true" aria-label="按内容筛选"><option value="">全部内容</option><option value="incomplete">待补文字</option><option value="review">待校对</option><option value="reviewed">已校对</option></select>
+      </div>
+      <p id="counts" role="status">载入中…</p>
+      <nav id="keyword-list" aria-label="词条列表"></nav>
+    </aside>
+    <section class="keyword-detail">
+      <div class="editbar"><div><h2 id="title">词条编辑器</h2><p id="subtitle">简写、完整规则与触发时机</p></div><span id="dirty"></span><button id="save" class="primary" disabled>保存词条</button></div>
+      <p id="status" role="status" aria-live="polite"></p>
+      <p id="empty-editor">从左侧选择词条，或新建一条。</p>
+      <form id="keyword-form" hidden>
+        <fieldset id="keyword-fields">
+          <div class="keyword-identity">
+            <label>中文名称<input id="name-zh" autocomplete="off"></label>
+            <label>英文名称<input id="name-en" autocomplete="off"></label>
+            <label>词条 ID<input id="keyword-id" pattern="[a-z0-9][a-z0-9_-]{0,150}" required spellcheck="false" autocomplete="off"><small id="id-hint">保存后固定，供单位和卡牌引用。</small></label>
+            <label>校对状态<select id="review-status" data-no-combo="true"><option value="">未标记</option><option value="needs_review">待校对</option><option value="reviewed">已校对</option><option value="unresolved">未解析</option><option value="english_only">仅英文</option></select></label>
+          </div>
+          <fieldset class="keyword-timings"><legend>触发时机 <small>可多选；留空为未分类</small></legend><div id="timing-options"></div></fieldset>
+          <div class="keyword-writing">
+            <div class="keyword-text-fields">
+              <label for="summary">简写规则 <small>点击词条时默认显示</small></label>
+              <textarea id="summary" rows="4" placeholder="概括效果、触发条件及重要限制。"></textarea>
+              <label for="full">完整规则 <small>保留例外与完整结算顺序</small></label>
+              <textarea id="full" rows="13" placeholder="填写完整效果文本；换行会保留为段落。"></textarea>
+              <p id="text-counts" class="hint"></p>
+            </div>
+            <section class="keyword-preview" aria-label="词条预览">
+              <p class="keyword-preview-label">显示预览</p>
+              <h3 id="preview-name"></h3><p id="preview-en"></p><p id="preview-timing"></p>
+              <div class="keyword-preview-tabs" role="tablist" aria-label="预览规则长度">
+                <button type="button" id="preview-summary" role="tab" aria-selected="true" aria-controls="preview-text">简写</button>
+                <button type="button" id="preview-full" role="tab" aria-selected="false" tabindex="-1" aria-controls="preview-text">完整规则</button>
+              </div>
+              <div id="preview-text" role="tabpanel" aria-labelledby="preview-summary" tabindex="0"></div>
+            </section>
+          </div>
+        </fieldset>
+      </form>
+      <details id="keyword-references" hidden><summary id="references-title">引用此词条的卡牌</summary><div id="references"></div></details>
+      <details id="keyword-history" hidden><summary>词条文件历史</summary><p class="hint">恢复只替换当前词条，其他词条和指挥卡保持现状。</p><button type="button" id="load-history">载入历史</button><div id="history"></div></details>
+    </section>
+  </main>
+  <script src="combo.js"></script>
+  <script src="editor-shell.js"></script>
+  <script src="keyword-editor.js"></script>
+</body>
+</html>

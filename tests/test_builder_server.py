@@ -52,7 +52,7 @@ class BuilderServerTest(unittest.TestCase):
                 self.assertGreater(len(response.read()), 0)
 
     def test_maintenance_dependencies_are_served(self):
-        for page in ['units.html', 'upgrades.html', 'commands.html', 'armies.html', 'rules.html']:
+        for page in ['units.html', 'upgrades.html', 'commands.html', 'armies.html', 'rules.html', 'keywords.html']:
             with urlopen(self.base + page) as response:
                 parser = Dependencies()
                 parser.feed(response.read().decode('utf8'))
