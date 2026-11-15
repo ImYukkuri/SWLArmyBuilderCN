@@ -64,7 +64,7 @@ class BuilderServerTest(unittest.TestCase):
                     self.assertGreater(len(response.read()), 0)
 
     def test_builder_data_and_font_are_readable(self):
-        for name in ['units', 'upgrades', 'catalog-definitions', 'slot-rules', 'battle-deck']:
+        for name in ['units', 'upgrades', 'catalog-definitions', 'slot-rules', 'battle-deck', 'tts-names']:
             with self.subTest(name=name), urlopen(self.base + f'data/{name}.json') as response:
                 self.assertIsInstance(json.loads(response.read()), dict)
         with urlopen(self.base + 'assets/legion-icons.ttf') as response:

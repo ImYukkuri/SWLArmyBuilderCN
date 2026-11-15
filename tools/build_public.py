@@ -16,6 +16,8 @@ FILES = [
     "builder-model.js",
     "upgrade-faces.js",
     "builder-library.js",
+    "builder-transfer.js",
+    "builder-transfer-ui.js",
     "builder-home.js",
     "dice-enums.js",
     "rules-core.js",
@@ -25,6 +27,7 @@ FILES = [
     "data/catalog-definitions.json",
     "data/slot-rules.json",
     "data/battle-deck.json",
+    "data/tts-names.json",
 ]
 DIRS = ["assets"]
 

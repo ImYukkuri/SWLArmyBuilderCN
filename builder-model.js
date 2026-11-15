@@ -177,7 +177,55 @@ window.BuilderModel = (() => {
     const errors = newErrors(army, draft, data);
     if (errors.length)
       return { ok: false, reason: [...new Set(errors.map((i) => i.message))].join("；") };
-    return { ok: true, draft, instanceId: instance.instanceId };
+    const equipped = equipDefaults(draft, data, instance.instanceId, makeId);
+    return { ok: true, ...equipped, instanceId: instance.instanceId };
+  }
+
+  function equipDefaults(army, data, instanceId, makeId) {
+    let draft = army;
+    const unit = data.units[draft.units.find(i => i.instanceId === instanceId).unitId];
+    const wanted = [...new Set(unit.equipUpgradeIds || [])];
+    const failures = new Map(), warnings = [];
+    // Refresh after each real selection: a mandatory upgrade may grant additional slots.
+    // A complete pass is required even after a match; retry earlier slots if grants changed.
+    let progress;
+    do {
+      progress = false;
+      for (let index = 0; ; index++) {
+        const inst = draft.units.find(i => i.instanceId === instanceId);
+        const slots = RulesCore.slotListFor(data.pkg, unit, inst, data.upgrades, draft.armyId);
+        if (index >= slots.length) break;
+        if (inst.upgrades.some(ch => ch.slotIndex === index)) continue;
+        for (const id of wanted) {
+          if (inst.upgrades.some(ch => ch.upgradeId === id)) continue;
+          const card = data.upgrades[id];
+          if (!card) { failures.set(id, '升级资料不存在'); continue; }
+          const rule = data.pkg.upgradeRules?.[String(card.upstream?.id)] || {};
+          if (!RulesCore.accessKeys(card, data.pkg, rule).includes(slots[index].key)) continue;
+          const result = equip(draft, data, {unitInstanceId: instanceId,
+            slotIndex: index, slotKey: slots[index].key}, id, false, makeId, 'front');
+          if (!result.ok) { failures.set(id, result.reason); continue; }
+          draft = result.draft; progress = true;
+          warnings.push(...result.warnings);
+          break; // Only this occupied slot is finished; continue scanning the remaining slots.
+        }
+      }
+    } while (progress);
+    const inst = draft.units.find(i => i.instanceId === instanceId);
+    for (const id of wanted) if (!inst.upgrades.some(ch => ch.upgradeId === id)) {
+      const card = data.upgrades[id];
+      warnings.push('未能自动装备 ' + (card?.name?.zh || card?.name?.en || id) + '：' +
+        (failures.get(id) || '没有可用的匹配槽位'));
+    }
+    return {draft, warnings: [...new Set(warnings)]};
+  }
+
+  const actionTypes = ['action', 'double-action', 'free-action', 'free-exhaust'];
+  function keywordActionTypes(keyword, defs) {
+    const item = typeof keyword === 'string' ? {id: keyword} : keyword;
+    if (actionTypes.includes(item.action)) return [item.action];
+    const types = item.actionTypes ?? defs.keywords.find(k => String(k.id) === String(item.id))?.actionTypes;
+    return (types || []).filter(t => actionTypes.includes(t));
   }
 
   function duplicate(army, data, instanceId, makeId) {
@@ -271,7 +319,7 @@ window.BuilderModel = (() => {
         instanceId: makeId(),
         upgradeId: card.id,
         slotIndex: context.slotIndex,
-        ...(card.dualSided ? {face: face === "back" ? "back" : "front"} : {}),
+        ...(card.dualSided ? {face: UpgradeFaces.mode(face)} : {}),
       });
     }
     const errors = newErrors(army, draft, data);
@@ -305,5 +353,5 @@ window.BuilderModel = (() => {
       counterpart: unit,
     };
   }
-  return { signature, groups, uniqueUpgrade, copyable, addUnit, duplicate, equip, upgradePresentation };
+  return { signature, groups, uniqueUpgrade, copyable, addUnit, duplicate, equip, equipDefaults, keywordActionTypes, upgradePresentation };
 })();

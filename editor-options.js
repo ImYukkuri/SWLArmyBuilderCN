@@ -25,8 +25,10 @@ window.EditorOptions = (() => {
     ],
     action: [
       ["none", "无"],
-      ["action", "卡牌行动"],
-      ["free-action", "免费卡牌行动"],
+      ["action", "行动"],
+      ["double-action", "双行动"],
+      ["free-action", "免费行动"],
+      ["free-exhaust", "免费行动：横置"],
     ],
     divisions: [
       ["Light", "光明面"],
@@ -96,6 +98,8 @@ window.EditorOptions = (() => {
         [labelOf(u), labelOf({ name: u.title })].filter(Boolean).join(" · ") + " · " + u.id,
       ),
     );
+    tables.localUpgrades = upgrades.map(c => option(c.id,
+      labelOf(c) + (c.usage === 'counterpart' ? ' · 伙伴' : '') + ' · ' + c.id));
     tables.semanticSlots = (pkg.slots || []).map((s) => option(s.id, labelOf(s) + " · " + s.id));
     tables.predicates = Object.keys(pkg.predicates || {}).map((k) => option(k));
     tables.properties = Object.entries(fields.properties || {}).map(([k, v]) =>

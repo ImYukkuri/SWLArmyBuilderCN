@@ -1,6 +1,6 @@
 {
   "schema": "swl-unit-catalog/v2",
-  "updatedAt": "2026-11-14T03:42:04.164543+00:00",
+  "updatedAt": "2026-11-15T19:11:38.510423+00:00",
   "definitions": "catalog-definitions.json",
   "referenceVersion": "2026.11.04.0",
   "units": [
@@ -34,12 +34,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/cis/admiral-trench_front.webp",
-        "portrait": "assets/portraits/separatists-admiral-trench-28900a743e819ab6a4a2.webp",
+        "portrait": "assets/portraits/separatists-admiral-trench-26dc2ee3453647f6ba32.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12310344827586206,
+          0.99,
+          0.6968965517241379
         ]
       },
       "review": {
@@ -150,6 +150,9 @@
       ],
       "commandIds": [
         "19885"
+      ],
+      "equipUpgradeIds": [
+        "caught-in-a-web"
       ]
     },
     {
@@ -181,12 +184,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/cis/b2-rocket_front.webp",
-        "portrait": "assets/portraits/separatists-b2-rocket-1b1331b2233053788d0b.webp",
+        "portrait": "assets/portraits/separatists-b2-rocket-4a952b8a2552e9133528.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12310344827586206,
+          0.99,
+          0.6968965517241379
         ]
       },
       "review": {
@@ -282,12 +285,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/cis/geonosian-engineer_front.webp",
-        "portrait": "assets/portraits/separatists-geonosian-engineer-fd2e37fc4cbe2bba564f.webp",
+        "portrait": "assets/portraits/separatists-geonosian-engineer-2bffad2651a8b3182271.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12310344827586206,
+          0.99,
+          0.6968965517241379
         ]
       },
       "review": {
@@ -413,12 +416,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/cis/originals/aat_front.webp",
-        "portrait": "assets/portraits/separatists-aat-f7f4e12290a477a9edd2.webp",
+        "portrait": "assets/portraits/separatists-aat-2655312d21aad944e68d.webp",
         "portraitCrop": [
-          0.6704451193352451,
-          0.10318595976972328,
-          0.999445119335245,
-          0.6923044170699986
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -555,12 +558,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/cis/originals/aqua-droids_front.webp",
-        "portrait": "assets/portraits/separatists-aqua-droids-43e3000368d7d11171db.webp",
+        "portrait": "assets/portraits/separatists-aqua-droids-08866490f0ca65b7a4e2.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12428571428571428,
+          0.99,
+          0.6957142857142857
         ]
       },
       "review": {
@@ -680,12 +683,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/cis/originals/asajj_front.webp",
-        "portrait": "assets/portraits/separatists-asajj-b01fa490e450fccea434.webp",
+        "portrait": "assets/portraits/separatists-asajj-3eae0c47ebf4c92875d4.webp",
         "portraitCrop": [
-          0.6675548806647549,
-          0.10525615223292878,
-          0.9965548806647548,
-          0.6943746095332042
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -805,12 +808,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/cis/originals/b1_front.webp",
-        "portrait": "assets/portraits/separatists-b1-1bb998389ea4d9a5d35e.webp",
+        "portrait": "assets/portraits/separatists-b1-92da49906c2c4704b666.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -938,12 +941,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/cis/originals/b2_front.webp",
-        "portrait": "assets/portraits/separatists-b2-e5b951648731efdf609f.webp",
+        "portrait": "assets/portraits/separatists-b2-aba0c3b01d30d65c4e7e.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -1068,12 +1071,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/cis/originals/bx_front.webp",
-        "portrait": "assets/portraits/separatists-bx-be245e756326e15f17c0.webp",
+        "portrait": "assets/portraits/separatists-bx-1d6879a9acd72b71cc44.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12310344827586206,
+          0.99,
+          0.6968965517241379
         ]
       },
       "review": {
@@ -1217,12 +1220,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/cis/originals/bx_strike_front.webp",
-        "portrait": "assets/portraits/separatists-bx-strike-fbb0dc23cc1817171f9b.webp",
+        "portrait": "assets/portraits/separatists-bx-strike-74b4d75645242eab29b9.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12428571428571428,
+          0.99,
+          0.6957142857142857
         ]
       },
       "review": {
@@ -1353,12 +1356,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/cis/originals/dooku_front.webp",
-        "portrait": "assets/portraits/separatists-dooku-4c91b7257fc3ae1c1e86.webp",
+        "portrait": "assets/portraits/separatists-dooku-efe8a5f0a3aa2b0b5bdb.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12310344827586206,
+          0.99,
+          0.6968965517241379
         ]
       },
       "review": {
@@ -1505,12 +1508,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/cis/originals/drk1-droid_front.webp",
-        "portrait": "assets/portraits/separatists-drk1-droid-c1b1ac639cd5fc319321.webp",
+        "portrait": "assets/portraits/separatists-drk1-droid-a4427bdb0b35bea6d6bd.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -1618,12 +1621,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/cis/originals/droidekas_front.webp",
-        "portrait": "assets/portraits/separatists-droidekas-3b2367886d259aecaa62.webp",
+        "portrait": "assets/portraits/separatists-droidekas-652c18d172013cca00ad.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.124010989010989,
+          0.99,
+          0.695989010989011
         ]
       },
       "review": {
@@ -1746,12 +1749,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/cis/originals/dsd1-dwarf_front.webp",
-        "portrait": "assets/portraits/separatists-dsd1-dwarf-22668e74f3f870827672.webp",
+        "portrait": "assets/portraits/separatists-dsd1-dwarf-9d26c9e129ba2146df56.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -1854,12 +1857,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/cis/originals/geonosian_front.webp",
-        "portrait": "assets/portraits/separatists-geonosian-6ea54f753be97e0d9882.webp",
+        "portrait": "assets/portraits/separatists-geonosian-004b870be498a0d7d533.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -1978,12 +1981,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/cis/originals/grievous-wheelbike_front.webp",
-        "portrait": "assets/portraits/separatists-grievous-wheelbike-7b8fc7f33deb02221565.webp",
+        "portrait": "assets/portraits/separatists-grievous-wheelbike-fbc5bb82aa70c2621135.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -2154,12 +2157,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/cis/originals/grievous_front.webp",
-        "portrait": "assets/portraits/separatists-grievous-4793ee07151a29c7c83f.webp",
+        "portrait": "assets/portraits/separatists-grievous-d9bb6affaaa33fbad772.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -2321,12 +2324,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/cis/originals/kalani_front.webp",
-        "portrait": "assets/portraits/separatists-kalani-519bde2688bb66b5aebb.webp",
+        "portrait": "assets/portraits/separatists-kalani-1d6ca696697f62104b35.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -2460,12 +2463,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/cis/originals/kraken_front.webp",
-        "portrait": "assets/portraits/separatists-kraken-326eb06eaa83b20f65c0.webp",
+        "portrait": "assets/portraits/separatists-kraken-2cdfcd7f1d01e0030aad.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -2610,12 +2613,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/cis/originals/lm-432-crab_front.webp",
-        "portrait": "assets/portraits/separatists-lm-432-crab-f7f40ef899d9924bf2ce.webp",
+        "portrait": "assets/portraits/separatists-lm-432-crab-a29c141d6f161ba00474.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -2728,12 +2731,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/cis/originals/magna_front.webp",
-        "portrait": "assets/portraits/separatists-magna-8b8c5be6d9dd2091e63c.webp",
+        "portrait": "assets/portraits/separatists-magna-d73408aa32fbc4ae8938.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -2867,12 +2870,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/cis/originals/magnaguard_prototype_front.webp",
-        "portrait": "assets/portraits/separatists-magnaguard-prototype-b8d900f99d68c9c82759.webp",
+        "portrait": "assets/portraits/separatists-magnaguard-prototype-9d9f2917f7d69409131c.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -2988,12 +2991,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/cis/originals/maul_front.webp",
-        "portrait": "assets/portraits/separatists-maul-550d752f765e7ad86852.webp",
+        "portrait": "assets/portraits/separatists-maul-5a2a54125e9f9b341641.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -3117,12 +3120,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/cis/originals/persuader_front.webp",
-        "portrait": "assets/portraits/separatists-persuader-f8eced77708dd9a35d64.webp",
+        "portrait": "assets/portraits/separatists-persuader-37808b360391d00a99c5.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -3259,12 +3262,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/cis/originals/persuader_prototype_front.webp",
-        "portrait": "assets/portraits/separatists-persuader-prototype-e4f3ac5e43ff3ad48d83.webp",
+        "portrait": "assets/portraits/separatists-persuader-prototype-978be0b3f8f843fc045a.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -3412,12 +3415,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/cis/originals/poggle_front.webp",
-        "portrait": "assets/portraits/separatists-poggle-ebc571d38c954a11d6a0.webp",
+        "portrait": "assets/portraits/separatists-poggle-688a53eadef510de6a9b.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -3544,12 +3547,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/cis/originals/sun-fac_front.webp",
-        "portrait": "assets/portraits/separatists-sun-fac-f33a2d5771aa2f63f852.webp",
+        "portrait": "assets/portraits/separatists-sun-fac-9be2d6c1a428739ebfb2.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -3697,12 +3700,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/cis/originals/super-tactica-command-droid-aux_front.webp",
-        "portrait": "assets/portraits/separatists-super-tactica-command-droid-aux-9c987ae265ceb26b5785.webp",
+        "portrait": "assets/portraits/separatists-super-tactica-command-droid-aux-a81b1fb82cdd560be0fa.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -3801,7 +3804,8 @@
       "commandIds": [
         "17930",
         "17931"
-      ]
+      ],
+      "equipUpgradeIds": []
     },
     {
       "id": "separatists-super-tactica-command-droid-cnc",
@@ -3839,12 +3843,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/cis/originals/super-tactica-command-droid-cnc_front.webp",
-        "portrait": "assets/portraits/separatists-super-tactica-command-droid-cnc-6c45932be33085d8e549.webp",
+        "portrait": "assets/portraits/separatists-super-tactica-command-droid-cnc-5711cfb057f35db695bf.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -3939,7 +3943,8 @@
       "commandIds": [
         "17930",
         "17931"
-      ]
+      ],
+      "equipUpgradeIds": []
     },
     {
       "id": "separatists-tactical-droid",
@@ -3969,12 +3974,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/cis/originals/tactical_droid_front.webp",
-        "portrait": "assets/portraits/separatists-tactical-droid-b12eaca327e5bd748432.webp",
+        "portrait": "assets/portraits/separatists-tactical-droid-03d3158ae4cfce0adcce.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -4091,12 +4096,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/cis/save-opress-cis_front.webp",
-        "portrait": "assets/portraits/separatists-save-opress-cis-fa58dabee8d54f887e1f.webp",
+        "portrait": "assets/portraits/separatists-save-opress-cis-4a91caea19b47f111254.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12310344827586206,
+          0.99,
+          0.6968965517241379
         ]
       },
       "review": {
@@ -4247,12 +4252,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/cis/stap_front.webp",
-        "portrait": "assets/portraits/separatists-stap-b5b099f311c1d86fccc5.webp",
+        "portrait": "assets/portraits/separatists-stap-d21af5b7ab1720428d86.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12310344827586206,
+          0.99,
+          0.6968965517241379
         ]
       },
       "review": {
@@ -4377,12 +4382,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/cis/tsmeu-wheel-bikes_front.webp",
-        "portrait": "assets/portraits/separatists-tsmeu-wheel-bikes-9317a935f375f15889ab.webp",
+        "portrait": "assets/portraits/separatists-tsmeu-wheel-bikes-e8a69c54fb8b54679a73.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12310344827586206,
+          0.99,
+          0.6968965517241379
         ]
       },
       "review": {
@@ -4520,12 +4525,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/empire/originals/74-z-speeder_front.webp",
-        "portrait": "assets/portraits/empire-74-z-speeder-3e4b899c75bfce0b1fc7.webp",
+        "portrait": "assets/portraits/empire-74-z-speeder-22d3a2aa1193f0742c2b.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -4658,12 +4663,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/empire/originals/at_st_front.webp",
-        "portrait": "assets/portraits/empire-at-st-fa69b01b0b33600ac579.webp",
+        "portrait": "assets/portraits/empire-at-st-4eba5bf66e796ac1219a.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -4796,12 +4801,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/empire/originals/dark_troopers_front.webp",
-        "portrait": "assets/portraits/empire-dark-troopers-28bab466a1e7645328b2.webp",
+        "portrait": "assets/portraits/empire-dark-troopers-882baa0cc1d67e954ab5.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -4928,12 +4933,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/empire/originals/darth-vader-apprentice_front.webp",
-        "portrait": "assets/portraits/empire-darth-vader-apprentice-e99d7516aae177884470.webp",
+        "portrait": "assets/portraits/empire-darth-vader-apprentice-9d15294ebc5c57d150cd.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -5086,12 +5091,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/empire/originals/darth-vader-lord_front.webp",
-        "portrait": "assets/portraits/empire-darth-vader-lord-c264ceb044ac3bb289c1.webp",
+        "portrait": "assets/portraits/empire-darth-vader-lord-74e5c26bec9a1dd8f568.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -5229,12 +5234,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/empire/originals/death-troopers_front.webp",
-        "portrait": "assets/portraits/empire-death-troopers-df1f7f06e887ef79b9cc.webp",
+        "portrait": "assets/portraits/empire-death-troopers-72b9ac2a1238e565de9b.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -5380,12 +5385,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/empire/originals/dewback_front.webp",
-        "portrait": "assets/portraits/empire-dewback-512d75e4a1f6e3dc2d37.webp",
+        "portrait": "assets/portraits/empire-dewback-d343c2c75966d3066673.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -5490,12 +5495,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/empire/originals/df-90-mortar_front.webp",
-        "portrait": "assets/portraits/empire-df-90-mortar-1c68123081dc0785cfe8.webp",
+        "portrait": "assets/portraits/empire-df-90-mortar-4821a71e0c026cfd5c77.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -5632,12 +5637,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/empire/originals/e-web_front.webp",
-        "portrait": "assets/portraits/empire-e-web-b4a2a891990983b9fa02.webp",
+        "portrait": "assets/portraits/empire-e-web-3f911266074efc07c299.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -5776,12 +5781,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/empire/originals/fifth-brother_front.webp",
-        "portrait": "assets/portraits/empire-fifth-brother-9468d6892d4d75ba41d4.webp",
+        "portrait": "assets/portraits/empire-fifth-brother-02e0024979717810f5b9.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -5921,12 +5926,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/empire/originals/general-tagge_front.webp",
-        "portrait": "assets/portraits/empire-general-tagge-1ab32af8b3295bfea82e.webp",
+        "portrait": "assets/portraits/empire-general-tagge-15b93a4ba8cb79b9c9db.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -6022,6 +6027,9 @@
         "18899",
         "18900",
         "18906"
+      ],
+      "equipUpgradeIds": [
+        "logistical-prowess"
       ]
     },
     {
@@ -6054,12 +6062,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/empire/originals/gideon_front.webp",
-        "portrait": "assets/portraits/empire-gideon-db94ce8e4c2a2410ad2d.webp",
+        "portrait": "assets/portraits/empire-gideon-58349de4dc74a9905d94.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -6198,12 +6206,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/empire/originals/grand-admiral-thrawn_front.webp",
-        "portrait": "assets/portraits/empire-grand-admiral-thrawn-0acaec1e72bb733eb25f.webp",
+        "portrait": "assets/portraits/empire-grand-admiral-thrawn-43ee9148b163ac7219f1.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -6334,12 +6342,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/empire/originals/grand-moff-tarkin_front.webp",
-        "portrait": "assets/portraits/empire-grand-moff-tarkin-d668b082f62672a2f4b4.webp",
+        "portrait": "assets/portraits/empire-grand-moff-tarkin-3a92b5d77f518ef1be02.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -6432,12 +6440,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/empire/originals/id10-seeker_front.webp",
-        "portrait": "assets/portraits/empire-id10-seeker-6ede0662714642f5b97c.webp",
+        "portrait": "assets/portraits/empire-id10-seeker-34b563f54b274d9181bf.webp",
         "portraitCrop": [
-          0.005,
-          0.2,
-          0.333,
-          0.915
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -6574,12 +6582,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/empire/originals/iden-versio_front.webp",
-        "portrait": "assets/portraits/empire-iden-versio-5beddfc7ebb155c18ee0.webp",
+        "portrait": "assets/portraits/empire-iden-versio-cbb1c967496fa67d3054.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -6730,7 +6738,10 @@
       },
       "points": 50,
       "upgradeSlots": [
-        24,
+        {
+          "id": 24,
+          "required": true
+        },
         9,
         10,
         2,
@@ -6749,12 +6760,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/empire/originals/imperial-agent-order-to-galaxy_front.webp",
-        "portrait": "assets/portraits/empire-imperial-agent-order-to-galaxy-f0224581e2bb1b1ad254.webp",
+        "portrait": "assets/portraits/empire-imperial-agent-order-to-galaxy-e2b31efa2cbd87904b6b.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -6846,7 +6857,8 @@
       ],
       "commandIds": [
         "17862"
-      ]
+      ],
+      "equipUpgradeIds": []
     },
     {
       "id": "empire-imperial-officer-ruthless-efficiency",
@@ -6883,12 +6895,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/empire/originals/imperial-officer-ruthless-efficiency_front.webp",
-        "portrait": "assets/portraits/empire-imperial-officer-ruthless-efficiency-c22f8df6ecab7bdc75dd.webp",
+        "portrait": "assets/portraits/empire-imperial-officer-ruthless-efficiency-d166157eda36ab4247da.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -7011,12 +7023,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/empire/originals/imperial-probe-droid_front.webp",
-        "portrait": "assets/portraits/empire-imperial-probe-droid-2e19104ace52a9a0478c.webp",
+        "portrait": "assets/portraits/empire-imperial-probe-droid-31a767614b145a9d9ff1.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -7146,12 +7158,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/empire/originals/inferno-squad_front.webp",
-        "portrait": "assets/portraits/empire-inferno-squad-d7274772962bc01182a0.webp",
+        "portrait": "assets/portraits/empire-inferno-squad-4c114cc679b1aaa06640.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -7252,7 +7264,11 @@
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "equipUpgradeIds": [
+        "del-meeko",
+        "gideon-hask"
+      ]
     },
     {
       "id": "empire-kallus",
@@ -7282,12 +7298,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/empire/originals/kallus_front.webp",
-        "portrait": "assets/portraits/empire-kallus-fe2fb6fc268ad841f6d1.webp",
+        "portrait": "assets/portraits/empire-kallus-487bd48f7cb52d6502ca.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -7415,12 +7431,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/empire/originals/laat_empire_front.webp",
-        "portrait": "assets/portraits/empire-laat-empire-6de2b8215e4809336262.webp",
+        "portrait": "assets/portraits/empire-laat-empire-026cecb47271fc9a54c7.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -7534,12 +7550,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/empire/originals/marquand_front.webp",
-        "portrait": "assets/portraits/empire-marquand-a8e2d0b0a0f626040433.webp",
+        "portrait": "assets/portraits/empire-marquand-db1b990b0d80db205c51.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -7717,12 +7733,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/empire/originals/orson_krennic_front.webp",
-        "portrait": "assets/portraits/empire-orson-krennic-95395acac267c6d1e25a.webp",
+        "portrait": "assets/portraits/empire-orson-krennic-ae633c43e0558d5957dc.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -7849,12 +7865,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/empire/originals/range-trooper_front.webp",
-        "portrait": "assets/portraits/empire-range-trooper-68930988f7e2069c3ae2.webp",
+        "portrait": "assets/portraits/empire-range-trooper-589410a3b7aa7fa9e9fe.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -7969,12 +7985,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/empire/originals/riot-squad_front.webp",
-        "portrait": "assets/portraits/empire-riot-squad-62ce44580eb713e318ee.webp",
+        "portrait": "assets/portraits/empire-riot-squad-f0520d5f97afbbe02895.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -8097,12 +8113,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/empire/originals/scout_front.webp",
-        "portrait": "assets/portraits/empire-scout-8515ab387aaaf49fa428.webp",
+        "portrait": "assets/portraits/empire-scout-0701ed93fa02842668ba.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -8238,12 +8254,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/empire/originals/scout_strike_front.webp",
-        "portrait": "assets/portraits/empire-scout-strike-88ee4e776b0bfbbcc611.webp",
+        "portrait": "assets/portraits/empire-scout-strike-108abec670dacaf24008.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12389270976616229,
+          0.99,
+          0.6961072902338377
         ]
       },
       "review": {
@@ -8375,12 +8391,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/empire/originals/seventh-sister_front.webp",
-        "portrait": "assets/portraits/empire-seventh-sister-a03afc57eb806efae2b8.webp",
+        "portrait": "assets/portraits/empire-seventh-sister-ee80b31b96cdc1f8e851.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -8538,12 +8554,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/empire/originals/shoretroopers_front.webp",
-        "portrait": "assets/portraits/empire-shoretroopers-a9aac7caa25b42920cde.webp",
+        "portrait": "assets/portraits/empire-shoretroopers-8ddb040bbebd54d731fe.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -8679,12 +8695,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/empire/originals/snowtroopers_front.webp",
-        "portrait": "assets/portraits/empire-snowtroopers-5560064170f46a09b1b4.webp",
+        "portrait": "assets/portraits/empire-snowtroopers-b52c24391f826cc03a88.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -8813,12 +8829,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/empire/originals/special-forces_front.webp",
-        "portrait": "assets/portraits/empire-special-forces-a996138fd6060f068df5.webp",
+        "portrait": "assets/portraits/empire-special-forces-667aa718a33acda19547.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -8934,12 +8950,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/empire/originals/stormtroopers_front.webp",
-        "portrait": "assets/portraits/empire-stormtroopers-60ab13aa8b47eefb24c4.webp",
+        "portrait": "assets/portraits/empire-stormtroopers-bcbe743e98ddadb94954.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -9079,12 +9095,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/empire/originals/stormtroopers_hwu_front.webp",
-        "portrait": "assets/portraits/empire-stormtroopers-hwu-fd6ab057045c0f04e51b.webp",
+        "portrait": "assets/portraits/empire-stormtroopers-hwu-b3dd37a4cfe7cc1dad34.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -9198,12 +9214,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/empire/originals/tx-225_front.webp",
-        "portrait": "assets/portraits/empire-tx-225-c41c65ce8c987e88ce19.webp",
+        "portrait": "assets/portraits/empire-tx-225-1fb72a65461aa6a3dbcb.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -9344,12 +9360,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/empire/originals/veers_front.webp",
-        "portrait": "assets/portraits/empire-veers-1da219109d861be7580e.webp",
+        "portrait": "assets/portraits/empire-veers-d28c9797d548903f5609.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -9481,12 +9497,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/gar/jedi-barc_front.webp",
-        "portrait": "assets/portraits/republic-jedi-barc-6f6da90afa70bb157bec.webp",
+        "portrait": "assets/portraits/republic-jedi-barc-c6009d3b2cc30b1f1a7c.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12310344827586206,
+          0.99,
+          0.6968965517241379
         ]
       },
       "review": {
@@ -9637,12 +9653,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/gar/ki_aadi_mundu_front.webp",
-        "portrait": "assets/portraits/republic-ki-aadi-mundu-edce91c1b30b26efb74d.webp",
+        "portrait": "assets/portraits/republic-ki-aadi-mundu-12d4bbeec7972c8f8607.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12310344827586206,
+          0.99,
+          0.6968965517241379
         ]
       },
       "review": {
@@ -9769,12 +9785,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/gar/mace_windu_front.webp",
-        "portrait": "assets/portraits/republic-mace-windu-dd55a9a964495e13b98b.webp",
+        "portrait": "assets/portraits/republic-mace-windu-7af07c1af044a630c845.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12310344827586206,
+          0.99,
+          0.6968965517241379
         ]
       },
       "review": {
@@ -9924,12 +9940,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/gar/originals/ahsoka_padawan_commander_front.webp",
-        "portrait": "assets/portraits/republic-ahsoka-padawan-commander-4e32c96b36d75007780b.webp",
+        "portrait": "assets/portraits/republic-ahsoka-padawan-commander-733bd8d98a0d7e653deb.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -10069,12 +10085,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/republic-anakin-barc.webp",
-        "portrait": "assets/portraits/republic-anakin-barc-5f2ea7a447baba88acbb.webp",
+        "portrait": "assets/portraits/republic-anakin-barc-3655f9fe3dc3a0c3c3a3.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12436950146627568,
+          0.99,
+          0.6956304985337243
         ]
       },
       "review": {
@@ -10229,12 +10245,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/gar/originals/anakin_front.webp",
-        "portrait": "assets/portraits/republic-anakin-62f15c0e7020d7001d2d.webp",
+        "portrait": "assets/portraits/republic-anakin-6d33be6fe5c1c07b0799.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -10364,12 +10380,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/gar/originals/arc_troopers_front.webp",
-        "portrait": "assets/portraits/republic-arc-troopers-3bf43d5a0ea046f2d105.webp",
+        "portrait": "assets/portraits/republic-arc-troopers-5d97c66ce1c04b30a274.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -10486,12 +10502,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/gar/originals/arc_troopers_strike_front.webp",
-        "portrait": "assets/portraits/republic-arc-troopers-strike-8e6e8a59871d43debbd3.webp",
+        "portrait": "assets/portraits/republic-arc-troopers-strike-940617c7e2b8a62cc59e.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12310344827586206,
+          0.99,
+          0.6968965517241379
         ]
       },
       "review": {
@@ -10608,12 +10624,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/gar/originals/arf_troopers_front.webp",
-        "portrait": "assets/portraits/republic-arf-troopers-ebe957a0f0f9caeabd7c.webp",
+        "portrait": "assets/portraits/republic-arf-troopers-e5dd692edfda604ff9d0.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -10732,12 +10748,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/gar/originals/at_rt_gar_front.webp",
-        "portrait": "assets/portraits/republic-at-rt-gar-c8cb483c722875af68e5.webp",
+        "portrait": "assets/portraits/republic-at-rt-gar-622dfef75b190d63e6d9.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -10873,12 +10889,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/gar/originals/bad-batch-gar_front.webp",
-        "portrait": "assets/portraits/republic-bad-batch-gar-d8d213a711a9ee0eb89c.webp",
+        "portrait": "assets/portraits/republic-bad-batch-gar-dba6f2f19a545566af78.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -11005,6 +11021,13 @@
       ],
       "commandIds": [
         "13729"
+      ],
+      "equipUpgradeIds": [
+        "hunter",
+        "tech",
+        "wrecker",
+        "echo-bb",
+        "crosshair"
       ]
     },
     {
@@ -11035,12 +11058,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/gar/originals/barc_front.webp",
-        "portrait": "assets/portraits/republic-barc-f9f0cd0d7dee4d14e903.webp",
+        "portrait": "assets/portraits/republic-barc-8721dee3e8d31d5c8889.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -11164,12 +11187,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/gar/originals/c3po_front.webp",
-        "portrait": "assets/portraits/republic-c3po-1882b968a2b1d44e4c94.webp",
+        "portrait": "assets/portraits/republic-c3po-fd418c6af604effbb1f5.webp",
         "portraitCrop": [
-          0.005,
-          0.2,
-          0.333,
-          0.915
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -11298,12 +11321,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/gar/originals/chewbacca_gar_front.webp",
-        "portrait": "assets/portraits/republic-chewbacca-gar-ec52d02dc3280782d91c.webp",
+        "portrait": "assets/portraits/republic-chewbacca-gar-9738443d76e458a66e27.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -11455,12 +11478,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/gar/originals/chieftain_front.webp",
-        "portrait": "assets/portraits/republic-chieftain-58cead25569808574d25.webp",
+        "portrait": "assets/portraits/republic-chieftain-1571bf5eb365a6db1bb7.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -11586,12 +11609,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/gar/originals/clone_commander_leadership_front.webp",
-        "portrait": "assets/portraits/republic-clone-commander-leadership-74920384f3f7f11df256.webp",
+        "portrait": "assets/portraits/republic-clone-commander-leadership-0cdd70a95fd16fa08083.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12416781292984863,
+          0.99,
+          0.6958321870701514
         ]
       },
       "review": {
@@ -11707,12 +11730,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/gar/originals/clone_commandos_front.webp",
-        "portrait": "assets/portraits/republic-clone-commandos-6e268892cc7a89b474bb.webp",
+        "portrait": "assets/portraits/republic-clone-commandos-bc314e6d1fb280f8dcda.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -11816,7 +11839,10 @@
       "divisions": [
         "Light"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "equipUpgradeIds": [
+        "katarn-armor"
+      ]
     },
     {
       "id": "republic-clone-trooper",
@@ -11849,12 +11875,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/gar/originals/clone_trooper_front.webp",
-        "portrait": "assets/portraits/republic-clone-trooper-79b95f98c350c0905e82.webp",
+        "portrait": "assets/portraits/republic-clone-trooper-cb1b747d25dd48c695cc.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -11889,7 +11915,7 @@
       "keywords": [
         {
           "id": "reliable",
-          "value": 7
+          "value": 1
         }
       ],
       "weapons": [
@@ -11983,12 +12009,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/gar/originals/clonetrooper_marksmen_front.webp",
-        "portrait": "assets/portraits/republic-clonetrooper-marksmen-f1b6f42327796b3722c1.webp",
+        "portrait": "assets/portraits/republic-clonetrooper-marksmen-55a99acc0a498d10aa6b.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12310344827586206,
+          0.99,
+          0.6968965517241379
         ]
       },
       "review": {
@@ -12118,12 +12144,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/gar/originals/cody_front.webp",
-        "portrait": "assets/portraits/republic-cody-a7470508e3bf3087d519.webp",
+        "portrait": "assets/portraits/republic-cody-157cea1809d66f329b0a.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -12267,12 +12293,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/gar/originals/delta-squad_front.webp",
-        "portrait": "assets/portraits/republic-delta-squad-ba0ed7eb7ec6e6f84d96.webp",
+        "portrait": "assets/portraits/republic-delta-squad-2d7300286f9971f380ad.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -12383,7 +12409,10 @@
       "divisions": [
         "Light"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "equipUpgradeIds": [
+        "katarn-armor"
+      ]
     },
     {
       "id": "republic-isp",
@@ -12413,12 +12442,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/gar/originals/isp_front.webp",
-        "portrait": "assets/portraits/republic-isp-a756ffccb10aca5e97c5.webp",
+        "portrait": "assets/portraits/republic-isp-d4523c3e76765bfdf9fe.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -12531,12 +12560,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/gar/originals/jedi_knight_front.webp",
-        "portrait": "assets/portraits/republic-jedi-knight-c2d66482f490e5d4ddc0.webp",
+        "portrait": "assets/portraits/republic-jedi-knight-31baa823c089d427c19c.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -12605,7 +12634,8 @@
       "commandIds": [
         "17929",
         "17928"
-      ]
+      ],
+      "equipUpgradeIds": []
     },
     {
       "id": "republic-jedi-knight-general",
@@ -12644,12 +12674,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/gar/originals/jedi_knight_general_front.webp",
-        "portrait": "assets/portraits/republic-jedi-knight-general-437a32aa377cf82e1e35.webp",
+        "portrait": "assets/portraits/republic-jedi-knight-general-fd50a4b482e00a932817.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -12719,7 +12749,8 @@
       "commandIds": [
         "17929",
         "17928"
-      ]
+      ],
+      "equipUpgradeIds": []
     },
     {
       "id": "republic-laat-gar",
@@ -12751,12 +12782,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/gar/originals/laat_gar_front.webp",
-        "portrait": "assets/portraits/republic-laat-gar-e5df69abce89cc35b8a2.webp",
+        "portrait": "assets/portraits/republic-laat-gar-b2cce8cd317f331b0044.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -12879,12 +12910,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/gar/originals/obiwan_front.webp",
-        "portrait": "assets/portraits/republic-obiwan-534c570885dab400ea35.webp",
+        "portrait": "assets/portraits/republic-obiwan-2e55282389cf494e1f95.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -13015,12 +13046,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/gar/originals/padme_front.webp",
-        "portrait": "assets/portraits/republic-padme-90958e1a7724f3429450.webp",
+        "portrait": "assets/portraits/republic-padme-d5ee188512679adbc0e5.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -13143,12 +13174,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/gar/originals/r2d2_gar_front.webp",
-        "portrait": "assets/portraits/republic-r2d2-gar-d12c9404d2120d0b9c9b.webp",
+        "portrait": "assets/portraits/republic-r2d2-gar-6f469e1f3c306aaca2ff.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -13260,12 +13291,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/gar/originals/raddaugh-gnasp_front.webp",
-        "portrait": "assets/portraits/republic-raddaugh-gnasp-00e0f1f16dc830cbc9a7.webp",
+        "portrait": "assets/portraits/republic-raddaugh-gnasp-8e75e577695beda6e671.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -13365,12 +13396,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/gar/originals/raddaugh_front.webp",
-        "portrait": "assets/portraits/republic-raddaugh-689071e8702225fcf07b.webp",
+        "portrait": "assets/portraits/republic-raddaugh-8fbea8224bdab2723d0a.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -13475,12 +13506,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/gar/originals/rex_front.webp",
-        "portrait": "assets/portraits/republic-rex-177b2894faa7290c7ae0.webp",
+        "portrait": "assets/portraits/republic-rex-9665d1f639e36cc10c13.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -13609,12 +13640,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/gar/originals/saber_class_front.webp",
-        "portrait": "assets/portraits/republic-saber-class-3202fd392c987fb878c9.webp",
+        "portrait": "assets/portraits/republic-saber-class-701860141014552e58e6.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -13737,12 +13768,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/gar/originals/wookiee-kashyyk_front.webp",
-        "portrait": "assets/portraits/republic-wookiee-kashyyk-fb7b70df082858912c7d.webp",
+        "portrait": "assets/portraits/republic-wookiee-kashyyk-31614e460388f9b6ce4c.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -13855,12 +13886,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/gar/originals/wookiee-noble_front.webp",
-        "portrait": "assets/portraits/republic-wookiee-noble-e376f7fc606eead6d682.webp",
+        "portrait": "assets/portraits/republic-wookiee-noble-6e6b30afa9c325b60523.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -13974,12 +14005,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/gar/originals/yoda_front.webp",
-        "portrait": "assets/portraits/republic-yoda-da8d57375033c43187d1.webp",
+        "portrait": "assets/portraits/republic-yoda-51e124636b970b1093fc.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -14122,12 +14153,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/gar/plo_koon_front.webp",
-        "portrait": "assets/portraits/republic-plo-koon-86427e3c457e2c041860.webp",
+        "portrait": "assets/portraits/republic-plo-koon-af34268c47cf0b99d848.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12310344827586206,
+          0.99,
+          0.6968965517241379
         ]
       },
       "review": {
@@ -14253,12 +14284,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/gar/shaak_ti_front.webp",
-        "portrait": "assets/portraits/republic-shaak-ti-dab7edd050b6495079e1.webp",
+        "portrait": "assets/portraits/republic-shaak-ti-d1ed2108d8bbf27b9bda.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12310344827586206,
+          0.99,
+          0.6968965517241379
         ]
       },
       "review": {
@@ -14385,12 +14416,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/black_sun/originals/black-sun-enforcers_front.webp",
-        "portrait": "assets/portraits/mercenary-black-sun-black-sun-enforcers-0cbec96b09e5ba9204d1.webp",
+        "portrait": "assets/portraits/mercenary-black-sun-black-sun-enforcers-55df9b53bd5b84a53a59.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -14529,12 +14560,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/black_sun/originals/black-sun-vigo_front.webp",
-        "portrait": "assets/portraits/mercenary-black-sun-black-sun-vigo-dab1f9136e5342a91e1c.webp",
+        "portrait": "assets/portraits/mercenary-black-sun-black-sun-vigo-4e48c31cf24d6829c2e1.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -14660,12 +14691,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/clan_covert/originals/din-djarin-covert_front.webp",
-        "portrait": "assets/portraits/mercenary-clan-covert-din-djarin-covert-5bd92d623bf735f7714f.webp",
+        "portrait": "assets/portraits/mercenary-clan-covert-din-djarin-covert-238925ead61a93f68b85.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12310344827586206,
+          0.99,
+          0.6968965517241379
         ]
       },
       "review": {
@@ -14837,12 +14868,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/clan_covert/originals/grogu-covert_front.webp",
-        "portrait": "assets/portraits/mercenary-clan-covert-grogu-covert-2831b21f8cc7e6d6f838.webp",
+        "portrait": "assets/portraits/mercenary-clan-covert-grogu-covert-af61584e8ebc770e32a8.webp",
         "portraitCrop": [
-          0.005,
-          0.2,
-          0.333,
-          0.915
+          0.6699999999999999,
+          0.12428571428571428,
+          0.99,
+          0.6957142857142857
         ]
       },
       "review": {
@@ -14950,12 +14981,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/clan_covert/originals/paz-vizsla_front.webp",
-        "portrait": "assets/portraits/mercenary-clan-covert-paz-vizsla-974fa872155bbf4403df.webp",
+        "portrait": "assets/portraits/mercenary-clan-covert-paz-vizsla-65f35838e63ae2593c01.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -15099,12 +15130,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/clan_covert/originals/the-armorer_front.webp",
-        "portrait": "assets/portraits/mercenary-clan-covert-the-armorer-9f7f378e13429e8f2a63.webp",
+        "portrait": "assets/portraits/mercenary-clan-covert-the-armorer-3eb1876f0986cfaae685.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -15240,12 +15271,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/clan_kryze/originals/axe-woves_front.webp",
-        "portrait": "assets/portraits/mercenary-clan-kryze-axe-woves-97f5136313c8567f106c.webp",
+        "portrait": "assets/portraits/mercenary-clan-kryze-axe-woves-0c6e1d0fe0d98e3d4d02.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12389270976616229,
+          0.99,
+          0.6961072902338377
         ]
       },
       "review": {
@@ -15391,12 +15422,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/clan_kryze/originals/bo-katan-kryze_front.webp",
-        "portrait": "assets/portraits/mercenary-clan-kryze-bo-katan-kryze-862c8ca838eb280b732c.webp",
+        "portrait": "assets/portraits/mercenary-clan-kryze-bo-katan-kryze-d4f13a3d6db08a441fdd.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -15540,12 +15571,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/clan_kryze/originals/clan-kryze-veterans_front.webp",
-        "portrait": "assets/portraits/mercenary-clan-kryze-clan-kryze-veterans-82b10a5f4b96732e99d9.webp",
+        "portrait": "assets/portraits/mercenary-clan-kryze-clan-kryze-veterans-99eb5cfd5ddc1f8c0f58.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -15692,12 +15723,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/clan_saxon/originals/gar-saxon-leader_front.webp",
-        "portrait": "assets/portraits/mercenary-clan-saxon-gar-saxon-leader-1046f506fd210b93360a.webp",
+        "portrait": "assets/portraits/mercenary-clan-saxon-gar-saxon-leader-bc2fd9a9cbff3114d2e0.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12389270976616229,
+          0.99,
+          0.6961072902338377
         ]
       },
       "review": {
@@ -15848,12 +15879,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/clan_saxon/originals/rook-kast_front.webp",
-        "portrait": "assets/portraits/mercenary-clan-saxon-rook-kast-68649ad7253c90bcfede.webp",
+        "portrait": "assets/portraits/mercenary-clan-saxon-rook-kast-9a796943ffe4e40b15cf.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12389270976616229,
+          0.99,
+          0.6961072902338377
         ]
       },
       "review": {
@@ -15977,12 +16008,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/clan_saxon/originals/super-commandos-saxon_front.webp",
-        "portrait": "assets/portraits/mercenary-clan-saxon-super-commandos-saxon-e56e1b98a20d436135b5.webp",
+        "portrait": "assets/portraits/mercenary-clan-saxon-super-commandos-saxon-36ce58082c92df62c328.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12389270976616229,
+          0.99,
+          0.6961072902338377
         ]
       },
       "review": {
@@ -16107,12 +16138,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/clan_wren/originals/clan-wren-veterans_front.webp",
-        "portrait": "assets/portraits/mercenary-clan-wren-clan-wren-veterans-561f6e1feee24bf7af98.webp",
+        "portrait": "assets/portraits/mercenary-clan-wren-clan-wren-veterans-48fdfa1ed9352dc6fbe6.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -16256,12 +16287,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/clan_wren/originals/sabine-wren-clan_front.webp",
-        "portrait": "assets/portraits/mercenary-clan-wren-sabine-wren-clan-99e152d75f3dbc3e0520.webp",
+        "portrait": "assets/portraits/mercenary-clan-wren-sabine-wren-clan-ad74574d9693436aad2f.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12389270976616229,
+          0.99,
+          0.6961072902338377
         ]
       },
       "review": {
@@ -16390,12 +16421,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/clan_wren/originals/ursa-wren_front.webp",
-        "portrait": "assets/portraits/mercenary-clan-wren-ursa-wren-fb9fa71d5bcc7468dc7d.webp",
+        "portrait": "assets/portraits/mercenary-clan-wren-ursa-wren-d98cd763a2a654739ad7.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -16538,12 +16569,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/creedless/mandalorian-hunter_front.webp",
-        "portrait": "assets/portraits/mercenary-creedless-mandalorian-hunter-e2a719f5425f3ac97d72.webp",
+        "portrait": "assets/portraits/mercenary-creedless-mandalorian-hunter-7ef7216a9e95cf1d5656.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12310344827586206,
+          0.99,
+          0.6968965517241379
         ]
       },
       "review": {
@@ -16697,7 +16728,8 @@
         "1902",
         "19531",
         "1901"
-      ]
+      ],
+      "equipUpgradeIds": []
     },
     {
       "id": "mercenary-creedless-mandalorian-leader",
@@ -16738,12 +16770,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/creedless/mandalorian-leader_front.webp",
-        "portrait": "assets/portraits/mercenary-creedless-mandalorian-leader-8093e841274080be7648.webp",
+        "portrait": "assets/portraits/mercenary-creedless-mandalorian-leader-9d2f7d54d664db9d6e21.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12310344827586206,
+          0.99,
+          0.6968965517241379
         ]
       },
       "review": {
@@ -16861,7 +16893,8 @@
         "1902",
         "19530",
         "1901"
-      ]
+      ],
+      "equipUpgradeIds": []
     },
     {
       "id": "mercenary-creedless-mandalorian-initiates",
@@ -16893,12 +16926,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/creedless/originals/mandalorian-initiates_front.webp",
-        "portrait": "assets/portraits/mercenary-creedless-mandalorian-initiates-4fcf8b1ff5a2fef8c132.webp",
+        "portrait": "assets/portraits/mercenary-creedless-mandalorian-initiates-05b980f46ef8dddea610.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12310344827586206,
+          0.99,
+          0.6968965517241379
         ]
       },
       "review": {
@@ -17028,12 +17061,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/creedless/originals/mandalorian-warriors-corps_front.webp",
-        "portrait": "assets/portraits/mercenary-creedless-mandalorian-warriors-corps-0fd1cf7bee8ff436c336.webp",
+        "portrait": "assets/portraits/mercenary-creedless-mandalorian-warriors-corps-66ffdfb9d9b66201e2fb.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12310344827586206,
+          0.99,
+          0.6968965517241379
         ]
       },
       "review": {
@@ -17181,12 +17214,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/creedless/originals/mandalorian-warriors-support_front.webp",
-        "portrait": "assets/portraits/mercenary-creedless-mandalorian-warriors-support-e0b1ca7ee3c12d484d84.webp",
+        "portrait": "assets/portraits/mercenary-creedless-mandalorian-warriors-support-d2acc81a8c9ea98f3bcb.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12310344827586206,
+          0.99,
+          0.6968965517241379
         ]
       },
       "review": {
@@ -17337,12 +17370,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/ewoks/originals/c3po-golden_front.webp",
-        "portrait": "assets/portraits/mercenary-ewoks-c3po-golden-af07208672440ebe2700.webp",
+        "portrait": "assets/portraits/mercenary-ewoks-c3po-golden-b5e9e263242be5bdaaf2.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -17430,12 +17463,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/ewoks/originals/chewbacca_front.webp",
-        "portrait": "assets/portraits/mercenary-ewoks-chewbacca-8296cd096460c9e1230a.webp",
+        "portrait": "assets/portraits/mercenary-ewoks-chewbacca-f509a4f7570df6d1da26.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -17616,12 +17649,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/ewoks/originals/ewok_skirmishers_front.webp",
-        "portrait": "assets/portraits/mercenary-ewoks-ewok-skirmishers-b74407296612ac05c2ab.webp",
+        "portrait": "assets/portraits/mercenary-ewoks-ewok-skirmishers-f12a8f1425deaf6c7c02.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -17736,12 +17769,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/ewoks/originals/ewok_slingers_front.webp",
-        "portrait": "assets/portraits/mercenary-ewoks-ewok-slingers-7d0d493ab3d3eee1fb2f.webp",
+        "portrait": "assets/portraits/mercenary-ewoks-ewok-slingers-7bf380ed240954bfa809.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -17884,12 +17917,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/ewoks/originals/logray_front.webp",
-        "portrait": "assets/portraits/mercenary-ewoks-logray-18dc35ce9fcfe220c16d.webp",
+        "portrait": "assets/portraits/mercenary-ewoks-logray-9339daffaf8d04780a24.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -18002,12 +18035,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/ewoks/originals/wicket_front.webp",
-        "portrait": "assets/portraits/mercenary-ewoks-wicket-2d532f27760d3a4b22ed.webp",
+        "portrait": "assets/portraits/mercenary-ewoks-wicket-bb6007cbeb681d35e596.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -18172,12 +18205,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/maul_loyalists/originals/gar-saxon_front.webp",
-        "portrait": "assets/portraits/mercenary-maul-loyalists-gar-saxon-4cd74789da4e4f31081f.webp",
+        "portrait": "assets/portraits/mercenary-maul-loyalists-gar-saxon-c82d18b509950c640605.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12310344827586206,
+          0.99,
+          0.6968965517241379
         ]
       },
       "review": {
@@ -18320,12 +18353,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/maul_loyalists/originals/mandalorian-super_front.webp",
-        "portrait": "assets/portraits/mercenary-maul-loyalists-mandalorian-super-8ba23286df6cf8ae8120.webp",
+        "portrait": "assets/portraits/mercenary-maul-loyalists-mandalorian-super-1c614ec669c1cb0d6531.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12310344827586206,
+          0.99,
+          0.6968965517241379
         ]
       },
       "review": {
@@ -18446,12 +18479,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/maul_loyalists/originals/maul-rival_front.webp",
-        "portrait": "assets/portraits/mercenary-maul-loyalists-maul-rival-b8d8a9eda43eacbc9fda.webp",
+        "portrait": "assets/portraits/mercenary-maul-loyalists-maul-rival-e79c9a2959c7cfc70e84.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -18581,12 +18614,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/maul_loyalists/savage-opress-maul_front.webp",
-        "portrait": "assets/portraits/mercenary-maul-loyalists-savage-opress-maul-5025821a341f60008fec.webp",
+        "portrait": "assets/portraits/mercenary-maul-loyalists-savage-opress-maul-4a6e9c85d2d2a2b431c0.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12310344827586206,
+          0.99,
+          0.6968965517241379
         ]
       },
       "review": {
@@ -18738,12 +18771,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/pyke_syndicate/originals/pyke-syndicate-capo_front.webp",
-        "portrait": "assets/portraits/mercenary-pyke-syndicate-pyke-syndicate-capo-486952043f722eb24b16.webp",
+        "portrait": "assets/portraits/mercenary-pyke-syndicate-pyke-syndicate-capo-9ff51ca177b5245d19df.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -18906,12 +18939,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/pyke_syndicate/originals/pyke-syndicate_footsoldier_front.webp",
-        "portrait": "assets/portraits/mercenary-pyke-syndicate-pyke-syndicate-footsoldier-76b60b514d15ff59089d.webp",
+        "portrait": "assets/portraits/mercenary-pyke-syndicate-pyke-syndicate-footsoldier-59466c66438596acbc9a.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -19081,12 +19114,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/raiders/originals/aa5_speeder_truck_front.webp",
-        "portrait": "assets/portraits/mercenary-raiders-aa5-speeder-truck-5a7fe4da408aed042f49.webp",
+        "portrait": "assets/portraits/mercenary-raiders-aa5-speeder-truck-dbedd0db5a325f675459.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -19184,12 +19217,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/raiders/originals/hondo_ohnaka_front.webp",
-        "portrait": "assets/portraits/mercenary-raiders-hondo-ohnaka-90bc4903c8c86181d743.webp",
+        "portrait": "assets/portraits/mercenary-raiders-hondo-ohnaka-1b7ae172a6783f25a686.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -19368,12 +19401,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/raiders/originals/swoop-bike_front.webp",
-        "portrait": "assets/portraits/mercenary-raiders-swoop-bike-e29b49f354fdc9e0a950.webp",
+        "portrait": "assets/portraits/mercenary-raiders-swoop-bike-a651018a12266d76463a.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -19526,12 +19559,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/raiders/originals/weequay-pirate_front.webp",
-        "portrait": "assets/portraits/mercenary-raiders-weequay-pirate-b9c027d2a0f1a21f9ef6.webp",
+        "portrait": "assets/portraits/mercenary-raiders-weequay-pirate-279f26bde758f5556227.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -19701,12 +19734,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/raiders/originals/wlo5-speeder-tank_front.webp",
-        "portrait": "assets/portraits/mercenary-raiders-wlo5-speeder-tank-93547b4f09a76b94bc43.webp",
+        "portrait": "assets/portraits/mercenary-raiders-wlo5-speeder-tank-ba73a5191a075bd2a217.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -19894,12 +19927,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/rogue/han-and-chewie_front.webp",
-        "portrait": "assets/portraits/mercenary-rogue-han-and-chewie-fd7db53716302e7f3556.webp",
+        "portrait": "assets/portraits/mercenary-rogue-han-and-chewie-4f730b9e3346e66677d4.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12310344827586206,
+          0.99,
+          0.6968965517241379
         ]
       },
       "review": {
@@ -19993,6 +20026,10 @@
         "20009",
         "20010",
         "1901"
+      ],
+      "equipUpgradeIds": [
+        "upstream-23420",
+        "upstream-23419"
       ]
     },
     {
@@ -20025,12 +20062,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/rogue/originals/bad-batch_front.webp",
-        "portrait": "assets/portraits/mercenary-rogue-bad-batch-5d20addd4b86dc7d096a.webp",
+        "portrait": "assets/portraits/mercenary-rogue-bad-batch-6793fd1fbfe7976c958a.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -20162,6 +20199,12 @@
         "1902",
         "13729",
         "1901"
+      ],
+      "equipUpgradeIds": [
+        "wrecker",
+        "hunter",
+        "echo-bb",
+        "tech"
       ]
     },
     {
@@ -20193,12 +20236,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/rogue/originals/boba-fett-daimyo_front.webp",
-        "portrait": "assets/portraits/mercenary-rogue-boba-fett-daimyo-e7cd57b31c89790797c0.webp",
+        "portrait": "assets/portraits/mercenary-rogue-boba-fett-daimyo-2ac8671a5a6e21a63ec8.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12310344827586206,
+          0.99,
+          0.6968965517241379
         ]
       },
       "review": {
@@ -20359,12 +20402,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/rogue/originals/boba-fett-infamous_front.webp",
-        "portrait": "assets/portraits/mercenary-rogue-boba-fett-infamous-3fbb6ca24d71dcffdc4c.webp",
+        "portrait": "assets/portraits/mercenary-rogue-boba-fett-infamous-0eeff163159f164c1c15.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12310344827586206,
+          0.99,
+          0.6968965517241379
         ]
       },
       "review": {
@@ -20542,12 +20585,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/rogue/originals/bossk_front.webp",
-        "portrait": "assets/portraits/mercenary-rogue-bossk-e1bde3b8d6fa8c02e245.webp",
+        "portrait": "assets/portraits/mercenary-rogue-bossk-b11e67762ac954fabbef.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -20716,12 +20759,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/rogue/originals/cad-bane_front.webp",
-        "portrait": "assets/portraits/mercenary-rogue-cad-bane-5c44b181d07cbf768bcd.webp",
+        "portrait": "assets/portraits/mercenary-rogue-cad-bane-961456b180206fe9bac5.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -20888,12 +20931,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/rogue/originals/ig-11_front.webp",
-        "portrait": "assets/portraits/mercenary-rogue-ig-11-ceb41bab63cd0833b3c4.webp",
+        "portrait": "assets/portraits/mercenary-rogue-ig-11-0577e7d678e56be3684e.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -21067,12 +21110,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/rogue/originals/ig-88_front.webp",
-        "portrait": "assets/portraits/mercenary-rogue-ig-88-d4f9975467a15605b60a.webp",
+        "portrait": "assets/portraits/mercenary-rogue-ig-88-7a402e42e5a700197a3d.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -21233,12 +21276,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/rogue/originals/omega_front.webp",
-        "portrait": "assets/portraits/mercenary-rogue-omega-ea9b3d80ae3b98ff24cf.webp",
+        "portrait": "assets/portraits/mercenary-rogue-omega-748477e1d4707a508037.webp",
         "portraitCrop": [
-          0.005,
-          0.2,
-          0.333,
-          0.915
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -21363,12 +21406,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/rebel/originals/1.4_fd_laser_cannon_team_front.webp",
-        "portrait": "assets/portraits/rebels-1-4-fd-laser-cannon-team-eb652c23aedfc9f5060b.webp",
+        "portrait": "assets/portraits/rebels-1-4-fd-laser-cannon-team-e2998d3c33186f3ab47d.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -21508,12 +21551,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/rebel/originals/a-a5_speeder_truck_rebel_front.webp",
-        "portrait": "assets/portraits/rebels-a-a5-speeder-truck-rebel-180dd5d08fc335fbbbe6.webp",
+        "portrait": "assets/portraits/rebels-a-a5-speeder-truck-rebel-d74da83ac0effddad380.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -21598,12 +21641,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/rebel/originals/ahsoka_front.webp",
-        "portrait": "assets/portraits/rebels-ahsoka-b6dfb24c459d7ab599ab.webp",
+        "portrait": "assets/portraits/rebels-ahsoka-561a455ac1129a715e4e.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -21726,12 +21769,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/rebel/originals/at_rt_rebel_front.webp",
-        "portrait": "assets/portraits/rebels-at-rt-rebel-816d363e660bcb7c4c83.webp",
+        "portrait": "assets/portraits/rebels-at-rt-rebel-bc6a3a82c783c7ffdc39.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -21844,12 +21887,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/rebel/originals/c-3po-cyborg_front.webp",
-        "portrait": "assets/portraits/rebels-c-3po-cyborg-077d18946683cedb51b1.webp",
+        "portrait": "assets/portraits/rebels-c-3po-cyborg-47075a2de38f206f1746.webp",
         "portraitCrop": [
-          0.005,
-          0.2,
-          0.333,
-          0.915
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -21980,12 +22023,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/rebel/originals/cassian_front.webp",
-        "portrait": "assets/portraits/rebels-cassian-fb34dcc759ca10dfef25.webp",
+        "portrait": "assets/portraits/rebels-cassian-07eca0c7846b974f4082.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -22095,6 +22138,9 @@
         "73",
         "81",
         "79"
+      ],
+      "equipUpgradeIds": [
+        "cassian-a280-pistol"
       ]
     },
     {
@@ -22125,12 +22171,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/rebel/originals/chewbacca_rebel_front.webp",
-        "portrait": "assets/portraits/rebels-chewbacca-rebel-5c92978dac2ac87b6bbf.webp",
+        "portrait": "assets/portraits/rebels-chewbacca-rebel-c087995e0dc6008ad9ae.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -22282,12 +22328,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/rebel/originals/commandos_front.webp",
-        "portrait": "assets/portraits/rebels-commandos-4d50ca4711b33c3ffa93.webp",
+        "portrait": "assets/portraits/rebels-commandos-dd4c69d4c02d6b59b621.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12274238227146811,
+          0.99,
+          0.6972576177285319
         ]
       },
       "review": {
@@ -22408,12 +22454,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/rebel/originals/fleet_troopers_front.webp",
-        "portrait": "assets/portraits/rebels-fleet-troopers-13c2a2cac444f5543bd8.webp",
+        "portrait": "assets/portraits/rebels-fleet-troopers-e9626283c5f0d7a5c4b6.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -22528,12 +22574,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/rebel/originals/guerilla-troopers_front.webp",
-        "portrait": "assets/portraits/rebels-guerilla-troopers-44689471867f7d9d8f5f.webp",
+        "portrait": "assets/portraits/rebels-guerilla-troopers-10a8355ee0543b72f5b3.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12310344827586206,
+          0.99,
+          0.6968965517241379
         ]
       },
       "review": {
@@ -22647,12 +22693,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/rebel/originals/han-solo-tauntaun_front.webp",
-        "portrait": "assets/portraits/rebels-han-solo-tauntaun-b10b87fe5101fc6c9c63.webp",
+        "portrait": "assets/portraits/rebels-han-solo-tauntaun-cc0ff5f9811ef74f3641.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -22802,12 +22848,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/rebel/originals/jyn_front.webp",
-        "portrait": "assets/portraits/rebels-jyn-cd9a21dd14dfe4f8c6a5.webp",
+        "portrait": "assets/portraits/rebels-jyn-28fb860c8cfac9f3404c.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -22947,12 +22993,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/rebel/originals/k-2so_front.webp",
-        "portrait": "assets/portraits/rebels-k-2so-57189d8639609d00e1a4.webp",
+        "portrait": "assets/portraits/rebels-k-2so-c41183140d0057bfc616.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -23077,12 +23123,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/rebel/originals/lando_front.webp",
-        "portrait": "assets/portraits/rebels-lando-44e77a170cade01de12b.webp",
+        "portrait": "assets/portraits/rebels-lando-6e4d25247d622d3a7786.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -23212,12 +23258,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/rebel/originals/leia_organa_front.webp",
-        "portrait": "assets/portraits/rebels-leia-organa-082cd458d83b5836a934.webp",
+        "portrait": "assets/portraits/rebels-leia-organa-7f0b49f5acb1e60856ae.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -23350,12 +23396,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/rebel/originals/luke-skywalker-jedi_front.webp",
-        "portrait": "assets/portraits/rebels-luke-skywalker-jedi-97cbc5df627496fa5bc8.webp",
+        "portrait": "assets/portraits/rebels-luke-skywalker-jedi-075b6b42cc2ebbc125d9.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -23485,12 +23531,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/rebel/originals/luke-tauntaun_front.webp",
-        "portrait": "assets/portraits/rebels-luke-tauntaun-a092381ec4636311fd95.webp",
+        "portrait": "assets/portraits/rebels-luke-tauntaun-d6007157ebd2cea2914e.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12310344827586206,
+          0.99,
+          0.6968965517241379
         ]
       },
       "review": {
@@ -23651,12 +23697,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/rebel/originals/luke_skywalker_hero_front.webp",
-        "portrait": "assets/portraits/rebels-luke-skywalker-hero-1ba18bceef6d8a6de3b4.webp",
+        "portrait": "assets/portraits/rebels-luke-skywalker-hero-c2e4f19d1d28d622d3e0.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -23812,12 +23858,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/rebel/originals/mark-2-blaster_front.webp",
-        "portrait": "assets/portraits/rebels-mark-2-blaster-a1cfb688217822735a0b.webp",
+        "portrait": "assets/portraits/rebels-mark-2-blaster-981f4cc1e37296ec7c75.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -23959,12 +24005,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/rebel/originals/r2d2_hero_front.webp",
-        "portrait": "assets/portraits/rebels-r2d2-hero-91670e0bfb0426367c5c.webp",
+        "portrait": "assets/portraits/rebels-r2d2-hero-2e1a9d1873244d0a83d2.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -24085,12 +24131,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/rebel/originals/rebel-agent-defender-democracy_front.webp",
-        "portrait": "assets/portraits/rebels-rebel-agent-defender-democracy-63d0250500909bc933df.webp",
+        "portrait": "assets/portraits/rebels-rebel-agent-defender-democracy-642c7c0280254d683386.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -24174,7 +24220,8 @@
       ],
       "commandIds": [
         "17864"
-      ]
+      ],
+      "equipUpgradeIds": []
     },
     {
       "id": "rebels-rebel-officer-fight-freedom",
@@ -24211,12 +24258,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/rebel/originals/rebel-officer-fight-freedom_front.webp",
-        "portrait": "assets/portraits/rebels-rebel-officer-fight-freedom-6c04aadb7f8f0c780e81.webp",
+        "portrait": "assets/portraits/rebels-rebel-officer-fight-freedom-61b1bb1b067225dcc32f.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -24297,7 +24344,8 @@
       ],
       "commandIds": [
         "17863"
-      ]
+      ],
+      "equipUpgradeIds": []
     },
     {
       "id": "rebels-rebel-commandos",
@@ -24332,12 +24380,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/rebel/originals/rebel_commandos_front.webp",
-        "portrait": "assets/portraits/rebels-rebel-commandos-03c01d6905e21c70232b.webp",
+        "portrait": "assets/portraits/rebels-rebel-commandos-fb527ea173394b8c9cc8.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12389270976616229,
+          0.99,
+          0.6961072902338377
         ]
       },
       "review": {
@@ -24461,12 +24509,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/rebel/originals/rebel_troopers_front.webp",
-        "portrait": "assets/portraits/rebels-rebel-troopers-bd29dfbe25d621e43708.webp",
+        "portrait": "assets/portraits/rebels-rebel-troopers-1b3e3fc916cf686fca50.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -24603,12 +24651,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/rebel/originals/rebel_veterans_front.webp",
-        "portrait": "assets/portraits/rebels-rebel-veterans-8566d486ea944657bf78.webp",
+        "portrait": "assets/portraits/rebels-rebel-veterans-2d9b61af5f984ecdd0af.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -24746,12 +24794,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/rebel/originals/sabine_front.webp",
-        "portrait": "assets/portraits/rebels-sabine-c3320092153da7a97d8d.webp",
+        "portrait": "assets/portraits/rebels-sabine-483b1d880b0fad1432aa.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12310344827586206,
+          0.99,
+          0.6968965517241379
         ]
       },
       "review": {
@@ -24867,12 +24915,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/rebel/originals/sleeper-cell_front.webp",
-        "portrait": "assets/portraits/rebels-sleeper-cell-6ca7657815cd4a23fa54.webp",
+        "portrait": "assets/portraits/rebels-sleeper-cell-50e2d4843f162625760f.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -25012,12 +25060,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/rebel/originals/solo_front.webp",
-        "portrait": "assets/portraits/rebels-solo-e752d57eb15dcedaa4b1.webp",
+        "portrait": "assets/portraits/rebels-solo-a559e1746cd5b163adb2.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -25156,12 +25204,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/rebel/originals/t-47_front.webp",
-        "portrait": "assets/portraits/rebels-t-47-6a183b96cad2a3309cbb.webp",
+        "portrait": "assets/portraits/rebels-t-47-fb39f87c9d3da85758b9.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -25274,12 +25322,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/rebel/originals/tauntaun-riders_front.webp",
-        "portrait": "assets/portraits/rebels-tauntaun-riders-26e2e7c72f16e41ee45e.webp",
+        "portrait": "assets/portraits/rebels-tauntaun-riders-a7a0495eed44c41aa4db.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -25405,12 +25453,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/rebel/originals/wookiee-freedom_front.webp",
-        "portrait": "assets/portraits/rebels-wookiee-freedom-ec5a9502155868b26b81.webp",
+        "portrait": "assets/portraits/rebels-wookiee-freedom-2b43ed554735951956b5.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -25521,12 +25569,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/rebel/originals/wookiee-resistance_front.webp",
-        "portrait": "assets/portraits/rebels-wookiee-resistance-e98a11096b2c27d6566c.webp",
+        "portrait": "assets/portraits/rebels-wookiee-resistance-4b6a90a2055a741a067b.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -25636,12 +25684,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/rebel/originals/x-34_landspeeder_front.webp",
-        "portrait": "assets/portraits/rebels-x-34-landspeeder-101d8a518d6b0ca52779.webp",
+        "portrait": "assets/portraits/rebels-x-34-landspeeder-068e7d986fb4459270c7.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
         ]
       },
       "review": {
@@ -25740,12 +25788,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/new-unit-mw9obgc9.webp",
-        "portrait": "assets/portraits/new-unit-mw9obgc9-85b361e7357fdacb543f.webp",
+        "portrait": "assets/portraits/new-unit-mw9obgc9-2b2ed6796b1f4992136b.webp",
         "portraitCrop": [
-          0.669,
-          0.174,
-          0.998,
-          0.725
+          0.6699999999999999,
+          0.12377410468319555,
+          0.99,
+          0.6962258953168043
         ]
       },
       "review": {

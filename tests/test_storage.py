@@ -5,6 +5,29 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 import server
 
 class StorageTest(unittest.TestCase):
+    def test_all_action_types_can_be_saved_on_unit_keywords(self):
+        for action in ['action','double-action','free-action','free-exhaust']:
+            self.card['keywords'][0]['action']=action
+            with self.subTest(action=action):
+                result=server.commit_card(self.card,server.digest(self.path.read_bytes()))
+                self.assertEqual(result['card']['keywords'][0]['action'],action)
+
+    def test_equip_ids_validate_and_survive_save(self):
+        self.card['equipUpgradeIds']=['upstream-131','cassian-a280-pistol']
+        saved=server.commit_card(self.card,server.digest(self.path.read_bytes()))
+        self.assertEqual(saved['card']['equipUpgradeIds'],self.card['equipUpgradeIds'])
+        for value in ['upstream-131',[131],['missing'],['upstream-131','upstream-131'],['cassian-a280-sniper']]:
+            self.card['equipUpgradeIds']=value
+            with self.subTest(value=value),self.assertRaises(ValueError):server.validate(self.card)
+
+    def test_portraits_have_uniform_centre_and_fixed_ratio(self):
+        from PIL import Image
+        for u in self.catalog['units']:
+            with Image.open(server.ROOT/u['assets']['front']) as im:
+                l,t,r,b=u['assets']['portraitCrop']
+                self.assertAlmostEqual((l+r)/2,.83)
+                self.assertAlmostEqual((t+b)/2,.41)
+                self.assertAlmostEqual((r-l)*im.width/((b-t)*im.height),.8)
     def setUp(self):
         self.tmp=tempfile.TemporaryDirectory();self.addCleanup(self.tmp.cleanup)
         self.path=Path(self.tmp.name)/'units.json';self.history=Path(self.tmp.name)/'history'

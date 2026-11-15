@@ -104,8 +104,10 @@
   }
   function previewText(text) {
     const fragment = document.createDocumentFragment(); let start = 0;
-    for (const match of text.matchAll(/免费行动(?:\s*[：:]\s*横置)?|行动/g)) {
-      fragment.append(document.createTextNode(text.slice(start, match.index)), node('span', match[0], 'action-mark'));
+    for (const match of text.matchAll(/免费(?:行动|动)(?:(?:\s*[：:]\s*|并)横置)?|普通行动|双行动|行动/g)) {
+      const label = match[0].includes('横置') ? '免费行动：横置' : match[0].startsWith('免费') ? '免费行动'
+        : match[0] === '双行动' ? '双行动' : '行动';
+      fragment.append(document.createTextNode(text.slice(start, match.index)), node('span', label, 'action-mark'));
       start = match.index + match[0].length;
     }
     fragment.append(document.createTextNode(text.slice(start))); return fragment;

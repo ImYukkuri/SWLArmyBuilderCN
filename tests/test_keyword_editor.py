@@ -51,6 +51,7 @@ class KeywordEditorTest(unittest.TestCase):
         before = self.request('/api/keywords')
         self.card['summary'] = '测试新简写\n保留换行'
         self.card['timing'] = ['attack', 'defense', 'activation_end']
+        self.card['actionTypes'] = ['action', 'free-action']
         saved = self.request('/api/keywords/save', {'card': self.card, 'revision': before['revision']})
         after = self.request('/api/keywords')['catalog']
         self.assertEqual(next(k for k in after['keywords'] if k['id'] == self.card['id']), self.card)

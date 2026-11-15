@@ -16,6 +16,62 @@ const data = {
   pkg: read("slot-rules.json"),
 };
 data.nameIndex = RulesCore.buildNameIndex(data.upgrades, data.defs);
+
+test('every named Equip loads all required cards through real slots with independent choices',()=>{
+ let seq=0;
+ for(const u of Object.values(data.units).filter(u=>u.equipUpgradeIds?.length)){
+  const faction=u.factions.find(f=>[1,2,3,4,5,6,7].includes(f.id))||u.factions[0];
+  const army={armyId:faction.id,mode:'standard',pointsLimit:1000,units:[],commandIds:[],options:[]};
+  const before=JSON.stringify(army);
+  const result=BuilderModel.addUnit(army,data,u.id,()=>`auto-${++seq}`);
+  assert(result.ok,result.reason);assert.deepEqual(result.warnings,[],u.id);
+  assert.equal(JSON.stringify(army),before);
+  const inst=result.draft.units[0];
+  assert.deepEqual(inst.upgrades.map(c=>c.upgradeId).sort(),[...u.equipUpgradeIds].sort(),u.id);
+  assert.equal(new Set(inst.upgrades.map(c=>c.slotIndex)).size,u.equipUpgradeIds.length);
+  assert.equal(new Set(inst.upgrades.map(c=>c.instanceId)).size,u.equipUpgradeIds.length);
+  assert(!RulesCore.validateArmy(result.draft,data).issues.some(i=>i.code==='required_child_missing'));
+  if(u.id==='rebels-cassian') assert.equal(inst.upgrades[0].face,'front');
+  const repeat=BuilderModel.equipDefaults(result.draft,data,inst.instanceId,()=>`repeat-${++seq}`);
+  assert.deepEqual(repeat.draft,result.draft);
+  const removed=structuredClone(result.draft);removed.units[0].upgrades.shift();
+  assert.equal(RulesCore.validateArmy(removed,data).issues.filter(i=>i.code==='required_child_missing').length,1,u.id);
+ }
+});
+
+test('Equip continues past blocked cards and visits slots granted by prior selections',()=>{
+ const fixture=structuredClone(data),u=fixture.units['empire-stormtroopers'];
+ u.upgradeSlots=[2];u.equipUpgradeIds=['training-hunter','force-push','gear-binoculars'];
+ // A local synthetic grant exercises a new slot appended during the pass.
+ fixture.upgrades['gear-binoculars'].rules.slotGrants=[{trigger:'equipped',slot:'force'}];
+ fixture.upgrades['force-push'].restrictions={};fixture.upgrades['force-push'].rules={slotTypes:[5]};
+ fixture.pkg.upgradeRules[String(fixture.upgrades['force-push'].upstream.id)]={};
+ let n=0;const army={armyId:2,mode:'standard',pointsLimit:1000,units:[],commandIds:[],options:[]};
+ const result=BuilderModel.addUnit(army,fixture,u.id,()=>`grant-${++n}`);
+ assert(result.ok,result.reason);
+ assert.deepEqual(result.draft.units[0].upgrades.map(c=>c.upgradeId),['gear-binoculars','force-push']);
+ assert(result.warnings.some(s=>s.includes('没有可用的匹配槽位')||s.includes('升级资料不存在')));
+ assert.equal(army.units.length,0);
+});
+
+test('action classification respects printed actions and all four metadata types',()=>{
+ assert.deepEqual(BuilderModel.keywordActionTypes({id:'jump',action:'free-action'},data.defs),['free-action']);
+ assert.deepEqual(BuilderModel.keywordActionTypes({id:'jump'},data.defs),['action','free-action']);
+ assert.deepEqual(BuilderModel.keywordActionTypes({id:'noncombatant'},data.defs),[]);
+ assert.deepEqual(BuilderModel.keywordActionTypes({id:'synthetic',actionTypes:['double-action','free-exhaust']},data.defs),['double-action','free-exhaust']);
+});
+
+test('Equip accepts counterpart IDs, and generic category Equip stays a player choice',()=>{
+ const fixture=structuredClone(data),r2=fixture.units['rebels-r2d2-hero'];
+ r2.equipUpgradeIds=['upstream-131'];let n=0;
+ const army={armyId:1,mode:'standard',pointsLimit:1000,units:[],commandIds:[],options:[]};
+ const added=BuilderModel.addUnit(army,fixture,r2.id,()=>`buddy-${++n}`);
+ assert(added.ok,added.reason);assert.deepEqual(added.warnings,[]);
+ assert.equal(added.draft.units[0].upgrades[0].upgradeId,'upstream-131');
+ const generic=BuilderModel.addUnit({...army,armyId:2},data,'empire-imperial-agent-order-to-galaxy',()=>`generic-${++n}`);
+ assert(generic.ok,generic.reason);assert.deepEqual(generic.draft.units[0].upgrades,[]);
+ assert(RulesCore.validateArmy(generic.draft,data).issues.some(i=>i.code==='required_slot'));
+});
 test("Not Out of it Yet requires both character groups, allowing each printed unit version", () => {
   const cmd = data.defs.commands.find(c=>c.id==='18903');
   const hans=['rebels-solo','rebels-han-solo-tauntaun'];

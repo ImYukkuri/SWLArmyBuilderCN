@@ -1,0 +1,5583 @@
+{
+  "schema": "swl-tts-names/v1",
+  "reviewedAt": "2026-11-16",
+  "source": "https://legionhq2.com/",
+  "nameRule": "ttsName; otherwise cardName plus title (comma for upgrade, space for unit/counterpart)",
+  "units": {
+    "separatists-admiral-trench": {
+      "name": "Admiral Trench Fleet Commander",
+      "hqIds": [
+        "Mj"
+      ]
+    },
+    "separatists-b2-rocket": {
+      "name": "B2 Super Rocket Battle Droids",
+      "hqIds": [
+        "Mk"
+      ]
+    },
+    "separatists-geonosian-engineer": {
+      "name": "Geonosian Warriors Geonosian Engineers",
+      "hqIds": [
+        "Is"
+      ]
+    },
+    "separatists-aat": {
+      "name": "AAT Battle Tank",
+      "hqIds": [
+        "gc"
+      ]
+    },
+    "separatists-aqua-droids": {
+      "name": "Aqua Droids",
+      "hqIds": [
+        "Aw"
+      ]
+    },
+    "separatists-asajj": {
+      "name": "Asajj Ventress Separatist Assassin",
+      "hqIds": [
+        "ut"
+      ]
+    },
+    "separatists-b1": {
+      "name": "B1 Battle Droids",
+      "hqIds": [
+        "gx"
+      ]
+    },
+    "separatists-b2": {
+      "name": "B2 Super Battle Droids",
+      "hqIds": [
+        "ga"
+      ]
+    },
+    "separatists-bx": {
+      "name": "BX-Series Droid Commandos",
+      "hqIds": [
+        "la"
+      ]
+    },
+    "separatists-bx-strike": {
+      "name": "BX-Series Droid Commandos Strike Team",
+      "hqIds": [
+        "lb"
+      ]
+    },
+    "separatists-dooku": {
+      "name": "Count Dooku Darth Tyranus",
+      "hqIds": [
+        "fx"
+      ]
+    },
+    "separatists-drk1-droid": {
+      "name": "DRK-1 Sith Probe Droids",
+      "hqIds": [
+        "nk"
+      ]
+    },
+    "separatists-droidekas": {
+      "name": "Droidekas",
+      "hqIds": [
+        "ie"
+      ]
+    },
+    "separatists-dsd1-dwarf": {
+      "name": "DSD1 Dwarf Spider Droid",
+      "hqIds": [
+        "qk"
+      ]
+    },
+    "separatists-geonosian": {
+      "name": "Geonosian Warriors Soldiers of the Hive",
+      "hqIds": [
+        "wp"
+      ]
+    },
+    "separatists-grievous-wheelbike": {
+      "name": "General Grievous Wheel Bike Warlord",
+      "hqIds": [
+        "Ef"
+      ]
+    },
+    "separatists-grievous": {
+      "name": "General Grievous Sinister Cyborg",
+      "hqIds": [
+        "ia"
+      ]
+    },
+    "separatists-kalani": {
+      "name": "Kalani Super Tactical Droid",
+      "hqIds": [
+        "qa"
+      ]
+    },
+    "separatists-kraken": {
+      "name": "Kraken Super Tactical Droid",
+      "hqIds": [
+        "pz"
+      ]
+    },
+    "separatists-lm-432-crab": {
+      "name": "LM-432 Crab Droid",
+      "hqIds": [
+        "ya"
+      ]
+    },
+    "separatists-magna": {
+      "name": "IG-100 MagnaGuard",
+      "hqIds": [
+        "px"
+      ]
+    },
+    "separatists-magnaguard-prototype": {
+      "name": "IG-100 MagnaGuard Prototype Assassin Droids",
+      "hqIds": [
+        "xd"
+      ]
+    },
+    "separatists-maul": {
+      "name": "Maul Impatient Apprentice",
+      "hqIds": [
+        "nb"
+      ]
+    },
+    "separatists-persuader": {
+      "name": "Persuader-Class Tank Droid",
+      "hqIds": [
+        "qt"
+      ]
+    },
+    "separatists-persuader-prototype": {
+      "name": "Persuader-Class Tank Droid Prototype Tank Droid",
+      "hqIds": [
+        "xe"
+      ]
+    },
+    "separatists-poggle": {
+      "name": "Poggle the Lesser Public Leader of the Geonosians",
+      "hqIds": [
+        "wn"
+      ]
+    },
+    "separatists-sun-fac": {
+      "name": "Sun Fac Ruthless Lieutenant",
+      "hqIds": [
+        "wo"
+      ]
+    },
+    "separatists-super-tactica-command-droid-aux": {
+      "name": "Super Tactical Command Droid Auxiliary Command Droid",
+      "hqIds": [
+        "Dp"
+      ]
+    },
+    "separatists-super-tactica-command-droid-cnc": {
+      "name": "Super Tactical Command Droid Command and Control Droid",
+      "hqIds": [
+        "Do"
+      ]
+    },
+    "separatists-tactical-droid": {
+      "name": "T-Series Tactical Droid Programmed for Strategy",
+      "hqIds": [
+        "nr"
+      ]
+    },
+    "separatists-save-opress-cis": {
+      "name": "Savage Opress Dooku's Apprentice",
+      "hqIds": [
+        "Hc"
+      ]
+    },
+    "separatists-stap": {
+      "name": "STAP Riders",
+      "hqIds": [
+        "mc"
+      ]
+    },
+    "separatists-tsmeu-wheel-bikes": {
+      "name": "TSMEU-6 Wheel Bikes",
+      "hqIds": [
+        "Eg"
+      ]
+    },
+    "empire-74-z-speeder": {
+      "name": "74-Z Speeder Bikes",
+      "hqIds": [
+        "bf"
+      ]
+    },
+    "empire-at-st": {
+      "name": "AT-ST",
+      "hqIds": [
+        "bg"
+      ]
+    },
+    "empire-dark-troopers": {
+      "name": "Imperial Dark Troopers",
+      "hqIds": [
+        "tm"
+      ]
+    },
+    "empire-darth-vader-apprentice": {
+      "name": "Darth Vader The Emperor's Apprentice",
+      "hqIds": [
+        "fn"
+      ]
+    },
+    "empire-darth-vader-lord": {
+      "name": "Darth Vader Dark Lord of the Sith",
+      "hqIds": [
+        "at"
+      ]
+    },
+    "empire-death-troopers": {
+      "name": "Imperial Death Troopers",
+      "hqIds": [
+        "bd"
+      ]
+    },
+    "empire-dewback": {
+      "name": "Dewback Rider",
+      "hqIds": [
+        "hf"
+      ]
+    },
+    "empire-df-90-mortar": {
+      "name": "DF-90 Mortar Trooper",
+      "hqIds": [
+        "ft"
+      ]
+    },
+    "empire-e-web": {
+      "name": "E-Web Heavy Blaster Team",
+      "hqIds": [
+        "be"
+      ]
+    },
+    "empire-fifth-brother": {
+      "name": "Fifth Brother The Kill is Mine",
+      "hqIds": [
+        "wl"
+      ]
+    },
+    "empire-general-tagge": {
+      "name": "General Tagge Imperial High Command",
+      "hqIds": [
+        "Fq"
+      ]
+    },
+    "empire-gideon": {
+      "name": "Moff Gideon Long Live the Empire",
+      "hqIds": [
+        "ui"
+      ]
+    },
+    "empire-grand-admiral-thrawn": {
+      "name": "Grand Admiral Thrawn Imperial High Command",
+      "hqIds": [
+        "Ff"
+      ]
+    },
+    "empire-grand-moff-tarkin": {
+      "name": "Grand Moff Tarkin Imperial High Command",
+      "hqIds": [
+        "Fg"
+      ]
+    },
+    "empire-id10-seeker": {
+      "name": "Iden's ID10 Seeker Droid",
+      "hqIds": [
+        "lw"
+      ]
+    },
+    "empire-iden-versio": {
+      "name": "Iden Versio Inferno Squad Leader",
+      "hqIds": [
+        "kg"
+      ]
+    },
+    "empire-imperial-agent-order-to-galaxy": {
+      "name": "Imperial Agent Bringing Order to the Galaxy",
+      "hqIds": [
+        "Ca"
+      ]
+    },
+    "empire-imperial-officer-ruthless-efficiency": {
+      "name": "Imperial Officer Ruthless Efficiency",
+      "hqIds": [
+        "Cb"
+      ]
+    },
+    "empire-imperial-probe-droid": {
+      "name": "Imperial Probe Droid",
+      "hqIds": [
+        "Fa"
+      ]
+    },
+    "empire-inferno-squad": {
+      "name": "Imperial Special Forces Inferno Squad",
+      "hqIds": [
+        "my"
+      ]
+    },
+    "empire-kallus": {
+      "name": "Agent Kallus Hunter of Spectres",
+      "hqIds": [
+        "nm"
+      ]
+    },
+    "empire-laat-empire": {
+      "name": "LAAT/le Patrol Transport",
+      "hqIds": [
+        "on"
+      ]
+    },
+    "empire-marquand": {
+      "name": "Major Marquand Tempest Scout 2",
+      "hqIds": [
+        "we"
+      ]
+    },
+    "empire-orson-krennic": {
+      "name": "Director Orson Krennic Architect of Terror",
+      "hqIds": [
+        "av"
+      ]
+    },
+    "empire-range-trooper": {
+      "name": "Range Troopers",
+      "hqIds": [
+        "xh"
+      ]
+    },
+    "empire-riot-squad": {
+      "name": "Stormtrooper Riot Squad",
+      "hqIds": [
+        "xz"
+      ]
+    },
+    "empire-scout": {
+      "name": "Scout Troopers",
+      "hqIds": [
+        "ba"
+      ]
+    },
+    "empire-scout-strike": {
+      "name": "Scout Troopers Strike Team",
+      "hqIds": [
+        "bb"
+      ]
+    },
+    "empire-seventh-sister": {
+      "name": "Seventh Sister Compelled to Inflict Pain",
+      "hqIds": [
+        "wm"
+      ]
+    },
+    "empire-shoretroopers": {
+      "name": "Shoretroopers",
+      "hqIds": [
+        "hg"
+      ]
+    },
+    "empire-snowtroopers": {
+      "name": "Snowtroopers",
+      "hqIds": [
+        "az"
+      ]
+    },
+    "empire-special-forces": {
+      "name": "Imperial Special Forces",
+      "hqIds": [
+        "mx"
+      ]
+    },
+    "empire-stormtroopers": {
+      "name": "Stormtroopers",
+      "hqIds": [
+        "ay"
+      ]
+    },
+    "empire-stormtroopers-hwu": {
+      "name": "Stormtroopers Heavy Response Unit",
+      "hqIds": [
+        "sr"
+      ]
+    },
+    "empire-tx-225": {
+      "name": "TX-225 GAVw Occupier Tank",
+      "hqIds": [
+        "bh"
+      ]
+    },
+    "empire-veers": {
+      "name": "General Veers Master Tactician",
+      "hqIds": [
+        "au"
+      ]
+    },
+    "republic-jedi-barc": {
+      "name": "Jedi Knight Mounted Jedi General",
+      "hqIds": [
+        "Hk"
+      ]
+    },
+    "republic-ki-aadi-mundu": {
+      "name": "Ki-Adi-Mundi Jedi Council",
+      "hqIds": [
+        "Gu"
+      ]
+    },
+    "republic-mace-windu": {
+      "name": "Mace Windu Jedi Council",
+      "hqIds": [
+        "Fp"
+      ]
+    },
+    "republic-ahsoka-padawan-commander": {
+      "name": "Ahsoka Tano Padawan Commander",
+      "hqIds": [
+        "Bc"
+      ]
+    },
+    "republic-anakin-barc": {
+      "name": "Anakin Skywalker Mounted Jedi General",
+      "hqIds": [
+        "Hj"
+      ]
+    },
+    "republic-anakin": {
+      "name": "Anakin Skywalker The Chosen One",
+      "hqIds": [
+        "na"
+      ]
+    },
+    "republic-arc-troopers": {
+      "name": "ARC Troopers",
+      "hqIds": [
+        "kz"
+      ]
+    },
+    "republic-arc-troopers-strike": {
+      "name": "ARC Troopers Strike Team",
+      "hqIds": [
+        "ky"
+      ]
+    },
+    "republic-arf-troopers": {
+      "name": "ARF Troopers",
+      "hqIds": [
+        "Ay"
+      ]
+    },
+    "republic-at-rt-gar": {
+      "name": "AT-RT",
+      "hqIds": [
+        "mb"
+      ]
+    },
+    "republic-bad-batch-gar": {
+      "name": "The Bad Batch Clone Force 99",
+      "hqIds": [
+        "xi"
+      ]
+    },
+    "republic-barc": {
+      "name": "BARC Speeder",
+      "hqIds": [
+        "ic"
+      ]
+    },
+    "republic-c3po": {
+      "name": "C-3PO Human Cyborg Relations (GAR)",
+      "hqIds": [
+        "jj"
+      ]
+    },
+    "republic-chewbacca-gar": {
+      "name": "Chewbacca Hero of Kashyyyk",
+      "hqIds": [
+        "po"
+      ]
+    },
+    "republic-chieftain": {
+      "name": "Wookiee Chieftain Clan Leader",
+      "hqIds": [
+        "ph"
+      ]
+    },
+    "republic-clone-commander-leadership": {
+      "name": "Clone Commander Trained For Leadership",
+      "hqIds": [
+        "ns"
+      ]
+    },
+    "republic-clone-commandos": {
+      "name": "Clone Commandos",
+      "hqIds": [
+        "xj"
+      ]
+    },
+    "republic-clone-trooper": {
+      "name": "Clone Trooper Infantry",
+      "hqIds": [
+        "fz"
+      ]
+    },
+    "republic-clonetrooper-marksmen": {
+      "name": "Clone Trooper Marksmen",
+      "hqIds": [
+        "Bi"
+      ]
+    },
+    "republic-cody": {
+      "name": "Clone Commander Cody Leader of the 212th",
+      "hqIds": [
+        "ue"
+      ]
+    },
+    "republic-delta-squad": {
+      "name": "Clone Commandos Delta Squad",
+      "hqIds": [
+        "xp"
+      ]
+    },
+    "republic-isp": {
+      "name": "Infantry Support Platform",
+      "hqIds": [
+        "qs"
+      ]
+    },
+    "republic-jedi-knight": {
+      "name": "Jedi Knight Keeper of the Peace",
+      "hqIds": [
+        "Da"
+      ]
+    },
+    "republic-jedi-knight-general": {
+      "name": "Jedi Knight General Strong in the Force",
+      "hqIds": [
+        "Cz"
+      ]
+    },
+    "republic-laat-gar": {
+      "name": "LAAT/le Patrol Transport",
+      "hqIds": [
+        "oo"
+      ]
+    },
+    "republic-obiwan": {
+      "name": "Obi-Wan Kenobi Civilized Warrior",
+      "hqIds": [
+        "gw"
+      ]
+    },
+    "republic-padme": {
+      "name": "Padme Amidala Spirited Senator",
+      "hqIds": [
+        "kw"
+      ]
+    },
+    "republic-r2d2-gar": {
+      "name": "R2-D2 Hero of a Thousand Devices",
+      "hqIds": [
+        "jg"
+      ]
+    },
+    "republic-raddaugh-gnasp": {
+      "name": "Raddaugh Gnasp Fluttercraft",
+      "hqIds": [
+        "qh"
+      ]
+    },
+    "republic-raddaugh": {
+      "name": "Raddaugh Gnasp Fluttercraft Attack Craft",
+      "hqIds": [
+        "xf"
+      ]
+    },
+    "republic-rex": {
+      "name": "Clone Captain Rex Honorable Soldier",
+      "hqIds": [
+        "fy"
+      ]
+    },
+    "republic-saber-class": {
+      "name": "Saber-Class Tank",
+      "hqIds": [
+        "gb"
+      ]
+    },
+    "republic-wookiee-kashyyk": {
+      "name": "Wookiee Warriors Kashyyyk Defenders",
+      "hqIds": [
+        "pg"
+      ]
+    },
+    "republic-wookiee-noble": {
+      "name": "Wookiee Warriors Noble Fighters",
+      "hqIds": [
+        "pm"
+      ]
+    },
+    "republic-yoda": {
+      "name": "Yoda Grand Master of the Jedi Order",
+      "hqIds": [
+        "ol"
+      ]
+    },
+    "republic-plo-koon": {
+      "name": "Plo Koon Jedi Council",
+      "hqIds": [
+        "Gw"
+      ]
+    },
+    "republic-shaak-ti": {
+      "name": "Shaak Ti Jedi Council",
+      "hqIds": [
+        "Gs"
+      ]
+    },
+    "mercenary-black-sun-black-sun-enforcers": {
+      "name": "Black Sun Enforcers",
+      "hqIds": [
+        "rb"
+      ]
+    },
+    "mercenary-black-sun-black-sun-vigo": {
+      "name": "Black Sun Vigo",
+      "hqIds": [
+        "ra"
+      ]
+    },
+    "mercenary-clan-covert-din-djarin-covert": {
+      "name": "Din Djarin (CotW) The Mandalorian",
+      "hqIds": [
+        "tk"
+      ]
+    },
+    "mercenary-clan-covert-grogu-covert": {
+      "name": "Grogu The Child (CotW)",
+      "hqIds": [
+        "tn"
+      ]
+    },
+    "mercenary-clan-covert-paz-vizsla": {
+      "name": "Paz Vizsla Proud Warrior",
+      "hqIds": [
+        "Hz"
+      ]
+    },
+    "mercenary-clan-covert-the-armorer": {
+      "name": "The Armorer Forging the Future",
+      "hqIds": [
+        "Hy"
+      ]
+    },
+    "mercenary-clan-kryze-axe-woves": {
+      "name": "Axe Woves Cunning Warrior",
+      "hqIds": [
+        "Hx"
+      ]
+    },
+    "mercenary-clan-kryze-bo-katan-kryze": {
+      "name": "Bo-Katan Kryze Savior of Mandalore",
+      "hqIds": [
+        "Hw"
+      ]
+    },
+    "mercenary-clan-kryze-clan-kryze-veterans": {
+      "name": "Clan Kryze Veterans",
+      "hqIds": [
+        "Ht"
+      ]
+    },
+    "mercenary-clan-saxon-gar-saxon-leader": {
+      "name": "Gar Saxon Head of Clan Saxon",
+      "hqIds": [
+        "Jp"
+      ]
+    },
+    "mercenary-clan-saxon-rook-kast": {
+      "name": "Rook Kast Devoted to the Cause",
+      "hqIds": [
+        "Jq"
+      ]
+    },
+    "mercenary-clan-saxon-super-commandos-saxon": {
+      "name": "Super Commandos",
+      "hqIds": [
+        "Jv"
+      ]
+    },
+    "mercenary-clan-wren-clan-wren-veterans": {
+      "name": "Clan Wren Veterans",
+      "hqIds": [
+        "Ia"
+      ]
+    },
+    "mercenary-clan-wren-sabine-wren-clan": {
+      "name": "Sabine Wren Back in the Fold",
+      "hqIds": [
+        "Jo"
+      ]
+    },
+    "mercenary-clan-wren-ursa-wren": {
+      "name": "Ursa Wren Leader of Clan Wren",
+      "hqIds": [
+        "Jj"
+      ]
+    },
+    "mercenary-creedless-mandalorian-hunter": {
+      "name": "Mandalorian Hunter",
+      "hqIds": [
+        "Hv"
+      ]
+    },
+    "mercenary-creedless-mandalorian-leader": {
+      "name": "Mandalorian Leader",
+      "hqIds": [
+        "Hu"
+      ]
+    },
+    "mercenary-creedless-mandalorian-initiates": {
+      "name": "Mandalorian Initiates",
+      "hqIds": [
+        "Hq"
+      ]
+    },
+    "mercenary-creedless-mandalorian-warriors-corps": {
+      "name": "Mandalorian Warriors",
+      "hqIds": [
+        "Hr"
+      ]
+    },
+    "mercenary-creedless-mandalorian-warriors-support": {
+      "name": "Mandalorian Warriors Fire Support",
+      "hqIds": [
+        "Hs"
+      ]
+    },
+    "mercenary-ewoks-c3po-golden": {
+      "name": "C-3P0 Golden God",
+      "hqIds": [
+        "vv"
+      ]
+    },
+    "mercenary-ewoks-chewbacca": {
+      "name": "Chewbacca Let the Wookiee Win",
+      "hqIds": [
+        "vj"
+      ]
+    },
+    "mercenary-ewoks-ewok-skirmishers": {
+      "name": "Ewok Skirmishers",
+      "hqIds": [
+        "vk"
+      ]
+    },
+    "mercenary-ewoks-ewok-slingers": {
+      "name": "Ewok Slingers",
+      "hqIds": [
+        "vu"
+      ]
+    },
+    "mercenary-ewoks-logray": {
+      "name": "Logray Superstitious Shaman",
+      "hqIds": [
+        "wd"
+      ]
+    },
+    "mercenary-ewoks-wicket": {
+      "name": "Wicket Hero of Bright Tree",
+      "hqIds": [
+        "ve"
+      ]
+    },
+    "mercenary-maul-loyalists-gar-saxon": {
+      "name": "Gar Saxon Militant Commando",
+      "hqIds": [
+        "rd"
+      ]
+    },
+    "mercenary-maul-loyalists-mandalorian-super": {
+      "name": "Mandalorian Super Commandos",
+      "hqIds": [
+        "re"
+      ]
+    },
+    "mercenary-maul-loyalists-maul-rival": {
+      "name": "Maul A Rival",
+      "hqIds": [
+        "rc"
+      ]
+    },
+    "mercenary-maul-loyalists-savage-opress-maul": {
+      "name": "Savage Opress Maul's Enforcer",
+      "hqIds": [
+        "Hb"
+      ]
+    },
+    "mercenary-pyke-syndicate-pyke-syndicate-capo": {
+      "name": "Pyke Syndicate Capo",
+      "hqIds": [
+        "qy"
+      ]
+    },
+    "mercenary-pyke-syndicate-pyke-syndicate-footsoldier": {
+      "name": "Pyke Syndicate Foot Soldiers",
+      "hqIds": [
+        "qz"
+      ]
+    },
+    "mercenary-raiders-aa5-speeder-truck": {
+      "name": "A-A5 Speeder Truck",
+      "hqIds": [
+        "sm"
+      ]
+    },
+    "mercenary-raiders-hondo-ohnaka": {
+      "name": "Hondo Ohnaka Trustworthy Compatriot",
+      "hqIds": [
+        "Bj"
+      ]
+    },
+    "mercenary-raiders-swoop-bike": {
+      "name": "Swoop Bike Riders",
+      "hqIds": [
+        "sq"
+      ]
+    },
+    "mercenary-raiders-weequay-pirate": {
+      "name": "Weequay Pirates",
+      "hqIds": [
+        "Fd"
+      ]
+    },
+    "mercenary-raiders-wlo5-speeder-tank": {
+      "name": "WLO-5 Speeder Tank",
+      "hqIds": [
+        "Fe"
+      ]
+    },
+    "mercenary-rogue-han-and-chewie": {
+      "name": "Han & Chewie Notorious Scoundrels",
+      "hqIds": [
+        "Id"
+      ]
+    },
+    "mercenary-rogue-bad-batch": {
+      "name": "The Bad Batch Clone Force 99",
+      "hqIds": [
+        "xv"
+      ]
+    },
+    "mercenary-rogue-boba-fett-daimyo": {
+      "name": "Boba Fett Daimyo of Mos Espa",
+      "hqIds": [
+        "tl"
+      ]
+    },
+    "mercenary-rogue-boba-fett-infamous": {
+      "name": "Boba Fett Infamous Bounty Hunter",
+      "hqIds": [
+        "aw"
+      ]
+    },
+    "mercenary-rogue-bossk": {
+      "name": "Bossk Trandoshan Terror",
+      "hqIds": [
+        "ax"
+      ]
+    },
+    "mercenary-rogue-cad-bane": {
+      "name": "Cad Bane Needs No Introduction",
+      "hqIds": [
+        "kx"
+      ]
+    },
+    "mercenary-rogue-ig-11": {
+      "name": "IG-11 Nurse and Protect",
+      "hqIds": [
+        "tj"
+      ]
+    },
+    "mercenary-rogue-ig-88": {
+      "name": "IG-88 Notorious Assassin Droid",
+      "hqIds": [
+        "ti"
+      ]
+    },
+    "mercenary-rogue-omega": {
+      "name": "Omega Mascot of the 99th",
+      "hqIds": [
+        "xw"
+      ]
+    },
+    "rebels-1-4-fd-laser-cannon-team": {
+      "name": "1.4 FD Laser Cannon Team",
+      "hqIds": [
+        "an"
+      ]
+    },
+    "rebels-a-a5-speeder-truck-rebel": {
+      "name": "A-A5 Speeder Truck",
+      "hqIds": [
+        "om"
+      ]
+    },
+    "rebels-ahsoka": {
+      "name": "Ahsoka Tano Fulcrum",
+      "hqIds": [
+        "vd"
+      ]
+    },
+    "rebels-at-rt-rebel": {
+      "name": "AT-RT",
+      "hqIds": [
+        "ao"
+      ]
+    },
+    "rebels-c-3po-cyborg": {
+      "name": "C-3PO Human-Cyborg Relations",
+      "hqIds": [
+        "ji"
+      ]
+    },
+    "rebels-cassian": {
+      "name": "Cassian Andor Capable Intelligence Agent",
+      "hqIds": [
+        "kf"
+      ]
+    },
+    "rebels-chewbacca-rebel": {
+      "name": "Chewbacca Walking Carpet",
+      "hqIds": [
+        "af"
+      ]
+    },
+    "rebels-commandos": {
+      "name": "Rebel Commandos",
+      "hqIds": [
+        "ak"
+      ]
+    },
+    "rebels-fleet-troopers": {
+      "name": "Fleet Troopers",
+      "hqIds": [
+        "ai"
+      ]
+    },
+    "rebels-guerilla-troopers": {
+      "name": "Guerilla Troopers",
+      "hqIds": [
+        "Hm"
+      ]
+    },
+    "rebels-han-solo-tauntaun": {
+      "name": "Han Solo Reluctant Hero",
+      "hqIds": [
+        "Fc"
+      ]
+    },
+    "rebels-jyn": {
+      "name": "Jyn Erso Stardust",
+      "hqIds": [
+        "ae"
+      ]
+    },
+    "rebels-k-2so": {
+      "name": "K-2SO Sardonic Security Droid",
+      "hqIds": [
+        "lv"
+      ]
+    },
+    "rebels-lando": {
+      "name": "Lando Calrissian Canny General",
+      "hqIds": [
+        "nl"
+      ]
+    },
+    "rebels-leia-organa": {
+      "name": "Leia Organa Fearless and Inventive",
+      "hqIds": [
+        "ab"
+      ]
+    },
+    "rebels-luke-skywalker-jedi": {
+      "name": "Luke Skywalker Jedi Knight",
+      "hqIds": [
+        "fm"
+      ]
+    },
+    "rebels-luke-tauntaun": {
+      "name": "Luke Skywalker Commander Skywalker",
+      "hqIds": [
+        "Fb"
+      ]
+    },
+    "rebels-luke-skywalker-hero": {
+      "name": "Luke Skywalker Hero of the Rebellion",
+      "hqIds": [
+        "ad"
+      ]
+    },
+    "rebels-mark-2-blaster": {
+      "name": "Mark II Medium Blaster Trooper",
+      "hqIds": [
+        "if"
+      ]
+    },
+    "rebels-r2d2-hero": {
+      "name": "R2-D2 Hero of a Thousand Devices",
+      "hqIds": [
+        "jg"
+      ]
+    },
+    "rebels-rebel-agent-defender-democracy": {
+      "name": "Rebel Agent Defender of Democracy",
+      "hqIds": [
+        "By"
+      ]
+    },
+    "rebels-rebel-officer-fight-freedom": {
+      "name": "Rebel Officer Fighting for Freedom",
+      "hqIds": [
+        "Bz"
+      ]
+    },
+    "rebels-rebel-commandos": {
+      "name": "Rebel Commandos Strike Team",
+      "hqIds": [
+        "al"
+      ]
+    },
+    "rebels-rebel-troopers": {
+      "name": "Rebel Troopers",
+      "hqIds": [
+        "ah"
+      ]
+    },
+    "rebels-rebel-veterans": {
+      "name": "Rebel Veterans",
+      "hqIds": [
+        "gv"
+      ]
+    },
+    "rebels-sabine": {
+      "name": "Sabine Wren Explosive Artist",
+      "hqIds": [
+        "ag"
+      ]
+    },
+    "rebels-sleeper-cell": {
+      "name": "Rebel Sleeper Cell Ready to Strike",
+      "hqIds": [
+        "xy"
+      ]
+    },
+    "rebels-solo": {
+      "name": "Han Solo Unorthodox General",
+      "hqIds": [
+        "ac"
+      ]
+    },
+    "rebels-t-47": {
+      "name": "T-47 Airspeeder",
+      "hqIds": [
+        "ap"
+      ]
+    },
+    "rebels-tauntaun-riders": {
+      "name": "Tauntaun Riders",
+      "hqIds": [
+        "he"
+      ]
+    },
+    "rebels-wookiee-freedom": {
+      "name": "Wookiee Warriors Freedom Fighters",
+      "hqIds": [
+        "aj"
+      ]
+    },
+    "rebels-wookiee-resistance": {
+      "name": "Wookiee Warriors Kashyyyk Resistance",
+      "hqIds": [
+        "pl"
+      ]
+    },
+    "rebels-x-34-landspeeder": {
+      "name": "X-34 Landspeeder",
+      "hqIds": [
+        "aq"
+      ]
+    },
+    "new-unit-mw9obgc9": {
+      "name": "Obi-Wan Kenobi Mounted Jedi General",
+      "hqIds": [
+        "Mt"
+      ]
+    }
+  },
+  "upgrades": {
+    "21b-medical-droid": {
+      "name": "2-1B Medical Droid",
+      "hqIds": [
+        "eu"
+      ]
+    },
+    "aa5-heavy-laser": {
+      "name": "Heavy Laser Retrofit",
+      "hqIds": [
+        "op"
+      ]
+    },
+    "aa5-quad": {
+      "name": "AG-2G Quad Laser",
+      "hqIds": [
+        "ou"
+      ]
+    },
+    "aayla": {
+      "name": "Aayla Secura",
+      "hqIds": [
+        "ip"
+      ]
+    },
+    "academy-trained": {
+      "name": "Academy Trained",
+      "hqIds": [
+        "Ce"
+      ]
+    },
+    "adaptive-combat-network": {
+      "name": "Adaptive Combat Network",
+      "hqIds": [
+        "Ly"
+      ]
+    },
+    "agile-climber": {
+      "name": "Agile Climber",
+      "hqIds": [
+        "Lw"
+      ]
+    },
+    "airspeeder-buzzer": {
+      "name": "Ax-108 \"Ground Buzzer\"",
+      "hqIds": [
+        "ff"
+      ]
+    },
+    "airspeeder-harpoon": {
+      "name": "MO/DK Power Harpoon",
+      "hqIds": [
+        "fg"
+      ]
+    },
+    "annul": {
+      "name": "Annul",
+      "hqIds": [
+        "Ll"
+      ]
+    },
+    "arc-dc15": {
+      "name": "DC-15x ARC Trooper Gunner",
+      "hqIds": [
+        "Ig"
+      ]
+    },
+    "armament-din-djarin-rifle": {
+      "name": "Din's Amban Rifle",
+      "hqIds": [
+        "to"
+      ]
+    },
+    "armament-din-djarin-spear": {
+      "name": "Beskar Spear",
+      "hqIds": [
+        "ts"
+      ]
+    },
+    "armament-electrogauntlets": {
+      "name": "Electro Gauntlets",
+      "hqIds": [
+        "ll"
+      ]
+    },
+    "armament-maul-darksaber": {
+      "name": "The Darksaber (Maul)",
+      "hqIds": [
+        "rq"
+      ]
+    },
+    "armament-saxon-jetpack-rocket": {
+      "name": "Saxon's Jetpack Rockets",
+      "hqIds": [
+        "sh"
+      ]
+    },
+    "armament-saxon-rifle": {
+      "name": "Saxon's Galar-90 Rifle",
+      "hqIds": [
+        "sg"
+      ]
+    },
+    "asajj-heavy": {
+      "name": "Asajj Ventress",
+      "hqIds": [
+        "Ip"
+      ]
+    },
+    "at-st-mortar": {
+      "name": "AT-ST Mortar Launcher",
+      "hqIds": [
+        "fi"
+      ]
+    },
+    "at-st-twin-light": {
+      "name": "88i Twin Light Blaster",
+      "hqIds": [
+        "fh"
+      ]
+    },
+    "atrt-flame": {
+      "name": "AT-RT Flamethrower",
+      "hqIds": [
+        "fd"
+      ]
+    },
+    "atrt-laser-cannon": {
+      "name": "AT-RT Laser Cannon",
+      "hqIds": [
+        "fe"
+      ]
+    },
+    "atrt-rotary": {
+      "name": "AT-RT Rotary Blaster",
+      "hqIds": [
+        "fc"
+      ]
+    },
+    "axe-woves": {
+      "name": "Axe Woves",
+      "hqIds": [
+        "Jg"
+      ]
+    },
+    "b1-e5c": {
+      "name": "E-5C B1 Battle Droid",
+      "hqIds": [
+        "ho"
+      ]
+    },
+    "b1-e60r": {
+      "name": "E-60R B1 Battle Droid",
+      "hqIds": [
+        "hr"
+      ]
+    },
+    "b1-miniature": {
+      "name": "B1 Battle Droid",
+      "hqIds": [
+        "hn"
+      ]
+    },
+    "b1-oom": {
+      "name": "OOM-Series Battle Droid",
+      "hqIds": [
+        "jv"
+      ]
+    },
+    "b1-radiation": {
+      "name": "Radiation Cannon B1 Battle Droid",
+      "hqIds": [
+        "jw"
+      ]
+    },
+    "b1-security": {
+      "name": "B1 Security Droid",
+      "hqIds": [
+        "it"
+      ]
+    },
+    "b1-sniper": {
+      "name": "E-5s B1 Battle Droid",
+      "hqIds": [
+        "iw"
+      ]
+    },
+    "b1-squad": {
+      "name": "B1 Battle Droid Squad",
+      "hqIds": [
+        "yn"
+      ]
+    },
+    "b2-acm": {
+      "name": "B2-ACM Battle Droid",
+      "hqIds": [
+        "ke"
+      ]
+    },
+    "b2-anti-infantry-missile": {
+      "name": "Missile Pod Rocket Droid",
+      "hqIds": [
+        "Mn"
+      ]
+    },
+    "b2-ha": {
+      "name": "B2-HA Battle Droid",
+      "hqIds": [
+        "kp"
+      ]
+    },
+    "b2-ha-rocket": {
+      "name": "B2-HA Rocket Droid",
+      "hqIds": [
+        "Ml"
+      ]
+    },
+    "b2-miniature": {
+      "name": "B2 Super Battle Droid",
+      "hqIds": [
+        "io"
+      ]
+    },
+    "b2-rocket-mini": {
+      "name": "B2 Super Rocket Battle Droid",
+      "hqIds": [
+        "Mm"
+      ]
+    },
+    "b2-squad": {
+      "name": "B2 Super Battle Droid Squad",
+      "hqIds": [
+        "yo"
+      ]
+    },
+    "backworld-medic": {
+      "name": "Backworld Medic",
+      "hqIds": [
+        "ox"
+      ]
+    },
+    "barc-ion": {
+      "name": "BARC Ion Gunner",
+      "hqIds": [
+        "fr"
+      ]
+    },
+    "barc-rps6": {
+      "name": "BARC RPS-6 Gunner",
+      "hqIds": [
+        "fs"
+      ]
+    },
+    "barc-twinlaser": {
+      "name": "BARC Twin Laser Gunner",
+      "hqIds": [
+        "id"
+      ]
+    },
+    "baron-rudor": {
+      "name": "Baron Rudor",
+      "hqIds": [
+        "pb"
+      ]
+    },
+    "battlemaster": {
+      "name": "Battlemaster",
+      "hqIds": [
+        "Ku"
+      ]
+    },
+    "battlemind": {
+      "name": "Battlemind",
+      "hqIds": [
+        "Lk"
+      ]
+    },
+    "battleshield-1": {
+      "name": "Battle Shield Wookiee (Offensive)",
+      "hqIds": [
+        "pf"
+      ]
+    },
+    "battletank-oom-droid": {
+      "name": "OOM-Series Droid Pilot",
+      "hqIds": [
+        "kv"
+      ]
+    },
+    "beskad-duelist-clan": {
+      "name": "Beskad Duelist",
+      "hqIds": [
+        "Jw"
+      ]
+    },
+    "black-sun-crew": {
+      "name": "Black Sun Crew",
+      "hqIds": [
+        "Fj"
+      ]
+    },
+    "bo-katan-darksaber": {
+      "name": "The Darksaber (Bo-Katan)",
+      "hqIds": [
+        "Ko"
+      ]
+    },
+    "bo-katan-kryze": {
+      "name": "Bo-Katan Kryze",
+      "hqIds": [
+        "Jh"
+      ]
+    },
+    "bowcaster": {
+      "name": "Bowcaster Wookiee",
+      "hqIds": [
+        "ee"
+      ]
+    },
+    "bx-gas": {
+      "name": "Dioxis Mine Saboteur",
+      "hqIds": [
+        "mj"
+      ]
+    },
+    "bx-shield": {
+      "name": "BX Deflector Shields",
+      "hqIds": [
+        "lc"
+      ]
+    },
+    "bx-sniper": {
+      "name": "BX-Series Droid Sniper",
+      "hqIds": [
+        "ld"
+      ]
+    },
+    "bx-vibro": {
+      "name": "BX Vibroswords",
+      "hqIds": [
+        "lj"
+      ]
+    },
+    "cassian-a280-pistol": {
+      "name": "A280, Rifle Config",
+      "hqIds": [
+        "kh"
+      ]
+    },
+    "cassian-andor": {
+      "name": "Cassian Andor",
+      "hqIds": [
+        "Eq"
+      ]
+    },
+    "caught-in-a-web": {
+      "name": "Caught in a Web",
+      "hqIds": [
+        "Ic"
+      ]
+    },
+    "champion-of-the-watch": {
+      "name": "Champion of the Watch",
+      "hqIds": [
+        "Kc"
+      ]
+    },
+    "chewbacca-heavy": {
+      "name": "Chewbacca",
+      "hqIds": [
+        "Ir"
+      ]
+    },
+    "children-of-the-watch": {
+      "name": "Children of the Watch",
+      "hqIds": [
+        "Ka"
+      ]
+    },
+    "cis-aqua-miniature": {
+      "name": "Heavy Aqua Droid",
+      "hqIds": [
+        "Ax"
+      ]
+    },
+    "cis-crab-laser": {
+      "name": "Heavy Laser Cannon",
+      "hqIds": [
+        "yq"
+      ]
+    },
+    "cis-crab-twin": {
+      "name": "Twin Blaster Cannons",
+      "hqIds": [
+        "yr"
+      ]
+    },
+    "clan-kryze": {
+      "name": "Clan Kryze",
+      "hqIds": [
+        "Jy"
+      ]
+    },
+    "clan-saxon": {
+      "name": "Clan Saxon",
+      "hqIds": [
+        "Kb"
+      ]
+    },
+    "clan-wren": {
+      "name": "Clan Wren",
+      "hqIds": [
+        "Jz"
+      ]
+    },
+    "clone-boil": {
+      "name": "Boil",
+      "hqIds": [
+        "uf"
+      ]
+    },
+    "clone-captain": {
+      "name": "Clone Captain",
+      "hqIds": [
+        "jx"
+      ]
+    },
+    "clone-commander": {
+      "name": "Clone Commander",
+      "hqIds": [
+        "od"
+      ]
+    },
+    "clone-comms": {
+      "name": "Clone Comms Technician",
+      "hqIds": [
+        "oa"
+      ]
+    },
+    "clone-dp23": {
+      "name": "DP-23 Clone Trooper",
+      "hqIds": [
+        "iv"
+      ]
+    },
+    "clone-engineer": {
+      "name": "Clone Engineer",
+      "hqIds": [
+        "ob"
+      ]
+    },
+    "clone-fox": {
+      "name": "Clone Commander Fox",
+      "hqIds": [
+        "os"
+      ]
+    },
+    "clone-marksmen-miniature": {
+      "name": "Clone Trooper Marksman",
+      "hqIds": [
+        "Em"
+      ]
+    },
+    "clone-marksmen-squad": {
+      "name": "Clone Trooper Marksmen Squad",
+      "hqIds": [
+        "El"
+      ]
+    },
+    "clone-medic": {
+      "name": "Clone Medic",
+      "hqIds": [
+        "oc"
+      ]
+    },
+    "clone-miniature": {
+      "name": "Clone Trooper Infantry",
+      "hqIds": [
+        "yt"
+      ]
+    },
+    "clone-mortar": {
+      "name": "Mortar Clone Trooper",
+      "hqIds": [
+        "ko"
+      ]
+    },
+    "clone-rex": {
+      "name": "Clone Captain Rex",
+      "hqIds": [
+        "Ep"
+      ]
+    },
+    "clone-rocket": {
+      "name": "RPS-6 Clone Trooper",
+      "hqIds": [
+        "ix"
+      ]
+    },
+    "clone-shock-pilot": {
+      "name": "Clone Shock Trooper Pilot",
+      "hqIds": [
+        "pe"
+      ]
+    },
+    "clone-specialist": {
+      "name": "Clone Specialist",
+      "hqIds": [
+        "jy"
+      ]
+    },
+    "clone-squad": {
+      "name": "Clone Trooper Infantry Squad",
+      "hqIds": [
+        "ys"
+      ]
+    },
+    "clone-veteran-pilot": {
+      "name": "Veteran Clone Pilot",
+      "hqIds": [
+        "kl"
+      ]
+    },
+    "clone-z6": {
+      "name": "Z-6 Clone Trooper",
+      "hqIds": [
+        "hp"
+      ]
+    },
+    "cody-squad": {
+      "name": "Clone Commander Cody",
+      "hqIds": [
+        "Io"
+      ]
+    },
+    "combat-armor": {
+      "name": "Combat Armor (Empire)",
+      "hqIds": [
+        "Cd"
+      ]
+    },
+    "combat-armor-rebel": {
+      "name": "Combat Armor (Rebel)",
+      "hqIds": [
+        "Cc"
+      ]
+    },
+    "command-and-control-uplink": {
+      "name": "Command and Control Uplink",
+      "hqIds": [
+        "Cj"
+      ]
+    },
+    "command-improvised": {
+      "name": "Improvised Orders",
+      "hqIds": [
+        "cw"
+      ]
+    },
+    "command-inspiring": {
+      "name": "Inspiring Presence",
+      "hqIds": [
+        "nq"
+      ]
+    },
+    "command-lead": {
+      "name": "Lead By Example",
+      "hqIds": [
+        "rv"
+      ]
+    },
+    "command-strict": {
+      "name": "Strict Orders",
+      "hqIds": [
+        "cz"
+      ]
+    },
+    "command-trusted-agent": {
+      "name": "Trusted Agent",
+      "hqIds": [
+        "Bn"
+      ]
+    },
+    "command-underworld": {
+      "name": "Underworld Connections",
+      "hqIds": [
+        "rf"
+      ]
+    },
+    "command-vigilance": {
+      "name": "Vigilance",
+      "hqIds": [
+        "nz"
+      ]
+    },
+    "commandos-saboteur": {
+      "name": "Proton Charge Saboteur",
+      "hqIds": [
+        "ef"
+      ]
+    },
+    "commandos-sniper": {
+      "name": "DH-447 Sniper",
+      "hqIds": [
+        "eg"
+      ]
+    },
+    "commandos-sniper-a": {
+      "name": "DC-17m ICWS Config",
+      "hqIds": [
+        "xk"
+      ]
+    },
+    "comms-control-array": {
+      "name": "Command Control Array",
+      "hqIds": [
+        "md"
+      ]
+    },
+    "comms-emergency": {
+      "name": "Emergency Transponder",
+      "hqIds": [
+        "sf"
+      ]
+    },
+    "comms-hacked": {
+      "name": "Hacked Comms Unit",
+      "hqIds": [
+        "qj"
+      ]
+    },
+    "comms-hq": {
+      "name": "HQ Uplink",
+      "hqIds": [
+        "dm"
+      ]
+    },
+    "comms-jammer": {
+      "name": "Comms Jammer",
+      "hqIds": [
+        "dn"
+      ]
+    },
+    "comms-linked-targeting": {
+      "name": "Linked Targeting Array",
+      "hqIds": [
+        "hz"
+      ]
+    },
+    "comms-onboard": {
+      "name": "Onboard Comms Channel",
+      "hqIds": [
+        "ot"
+      ]
+    },
+    "comms-spotter-uplink": {
+      "name": "Spotter Uplink",
+      "hqIds": [
+        "Bu"
+      ]
+    },
+    "cr-24-flame": {
+      "name": "CR-24 Flame Rifle",
+      "hqIds": [
+        "fw"
+      ]
+    },
+    "crew-door-gunner": {
+      "name": "Door Gunners",
+      "hqIds": [
+        "Bv"
+      ]
+    },
+    "crosshair": {
+      "name": "Crosshair",
+      "hqIds": [
+        "xu"
+      ]
+    },
+    "dark-trooper-miniature": {
+      "name": "Imperial Dark Trooper",
+      "hqIds": [
+        "ur"
+      ]
+    },
+    "dc-15x-sniper": {
+      "name": "DC-15x ARC Trooper Sniper",
+      "hqIds": [
+        "lf"
+      ]
+    },
+    "deadeye": {
+      "name": "Deadeye",
+      "hqIds": [
+        "Kt"
+      ]
+    },
+    "defend-in-depth": {
+      "name": "Defend in Depth",
+      "hqIds": [
+        "Cg"
+      ]
+    },
+    "del-meeko": {
+      "name": "Del Meeko",
+      "hqIds": [
+        "mf"
+      ]
+    },
+    "din-djarin": {
+      "name": "Din Djarin",
+      "hqIds": [
+        "Ho"
+      ]
+    },
+    "din-djarin-darksaber": {
+      "name": "The Darksaber (Din)",
+      "hqIds": [
+        "Kp"
+      ]
+    },
+    "dlt-19d": {
+      "name": "DLT-19D Trooper",
+      "hqIds": [
+        "gm"
+      ]
+    },
+    "dlt19x-scout": {
+      "name": "DLT-19x Sniper",
+      "hqIds": [
+        "em"
+      ]
+    },
+    "double-bladed-lightsaber": {
+      "name": "Double-Bladed Lightsaber",
+      "hqIds": [
+        "Dh"
+      ]
+    },
+    "dt-f16": {
+      "name": "DT-F16",
+      "hqIds": [
+        "gl"
+      ]
+    },
+    "dual-armaments": {
+      "name": "Dual Armaments",
+      "hqIds": [
+        "Kx"
+      ]
+    },
+    "dw-3-grenade-launcher": {
+      "name": "DW-3 Grenade Launcher",
+      "hqIds": [
+        "fj"
+      ]
+    },
+    "e-11d-focused-fire": {
+      "name": "E-11D Focused Fire Config",
+      "hqIds": [
+        "gn"
+      ]
+    },
+    "e4-medical": {
+      "name": "EV-Series Medical Droid",
+      "hqIds": [
+        "og"
+      ]
+    },
+    "echo-arc": {
+      "name": "Echo, ARC Marksman",
+      "hqIds": [
+        "lh"
+      ]
+    },
+    "echo-bb": {
+      "name": "Echo, Clone Force 99",
+      "hqIds": [
+        "xq"
+      ]
+    },
+    "ee-3-carbine": {
+      "name": "EE-3 Carbine Rifle",
+      "hqIds": [
+        "Ky"
+      ]
+    },
+    "electrostaff": {
+      "name": "Electrostaff",
+      "hqIds": [
+        "Dz"
+      ]
+    },
+    "electrostaff-pirate": {
+      "name": "Electrostaff Pirate",
+      "hqIds": [
+        "Gq"
+      ]
+    },
+    "enhanced-combat-subroutines": {
+      "name": "Enhanced Combat Subroutines",
+      "hqIds": [
+        "Dy"
+      ]
+    },
+    "ewok-medicine": {
+      "name": "Herbal Medicine",
+      "hqIds": [
+        "wb"
+      ]
+    },
+    "ewok-secret": {
+      "name": "Secret Ingredients",
+      "hqIds": [
+        "wa"
+      ]
+    },
+    "ewoks-axe": {
+      "name": "Axe Ewok",
+      "hqIds": [
+        "vr"
+      ]
+    },
+    "ewoks-call-to-arms": {
+      "name": "Call To Arms",
+      "hqIds": [
+        "vq"
+      ]
+    },
+    "ewoks-curiosity": {
+      "name": "Insatiable Curiosity",
+      "hqIds": [
+        "vs"
+      ]
+    },
+    "ewoks-dwellers": {
+      "name": "Forest Dwellers",
+      "hqIds": [
+        "vp"
+      ]
+    },
+    "ewoks-onward": {
+      "name": "Onward to Victory",
+      "hqIds": [
+        "wc"
+      ]
+    },
+    "ewoks-skirmish-squad": {
+      "name": "Ewok Skirmisher Squad",
+      "hqIds": [
+        "yh"
+      ]
+    },
+    "ewoks-slinger-squad": {
+      "name": "Ewok Slinger Squad",
+      "hqIds": [
+        "yi"
+      ]
+    },
+    "ewoks-trapper": {
+      "name": "Ewok Trapper",
+      "hqIds": [
+        "vt"
+      ]
+    },
+    "expanded-databanks": {
+      "name": "Expanded Databanks",
+      "hqIds": [
+        "Ec"
+      ]
+    },
+    "fifth-brother": {
+      "name": "Fifth Brother",
+      "hqIds": [
+        "Ij"
+      ]
+    },
+    "fire-control": {
+      "name": "Fire Control",
+      "hqIds": [
+        "Me"
+      ]
+    },
+    "first-sergeant-arbmab": {
+      "name": "First Sergeant Arbmab",
+      "hqIds": [
+        "gz"
+      ]
+    },
+    "fives": {
+      "name": "Fives",
+      "hqIds": [
+        "lg"
+      ]
+    },
+    "flame-projector": {
+      "name": "Flame Projector",
+      "hqIds": [
+        "Kj",
+        "Le"
+      ]
+    },
+    "fleet-barrage": {
+      "name": "MPL-57 Barrage Trooper",
+      "hqIds": [
+        "ei"
+      ]
+    },
+    "fleet-scatter": {
+      "name": "Scatter Gun Trooper",
+      "hqIds": [
+        "eh"
+      ]
+    },
+    "fleet-squad": {
+      "name": "Fleet Trooper Squad",
+      "hqIds": [
+        "yj"
+      ]
+    },
+    "fleet-trooper": {
+      "name": "Fleet Trooper",
+      "hqIds": [
+        "ev"
+      ]
+    },
+    "force-absorb": {
+      "name": "Force Absorb",
+      "hqIds": [
+        "Ln"
+      ]
+    },
+    "force-adept": {
+      "name": "Jedi Training, Force Adept",
+      "hqIds": [
+        "Dk"
+      ]
+    },
+    "force-agility": {
+      "name": "Force Agility",
+      "hqIds": [
+        "Lj"
+      ]
+    },
+    "force-anger": {
+      "name": "Anger",
+      "hqIds": [
+        "dx"
+      ]
+    },
+    "force-barrier": {
+      "name": "Force Barrier",
+      "hqIds": [
+        "nd"
+      ]
+    },
+    "force-burst": {
+      "name": "Burst of Speed",
+      "hqIds": [
+        "pq"
+      ]
+    },
+    "force-choke": {
+      "name": "Force Choke",
+      "hqIds": [
+        "dy"
+      ]
+    },
+    "force-clairvoyance": {
+      "name": "Clairvoyance",
+      "hqIds": [
+        "Bt"
+      ]
+    },
+    "force-despair": {
+      "name": "Despair",
+      "hqIds": [
+        "Lo"
+      ]
+    },
+    "force-drain": {
+      "name": "Force Drain",
+      "hqIds": [
+        "Lq"
+      ]
+    },
+    "force-enhanced-defense": {
+      "name": "Force Enhanced Defense",
+      "hqIds": [
+        "Li"
+      ]
+    },
+    "force-fear": {
+      "name": "Fear",
+      "hqIds": [
+        "fo"
+      ]
+    },
+    "force-guidance": {
+      "name": "Force Guidance",
+      "hqIds": [
+        "hx"
+      ]
+    },
+    "force-hope": {
+      "name": "Hope",
+      "hqIds": [
+        "ij"
+      ]
+    },
+    "force-mind": {
+      "name": "Jedi Mind Trick",
+      "hqIds": [
+        "dw"
+      ]
+    },
+    "force-push": {
+      "name": "Force Push",
+      "hqIds": [
+        "dt"
+      ]
+    },
+    "force-reflexes": {
+      "name": "Force Reflexes",
+      "hqIds": [
+        "du"
+      ]
+    },
+    "force-saber": {
+      "name": "Saber Throw",
+      "hqIds": [
+        "dv"
+      ]
+    },
+    "force-terror": {
+      "name": "Terror",
+      "hqIds": [
+        "Bp"
+      ]
+    },
+    "force-tranquility": {
+      "name": "Tranquility",
+      "hqIds": [
+        "Br"
+      ]
+    },
+    "frontline-commander": {
+      "name": "Frontline Commander",
+      "hqIds": [
+        "Cp"
+      ]
+    },
+    "full-beskar-armor": {
+      "name": "Full Beskar Armor",
+      "hqIds": [
+        "Ld"
+      ]
+    },
+    "fx-9-medical": {
+      "name": "FX-9 Medical Droid",
+      "hqIds": [
+        "ez"
+      ]
+    },
+    "galaar-15-carbines": {
+      "name": "GALAAR-15 Carbines",
+      "hqIds": [
+        "Ix"
+      ]
+    },
+    "galaar-15-leader": {
+      "name": "GALAAR-15 Carbine",
+      "hqIds": [
+        "Kz"
+      ]
+    },
+    "galaar-90-sniper": {
+      "name": "GALAAR-90 Sniper Rifle",
+      "hqIds": [
+        "Iy"
+      ]
+    },
+    "galaar-90-sniper-leader": {
+      "name": "GALAAR-90 Sniper Rifle (Armament)",
+      "hqIds": [
+        "Kv"
+      ]
+    },
+    "gangster-boss": {
+      "name": "Gang Boss",
+      "hqIds": [
+        "Fn"
+      ]
+    },
+    "gar-arf-miniatures": {
+      "name": "ARF Trooper Duo",
+      "hqIds": [
+        "Bb"
+      ]
+    },
+    "gar-arf-rps": {
+      "name": "RPS-6 ARF Trooper",
+      "hqIds": [
+        "Ba"
+      ]
+    },
+    "gar-jedi-guardian": {
+      "name": "Jedi Guardian",
+      "hqIds": [
+        "Az"
+      ]
+    },
+    "gar-saxon": {
+      "name": "Gar Saxon",
+      "hqIds": [
+        "Kl"
+      ]
+    },
+    "gear-ascension": {
+      "name": "Ascension Cables",
+      "hqIds": [
+        "mh"
+      ]
+    },
+    "gear-binoculars": {
+      "name": "Electrobinoculars",
+      "hqIds": [
+        "hy"
+      ]
+    },
+    "gear-datapad": {
+      "name": "Recon Intel",
+      "hqIds": [
+        "da"
+      ]
+    },
+    "gear-din-jetpack": {
+      "name": "Din's Jetpack",
+      "hqIds": [
+        "tr"
+      ]
+    },
+    "gear-emergency": {
+      "name": "Emergency Stims",
+      "hqIds": [
+        "db"
+      ]
+    },
+    "gear-environment": {
+      "name": "Environmental Gear",
+      "hqIds": [
+        "de"
+      ]
+    },
+    "gear-extra-supplies": {
+      "name": "Extra Supplies",
+      "hqIds": [
+        "Bs"
+      ]
+    },
+    "gear-grappling": {
+      "name": "Grappling Hooks",
+      "hqIds": [
+        "dd"
+      ]
+    },
+    "gear-portable": {
+      "name": "Portable Scanner",
+      "hqIds": [
+        "mr"
+      ]
+    },
+    "gear-scopes": {
+      "name": "Targeting Scopes",
+      "hqIds": [
+        "dc"
+      ]
+    },
+    "gear-supplies": {
+      "name": "Prepared Supplies",
+      "hqIds": [
+        "ro"
+      ]
+    },
+    "general-of-the-republic": {
+      "name": "General of the Republic",
+      "hqIds": [
+        "Db"
+      ]
+    },
+    "general-weiss": {
+      "name": "General Weiss",
+      "hqIds": [
+        "fl"
+      ]
+    },
+    "generator-barrage": {
+      "name": "Barrage Generator",
+      "hqIds": [
+        "dr"
+      ]
+    },
+    "generator-overcharged": {
+      "name": "Overcharged Generator",
+      "hqIds": [
+        "dq"
+      ]
+    },
+    "geonosian-miniature": {
+      "name": "Geonosian Warrior",
+      "hqIds": [
+        "wt"
+      ]
+    },
+    "geonosian-pike-1": {
+      "name": "Force Pike Warrior",
+      "hqIds": [
+        "wr"
+      ]
+    },
+    "geonosian-sonic": {
+      "name": "Sonic Cannon Warrior",
+      "hqIds": [
+        "ws"
+      ]
+    },
+    "geonosian-squad": {
+      "name": "Geonosian Warrior Squad",
+      "hqIds": [
+        "yp"
+      ]
+    },
+    "gideon-darksaber": {
+      "name": "The Darksaber (Gideon)",
+      "hqIds": [
+        "uj"
+      ]
+    },
+    "gideon-hask": {
+      "name": "Gideon Hask",
+      "hqIds": [
+        "me"
+      ]
+    },
+    "gnasp-bomber": {
+      "name": "Gnasp Bombardier",
+      "hqIds": [
+        "qp"
+      ]
+    },
+    "gnasp-gunner": {
+      "name": "Gnasp Gunner",
+      "hqIds": [
+        "qi"
+      ]
+    },
+    "go-for-broke": {
+      "name": "Go For Broke",
+      "hqIds": [
+        "Lv"
+      ]
+    },
+    "governor-pryce": {
+      "name": "Governor Pryce",
+      "hqIds": [
+        "or"
+      ]
+    },
+    "grenade-concussion": {
+      "name": "Concussion Grenades",
+      "hqIds": [
+        "dl"
+      ]
+    },
+    "grenade-emp": {
+      "name": "EMP \"Droid Poppers\"",
+      "hqIds": [
+        "le"
+      ]
+    },
+    "grenade-fragmentation": {
+      "name": "Fragmentation Grenades",
+      "hqIds": [
+        "dj"
+      ]
+    },
+    "grenade-impact": {
+      "name": "Impact Grenades",
+      "hqIds": [
+        "dk"
+      ]
+    },
+    "grenade-smoke": {
+      "name": "Smoke Grenades",
+      "hqIds": [
+        "ib"
+      ]
+    },
+    "grenade-sonic": {
+      "name": "Sonic Imploders",
+      "hqIds": [
+        "rp"
+      ]
+    },
+    "grievous-heavy": {
+      "name": "General Grievous",
+      "hqIds": [
+        "Iq"
+      ]
+    },
+    "guild-member": {
+      "name": "Guild Member",
+      "hqIds": [
+        "Ks"
+      ]
+    },
+    "hatred": {
+      "name": "Hatred",
+      "hqIds": [
+        "Lp"
+      ]
+    },
+    "heavy-arm-cannon": {
+      "name": "Heavy Arm Cannon",
+      "hqIds": [
+        "Ea"
+      ]
+    },
+    "heavy-blacksun-enforcer": {
+      "name": "Scatter Gun Enforcer",
+      "hqIds": [
+        "rn"
+      ]
+    },
+    "heavy-blaster-pistol": {
+      "name": "Heavy Blaster Pistol (Empire)",
+      "hqIds": [
+        "Ck"
+      ]
+    },
+    "heavy-blaster-pistol-rebel": {
+      "name": "Heavy Blaster Pistol (Rebel)",
+      "hqIds": [
+        "Cu"
+      ]
+    },
+    "heavy-commando-miniature": {
+      "name": "Mandalorian Super Commando",
+      "hqIds": [
+        "sb"
+      ]
+    },
+    "heavy-electro-whip": {
+      "name": "Electro-Whip Soldier",
+      "hqIds": [
+        "rh"
+      ]
+    },
+    "heavy-mag-det": {
+      "name": "Mag-Det Enforcer",
+      "hqIds": [
+        "rm"
+      ]
+    },
+    "heavy-pyke-p13": {
+      "name": "P13-M Disruptor Soldier",
+      "hqIds": [
+        "rg"
+      ]
+    },
+    "heavy-rook-kast": {
+      "name": "Rook Kast",
+      "hqIds": [
+        "se"
+      ]
+    },
+    "helping-hand": {
+      "name": "Helping Hand",
+      "hqIds": [
+        "Lm"
+      ]
+    },
+    "high-speed-tracking": {
+      "name": "High Speed Tracking",
+      "hqIds": [
+        "Ma"
+      ]
+    },
+    "hit-the-dirt": {
+      "name": "Hit the Dirt",
+      "hqIds": [
+        "Ls"
+      ]
+    },
+    "hound-grizzer": {
+      "name": "Hound & Grizzer",
+      "hqIds": [
+        "pc"
+      ]
+    },
+    "hunter": {
+      "name": "Hunter",
+      "hqIds": [
+        "xr"
+      ]
+    },
+    "ig100-magnaguard-pilot": {
+      "name": "IG-100 MagnaGuard Pilot",
+      "hqIds": [
+        "Fo"
+      ]
+    },
+    "imperial-comms": {
+      "name": "Imperial Comms Technician",
+      "hqIds": [
+        "ey"
+      ]
+    },
+    "imperial-hammers": {
+      "name": "Imperial Hammers Elite Armor Pilot",
+      "hqIds": [
+        "go"
+      ]
+    },
+    "imperial-officer": {
+      "name": "Imperial Officer",
+      "hqIds": [
+        "ew"
+      ]
+    },
+    "imperial-probe-droid": {
+      "name": "Imperial Probe Droid",
+      "hqIds": [
+        "Ih"
+      ]
+    },
+    "infantry-support": {
+      "name": "Infantry Support",
+      "hqIds": [
+        "Lx"
+      ]
+    },
+    "inquisitorus-training": {
+      "name": "Inquisitorius Training",
+      "hqIds": [
+        "wq"
+      ]
+    },
+    "isp-327": {
+      "name": "327th Star Corps Elite Armor Pilots",
+      "hqIds": [
+        "qu"
+      ]
+    },
+    "isp-rocket": {
+      "name": "Twin Missile Pods",
+      "hqIds": [
+        "qx"
+      ]
+    },
+    "isp-twin": {
+      "name": "Twin Beam Cannons",
+      "hqIds": [
+        "qw"
+      ]
+    },
+    "isp-twin-blaster": {
+      "name": "Twin Blaster Cannons (ISP)",
+      "hqIds": [
+        "qv"
+      ]
+    },
+    "jedi-consular": {
+      "name": "Jedi Consular",
+      "hqIds": [
+        "Dc"
+      ]
+    },
+    "jedi-guardian": {
+      "name": "Jedi Guardian (Doctrine)",
+      "hqIds": [
+        "De"
+      ]
+    },
+    "jedi-negotiator": {
+      "name": "Jedi Negotiator",
+      "hqIds": [
+        "Dd"
+      ]
+    },
+    "jyn-erso": {
+      "name": "Jyn Erso",
+      "hqIds": [
+        "Il"
+      ]
+    },
+    "k2s0-blaster": {
+      "name": "Jyn's SE-14 Blaster",
+      "hqIds": [
+        "lu"
+      ]
+    },
+    "kallus": {
+      "name": "Agent Kallus",
+      "hqIds": [
+        "Eo"
+      ]
+    },
+    "katarn-armor": {
+      "name": "Katarn Pattern Armor",
+      "hqIds": [
+        "xl"
+      ]
+    },
+    "ki-adi-mundi-leader": {
+      "name": "Ki-Adi-Mundi",
+      "hqIds": [
+        "Mi"
+      ]
+    },
+    "kraken": {
+      "name": "Kraken",
+      "hqIds": [
+        "En"
+      ]
+    },
+    "landspeeder-ion": {
+      "name": "M-45 Ion Blaster",
+      "hqIds": [
+        "hb"
+      ]
+    },
+    "landspeeder-medium": {
+      "name": "Mark II Medium Blaster",
+      "hqIds": [
+        "ha"
+      ]
+    },
+    "lightsaber": {
+      "name": "Lightsaber",
+      "hqIds": [
+        "Df"
+      ]
+    },
+    "limiter-override": {
+      "name": "Limiter Override",
+      "hqIds": [
+        "Dv"
+      ]
+    },
+    "logistical-prowess": {
+      "name": "Logistical Prowess",
+      "hqIds": [
+        "Fr"
+      ]
+    },
+    "lok-duk": {
+      "name": "Lok Durd",
+      "hqIds": [
+        "kq"
+      ]
+    },
+    "long-rifle-pirate": {
+      "name": "Long Rifle Pirate",
+      "hqIds": [
+        "Gn"
+      ]
+    },
+    "longgun": {
+      "name": "Long Gun Wookiee",
+      "hqIds": [
+        "pn"
+      ]
+    },
+    "luke-skywalker": {
+      "name": "Luke Skywalker",
+      "hqIds": [
+        "Im"
+      ]
+    },
+    "lying-in-wait": {
+      "name": "Lying In Wait",
+      "hqIds": [
+        "Lt"
+      ]
+    },
+    "mace-windu-leader": {
+      "name": "Mace Windu",
+      "hqIds": [
+        "Mg"
+      ]
+    },
+    "magna-miniature": {
+      "name": "IG-100 MagnaGuard",
+      "hqIds": [
+        "qc"
+      ]
+    },
+    "magna-rps": {
+      "name": "RPS-6 MagnaGuard",
+      "hqIds": [
+        "qd"
+      ]
+    },
+    "magna-whip": {
+      "name": "Electro-whip MagnaGuard",
+      "hqIds": [
+        "qb"
+      ]
+    },
+    "mandalorian-initiate-squad": {
+      "name": "Mandalorian Initiate Squad",
+      "hqIds": [
+        "Iw"
+      ]
+    },
+    "mandalorian-rockets-clan": {
+      "name": "Jetpack Rockets",
+      "hqIds": [
+        "Kg"
+      ]
+    },
+    "mandalorian-shields-clan": {
+      "name": "Combat Shields",
+      "hqIds": [
+        "Kf"
+      ]
+    },
+    "master-duelist": {
+      "name": "Jedi Training, Master Duelist",
+      "hqIds": [
+        "Di"
+      ]
+    },
+    "mertalizer": {
+      "name": "Mertalizer",
+      "hqIds": [
+        "uq"
+      ]
+    },
+    "micro-grenade-launcher": {
+      "name": "Micro-Grenade Launcher",
+      "hqIds": [
+        "Ja"
+      ]
+    },
+    "mobility-upgrade": {
+      "name": "Mobility Upgrade",
+      "hqIds": [
+        "Eb"
+      ]
+    },
+    "obiwan-heavy": {
+      "name": "Obi-Wan Kenobi",
+      "hqIds": [
+        "In"
+      ]
+    },
+    "optimized-task-flow": {
+      "name": "Optimized Task Flow",
+      "hqIds": [
+        "Dw"
+      ]
+    },
+    "ordnance-ap": {
+      "name": "Armor-Piercing Shells",
+      "hqIds": [
+        "kn"
+      ]
+    },
+    "ordnance-bunker": {
+      "name": "\"Bunker Buster\" Shells",
+      "hqIds": [
+        "kt"
+      ]
+    },
+    "ordnance-energy": {
+      "name": "High-Energy Shells",
+      "hqIds": [
+        "ku"
+      ]
+    },
+    "outer-rim-jockey": {
+      "name": "Outer Rim Speeder Jockey",
+      "hqIds": [
+        "gp"
+      ]
+    },
+    "overcharged-blaster-packs": {
+      "name": "Overcharged Blaster Packs",
+      "hqIds": [
+        "Mc"
+      ]
+    },
+    "overclock": {
+      "name": "Overclock",
+      "hqIds": [
+        "Dt"
+      ]
+    },
+    "paz-vizzla": {
+      "name": "Paz Vizsla",
+      "hqIds": [
+        "Ji"
+      ]
+    },
+    "peacekeeping-mission": {
+      "name": "Jedi Training, Peacekeeping Mission",
+      "hqIds": [
+        "Dj"
+      ]
+    },
+    "personal-combat-shield": {
+      "name": "Personal Combat Shield",
+      "hqIds": [
+        "Ki"
+      ]
+    },
+    "personnel-blacksun-miniature": {
+      "name": "Black Sun Enforcer",
+      "hqIds": [
+        "rk"
+      ]
+    },
+    "personnel-blacksun-vigo": {
+      "name": "Black Sun Vigo",
+      "hqIds": [
+        "rl"
+      ]
+    },
+    "personnel-pyke-capo": {
+      "name": "Pyke Syndicate Capo",
+      "hqIds": [
+        "rj"
+      ]
+    },
+    "personnel-pyke-miniature": {
+      "name": "Pyke Syndicate Foot Soldier",
+      "hqIds": [
+        "ri"
+      ]
+    },
+    "pilot-frenzied": {
+      "name": "Frenzied Gunner",
+      "hqIds": [
+        "sn"
+      ]
+    },
+    "pilot-raid-leader": {
+      "name": "Raiding Party Leader",
+      "hqIds": [
+        "so"
+      ]
+    },
+    "pirate-captain": {
+      "name": "Pirate Captain",
+      "hqIds": [
+        "Fm"
+      ]
+    },
+    "pk-worker": {
+      "name": "PK-Series Worker Droid",
+      "hqIds": [
+        "of"
+      ]
+    },
+    "platoon-commander": {
+      "name": "Platoon Commander",
+      "hqIds": [
+        "Ch"
+      ]
+    },
+    "plo-koon": {
+      "name": "Plo Koon",
+      "hqIds": [
+        "ks"
+      ]
+    },
+    "plo-koon-leader": {
+      "name": "Plo Koon (Squad Leader)",
+      "hqIds": [
+        "Mh"
+      ]
+    },
+    "programmed-loyalty": {
+      "name": "Programmed Loyalty",
+      "hqIds": [
+        "us"
+      ]
+    },
+    "programming-attack": {
+      "name": "Attack Protocols",
+      "hqIds": [
+        "qn"
+      ]
+    },
+    "programming-bounty": {
+      "name": "\"Bounty\" Programming",
+      "hqIds": [
+        "ub"
+      ]
+    },
+    "programming-defense": {
+      "name": "Defense Protocols",
+      "hqIds": [
+        "qm"
+      ]
+    },
+    "programming-engagement": {
+      "name": "Engagement Protocols",
+      "hqIds": [
+        "ql"
+      ]
+    },
+    "programming-nanny": {
+      "name": "\"Nanny\" Programming",
+      "hqIds": [
+        "tp"
+      ]
+    },
+    "proven-tactician": {
+      "name": "Proven Tactician",
+      "hqIds": [
+        "Cr"
+      ]
+    },
+    "pyke-syndicate-crew": {
+      "name": "Pyke Syndicate Crew",
+      "hqIds": [
+        "Fk"
+      ]
+    },
+    "pyke-syndicate-squad": {
+      "name": "Pyke Syndicate Foot Soldier Squad",
+      "hqIds": [
+        "Ii"
+      ]
+    },
+    "r4-astromech": {
+      "name": "R4 Astromech",
+      "hqIds": [
+        "fa"
+      ]
+    },
+    "range-trooper-dlt20a": {
+      "name": "DLT-20A Range Trooper",
+      "hqIds": [
+        "xn"
+      ]
+    },
+    "range-trooper-miniature": {
+      "name": "Range Trooper",
+      "hqIds": [
+        "xm"
+      ]
+    },
+    "range-trooper-t21a": {
+      "name": "T-21A Range Trooper",
+      "hqIds": [
+        "xo"
+      ]
+    },
+    "rebel-astromech": {
+      "name": "Astromech Droid",
+      "hqIds": [
+        "et"
+      ]
+    },
+    "rebel-captain": {
+      "name": "Rebel Trooper Captain",
+      "hqIds": [
+        "jo"
+      ]
+    },
+    "rebel-cm093": {
+      "name": "CM-0/93 Trooper",
+      "hqIds": [
+        "ig"
+      ]
+    },
+    "rebel-comms": {
+      "name": "Rebel Comms Technician",
+      "hqIds": [
+        "eq"
+      ]
+    },
+    "rebel-dlt-20": {
+      "name": "DLT-20A Trooper",
+      "hqIds": [
+        "iu"
+      ]
+    },
+    "rebel-hotshot-pilot": {
+      "name": "Hotshot Pilot",
+      "hqIds": [
+        "ov"
+      ]
+    },
+    "rebel-mpl57": {
+      "name": "MPL-57 Ion Trooper",
+      "hqIds": [
+        "ec"
+      ]
+    },
+    "rebel-officer": {
+      "name": "Rebel Officer",
+      "hqIds": [
+        "er"
+      ]
+    },
+    "rebel-specialist": {
+      "name": "Rebel Trooper Specialist",
+      "hqIds": [
+        "jp"
+      ]
+    },
+    "rebel-squad": {
+      "name": "Rebel Trooper Squad",
+      "hqIds": [
+        "yl"
+      ]
+    },
+    "rebel-sx21-trooper": {
+      "name": "SX-21 Trooper",
+      "hqIds": [
+        "iz"
+      ]
+    },
+    "rebel-trooper-miniature": {
+      "name": "Rebel Trooper",
+      "hqIds": [
+        "es"
+      ]
+    },
+    "rebel-veteran": {
+      "name": "Rebel Veteran",
+      "hqIds": [
+        "gu"
+      ]
+    },
+    "rebel-z6": {
+      "name": "Z-6 Trooper",
+      "hqIds": [
+        "ed"
+      ]
+    },
+    "reluctant-hero": {
+      "name": "Reluctant Hero",
+      "hqIds": [
+        "Cs"
+      ]
+    },
+    "repeating-blaster": {
+      "name": "Repeating Blaster",
+      "hqIds": [
+        "Ct"
+      ]
+    },
+    "riot-squad-kx": {
+      "name": "KX-Series Security Droids",
+      "hqIds": [
+        "yb"
+      ]
+    },
+    "riot-squad-marksman": {
+      "name": "Stormtrooper Marksman",
+      "hqIds": [
+        "ye"
+      ]
+    },
+    "rook-kast-clan": {
+      "name": "Rook Kast (Saxon)",
+      "hqIds": [
+        "Jx"
+      ]
+    },
+    "rt-97c-blaster": {
+      "name": "RT-97C Blaster Rifle",
+      "hqIds": [
+        "fv"
+      ]
+    },
+    "ryder-azadi": {
+      "name": "Ryder Azadi",
+      "hqIds": [
+        "ii"
+      ]
+    },
+    "saber-beam": {
+      "name": "Twin Laser Turret",
+      "hqIds": [
+        "kr"
+      ]
+    },
+    "saber-beam-turret": {
+      "name": "Beam Turret",
+      "hqIds": [
+        "km"
+      ]
+    },
+    "sabine-darksaber": {
+      "name": "The Darksaber (Sabine)",
+      "hqIds": [
+        "eb"
+      ]
+    },
+    "sabine-wren": {
+      "name": "Sabine Wren",
+      "hqIds": [
+        "Km"
+      ]
+    },
+    "saxon-darksaber": {
+      "name": "The Darksaber (Gar)",
+      "hqIds": [
+        "Kq"
+      ]
+    },
+    "scout-saboteur": {
+      "name": "Sonic Charge Saboteur",
+      "hqIds": [
+        "en"
+      ]
+    },
+    "security-detail": {
+      "name": "Security Detail",
+      "hqIds": [
+        "Fs"
+      ]
+    },
+    "seek-and-destroy": {
+      "name": "Seek and Destroy",
+      "hqIds": [
+        "Dr"
+      ]
+    },
+    "seeker-droid": {
+      "name": "Seeker Droid",
+      "hqIds": [
+        "Ci"
+      ]
+    },
+    "seventh-sister": {
+      "name": "Seventh Sister",
+      "hqIds": [
+        "Ik"
+      ]
+    },
+    "shaak-ti": {
+      "name": "Shaak Ti",
+      "hqIds": [
+        "Ha"
+      ]
+    },
+    "shore-squad": {
+      "name": "Shoretrooper Squad",
+      "hqIds": [
+        "yc"
+      ]
+    },
+    "shore-t21b": {
+      "name": "T-21B Shoretrooper",
+      "hqIds": [
+        "fu"
+      ]
+    },
+    "shore-trooper": {
+      "name": "Shoretrooper",
+      "hqIds": [
+        "hh"
+      ]
+    },
+    "shriv": {
+      "name": "Shriv Suurgav",
+      "hqIds": [
+        "oq"
+      ]
+    },
+    "shukur-05-repeater": {
+      "name": "SHUKUR-05 Repeater",
+      "hqIds": [
+        "Iz"
+      ]
+    },
+    "sleeper-astromech": {
+      "name": "Astromech",
+      "hqIds": [
+        "yg"
+      ]
+    },
+    "sleeper-marksman": {
+      "name": "Rebel Marksman",
+      "hqIds": [
+        "yk"
+      ]
+    },
+    "sliced-comms": {
+      "name": "Sliced Comms",
+      "hqIds": [
+        "Ds"
+      ]
+    },
+    "sm-9-frag": {
+      "name": "SM-9 Frag Launcher",
+      "hqIds": [
+        "up"
+      ]
+    },
+    "snow-flame": {
+      "name": "Flametrooper",
+      "hqIds": [
+        "ep"
+      ]
+    },
+    "snow-ion": {
+      "name": "T-7 Ion Snowtrooper",
+      "hqIds": [
+        "eo"
+      ]
+    },
+    "snow-squad": {
+      "name": "Snowtrooper Squad",
+      "hqIds": [
+        "yd"
+      ]
+    },
+    "snowtrooper": {
+      "name": "Snowtrooper",
+      "hqIds": [
+        "fb"
+      ]
+    },
+    "special-t21": {
+      "name": "T-21 Special Forces Trooper",
+      "hqIds": [
+        "mz"
+      ]
+    },
+    "spider-flame": {
+      "name": "Nose-Mounted Flamethrower",
+      "hqIds": [
+        "qo"
+      ]
+    },
+    "spider-ion": {
+      "name": "Nose-Mounted Ion Blaster",
+      "hqIds": [
+        "qq"
+      ]
+    },
+    "spider-laser": {
+      "name": "Nose-Mounted Laser Cannon",
+      "hqIds": [
+        "qr"
+      ]
+    },
+    "squad-leader-ahsoka": {
+      "name": "Ahsoka Tano, Jedi Padawan",
+      "hqIds": [
+        "Bd"
+      ]
+    },
+    "squadron-leader": {
+      "name": "Squadron Leader",
+      "hqIds": [
+        "Lz"
+      ]
+    },
+    "stormtrooper": {
+      "name": "Stormtrooper",
+      "hqIds": [
+        "ex"
+      ]
+    },
+    "stormtrooper-captain": {
+      "name": "Stormtrooper Captain",
+      "hqIds": [
+        "jn"
+      ]
+    },
+    "stormtrooper-dlt19": {
+      "name": "DLT-19 Stormtrooper",
+      "hqIds": [
+        "ej"
+      ]
+    },
+    "stormtrooper-hh12": {
+      "name": "HH-12 Stormtrooper",
+      "hqIds": [
+        "ek"
+      ]
+    },
+    "stormtrooper-rt97c": {
+      "name": "RT-97C Stormtrooper",
+      "hqIds": [
+        "iy"
+      ]
+    },
+    "stormtrooper-specialist": {
+      "name": "Stormtrooper Specialist",
+      "hqIds": [
+        "jq"
+      ]
+    },
+    "stormtrooper-squad": {
+      "name": "Stormtrooper Squad",
+      "hqIds": [
+        "yf"
+      ]
+    },
+    "stormtrooper-t21": {
+      "name": "T-21 Stormtrooper",
+      "hqIds": [
+        "ja"
+      ]
+    },
+    "strategic-programming": {
+      "name": "Strategic Programming",
+      "hqIds": [
+        "Dx"
+      ]
+    },
+    "strong-in-the-force": {
+      "name": "Strong in the Force",
+      "hqIds": [
+        "Lr"
+      ]
+    },
+    "stuck-in": {
+      "name": "Stuck In",
+      "hqIds": [
+        "Lu"
+      ]
+    },
+    "stun-baton": {
+      "name": "Stun Baton",
+      "hqIds": [
+        "Cl"
+      ]
+    },
+    "super-commando-gunslinger": {
+      "name": "Super Commando Gunslinger (Saxon)",
+      "hqIds": [
+        "Kd"
+      ]
+    },
+    "super-commando-marksman": {
+      "name": "Super Commando Marksman",
+      "hqIds": [
+        "sd"
+      ]
+    },
+    "super-commando-marksman-super": {
+      "name": "Super Commando Marksman (Saxon)",
+      "hqIds": [
+        "Ke"
+      ]
+    },
+    "superior-equipment": {
+      "name": "Superior Equipment",
+      "hqIds": [
+        "Lh"
+      ]
+    },
+    "t-21-blaster": {
+      "name": "T-21 Blaster Rifle",
+      "hqIds": [
+        "hs"
+      ]
+    },
+    "t-series-pilot": {
+      "name": "T-Series Tactical Droid Pilot",
+      "hqIds": [
+        "iq"
+      ]
+    },
+    "t-series-tactical": {
+      "name": "T-Series Tactical Droid",
+      "hqIds": [
+        "mq"
+      ]
+    },
+    "tactical-acument": {
+      "name": "Jedi Training, Tactical Acumen",
+      "hqIds": [
+        "Dl"
+      ]
+    },
+    "tank-hunting-munitions": {
+      "name": "Tank Hunting Munitions",
+      "hqIds": [
+        "Mb"
+      ]
+    },
+    "targeting-relay": {
+      "name": "Targeting Relay",
+      "hqIds": [
+        "Du"
+      ]
+    },
+    "tech": {
+      "name": "Tech",
+      "hqIds": [
+        "xt"
+      ]
+    },
+    "the-armorer": {
+      "name": "The Armorer",
+      "hqIds": [
+        "Hp"
+      ]
+    },
+    "thermal-detonator": {
+      "name": "Thermal Detonator",
+      "hqIds": [
+        "Cy"
+      ]
+    },
+    "tie-pilot": {
+      "name": "Imperial TIE Pilot",
+      "hqIds": [
+        "pd"
+      ]
+    },
+    "tip-of-the-spear": {
+      "name": "Tip of the Spear",
+      "hqIds": [
+        "Cf"
+      ]
+    },
+    "training-duck": {
+      "name": "Duck and Cover",
+      "hqIds": [
+        "dh"
+      ]
+    },
+    "training-dug-in": {
+      "name": "Dug In",
+      "hqIds": [
+        "Bq"
+      ]
+    },
+    "training-endurance": {
+      "name": "Endurance",
+      "hqIds": [
+        "di"
+      ]
+    },
+    "training-fray": {
+      "name": "Into the Fray",
+      "hqIds": [
+        "ps"
+      ]
+    },
+    "training-hunt": {
+      "name": "On The Hunt",
+      "hqIds": [
+        "dg"
+      ]
+    },
+    "training-imperial-march": {
+      "name": "Imperial March",
+      "hqIds": [
+        "Bo"
+      ]
+    },
+    "training-mission-objective": {
+      "name": "Mission Objective",
+      "hqIds": [
+        "Bm"
+      ]
+    },
+    "training-offensive": {
+      "name": "Offensive Push",
+      "hqIds": [
+        "jb"
+      ]
+    },
+    "training-overwatch": {
+      "name": "Overwatch",
+      "hqIds": [
+        "gj"
+      ]
+    },
+    "training-protector": {
+      "name": "Protector",
+      "hqIds": [
+        "pt"
+      ]
+    },
+    "training-seize": {
+      "name": "Seize the Initiative",
+      "hqIds": [
+        "ne"
+      ]
+    },
+    "training-situational": {
+      "name": "Situational Awareness",
+      "hqIds": [
+        "li"
+      ]
+    },
+    "training-stance-b": {
+      "name": "Offensive Stance",
+      "hqIds": [
+        "ms"
+      ]
+    },
+    "training-strike-and-fade": {
+      "name": "Strike and Fade",
+      "hqIds": [
+        "Bk"
+      ]
+    },
+    "training-strike-team-leader": {
+      "name": "Strike Team Leader",
+      "hqIds": [
+        "Bl"
+      ]
+    },
+    "training-tenacity": {
+      "name": "Tenacity",
+      "hqIds": [
+        "df"
+      ]
+    },
+    "training-upclose": {
+      "name": "Up Close and Personal",
+      "hqIds": [
+        "ru"
+      ]
+    },
+    "tristan-wren-clan": {
+      "name": "Tristan Wren",
+      "hqIds": [
+        "Kn"
+      ]
+    },
+    "turbo-charge": {
+      "name": "Turbo-Charge",
+      "hqIds": [
+        "Ek"
+      ]
+    },
+    "twin-lightsabers": {
+      "name": "Twin Lightsabers",
+      "hqIds": [
+        "Dg"
+      ]
+    },
+    "tx225-dlt19": {
+      "name": "Pintle-Mounted DLT-19",
+      "hqIds": [
+        "hc"
+      ]
+    },
+    "tx225-rt97c": {
+      "name": "Pintle-Mounted RT-97C",
+      "hqIds": [
+        "hd"
+      ]
+    },
+    "tyrannical-taskmaster": {
+      "name": "Tyrannical Taskmaster",
+      "hqIds": [
+        "Dq"
+      ]
+    },
+    "unorthodox": {
+      "name": "Unorthodox Tactician",
+      "hqIds": [
+        "pa"
+      ]
+    },
+    "unseen-saboteur": {
+      "name": "Unseen Saboteur",
+      "hqIds": [
+        "Cq"
+      ]
+    },
+    "unstable-a5-astromech": {
+      "name": "Unstable Astromech",
+      "hqIds": [
+        "oz"
+      ]
+    },
+    "ursa-wren-clan": {
+      "name": "Ursa Wren",
+      "hqIds": [
+        "Kr"
+      ]
+    },
+    "veteran-squad": {
+      "name": "Rebel Veteran Squad",
+      "hqIds": [
+        "Am"
+      ]
+    },
+    "vibro-axe": {
+      "name": "Vibro Axe",
+      "hqIds": [
+        "Cv"
+      ]
+    },
+    "vibrosword": {
+      "name": "Vibrosword",
+      "hqIds": [
+        "Kw"
+      ]
+    },
+    "viper-droid": {
+      "name": "Viper Recon Droid",
+      "hqIds": [
+        "oe"
+      ]
+    },
+    "war-party-leader": {
+      "name": "War Party Leader",
+      "hqIds": [
+        "Lc"
+      ]
+    },
+    "waxer": {
+      "name": "Waxer",
+      "hqIds": [
+        "ug"
+      ]
+    },
+    "wedge-antilles": {
+      "name": "Wedge Antilles",
+      "hqIds": [
+        "fk"
+      ]
+    },
+    "weequay-captain": {
+      "name": "Weequay Captain",
+      "hqIds": [
+        "Go"
+      ]
+    },
+    "weequay-crew": {
+      "name": "Weequay Crew",
+      "hqIds": [
+        "Fl"
+      ]
+    },
+    "weequay-squad": {
+      "name": "Weequay Pirate Squad",
+      "hqIds": [
+        "Gp"
+      ]
+    },
+    "whipcord-launcher": {
+      "name": "Whipcord Launcher",
+      "hqIds": [
+        "Kk"
+      ]
+    },
+    "wrecker": {
+      "name": "Wrecker",
+      "hqIds": [
+        "xs"
+      ]
+    },
+    "x34-a300": {
+      "name": "A-300 Rifle Gunner",
+      "hqIds": [
+        "gr"
+      ]
+    },
+    "x34-rocket": {
+      "name": "RPS-6 Rocket Gunner",
+      "hqIds": [
+        "gq"
+      ]
+    },
+    "xs-iv": {
+      "name": "XS-IV Assault Cannon",
+      "hqIds": [
+        "uo"
+      ]
+    },
+    "youre-not-all-the-same-to-me": {
+      "name": "You're Not All the Same to Me",
+      "hqIds": [
+        "Gy"
+      ]
+    },
+    "z6-riot-baton": {
+      "name": "Z-6 Riot Baton",
+      "hqIds": [
+        "Cm"
+      ]
+    },
+    "upstream-175": {
+      "name": "Beskad Duelist",
+      "hqIds": [
+        "Jw"
+      ]
+    },
+    "upstream-131": {
+      "name": "C-3PO Human-Cyborg Relations",
+      "hqIds": [
+        "ji"
+      ]
+    },
+    "upstream-23419": {
+      "name": "Chewbacca, Courageous Co-Pilot",
+      "hqIds": [
+        "Mp"
+      ]
+    },
+    "upstream-23968": {
+      "name": "DLT-19 Stormtrooper (Wet)",
+      "hqIds": [
+        "Nb"
+      ]
+    },
+    "upstream-23966": {
+      "name": "Gas Grenades",
+      "hqIds": [
+        "Nd"
+      ]
+    },
+    "upstream-22586": {
+      "name": "Grogu The Child (CotW)",
+      "hqIds": [
+        "tn"
+      ]
+    },
+    "upstream-3649": {
+      "name": "Grogu The Child (CotW)",
+      "hqIds": [
+        "tn"
+      ]
+    },
+    "upstream-23420": {
+      "name": "Han Solo, Reckless Smuggler",
+      "hqIds": [
+        "Mo"
+      ]
+    },
+    "upstream-167": {
+      "name": "Iden's ID10 Seeker Droid",
+      "hqIds": [
+        "lw"
+      ]
+    },
+    "upstream-19896": {
+      "name": "Imperial March",
+      "hqIds": [
+        "Bo"
+      ]
+    },
+    "upstream-20841": {
+      "name": "Kraken",
+      "hqIds": [
+        "En"
+      ]
+    },
+    "upstream-23984": {
+      "name": "Mudtrooper Squad",
+      "hqIds": [
+        "Nh"
+      ]
+    },
+    "upstream-15628": {
+      "name": "Omega Mascot of the 99th",
+      "hqIds": [
+        "xw"
+      ]
+    },
+    "upstream-23967": {
+      "name": "RT-97C Stormtrooper (Wet)",
+      "hqIds": [
+        "Nc"
+      ]
+    },
+    "upstream-23948": {
+      "name": "Stolen DLT-19",
+      "hqIds": [
+        "Mx"
+      ]
+    },
+    "upstream-23947": {
+      "name": "Stolen HH-12",
+      "hqIds": [
+        "My"
+      ]
+    },
+    "upstream-23949": {
+      "name": "Stolen RT-97C",
+      "hqIds": [
+        "Mw"
+      ]
+    },
+    "upstream-2719": {
+      "name": "Super Commando Gunslinger",
+      "hqIds": [
+        "sc"
+      ]
+    },
+    "upstream-23983": {
+      "name": "SX-21 Mudtrooper",
+      "hqIds": [
+        "Nf"
+      ]
+    },
+    "upstream-177": {
+      "name": "Tristan Wren",
+      "hqIds": [
+        "Kn"
+      ]
+    },
+    "upstream-178": {
+      "name": "Ursa Wren",
+      "hqIds": [
+        "Kr"
+      ]
+    },
+    "upstream-23982": {
+      "name": "Z-6 Mudtrooper",
+      "hqIds": [
+        "Ng"
+      ]
+    }
+  },
+  "commands": {
+    "35": {
+      "name": "Covering Fire",
+      "hqIds": [
+        "ch"
+      ]
+    },
+    "57": {
+      "name": "You Disappoint Me",
+      "hqIds": [
+        "is"
+      ]
+    },
+    "16488": {
+      "name": "Stories, So Many of Them True",
+      "hqIds": [
+        "Bx"
+      ]
+    },
+    "37": {
+      "name": "Coordinated Fire",
+      "hqIds": [
+        "cc"
+      ]
+    },
+    "16487": {
+      "name": "That's Just Good Business",
+      "hqIds": [
+        "Bw"
+      ]
+    },
+    "16484": {
+      "name": "I Go Where I'm Needed",
+      "hqIds": [
+        "Bf"
+      ]
+    },
+    "16486": {
+      "name": "You Are Beaten",
+      "hqIds": [
+        "Be"
+      ]
+    },
+    "2": {
+      "name": "Return of the Jedi",
+      "hqIds": [
+        "cd"
+      ]
+    },
+    "1903": {
+      "name": "Discretion",
+      "hqIds": [
+        "ry"
+      ]
+    },
+    "1902": {
+      "name": "Aggression",
+      "hqIds": [
+        "rx"
+      ]
+    },
+    "1962": {
+      "name": "Marked For Elimination",
+      "hqIds": [
+        "sj"
+      ]
+    },
+    "3083": {
+      "name": "Independent Programming",
+      "hqIds": [
+        "tz"
+      ]
+    },
+    "1827": {
+      "name": "Seize What Power We Can",
+      "hqIds": [
+        "rt"
+      ]
+    },
+    "2378": {
+      "name": "Whistling Birds",
+      "hqIds": [
+        "th"
+      ]
+    },
+    "3087": {
+      "name": "Mechanical Carnage",
+      "hqIds": [
+        "ua"
+      ]
+    },
+    "19764": {
+      "name": "Wisdom of the Council",
+      "hqIds": [
+        "Mf"
+      ]
+    },
+    "2270": {
+      "name": "Unrelenting Assault",
+      "hqIds": [
+        "tc"
+      ]
+    },
+    "787": {
+      "name": "They Too Will Suffer",
+      "hqIds": [
+        "qe"
+      ]
+    },
+    "31": {
+      "name": "Voracious Ambition",
+      "hqIds": [
+        "by"
+      ]
+    },
+    "8": {
+      "name": "Standing Orders",
+      "hqIds": [
+        "aa"
+      ]
+    },
+    "1825": {
+      "name": "Witch Magick",
+      "hqIds": [
+        "rr"
+      ]
+    },
+    "60": {
+      "name": "You Serve Your Master Well",
+      "hqIds": [
+        "jd"
+      ]
+    },
+    "10": {
+      "name": "Maximum Firepower",
+      "hqIds": [
+        "bv"
+      ]
+    },
+    "3051": {
+      "name": "I Like Those Odds",
+      "hqIds": [
+        "tt"
+      ]
+    },
+    "6350": {
+      "name": "Hiding in Plain Sight",
+      "hqIds": [
+        "vy"
+      ]
+    },
+    "540": {
+      "name": "Size Matters Sometimes",
+      "hqIds": [
+        "pp"
+      ]
+    },
+    "34": {
+      "name": "Common Cause",
+      "hqIds": [
+        "cu"
+      ]
+    },
+    "2377": {
+      "name": "Rule With Respect",
+      "hqIds": [
+        "tg"
+      ]
+    },
+    "4122": {
+      "name": "Die at My Hand",
+      "hqIds": [
+        "uk"
+      ]
+    },
+    "100": {
+      "name": "Ace Up His Sleeve",
+      "hqIds": [
+        "nn"
+      ]
+    },
+    "8113": {
+      "name": "We Need Reinforcements",
+      "hqIds": [
+        "wg"
+      ]
+    },
+    "257": {
+      "name": "There Is No Try",
+      "hqIds": [
+        "pj"
+      ]
+    },
+    "90": {
+      "name": "At Last",
+      "hqIds": [
+        "nj"
+      ]
+    },
+    "9458": {
+      "name": "I Care Not For Your Struggles",
+      "hqIds": [
+        "wv"
+      ]
+    },
+    "3": {
+      "name": "Push",
+      "hqIds": [
+        "bk"
+      ]
+    },
+    "8112": {
+      "name": "Drive Them Out",
+      "hqIds": [
+        "wf"
+      ]
+    },
+    "2376": {
+      "name": "Making His Way in the Galaxy",
+      "hqIds": [
+        "tf"
+      ]
+    },
+    "22": {
+      "name": "Change of Plans",
+      "hqIds": [
+        "cf"
+      ]
+    },
+    "9459": {
+      "name": "Come and Prove It",
+      "hqIds": [
+        "ww"
+      ]
+    },
+    "73": {
+      "name": "Crack Shot",
+      "hqIds": [
+        "kj"
+      ]
+    },
+    "16620": {
+      "name": "Rebellions Are Built on Hope",
+      "hqIds": [
+        "ci"
+      ]
+    },
+    "16619": {
+      "name": "I Rebel",
+      "hqIds": [
+        "ct"
+      ]
+    },
+    "16624": {
+      "name": "Idiot's Array",
+      "hqIds": [
+        "nw"
+      ]
+    },
+    "16622": {
+      "name": "Defiance",
+      "hqIds": [
+        "pu"
+      ]
+    },
+    "43": {
+      "name": "Deploy the Garrison",
+      "hqIds": [
+        "ge"
+      ]
+    },
+    "19885": {
+      "name": "I Smell Fear... and it Smells Good",
+      "hqIds": [
+        "Ib"
+      ]
+    },
+    "19886": {
+      "name": "We Shall Start with Revenge",
+      "hqIds": [
+        "Hd"
+      ]
+    },
+    "14378": {
+      "name": "General Skywalker",
+      "hqIds": [
+        "mv"
+      ]
+    },
+    "14377": {
+      "name": "Lead From the Front",
+      "hqIds": [
+        "sy"
+      ]
+    },
+    "20008": {
+      "name": "Wookiee Life Debt",
+      "hqIds": [
+        "Mr"
+      ]
+    },
+    "20009": {
+      "name": "Never Tell Me the Odds",
+      "hqIds": [
+        "Mq"
+      ]
+    },
+    "20010": {
+      "name": "Boring Conversation Anyway",
+      "hqIds": [
+        "Ms"
+      ]
+    },
+    "8114": {
+      "name": "Constantly Alert",
+      "hqIds": [
+        "wh"
+      ]
+    },
+    "38": {
+      "name": "Pinned Down",
+      "hqIds": [
+        "cb"
+      ]
+    },
+    "74": {
+      "name": "Pulse Scan",
+      "hqIds": [
+        "kk"
+      ]
+    },
+    "20052": {
+      "name": "Into the Breach",
+      "hqIds": [
+        "Mv"
+      ]
+    },
+    "20054": {
+      "name": "I'm Sorry Master, I Didn't Catch That",
+      "hqIds": [
+        "Mu"
+      ]
+    },
+    "20053": {
+      "name": "Evasive Action",
+      "hqIds": [
+        "Hl"
+      ]
+    },
+    "104": {
+      "name": "Ruthless Tactics",
+      "hqIds": [
+        "ok"
+      ]
+    },
+    "93": {
+      "name": "Synchronized Offensive",
+      "hqIds": [
+        "mt"
+      ]
+    },
+    "2136": {
+      "name": "Tactical Planning",
+      "hqIds": [
+        "sz"
+      ]
+    },
+    "65": {
+      "name": "Take That, Clankers!",
+      "hqIds": [
+        "ju"
+      ]
+    },
+    "54": {
+      "name": "Knowledge and Defense",
+      "hqIds": [
+        "in"
+      ]
+    },
+    "1963": {
+      "name": "Victory or Death!",
+      "hqIds": [
+        "sl"
+      ]
+    },
+    "58": {
+      "name": "We're Not Programmed",
+      "hqIds": [
+        "ir"
+      ]
+    },
+    "6508": {
+      "name": "I Am No Jedi",
+      "hqIds": [
+        "vf"
+      ]
+    },
+    "7330": {
+      "name": "A Beautiful Friendship",
+      "hqIds": [
+        "vo"
+      ]
+    },
+    "7327": {
+      "name": "Sneaky Scouting",
+      "hqIds": [
+        "vm"
+      ]
+    },
+    "17862": {
+      "name": "Fearsome Oration",
+      "hqIds": [
+        "Co"
+      ]
+    },
+    "17861": {
+      "name": "Inexorable Advance",
+      "hqIds": [
+        "Cn"
+      ]
+    },
+    "17863": {
+      "name": "Diversionary Tactics",
+      "hqIds": [
+        "Cw"
+      ]
+    },
+    "17864": {
+      "name": "Battlefield Reconnaissance",
+      "hqIds": [
+        "Cx"
+      ]
+    },
+    "17929": {
+      "name": "Flow of the Force",
+      "hqIds": [
+        "Dm"
+      ]
+    },
+    "17928": {
+      "name": "Affirmative, General!",
+      "hqIds": [
+        "Dn"
+      ]
+    },
+    "17930": {
+      "name": "Tactical Download",
+      "hqIds": [
+        "Ee"
+      ]
+    },
+    "17931": {
+      "name": "Exterminate",
+      "hqIds": [
+        "Ed"
+      ]
+    },
+    "18067": {
+      "name": "Full Throttle",
+      "hqIds": [
+        "Eh"
+      ]
+    },
+    "18068": {
+      "name": "Pincer Attack",
+      "hqIds": [
+        "Ei"
+      ]
+    },
+    "18069": {
+      "name": "I'll Do it Myself!",
+      "hqIds": [
+        "Ej"
+      ]
+    },
+    "18222": {
+      "name": "Flexible Strategy",
+      "hqIds": [
+        "Ez"
+      ]
+    },
+    "18221": {
+      "name": "Recon Division",
+      "hqIds": [
+        "Ey"
+      ]
+    },
+    "18220": {
+      "name": "Sneak Attack",
+      "hqIds": [
+        "Ex"
+      ]
+    },
+    "18309": {
+      "name": "We Must Wait and Watch",
+      "hqIds": [
+        "Fh"
+      ]
+    },
+    "18310": {
+      "name": "Fear Will Keep Them in Line",
+      "hqIds": [
+        "Fi"
+      ]
+    },
+    "13729": {
+      "name": "We Do What We Do",
+      "hqIds": [
+        "xx"
+      ]
+    },
+    "18903": {
+      "name": "Not Out of it Yet",
+      "hqIds": [
+        "Fy"
+      ]
+    },
+    "18898": {
+      "name": "Architects of Their Own Destruction",
+      "hqIds": [
+        "Ft"
+      ]
+    },
+    "18899": {
+      "name": "Canny Adversary",
+      "hqIds": [
+        "Fu"
+      ]
+    },
+    "18902": {
+      "name": "Moment of Triumph",
+      "hqIds": [
+        "Fx"
+      ]
+    },
+    "18900": {
+      "name": "I Have Graphs AND the Command",
+      "hqIds": [
+        "Fv"
+      ]
+    },
+    "18901": {
+      "name": "I Want You to Know Failure",
+      "hqIds": [
+        "Fw"
+      ]
+    },
+    "18906": {
+      "name": "The Empire Does Not Tolerate Failure",
+      "hqIds": [
+        "Gc"
+      ]
+    },
+    "18905": {
+      "name": "See You in Hell",
+      "hqIds": [
+        "Gb"
+      ]
+    },
+    "97": {
+      "name": "Attack of the Clones",
+      "hqIds": [
+        "ny"
+      ]
+    },
+    "19076": {
+      "name": "For the Cause",
+      "hqIds": [
+        "Hi"
+      ]
+    },
+    "19074": {
+      "name": "A Disturbance in the Force",
+      "hqIds": [
+        "Gz"
+      ]
+    },
+    "19079": {
+      "name": "This Party's Over",
+      "hqIds": [
+        "Gr"
+      ]
+    },
+    "19080": {
+      "name": "Unity Wins Wars",
+      "hqIds": [
+        "Gt"
+      ]
+    },
+    "19081": {
+      "name": "We Shall Start with Revenge",
+      "hqIds": [
+        "Hd"
+      ]
+    },
+    "19077": {
+      "name": "Force of Will",
+      "hqIds": [
+        "Gv"
+      ]
+    },
+    "19078": {
+      "name": "I Don't Believe in Chance",
+      "hqIds": [
+        "Gx"
+      ]
+    },
+    "19405": {
+      "name": "Insolence?! We are Pirates!",
+      "hqIds": [
+        "Iv"
+      ]
+    },
+    "19406": {
+      "name": "Speak Softly and Drive a Big Tank",
+      "hqIds": [
+        "Iu"
+      ]
+    },
+    "19407": {
+      "name": "I Smell Profit",
+      "hqIds": [
+        "It"
+      ]
+    },
+    "99": {
+      "name": "Face Me!",
+      "hqIds": [
+        "no"
+      ]
+    },
+    "19485": {
+      "name": "Both Hunter and Prey",
+      "hqIds": [
+        "Jd"
+      ]
+    },
+    "19486": {
+      "name": "Mandalore Will Survive",
+      "hqIds": [
+        "Jc"
+      ]
+    },
+    "19487": {
+      "name": "A Higher Purpose",
+      "hqIds": [
+        "Jb"
+      ]
+    },
+    "19483": {
+      "name": "Go, There Are Too Many...",
+      "hqIds": [
+        "Jf"
+      ]
+    },
+    "19518": {
+      "name": "We Protect Our Own",
+      "hqIds": [
+        "Jn"
+      ]
+    },
+    "19517": {
+      "name": "We Are Mandalorians",
+      "hqIds": [
+        "Jk"
+      ]
+    },
+    "19514": {
+      "name": "No One Threatens Our Family",
+      "hqIds": [
+        "Jl"
+      ]
+    },
+    "19513": {
+      "name": "Make the Impossible Possible",
+      "hqIds": [
+        "Jm"
+      ]
+    },
+    "19510": {
+      "name": "Aerial Assault",
+      "hqIds": [
+        "Ie"
+      ]
+    },
+    "19519": {
+      "name": "Weapons Are Our Religion",
+      "hqIds": [
+        "If"
+      ]
+    },
+    "19515": {
+      "name": "Out of the Shadows",
+      "hqIds": [
+        "Ju"
+      ]
+    },
+    "19516": {
+      "name": "Vengeful Strike",
+      "hqIds": [
+        "Jt"
+      ]
+    },
+    "19511": {
+      "name": "Close Formation",
+      "hqIds": [
+        "Jr"
+      ]
+    },
+    "19512": {
+      "name": "Death Before Defeat",
+      "hqIds": [
+        "Js"
+      ]
+    },
+    "19530": {
+      "name": "Honor and Strength",
+      "hqIds": [
+        "Lb"
+      ]
+    },
+    "16618": {
+      "name": "Corellian Spike",
+      "hqIds": [
+        "nt"
+      ]
+    },
+    "16621": {
+      "name": "Daring Defense",
+      "hqIds": [
+        "pw"
+      ]
+    },
+    "16623": {
+      "name": "Get In Position",
+      "hqIds": [
+        "pv"
+      ]
+    },
+    "70": {
+      "name": "Impromptu Immolation",
+      "hqIds": [
+        "ka"
+      ]
+    },
+    "16485": {
+      "name": "Revenge Is Not the Jedi Way",
+      "hqIds": [
+        "Bg"
+      ]
+    },
+    "50": {
+      "name": "Supreme Commander",
+      "hqIds": [
+        "hk"
+      ]
+    },
+    "67": {
+      "name": "Fear, Surprise, Intimidation",
+      "hqIds": [
+        "jr"
+      ]
+    },
+    "51": {
+      "name": "Hello There!",
+      "hqIds": [
+        "hj"
+      ]
+    },
+    "18904": {
+      "name": "On Patrol",
+      "hqIds": [
+        "Ga"
+      ]
+    },
+    "19484": {
+      "name": "We Shape Ourselves",
+      "hqIds": [
+        "Je"
+      ]
+    },
+    "19531": {
+      "name": "No Escape",
+      "hqIds": [
+        "La"
+      ]
+    },
+    "18": {
+      "name": "No Time for Sorrows",
+      "hqIds": [
+        "cl"
+      ]
+    },
+    "6131": {
+      "name": "Bring It Down!",
+      "hqIds": [
+        "va"
+      ]
+    },
+    "6509": {
+      "name": "Family Reunion",
+      "hqIds": [
+        "vg"
+      ]
+    },
+    "16": {
+      "name": "Imperial Discipline",
+      "hqIds": [
+        "bn"
+      ]
+    },
+    "41": {
+      "name": "Legacy of Mandalore",
+      "hqIds": [
+        "cj"
+      ]
+    },
+    "42": {
+      "name": "Lying In Wait",
+      "hqIds": [
+        "bq"
+      ]
+    },
+    "4120": {
+      "name": "Moment of Consideration",
+      "hqIds": [
+        "um"
+      ]
+    },
+    "80": {
+      "name": "Sacrifice",
+      "hqIds": [
+        "lt"
+      ]
+    },
+    "6510": {
+      "name": "Swift Protector",
+      "hqIds": [
+        "vh"
+      ]
+    },
+    "47": {
+      "name": "Symbol of Rebellion",
+      "hqIds": [
+        "gi"
+      ]
+    },
+    "3050": {
+      "name": "The Hand Thing",
+      "hqIds": [
+        "ud"
+      ]
+    },
+    "3052": {
+      "name": "This is the Way",
+      "hqIds": [
+        "tu"
+      ]
+    },
+    "81": {
+      "name": "Volunteer Mission",
+      "hqIds": [
+        "lr"
+      ]
+    },
+    "55": {
+      "name": "Darkness Descends",
+      "hqIds": [
+        "fq"
+      ]
+    },
+    "82": {
+      "name": "Concussive Blast",
+      "hqIds": [
+        "lz"
+      ]
+    },
+    "15": {
+      "name": "Evasive Maneuvers",
+      "hqIds": [
+        "bs"
+      ]
+    },
+    "66": {
+      "name": "Double the Fall",
+      "hqIds": [
+        "js"
+      ]
+    },
+    "75": {
+      "name": "I Make the Rules Now",
+      "hqIds": [
+        "lp"
+      ]
+    },
+    "48": {
+      "name": "Explosions!",
+      "hqIds": [
+        "gh"
+      ]
+    },
+    "62": {
+      "name": "Full of Surprises",
+      "hqIds": [
+        "jf"
+      ]
+    },
+    "1": {
+      "name": "New Ways to Motivate Them",
+      "hqIds": [
+        "br"
+      ]
+    },
+    "68": {
+      "name": "Smoke Screen",
+      "hqIds": [
+        "jz"
+      ]
+    },
+    "91": {
+      "name": "The Phantom Menace",
+      "hqIds": [
+        "ni"
+      ]
+    },
+    "29": {
+      "name": "Z-6 Jetpack Rocket",
+      "hqIds": [
+        "bp"
+      ]
+    },
+    "786": {
+      "name": "Do Not Underestimate Our Means",
+      "hqIds": [
+        "qg"
+      ]
+    },
+    "63": {
+      "name": "Blast Off!",
+      "hqIds": [
+        "jl"
+      ]
+    },
+    "64": {
+      "name": "Call Me Captain",
+      "hqIds": [
+        "jt"
+      ]
+    },
+    "19": {
+      "name": "Somebody Has to Save Our Skins",
+      "hqIds": [
+        "ce"
+      ]
+    },
+    "1961": {
+      "name": "Fight Another Day",
+      "hqIds": [
+        "sk"
+      ]
+    },
+    "12": {
+      "name": "Implacable",
+      "hqIds": [
+        "bw"
+      ]
+    },
+    "79": {
+      "name": "Last Stand",
+      "hqIds": [
+        "ls"
+      ]
+    },
+    "258": {
+      "name": "Luminous Beings Are We",
+      "hqIds": [
+        "pk"
+      ]
+    },
+    "785": {
+      "name": "Preservation Protocols",
+      "hqIds": [
+        "qf"
+      ]
+    },
+    "59": {
+      "name": "Vader's Might",
+      "hqIds": [
+        "jc"
+      ]
+    },
+    "20": {
+      "name": "Whipcord Launcher",
+      "hqIds": [
+        "bz"
+      ]
+    },
+    "92": {
+      "name": "Duel of the Fates",
+      "hqIds": [
+        "mw"
+      ]
+    },
+    "85": {
+      "name": "I'm Your Worst Nightmare",
+      "hqIds": [
+        "mg"
+      ]
+    },
+    "77": {
+      "name": "I'm in Control",
+      "hqIds": [
+        "lo"
+      ]
+    },
+    "256": {
+      "name": "Size Matters Not",
+      "hqIds": [
+        "pi"
+      ]
+    },
+    "6351": {
+      "name": "For the Tribe",
+      "hqIds": [
+        "vz"
+      ]
+    },
+    "49": {
+      "name": "General Kenobi",
+      "hqIds": [
+        "hi"
+      ]
+    },
+    "53": {
+      "name": "Crush Them!",
+      "hqIds": [
+        "hl"
+      ]
+    },
+    "14": {
+      "name": "Reckless Diversion",
+      "hqIds": [
+        "cm"
+      ]
+    },
+    "76": {
+      "name": "Our Fate is in Your Hands",
+      "hqIds": [
+        "lq"
+      ]
+    },
+    "9": {
+      "name": "Assault",
+      "hqIds": [
+        "bj"
+      ]
+    },
+    "56": {
+      "name": "I am a Jedi",
+      "hqIds": [
+        "fp"
+      ]
+    },
+    "89": {
+      "name": "You Underestimate My Power",
+      "hqIds": [
+        "ng"
+      ]
+    },
+    "6349": {
+      "name": "Log Traps",
+      "hqIds": [
+        "vx"
+      ]
+    },
+    "78": {
+      "name": "Diplomatic Cover",
+      "hqIds": [
+        "ln"
+      ]
+    },
+    "61": {
+      "name": "Fear and Dead Men",
+      "hqIds": [
+        "je"
+      ]
+    },
+    "36": {
+      "name": "Turning the Tide",
+      "hqIds": [
+        "cp"
+      ]
+    },
+    "1901": {
+      "name": "Ploy",
+      "hqIds": [
+        "rw"
+      ]
+    },
+    "40": {
+      "name": "Trust Goes Both Ways",
+      "hqIds": [
+        "co"
+      ]
+    },
+    "98": {
+      "name": "Air Support",
+      "hqIds": [
+        "nx"
+      ]
+    },
+    "27": {
+      "name": "Covert Observation",
+      "hqIds": [
+        "ca"
+      ]
+    },
+    "1826": {
+      "name": "His Eminence",
+      "hqIds": [
+        "rs"
+      ]
+    },
+    "4": {
+      "name": "Master of Evil",
+      "hqIds": [
+        "bm"
+      ]
+    },
+    "88": {
+      "name": "This is Where the Fun Begins",
+      "hqIds": [
+        "nf"
+      ]
+    },
+    "96": {
+      "name": "Mechanized Incursion",
+      "hqIds": [
+        "mu"
+      ]
+    },
+    "2274": {
+      "name": "Courage of the Rebellion",
+      "hqIds": [
+        "st"
+      ]
+    },
+    "84": {
+      "name": "Tactical Strike",
+      "hqIds": [
+        "ma"
+      ]
+    },
+    "95": {
+      "name": "Orbital Strike",
+      "hqIds": [
+        "nu"
+      ]
+    },
+    "44": {
+      "name": "Annihilation Looms",
+      "hqIds": [
+        "gd"
+      ]
+    },
+    "6348": {
+      "name": "Arboreal Assault",
+      "hqIds": [
+        "vw"
+      ]
+    },
+    "33": {
+      "name": "Brains and Brawn",
+      "hqIds": [
+        "cn"
+      ]
+    },
+    "2272": {
+      "name": "Hold at Any Cost",
+      "hqIds": [
+        "su"
+      ]
+    },
+    "86": {
+      "name": "Aggressive Negotiations",
+      "hqIds": [
+        "mi"
+      ]
+    },
+    "45": {
+      "name": "Reptilian Rampage",
+      "hqIds": [
+        "gg"
+      ]
+    },
+    "7": {
+      "name": "Ambush",
+      "hqIds": [
+        "bl"
+      ]
+    },
+    "11": {
+      "name": "Son of Skywalker",
+      "hqIds": [
+        "cq"
+      ]
+    },
+    "6": {
+      "name": "My Ally is the Force",
+      "hqIds": [
+        "ck"
+      ]
+    },
+    "83": {
+      "name": "Incapacitate",
+      "hqIds": [
+        "ly"
+      ]
+    },
+    "2135": {
+      "name": "Leaders of the 501st",
+      "hqIds": [
+        "ta"
+      ]
+    },
+    "52": {
+      "name": "Trained In Your Jedi Arts",
+      "hqIds": [
+        "im"
+      ]
+    },
+    "46": {
+      "name": "Merciless Munitions",
+      "hqIds": [
+        "gf"
+      ]
+    },
+    "2276": {
+      "name": "Overwhelming Barrage",
+      "hqIds": [
+        "sw"
+      ]
+    },
+    "26": {
+      "name": "Sabotaged Communications",
+      "hqIds": [
+        "cv"
+      ]
+    },
+    "2275": {
+      "name": "Unrelenting Fire",
+      "hqIds": [
+        "sv"
+      ]
+    },
+    "103": {
+      "name": "ISB Investigation",
+      "hqIds": [
+        "oj"
+      ]
+    },
+    "94": {
+      "name": "Roger, Roger!",
+      "hqIds": [
+        "nv"
+      ]
+    },
+    "23": {
+      "name": "Sorry About the Mess",
+      "hqIds": [
+        "cs"
+      ]
+    },
+    "2273": {
+      "name": "Delaying Tactics",
+      "hqIds": [
+        "ss"
+      ]
+    },
+    "2269": {
+      "name": "AI Coordination",
+      "hqIds": [
+        "tb"
+      ]
+    },
+    "2277": {
+      "name": "Debark for Ground Assault",
+      "hqIds": [
+        "sx"
+      ]
+    },
+    "2271": {
+      "name": "Unstoppable Advance",
+      "hqIds": [
+        "td"
+      ]
+    },
+    "3085": {
+      "name": "A Machine Made For Killing",
+      "hqIds": [
+        "tw"
+      ]
+    },
+    "3086": {
+      "name": "Anti-Capture Protocols",
+      "hqIds": [
+        "tx"
+      ]
+    },
+    "3084": {
+      "name": "Focused on the Kill",
+      "hqIds": [
+        "ty"
+      ]
+    },
+    "4121": {
+      "name": "You Have Something I Want",
+      "hqIds": [
+        "ul"
+      ]
+    },
+    "5183": {
+      "name": "I Am Fear",
+      "hqIds": [
+        "ux"
+      ]
+    },
+    "5184": {
+      "name": "The Jedi Shall Fall",
+      "hqIds": [
+        "uv"
+      ]
+    },
+    "5185": {
+      "name": "The Sith Will Rule",
+      "hqIds": [
+        "uu"
+      ]
+    },
+    "5182": {
+      "name": "Yes, My Master",
+      "hqIds": [
+        "uw"
+      ]
+    },
+    "7328": {
+      "name": "Close Call",
+      "hqIds": [
+        "vl"
+      ]
+    },
+    "7326": {
+      "name": "Courageous Counterattack",
+      "hqIds": [
+        "vn"
+      ]
+    },
+    "9461": {
+      "name": "You Hide Your Fear Well",
+      "hqIds": [
+        "wy"
+      ]
+    },
+    "6511": {
+      "name": "A New Beginning",
+      "hqIds": [
+        "vi"
+      ]
+    },
+    "28": {
+      "name": "Notorious Scoundrels",
+      "hqIds": [
+        "cg"
+      ]
+    },
+    "6129": {
+      "name": "Combined Arms",
+      "hqIds": [
+        "vc"
+      ]
+    },
+    "6130": {
+      "name": "Have I Ever Let You Down?",
+      "hqIds": [
+        "vb"
+      ]
+    },
+    "8115": {
+      "name": "Gunner, Infantry!",
+      "hqIds": [
+        "wi"
+      ]
+    },
+    "8117": {
+      "name": "Armored Cavalry",
+      "hqIds": [
+        "wk"
+      ]
+    },
+    "8116": {
+      "name": "Squadron, On Me",
+      "hqIds": [
+        "wj"
+      ]
+    },
+    "9451": {
+      "name": "Brutal Enforcer",
+      "hqIds": [
+        "wz"
+      ]
+    },
+    "9452": {
+      "name": "Let the Executions Begin!",
+      "hqIds": [
+        "xa"
+      ]
+    },
+    "9454": {
+      "name": "We Make Weapons",
+      "hqIds": [
+        "xc"
+      ]
+    },
+    "9453": {
+      "name": "We Serve the Queen",
+      "hqIds": [
+        "xb"
+      ]
+    },
+    "9460": {
+      "name": "Unexpected, But Not Unwelcome",
+      "hqIds": [
+        "wx"
+      ]
+    },
+    "9457": {
+      "name": "You Would Question Me?",
+      "hqIds": [
+        "wu"
+      ]
+    },
+    "2375": {
+      "name": "A Simple Man",
+      "hqIds": [
+        "te"
+      ]
+    },
+    "13": {
+      "name": "Coordinated Bombardment",
+      "hqIds": [
+        "cr"
+      ]
+    }
+  },
+  "battle": {
+    "objective-13": {
+      "name": "Marked Targets",
+      "hqIds": [
+        "Ac"
+      ]
+    },
+    "objective-14": {
+      "name": "Sweep and Clear",
+      "hqIds": [
+        "Af"
+      ]
+    },
+    "objective-15": {
+      "name": "Bring Them to Heel",
+      "hqIds": [
+        "Aa",
+        "Aq"
+      ]
+    },
+    "objective-16": {
+      "name": "Surface Scan",
+      "hqIds": [
+        "Ae",
+        "As"
+      ]
+    },
+    "objective-17": {
+      "name": "Destroy Enemy Base",
+      "hqIds": [
+        "Ab"
+      ]
+    },
+    "objective-18": {
+      "name": "Recon Mission",
+      "hqIds": [
+        "Ad",
+        "Ar"
+      ]
+    },
+    "objective-21": {
+      "name": "Recon Mission",
+      "hqIds": [
+        "Ad",
+        "Ar"
+      ]
+    },
+    "objective-20": {
+      "name": "Surface Scan",
+      "hqIds": [
+        "Ae",
+        "As"
+      ]
+    },
+    "objective-19": {
+      "name": "Bring Them to Heel",
+      "hqIds": [
+        "Aa",
+        "Aq"
+      ]
+    },
+    "objective-22": {
+      "name": "Supply Run",
+      "hqIds": [
+        "Ew"
+      ]
+    },
+    "objective-23": {
+      "name": "Failed Negotiations",
+      "hqIds": [
+        "Gh"
+      ]
+    },
+    "objective-24": {
+      "name": "Retrieve the Data",
+      "hqIds": [
+        "Gg"
+      ]
+    },
+    "objective-25": {
+      "name": "Align the Relay",
+      "hqIds": [
+        "Gi"
+      ]
+    },
+    "deployment-13": {
+      "name": "Close the Pocket",
+      "hqIds": [
+        "Ai",
+        "Ao"
+      ]
+    },
+    "deployment-14": {
+      "name": "Bunker Assault",
+      "hqIds": [
+        "Ah",
+        "An"
+      ]
+    },
+    "deployment-15": {
+      "name": "Breakthrough",
+      "hqIds": [
+        "Ag"
+      ]
+    },
+    "deployment-16": {
+      "name": "Intercept Signals",
+      "hqIds": [
+        "Aj",
+        "Ap"
+      ]
+    },
+    "deployment-17": {
+      "name": "Recover the Research",
+      "hqIds": [
+        "Ak"
+      ]
+    },
+    "deployment-19": {
+      "name": "Shifting Priorities",
+      "hqIds": [
+        "Al"
+      ]
+    },
+    "deployment-22": {
+      "name": "Close the Pocket",
+      "hqIds": [
+        "Ai",
+        "Ao"
+      ]
+    },
+    "deployment-21": {
+      "name": "Bunker Assault",
+      "hqIds": [
+        "Ah",
+        "An"
+      ]
+    },
+    "deployment-20": {
+      "name": "Intercept Signals",
+      "hqIds": [
+        "Aj",
+        "Ap"
+      ]
+    },
+    "deployment-24": {
+      "name": "Contact, Contact!",
+      "hqIds": [
+        "Ge"
+      ]
+    },
+    "deployment-25": {
+      "name": "Payload",
+      "hqIds": [
+        "Gf"
+      ]
+    },
+    "deployment-26": {
+      "name": "Cauldron",
+      "hqIds": [
+        "Gd"
+      ]
+    },
+    "deployment-23": {
+      "name": "Outflank",
+      "hqIds": [
+        "Ev"
+      ]
+    },
+    "condition-13": {
+      "name": "Advanced Intel",
+      "hqIds": [
+        "yu",
+        "At"
+      ]
+    },
+    "condition-14": {
+      "name": "Fortified Position",
+      "hqIds": [
+        "yw",
+        "Av"
+      ]
+    },
+    "condition-15": {
+      "name": "Cunning Deployment",
+      "hqIds": [
+        "yv",
+        "Au"
+      ]
+    },
+    "condition-16": {
+      "name": "Garrison",
+      "hqIds": [
+        "yx"
+      ]
+    },
+    "condition-17": {
+      "name": "Ordnance",
+      "hqIds": [
+        "yy"
+      ]
+    },
+    "condition-18": {
+      "name": "Strafing Run",
+      "hqIds": [
+        "yz"
+      ]
+    },
+    "condition-20": {
+      "name": "Cunning Deployment",
+      "hqIds": [
+        "yv",
+        "Au"
+      ]
+    },
+    "condition-19": {
+      "name": "Advanced Intel",
+      "hqIds": [
+        "yu",
+        "At"
+      ]
+    },
+    "condition-21": {
+      "name": "Fortified Position",
+      "hqIds": [
+        "yw",
+        "Av"
+      ]
+    },
+    "condition-28": {
+      "name": "Scrambled Orders",
+      "hqIds": [
+        "Gj"
+      ]
+    },
+    "condition-29": {
+      "name": "Extreme Discipline",
+      "hqIds": [
+        "Gk"
+      ]
+    },
+    "condition-26": {
+      "name": "Rapid Deployment",
+      "hqIds": [
+        "Gm"
+      ]
+    },
+    "condition-22": {
+      "name": "Black Ops",
+      "hqIds": [
+        "Er"
+      ]
+    },
+    "condition-23": {
+      "name": "Command Override",
+      "hqIds": [
+        "Et"
+      ]
+    },
+    "condition-24": {
+      "name": "Coordinated Strike",
+      "hqIds": [
+        "Es"
+      ]
+    },
+    "condition-25": {
+      "name": "No Time to Lose",
+      "hqIds": [
+        "Eu"
+      ]
+    },
+    "condition-27": {
+      "name": "Armored Assault",
+      "hqIds": [
+        "Gl"
+      ]
+    }
+  }
+}

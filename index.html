@@ -46,6 +46,7 @@
               placeholder="名称或势力"
               aria-label="搜索已保存军表"
           /></label>
+          <button type="button" id="library-import">导入 JSON</button>
         </div>
         <div id="library-notice" class="library-notice" role="status" hidden></div>
         <div id="saved-rosters" class="saved-rosters"></div>
@@ -94,7 +95,7 @@
             <div id="points"></div>
             <div class="points-track"><i id="points-fill"></i></div>
           </div>
-          <div class="summary-count"><b id="summary-units">0</b><span>单位</span></div>
+          <div class="summary-count" title="每个独立单位计为一次激活，合并显示的单位分别计数"><b id="summary-activations">0</b><span>激活数</span></div>
           <div class="summary-count">
             <b id="summary-commands">0<span> / 7</span></b
             ><span>战术卡</span>
@@ -201,8 +202,10 @@
     <script src="rules-core.js"></script>
     <script src="builder-model.js"></script>
     <script src="builder-library.js"></script>
+    <script src="builder-transfer.js"></script>
     <script src="builder.js"></script>
     <script src="builder-view.js"></script>
+    <script src="builder-transfer-ui.js"></script>
     <script src="builder-home.js"></script>
   </body>
 </html>

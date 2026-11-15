@@ -768,16 +768,24 @@ def validate_army(army):
                       selected.get("instanceId"))
             seen_local_names[nm] = True
 
+        for cid in unit.get('equipUpgradeIds', []):
+            if not any(c.get('upgradeId') == cid for c in inst.get('upgrades', [])):
+                name = (upgrades.get(cid) or {}).get('name') or {}
+                issue('invalid', 'required_child_missing', '缺少必带升级「' + (name.get('zh') or name.get('en') or cid) + '」', key)
         children = (package.get("unitRules") or {}).get(str(unit.get("upstream", {}).get("id", "")), {}).get("requiredChildren")
         if not children:
             children = (unit.get("rules") or {}).get("requiredChildren")
         if children:
+            locally_checked = {str((upgrades.get(cid) or {}).get('upstream', {}).get('id', ''))
+                               for cid in unit.get('equipUpgradeIds', [])}
             have = []
             for u in inst.get("upgrades", []):
                 c = upgrades.get(u.get("upgradeId"))
                 if c:
                     have.append(str(c.get("upstream", {}).get("id", "")))
             for child in children:
+                if str(child.get('id')) in locally_checked:
+                    continue
                 if str(child.get("id")) not in have:
                     issue("invalid", "required_child_missing", f"缺少必带升级（上游 ID {child.get('id')}）", key)
 

@@ -1,7 +1,7 @@
 {
   "schema": "swl-upgrades/v1",
   "referenceVersion": "2026.11.04.0",
-  "updatedAt": "2026-11-13T20:05:27.003703+00:00",
+  "updatedAt": "2026-11-15T19:46:08.830427+00:00",
   "cards": [
     {
       "id": "21b-medical-droid",
@@ -9,6 +9,9 @@
         "en": "2-1B Medical Droid",
         "zh": "2-1B医疗机器人"
       },
+      "actionTypes": [
+        "free-action"
+      ],
       "points": 20,
       "slotIds": [
         1
@@ -123,6 +126,7 @@
         "en": "Heavy Laser Retrofit",
         "zh": "重型激光改装"
       },
+      "actionTypes": [],
       "points": 7,
       "slotIds": [
         8
@@ -230,6 +234,7 @@
         "en": "AG-2G Quad Laser",
         "zh": "AG-2G四联激光炮"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         8
@@ -337,6 +342,7 @@
         "en": "Aayla Secura",
         "zh": "艾拉·塞库拉"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         7
@@ -463,6 +469,9 @@
         "en": "Academy Trained",
         "zh": "学院训练"
       },
+      "actionTypes": [
+        "action"
+      ],
       "points": 10,
       "slotIds": [
         24
@@ -591,6 +600,7 @@
         "en": "Adaptive Combat Network",
         "zh": "自适应战斗网络"
       },
+      "actionTypes": [],
       "points": 4,
       "slotIds": [
         6
@@ -683,6 +693,7 @@
         "en": "Agile Climber",
         "zh": "敏捷攀爬者"
       },
+      "actionTypes": [],
       "points": 3,
       "slotIds": [
         10
@@ -791,6 +802,7 @@
         "en": "Ax-108 \"Ground Buzzer\"",
         "zh": "Ax-108“地面蜂鸣器”"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         8
@@ -896,6 +908,7 @@
         "en": "Mo/Dk Power Harpoon",
         "zh": "Mo/Dk动力鱼叉"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [
         8
@@ -1008,6 +1021,7 @@
         "en": "Annul",
         "zh": "消解"
       },
+      "actionTypes": [],
       "points": 12,
       "slotIds": [
         5
@@ -1083,6 +1097,7 @@
         "en": "DC-15x ARC Trooper Gunner",
         "zh": "ARC士兵 DC-15x枪手"
       },
+      "actionTypes": [],
       "points": 26,
       "slotIds": [
         4
@@ -1205,6 +1220,9 @@
         "en": "Din's Amban Rifle",
         "zh": "丁的安班步枪"
       },
+      "actionTypes": [
+        "double-action"
+      ],
       "points": 10,
       "slotIds": [
         12
@@ -1339,6 +1357,7 @@
         "en": "Beskar Spear",
         "zh": "贝斯卡长矛"
       },
+      "actionTypes": [],
       "points": 15,
       "slotIds": [
         12
@@ -1475,6 +1494,7 @@
         "en": "Electro Gauntlets",
         "zh": "电击手套"
       },
+      "actionTypes": [],
       "points": 3,
       "slotIds": [
         12
@@ -1593,6 +1613,7 @@
         "en": "The Darksaber",
         "zh": "暗剑"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [
         12
@@ -1749,6 +1770,7 @@
         "en": "Saxon's Jetpack Rockets",
         "zh": "萨克森的火箭喷气背包"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         12
@@ -1877,6 +1899,7 @@
         "en": "Saxon's Galar-90 Rifle",
         "zh": "萨克森的Galar-90步枪"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         12
@@ -2006,6 +2029,7 @@
         "en": "Asajj Ventress",
         "zh": "阿萨吉·文崔斯"
       },
+      "actionTypes": [],
       "points": 26,
       "slotIds": [
         4
@@ -2192,6 +2216,7 @@
         "en": "AT-ST Mortar Launcher",
         "zh": "AT-ST迫击炮发射器"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         8
@@ -2300,6 +2325,7 @@
         "en": "88i Twin Light Blaster",
         "zh": "88i双联轻型爆能炮"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         8
@@ -2408,6 +2434,7 @@
         "en": "AT-RT Flamethrower",
         "zh": "AT-RT火焰喷射器"
       },
+      "actionTypes": [],
       "points": 15,
       "slotIds": [
         8
@@ -2521,6 +2548,7 @@
         "en": "AT-RT Laser Cannon",
         "zh": "AT-RT激光炮"
       },
+      "actionTypes": [],
       "points": 15,
       "slotIds": [
         8
@@ -2632,6 +2660,7 @@
         "en": "AT-RT Rotary Blaster",
         "zh": "AT-RT转轮爆能枪"
       },
+      "actionTypes": [],
       "points": 15,
       "slotIds": [
         8
@@ -2739,6 +2768,7 @@
         "en": "Axe Woves",
         "zh": "艾克斯·沃尔夫"
       },
+      "actionTypes": [],
       "points": 30,
       "slotIds": [
         1
@@ -2875,6 +2905,7 @@
         "en": "E-5C B1 Battle Droid",
         "zh": "E-5C B1战斗机器人"
       },
+      "actionTypes": [],
       "points": 16,
       "slotIds": [
         4
@@ -2979,6 +3010,7 @@
         "en": "E-60R B1 Battle Droid",
         "zh": "E-60R B1战斗机器人"
       },
+      "actionTypes": [],
       "points": 18,
       "slotIds": [
         4
@@ -3091,6 +3123,7 @@
         "en": "B1 Battle Droid",
         "zh": "B1战斗机器人"
       },
+      "actionTypes": [],
       "points": 4,
       "slotIds": [
         1
@@ -3186,6 +3219,7 @@
         "en": "OOM-Series Battle Droid",
         "zh": "OOM系列战斗机器人"
       },
+      "actionTypes": [],
       "points": 8,
       "slotIds": [
         1
@@ -3292,6 +3326,7 @@
         "en": "Radiation Cannon B1 Battle Droid",
         "zh": "辐射炮B1战斗机器人"
       },
+      "actionTypes": [],
       "points": 16,
       "slotIds": [
         4
@@ -3402,6 +3437,7 @@
         "en": "B1 Security Droid",
         "zh": "B1安保机器人"
       },
+      "actionTypes": [],
       "points": 6,
       "slotIds": [
         1
@@ -3504,6 +3540,7 @@
         "en": "E-5s B1 Battle Droid",
         "zh": "E-5s B1战斗机器人"
       },
+      "actionTypes": [],
       "points": 18,
       "slotIds": [
         4
@@ -3613,6 +3650,7 @@
         "en": "B1 Battle Droid Squad",
         "zh": "B1战斗机器人小队"
       },
+      "actionTypes": [],
       "points": 38,
       "slotIds": [
         1
@@ -3734,6 +3772,7 @@
         "en": "B2-ACM Battle Droid",
         "zh": "B2-ACM战斗机器人"
       },
+      "actionTypes": [],
       "points": 24,
       "slotIds": [
         4
@@ -3838,6 +3877,7 @@
         "en": "Anti-Infantry Missile Pod Rocket Droid",
         "zh": "反步兵导弹舱火箭机器人"
       },
+      "actionTypes": [],
       "points": 24,
       "slotIds": [
         4
@@ -3947,6 +3987,7 @@
           "en": "Anti-Armor Missile Pod Rocket Droid",
           "zh": "反装甲导弹舱火箭机器人"
         },
+        "actionTypes": [],
         "description": {
           "en": [
             "Add 1 Missile Pod B2 Super Rocket Battle",
@@ -4013,6 +4054,7 @@
         "en": "B2-HA Battle Droid",
         "zh": "B2-HA战斗机器人"
       },
+      "actionTypes": [],
       "points": 32,
       "slotIds": [
         4
@@ -4128,6 +4170,7 @@
         "en": "B2-HA Rocket Droid",
         "zh": "B2-HA火箭机器人"
       },
+      "actionTypes": [],
       "points": 30,
       "slotIds": [
         4
@@ -4241,6 +4284,7 @@
         "en": "B2 Super Battle Droid",
         "zh": "B2超级战斗机器人"
       },
+      "actionTypes": [],
       "points": 18,
       "slotIds": [
         1
@@ -4336,6 +4380,7 @@
         "en": "B2 Super Rocket Battle Droid",
         "zh": "B2超级火箭战斗机器人"
       },
+      "actionTypes": [],
       "points": 21,
       "slotIds": [
         1
@@ -4431,6 +4476,7 @@
         "en": "B2 Super Battle Droid Squad",
         "zh": "B2超级战斗机器小队"
       },
+      "actionTypes": [],
       "points": 77,
       "slotIds": [
         1
@@ -4552,6 +4598,9 @@
         "en": "Backworld Medic",
         "zh": "边远世界医疗兵"
       },
+      "actionTypes": [
+        "action"
+      ],
       "points": 12,
       "slotIds": [
         13
@@ -4647,6 +4696,7 @@
         "en": "BARC Ion Gunner",
         "zh": "BARC离子炮手"
       },
+      "actionTypes": [],
       "points": 21,
       "slotIds": [
         13
@@ -4768,6 +4818,7 @@
         "en": "BARC RPS-6 Gunner",
         "zh": "BARC RPS-6炮手"
       },
+      "actionTypes": [],
       "points": 14,
       "slotIds": [
         13
@@ -4877,6 +4928,7 @@
         "en": "BARC Twin Laser Gunner",
         "zh": "BARC双联激光炮手"
       },
+      "actionTypes": [],
       "points": 12,
       "slotIds": [
         13
@@ -4986,6 +5038,7 @@
         "en": "Baron Rudor",
         "zh": "鲁多男爵"
       },
+      "actionTypes": [],
       "points": 8,
       "slotIds": [
         7
@@ -5100,6 +5153,7 @@
         "en": "Battlemaster",
         "zh": "战斗大师"
       },
+      "actionTypes": [],
       "points": 8,
       "slotIds": [
         24
@@ -5220,6 +5274,7 @@
         "en": "Battlemind",
         "zh": "战斗心智"
       },
+      "actionTypes": [],
       "points": 8,
       "slotIds": [
         5
@@ -5298,6 +5353,7 @@
         "en": "Battle Shield Wookiee",
         "zh": "战盾伍基人"
       },
+      "actionTypes": [],
       "points": 26,
       "slotIds": [
         4
@@ -5414,6 +5470,7 @@
           "en": "Battle Shield Wookiee",
           "zh": "战盾伍基人"
         },
+        "actionTypes": [],
         "description": {
           "en": [
             "Add 1 Battle Shield Wookiee miniature.",
@@ -5474,6 +5531,7 @@
         "en": "OOM-Series Droid Pilot",
         "zh": "OOM系列机器人驾驶员"
       },
+      "actionTypes": [],
       "points": 7,
       "slotIds": [
         7
@@ -5579,6 +5637,7 @@
         "en": "Beskad Duelist",
         "zh": "贝斯卡德决斗者"
       },
+      "actionTypes": [],
       "points": 30,
       "slotIds": [
         4
@@ -5695,6 +5754,7 @@
         "en": "Black Sun Crew",
         "zh": "黑日乘员"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         13
@@ -5786,6 +5846,7 @@
         "en": "The Darksaber",
         "zh": "暗剑"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         12
@@ -5972,6 +6033,7 @@
         "en": "Bo-Katan Kryze",
         "zh": "博-卡坦·克里兹"
       },
+      "actionTypes": [],
       "points": 30,
       "slotIds": [
         1
@@ -6096,6 +6158,7 @@
         "en": "Bowcaster Wookiee",
         "zh": "弩枪伍基人"
       },
+      "actionTypes": [],
       "points": 31,
       "slotIds": [
         4
@@ -6215,6 +6278,7 @@
         "en": "Dioxis Mine Saboteur",
         "zh": "双噁毒气地雷爆破手"
       },
+      "actionTypes": [],
       "points": 20,
       "slotIds": [
         4
@@ -6341,6 +6405,7 @@
         "en": "BX Deflector Shields",
         "zh": "BX偏导护盾"
       },
+      "actionTypes": [],
       "points": 18,
       "slotIds": [
         12
@@ -6454,6 +6519,7 @@
         "en": "BX-Series Droid Sniper",
         "zh": "BX系列机器人狙击手"
       },
+      "actionTypes": [],
       "points": 20,
       "slotIds": [
         4
@@ -6575,6 +6641,7 @@
         "en": "BX Vibroswords",
         "zh": "BX振动剑"
       },
+      "actionTypes": [],
       "points": 6,
       "slotIds": [
         12
@@ -6700,6 +6767,7 @@
         "en": "A280, Pistol Config",
         "zh": "A280手枪配置"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [
         12
@@ -6819,6 +6887,7 @@
           "en": "A280, Rifle Config",
           "zh": "A280步枪配置"
         },
+        "actionTypes": [],
         "description": {
           "en": [
             "Reconfigure."
@@ -6893,6 +6962,7 @@
         "en": "Cassian Andor",
         "zh": "卡西安·安多"
       },
+      "actionTypes": [],
       "points": 25,
       "slotIds": [
         4
@@ -7050,6 +7120,7 @@
           "en": "Cassian Andor",
           "zh": "卡西安·安多"
         },
+        "actionTypes": [],
         "description": {
           "en": [
             "This card starts the game with the other side faceup.",
@@ -7124,6 +7195,9 @@
         "en": "Caught in a Web",
         "zh": "落入蛛网"
       },
+      "actionTypes": [
+        "action"
+      ],
       "points": 0,
       "slotIds": [
         9
@@ -7243,6 +7317,7 @@
         "en": "Champion of the Watch",
         "zh": "守望冠军"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [
         25
@@ -7391,6 +7466,7 @@
         "en": "Chewbacca",
         "zh": "丘巴卡"
       },
+      "actionTypes": [],
       "points": 40,
       "slotIds": [
         4
@@ -7537,6 +7613,7 @@
         "en": "Children of the Watch",
         "zh": "守望之子"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [
         25
@@ -7645,6 +7722,7 @@
         "en": "Heavy Aqua Droid",
         "zh": "重型水战机器人"
       },
+      "actionTypes": [],
       "points": 28,
       "slotIds": [
         4
@@ -7754,6 +7832,7 @@
         "en": "Heavy Laser Cannon",
         "zh": "重型激光炮"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         8
@@ -7863,6 +7942,7 @@
         "en": "Twin Blaster Cannons",
         "zh": "双联爆能炮"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         8
@@ -7968,6 +8048,7 @@
         "en": "Clan Kryze",
         "zh": "克里兹氏族"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [
         25
@@ -8073,6 +8154,7 @@
         "en": "Clan Saxon",
         "zh": "萨克森氏族"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [
         25
@@ -8187,6 +8269,7 @@
         "en": "Clan Wren",
         "zh": "雷恩氏族"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [
         25
@@ -8301,6 +8384,7 @@
         "en": "Boil",
         "zh": "沸腾"
       },
+      "actionTypes": [],
       "points": 20,
       "slotIds": [
         19
@@ -8438,6 +8522,7 @@
         "en": "Clone Captain",
         "zh": "克隆人上尉"
       },
+      "actionTypes": [],
       "points": 22,
       "slotIds": [
         19
@@ -8545,6 +8630,7 @@
         "en": "Clone Commander",
         "zh": "克隆人指挥官"
       },
+      "actionTypes": [],
       "points": 30,
       "slotIds": [
         19
@@ -8651,6 +8737,7 @@
         "en": "Clone Comms Technician",
         "zh": "克隆人通信技师"
       },
+      "actionTypes": [],
       "points": 30,
       "slotIds": [
         1
@@ -8772,6 +8859,7 @@
         "en": "DP-23 Clone Trooper",
         "zh": "DP-23克隆人士兵"
       },
+      "actionTypes": [],
       "points": 22,
       "slotIds": [
         4
@@ -8881,6 +8969,9 @@
         "en": "Clone Engineer",
         "zh": "克隆人工程师"
       },
+      "actionTypes": [
+        "free-action"
+      ],
       "points": 17,
       "slotIds": [
         1
@@ -9005,6 +9096,9 @@
         "en": "Clone Commander Fox",
         "zh": "克隆人指挥官福克斯"
       },
+      "actionTypes": [
+        "free-action"
+      ],
       "points": 10,
       "slotIds": [
         7
@@ -9144,6 +9238,7 @@
         "en": "Clone Marksman",
         "zh": "克隆人神射手"
       },
+      "actionTypes": [],
       "points": 14,
       "slotIds": [
         1
@@ -9238,6 +9333,7 @@
         "en": "Clone Trooper Marksmen Squad",
         "zh": "克隆人神射手小队"
       },
+      "actionTypes": [],
       "points": 53,
       "slotIds": [
         1
@@ -9358,6 +9454,9 @@
         "en": "Clone Medic",
         "zh": "克隆人医疗兵"
       },
+      "actionTypes": [
+        "free-action"
+      ],
       "points": 20,
       "slotIds": [
         19
@@ -9448,6 +9547,7 @@
         "en": "Clone Trooper Infantry",
         "zh": "克隆人步兵"
       },
+      "actionTypes": [],
       "points": 13,
       "slotIds": [
         1
@@ -9543,6 +9643,7 @@
         "en": "Mortar Clone Trooper",
         "zh": "迫击炮克隆人士兵"
       },
+      "actionTypes": [],
       "points": 20,
       "slotIds": [
         4
@@ -9670,6 +9771,7 @@
         "en": "Clone Captain Rex",
         "zh": "克隆人上尉雷克斯"
       },
+      "actionTypes": [],
       "points": 38,
       "slotIds": [
         19
@@ -9825,6 +9927,7 @@
         "en": "RPS-6 Clone Trooper",
         "zh": "RPS-6克隆人士兵"
       },
+      "actionTypes": [],
       "points": 23,
       "slotIds": [
         4
@@ -9949,6 +10052,7 @@
         "en": "Clone Shock Trooper Pilot",
         "zh": "冲击部队驾驶员"
       },
+      "actionTypes": [],
       "points": 4,
       "slotIds": [
         7
@@ -10050,6 +10154,9 @@
         "en": "Clone Specialist",
         "zh": "克隆人专业兵"
       },
+      "actionTypes": [
+        "free-exhaust"
+      ],
       "points": 17,
       "slotIds": [
         1
@@ -10166,6 +10273,7 @@
         "en": "Clone Trooper Infantry Squad",
         "zh": "克隆人步兵小队"
       },
+      "actionTypes": [],
       "points": 53,
       "slotIds": [
         1
@@ -10287,6 +10395,7 @@
         "en": "Veteran Clone Pilot",
         "zh": "克隆人驾驶员老兵"
       },
+      "actionTypes": [],
       "points": 7,
       "slotIds": [
         7
@@ -10392,6 +10501,7 @@
         "en": "Z-6 Clone Trooper",
         "zh": "Z-6克隆人士兵"
       },
+      "actionTypes": [],
       "points": 22,
       "slotIds": [
         4
@@ -10496,6 +10606,7 @@
         "en": "Clone Commander Cody",
         "zh": "克隆人指挥官科迪"
       },
+      "actionTypes": [],
       "points": 28,
       "slotIds": [
         19
@@ -10656,6 +10767,7 @@
         "en": "Combat Armor",
         "zh": "战斗护甲"
       },
+      "actionTypes": [],
       "points": 15,
       "slotIds": [
         2
@@ -10756,6 +10868,7 @@
         "en": "Combat Armor",
         "zh": "战斗护甲"
       },
+      "actionTypes": [],
       "points": 15,
       "slotIds": [
         2
@@ -10856,6 +10969,7 @@
         "en": "Command and Control Uplink",
         "zh": "指挥控制上行链路"
       },
+      "actionTypes": [],
       "points": 8,
       "slotIds": [
         2
@@ -10975,6 +11089,7 @@
         "en": "Improvised Orders",
         "zh": "临时命令"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         9
@@ -11079,6 +11194,7 @@
         "en": "Inspiring Presence",
         "zh": "领袖风范"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         9
@@ -11151,6 +11267,7 @@
         "en": "Lead By Example",
         "zh": "以身作则"
       },
+      "actionTypes": [],
       "points": 8,
       "slotIds": [
         9
@@ -11235,6 +11352,7 @@
         "en": "Strict Orders",
         "zh": "严格命令"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         9
@@ -11308,6 +11426,7 @@
         "en": "Trusted Agent",
         "zh": "信赖特工"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         9
@@ -11399,6 +11518,7 @@
         "en": "Underworld Connections",
         "zh": "地下联系"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         9
@@ -11485,6 +11605,7 @@
         "en": "Vigilance",
         "zh": "警戒"
       },
+      "actionTypes": [],
       "points": 9,
       "slotIds": [
         9
@@ -11559,6 +11680,7 @@
         "en": "Proton Charge Saboteur",
         "zh": "质子炸药爆破手"
       },
+      "actionTypes": [],
       "points": 14,
       "slotIds": [
         4
@@ -11685,6 +11807,7 @@
         "en": "DH-447 Sniper",
         "zh": "DH-447狙击手"
       },
+      "actionTypes": [],
       "points": 20,
       "slotIds": [
         4
@@ -11806,6 +11929,7 @@
         "en": "DC-17m ICWS Sniper Configuration",
         "zh": "DC-17m ICWS狙击配置"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [
         12
@@ -11929,6 +12053,7 @@
           "en": "DC-17m ICWS Anti-Armor Configuration",
           "zh": "DC-17m ICWS反装甲配置"
         },
+        "actionTypes": [],
         "description": {
           "en": [
             "Reconfigure.",
@@ -11999,6 +12124,7 @@
         "en": "Command Control Array",
         "zh": "指挥控制阵列"
       },
+      "actionTypes": [],
       "points": 2,
       "slotIds": [
         6
@@ -12103,6 +12229,7 @@
         "en": "Emergency Transponder",
         "zh": "紧急应答器"
       },
+      "actionTypes": [],
       "points": 4,
       "slotIds": [
         6
@@ -12177,6 +12304,7 @@
         "en": "Hacked Comms Unit",
         "zh": "破解通信单元"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         6
@@ -12250,6 +12378,7 @@
         "en": "•HQ Uplink",
         "zh": "总部直传链路"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         6
@@ -12324,6 +12453,7 @@
         "en": "Comms Jammer",
         "zh": "通信干扰器"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         6
@@ -12396,6 +12526,7 @@
         "en": "Linked Targeting Array",
         "zh": "互联瞄准阵列"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         6
@@ -12516,6 +12647,7 @@
         "en": "Onboard Comms Channel",
         "zh": "机载通信频道"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         6
@@ -12631,6 +12763,7 @@
         "en": "Spotter Uplink",
         "zh": "观瞄上行链路"
       },
+      "actionTypes": [],
       "points": 3,
       "slotIds": [
         6
@@ -12708,6 +12841,7 @@
         "en": "CR-24 Flame Rifle",
         "zh": "CR-24火焰步枪"
       },
+      "actionTypes": [],
       "points": 14,
       "slotIds": [
         12
@@ -12815,6 +12949,7 @@
         "en": "Door Gunners",
         "zh": "舱门炮手"
       },
+      "actionTypes": [],
       "points": 12,
       "slotIds": [
         13,
@@ -12945,6 +13080,7 @@
         "en": "Crosshair",
         "zh": "准星"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [
         4
@@ -12990,7 +13126,7 @@
           "keywords": [
             {
               "id": "high_velocity",
-              "value": "Velocity"
+              "value": ""
             },
             {
               "id": "pierce",
@@ -13101,6 +13237,7 @@
         "en": "Imperial Dark Trooper",
         "zh": "帝国黑暗士兵"
       },
+      "actionTypes": [],
       "points": 28,
       "slotIds": [
         1
@@ -13195,6 +13332,7 @@
         "en": "DC-15x ARC Trooper Sniper",
         "zh": "DC-15x ARC士兵狙击手"
       },
+      "actionTypes": [],
       "points": 26,
       "slotIds": [
         4
@@ -13316,6 +13454,7 @@
         "en": "Deadeye",
         "zh": "百发百中"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         24
@@ -13448,6 +13587,9 @@
         "en": "Defend in Depth",
         "zh": "纵深防御"
       },
+      "actionTypes": [
+        "action"
+      ],
       "points": 10,
       "slotIds": [
         24
@@ -13584,6 +13726,9 @@
         "en": "Del Meeko",
         "zh": "德尔·米科"
       },
+      "actionTypes": [
+        "free-action"
+      ],
       "points": 35,
       "slotIds": [
         4
@@ -13757,6 +13902,7 @@
         "en": "Din Djarin",
         "zh": "丁·贾林"
       },
+      "actionTypes": [],
       "points": 30,
       "slotIds": [
         1
@@ -13901,6 +14047,7 @@
         "en": "The Darksaber",
         "zh": "暗剑"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         12
@@ -14069,6 +14216,7 @@
         "en": "DLT-19D Trooper",
         "zh": "DLT-19D士兵"
       },
+      "actionTypes": [],
       "points": 28,
       "slotIds": [
         4
@@ -14230,6 +14378,7 @@
         "en": "DLT-19x Sniper",
         "zh": "DLT-19x狙击手"
       },
+      "actionTypes": [],
       "points": 20,
       "slotIds": [
         4
@@ -14350,6 +14499,7 @@
         "en": "Double-Bladed Lightsaber",
         "zh": "双刃光剑"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [
         12
@@ -14500,6 +14650,7 @@
         "en": "DT-F16",
         "zh": "DT-F16"
       },
+      "actionTypes": [],
       "points": 15,
       "slotIds": [
         4
@@ -14689,6 +14840,7 @@
         "en": "Dual Armaments",
         "zh": "双重武装"
       },
+      "actionTypes": [],
       "points": 8,
       "slotIds": [
         12
@@ -14830,6 +14982,7 @@
         "en": "DW-3 Grenade Launcher",
         "zh": "DW-3榴弹发射器"
       },
+      "actionTypes": [],
       "points": 8,
       "slotIds": [
         8
@@ -14937,6 +15090,7 @@
         "en": "E-11D Focused Fire Configuration",
         "zh": "E-11D集中射击配置"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [
         12
@@ -15048,6 +15202,7 @@
           "en": "E-11D Grenade Launcher Fire Configuration",
           "zh": "E-11D榴弹发射配置"
         },
+        "actionTypes": [],
         "description": {
           "en": [
             "Reconfigure."
@@ -15109,6 +15264,9 @@
         "en": "EV-Series Medical Droid",
         "zh": "EV系列医疗机器人"
       },
+      "actionTypes": [
+        "free-action"
+      ],
       "points": 14,
       "slotIds": [
         1
@@ -15241,6 +15399,7 @@
         "en": "Echo, ARC Marksman",
         "zh": "回声，ARC神射手"
       },
+      "actionTypes": [],
       "points": 46,
       "slotIds": [
         4
@@ -15403,6 +15562,7 @@
         "en": "Echo, Clone Force 99",
         "zh": "回声，克隆人99号部队"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [
         4
@@ -15510,6 +15670,7 @@
         "en": "EE-3 Carbine Rifle",
         "zh": "EE-3卡宾步枪"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         12
@@ -15625,6 +15786,7 @@
         "en": "Electrostaff",
         "zh": "电杖"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         12
@@ -15757,6 +15919,7 @@
         "en": "Electrostaff Pirate",
         "zh": "电杖海盗"
       },
+      "actionTypes": [],
       "points": 15,
       "slotIds": [
         4
@@ -15875,6 +16038,7 @@
         "en": "Enhanced Combat Subroutines",
         "zh": "强化战斗子程序"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         18
@@ -15981,6 +16145,9 @@
         "en": "Herbal Medicine",
         "zh": "草药"
       },
+      "actionTypes": [
+        "free-exhaust"
+      ],
       "points": 10,
       "slotIds": [
         10
@@ -16085,6 +16252,7 @@
         "en": "Secret Ingredients",
         "zh": "秘密配方"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         10
@@ -16196,6 +16364,7 @@
         "en": "Axe Ewok",
         "zh": "战斧伊沃克人"
       },
+      "actionTypes": [],
       "points": 15,
       "slotIds": [
         4
@@ -16320,6 +16489,9 @@
         "en": "•Call to Arms",
         "zh": "战斗号召"
       },
+      "actionTypes": [
+        "free-exhaust"
+      ],
       "points": 5,
       "slotIds": [
         10
@@ -16429,6 +16601,9 @@
         "en": "Insatiable Curiosity",
         "zh": "无尽好奇"
       },
+      "actionTypes": [
+        "free-action"
+      ],
       "points": 8,
       "slotIds": [
         10
@@ -16532,6 +16707,7 @@
         "en": "Forest Dwellers",
         "zh": "森林居民"
       },
+      "actionTypes": [],
       "points": 3,
       "slotIds": [
         10
@@ -16645,6 +16821,7 @@
         "en": "Onward to Victory",
         "zh": "迈向胜利"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         10
@@ -16751,6 +16928,7 @@
         "en": "Ewok Skirmisher Squad",
         "zh": "伊沃克散兵小队"
       },
+      "actionTypes": [],
       "points": 28,
       "slotIds": [
         1
@@ -16872,6 +17050,7 @@
         "en": "Ewok Slinger Squad",
         "zh": "伊沃克投石兵小队"
       },
+      "actionTypes": [],
       "points": 27,
       "slotIds": [
         1
@@ -16993,6 +17172,7 @@
         "en": "Ewok Trapper",
         "zh": "伊沃克陷阱手"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         1
@@ -17106,6 +17286,7 @@
         "en": "Expanded Databanks",
         "zh": "扩展数据库"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         2
@@ -17200,6 +17381,7 @@
         "en": "Fifth Brother",
         "zh": "五弟"
       },
+      "actionTypes": [],
       "points": 32,
       "slotIds": [
         4
@@ -17352,6 +17534,7 @@
         "en": "Fire Control",
         "zh": "火控"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         9
@@ -17442,6 +17625,7 @@
         "en": "First Sergeant Arbmab",
         "zh": "一等军士阿布马布"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         7
@@ -17564,6 +17748,7 @@
         "en": "Fives",
         "zh": "五号"
       },
+      "actionTypes": [],
       "points": 40,
       "slotIds": [
         19
@@ -17706,6 +17891,7 @@
         "en": "•Flame Projector",
         "zh": "火焰喷射器"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         2
@@ -17816,6 +18002,7 @@
         "en": "MPL-57 Barrage Trooper",
         "zh": "MPL-57榴弹发射器士兵"
       },
+      "actionTypes": [],
       "points": 22,
       "slotIds": [
         4
@@ -17933,6 +18120,7 @@
         "en": "Scatter Gun Trooper",
         "zh": "散弹枪士兵"
       },
+      "actionTypes": [],
       "points": 22,
       "slotIds": [
         4
@@ -18042,6 +18230,7 @@
         "en": "Fleet Trooper Squad",
         "zh": "舰队士兵小队"
       },
+      "actionTypes": [],
       "points": 40,
       "slotIds": [
         1
@@ -18163,6 +18352,7 @@
         "en": "Fleet Trooper",
         "zh": "舰队士兵"
       },
+      "actionTypes": [],
       "points": 7,
       "slotIds": [
         1
@@ -18258,6 +18448,7 @@
         "en": "Force Absorb",
         "zh": "原力吸收"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         5
@@ -18347,6 +18538,9 @@
         "en": "•Jedi Training, Force Adept",
         "zh": "绝地训练，原力精通"
       },
+      "actionTypes": [
+        "action"
+      ],
       "points": 5,
       "slotIds": [
         10
@@ -18460,6 +18654,7 @@
         "en": "Force Agility",
         "zh": "原力迅捷"
       },
+      "actionTypes": [],
       "points": 8,
       "slotIds": [
         5
@@ -18535,6 +18730,7 @@
         "en": "Anger",
         "zh": "愤怒"
       },
+      "actionTypes": [],
       "points": 3,
       "slotIds": [
         5
@@ -18620,6 +18816,7 @@
         "en": "Force Barrier",
         "zh": "原力屏障"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         5
@@ -18694,6 +18891,7 @@
         "en": "Burst of Speed",
         "zh": "速度爆发"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         5
@@ -18768,6 +18966,9 @@
         "en": "Force Choke",
         "zh": "原力扼喉"
       },
+      "actionTypes": [
+        "free-exhaust"
+      ],
       "points": 10,
       "slotIds": [
         5
@@ -18854,6 +19055,7 @@
         "en": "Clairvoyance",
         "zh": "洞察"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         5
@@ -18933,6 +19135,7 @@
         "en": "Despair",
         "zh": "绝望"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         5
@@ -19025,6 +19228,9 @@
         "en": "Force Drain",
         "zh": "原力汲取"
       },
+      "actionTypes": [
+        "free-exhaust"
+      ],
       "points": 14,
       "slotIds": [
         5
@@ -19115,6 +19321,7 @@
         "en": "Force Enhanced Defense",
         "zh": "原力防御"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         5
@@ -19200,6 +19407,7 @@
         "en": "Fear",
         "zh": "恐惧"
       },
+      "actionTypes": [],
       "points": 3,
       "slotIds": [
         5
@@ -19298,6 +19506,9 @@
         "en": "Force Guidance",
         "zh": "原力引导"
       },
+      "actionTypes": [
+        "free-exhaust"
+      ],
       "points": 5,
       "slotIds": [
         5
@@ -19370,6 +19581,7 @@
         "en": "Hope",
         "zh": "希望"
       },
+      "actionTypes": [],
       "points": 3,
       "slotIds": [
         5
@@ -19468,6 +19680,9 @@
         "en": "Jedi Mind Trick",
         "zh": "绝地心灵术"
       },
+      "actionTypes": [
+        "free-exhaust"
+      ],
       "points": 5,
       "slotIds": [
         5
@@ -19554,6 +19769,9 @@
         "en": "Force Push",
         "zh": "原力推拉"
       },
+      "actionTypes": [
+        "free-exhaust"
+      ],
       "points": 40,
       "slotIds": [
         5
@@ -19627,6 +19845,9 @@
         "en": "Force Reflexes",
         "zh": "原力反射"
       },
+      "actionTypes": [
+        "free-exhaust"
+      ],
       "points": 5,
       "slotIds": [
         5
@@ -19697,6 +19918,7 @@
         "en": "Saber Throw",
         "zh": "光剑投掷"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         5
@@ -19790,6 +20012,7 @@
         "en": "Terror",
         "zh": "恐怖"
       },
+      "actionTypes": [],
       "points": 6,
       "slotIds": [
         5
@@ -19878,6 +20101,7 @@
         "en": "Tranquility",
         "zh": "宁静"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         5
@@ -19971,6 +20195,7 @@
         "en": "Frontline Commander",
         "zh": "前线指挥官"
       },
+      "actionTypes": [],
       "points": 8,
       "slotIds": [
         24
@@ -20107,6 +20332,7 @@
         "en": "Full Beskar Armor",
         "zh": "全贝斯卡护甲"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         2
@@ -20208,6 +20434,9 @@
         "en": "FX-9 Medical Droid",
         "zh": "FX-9医疗机器人"
       },
+      "actionTypes": [
+        "free-action"
+      ],
       "points": 22,
       "slotIds": [
         1
@@ -20318,6 +20547,7 @@
         "en": "GALAAR-15 Carbines",
         "zh": "GALAAR-15卡宾枪组"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         12
@@ -20453,6 +20683,7 @@
         "en": "GALAAR-15 Carbine",
         "zh": "GALAAR-15卡宾枪"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [
         12
@@ -20550,6 +20781,7 @@
         "en": "GALAAR-90 Sniper Rifle",
         "zh": "GALAAR-90狙击步枪"
       },
+      "actionTypes": [],
       "points": 35,
       "slotIds": [
         4
@@ -20684,6 +20916,7 @@
         "en": "GALAAR-90 Sniper Rifle",
         "zh": "GALAAR-90狙击步枪"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         12
@@ -20823,6 +21056,7 @@
         "en": "Gang Boss",
         "zh": "帮派头目"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         7
@@ -20952,6 +21186,7 @@
         "en": "ARF Trooper Duo",
         "zh": "ARF士兵双人组"
       },
+      "actionTypes": [],
       "points": 20,
       "slotIds": [
         1
@@ -21052,6 +21287,7 @@
         "en": "RPS-6 ARF Trooper",
         "zh": "RPS-6 ARF士兵"
       },
+      "actionTypes": [],
       "points": 24,
       "slotIds": [
         4
@@ -21164,6 +21400,7 @@
         "en": "Jedi Guardian",
         "zh": "绝地守护者"
       },
+      "actionTypes": [],
       "points": 22,
       "slotIds": [
         19
@@ -21310,6 +21547,7 @@
         "en": "Gar Saxon",
         "zh": "加尔·萨克森"
       },
+      "actionTypes": [],
       "points": 45,
       "slotIds": [
         1
@@ -21466,6 +21704,9 @@
         "en": "Ascension Cables",
         "zh": "攀爬缆索"
       },
+      "actionTypes": [
+        "free-exhaust"
+      ],
       "points": 4,
       "slotIds": [
         2
@@ -21551,6 +21792,9 @@
         "en": "Electrobinoculars",
         "zh": "电子望远镜"
       },
+      "actionTypes": [
+        "action"
+      ],
       "points": 8,
       "slotIds": [
         2,
@@ -21647,6 +21891,7 @@
         "en": "Recon Intel",
         "zh": "侦察情报"
       },
+      "actionTypes": [],
       "points": 8,
       "slotIds": [
         2
@@ -21731,6 +21976,9 @@
         "en": "Din's Jetpack",
         "zh": "丁的喷气背包"
       },
+      "actionTypes": [
+        "action"
+      ],
       "points": 15,
       "slotIds": [
         2
@@ -21852,6 +22100,7 @@
         "en": "Emergency Stims",
         "zh": "应急兴奋剂"
       },
+      "actionTypes": [],
       "points": 8,
       "slotIds": [
         2
@@ -21930,6 +22179,7 @@
         "en": "Environmental Gear",
         "zh": "环境适应装备"
       },
+      "actionTypes": [],
       "points": 2,
       "slotIds": [
         2
@@ -22014,6 +22264,7 @@
         "en": "Extra Supplies",
         "zh": "额外补给"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         2
@@ -22086,6 +22337,7 @@
         "en": "Grappling Hooks",
         "zh": "攀爬钩爪"
       },
+      "actionTypes": [],
       "points": 2,
       "slotIds": [
         2
@@ -22170,6 +22422,9 @@
         "en": "Portable Scanner",
         "zh": "便携式扫描仪"
       },
+      "actionTypes": [
+        "action"
+      ],
       "points": 6,
       "slotIds": [
         2,
@@ -22276,6 +22531,7 @@
         "en": "Targeting Scopes",
         "zh": "瞄准镜"
       },
+      "actionTypes": [],
       "points": 4,
       "slotIds": [
         2
@@ -22360,6 +22616,7 @@
         "en": "Prepared Supplies",
         "zh": "预备物资"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         2
@@ -22434,6 +22691,9 @@
         "en": "General of the Republic",
         "zh": "共和国将军"
       },
+      "actionTypes": [
+        "action"
+      ],
       "points": 5,
       "slotIds": [
         24
@@ -22567,6 +22827,7 @@
         "en": "General Weiss",
         "zh": "韦斯将军"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         7
@@ -22702,6 +22963,7 @@
         "en": "Barrage Generator",
         "zh": "弹幕发生器"
       },
+      "actionTypes": [],
       "points": 3,
       "slotIds": [
         11
@@ -22783,6 +23045,7 @@
         "en": "Overcharged Generator",
         "zh": "超载发生器"
       },
+      "actionTypes": [],
       "points": 3,
       "slotIds": [
         11
@@ -22864,6 +23127,7 @@
         "en": "Geonosian Warrior",
         "zh": "吉奥诺西斯战士"
       },
+      "actionTypes": [],
       "points": 11,
       "slotIds": [
         1
@@ -22963,6 +23227,7 @@
         "en": "Force Pike Warrior",
         "zh": "力矛战士"
       },
+      "actionTypes": [],
       "points": 15,
       "slotIds": [
         4
@@ -23077,6 +23342,7 @@
           "en": "Force Pike Warrior",
           "zh": "力矛战士"
         },
+        "actionTypes": [],
         "description": {
           "en": [
             "Add 1 Force Pike Warrior miniature.",
@@ -23146,6 +23412,7 @@
         "en": "Sonic Cannon Warrior",
         "zh": "声波炮战士"
       },
+      "actionTypes": [],
       "points": 25,
       "slotIds": [
         4
@@ -23262,6 +23529,7 @@
         "en": "Geonosian Warrior Squad",
         "zh": "吉奥诺西斯战士小队"
       },
+      "actionTypes": [],
       "points": 51,
       "slotIds": [
         1
@@ -23388,6 +23656,7 @@
         "en": "The Darksaber",
         "zh": "暗剑"
       },
+      "actionTypes": [],
       "points": 15,
       "slotIds": [
         12
@@ -23582,6 +23851,7 @@
         "en": "Gideon Hask",
         "zh": "吉迪恩·哈斯克"
       },
+      "actionTypes": [],
       "points": 29,
       "slotIds": [
         4
@@ -23737,6 +24007,7 @@
         "en": "Gnasp Bombardier",
         "zh": "格纳斯普轰炸手"
       },
+      "actionTypes": [],
       "points": 20,
       "slotIds": [
         13
@@ -23847,6 +24118,7 @@
         "en": "Gnasp Gunner",
         "zh": "格纳斯普炮手"
       },
+      "actionTypes": [],
       "points": 15,
       "slotIds": [
         13
@@ -23962,6 +24234,7 @@
         "en": "Go For Broke",
         "zh": "孤注一掷"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         10
@@ -24046,6 +24319,9 @@
         "en": "Governor Pryce",
         "zh": "普赖斯总督"
       },
+      "actionTypes": [
+        "free-action"
+      ],
       "points": 5,
       "slotIds": [
         7
@@ -24182,6 +24458,7 @@
         "en": "Concussion Grenades",
         "zh": "震荡手雷"
       },
+      "actionTypes": [],
       "points": 3,
       "slotIds": [
         3
@@ -24268,6 +24545,7 @@
         "en": "EMP \"Droid Poppers\"",
         "zh": "EMP“机器人爆破器”"
       },
+      "actionTypes": [],
       "points": 3,
       "slotIds": [
         3
@@ -24355,6 +24633,7 @@
         "en": "Fragmentation Grenades",
         "zh": "破片手雷"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         3
@@ -24442,6 +24721,7 @@
         "en": "Impact Grenades",
         "zh": "冲击手雷"
       },
+      "actionTypes": [],
       "points": 3,
       "slotIds": [
         3
@@ -24530,6 +24810,9 @@
         "en": "Smoke Grenades",
         "zh": "烟雾手雷"
       },
+      "actionTypes": [
+        "free-action"
+      ],
       "points": 3,
       "slotIds": [
         3
@@ -24606,6 +24889,7 @@
         "en": "Sonic Imploders",
         "zh": "声波内爆弹"
       },
+      "actionTypes": [],
       "points": 3,
       "slotIds": [
         3
@@ -24691,6 +24975,7 @@
         "en": "General Grievous",
         "zh": "格里弗斯将军"
       },
+      "actionTypes": [],
       "points": 36,
       "slotIds": [
         4
@@ -24867,6 +25152,7 @@
         "en": "Guild Member",
         "zh": "公会成员"
       },
+      "actionTypes": [],
       "points": 8,
       "slotIds": [
         24
@@ -24989,6 +25275,9 @@
         "en": "Hatred",
         "zh": "憎恨"
       },
+      "actionTypes": [
+        "free-action"
+      ],
       "points": 8,
       "slotIds": [
         5
@@ -25079,6 +25368,7 @@
         "en": "Heavy Arm Cannon",
         "zh": "重型臂炮"
       },
+      "actionTypes": [],
       "points": 20,
       "slotIds": [
         12
@@ -25184,6 +25474,7 @@
         "en": "Scatter Gun Enforcer",
         "zh": "散弹枪执法者"
       },
+      "actionTypes": [],
       "points": 28,
       "slotIds": [
         4
@@ -25293,6 +25584,7 @@
         "en": "Heavy Blaster Pistol",
         "zh": "重型爆能手枪"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         12
@@ -25437,6 +25729,7 @@
         "en": "Heavy Blaster Pistol",
         "zh": "重型爆能手枪"
       },
+      "actionTypes": [],
       "points": 8,
       "slotIds": [
         12
@@ -25572,6 +25865,7 @@
         "en": "Mandalorian Super Commando",
         "zh": "曼达洛超级突击队员"
       },
+      "actionTypes": [],
       "points": 24,
       "slotIds": [
         4
@@ -25673,6 +25967,7 @@
         "en": "Electro-Whip Soldier",
         "zh": "电鞭士兵"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         4
@@ -25784,6 +26079,7 @@
         "en": "Mag-Det Enforcer",
         "zh": "磁爆执法者"
       },
+      "actionTypes": [],
       "points": 16,
       "slotIds": [
         4
@@ -25896,6 +26192,7 @@
         "en": "P13-M Disruptor Soldier",
         "zh": "P13-M分裂枪士兵"
       },
+      "actionTypes": [],
       "points": 22,
       "slotIds": [
         4
@@ -26004,6 +26301,7 @@
         "en": "Rook Kast",
         "zh": "鲁克·卡斯特"
       },
+      "actionTypes": [],
       "points": 35,
       "slotIds": [
         4
@@ -26151,6 +26449,7 @@
         "en": "Helping Hand",
         "zh": "援助之手"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         5
@@ -26244,6 +26543,7 @@
         "en": "High-Speed Tracking",
         "zh": "高速追踪"
       },
+      "actionTypes": [],
       "points": 3,
       "slotIds": [
         2
@@ -26319,6 +26619,7 @@
         "en": "Hit the Dirt",
         "zh": "卧倒"
       },
+      "actionTypes": [],
       "points": 3,
       "slotIds": [
         10,
@@ -26478,6 +26779,9 @@
         "en": "Hound and Grizzer",
         "zh": "猎犬与咧嘴"
       },
+      "actionTypes": [
+        "action"
+      ],
       "points": 8,
       "slotIds": [
         7
@@ -26607,6 +26911,9 @@
         "en": "Hunter",
         "zh": "猎人"
       },
+      "actionTypes": [
+        "free-action"
+      ],
       "points": 0,
       "slotIds": [
         4
@@ -26719,6 +27026,7 @@
         "en": "IG-100 MagnaGuard Pilot",
         "zh": "IG-100磁卫驾驶员"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         7
@@ -26823,6 +27131,7 @@
         "en": "Imperial Comms Technician",
         "zh": "帝国通信技师"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         1
@@ -26929,6 +27238,7 @@
         "en": "Imperial Hammers Elite Armor Pilot",
         "zh": "帝国之锤精锐驾驶员"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         7
@@ -27036,6 +27346,7 @@
         "en": "Imperial Officer",
         "zh": "帝国军官"
       },
+      "actionTypes": [],
       "points": 17,
       "slotIds": [
         1
@@ -27155,6 +27466,9 @@
         "en": "Imperial Probe Droid",
         "zh": "帝国探测机器人"
       },
+      "actionTypes": [
+        "free-exhaust"
+      ],
       "points": 10,
       "slotIds": [
         4
@@ -27294,6 +27608,7 @@
         "en": "Infantry Support",
         "zh": "步兵支援"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         6
@@ -27393,6 +27708,7 @@
         "en": "Inquisitorius Training",
         "zh": "判官庭训练"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         10
@@ -27509,6 +27825,7 @@
         "en": "327th Star Corps Pilot",
         "zh": "第327星际军团驾驶员"
       },
+      "actionTypes": [],
       "points": 8,
       "slotIds": [
         7
@@ -27598,6 +27915,7 @@
         "en": "Twin Missile Pods",
         "zh": "双联导弹舱"
       },
+      "actionTypes": [],
       "points": 25,
       "slotIds": [
         8
@@ -27718,6 +28036,7 @@
         "en": "Twin Beam Cannons",
         "zh": "双联光束炮"
       },
+      "actionTypes": [],
       "points": 30,
       "slotIds": [
         8
@@ -27826,6 +28145,7 @@
         "en": "Twin Blaster Cannons",
         "zh": "双联爆能炮"
       },
+      "actionTypes": [],
       "points": 25,
       "slotIds": [
         8
@@ -27947,6 +28267,7 @@
         "en": "Jedi Consular",
         "zh": "绝地领事"
       },
+      "actionTypes": [],
       "points": 8,
       "slotIds": [
         24
@@ -28111,6 +28432,7 @@
         "en": "Jedi Guardian",
         "zh": "绝地守护者"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         24
@@ -28257,6 +28579,7 @@
         "en": "Jedi Negotiator",
         "zh": "绝地谈判者"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         24
@@ -28409,6 +28732,7 @@
         "en": "Jyn Erso",
         "zh": "琴·厄索"
       },
+      "actionTypes": [],
       "points": 22,
       "slotIds": [
         4
@@ -28569,6 +28893,7 @@
         "en": "Jyn's SE-14 Blaster",
         "zh": "琴的SE-14爆能枪"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         12
@@ -28714,6 +29039,9 @@
         "en": "Agent Kallus",
         "zh": "卡勒斯特工"
       },
+      "actionTypes": [
+        "free-exhaust"
+      ],
       "points": 28,
       "slotIds": [
         4
@@ -28886,6 +29214,7 @@
         "en": "Katarn Pattern Armor",
         "zh": "卡塔恩型护甲"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [
         2
@@ -28980,6 +29309,9 @@
         "en": "Ki-Adi-Mundi",
         "zh": "基-阿迪-芒迪"
       },
+      "actionTypes": [
+        "free-exhaust"
+      ],
       "points": 25,
       "slotIds": [
         19
@@ -29128,6 +29460,7 @@
         "en": "Kraken",
         "zh": "克拉肯"
       },
+      "actionTypes": [],
       "points": 30,
       "slotIds": [
         4
@@ -29292,6 +29625,7 @@
         "en": "M-45 Ion Blaster",
         "zh": "M-45离子爆能炮"
       },
+      "actionTypes": [],
       "points": 28,
       "slotIds": [
         8
@@ -29408,6 +29742,7 @@
         "en": "Mark II Medium Blaster",
         "zh": "II型中型爆能炮"
       },
+      "actionTypes": [],
       "points": 21,
       "slotIds": [
         8
@@ -29513,6 +29848,7 @@
         "en": "Lightsaber",
         "zh": "光剑"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [
         12
@@ -29659,6 +29995,9 @@
         "en": "•Limiter Override",
         "zh": "限幅器解除"
       },
+      "actionTypes": [
+        "free-exhaust"
+      ],
       "points": 5,
       "slotIds": [
         18
@@ -29756,6 +30095,7 @@
         "en": "Logistical Prowess",
         "zh": "后勤专长"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [
         10
@@ -29857,6 +30197,9 @@
         "en": "Lok Durd",
         "zh": "洛克·杜尔德"
       },
+      "actionTypes": [
+        "free-exhaust"
+      ],
       "points": 9,
       "slotIds": [
         7
@@ -29963,6 +30306,7 @@
         "en": "Long Rifle Pirate",
         "zh": "长步枪海盗"
       },
+      "actionTypes": [],
       "points": 20,
       "slotIds": [
         4
@@ -30071,6 +30415,7 @@
         "en": "Long Gun Wookiee",
         "zh": "长枪伍基人"
       },
+      "actionTypes": [],
       "points": 26,
       "slotIds": [
         4
@@ -30184,6 +30529,7 @@
         "en": "Luke Skywalker",
         "zh": "卢克·天行者"
       },
+      "actionTypes": [],
       "points": 25,
       "slotIds": [
         4
@@ -30352,6 +30698,7 @@
         "en": "Lying in Wait",
         "zh": "卧倒待命"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         10
@@ -30468,6 +30815,7 @@
         "en": "Mace windu",
         "zh": "梅斯·温杜"
       },
+      "actionTypes": [],
       "points": 35,
       "slotIds": [
         19
@@ -30616,6 +30964,7 @@
         "en": "IG-100 MagnaGuard",
         "zh": "IG-100磁卫"
       },
+      "actionTypes": [],
       "points": 22,
       "slotIds": [
         4
@@ -30709,6 +31058,7 @@
         "en": "RPS-6 MagnaGuard",
         "zh": "RPS-6磁卫"
       },
+      "actionTypes": [],
       "points": 32,
       "slotIds": [
         4
@@ -30828,6 +31178,7 @@
         "en": "Electro-Whip MagnaGuard",
         "zh": "电鞭磁卫"
       },
+      "actionTypes": [],
       "points": 28,
       "slotIds": [
         4
@@ -30946,6 +31297,7 @@
         "en": "Mandalorian Initiate Squad",
         "zh": "曼达洛新兵小队"
       },
+      "actionTypes": [],
       "points": 45,
       "slotIds": [
         1
@@ -31059,6 +31411,7 @@
         "en": "•Jetpack Rockets",
         "zh": "喷气背包火箭"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         3
@@ -31168,6 +31521,7 @@
         "en": "Combat Shields",
         "zh": "战斗护盾"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         2
@@ -31286,6 +31640,9 @@
         "en": "•Jedi Training, Master Duelist",
         "zh": "绝地训练，决斗大师"
       },
+      "actionTypes": [
+        "action"
+      ],
       "points": 8,
       "slotIds": [
         10
@@ -31404,6 +31761,7 @@
         "en": "Mertalizer Dark Trooper",
         "zh": "粉碎炮黑暗士兵"
       },
+      "actionTypes": [],
       "points": 30,
       "slotIds": [
         4
@@ -31511,6 +31869,7 @@
         "en": "Micro-Grenade Launcher",
         "zh": "微型榴弹发射器"
       },
+      "actionTypes": [],
       "points": 22,
       "slotIds": [
         4
@@ -31619,6 +31978,7 @@
         "en": "Mobility Upgrade",
         "zh": "机动性升级"
       },
+      "actionTypes": [],
       "points": 8,
       "slotIds": [
         2
@@ -31725,6 +32085,7 @@
         "en": "Obi-Wan Kenobi",
         "zh": "欧比-旺·克诺比"
       },
+      "actionTypes": [],
       "points": 25,
       "slotIds": [
         19
@@ -31882,6 +32243,7 @@
         "en": "Optimized Task Flow",
         "zh": "优化任务流程"
       },
+      "actionTypes": [],
       "points": 8,
       "slotIds": [
         18
@@ -31984,6 +32346,7 @@
         "en": "Armor-Piercing Shells",
         "zh": "穿甲弹"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         14
@@ -32083,6 +32446,7 @@
         "en": "Bunker Buster Shells",
         "zh": "掩体破坏弹"
       },
+      "actionTypes": [],
       "points": 12,
       "slotIds": [
         14
@@ -32184,6 +32548,7 @@
         "en": "High-Energy Shells",
         "zh": "高能炮弹"
       },
+      "actionTypes": [],
       "points": 8,
       "slotIds": [
         14
@@ -32288,6 +32653,7 @@
         "en": "Outer Rim Speeder Jockey",
         "zh": "外环飞艇驾驶员"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         7
@@ -32397,6 +32763,7 @@
         "en": "Overcharged Blaster Packs",
         "zh": "超载爆能弹药包"
       },
+      "actionTypes": [],
       "points": 3,
       "slotIds": [
         2
@@ -32476,6 +32843,9 @@
         "en": "•Overclock",
         "zh": "超频"
       },
+      "actionTypes": [
+        "free-exhaust"
+      ],
       "points": 5,
       "slotIds": [
         18
@@ -32572,6 +32942,7 @@
         "en": "Paz Vizsla",
         "zh": "帕兹·维兹拉"
       },
+      "actionTypes": [],
       "points": 40,
       "slotIds": [
         1
@@ -32724,6 +33095,7 @@
         "en": "•Jedi Training, Peacekeeping Mission",
         "zh": "绝地训练，维和任务"
       },
+      "actionTypes": [],
       "points": 8,
       "slotIds": [
         10
@@ -32838,6 +33210,7 @@
         "en": "•Personal Combat Shield",
         "zh": "个人战斗护盾"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         2
@@ -32978,6 +33351,7 @@
         "en": "Black Sun Enforcer",
         "zh": "黑日执法者"
       },
+      "actionTypes": [],
       "points": 11,
       "slotIds": [
         1
@@ -33086,6 +33460,7 @@
         "en": "Black Sun Vigo",
         "zh": "黑日维戈"
       },
+      "actionTypes": [],
       "points": 20,
       "slotIds": [
         1
@@ -33191,6 +33566,7 @@
         "en": "Pyke Syndicate Capo",
         "zh": "派克辛迪加头目"
       },
+      "actionTypes": [],
       "points": 18,
       "slotIds": [
         1
@@ -33292,6 +33668,7 @@
         "en": "Pyke Syndicate Foot Soldier",
         "zh": "派克辛迪加步兵"
       },
+      "actionTypes": [],
       "points": 9,
       "slotIds": [
         1
@@ -33403,6 +33780,7 @@
         "en": "Frenzied Gunner",
         "zh": "狂热炮手"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         7
@@ -33517,6 +33895,7 @@
         "en": "Raiding Party Leader",
         "zh": "劫掠小队队长"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         7
@@ -33664,6 +34043,9 @@
         "en": "Pirate Captain",
         "zh": "海盗船长"
       },
+      "actionTypes": [
+        "free-action"
+      ],
       "points": 5,
       "slotIds": [
         7
@@ -33764,6 +34146,9 @@
         "en": "PK-Series Worker Droid",
         "zh": "PK系列劳工机器人"
       },
+      "actionTypes": [
+        "free-action"
+      ],
       "points": 22,
       "slotIds": [
         1
@@ -33894,6 +34279,7 @@
         "en": "Platoon Commander",
         "zh": "排长"
       },
+      "actionTypes": [],
       "points": 8,
       "slotIds": [
         24
@@ -34019,6 +34405,9 @@
         "en": "Plo Koon",
         "zh": "普洛·孔"
       },
+      "actionTypes": [
+        "free-exhaust"
+      ],
       "points": 9,
       "slotIds": [
         7
@@ -34143,6 +34532,7 @@
         "en": "Plo Koon",
         "zh": "普洛·孔"
       },
+      "actionTypes": [],
       "points": 22,
       "slotIds": [
         19
@@ -34299,6 +34689,7 @@
         "en": "Programmed Loyalty",
         "zh": "忠诚程序"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         18
@@ -34400,6 +34791,7 @@
         "en": "Attack Protocols",
         "zh": "攻击协议"
       },
+      "actionTypes": [],
       "points": 3,
       "slotIds": [
         18
@@ -34513,6 +34905,7 @@
         "en": "\"Bounty\" Programming",
         "zh": "“赏金”程序"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         18
@@ -34629,6 +35022,7 @@
         "en": "Defense Protocols",
         "zh": "防御协议"
       },
+      "actionTypes": [],
       "points": 3,
       "slotIds": [
         18
@@ -34747,6 +35141,7 @@
         "en": "Engagement Protocols",
         "zh": "交战协议"
       },
+      "actionTypes": [],
       "points": 3,
       "slotIds": [
         18
@@ -34855,6 +35250,7 @@
         "en": "\"Nanny\" Programming",
         "zh": "“保姆”程序"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [
         18
@@ -34961,6 +35357,9 @@
         "en": "Proven Tactician",
         "zh": "久经考验的战术家"
       },
+      "actionTypes": [
+        "action"
+      ],
       "points": 10,
       "slotIds": [
         24
@@ -35087,6 +35486,7 @@
         "en": "Pyke Syndicate Crew",
         "zh": "派克辛迪加乘员"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         13
@@ -35178,6 +35578,7 @@
         "en": "Pyke Syndicate Foot Soldier Squad",
         "zh": "派克辛迪加步兵小队"
       },
+      "actionTypes": [],
       "points": 38,
       "slotIds": [
         1
@@ -35295,6 +35696,9 @@
         "en": "R4 Astromech",
         "zh": "R4宇航机器人"
       },
+      "actionTypes": [
+        "free-action"
+      ],
       "points": 9,
       "slotIds": [
         1
@@ -35412,6 +35816,7 @@
         "en": "DLT-20A Range Trooper",
         "zh": "DLT-20A边疆士兵"
       },
+      "actionTypes": [],
       "points": 25,
       "slotIds": [
         4
@@ -35520,6 +35925,7 @@
         "en": "Range Trooper",
         "zh": "边疆士兵"
       },
+      "actionTypes": [],
       "points": 15,
       "slotIds": [
         1
@@ -35614,6 +36020,7 @@
         "en": "T-21A Range Trooper",
         "zh": "T-21A边疆士兵"
       },
+      "actionTypes": [],
       "points": 28,
       "slotIds": [
         4
@@ -35721,6 +36128,9 @@
         "en": "Astromech Droid",
         "zh": "宇航技工机器人"
       },
+      "actionTypes": [
+        "free-action"
+      ],
       "points": 8,
       "slotIds": [
         1
@@ -35831,6 +36241,7 @@
         "en": "Rebel Trooper Captain",
         "zh": "义军士兵上尉"
       },
+      "actionTypes": [],
       "points": 9,
       "slotIds": [
         1
@@ -35942,6 +36353,7 @@
         "en": "CM-O/93 Trooper",
         "zh": "CM-O/93士兵"
       },
+      "actionTypes": [],
       "points": 22,
       "slotIds": [
         4
@@ -36051,6 +36463,7 @@
         "en": "Rebel Comms Technician",
         "zh": "义军通信技师"
       },
+      "actionTypes": [],
       "points": 9,
       "slotIds": [
         1
@@ -36160,6 +36573,7 @@
         "en": "DLT-20A Trooper",
         "zh": "DLT-20A士兵"
       },
+      "actionTypes": [],
       "points": 26,
       "slotIds": [
         4
@@ -36269,6 +36683,7 @@
         "en": "Hotshot Pilot",
         "zh": "王牌驾驶员"
       },
+      "actionTypes": [],
       "points": 8,
       "slotIds": [
         7
@@ -36377,6 +36792,7 @@
         "en": "MPL-57 Ion Trooper",
         "zh": "MPL-57离子炮士兵"
       },
+      "actionTypes": [],
       "points": 27,
       "slotIds": [
         4
@@ -36494,6 +36910,7 @@
         "en": "Rebel Officer",
         "zh": "义军军官"
       },
+      "actionTypes": [],
       "points": 16,
       "slotIds": [
         1
@@ -36605,6 +37022,9 @@
         "en": "Rebel Trooper Specialist",
         "zh": "义军士兵专业兵"
       },
+      "actionTypes": [
+        "free-exhaust"
+      ],
       "points": 8,
       "slotIds": [
         1
@@ -36709,6 +37129,7 @@
         "en": "Rebel Trooper Squad",
         "zh": "义军士兵小队"
       },
+      "actionTypes": [],
       "points": 40,
       "slotIds": [
         1
@@ -36830,6 +37251,7 @@
         "en": "SX-21 Trooper",
         "zh": "SX-21士兵"
       },
+      "actionTypes": [],
       "points": 13,
       "slotIds": [
         4
@@ -36939,6 +37361,7 @@
         "en": "Rebel Trooper",
         "zh": "义军士兵"
       },
+      "actionTypes": [],
       "points": 7,
       "slotIds": [
         1
@@ -37034,6 +37457,7 @@
         "en": "Rebel Veteran",
         "zh": "义军老兵"
       },
+      "actionTypes": [],
       "points": 9,
       "slotIds": [
         1
@@ -37129,6 +37553,7 @@
         "en": "Z-6 Trooper",
         "zh": "Z-6士兵"
       },
+      "actionTypes": [],
       "points": 20,
       "slotIds": [
         4
@@ -37233,6 +37658,7 @@
         "en": "Reluctant Hero",
         "zh": "不情愿的英雄"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         24
@@ -37360,6 +37786,7 @@
         "en": "Repeating Blaster",
         "zh": "连发爆能枪"
       },
+      "actionTypes": [],
       "points": 25,
       "slotIds": [
         12
@@ -37503,6 +37930,7 @@
         "en": "KX-Series Security Droids",
         "zh": "KX系列安保机器人"
       },
+      "actionTypes": [],
       "points": 18,
       "slotIds": [
         4
@@ -37612,6 +38040,9 @@
         "en": "Stormtrooper Marksman",
         "zh": "冲锋队神射手"
       },
+      "actionTypes": [
+        "action"
+      ],
       "points": 11,
       "slotIds": [
         4
@@ -37704,6 +38135,7 @@
         "en": "Rook Kast",
         "zh": "鲁克·卡斯特"
       },
+      "actionTypes": [],
       "points": 25,
       "slotIds": [
         1
@@ -37843,6 +38275,7 @@
         "en": "RT-97C Blaster Rifle",
         "zh": "RT-97C爆能步枪"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         12
@@ -37943,6 +38376,7 @@
         "en": "Ryder Azadi",
         "zh": "赖德·阿扎迪"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         7
@@ -38053,6 +38487,7 @@
         "en": "Twin Laser Turret",
         "zh": "双联激光炮塔"
       },
+      "actionTypes": [],
       "points": 14,
       "slotIds": [
         8
@@ -38158,6 +38593,7 @@
         "en": "Beam Turret",
         "zh": "光束炮塔"
       },
+      "actionTypes": [],
       "points": 15,
       "slotIds": [
         8
@@ -38263,6 +38699,7 @@
         "en": "The Darksaber",
         "zh": "暗剑"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         12
@@ -38450,6 +38887,9 @@
         "en": "Sabine Wren",
         "zh": "萨宾·雷恩"
       },
+      "actionTypes": [
+        "free-action"
+      ],
       "points": 25,
       "slotIds": [
         1
@@ -38571,6 +39011,7 @@
         "en": "The Darksaber",
         "zh": "暗剑"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         12
@@ -38759,6 +39200,7 @@
         "en": "Sonic Charge Saboteur",
         "zh": "声波炸药爆破手"
       },
+      "actionTypes": [],
       "points": 17,
       "slotIds": [
         4
@@ -38936,6 +39378,7 @@
         "en": "Security Detail",
         "zh": "警卫分队"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         10
@@ -39041,6 +39484,7 @@
         "en": "•Seek and Destroy",
         "zh": "搜寻并摧毁"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         24
@@ -39160,6 +39604,9 @@
         "en": "Seeker Droid",
         "zh": "追踪机器人"
       },
+      "actionTypes": [
+        "free-action"
+      ],
       "points": 8,
       "slotIds": [
         2
@@ -39281,6 +39728,7 @@
         "en": "Seventh Sister",
         "zh": "七妹"
       },
+      "actionTypes": [],
       "points": 30,
       "slotIds": [
         4
@@ -39434,6 +39882,7 @@
         "en": "Shaak Ti",
         "zh": "莎克·蒂"
       },
+      "actionTypes": [],
       "points": 22,
       "slotIds": [
         1
@@ -39595,6 +40044,7 @@
         "en": "Shoretrooper Squad",
         "zh": "海岸士兵小队"
       },
+      "actionTypes": [],
       "points": 52,
       "slotIds": [
         1
@@ -39716,6 +40166,7 @@
         "en": "T-21B Shoretrooper",
         "zh": "T-21B海岸士兵"
       },
+      "actionTypes": [],
       "points": 28,
       "slotIds": [
         4
@@ -39877,6 +40328,7 @@
         "en": "Shoretrooper",
         "zh": "海岸士兵"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         1
@@ -39972,6 +40424,9 @@
         "en": "Shriv Suurgav",
         "zh": "施里夫·苏尔加夫"
       },
+      "actionTypes": [
+        "free-action"
+      ],
       "points": 10,
       "slotIds": [
         7
@@ -40108,6 +40563,7 @@
         "en": "SHUKUR-05 Repeater",
         "zh": "SHUKUR-05连发枪"
       },
+      "actionTypes": [],
       "points": 28,
       "slotIds": [
         4
@@ -40210,6 +40666,7 @@
         "en": "Astromech",
         "zh": "宇航机器人"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         1
@@ -40312,6 +40769,9 @@
         "en": "Rebel Marksman",
         "zh": "义军神射手"
       },
+      "actionTypes": [
+        "action"
+      ],
       "points": 16,
       "slotIds": [
         4
@@ -40404,6 +40864,9 @@
         "en": "•Sliced Comms",
         "zh": "通信入侵"
       },
+      "actionTypes": [
+        "free-exhaust"
+      ],
       "points": 8,
       "slotIds": [
         18
@@ -40497,6 +40960,7 @@
         "en": "SM-9 Frag Launcher Dark Trooper",
         "zh": "SM-9破片发射器黑暗士兵"
       },
+      "actionTypes": [],
       "points": 40,
       "slotIds": [
         4
@@ -40612,6 +41076,7 @@
         "en": "Flametrooper",
         "zh": "火焰士兵"
       },
+      "actionTypes": [],
       "points": 20,
       "slotIds": [
         4
@@ -40723,6 +41188,7 @@
         "en": "T-7 Ion Snowtrooper",
         "zh": "T-7离子雪地士兵"
       },
+      "actionTypes": [],
       "points": 24,
       "slotIds": [
         4
@@ -40840,6 +41306,7 @@
         "en": "Snowtrooper Squad",
         "zh": "雪地士兵小队"
       },
+      "actionTypes": [],
       "points": 40,
       "slotIds": [
         1
@@ -40961,6 +41428,7 @@
         "en": "Snowtrooper",
         "zh": "雪地士兵"
       },
+      "actionTypes": [],
       "points": 8,
       "slotIds": [
         1
@@ -41056,6 +41524,7 @@
         "en": "T-21 Special Forces Trooper",
         "zh": "T-21特种部队士兵"
       },
+      "actionTypes": [],
       "points": 20,
       "slotIds": [
         4
@@ -41167,6 +41636,7 @@
         "en": "Nose-Mounted Flamethrower",
         "zh": "机鼻火焰喷射器"
       },
+      "actionTypes": [],
       "points": 15,
       "slotIds": [
         8
@@ -41277,6 +41747,7 @@
         "en": "Nose-Mounted Ion Blaster",
         "zh": "机鼻离子爆能炮"
       },
+      "actionTypes": [],
       "points": 30,
       "slotIds": [
         8
@@ -41393,6 +41864,7 @@
         "en": "Nose-Mounted Laser Cannon",
         "zh": "机鼻激光炮"
       },
+      "actionTypes": [],
       "points": 15,
       "slotIds": [
         8
@@ -41501,6 +41973,7 @@
         "en": "Ahsoka Tano, Jedi Padawan",
         "zh": "阿索卡·塔诺，绝地学徒"
       },
+      "actionTypes": [],
       "points": 35,
       "slotIds": [
         19
@@ -41656,6 +42129,7 @@
         "en": "Squadron Leader",
         "zh": "载具中队队长"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         6
@@ -41779,6 +42253,7 @@
         "en": "Stormtrooper",
         "zh": "冲锋队士兵"
       },
+      "actionTypes": [],
       "points": 8,
       "slotIds": [
         1
@@ -41876,6 +42351,7 @@
         "en": "Stormtrooper Captain",
         "zh": "冲锋队上尉"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         1
@@ -41990,6 +42466,7 @@
         "en": "DLT-19 Stormtrooper",
         "zh": "DLT-19冲锋队士兵"
       },
+      "actionTypes": [],
       "points": 20,
       "slotIds": [
         4
@@ -42154,6 +42631,7 @@
         "en": "HH-12 Stormtrooper",
         "zh": "HH-12冲锋队士兵"
       },
+      "actionTypes": [],
       "points": 22,
       "slotIds": [
         4
@@ -42320,6 +42798,7 @@
         "en": "RT-97C Stormtrooper",
         "zh": "RT-97C冲锋队士兵"
       },
+      "actionTypes": [],
       "points": 22,
       "slotIds": [
         4
@@ -42479,6 +42958,9 @@
         "en": "Stormtrooper Specialist",
         "zh": "冲锋队专业兵"
       },
+      "actionTypes": [
+        "free-exhaust"
+      ],
       "points": 9,
       "slotIds": [
         1
@@ -42585,6 +43067,7 @@
         "en": "Stormtrooper Squad",
         "zh": "冲锋队小队"
       },
+      "actionTypes": [],
       "points": 40,
       "slotIds": [
         1
@@ -42708,6 +43191,7 @@
         "en": "T-21 Stormtrooper",
         "zh": "T-21冲锋队士兵"
       },
+      "actionTypes": [],
       "points": 20,
       "slotIds": [
         4
@@ -42871,6 +43355,9 @@
         "en": "Strategic Programming",
         "zh": "战略程序"
       },
+      "actionTypes": [
+        "action"
+      ],
       "points": 8,
       "slotIds": [
         18
@@ -42973,6 +43460,7 @@
         "en": "Strong in the Force",
         "zh": "原力强大"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         10
@@ -43102,6 +43590,7 @@
         "en": "Stuck In",
         "zh": "坚守不退"
       },
+      "actionTypes": [],
       "points": 8,
       "slotIds": [
         10
@@ -43114,7 +43603,7 @@
           "1 Dodge token."
         ],
         "zh": [
-          "本单位激活结束时，若正在争夺至少1个兴趣点，本单位获得1个闪避标记。"
+          "本单位激活结束时，若正在争夺至少1个目标点，本单位获得1个闪避标记。"
         ]
       },
       "requirementsText": [
@@ -43169,7 +43658,7 @@
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "stuck-in",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "a507cd293d30e8f4bd04dd11d82e3abffb3b773dfaf66363910bbb67695c9f55"
@@ -43183,6 +43672,7 @@
         "en": "Stun Baton",
         "zh": "电击警棍"
       },
+      "actionTypes": [],
       "points": 8,
       "slotIds": [
         12
@@ -43316,6 +43806,7 @@
         "en": "Super Commando Gunslinger",
         "zh": "超级突击队快枪手"
       },
+      "actionTypes": [],
       "points": 30,
       "slotIds": [
         4
@@ -43438,6 +43929,7 @@
         "en": "Super Commando Marksman",
         "zh": "超级突击队神射手"
       },
+      "actionTypes": [],
       "points": 30,
       "slotIds": [
         4
@@ -43548,6 +44040,7 @@
         "en": "Super Commando Marksman",
         "zh": "超级突击队神射手"
       },
+      "actionTypes": [],
       "points": 30,
       "slotIds": [
         4
@@ -43658,6 +44151,7 @@
         "en": "•Superior Equipment",
         "zh": "精良装备"
       },
+      "actionTypes": [],
       "points": 15,
       "slotIds": [
         2
@@ -43764,6 +44258,7 @@
         "en": "T-21 Blaster Rifle",
         "zh": "T-21爆能步枪"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         12
@@ -43869,6 +44364,7 @@
         "en": "T-series Tactical Droid Pilot",
         "zh": "T系列战术机器人驾驶员"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         7
@@ -43981,6 +44477,7 @@
         "en": "T-Series Tactical Droid",
         "zh": "T系列战术机器人"
       },
+      "actionTypes": [],
       "points": 18,
       "slotIds": [
         1
@@ -44133,6 +44630,9 @@
         "en": "•Jedi Training, Tactical Acumen",
         "zh": "绝地训练，战术洞察"
       },
+      "actionTypes": [
+        "action"
+      ],
       "points": 8,
       "slotIds": [
         10
@@ -44241,6 +44741,7 @@
         "en": "Tank Hunting Munitions",
         "zh": "坦克杀手弹药"
       },
+      "actionTypes": [],
       "points": 3,
       "slotIds": [
         2
@@ -44320,6 +44821,9 @@
         "en": "•Targeting Relay",
         "zh": "瞄准中继器"
       },
+      "actionTypes": [
+        "free-exhaust"
+      ],
       "points": 5,
       "slotIds": [
         18
@@ -44410,6 +44914,7 @@
         "en": "Tech",
         "zh": "技师"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [
         4
@@ -44532,6 +45037,7 @@
         "en": "The Armorer",
         "zh": "军械师"
       },
+      "actionTypes": [],
       "points": 40,
       "slotIds": [
         1
@@ -44675,6 +45181,7 @@
         "en": "Thermal Detonator",
         "zh": "热熔炸弹"
       },
+      "actionTypes": [],
       "points": 3,
       "slotIds": [
         3
@@ -44794,6 +45301,7 @@
         "en": "Imperial TIE Pilot",
         "zh": "帝国TIE驾驶员"
       },
+      "actionTypes": [],
       "points": 8,
       "slotIds": [
         7
@@ -44889,6 +45397,7 @@
         "en": "Tip of the Spear",
         "zh": "矛锋"
       },
+      "actionTypes": [],
       "points": 8,
       "slotIds": [
         24
@@ -45031,6 +45540,7 @@
         "en": "Commendation: Advanced Drill",
         "zh": "嘉奖：进阶操练"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -45102,6 +45612,7 @@
         "en": "Commendation: Assault Badge",
         "zh": "嘉奖：突击徽章"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -45174,6 +45685,7 @@
         "en": "Setback: Battle-Shaken",
         "zh": "挫折：战斗惊惶"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -45235,6 +45747,7 @@
         "en": "Setback: Behind Schedule",
         "zh": "挫折：行动迟缓"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -45307,6 +45820,7 @@
         "en": "High Commendation: Born to Lead",
         "zh": "高级嘉奖：天生领袖"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -45379,6 +45893,7 @@
         "en": "Defining Trait: Captious Command",
         "zh": "特质：苛刻指挥"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -45437,6 +45952,7 @@
         "en": "Setback: Compromised",
         "zh": "挫折：受制于人"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -45515,6 +46031,7 @@
         "en": "Defining Trait: Conspicuous",
         "zh": "特质：引人注目"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -45594,6 +46111,7 @@
         "en": "High Commendation: Dedicated to the Cause",
         "zh": "高级嘉奖：献身事业"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -45664,6 +46182,7 @@
         "en": "Defining Trait: Disillusioned",
         "zh": "特质：理想破灭"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -45735,6 +46254,7 @@
         "en": "Setback: Downtrodden 1",
         "zh": "挫折：意志消沉1"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -45794,6 +46314,7 @@
         "en": "Setback: Downtrodden 2",
         "zh": "挫折：意志消沉2"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -45853,6 +46374,7 @@
         "en": "Setback: Downtrodden 3",
         "zh": "挫折：意志消沉3"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -45912,6 +46434,7 @@
         "en": "Setback: Downtrodden 4",
         "zh": "挫折：意志消沉4"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -45971,6 +46494,7 @@
         "en": "Setback: Downtrodden X",
         "zh": "挫折：意志消沉X"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -46030,6 +46554,7 @@
         "en": "Defining Trait: Embittered",
         "zh": "特质：愤懑"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -46103,6 +46628,7 @@
         "en": "Commendation: Expert Pilot",
         "zh": "嘉奖：驾驶专家"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -46178,6 +46704,7 @@
         "en": "Commendation: Extra Equipment",
         "zh": "嘉奖：额外装备"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -46255,6 +46782,7 @@
         "en": "Commendation: Failure Is Not an Option",
         "zh": "嘉奖：不容失败"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -46335,6 +46863,7 @@
         "en": "Setback: Battle-Fatigue 1",
         "zh": "挫折：战斗疲劳1"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -46396,6 +46925,7 @@
         "en": "Setback: Battle-Fatigue 2",
         "zh": "挫折：战斗疲劳2"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -46457,6 +46987,7 @@
         "en": "Setback: Battle-Fatigue 3",
         "zh": "挫折：战斗疲劳3"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -46518,6 +47049,7 @@
         "en": "Setback: Battle-Fatigue 4",
         "zh": "挫折：战斗疲劳4"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -46579,6 +47111,7 @@
         "en": "Setback: Battle-Fatigue X",
         "zh": "挫折：战斗疲劳X"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -46640,6 +47173,7 @@
         "en": "Commendation: Fearsome",
         "zh": "嘉奖：令人畏惧"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -46712,6 +47246,7 @@
         "en": "Commendation: Feats of Valor",
         "zh": "嘉奖：英勇事迹"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -46780,6 +47315,7 @@
         "en": "Commendation: Field Modifications",
         "zh": "嘉奖：战地改装"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -46857,6 +47393,7 @@
         "en": "Setback: Flat Footed",
         "zh": "挫折：措手不及"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -46930,6 +47467,7 @@
         "en": "Commendation: Flexible Response",
         "zh": "嘉奖：灵活应对"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -47015,6 +47553,7 @@
         "en": "Commendation: Forward Patrol",
         "zh": "嘉奖：前沿巡逻"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -47081,6 +47620,7 @@
         "en": "Commendation: Go Where the Money Is",
         "zh": "嘉奖：逐利而行"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -47150,6 +47690,7 @@
         "en": "Defining Trait: Greedy",
         "zh": "特质：贪婪"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -47221,6 +47762,7 @@
         "en": "Commendation: Harsh Environments Gear",
         "zh": "嘉奖：恶劣环境装备"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -47281,6 +47823,7 @@
         "en": "High Commendation: Headhunters",
         "zh": "高级嘉奖：猎头者"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -47357,6 +47900,7 @@
         "en": "Commendation: Hopeful",
         "zh": "嘉奖：满怀希望"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -47427,6 +47971,7 @@
         "en": "High Commendation: Implacable",
         "zh": "高级嘉奖：不可动摇"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -47497,6 +48042,7 @@
         "en": "Commendation: Legendary",
         "zh": "嘉奖：传奇"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -47572,6 +48118,7 @@
         "en": "Setback: Losing Faith",
         "zh": "挫折：失去信念"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -47641,6 +48188,7 @@
         "en": "High Commendation: Lucky Shot",
         "zh": "高级嘉奖：幸运一击"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -47711,6 +48259,7 @@
         "en": "Commendation: Marksmanship Badge",
         "zh": "嘉奖：射击徽章"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -47771,6 +48320,7 @@
         "en": "Defining Trait: On the Back Foot",
         "zh": "特质：陷于被动"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -47841,6 +48391,7 @@
         "en": "Commendation: One in a Million",
         "zh": "嘉奖：百万分之一"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -47900,6 +48451,7 @@
         "en": "Commendation: Personal Shields",
         "zh": "嘉奖：个人护盾"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -47975,6 +48527,7 @@
         "en": "Commendation: Rapid Response",
         "zh": "嘉奖：快速响应"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -48043,6 +48596,7 @@
         "en": "Commendation: Recon Badge",
         "zh": "嘉奖：侦察徽章"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -48115,6 +48669,7 @@
         "en": "Commendation: Resilient",
         "zh": "嘉奖：坚韧"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -48174,6 +48729,7 @@
         "en": "Setback: Scrambled",
         "zh": "挫折：系统紊乱"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -48250,6 +48806,7 @@
         "en": "Setback: Self-Serving",
         "zh": "挫折：自利"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -48318,6 +48875,7 @@
         "en": "Commendation: Self-Sufficient",
         "zh": "嘉奖：自给自足"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -48389,6 +48947,7 @@
         "en": "Defining Trait: Selfless Warden",
         "zh": "特质：无私守护者"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -48465,6 +49024,7 @@
         "en": "Commendation: Special Munitions",
         "zh": "嘉奖：特种弹药"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -48528,6 +49088,7 @@
         "en": "Commendation: Sterner Stuff",
         "zh": "嘉奖：钢铁意志"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -48600,6 +49161,7 @@
         "en": "Commendation: Strongpoint Expertise",
         "zh": "嘉奖：据点专家"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -48663,6 +49225,7 @@
         "en": "Defining Trait: Tunnel Vision",
         "zh": "特质：目光狭隘"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -48724,6 +49287,7 @@
         "en": "Commendation: Unity",
         "zh": "嘉奖：团结"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -48798,6 +49362,7 @@
         "en": "Defining Trait: Unsure",
         "zh": "特质：犹豫不决"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -48859,6 +49424,7 @@
         "en": "Commendation: Urban Assault Experts",
         "zh": "嘉奖：城市突击专家"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -48933,6 +49499,7 @@
         "en": "High Commendation: Veteran Gunners",
         "zh": "高级嘉奖：老练炮手"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -49005,6 +49572,7 @@
         "en": "Commendation: Veteran Leader",
         "zh": "嘉奖：老练队长"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -49065,6 +49633,7 @@
         "en": "Setback: War Weary",
         "zh": "挫折：厌战"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -49135,6 +49704,7 @@
         "en": "Defining Trait: Weight of Responsibility",
         "zh": "特质：责任重担"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -49208,6 +49778,7 @@
         "en": "Commendation: Well-Stocked",
         "zh": "嘉奖：补给充足"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -49278,6 +49849,7 @@
         "en": "Commendation: Well Supplied",
         "zh": "嘉奖：物资丰裕"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [],
       "usage": "campaign",
@@ -49354,6 +49926,7 @@
         "en": "Duck and Cover",
         "zh": "卧倒掩护"
       },
+      "actionTypes": [],
       "points": 2,
       "slotIds": [
         10
@@ -49426,6 +49999,7 @@
         "en": "Dug In",
         "zh": "掘壕固守"
       },
+      "actionTypes": [],
       "points": 6,
       "slotIds": [
         10,
@@ -49564,6 +50138,7 @@
         "en": "Endurance",
         "zh": "耐力"
       },
+      "actionTypes": [],
       "points": 6,
       "slotIds": [
         10
@@ -49635,6 +50210,7 @@
         "en": "Into the Fray",
         "zh": "投身战场"
       },
+      "actionTypes": [],
       "points": 4,
       "slotIds": [
         10
@@ -49707,6 +50283,7 @@
         "en": "On the Hunt",
         "zh": "猎杀行动"
       },
+      "actionTypes": [],
       "points": 6,
       "slotIds": [
         10
@@ -49780,6 +50357,7 @@
         "en": "Imperial March",
         "zh": "帝国行军"
       },
+      "actionTypes": [],
       "points": 6,
       "slotIds": [
         10,
@@ -49912,6 +50490,7 @@
         "en": "Mission Objective",
         "zh": "任务目标"
       },
+      "actionTypes": [],
       "points": 6,
       "slotIds": [
         10
@@ -49998,6 +50577,9 @@
         "en": "Offensive Push",
         "zh": "攻势推进"
       },
+      "actionTypes": [
+        "free-exhaust"
+      ],
       "points": 6,
       "slotIds": [
         10
@@ -50083,6 +50665,7 @@
         "en": "Overwatch",
         "zh": "警戒监视"
       },
+      "actionTypes": [],
       "points": 4,
       "slotIds": [
         10
@@ -50167,6 +50750,7 @@
         "en": "Protector",
         "zh": "守护者"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         10
@@ -50244,6 +50828,7 @@
         "en": "Seize the Initiative",
         "zh": "夺取先机"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         10
@@ -50345,6 +50930,7 @@
         "en": "Situational Awareness",
         "zh": "态势感知"
       },
+      "actionTypes": [],
       "points": 4,
       "slotIds": [
         10
@@ -50429,6 +51015,7 @@
         "en": "Defensive Stance",
         "zh": "防御架势"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         10
@@ -50546,6 +51133,7 @@
         "en": "Offensive Stance",
         "zh": "进攻架势"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         10
@@ -50663,6 +51251,7 @@
         "en": "Strike and Fade",
         "zh": "打带跑"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         10,
@@ -50773,6 +51362,7 @@
         "en": "Strike Team Leader",
         "zh": "打击小队队长"
       },
+      "actionTypes": [],
       "points": 8,
       "slotIds": [
         10
@@ -50886,6 +51476,7 @@
         "en": "Tenacity",
         "zh": "顽强"
       },
+      "actionTypes": [],
       "points": 6,
       "slotIds": [
         10
@@ -50960,6 +51551,7 @@
         "en": "Up Close and Personal",
         "zh": "近距离交锋"
       },
+      "actionTypes": [],
       "points": 8,
       "slotIds": [
         10
@@ -51032,6 +51624,7 @@
         "en": "Tristan Wren",
         "zh": "特里斯坦·雷恩"
       },
+      "actionTypes": [],
       "points": 25,
       "slotIds": [
         1
@@ -51174,6 +51767,7 @@
         "en": "Turbo-Charge",
         "zh": "涡轮增压"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         2
@@ -51260,6 +51854,7 @@
         "en": "Twin Lightsabers",
         "zh": "双光剑"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [
         12
@@ -51388,6 +51983,7 @@
         "en": "Pintle-Mounted DLT-19",
         "zh": "枢轴式DLT-19"
       },
+      "actionTypes": [],
       "points": 14,
       "slotIds": [
         8
@@ -51493,6 +52089,7 @@
         "en": "Pintle-Mounted RT-97C",
         "zh": "枢轴式RT-97C"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         8
@@ -51593,6 +52190,7 @@
         "en": "•Tyrannical Taskmaster",
         "zh": "暴虐监工"
       },
+      "actionTypes": [],
       "points": 8,
       "slotIds": [
         24
@@ -51690,6 +52288,7 @@
         "en": "Unorthodox Tactician",
         "zh": "非正统战术家"
       },
+      "actionTypes": [],
       "points": 16,
       "slotIds": [
         13
@@ -51782,6 +52381,7 @@
         "en": "Unseen Saboteur",
         "zh": "隐秘破坏者"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         24
@@ -51917,6 +52517,7 @@
         "en": "Unstable Astromech",
         "zh": "不稳定的宇航机器人"
       },
+      "actionTypes": [],
       "points": 16,
       "slotIds": [
         13
@@ -52022,6 +52623,7 @@
         "en": "Ursa Wren",
         "zh": "厄萨·雷恩"
       },
+      "actionTypes": [],
       "points": 25,
       "slotIds": [
         1
@@ -52153,6 +52755,7 @@
         "en": "Rebel Veteran Squad",
         "zh": "义军老兵小队"
       },
+      "actionTypes": [],
       "points": 50,
       "slotIds": [
         1
@@ -52274,6 +52877,7 @@
         "en": "Vibro Axe",
         "zh": "振动斧"
       },
+      "actionTypes": [],
       "points": 8,
       "slotIds": [
         12
@@ -52411,6 +53015,7 @@
         "en": "Vibrosword",
         "zh": "振动剑"
       },
+      "actionTypes": [],
       "points": 8,
       "slotIds": [
         12
@@ -52553,6 +53158,9 @@
         "en": "Viper Recon Droid",
         "zh": "蝰蛇侦察机器人"
       },
+      "actionTypes": [
+        "action"
+      ],
       "points": 9,
       "slotIds": [
         1
@@ -52699,6 +53307,7 @@
         "en": "War Party Leader",
         "zh": "战团首领"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         24
@@ -52820,6 +53429,7 @@
         "en": "Waxer",
         "zh": "打蜡"
       },
+      "actionTypes": [],
       "points": 20,
       "slotIds": [
         19
@@ -52957,6 +53567,9 @@
         "en": "Wedge Antilles",
         "zh": "韦奇·安蒂列斯"
       },
+      "actionTypes": [
+        "free-exhaust"
+      ],
       "points": 5,
       "slotIds": [
         7
@@ -53088,6 +53701,7 @@
         "en": "Weequay Captain",
         "zh": "威奎船长"
       },
+      "actionTypes": [],
       "points": 18,
       "slotIds": [
         1
@@ -53209,6 +53823,7 @@
         "en": "Weequay Crew",
         "zh": "威奎乘员"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [
         13
@@ -53298,6 +53913,7 @@
         "en": "Weequay Pirate Squad",
         "zh": "威奎海盗小队"
       },
+      "actionTypes": [],
       "points": 30,
       "slotIds": [
         1
@@ -53420,6 +54036,9 @@
         "en": "•Whipcord Launcher",
         "zh": "缆索发射器"
       },
+      "actionTypes": [
+        "action"
+      ],
       "points": 5,
       "slotIds": [
         2
@@ -53537,6 +54156,7 @@
         "en": "Wrecker",
         "zh": "破坏者"
       },
+      "actionTypes": [],
       "points": 0,
       "slotIds": [
         4
@@ -53659,6 +54279,7 @@
         "en": "A300 Rifle Gunner",
         "zh": "A300步枪炮手"
       },
+      "actionTypes": [],
       "points": 1,
       "slotIds": [
         13
@@ -53759,6 +54380,7 @@
         "en": "RPS-6 Rocket Gunner",
         "zh": "RPS-6火箭炮手"
       },
+      "actionTypes": [],
       "points": 21,
       "slotIds": [
         13
@@ -53864,6 +54486,7 @@
         "en": "XS-IV Assault Cannon Dark Trooper",
         "zh": "XS-IV突击炮黑暗士兵"
       },
+      "actionTypes": [],
       "points": 49,
       "slotIds": [
         4
@@ -53973,6 +54596,7 @@
         "en": "You're Not All the Same to Me",
         "zh": "在我眼中你们各不相同"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         9
@@ -54079,6 +54703,7 @@
         "en": "Z-6 Riot Baton",
         "zh": "Z-6防暴警棍"
       },
+      "actionTypes": [],
       "points": 5,
       "slotIds": [
         12
@@ -54214,6 +54839,7 @@
         "en": "A-180",
         "zh": ""
       },
+      "actionTypes": null,
       "points": 0,
       "slotIds": [
         12
@@ -54273,6 +54899,7 @@
         "en": "A-300",
         "zh": ""
       },
+      "actionTypes": null,
       "points": 0,
       "slotIds": [
         12
@@ -54331,6 +54958,7 @@
         "en": "Beskad Duelist",
         "zh": ""
       },
+      "actionTypes": null,
       "points": 24,
       "slotIds": [
         4
@@ -54389,6 +55017,7 @@
         "en": "Bistan",
         "zh": ""
       },
+      "actionTypes": null,
       "points": 33,
       "slotIds": [
         4
@@ -54460,6 +55089,10 @@
         "en": "C-3PO",
         "zh": "C-3PO"
       },
+      "actionTypes": [
+        "action",
+        "free-action"
+      ],
       "points": 15,
       "slotIds": [
         15
@@ -54506,7 +55139,7 @@
       ],
       "assets": {
         "front": "assets/unit-cards/gar/originals/c3po_front.webp",
-        "portrait": "assets/portraits/republic-c3po-1882b968a2b1d44e4c94.webp",
+        "portrait": "assets/portraits/republic-c3po-fd418c6af604effbb1f5.webp",
         "portraitCrop": [
           0.005,
           0.2,
@@ -54570,6 +55203,7 @@
         "en": "Chewbacca, Courageous Co-Pilot",
         "zh": ""
       },
+      "actionTypes": null,
       "points": 0,
       "slotIds": [
         1
@@ -54659,6 +55293,7 @@
         "en": "DLT-19 Stormtrooper",
         "zh": ""
       },
+      "actionTypes": null,
       "points": 18,
       "slotIds": [
         4
@@ -54716,6 +55351,7 @@
         "en": "Electrostaff Guard",
         "zh": ""
       },
+      "actionTypes": null,
       "points": 21,
       "slotIds": [
         4
@@ -54774,6 +55410,7 @@
         "en": "Gas Grenade",
         "zh": ""
       },
+      "actionTypes": null,
       "points": 5,
       "slotIds": [
         3
@@ -54831,6 +55468,7 @@
         "en": "Grogu",
         "zh": "古古"
       },
+      "actionTypes": [],
       "points": 17,
       "slotIds": [
         15
@@ -54865,7 +55503,7 @@
       "weapons": [],
       "assets": {
         "front": "assets/unit-cards/mercenary/clan_covert/originals/grogu-covert_front.webp",
-        "portrait": "assets/portraits/mercenary-clan-covert-grogu-covert-2831b21f8cc7e6d6f838.webp",
+        "portrait": "assets/portraits/mercenary-clan-covert-grogu-covert-af61584e8ebc770e32a8.webp",
         "portraitCrop": [
           0.005,
           0.2,
@@ -54934,6 +55572,7 @@
         "en": "Grogu",
         "zh": "古古"
       },
+      "actionTypes": [],
       "points": 17,
       "slotIds": [
         15
@@ -54968,7 +55607,7 @@
       "weapons": [],
       "assets": {
         "front": "assets/unit-cards/mercenary/clan_covert/originals/grogu-covert_front.webp",
-        "portrait": "assets/portraits/mercenary-clan-covert-grogu-covert-2831b21f8cc7e6d6f838.webp",
+        "portrait": "assets/portraits/mercenary-clan-covert-grogu-covert-af61584e8ebc770e32a8.webp",
         "portraitCrop": [
           0.005,
           0.2,
@@ -55037,6 +55676,7 @@
         "en": "Han Solo, Reckless Smuggler",
         "zh": ""
       },
+      "actionTypes": null,
       "points": 0,
       "slotIds": [
         1
@@ -55127,6 +55767,7 @@
         "en": "Iden's DLT-20A Rifle",
         "zh": ""
       },
+      "actionTypes": null,
       "points": 15,
       "slotIds": [
         12
@@ -55185,6 +55826,9 @@
         "en": "Iden's ID10 Seeker Droid",
         "zh": "伊登的ID10搜索机器人"
       },
+      "actionTypes": [
+        "free-action"
+      ],
       "points": 0,
       "slotIds": [
         15
@@ -55243,7 +55887,7 @@
       ],
       "assets": {
         "front": "assets/unit-cards/empire/originals/id10-seeker_front.webp",
-        "portrait": "assets/portraits/empire-id10-seeker-6ede0662714642f5b97c.webp",
+        "portrait": "assets/portraits/empire-id10-seeker-34b563f54b274d9181bf.webp",
         "portraitCrop": [
           0.005,
           0.2,
@@ -55305,6 +55949,7 @@
         "en": "Iden's TL-50 Repeater",
         "zh": ""
       },
+      "actionTypes": null,
       "points": 15,
       "slotIds": [
         12
@@ -55376,6 +56021,7 @@
         "en": "Imperial March",
         "zh": "帝国行军"
       },
+      "actionTypes": null,
       "points": 6,
       "slotIds": [
         10
@@ -55438,6 +56084,7 @@
         "en": "J-19 Bo-rifle",
         "zh": ""
       },
+      "actionTypes": null,
       "points": 5,
       "slotIds": [
         12
@@ -55510,6 +56157,7 @@
         "en": "Kraken",
         "zh": ""
       },
+      "actionTypes": null,
       "points": 30,
       "slotIds": [
         4
@@ -55591,6 +56239,7 @@
         "en": "Looted E-5 Blaster",
         "zh": ""
       },
+      "actionTypes": null,
       "points": 5,
       "slotIds": [
         12
@@ -55649,6 +56298,7 @@
         "en": "Mandalorian Combat Shields",
         "zh": ""
       },
+      "actionTypes": null,
       "points": 10,
       "slotIds": [
         2
@@ -55708,6 +56358,7 @@
         "en": "Mudtrooper Squad",
         "zh": ""
       },
+      "actionTypes": null,
       "points": 32,
       "slotIds": [
         1
@@ -55783,6 +56434,7 @@
         "en": "Omega",
         "zh": "欧米伽"
       },
+      "actionTypes": [],
       "points": 10,
       "slotIds": [
         15
@@ -55890,6 +56542,7 @@
         "en": "Pao",
         "zh": ""
       },
+      "actionTypes": null,
       "points": 20,
       "slotIds": [
         4
@@ -55961,6 +56614,7 @@
         "en": "RT-97C Stormtrooper",
         "zh": ""
       },
+      "actionTypes": null,
       "points": 20,
       "slotIds": [
         4
@@ -56018,6 +56672,7 @@
         "en": "Stolen DLT-19",
         "zh": ""
       },
+      "actionTypes": null,
       "points": 20,
       "slotIds": [
         4
@@ -56075,6 +56730,7 @@
         "en": "Stolen HH-12",
         "zh": ""
       },
+      "actionTypes": null,
       "points": 20,
       "slotIds": [
         4
@@ -56132,6 +56788,7 @@
         "en": "Stolen RT-97C",
         "zh": ""
       },
+      "actionTypes": null,
       "points": 24,
       "slotIds": [
         4
@@ -56189,6 +56846,7 @@
         "en": "Super Commando Gunslinger",
         "zh": ""
       },
+      "actionTypes": null,
       "points": 30,
       "slotIds": [
         4
@@ -56247,6 +56905,7 @@
         "en": "SX-21 Mudtrooper",
         "zh": ""
       },
+      "actionTypes": null,
       "points": 13,
       "slotIds": [
         4
@@ -56304,6 +56963,7 @@
         "en": "Tristan Wren",
         "zh": ""
       },
+      "actionTypes": null,
       "points": 34,
       "slotIds": [
         4
@@ -56385,6 +57045,7 @@
         "en": "Ursa Wren",
         "zh": ""
       },
+      "actionTypes": null,
       "points": 34,
       "slotIds": [
         4
@@ -56466,6 +57127,7 @@
         "en": "Z-6 Mudtrooper",
         "zh": ""
       },
+      "actionTypes": null,
       "points": 20,
       "slotIds": [
         4

@@ -1,15 +1,20 @@
 /* A physical upgrade has one identity/cost and independent printed faces. */
 window.UpgradeFaces = (() => {
-  const fields = ['name', 'description', 'keywords', 'weapons', 'assets'];
+  const fields = ['name', 'description', 'keywords', 'weapons', 'assets', 'actionTypes'];
   const isDual = card => card?.dualSided === true && !!card.back;
+  const mode = face => ['front', 'back', 'both'].includes(face) ? face : 'front';
   function view(card, face = card?._face || 'front') {
     if (!isDual(card)) return card;
     const base = card._base || card;
-    const side = face === 'back' ? 'back' : 'front';
+    const side = mode(face);
     const printed = side === 'back' ? base.back : base;
-    return {...base, ...Object.fromEntries(fields.map(k => [k, printed[k]])), _base: base, _face: side};
+    return {...base, ...Object.fromEntries(fields.map(k => [k, printed[k]])),
+      ...(card._choiceId ? {_choiceId: card._choiceId, _unitId: card._unitId} : {}),
+      _base: base, _face: side};
   }
   const variants = card => isDual(card) ? [view(card, 'front'), view(card, 'back')] : [card];
+  // Keep each printed face intact, including weapon keywords and source labels.
+  const visible = card => isDual(card) && card._face === 'both' ? variants(card) : [card];
   function index(cards) {
     const result = Object.fromEntries(cards.map(c => [c.id, c]));
     for (const card of cards) if (isDual(card) && card.back.legacyId && !result[card.back.legacyId]) {
@@ -35,10 +40,10 @@ window.UpgradeFaces = (() => {
           if (replacement >= 0) choice.slotIndex = replacement;
         }
       }
-      if (isDual(card)) choice.face = choice.face === 'back' ? 'back' : 'front';
+      if (isDual(card)) choice.face = mode(choice.face);
       else delete choice.face;
     }
     return army;
   }
-  return {fields, isDual, view, variants, index, normalizeArmy};
+  return {fields, isDual, mode, view, variants, visible, index, normalizeArmy};
 })();

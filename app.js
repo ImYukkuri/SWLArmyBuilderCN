@@ -36,7 +36,7 @@ function formField(key,value,path){
       kw.parameter=(label.split(' · ')[0]||'').trim();
       put(path,kw.parameter);status('词条参数已设为'+(kind==='unit'?'单位':'单位类型')+'：'+kw.parameter);
     });
-  }else if(table){control=el('select');const none=el('option','未确认');none.value='';control.append(none);for(const item of mappings.definitions[table]||[]){const op=el('option',item.id+' · '+(item.name.zh||item.name.en)+' / '+item.name.en);op.value=String(item.id);control.append(op)}control.value=value==null?'':String(value);control.addEventListener('change',()=>{const item=mappings.definitions[table].find(x=>String(x.id)===control.value);put(path,item?item.id:null);if(table==='keywords')renderForm()})}
+  }else if(table){control=el('select');const none=el('option','未确认');none.value='';control.append(none);for(const item of (mappings.definitions[table]||[]).filter(x=>table!=='keywords'||x.id!=='equip')){const op=el('option',item.id+' · '+(item.name.zh||item.name.en)+' / '+item.name.en);op.value=String(item.id);control.append(op)}control.value=value==null?'':String(value);control.addEventListener('change',()=>{const item=mappings.definitions[table].find(x=>String(x.id)===control.value);put(path,item?item.id:null);if(table==='keywords')renderForm()})}
   else if(enums[key]){control=el('select');const empty=el('option','未确认');empty.value='';control.append(empty);for(const v of [...new Set([...enums[key],...(value&&!enums[key].includes(value)?[value]:[])])]){const op=el('option',enumLabels[v]||v);op.value=v;control.append(op)}control.value=value??'';control.addEventListener('change',()=>put(path,control.value||null))}
   else if(typeof value==='boolean'){control=el('input');control.type='checkbox';control.checked=value;control.addEventListener('change',()=>put(path,control.checked))}
   else if(typeof value==='number'||(value===null&&['points','models','wounds','courage','resilience','speed','min','max','red','black','white','value'].includes(key))){control=el('input');control.type='number';control.step='1';control.value=value??'';control.placeholder='未确认 / null';control.addEventListener('input',()=>put(path,control.value===''?null:Number(control.value)))}
@@ -55,6 +55,7 @@ function lookup(table,id){return mappings?.definitions?.[table]?.find(x=>x.id===
 function arrayDefault(key){if(key==='weapons')return {name:{en:'New Weapon',zh:''},range:{min:null,max:null},dice:{red:null,black:null,white:null},keywords:[]};if(key==='keywords')return {id:'jump',value:null,parameter:null,action:'none'};if(key==='factions')return {id:1,rankId:2};if(key==='affiliationIds')return '1';if(key==='upgradeSlots')return 1;if(key==='conditionalUpgradeSlots')return {id:1,upgradeId:mappings.definitions.upgrades[0]?.id||null};return ''}
 function objectForm(object,path=[],container){
  for(const [key,value]of Object.entries(object)){
+  if(key==='equipUpgradeIds'&&path.length===0)continue;
   const p=[...path,key];
   if(key==='stats'&&path.length===0&&value){container.append(EditorForms.stats(value,setDirty));continue;}
   if(key==='weapons'&&Array.isArray(value)){container.append(EditorForms.weapons(value,mappings.definitions,setDirty));continue;}
@@ -70,8 +71,9 @@ function objectForm(object,path=[],container){
    row.append(box);container.append(row);continue;
   }
   if(Array.isArray(value)){
-   const box=el('fieldset');box.append(el('legend',(labels[key]||key)+' · '+value.length));
+   const box=el('fieldset');box.append(el('legend',(labels[key]||key)+' · '+(key==='keywords'?value.filter(k=>k.id!=='equip').length:value.length)));
    value.forEach((item,i)=>{
+    if(key==='keywords'&&item.id==='equip')return;
     const wrap=el('div');wrap.className='array-item';
     if(key==='upgradeSlots'||key==='conditionalUpgradeSlots'){
      const slot=lookup('upgradeSlots',typeof item==='object'?item.id:item);
@@ -93,14 +95,26 @@ function objectForm(object,path=[],container){
  }
 }
 function renderRules(){ConditionEditor.render(document.querySelector('#condition-editor'),draft.restrictions||(draft.restrictions={}),mappings.definitions,()=>setDirty(),renderRules);RuleEditor.render(document.querySelector('#unit-rules'),draft.rules||(draft.rules={}),mappings.definitions,()=>{setDirty()},{kind:'units',usage:draft.usage||'army_unit'});}
+function renderEquip(){
+ const box=el('fieldset');box.className='equip-editor';box.append(el('legend','Equip · 自动配备'));
+ const hint=el('p','指定卡牌会在单位加入军表时按实际可选槽自动装备。仅指定升级类别的 Equip 请在基础升级槽设为必选，仍由玩家选卡。');hint.className='hint';box.append(hint);
+ const options=mappings.definitions.editorOptions.table('localUpgrades');
+ const ids=draft.equipUpgradeIds||[];
+ ids.forEach((id,index)=>{
+  const row=el('div');row.className='equip-link';
+  row.append(EditorOptions.control(id,options.filter(o=>o.value===id||!ids.includes(o.value)),v=>{draft.equipUpgradeIds[index]=v;setDirty();renderForm()},{label:'必带升级卡 '+(index+1),nullable:false}));
+  const remove=el('button','移除关联');remove.onclick=()=>{draft.equipUpgradeIds.splice(index,1);setDirty();renderForm()};row.append(remove);box.append(row);
+ });
+ const add=EditorOptions.control(null,options.filter(o=>!ids.includes(o.value)),v=>{if(!v)return;draft.equipUpgradeIds=[...ids,v];setDirty();renderForm()},{label:'添加必带升级或伙伴卡'});box.append(add);$('#fields').append(box);
+}
 let kwSeq=0;function normName(s){return String(s||'').toLowerCase().replace(/[^a-z0-9]/g,'')}
-function renderKeywordParams(){const box=document.querySelector('#keyword-params');if(!box)return;box.replaceChildren();const kws=(draft.keywords||[]).filter(k=>k&&k.parameter!==undefined&&k.parameter!==null&&k.parameter!=='');const fs=el('fieldset');fs.className='restriction-section';fs.append(el('legend','关键词参数（随从/统率等：需解析到具体单位名）'));const hint=el('p','随从/统率的参数必须是单位名称；输入即过滤候选，也可自定义。未解析的参数会被引擎标为待确认。');hint.className='hint';fs.append(hint);const names=(catalog.units||[]).map(u=>[u.name.en,u.name.zh||'']);if(!kws.length){fs.append(el('p','当前单位没有带参数的关键词。'))}else for(const kw of kws){const row=el('div');row.className='rule-item';const def=mappings.definitions.keywords?.find(k=>k.id===kw.id);row.append(el('strong',(def&&def.name&&def.name.zh)||kw.id));const input=el('input');input.value=kw.parameter||'';input.placeholder='单位名称';const dl=el('datalist');dl.id='kw-dl-'+(++kwSeq);for(const [en,zh] of names){const o=el('option');o.value=en;o.label=zh?en+' · '+zh:en;o.textContent=zh||en;dl.append(o)}input.setAttribute('list',dl.id);const resolved=names.some(([en,zh])=>normName(en)===normName(kw.parameter)||normName(zh)===normName(kw.parameter));const badge=el('span',resolved?'已解析':'未解析');badge.className=resolved?'issue':'issue invalid';input.onchange=()=>{kw.parameter=input.value;setDirty();renderKeywordParams()};row.append(input,dl,badge);fs.append(row)}box.append(fs)}
+function renderKeywordParams(){const box=document.querySelector('#keyword-params');if(!box)return;box.replaceChildren();const kws=(draft.keywords||[]).filter(k=>k&&k.id!=='equip'&&k.parameter!==undefined&&k.parameter!==null&&k.parameter!=='');const fs=el('fieldset');fs.className='restriction-section';fs.append(el('legend','关键词参数（随从/统率等：需解析到具体单位名）'));const hint=el('p','随从/统率的参数必须是单位名称；输入即过滤候选，也可自定义。未解析的参数会被引擎标为待确认。');hint.className='hint';fs.append(hint);const names=(catalog.units||[]).map(u=>[u.name.en,u.name.zh||'']);if(!kws.length){fs.append(el('p','当前单位没有带参数的关键词。'))}else for(const kw of kws){const row=el('div');row.className='rule-item';const def=mappings.definitions.keywords?.find(k=>k.id===kw.id);row.append(el('strong',(def&&def.name&&def.name.zh)||kw.id));const input=el('input');input.value=kw.parameter||'';input.placeholder='单位名称';const dl=el('datalist');dl.id='kw-dl-'+(++kwSeq);for(const [en,zh] of names){const o=el('option');o.value=en;o.label=zh?en+' · '+zh:en;o.textContent=zh||en;dl.append(o)}input.setAttribute('list',dl.id);const resolved=names.some(([en,zh])=>normName(en)===normName(kw.parameter)||normName(zh)===normName(kw.parameter));const badge=el('span',resolved?'已解析':'未解析');badge.className=resolved?'issue':'issue invalid';input.onchange=()=>{kw.parameter=input.value;setDirty();renderKeywordParams()};row.append(input,dl,badge);fs.append(row)}box.append(fs)}
 let creating=false;
 function newUnitDraft(){
   const id='new-unit-'+Date.now().toString(36);
   return {id,name:{en:'New Unit',zh:'新单位'},title:{en:'',zh:''},factionId:1,rankId:1,unitTypeId:1,affiliationIds:[],keywords:[],weapons:[],upgradeSlots:[],factions:[{id:1,rankId:1}],
     stats:{models:1,wounds:1,courage:0,resilience:null,speed:null,defenseDie:'white'},points:0,
-    assets:{front:null,portrait:null,portraitCrop:[0,0,1,1]},
+    assets:{front:null,portrait:null,portraitCrop:[.67,.1235,.99,.6965]},equipUpgradeIds:[],
     review:{status:'needs_review',notes:'',issues:['新建卡片，待补全字段']},usage:'army_unit'}
 }
 function startDraft(template,label){
@@ -152,7 +166,7 @@ function renderForm(){
   portraitEditor.load(draft.assets?.front,draft.assets?.portraitCrop);renderDraftBanner();if($('#unit-image-upload'))$('#unit-image-upload').disabled=creating;
   $('#source').textContent='提取依据已归档至 data/extraction-evidence.json，单位运行数据不再重复保存 OCR 和武器 source。';
   $('#issues').replaceChildren();for(const s of draft.review.issues||[]){const n=el('div',typeof s==='string'?s:JSON.stringify(s));n.className='issue';$('#issues').append(n)}
-  renderKeywordParams();
+  renderEquip();renderKeywordParams();
 }
 function renderList(){const q=$('#search').value.trim().toLocaleLowerCase(),f=$('#faction').value,r=$('#review-filter').value;$('#list').replaceChildren();for(const u of catalog.units){if(f&&u.factionId!==Number(f)||r&&u.review.status!==r||q&&!JSON.stringify([u.id,u.name,u.title]).toLocaleLowerCase().includes(q))continue;const b=el('button');b.dataset.id=u.id;b.classList.toggle('active',u.id===selected);const img=el('img');img.src=u.assets.portrait;img.alt='';img.loading='lazy';const text=el('span');text.append(el('strong',u.name.zh||u.name.en),el('small',u.name.en),el('small',(u.title.zh||u.title.en||lookup('ranks',u.rankId)?.name.zh||'军阶待校对')+' · '+(u.review.status==='reviewed'?'已校对':'待校对')));b.append(img,text);b.addEventListener('click',()=>select(u.id));$('#list').append(b)}$('#counts').textContent=catalog.units.length+' 张卡 · '+catalog.units.filter(u=>u.review.status==='reviewed').length+' 已校对'}
 function syncRaw(){if(currentTab!=='json')return true;try{const v=JSON.parse($('#raw-json').value);if(v.id!==selected)throw Error('不可更改单位 ID');if(!v.name||!v.assets||!v.review)throw Error('缺少单位必要字段');draft=v;return true}catch(e){status('JSON 未应用：'+e.message,true);return false}}

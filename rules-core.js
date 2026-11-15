@@ -536,8 +536,9 @@ window.RulesCore = (() => {
       const required = new Set(children.filter(c => c.elementPropertyName === "upgrades")
         .map(c => String(c.id)));
       const reserved = new Set();
+      const localRequired = new Set(u.equipUpgradeIds || []);
       for (const c of Object.values(upgrades)) {
-        if (required.has(String(c.upstream?.id)) && uniqueUpgrade(c)) {
+        if ((localRequired.has(c.id) || required.has(String(c.upstream?.id))) && uniqueUpgrade(c)) {
           for (const key of names(c)) reserved.add(key);
         }
       }
@@ -546,7 +547,7 @@ window.RulesCore = (() => {
       for (const ch of inst.upgrades || []) {
         const c = upgrades[ch.upgradeId];
         if (!c || !uniqueUpgrade(c)) continue;
-        const owner = required.has(String(c.upstream?.id)) ? inst.instanceId : ch.instanceId;
+        const owner = localRequired.has(c.id) || required.has(String(c.upstream?.id)) ? inst.instanceId : ch.instanceId;
         claim(names(c), owner, ch.instanceId, c.name?.zh || c.name?.en || c.id);
       }
     }
@@ -632,11 +633,18 @@ window.RulesCore = (() => {
         seenLocalNames[nm] = true;
       }
       let children = ((pkg.unitRules || {})[String(unit.upstream && unit.upstream.id || "")] || {}).requiredChildren;
+      for (const id of unit.equipUpgradeIds || []) {
+        if (!inst.upgrades.some(ch => ch.upgradeId === id))
+          issue("invalid", "required_child_missing", "缺少必带升级「" + (upgrades[id]?.name?.zh || upgrades[id]?.name?.en || id) + "」", key);
+      }
       if (!children) children = (unit.rules || {}).requiredChildren;
       if (children) {
+        const locallyChecked = new Set((unit.equipUpgradeIds || [])
+          .map(id => String(upgrades[id]?.upstream?.id || "")));
         const have = (inst.upgrades || []).map(u => upgrades[u.upgradeId]).filter(Boolean)
           .map(c => String(c.upstream && c.upstream.id || ""));
         for (const child of children) {
+          if (locallyChecked.has(String(child.id))) continue;
           if (!have.includes(String(child.id))) issue("invalid", "required_child_missing", `缺少必带升级（上游 ID ${child.id}）`, key);
         }
       }

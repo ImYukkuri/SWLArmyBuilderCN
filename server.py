@@ -33,6 +33,12 @@ def validate(card):
     if not card['name']['en'].strip():raise ValueError('英文名称不能为空')
     if 'rules'in card:validate_rules(card['rules'])
     if 'usage'in card and card['usage']not in ['army_unit','counterpart']:raise ValueError('单位用途无效')
+    if 'equipUpgradeIds' in card:
+        ids=card['equipUpgradeIds']
+        if not isinstance(ids,list) or any(not isinstance(v,str) for v in ids) or len(ids)!=len(set(ids)):
+            raise ValueError('Equip 关联必须为不重复的本地升级卡 ID 数组')
+        known={c['id'] for c in json.loads((ROOT/'data/upgrades.json').read_bytes())['cards']}
+        if any(v not in known for v in ids):raise ValueError('Equip 关联的升级卡 ID 不存在，请用选择器选择正面主记录')
     legacy='factionId'not in card
     for key in ['keywords','weapons','factions',*(['affiliations']if legacy else['affiliationIds'])]:
         if not isinstance(card.get(key),list):raise ValueError(key+' 必须为数组')
@@ -81,7 +87,7 @@ def validate(card):
         if legacy:
             if not isinstance(k.get('raw'),str):raise ValueError('词条必须为含 raw 的对象')
         else:check_ref('keywords',k.get('id'))
-        if k.get('action')not in [None,'none','action','free-action']:raise ValueError('行动类型无效')
+        if k.get('action')not in [None,'none','action','double-action','free-action','free-exhaust']:raise ValueError('行动类型无效')
     assets=card.get('assets',{})
     box=assets.get('portraitCrop')
     if not isinstance(box,list)or len(box)!=4 or any(type(n)not in [int,float]for n in box)or not(0<=box[0]<box[2]<=1 and 0<=box[1]<box[3]<=1):raise ValueError('立绘裁剪为 [左,上,右,下]，范围 0–1')
@@ -101,7 +107,12 @@ def make_portrait(card):
         with Image.open(path)as im:
             box=tuple(round(v*(im.width if i%2==0 else im.height))for i,v in enumerate(crop));im.crop(box).save(target,format='WEBP',quality=94)
     card['assets']['portrait']=target.relative_to(ROOT).as_posix()
-DEFAULT_PORTRAIT_CROP=[0.669,0.174,0.998,0.725]
+def default_portrait_crop(width=1040,height=726):
+    # Uniform 83% / 41% centre with a 4:5 portrait, wholly inside the original.
+    pixels=min(width*.32,height*.82*.8)
+    w=pixels/width;h=pixels/.8/height
+    return [.83-w/2,.41-h/2,.83+w/2,.41+h/2]
+DEFAULT_PORTRAIT_CROP=default_portrait_crop()
 def save_unit_image(record_id,image_bytes,revision):
     import io
     if not isinstance(record_id,str)or not re.fullmatch(r'[a-z0-9][a-z0-9_-]{0,150}',record_id):raise ValueError('单位 ID 无效')
@@ -122,7 +133,7 @@ def save_unit_image(record_id,image_bytes,revision):
         if card is None:raise ValueError('单位不存在')
     assets=card.setdefault('assets',{})
     assets['front']=rel
-    assets['portraitCrop']=list(DEFAULT_PORTRAIT_CROP)
+    assets['portraitCrop']=default_portrait_crop(image.width,image.height)
     return commit_card(card,revision)
 
 
@@ -194,6 +205,8 @@ class Handler(BaseHTTPRequestHandler):
             if path=='/api/history':return self.reply(200,[{'file':p.name,'size':p.stat().st_size}for p in sorted(HISTORY.glob('*.json'),reverse=True)])
             files={'/':'index.html','/maintenance':'maintenance.html','/units':'units.html','/upgrades':'upgrades.html','/commands':'commands.html','/armies':'armies.html','/rules':'rules.html',**{'/'+name:name for name in ['index.html','maintenance.html','units.html','upgrades.html','commands.html','armies.html','rules.html','dice-enums.js','combo.js','command-editor.js','app.js','builder.js','builder-model.js','builder-library.js','builder-view.js','builder-home.js','builder.css','rules-core.js','rules.js','rule-editor.js','condition-editor.js','upgrade-editor.js','army-editor.js','editor-common.js','editor-options.js','editor-forms.js','portrait-crop.js','editor-shell.js','editor.css','style.css']}}
             files['/upgrade-faces.js']='upgrade-faces.js'
+            files['/builder-transfer.js']='builder-transfer.js'
+            files['/builder-transfer-ui.js']='builder-transfer-ui.js'
             files.update({'/keywords':'keywords.html','/keywords.html':'keywords.html','/keyword-editor.js':'keyword-editor.js','/keyword-editor.css':'keyword-editor.css'})
             if path in files:p=ROOT/files[path]
             elif path.startswith('/assets/'):

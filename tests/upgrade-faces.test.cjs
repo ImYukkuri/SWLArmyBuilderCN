@@ -45,6 +45,43 @@ test('equipping either face occupies one slot, retains cost/constraints, copies 
  assert.equal(BuilderLibrary.normalize(JSON.parse(JSON.stringify(selected.draft))).units[0].upgrades[0].face,'back');
 });
 
+test('action types belong to the printed face, including an unknown legacy back',()=>{
+ const card=structuredClone(data.upgrades['e-11d-focused-fire']);
+ card.actionTypes=['action'];card.back.actionTypes=['free-exhaust'];
+ const [front,back]=UpgradeFaces.variants(card);
+ assert.deepEqual(front.actionTypes,['action']);assert.deepEqual(back.actionTypes,['free-exhaust']);
+ assert.deepEqual(UpgradeFaces.view(back,'front').actionTypes,['action']);
+ assert.deepEqual(UpgradeFaces.index([card])[card.back.legacyId].actionTypes,['free-exhaust']);
+ delete card.back.actionTypes;
+ assert.equal(UpgradeFaces.view(card,'back').actionTypes,undefined);
+});
+
+test('both mode exposes each printed weapon and keyword without losing instance identity',()=>{
+ for(const c of cards.filter(UpgradeFaces.isDual)){
+  const card={...UpgradeFaces.view(c,'both'),_unitId:'host',_choiceId:'choice'};
+  const [front,back]=UpgradeFaces.visible(card);
+  assert.equal(front._choiceId,'choice');assert.equal(back._unitId,'host');
+  assert.equal(front.weapons,c.weapons);assert.equal(back.weapons,c.back.weapons);
+  assert.equal(front.keywords,c.keywords);assert.equal(back.keywords,c.back.keywords);
+  assert(front.weapons.length>0,c.id);assert(back.weapons.length>0,c.id);
+  assert.equal(UpgradeFaces.visible(UpgradeFaces.view(card,'back')).length,1);
+ }
+});
+
+test('both mode still occupies one slot and survives save, copy, import and normalization',()=>{
+ const army=roster();const selected=BuilderModel.equip(army,data,context(army),'e-11d-focused-fire',false,uid,'both');
+ assert(selected.ok,selected.reason);
+ const inst=selected.draft.units[0];assert.equal(inst.upgrades.length,1);assert.equal(inst.upgrades[0].face,'both');
+ const report=RulesCore.validateArmy(selected.draft,data);
+ const restored=UpgradeFaces.normalizeArmy(BuilderLibrary.normalize(JSON.parse(JSON.stringify(selected.draft))),data);
+ assert.equal(restored.units[0].upgrades[0].face,'both');
+ restored.units[0].upgrades[0].face='front';
+ assert.deepEqual(RulesCore.validateArmy(restored,data),report);
+ const copy=BuilderModel.duplicate(selected.draft,data,'u',uid);assert(copy.ok,copy.reason);
+ assert.equal(copy.draft.units[1].upgrades[0].face,'both');assert.equal(BuilderModel.groups(copy.draft,data).length,1);
+ copy.draft.units[0].upgrades[0].face='back';assert.equal(BuilderModel.groups(copy.draft,data).length,2);
+});
+
 test('batch equipment applies the selected face atomically and a second slot cannot equip its other face',()=>{
  const army=roster();army.units.push({...structuredClone(army.units[0]),instanceId:'u2'});
  const result=BuilderModel.equip(army,data,context(army),'e-11d-focused-fire',true,uid,'back');

@@ -6,6 +6,13 @@ from rule_schema import validate_rules,KNOWN
 ROOT=Path(__file__).resolve().parent;LOCK=threading.Lock()
 CONFIG={'upgrades':('data/upgrades.json','cards'),'armies':('data/armies.json','armies'),'commands':('data/catalog-definitions.json','commands'),'keywords':('data/catalog-definitions.json','keywords')}
 KEYWORD_TIMINGS={'global','setup','deployment','command','activation_start','activation','activation_end','movement','attack','defense','end_round'}
+ACTION_TYPES={'action','double-action','free-action','free-exhaust'}
+
+def validate_action_types(record):
+    # Missing/null is unknown (including old snapshots); [] explicitly means no card action.
+    value=record.get('actionTypes')
+    if value is not None and (not isinstance(value,list)or any(not isinstance(v,str)or v not in ACTION_TYPES for v in value)or len(value)!=len(set(value))):
+        raise ValueError('actionTypes 必须为不重复的行动类型数组或 null')
 def encode(v):return (json.dumps(v,ensure_ascii=False,indent=2)+'\n').encode('utf8')
 def hashof(b):return hashlib.sha256(b).hexdigest()
 def write(path,content):
@@ -21,6 +28,7 @@ def read(kind):
 def validate(kind,card):
     if kind=='keywords':
         if not isinstance(card,dict)or not isinstance(card.get('id'),str)or not re.fullmatch(r'[a-z0-9][a-z0-9_-]{0,150}',card['id']):raise ValueError('词条 ID 只能包含小写字母、数字、下划线和连字符')
+        validate_action_types(card)
         name=card.get('name')
         if not isinstance(name,dict)or any(not isinstance(name.get(lang),str)for lang in ('en','zh'))or not any(name[lang].strip()for lang in ('en','zh')):raise ValueError('请填写至少一个词条名称；中英文名称字段必须是文本')
         for field in ('summary','full'):
@@ -58,6 +66,7 @@ def validate(kind,card):
         return
     if not isinstance(card,dict)or not isinstance(card.get('id'),str)or not re.fullmatch(r'[a-z0-9][a-z0-9_-]{0,150}',card['id']):raise ValueError('记录 ID 无效')
     if kind=='upgrades':
+        validate_action_types(card)
         if not isinstance(card.get('name'),dict)or any(not isinstance(card['name'].get(k),str)for k in ['en','zh'])or not card['name']['en'].strip():raise ValueError('升级卡需要中英文名称字段')
         if card.get('points')is not None and(type(card['points'])is not int or card['points']<0):raise ValueError('费用必须为非负整数或 null')
         if not isinstance(card.get('slotIds'),list)or any(type(x)is not int or not 1<=x<=30 for x in card['slotIds']):raise ValueError('slotIds 必须为槽位 ID 数组')
@@ -80,7 +89,7 @@ def validate(kind,card):
             if any(k in back for k in ('points','slotIds','rules','restrictions','id','dualSided','back')):raise ValueError('费用、槽位与选择规则由两面共用，不能写入背面')
             if back.get('legacyId') is not None and (not isinstance(back['legacyId'],str) or not re.fullmatch(r'[a-z0-9][a-z0-9_-]{0,150}',back['legacyId']) or back['legacyId']==card['id']):raise ValueError('背面旧 ID 无效')
             # Validate the printed face with the same schema and shared constraints.
-            face={**card,**{k:back.get(k) for k in ('name','description','keywords','weapons','assets')}}
+            face={**card,**{k:back.get(k) for k in ('name','description','keywords','weapons','assets','actionTypes')}}
             face.pop('back',None);face.pop('dualSided',None)
             if not card.get('dualSided') and isinstance(face.get('name'),dict) and face['name'].get('en')=='':
                 face['name']={**face['name'],'en':'Unpublished face'}
@@ -104,7 +113,7 @@ def validate(kind,card):
                 if not isinstance(c,dict)or not isinstance(c.get('upgradeId'),str)or not isinstance(c.get('instanceId'),str):raise ValueError('军表升级需 upgradeId 与 instanceId')
                 if c['instanceId']in instances:raise ValueError('升级实例 ID 不能重复')
                 instances.add(c['instanceId'])
-                if c.get('face','front') not in ('front','back'):raise ValueError('升级朝向必须为 front 或 back')
+                if c.get('face','front') not in ('front','back','both'):raise ValueError('升级显示状态必须为 front、back 或 both')
         validate_rules(card.get('rules',{}))
 def save(kind,card,revision,create=False):
     validate(kind,card);filename,key=CONFIG[kind];path=ROOT/filename

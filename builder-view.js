@@ -1,20 +1,24 @@
 /* Shared roster, candidate and detail presentation. */
+const ACTION_LABEL = {action: '行动', 'double-action': '双行动',
+  'free-action': '免费行动', 'free-exhaust': '免费行动：横置'};
 const node = (tag, cls, text) => {
   const n = el(tag, text);
   if (cls) n.className = cls;
-  if (typeof text === "string" && /行动/.test(text)) n.replaceChildren(actionText(text));
+  if (typeof text === "string" && /行动|免费(?:行动|动)/.test(text)) n.replaceChildren(actionText(text));
   return n;
 };
 // Shared by plain labels, rule text and icon substitutions; longest label wins.
 function actionText(text) {
   const out = document.createDocumentFragment();
   let pos = 0;
-  for (const match of text.matchAll(/免费行动(?:\s*[：:]\s*横置)?|行动/g)) {
+  for (const match of text.matchAll(/免费(?:行动|动)(?:(?:\s*[：:]\s*|并)横置)?|普通行动|双行动|行动/g)) {
     out.append(document.createTextNode(text.slice(pos, match.index)));
     const mark = document.createElement("span");
     mark.className = "action-mark";
-    mark.textContent = match[0].replace(/\s*[：:]\s*/, "：");
-    mark.dataset.action = match[0].includes("横置") ? "free-exhaust" : match[0].startsWith("免费") ? "free" : "normal";
+    const type = match[0].includes('横置') ? 'free-exhaust' : match[0].startsWith('免费') ? 'free-action'
+      : match[0] === '双行动' ? 'double-action' : 'action';
+    mark.textContent = ACTION_LABEL[type];
+    mark.dataset.action = type === 'free-action' ? 'free' : type === 'action' ? 'normal' : type;
     out.append(mark);
     pos = match.index + match[0].length;
   }
@@ -69,6 +73,11 @@ function canDuplicate(group) {
 
 function ruleInfo(k) {
   const item = typeof k === "string" ? { id: k } : k;
+  if (item._actionUpgrade) {
+    const c = item._actionUpgrade;
+    return {item, label: named(c.name), ref: {name: c.name, timing: ['action'],
+      summary: textParts(named(c.description))}};
+  }
   const ref = keywordRef(item.id);
   if (!ref)
     return { item, ref: null, label: String(item.label || item.raw || item.id || "") };
@@ -83,7 +92,7 @@ function ruleInfo(k) {
 
 function proseNode(raw) {
   const box = node("span");
-  const text = textParts(raw);
+  const text = textParts(raw).replace(/\{@icon\.action\}\s*\{@icon\.action\}/g, '{@icon.double-action}');
   const labels = {
     "rank-commander": "指挥官",
     "rank-operative": "特工",
@@ -92,6 +101,7 @@ function proseNode(raw) {
     "rank-support": "支援",
     "rank-heavy": "重型",
     action: "行动",
+    "double-action": "双行动",
     "free-action": "免费行动",
     hit: "命中",
     critical: "暴击",
@@ -340,7 +350,7 @@ function renderBrowser() {
     $("#browser-context").textContent =
       named(u.name) + " / " + slotName(browser.slotKey) + "槽位";
     $("#browser-category").textContent = "升级资料库";
-    currentCandidates = Object.values(data.upgrades).flatMap(UpgradeFaces.variants).map((c) => displayUpgrade(c, inst)).filter((c) =>
+    currentCandidates = Object.values(data.upgrades).map((c) => displayUpgrade(UpgradeFaces.view(c, 'front'), inst)).filter((c) =>
       accessOf(c).includes(browser.slotKey),
     );
   } else {
@@ -484,13 +494,15 @@ function renderDeck() {
           preview.onclick = () => showImage(card);
           actions.append(preview);
         }
-        const remove = node("button", null, "×");
+        const remove = node("button", "card-remove");
+        remove.append(uiIcon("trash", "删除"));
         remove.setAttribute("aria-label", `移除${label}第 ${index + 1} 张`);
-        remove.onclick = () => {
+        remove.onclick = (e) => {
+          e.stopPropagation();
           army.deck = BuilderLibrary.setDeckCard(army.deck, kind, index, null);
           render();
         };
-        actions.append(remove);
+        slot.append(remove);
         slot.append(actions);
       }
       slots.append(slot);
@@ -509,7 +521,7 @@ function renderPoints(report) {
     node("span", "remaining", "剩余 " + (lim - report.basePoints) + " 分"),
   );
   $("#points-fill").style.width = Math.min(100, (report.basePoints / lim) * 100) + "%";
-  $("#summary-units").textContent = army.units.length;
+  $("#summary-activations").textContent = army.units.length;
   $("#summary-commands").replaceChildren(
     document.createTextNode(army.commandIds.filter(Boolean).length),
     node("span", null, " / " + commandSlots()),
@@ -574,7 +586,6 @@ function statMatrix(u) {
   const bar = node("dl", "attribute-band");
   const s = u.stats || {};
   const fields = [
-    ["模型", "models", s.models],
     ["生命", "wounds", s.wounds ?? s.woundsSymbol],
     ["防御", "defense", s.defenseDie],
     s.resilience != null || s.resilienceSymbol
@@ -626,61 +637,105 @@ function perUnitPoints(inst) {
 }
 
 function displayUpgrade(c, inst = null, choice = null) {
-  if (choice && UpgradeFaces.isDual(c)) {
+  if (choice && c) {
     c = {...UpgradeFaces.view(c, choice.face), _unitId: inst.instanceId, _choiceId: choice.instanceId};
   }
   const host = data.units[inst?.unitId || army?.units.find((i) => i.instanceId === browser?.unitInstanceId)?.unitId];
   return BuilderModel.upgradePresentation(c, data, host);
 }
 
-function faceLabel(c) { return c._face === "back" ? "反面" : "正面"; }
+function faceLabel(c) { return {front: '正面', back: '反面', both: '双面'}[c._face || 'front']; }
+function originLabel(c) { return named(c.name) + (UpgradeFaces.isDual(c) ? ' · ' + faceLabel(c) : ''); }
+function printedUpgrades(c) { return UpgradeFaces.visible(c).map(side => displayUpgrade(side)); }
 function liveUpgrade(c) {
   if (!c._choiceId) return c;
   const inst = army.units.find(i => i.instanceId === c._unitId);
   const choice = inst?.upgrades.find(ch => ch.instanceId === c._choiceId);
   return choice ? displayUpgrade(data.upgrades[choice.upgradeId], inst, choice) : c;
 }
-function switchUpgradeFace(c, face) {
+function switchUpgradeFace(c, face, anchor = null) {
   if (!UpgradeFaces.isDual(c)) return c;
   if (!c._choiceId) return UpgradeFaces.view(c, face);
   const inst = army.units.find(i => i.instanceId === c._unitId);
   const choice = inst?.upgrades.find(ch => ch.instanceId === c._choiceId);
   if (!choice) return c;
+  face = UpgradeFaces.mode(face);
+  if ((choice.face || 'front') === face) return liveUpgrade(c);
+  const oldTop = anchor?.getBoundingClientRect().top;
+  const sourceDialog = anchor?.closest('dialog');
+  const context = anchor?.closest('.compact-slot') ? '.compact-slot' : '.selected-upgrades';
+  const scrollHost = sourceDialog || (() => {
+    for (let p = anchor?.parentElement; p; p = p.parentElement)
+      if (/(auto|scroll)/.test(getComputedStyle(p).overflowY) && p.scrollHeight > p.clientHeight) return p;
+    return document.scrollingElement;
+  })();
+  const oldScroll = scrollHost.scrollTop;
   choice.face = face;
   hideRule(false);
-  render();
+  // A face changes presentation only. Keep unrelated units, selectors and deck DOM intact.
+  renderUnits({changedInstanceId: inst.instanceId});
   if (unitDetail.open) {
     const group = groupedUnits().find(g => g.instances.some(i => i.instanceId === c._unitId));
-    if (group) showUnitDetail(group);
+    const current = unitDetail.querySelector('.roster-unit');
+    if (group && current) {
+      if (current.dataset.instances === JSON.stringify(group.instances.map(i => i.instanceId)))
+        refreshUnitFaces(current, group, true);
+      else current.replaceWith(rosterCard(group, {detail: true}));
+    }
+  }
+  save();
+  const root = sourceDialog || $('#army-units');
+  const target = [...root.querySelectorAll(context + ' .face-control')]
+    .find(el => el.dataset.choiceId === c._choiceId)?.querySelector(`[data-face="${face}"]`);
+  if (target && oldTop != null) {
+    scrollHost.scrollTop = oldScroll;
+    scrollHost.scrollTop += target.getBoundingClientRect().top - oldTop;
+    target.focus({preventScroll: true});
   }
   return liveUpgrade(c);
 }
 function faceControl(c, {tabs = false, onChange = null} = {}) {
   const wrap = node("span", tabs ? "face-tabs" : "face-control");
   if (!UpgradeFaces.isDual(c)) return wrap;
-  wrap.setAttribute("aria-label", "双面升级卡朝向");
-  const change = (face) => {
-    const next = switchUpgradeFace(c, face);
+  wrap.setAttribute('role', 'group');
+  wrap.setAttribute("aria-label", "双面升级卡显示状态");
+  if (c._choiceId) wrap.dataset.choiceId = c._choiceId;
+  const change = (face, anchor) => {
+    const next = switchUpgradeFace(c, face, anchor);
     if (onChange) onChange(next);
   };
-  if (tabs) {
-    wrap.append(node("strong", "face-indicator", "双面卡 · 当前" + faceLabel(c)));
-    for (const face of ["front", "back"]) {
-      const b = node("button", "face-tab", face === "front" ? "正面" : "反面");
-      b.type = "button";
-      b.setAttribute("aria-pressed", String((c._face || "front") === face));
-      b.onclick = e => { e.stopPropagation(); change(face); };
-      wrap.append(b);
-    }
-  } else {
-    const b = node("button", "flip-upgrade", faceLabel(c) + " ⇄");
+  if (tabs) wrap.append(node("strong", "face-indicator", "双面卡 · 当前" + faceLabel(c)));
+  for (const face of ['front', 'back', 'both']) {
+    const label = faceLabel({_face: face});
+    const b = node("button", tabs ? 'face-tab' : 'flip-upgrade', label);
     b.type = "button";
-    b.title = "切换到" + (c._face === "back" ? "正面" : "反面");
-    b.setAttribute("aria-label", named(c.name) + "，当前" + faceLabel(c) + "，" + b.title);
-    b.onclick = e => { e.stopPropagation(); change(c._face === "back" ? "front" : "back"); };
+    b.dataset.face = face;
+    b.title = face === 'both' ? '同时查看正反面，仍占一个槽位' : '显示' + label;
+    b.setAttribute('aria-pressed', String((c._face || 'front') === face));
+    b.onclick = e => { e.stopPropagation(); change(face, b); };
     wrap.append(b);
   }
   return wrap;
+}
+
+// Local preview uses no-store responses. Retain these fourteen small face images
+// for this page session instead of fetching them again on every face change.
+const faceImageCache = new Map();
+function cachedFaceImage(path) {
+  const src = assetPath(path);
+  if (!faceImageCache.has(src)) faceImageCache.set(src, fetch(src).then(r => {
+    if (!r.ok) throw Error('卡图载入失败');
+    return r.blob();
+  }).then(blob => URL.createObjectURL(blob)).catch(() => {faceImageCache.delete(src); return src;}));
+  return faceImageCache.get(src);
+}
+function setCardImage(image, path, card) {
+  if (!path) return;
+  image.dataset.source = assetPath(path);
+  if (!UpgradeFaces.isDual(card)) {image.src = assetPath(path); return;}
+  for (const side of UpgradeFaces.variants(card))
+    if (side.assets?.front) cachedFaceImage(side.assets.front);
+  cachedFaceImage(path).then(src => {image.src = src;});
 }
 
 function battleCardArt(card) {
@@ -746,16 +801,28 @@ function artButton(c, cls = "unit-art") {
   b.classList.toggle("has-portrait", !!c.assets?.portrait);
   b.setAttribute("aria-label", "查看" + named(c.name) + "完整卡图");
   b.title = "查看完整卡图";
-  const src = c.assets?.portrait || c.assets?.front || c.image;
+  const slotCrop = cls.split(' ').includes('slot-art');
+  const src = slotCrop ? c.assets?.front || c.assets?.portrait || c.image
+    : c.assets?.portrait || c.assets?.front || c.image;
   if (!src) {
     b.append(node("span", null, "暂无卡图"));
     b.disabled = true;
     return b;
   }
   const im = node("img");
-  im.src = assetPath(src);
+  setCardImage(im, src, c);
   im.alt = named(c.name) + "卡图";
   im.loading = "lazy";
+  if (slotCrop) {
+    // Fit a square inside the top 40% of the full art, centred horizontally.
+    // Percent dimensions avoid canvas work and preserve lazy loading.
+    im.onload = () => {
+      const size = Math.min(im.naturalWidth, im.naturalHeight * .4);
+      im.style.width = im.naturalWidth / size * 100 + '%';
+      im.style.height = im.naturalHeight / size * 100 + '%';
+      im.style.left = -(im.naturalWidth - size) / 2 / size * 100 + '%';
+    };
+  }
   im.onerror = () => {
     im.remove();
     b.append(node("span", null, "卡图暂不可用"));
@@ -770,6 +837,8 @@ function artButton(c, cls = "unit-art") {
 
 function showImage(c) {
   c = liveUpgrade(displayUpgrade(c));
+  if (UpgradeFaces.isDual(c)) return showDualImage(c);
+  delete imageDialog.dataset.cardKey;
   imageDialog.replaceChildren();
   const h = node("div", "dialog-head");
   h.append(node("h2", null, named(c.name)));
@@ -800,6 +869,40 @@ function showImage(c) {
   showDialog(imageDialog);
 }
 
+function showDualImage(c) {
+  const key = [c.id, c._unitId, c._choiceId].join(':');
+  const scroll = imageDialog.scrollTop;
+  const restoreTabFocus = imageDialog.contains(document.activeElement) && document.activeElement.matches('.face-tab');
+  if (imageDialog.dataset.cardKey !== key) {
+    imageDialog.replaceChildren();
+    imageDialog.dataset.cardKey = key;
+    const h = node('div', 'dialog-head');
+    h.append(node('h2'));
+    const close = node('button', null, '×');
+    close.setAttribute('aria-label', '关闭卡图');close.onclick = () => imageDialog.close();
+    h.append(close);imageDialog.append(h, node('span', 'face-tabs'));
+    for (const side of UpgradeFaces.variants(c)) {
+      const section = node('section', 'image-face');section.dataset.face = side._face;
+      section.append(node('h3', 'image-face-title', faceLabel(side) + ' · ' + named(side.name)));
+      const im = node('img', 'full-card-image');
+      im.alt = faceLabel(side) + ' · ' + named(side.name) + '完整卡图';
+      setCardImage(im, side.assets?.front, side);section.append(im);
+      const effect = upgradeEffect(side);
+      if (effect.childNodes.length) section.append(effect);
+      if (side.keywords?.length) section.append(ruleTags(side.keywords));
+      if (side.weapons?.length) section.append(weaponRows(side.weapons));
+      imageDialog.append(section);
+    }
+  }
+  imageDialog.querySelector('h2').textContent = named(c.name);
+  imageDialog.querySelector('.face-tabs').replaceWith(faceControl(c, {tabs: true, onChange: showDualImage}));
+  for (const section of imageDialog.querySelectorAll('.image-face'))
+    section.hidden = c._face !== 'both' && section.dataset.face !== c._face;
+  showDialog(imageDialog);
+  imageDialog.scrollTop = scroll;
+  if (restoreTabFocus) imageDialog.querySelector(`.face-tab[data-face="${c._face}"]`)?.focus({preventScroll: true});
+}
+
 function upgradeEffect(c) {
   const effect = node("div", "upgrade-effect");
   const description = textParts(named(c.description));
@@ -807,7 +910,6 @@ function upgradeEffect(c) {
   if (c.counterpart) {
     const heading = node("p", "counterpart-heading", "伙伴单位 · " + named(c.counterpart.name));
     const stats = c.counterpart.stats;
-    if (stats?.models != null) heading.append(node("span", null, "模型 " + stats.models));
     if (stats?.wounds != null) heading.append(node("span", null, "生命 " + stats.wounds));
     effect.append(heading);
     for (const k of uniqueRules(c.counterpart.keywords)) {
@@ -863,13 +965,18 @@ function keywordEntries(inst) {
     const key = keywordKey(item);
     if (!map.has(key)) map.set(key, { ...item, origins: [] });
     const current = map.get(key);
-    if (origin && !current.origins.some((x) => x.id === origin.id))
+    if (origin && !current.origins.some((x) => x.id === origin.id && x._face === origin._face))
       current.origins.push(origin);
   };
   for (const k of u?.keywords || []) add(k, null);
   for (const choice of inst.upgrades) {
-    const c = displayUpgrade(data.upgrades[choice.upgradeId], inst, choice);
-    for (const k of c?.keywords || []) add(k, c);
+    const card = displayUpgrade(data.upgrades[choice.upgradeId], inst, choice);
+    for (const c of card ? printedUpgrades(card) : []) {
+      for (const k of c.keywords || []) add(k, c);
+      if (c.actionTypes?.length) map.set('upgrade:' + choice.instanceId + ':' + c._face, {
+        id: 'upgrade-action:' + choice.instanceId + ':' + c._face, actionTypes: c.actionTypes, _actionUpgrade: c,
+      });
+    }
   }
   return [...map.values()];
 }
@@ -877,6 +984,7 @@ function keywordEntries(inst) {
 function uniqueRules(ks) {
   const seen = new Set();
   return (ks || []).filter((k) => {
+    if ((typeof k === 'string' ? k : k?.id) === 'equip') return false;
     const key = keywordKey(typeof k === "string" ? { id: k } : k);
     if (seen.has(key)) return false;
     seen.add(key);
@@ -884,7 +992,7 @@ function uniqueRules(ks) {
   });
 }
 
-function tag(k, { forceOpen = false, timing = false } = {}) {
+function tag(k, { forceOpen = false, timing = false, showOrigin = true } = {}) {
   const info = ruleInfo(k);
   const key = JSON.stringify([keywordKey(info.item), (k.origins || []).map((c) => c.id)]);
   const outer = node("span", "rule-tag");
@@ -892,22 +1000,25 @@ function tag(k, { forceOpen = false, timing = false } = {}) {
   outer.dataset.ruleKey = key;
   const main = node("button", "rule-tag-main");
   main.type = "button";
-  if (timing) main.append(timingMarkers(info.ref?.timing));
-  if (info.item.action && info.item.action !== "none")
-    main.append(
-      node(
-        "span",
-        "rule-action",
-        info.item.action === "free-action" ? "免费行动" : "行动",
-      ),
-    );
+  const actions = BuilderModel.keywordActionTypes(info.item, data.defs);
+  if (timing) main.append(timingMarkers(ruleTimings(k)));
+  // A generic keyword may have several printed variants. Show only a known
+  // per-card type here, never imply that one ability has several costs.
+  const sourceTypes = [...new Set((k.origins || []).flatMap(c => c.actionTypes || []))];
+  const printedTypes = ACTION_LABEL[info.item.action] || info.item.actionTypes ? actions
+    : sourceTypes.length === 1 && actions.length ? sourceTypes : actions.length === 1 ? actions : [];
+  if (printedTypes.length) {
+    const badge = node('span', 'rule-action');
+    badge.textContent = printedTypes.map(t => ACTION_LABEL[t]).join(' / ');
+    main.append(badge);
+  }
   main.append(actionText(info.label));
-  if (k.origins?.length)
+  if (showOrigin && k.origins?.length)
     main.append(
       node(
         "small",
         "rule-origin",
-        k.origins.map((c) => "来自 " + named(c.name)).join(" / "),
+        k.origins.map((c) => "来自 " + originLabel(c)).join(" / "),
       ),
     );
   main.setAttribute("aria-haspopup", "dialog");
@@ -943,12 +1054,15 @@ function tag(k, { forceOpen = false, timing = false } = {}) {
   return outer;
 }
 
+function ruleTimings(k) {
+  return BuilderModel.keywordActionTypes(k, data.defs).length ? ['action'] : ruleInfo(k).ref?.timing || [];
+}
 function phaseRules(ks, forceOpen = false) {
   const list = node("div", "phase-rules");
   const order = Object.keys(TIMING_LABEL),
     groups = new Map();
   for (const k of uniqueRules(ks)) {
-    const ts = (ruleInfo(k).ref?.timing || []).filter(Boolean);
+    const ts = ruleTimings(k).filter(Boolean);
     const key = ts.length
       ? [...new Set(ts)].sort((a, b) => order.indexOf(a) - order.indexOf(b)).join("|")
       : "unclassified";
@@ -960,14 +1074,11 @@ function phaseRules(ks, forceOpen = false) {
   )) {
     const row = node("div", "phase-row");
     row.dataset.phase = key.split("|")[0];
-    const label = node(
-      "div",
-      "phase-title",
-      key
-        .split("|")
-        .map((t) => TIMING_LABEL[t] || t)
-        .join(" / "),
-    );
+    const label = node("div", "phase-title");
+    for (const [index, timing] of key.split("|").entries()) {
+      if (index) label.append(node("span", "phase-separator", "/"));
+      label.append(node("span", "phase-name", TIMING_LABEL[timing] || timing));
+    }
     const tags = node("div", "phase-tags");
     for (const k of entries) tags.append(tag(k, { forceOpen }));
     row.append(label, tags);
@@ -1011,7 +1122,8 @@ function weaponBlock(w, origin, forceOpen = false, timing = false) {
   name.append(node("b", null, named(w.name)));
   if (w.name?.zh && w.name?.en && w.name.zh !== w.name.en)
     name.append(node("span", "weapon-english", w.name.en));
-  if (origin) name.append(node("small", "weapon-origin", "来自 " + named(origin.name)));
+  if (origin) name.append(node("small", "weapon-origin", "来自 " + originLabel(origin)));
+  if (origin?._face) card.dataset.face = origin._face;
   head.append(name);
   const r = w.range;
   if (r?.min != null) {
@@ -1054,7 +1166,7 @@ function unitWeapons(inst, forceOpen = false, timing = false) {
       ...(u?.weapons || []).map((w) => ({ w, origin: null })),
       ...inst.upgrades.flatMap((ch) => {
         const c = displayUpgrade(data.upgrades[ch.upgradeId], inst, ch);
-        return (c?.weapons || []).map((w) => ({ w, origin: c }));
+        return (c ? printedUpgrades(c) : []).flatMap(side => (side.weapons || []).map(w => ({w, origin: side})));
       }),
     ];
   const out = node("div", "weapon-groups");
@@ -1081,19 +1193,39 @@ function weaponRows(ws) {
   return wrap;
 }
 
-function upgradeDetail(c, { forceOpen = false, compact = false } = {}) {
+function upgradeDetail(c, { forceOpen = false, compact = false, removable = false, facePart = false } = {}) {
   c = displayUpgrade(c);
+  if (UpgradeFaces.isDual(c) && c._face === 'both') {
+    const box = node('article', 'upgrade-detail dual-upgrade');
+    box.dataset.choiceId = c._choiceId || '';
+    for (const [index, side] of printedUpgrades(c).entries()) {
+      const part = upgradeDetail(side, {forceOpen, compact, facePart: true});
+      part.classList.add('upgrade-face-part');part.dataset.face = side._face;
+      const line = part.querySelector('.upgrade-line');
+      if (!index) {
+        line.append(faceControl(c));
+        line.append(upgradeEntryActions(c, removable));
+      }
+      box.append(part);
+    }
+    return box;
+  }
   const box = node("article", "upgrade-detail");
+  if (c._choiceId) box.dataset.choiceId = c._choiceId;
+  const body = node("div", "upgrade-body");
+  const art = artButton(c, "upgrade-art");
+  box.classList.toggle("has-upgrade-art", !art.disabled);
   const h = node("div", "upgrade-line");
-  h.append(artButton(c, "upgrade-art"), node("b", null, named(c.name)));
+  h.append(node("b", null, named(c.name)));
   if (c.name?.zh && c.name.en && c.name.zh !== c.name.en)
     h.append(node("span", "upgrade-english", c.name.en));
   h.append(usageBadges(c));
-  if (UpgradeFaces.isDual(c)) h.append(faceControl(c));
-  if (c.points != null) h.append(node("span", "upgrade-cost", c.points + " 分"));
-  box.append(h);
+  if (facePart) h.append(node('span', 'face-badge', faceLabel(c)));
+  else if (UpgradeFaces.isDual(c)) h.append(faceControl(c));
+  if (!facePart) h.append(upgradeEntryActions(c, removable));
+  body.append(h);
   const effect = upgradeEffect(c);
-  if (effect.childNodes.length) box.append(effect);
+  if (effect.childNodes.length) body.append(effect);
   if (!compact) {
     const req = textParts(
       c.restrictions?.text?.zh || c.requirementsText || c.restrictions?.text?.en,
@@ -1101,13 +1233,13 @@ function upgradeDetail(c, { forceOpen = false, compact = false } = {}) {
     if (req) {
       const p = node("div", "upgrade-requirements", "使用要求：");
       p.append(proseNode(req));
-      box.append(p);
+      body.append(p);
     }
   }
   const footer = node("div", "upgrade-tags");
   for (const k of uniqueRules(c.keywords))
     footer.append(
-      tag({ ...(typeof k === "string" ? { id: k } : k), origins: [c] }, { forceOpen }),
+      tag({ ...(typeof k === "string" ? { id: k } : k), origins: [c] }, { forceOpen, showOrigin: false }),
     );
   if (c.weapons?.length) {
     const b = node(
@@ -1119,10 +1251,26 @@ function upgradeDetail(c, { forceOpen = false, compact = false } = {}) {
       e.stopPropagation();
       showWeapons(c);
     };
-    footer.append(b);
+    body.append(b);
   }
+  box.append(body, art);
   if (footer.children.length) box.append(footer);
   return box;
+}
+
+function upgradeEntryActions(c, removable) {
+  const actions = node('span', 'upgrade-entry-actions');
+  if (c.points != null) actions.append(node('span', 'upgrade-cost', c.points + ' 分'));
+  if (removable && c._choiceId) actions.append(upgradeRemoveButton(c));
+  return actions;
+}
+
+function upgradeRemoveButton(c) {
+  const remove = node('button', 'upgrade-remove');
+  remove.append(uiIcon('trash', '删除'));
+  remove.setAttribute('aria-label', '移除' + named(c.name));
+  remove.onclick = e => {e.stopPropagation(); removeUpgrade(c);};
+  return remove;
 }
 
 function showWeapons(c) {
@@ -1143,11 +1291,51 @@ function hideRule(restoreFocus = true) {
   if (restoreFocus) ruleAnchor?.focus?.();
 }
 
+function removeUpgrade(c) {
+  const inst = army.units.find(i => i.instanceId === c._unitId);
+  if (!inst) return;
+  inst.upgrades = inst.upgrades.filter(ch => ch.instanceId !== c._choiceId);
+  hideRule(false);
+  setStatus('已从 1 个单位移除 ' + named(c.name));
+  render();
+  if (unitDetail.open) {
+    const group = groupedUnits().find(g => g.instances.some(i => i.instanceId === c._unitId));
+    if (group) showUnitDetail(group);
+  }
+}
+
+function presentRulePopover(anchor, close) {
+  ruleAnchor = anchor;
+  const parent = anchor?.closest('dialog') || modalStack.filter(d => d.open).at(-1);
+  (parent || document.body).append(rulePop);
+  rulePop.hidden = false;
+  positionRulePopover(anchor);
+  close.focus();
+}
+
+function openUpgradeRule(card, anchor) {
+  const c = liveUpgrade(card);
+  rulePop.replaceChildren();
+  rulePop.setAttribute('aria-label', '升级卡效果');
+  const header = node('div', 'popover-heading');
+  const title = node('div');
+  title.append(node('h3', null, named(c.name)), node('span', 'popover-english', c.name.en));
+  const close = node('button', null, '×');
+  close.setAttribute('aria-label', '关闭升级卡效果');
+  close.onclick = () => hideRule();
+  header.append(title, close);
+  rulePop.append(header, node('p', 'popover-timing', (c.actionTypes || []).map(t => ACTION_LABEL[t]).join(' / ')),
+    upgradeDetail(c));
+  presentRulePopover(anchor, close);
+}
+
 function openRule(k, anchor) {
   if (typeof k === "string") k = { id: k };
+  if (k._actionUpgrade) return openUpgradeRule(k._actionUpgrade, anchor);
   const { ref, label } = ruleInfo(k);
   ruleAnchor = anchor;
   rulePop.replaceChildren();
+  rulePop.setAttribute('aria-label', '词条规则');
   const header = node("div", "popover-heading");
   const title = node("div");
   title.append(node("h3", null, label));
@@ -1161,7 +1349,7 @@ function openRule(k, anchor) {
     node(
       "p",
       "popover-timing",
-      (ref?.timing || []).map((t) => TIMING_LABEL[t] || t).join(" / "),
+      ruleTimings(k).map((t) => TIMING_LABEL[t] || t).join(" / "),
     ),
   );
   const tabs = node("div", "rule-tabs");
@@ -1203,16 +1391,12 @@ function openRule(k, anchor) {
   for (const c of k.origins || []) {
     const src = node("section", "popover-source");
     src.append(
-      node("h4", null, "来自 " + named(c.name)),
+      node("h4", null, "来自 " + originLabel(c)),
       upgradeDetail(c, { compact: false }),
     );
     rulePop.append(src);
   }
-  const parent = anchor?.closest("dialog") || modalStack.filter((dialog) => dialog.open).at(-1);
-  (parent || document.body).append(rulePop);
-  rulePop.hidden = false;
-  positionRulePopover(anchor);
-  close.focus();
+  presentRulePopover(anchor, close);
 }
 
 function positionRulePopover(anchor) {
@@ -1256,7 +1440,7 @@ function expandedContents(inst, { forceOpen = false } = {}) {
     section.append(node("h4", "compact-section-title", "升级卡"));
     for (const ch of inst.upgrades) {
       const c = displayUpgrade(data.upgrades[ch.upgradeId], inst, ch);
-      if (c) section.append(upgradeDetail(c, { forceOpen, compact: true }));
+      if (c) section.append(upgradeDetail(c, { forceOpen, compact: true, removable: true }));
     }
     out.append(section);
   }
@@ -1284,6 +1468,8 @@ function rosterCard(group, { detail = false } = {}) {
   card.dataset.unitId = u.id;
   card.dataset.count = instances.length;
   card.dataset.instance = inst.instanceId;
+  card.dataset.groupKey = group.key;
+  card.dataset.instances = JSON.stringify(instances.map(i => i.instanceId));
   const h = briefHeader(u, inst, group, { detail });
   const toggle = node("button", "expand-unit", isOpen ? "⌃" : "⌄");
   toggle.setAttribute("aria-label", (isOpen ? "收起" : "展开") + named(u.name));
@@ -1332,14 +1518,35 @@ function showUnitDetail(group) {
   showDialog(unitDetail);
 }
 
-function renderUnits() {
+function refreshUnitFaces(card, group, detail = false) {
+  card.dataset.groupKey = group.key;
+  card.querySelector('.compact-slots')?.replaceWith(slotStrip(group, {readonly: detail}));
+  card.querySelector('.unit-expanded')?.replaceWith(expandedContents(group.instances[0], {forceOpen: detail}));
+  return card;
+}
+function renderUnits({changedInstanceId = null} = {}) {
   const list = $("#army-units");
   list.classList.add("grouped-army-list");
-  list.replaceChildren();
-  for (const g of groupedUnits()) list.append(rosterCard(g));
-  const b = node("button", "add-unit", "＋ 添加单位");
-  b.onclick = () => selectContext({ mode: "units", rank: 2 }, b);
-  list.append(b);
+  if (!changedInstanceId) list.replaceChildren();
+  const existing = new Map([...list.querySelectorAll(':scope > .roster-unit')].map(n => [n.dataset.groupKey, n]));
+  const byMembers = new Map([...existing.values()].map(n => [n.dataset.instances, n]));
+  const wanted = groupedUnits().map(g => {
+    const members = JSON.stringify(g.instances.map(i => i.instanceId));
+    if (changedInstanceId && g.instances.some(i => i.instanceId === changedInstanceId) && byMembers.has(members))
+      return refreshUnitFaces(byMembers.get(members), g);
+    const current = existing.get(g.key);
+    const sameMembers = current?.dataset.instances === members;
+    return sameMembers && !g.instances.some(i => i.instanceId === changedInstanceId) ? current : rosterCard(g);
+  });
+  const b = list.querySelector(':scope > .add-unit') || node("button", "add-unit", "＋ 添加单位");
+  b.onclick = () => selectContext({ mode: "units", rank: 2 }, b);wanted.push(b);
+  // Reconcile in place: never detach unaffected unit nodes or their loaded images.
+  let cursor = list.firstChild;
+  for (const child of wanted) {
+    if (child === cursor) cursor = cursor.nextSibling;
+    else list.insertBefore(child, cursor);
+  }
+  for (const child of [...list.children]) if (!wanted.includes(child)) child.remove();
 }
 
 function timingMarkers(timings) {
@@ -1349,6 +1556,7 @@ function timingMarkers(timings) {
   markers.setAttribute("aria-label", "时机：" + markers.title);
   for (const t of list) {
     const mark = node("span", "timing-mark", TIMING_LABEL[t] || t);
+    mark.textContent = TIMING_LABEL[t] || t;
     mark.dataset.timing = t;
     markers.append(mark);
   }
@@ -1356,7 +1564,9 @@ function timingMarkers(timings) {
 }
 function ruleTags(keywords, options = {}) {
   const tags = node("div", "candidate-tags");
-  for (const k of uniqueRules(keywords)) tags.append(tag(k, options));
+  const entries = uniqueRules(keywords);
+  if (options.timing) entries.sort((a,b) => Number(ruleTimings(b).includes('action')) - Number(ruleTimings(a).includes('action')));
+  for (const k of entries) tags.append(tag(k, options));
   return tags;
 }
 function selectableCandidate(element, card, state) {
@@ -1410,7 +1620,7 @@ function upgradeCandidate(c) {
   if (effect.childNodes.length) item.append(effect);
   const tags = node("div", "upgrade-tags");
   for (const k of uniqueRules(c.keywords))
-    tags.append(tag({ ...(typeof k === "string" ? { id: k } : k), origins: [c] }));
+    tags.append(tag({ ...(typeof k === "string" ? { id: k } : k), origins: [c] }, { showOrigin: false }));
   if (tags.children.length) item.append(tags);
   if (c.weapons?.length) {
     const b = node(
@@ -1587,6 +1797,7 @@ function slotStrip(group, { readonly = false } = {}) {
     const locked =
       !chosen && rec.unlockedBy && !instUpstreamIds(inst).has(String(rec.unlockedBy));
     row.dataset.slotIndex = index;
+    if (c?._face === 'both') row.classList.add('both-faces');
     if (c) row.append(artButton(c, "slot-art"));
     const label = node(readonly || orphan ? "span" : "button", "slot-name");
     label.append(
@@ -1594,6 +1805,7 @@ function slotStrip(group, { readonly = false } = {}) {
       document.createTextNode(name),
     );
     if (c?.points != null) label.append(node("span", "slot-cost", c.points + "分"));
+    if (c?._face === 'both') label.append(node('span', 'face-badge', '正面'));
     if (rec?.required && !chosen) label.append(node("small", "required-slot", "必选"));
     if (orphan) label.title = "当前配置无匹配槽位；已保留，可移除";
     else if (!readonly) {
@@ -1611,11 +1823,16 @@ function slotStrip(group, { readonly = false } = {}) {
       remove.setAttribute("aria-label", "从其中1个单位移除" + name);
       remove.onclick = (e) => {
         e.stopPropagation();
-        inst.upgrades = inst.upgrades.filter((ch) => ch !== chosen);
-        setStatus("已从 1 个单位移除 " + name);
-        render();
+        if (c) removeUpgrade(c);
+        else {inst.upgrades = inst.upgrades.filter(ch => ch !== chosen); render();}
       };
       row.append(remove);
+    }
+    if (c?._face === 'both') {
+      const back = UpgradeFaces.view(c, 'back'), line = node('span', 'upgrade-line slot-back-line');
+      line.append(artButton(back, 'slot-art'), node('span', 'slot-back-name', named(back.name)),
+        node('span', 'face-badge', '反面'));
+      row.append(line);
     }
     strip.append(row);
     if (chosen) displayed.add(chosen);
@@ -1679,13 +1896,15 @@ function commandCard(card, { state, slotIndex = null }) {
   const title = node("div", "command-title-mask");
   title.append(identity(card, { command: true }));
   if (roster) {
-    const remove = node("button", "command-remove", "×");
+    const remove = node("button", "command-remove card-remove");
+    remove.append(uiIcon('trash', '删除'));
     remove.setAttribute("aria-label", "移除" + named(card.name));
-    remove.onclick = () => {
+    remove.onclick = (e) => {
+      e.stopPropagation();
       army.commandIds[slotIndex] = null;
       render();
     };
-    title.append(remove);
+    face.append(remove);
   }
   const collapse = node("button", "command-collapse", "⌄");
   collapse.setAttribute("aria-label", "收起" + named(card.name) + "卡文");

@@ -36,6 +36,19 @@ class SlotRegistryTest(unittest.TestCase):
 
 
 class ValidateArmyTest(unittest.TestCase):
+    def test_missing_equip_is_reported_once_per_card(self):
+        units, _, _ = rules.load_cards()
+        for unit in units.values():
+            ids = unit.get('equipUpgradeIds', [])
+            if not ids:
+                continue
+            army = {'mode': 'standard', 'armyId': unit['factions'][0]['id'], 'pointsLimit': 1000,
+                    'units': [{'instanceId': 'equip', 'unitId': unit['id'], 'upgrades': []}],
+                    'commandIds': [], 'options': []}
+            with self.subTest(unit=unit['id']):
+                missing = [i for i in rules.validate_army(army)['issues'] if i['code'] == 'required_child_missing']
+                self.assertEqual(len(missing), len(ids))
+
     def test_b1_electrobinoculars_matches_slot(self):
         army = {"mode": "standard", "armyId": 5, "pointsLimit": 1000, "units": [
             {"instanceId": "u1", "unitId": "separatists-b1", "upgrades": [

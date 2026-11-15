@@ -26,6 +26,7 @@ const RANK_LABEL = {
 
 let unitNameIndex = null;
 const TIMING_LABEL = {
+  action: "行动",
   global: "全局/组军",
   setup: "设置",
   deployment: "部署",
@@ -71,12 +72,13 @@ async function loadFile(path) {
 
 async function load() {
   try {
-    const [uj, gj, dj, pj, bj] = await Promise.all([
+    const [uj, gj, dj, pj, bj, tj] = await Promise.all([
       loadFile(DATA_BASE + "data/units.json"),
       loadFile(DATA_BASE + "data/upgrades.json"),
       loadFile(DATA_BASE + "data/catalog-definitions.json"),
       loadFile(DATA_BASE + "data/slot-rules.json"),
       loadFile(DATA_BASE + "data/battle-deck.json"),
+      loadFile(DATA_BASE + "data/tts-names.json"),
     ]);
     data = {
       units: Object.fromEntries(uj.units.map((u) => [u.id, u])),
@@ -84,6 +86,7 @@ async function load() {
       defs: dj,
       pkg: pj,
       deckData: bj,
+      ttsNames: tj,
     };
     data.nameIndex = RulesCore.buildNameIndex(data.upgrades, data.defs);
     initializeLibrary();
@@ -265,26 +268,11 @@ function keywordRef(id) {
 }
 
 function wireRosterActions(){
-  const ex=$('#roster-export'),im=$('#roster-import'),sh=$('#roster-share'),file=$('#roster-file'),st=$('#roster-share-status');
+  const ex=$('#roster-export'),im=$('#roster-import'),sh=$('#roster-share'),st=$('#roster-share-status');
   if(!ex||!im||!sh)return;
-  ex.onclick=()=>{
-    const blob=new Blob([JSON.stringify(activeRecord,null,2)],{type:'application/json'});
-    const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=(activeRecord.name||'army')+'.json';a.click();
-    URL.revokeObjectURL(a.href);
-  };
-  im.onclick=()=>file.click();
-  file.onchange=async()=>{
-    try{
-      const text=await file.files[0].text();
-      const obj=JSON.parse(text);
-      Object.assign(activeRecord,obj);
-      if(!Array.isArray(activeRecord.units))activeRecord.units=[];
-      if(!Array.isArray(activeRecord.commandIds))activeRecord.commandIds=[];
-      if(!activeRecord.deck)activeRecord.deck={};
-      save();render();setStatus('已导入：'+file.files[0].name);
-    }catch(e){setStatus('导入失败：'+e.message,true)}
-    file.value='';
-  };
+  ex.onclick=()=>openTransferDialog('export');
+  im.onclick=()=>openTransferDialog('import');
+  $('#library-import').onclick=()=>openTransferDialog('import');
   sh.onclick=async()=>{
     try{
       const payload=JSON.stringify(activeRecord);
@@ -592,10 +580,7 @@ function computeItemState(card) {
   if (browser.mode === "upgrades") {
     const first = army.units.find((i) => i.instanceId === browser.unitInstanceId);
     if (
-      first?.upgrades.some(
-        (ch) => ch.slotIndex === browser.slotIndex && ch.upgradeId === card.id &&
-          (!UpgradeFaces.isDual(card) || (ch.face || "front") === (card._face || "front")),
-      )
+      first?.upgrades.some((ch) => ch.slotIndex === browser.slotIndex && ch.upgradeId === card.id)
     )
       return { kind: "chosen", label: "已选入当前槽位", ok: false };
     const result = prepareUpgrade(card);
@@ -645,7 +630,7 @@ function choose(card) {
       return;
     }
     army = result.draft;
-    setStatus("已加入 " + named(card.name));
+    setStatus("已加入 " + named(card.name) + (result.warnings?.length ? "；" + result.warnings.join("；") : ""));
     closeBrowser();
     return;
   }
