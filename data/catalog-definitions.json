@@ -99,8 +99,7 @@
       "summary": "结束阶段不弃置此命令卡；只要仍在场，其效果持续。",
       "full": "带有永久关键词的命令卡在结束阶段不会像普通命令卡一样从场上弃置。只要该卡仍在场上，其效果持续生效。",
       "timing": [
-        "global",
-        "end_round"
+        "global"
       ],
       "upstreamIds": [
         194
@@ -251,7 +250,7 @@
       "summary": "组建军队时，若与指定单位同军，本单位不计入其军阶上限。",
       "full": "组建军队期间， 如果带有副手关键词的单位和关键词指定单位名称的单位包含在同一军队中， 则带有副手关键词的单位不会将其军阶计入该军阶的最大军阶要求。",
       "timing": [
-        "global"
+        "army_building"
       ],
       "upstreamIds": [
         119
@@ -627,7 +626,7 @@
       "summary": "组建军队时，必须配备以下全部升级。",
       "full": "组建军队期间， 如果玩家包括了带有配备关键词的单位， 则该单位必须配备关键词后列出的所有升级。",
       "timing": [
-        "global"
+        "army_building"
       ],
       "upstreamIds": [
         159,
@@ -744,8 +743,7 @@
       "summary": "可无视阵营向雇佣兵下达命令；军队中可额外加入1个雇佣兵，各军阶仍受通常上限。",
       "full": "带有权宜之盟关键词的单位可以向友方雇佣兵单位下达命令， 无论其是什么联盟。 此外， 当组建军队时， 如果自己的军队中有至少1个带有权宜之盟关键词的单位， 则该玩家的军队可以包括额外1个任意军阶的雇佣兵单位， 但军队中每个军阶的单位数量依然不能超过通常允许的上限。",
       "timing": [
-        "global",
-        "command"
+        "army_building"
       ],
       "upstreamIds": [
         118
@@ -777,7 +775,7 @@
       "summary": "该单位为雇佣兵，可编入以下阵营军队。",
       "full": "带有雇佣兵： 阵营关键词的单位是雇佣兵单位。 雇佣兵： 阵营关键词指定的阵营能够将该单位作为雇佣兵单位包括在军队中。",
       "timing": [
-        "global"
+        "army_building"
       ],
       "upstreamIds": [
         139
@@ -1091,7 +1089,7 @@
       "summary": "以下单位组建军队时不计军阶上限，但每个本单位须对应1个无附属的指定单位。预设阵地部署时，若指定单位有渗透或预设阵地，本单位本局也获得该关键词。",
       "full": "组建军队期间， 带有附属关键词的单位不计入其军阶可包括单位的最大数量。 仅当玩家的军队包括了指定单位名称或单位类型的另一个单位， 且该单位没有附属关键词时， 该玩家的军队才能包括这个带有附属关键词的单位。 每个带有附属关键词的单位都需要自己对应的指定单位。 此外， 在预设阵地 部署步骤期间， 如果带有附属关键词的单位指定的单位拥有渗透或 预设阵地关键词， 则游戏剩余时间内， 这个带有附属关键词的单位获得渗透或 预设阵地关键词。例如， 玩家希望添加一个DF-90迫击炮士兵到自己的军队。由于DF-90迫击炮士兵拥有附属： 岸防士兵关键词， 因此玩家必须先添加一个岸防士兵单位到自己的军队， 然后才能添加DF-90迫击炮士兵。 玩家这么做了， 于是军队现在包含一个岸防士兵单位和一个DF-90迫击炮士兵单位。 然后， 玩家希望添加第二个DF-90迫击炮士兵单位到自己的军队，因此必须首先选择第二个岸防士兵单位包括到自己的军队中。",
       "timing": [
-        "global",
+        "army_building",
         "deployment"
       ],
       "upstreamIds": [
@@ -1108,7 +1106,7 @@
       "summary": "必须配备重武器升级；该升级模型成为单位队长。",
       "full": "带有重武器小组关键词的单位必须配备 【图标】升级卡牌。 用该升级卡牌添加到单位中的模型成为单位队长。",
       "timing": [
-        "global"
+        "army_building"
       ],
       "upstreamIds": [
         38
@@ -1124,8 +1122,7 @@
       "summary": "不能距离1外敌军攻击，不能争夺目标；攻击、防御或在激活开始主动放弃后，永久失去伪装。",
       "full": "带有伪装关键词的单位不能被在它 1外的敌方单位攻击，不能争夺目标， 也不能提供守护。如果带有伪装关键词的单位进行了攻击， 或防御了攻击， 则游戏剩余时间内它失去 伪装关键词。 此外， 在带有伪装关键词的单位的激活开始时， 它可以选择在游戏剩余时间内失去伪装关键词。",
       "timing": [
-        "global",
-        "activation"
+        "global"
       ],
       "upstreamIds": [
         98
@@ -1286,8 +1283,8 @@
       "summary": "拥有至少X个伤害标记时，获得冲锋且勇气变为“−”；",
       "full": "当带有激怒X关键词的单位拥有的伤害标记数量大于等于X时， 该单位获得冲锋关键词， 且其【图标】变为 “-”。 如果带有激怒X关键词的单位拥有的伤害标记数量大于等于X， 但通过效果移除了伤害标记， 使其拥有的数量小于X， 则其不再从激怒X关键词受益， 直到其伤害标记数量再次大于等于X。",
       "timing": [
-        "movement",
-        "global"
+        "global",
+        "movement"
       ],
       "upstreamIds": [
         21
@@ -1657,7 +1654,6 @@
       "summary": "组建军队时可忽略最低指挥官要求；设置时若无指挥官，1个本单位获得指挥官标记。揭示非指挥官或特工专属命令卡时，可指定其为指挥官并下令；其3内同阵营或联盟友军检定恐慌时可将勇气视为2。",
       "full": "组建军队期间，包括了带有战地指挥官关键词的单位的军队可以忽略最小【指挥官军阶图标】军阶要求。如果玩家的军队在设置期间未包含【指挥官军阶图标】单位，但包含了带有战地指挥官关键词的单位，则该单位获得一个指挥官标记。当玩家揭示非【指挥官军阶图标】且非【特工军阶图标】的专属指挥卡牌时，其可以指名一个带有战地指挥官关键词的友方单位成为指挥官并下达命令。带有战地指挥官关键词的单位不是【指挥官军阶图标】，只是在指挥阶段期间，结算用指挥卡牌下达命令时才算作【指挥官军阶图标】。带有战地指挥官关键词的单位在组建指挥手牌时视为其阵营或联盟的【指挥官军阶图标】。此外，如果一个友方单位在带有指挥官标记的单位3内，并且两个单位有相同的阵营或联盟，则该友方单位可以将带有战地指挥官关键词的单位视为【图标】为2的【指挥官军阶图标】单位。",
       "timing": [
-        "global",
         "command"
       ],
       "upstreamIds": [
@@ -1826,7 +1822,7 @@
       "summary": "此模型视为单位队长，每单位最多装备1张队长升级。",
       "full": "在结算所有规则时， 带有队长关键词的模型都视为一个单位的单位队长。如果在伤害阈值为1的单位中， 带有队长关键词且伤害阈值为2或更多的模型被击败， 则如常替换该单位中剩余模型中的1个， 然后给带有队长关键词的模型分配1个伤害标记。每个单位只能配备1张带有队长关键词的升级卡牌。",
       "timing": [
-        "global"
+        "army_building"
       ],
       "upstreamIds": [
         192
@@ -1842,7 +1838,7 @@
       "summary": "该模型在以下攻击类型中只能使用此升级卡上的随身武器。",
       "full": "如果升级拥有 随身武器： 近战关键词， 则该升级添加的模型或配备有该升级的模型， 除了该带有随身武器： 近战关键词的升级卡牌上的任何近战武器之外， 不能添加任何其他近战武器到攻击池中。如果升级拥有 随身武器： 远程关键词， 则该升级添加的模型或配备有该升级的模型， 除了该带有随身武器： 远程关键词的升级卡牌上的任何远程武器之外， 不能添加任何其他远程武器到攻击池中。例如， T系列战术机器人升级卡牌提供远程武器， 并且拥有随身武器： 远程关键词。 在远程攻击期间， 由该升级添加的模型只能使用T系列战术机器人升级上的武器。 在近战攻击期间， 该模型仍然可以使用任何可用的近战武器， 例如【暴击图标】1战斗机器人单位卡牌上的近战武器。",
       "timing": [
-        "global"
+        "attack"
       ],
       "upstreamIds": [
         197
@@ -2057,7 +2053,7 @@
       "summary": "组建军队时，每个本单位使1个指定单位不计军阶上限；下达命令步骤可向距离2内1个指定友军下令。该友军为本单位提供后援。",
       "full": "组建军队期间， 玩家每包括一个带有统率关键词的单位， 就有1个 统率关键词对应的单位不计入其军阶的最大军阶要求。 这能够允许玩家携带的对应军阶单位数量比军阶要求允许的更多。在指挥阶段中， 下达命令步骤期间， 带有统率关键词的单位可以对在 2内的一个拥有 统率关键词指定名称的友方单位下达一个命令。此外，由统率关键词指定的单位，在为带有统率关键词的单位提供守护时，忽略【军团军阶图标】军阶要求。例如，奥森·克伦尼克总监拥有统率：死亡士兵。如果一支军队包括奥森·克伦尼克总监，则同一支军队中的1个死亡士兵单位不计入军队中允许的【特种部队军阶图标】军阶最大数量，这允许玩家除了死亡士兵之外，还能携带最多3个其他【特种部队军阶图标】单位。在指挥阶段中，奥森·克伦尼克总监可以对在2内的一个友方死亡士兵单位下达命令。",
       "timing": [
-        "global",
+        "army_building",
         "command"
       ],
       "upstreamIds": [
@@ -2174,7 +2170,7 @@
       "summary": "每次激活最多进行1次移动行动。",
       "full": "带有缓慢关键词的单位在它的激活期间只能进行1次移动行动。",
       "timing": [
-        "global"
+        "movement"
       ],
       "upstreamIds": [
         116
@@ -2190,7 +2186,6 @@
       "summary": "不能受益于掩护；模型不能被修理或复活。",
       "full": "带有无所顾忌关键词的单位不能从掩护中受益， 并且单位中的模型不能被修理， 也不能复活。",
       "timing": [
-        "global",
         "defense"
       ],
       "upstreamIds": [
@@ -2547,7 +2542,7 @@
       "summary": "组建军队时，必须装备协议升级。",
       "full": "组建军队期间， 带有程序关键词的单位必须配备至少1张【图标】升级卡牌。",
       "timing": [
-        "global"
+        "army_building"
       ],
       "upstreamIds": [
         142
@@ -3773,7 +3768,7 @@
       "summary": "作为模型加入指定单位，共享双方词条；各自使用自己的生命和武器。搭档被击败后移除其能力。",
       "full": "搭档模型加入另一单位，组成一个合并单位。军阶、单位类型、防御骰、勇气、激增转换和速度使用母单位卡；搭档卡的不同单位类型只用于装备升级。\n合并单位共享双方卡上的词条；各模型使用自己卡上的生命和武器。指挥卡赋予的武器仅供非搭档模型使用。\n只剩单位队长这一名非搭档模型时，可向队长分配伤害。分配给非搭档模型的伤害可以改分给未被击败的搭档；若会击败最后一名非搭档模型，则必须改分给搭档。\n搭档装备的无武器升级供全单位使用，有武器升级仅供装备者使用。搭档被击败后，失去其卡牌的词条、能力、效果及其无武器升级的共享效果。",
       "timing": [
-        "global"
+        "army_building"
       ],
       "status": "reviewed"
     },
@@ -3799,7 +3794,7 @@
       "summary": "该单位必须携带X个重武器升级",
       "full": "组建军队期间，带有灵活响应关键词的单位必须配备X个重武器升级。",
       "timing": [
-        "global"
+        "army_building"
       ],
       "status": "needs_review"
     },
@@ -12664,7 +12659,7 @@
       },
       "orders": {
         "en": "3 {@icon.rank-corps} Units",
-        "zh": "3 {@icon.rank-corps} 支单位"
+        "zh": "3 {@icon.rank-corps} 单位"
       },
       "owner": "Rebel Alliance"
     },
@@ -12712,7 +12707,7 @@
       },
       "orders": {
         "en": "Count Dooku & 2 Units",
-        "zh": "杜库伯爵及2 支单位"
+        "zh": "杜库伯爵及2 单位"
       },
       "owner": "Count Dooku"
     },
@@ -12788,7 +12783,7 @@
       },
       "orders": {
         "en": "3 {@icon.rank-corps} Units",
-        "zh": "3 {@icon.rank-corps} 支单位"
+        "zh": "3 {@icon.rank-corps} 单位"
       },
       "owner": "Galactic Empire"
     },
@@ -12927,7 +12922,7 @@
       "slotPips": 1,
       "orders": {
         "en": "1 Unit",
-        "zh": "1支单位"
+        "zh": "1单位"
       },
       "description": {
         "en": "Ahsoka Tano gains Charge this Round. If she defeats 1 or more enemy units this Round, she can make up to 2 attack actions and may make a free Move action during her Activation this Round. When Ahsoka Tano attacks an enemy unit with a Melee attack this Round, after that attack is resolved, the defending unit may make a free Move action and can Withdraw with that action.",
@@ -12987,7 +12982,7 @@
       },
       "orders": {
         "en": "Luke Skywalker & 2 Units",
-        "zh": "卢克·天行者及2 支单位"
+        "zh": "卢克·天行者及2 单位"
       },
       "owner": "Luke Skywalker"
     },
@@ -13036,7 +13031,7 @@
       },
       "orders": {
         "en": "3 Units",
-        "zh": "3 支单位"
+        "zh": "3 单位"
       },
       "owner": "Mercenary {@icon.rank-commander} or {@icon.rank-operative}",
       "keywords": [
@@ -13098,7 +13093,7 @@
       },
       "orders": {
         "en": "2 Units",
-        "zh": "2 支单位"
+        "zh": "2 单位"
       },
       "owner": "Mercenary {@icon.rank-commander} or {@icon.rank-operative}",
       "keywords": [
@@ -13284,7 +13279,7 @@
       },
       "orders": {
         "en": "Maul & 2 Units",
-        "zh": "摩尔及2 支单位"
+        "zh": "摩尔及2 单位"
       },
       "owner": "Maul, A Rival",
       "keywords": [
@@ -13493,7 +13488,7 @@
       },
       "orders": {
         "en": "2 {@icon.rank-corps} Units",
-        "zh": "2 {@icon.rank-corps} 支单位"
+        "zh": "2 {@icon.rank-corps} 单位"
       },
       "owner": "Separatist Invasion"
     },
@@ -13635,7 +13630,7 @@
       "slotPips": 4,
       "orders": {
         "en": "1 Unit",
-        "zh": "1支单位"
+        "zh": "1单位"
       },
       "description": {
         "en": "At the end of the Command Phase, return this card to your hand.",
@@ -14158,7 +14153,7 @@
       },
       "orders": {
         "en": "Boba Fett & 2 Units",
-        "zh": "波巴·费特及2 支单位"
+        "zh": "波巴·费特及2 单位"
       },
       "owner": "Boba Fett"
     },
@@ -14267,7 +14262,7 @@
       },
       "orders": {
         "en": "Lando Calrissian & 1 Unit",
-        "zh": "兰多·卡瑞辛及1 支单位"
+        "zh": "兰多·卡瑞辛及1 单位"
       },
       "owner": "Lando Calrissian"
     },
@@ -14420,7 +14415,7 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 1,
+      "slotPips": 3,
       "image": "assets/command-cards/90.webp",
       "description": {
         "en": "While building a Command Hand, treat this card as though it has 3 pips. \n\n Maul gains 1 Aim token and gains Jedi Hunter this Round. At the start of Maulʼs next Activation, he may suffer 1 Wound.",
@@ -14527,7 +14522,7 @@
       "slotPips": 2,
       "orders": {
         "en": "2 Units",
-        "zh": "2支单位"
+        "zh": "2单位"
       },
       "description": {
         "en": "A tactical strike between two synchronized units is a key component of warfare.",
@@ -14551,7 +14546,7 @@
       "image": "assets/command-cards/8112.webp",
       "description": {
         "en": "Allied Vehicles gain Demoralize 1 this Round. The first time an allied Vehicle that has a faceup Order token ends a Move within {@icon.range-half}  of 1 or more enemy units this Round, choose 1 of those units. Roll 1 white defense die for each miniature in the chosen unit. The chosen unit suffers 1 Wound for every {@icon.surge-block} or {@icon.block} result in the roll.",
-        "zh": "友方载具本轮获得震慑1。本轮拥有正面朝上命令标记的友方载具首次在至少1支敌方单位{@icon.range-half}内结束移动时，选择其中1支单位，为所选单位每个模型掷1枚白色防御骰；每个{@icon.surge-block}或{@icon.block}结果使其受到1点伤害。"
+        "zh": "友方载具本轮获得震慑1。本轮拥有正面朝上命令标记的友方载具首次在至少1支敌方单位{@icon.range-half}内结束移动时，选择其中1单位，为所选单位每个模型掷1枚白色防御骰；每个{@icon.surge-block}或{@icon.block}结果使其受到1点伤害。"
       },
       "orders": {
         "en": "1 Vehicle Unit",
@@ -14769,7 +14764,7 @@
       },
       "orders": {
         "en": "Han Solo & 2 Units",
-        "zh": "汉·索洛及2 支单位"
+        "zh": "汉·索洛及2 单位"
       },
       "owner": "Han Solo"
     },
@@ -15077,7 +15072,7 @@
       },
       "orders": {
         "en": "Lando Calrissian & 2 Units",
-        "zh": "兰多·卡瑞辛及2 支单位"
+        "zh": "兰多·卡瑞辛及2 单位"
       },
       "owner": "Lando Calrissian"
     },
@@ -15195,7 +15190,7 @@
       "slotPips": 2,
       "orders": {
         "en": "2 Units",
-        "zh": "2支单位"
+        "zh": "2单位"
       },
       "description": {
         "en": "Choose up to 2 enemy units. Each chosen unit gains 1 Ploy token. This Round, at the start of each allied unit's Activation, you may choose an enemy unit that has 1 or more Ploy tokens. If you do, remove 1 of those Ploy tokens and resolve 1 of the effects below:\n• The chosen unit loses 1 green token.\n• The chosen unit gains 2 Suppression tokens.\n• If the chosen unit has a faceup Order token, shuffle it into that Opponent's Order Pool.",
@@ -15302,7 +15297,7 @@
       },
       "orders": {
         "en": "Anakin Skywalker & 2 Units",
-        "zh": "阿纳金·天行者及2 支单位"
+        "zh": "阿纳金·天行者及2 单位"
       },
       "owner": "Anakin Skywalker",
       "keywords": [
@@ -15339,7 +15334,7 @@
       },
       "orders": {
         "en": "1 {@icon.rank-commander} Unit",
-        "zh": "1 {@icon.rank-commander} 支单位"
+        "zh": "1 {@icon.rank-commander} 单位"
       },
       "owner": "501st Legion"
     },
@@ -15504,7 +15499,7 @@
       },
       "orders": {
         "en": "3 Units",
-        "zh": "3 支单位"
+        "zh": "3 单位"
       },
       "owner": "Tempest Force"
     },
@@ -15532,7 +15527,7 @@
       },
       "orders": {
         "en": "2 {@icon.rank-support} or {@icon.rank-heavy} Units",
-        "zh": "2 {@icon.rank-support}或{@icon.rank-heavy} 支单位"
+        "zh": "2 {@icon.rank-support}或{@icon.rank-heavy} 单位"
       },
       "owner": "Galactic Empire"
     },
@@ -15683,7 +15678,7 @@
       "slotPips": 2,
       "orders": {
         "en": "Anakin Skywalker & 1 Unit",
-        "zh": "阿纳金·天行者及1支单位"
+        "zh": "阿纳金·天行者及1单位"
       },
       "description": {
         "en": "Anakin Skywalker gains Gunslinger this Round and gains 2 Aim tokens or 2 Surge tokens. When Anakin Skywalker makes an attack this Round, after all Attack Pools are resolved, he may make a Speed-2 Move.",
@@ -15794,7 +15789,7 @@
       },
       "orders": {
         "en": "3 Units",
-        "zh": "3 支单位"
+        "zh": "3 单位"
       },
       "owner": "Agent Kallus",
       "keywords": [
@@ -15858,7 +15853,7 @@
       },
       "orders": {
         "en": "2 {@icon.rank-special-forces} OR {@icon.rank-support} Units",
-        "zh": "2 {@icon.rank-special-forces}或{@icon.rank-support} 支单位"
+        "zh": "2 {@icon.rank-special-forces}或{@icon.rank-support} 单位"
       },
       "owner": "501st Legion"
     },
@@ -16476,7 +16471,7 @@
       "slotPips": 2,
       "orders": {
         "en": "1 {@icon.rank-operative} Unit & 1 Unit",
-        "zh": "1支{@icon.rank-operative}单位及1支单位"
+        "zh": "1支{@icon.rank-operative}单位及1单位"
       },
       "description": {
         "en": "This Round, when creating your Pass Pool, add a number of additional Advantage tokens equal to the current Round number.",
@@ -16869,7 +16864,7 @@
       },
       "orders": {
         "en": "3 Units",
-        "zh": "3 支单位"
+        "zh": "3 单位"
       },
       "owner": "212th Attack Battalion"
     },
@@ -16893,7 +16888,7 @@
       },
       "orders": {
         "en": "2 Vehicles or {@icon.rank-special-forces} Units",
-        "zh": "2 Vehicles或{@icon.rank-special-forces} 支单位"
+        "zh": "2 Vehicles或{@icon.rank-special-forces} 单位"
       },
       "owner": "212th Attack Battalion",
       "keywords": [
@@ -16931,7 +16926,7 @@
       },
       "orders": {
         "en": "1 Unit",
-        "zh": "1 支单位"
+        "zh": "1 单位"
       },
       "owner": "212th Attack Battalion",
       "keywords": [
@@ -17097,7 +17092,7 @@
       },
       "orders": {
         "en": "3 Units",
-        "zh": "3支单位"
+        "zh": "3单位"
       },
       "owner": "Grand Moff Tarkin",
       "keywords": [
@@ -17323,7 +17318,7 @@
       "owner": "Grand Admiral Thrawn",
       "orders": {
         "en": "1 Unit",
-        "zh": "1支单位"
+        "zh": "1单位"
       },
       "description": {
         "en": "At the start of the Activation Phase, choose an enemy unit. If the chosen unit does not have a faceup Order token, assign it a faceup Order token from your opponent’s Order Pool, if able.\n\nThe first time your opponent chooses to activate a unit this Round, they may choose to activate the chosen unit. If they do not, the chosen unit may not activate using a faceup Order token until your Opponent has no Order tokens in their Order Pool or on Command Cards, and has no other units with faceup Order tokens.",
@@ -17374,7 +17369,7 @@
       },
       "orders": {
         "en": "3 Units",
-        "zh": "3支单位"
+        "zh": "3单位"
       },
       "owner": "General Tagge",
       "image": "assets/command-cards/18899.webp"
@@ -17516,7 +17511,7 @@
       "owner": "General Tagge",
       "orders": {
         "en": "1 Unit",
-        "zh": "1支单位"
+        "zh": "1单位"
       },
       "description": {
         "en": "General Tagge may remove any number of tokens from Logistical Prowess to gain the matching tokens.\n\nAt the start of the Activation Phase, General Tagge may make a Speed-2 move.",
@@ -17567,7 +17562,7 @@
       },
       "orders": {
         "en": "3 Units",
-        "zh": "3支单位"
+        "zh": "3单位"
       },
       "owner": "Grand Admiral Thrawn",
       "image": "assets/command-cards/18901.webp"
@@ -17779,7 +17774,7 @@
       "slotPips": 2,
       "orders": {
         "en": "2 Units",
-        "zh": "2支单位"
+        "zh": "2单位"
       },
       "description": {
         "en": "This Round, while a unit issued an Order with this card has a faceup Order token, it has Danger Sense 1 and Indomitable. Until the end of the Round, when an allied unit with 1 or more {@icon.slot-force} upgrade slots spends or loses a Standby token this Round, after the effect is resolved, that unit gains 1 Aim token or 1 Dodge token.",
@@ -17873,7 +17868,7 @@
       "slotPips": 3,
       "orders": {
         "en": "Shaak Ti & 2 Units",
-        "zh": "莎克·提及2支单位"
+        "zh": "莎克·提及2单位"
       },
       "description": {
         "en": "This Round, once per Activation when an allied {@icon.faction-gar} unit gains 1 or more Aim tokens or 1 or more Dodge tokens, after the effect is resolved, you may choose an allied unit with the Mercenary keyword within {@icon.range-2} of the allied {@icon.faction-gar} unit. The chosen unit gains 1 token of the same type.",
@@ -17967,7 +17962,7 @@
       "slotPips": 3,
       "orders": {
         "en": "3 Units",
-        "zh": "3支单位"
+        "zh": "3单位"
       },
       "description": {
         "en": "This Round, at the start of Ki-Adi-Mundi's Rally step, you may choose up to 3 allied units within {@icon.range-2} of him. Each chosen unit may remove up to 2 Suppression tokens. Then, for each Suppression token removed in this way, Ki-Adi-Mundi gains 1 Suppression token and may ready 1 of his exhausted {@icon.slot-force} upgrades. Additionally, each time Ki-Adi-Mundi uses a {@icon.slot-force} upgrade this Round, after the effect is resolved, he gains 1 Surge token.",
@@ -18014,7 +18009,7 @@
       "slotPips": 2,
       "orders": {
         "en": "Plo Koon & 2 Units",
-        "zh": "普洛·孔及2支单位"
+        "zh": "普洛·孔及2单位"
       },
       "description": {
         "en": "When Plo Koon is issued an Order with this card, he may make 2 {@icon.free-action} Distract free Actions. Until the end of the Round, when another allied unit issued an Order with this card starts its Activation within {@icon.range-2} of Plo Koon, Plo Koon may make a Speed-1 Move.",
@@ -18090,7 +18085,7 @@
       },
       "orders": {
         "en": "3 Units",
-        "zh": "3 支单位"
+        "zh": "3 单位"
       },
       "owner": "The Ohnaka Gang",
       "keywords": [
@@ -18233,7 +18228,7 @@
       "slotPips": 2,
       "orders": {
         "en": "The Armorer & 1 Unit",
-        "zh": "军械师及1支单位"
+        "zh": "军械师及1单位"
       },
       "description": {
         "en": "At the end of The Armorerʼs first Activation this Round, she may suffer 1 Wound. If she does, shuffle her Order token into the Order Pool. During The Armorerʼs second Activation this Round, she makes 1 fewer action.",
@@ -18280,7 +18275,7 @@
       "slotPips": 3,
       "orders": {
         "en": "Bo-Katan Kryze & 2 Units",
-        "zh": "博-卡坦·克里兹及2支单位"
+        "zh": "博-卡坦·克里兹及2单位"
       },
       "description": {
         "en": "When a unit is issued an Order with this card, it may remove 1 Suppression token.\n\nThis Round, when an allied {@icon.clan-kryze} unit that has a faceup Order token makes an Attack action during its Activation, after the effect is resolved, that unit may make a Speed-1 Move.",
@@ -18463,7 +18458,7 @@
       },
       "orders": {
         "en": "3 {@icon.clan-wren} units",
-        "zh": "3 {@icon.clan-wren} 支单位"
+        "zh": "3 {@icon.clan-wren} 单位"
       },
       "owner": "{@icon.clan-wren}{@icon.rank-commander} or {@icon.clan-wren}{@icon.rank-operative}"
     },
@@ -18620,7 +18615,7 @@
       },
       "orders": {
         "en": "Sabine Wren & 1 {@icon.clan-wren} unit",
-        "zh": "萨宾·雷恩及1 {@icon.clan-wren} 支单位"
+        "zh": "萨宾·雷恩及1 {@icon.clan-wren} 单位"
       },
       "owner": "Sabine Wren, Back in the Fold",
       "keywords": [
@@ -18657,7 +18652,7 @@
       },
       "orders": {
         "en": "2 Units",
-        "zh": "2 支单位"
+        "zh": "2 单位"
       },
       "owner": "Mandalorian Clans",
       "keywords": [
@@ -18716,7 +18711,7 @@
       },
       "orders": {
         "en": "3 Units",
-        "zh": "3 支单位"
+        "zh": "3 单位"
       },
       "owner": "Mandalorian Clans",
       "keywords": [
@@ -18789,7 +18784,7 @@
       },
       "orders": {
         "en": "2 {@icon.clan-covert} units",
-        "zh": "2 {@icon.clan-covert} 支单位"
+        "zh": "2 {@icon.clan-covert} 单位"
       },
       "owner": "{@icon.clan-covert} {@icon.rank-commander} or {@icon.clan-covert} {@icon.rank-operative}",
       "keywords": [
@@ -18861,7 +18856,7 @@
       },
       "orders": {
         "en": "Rook Kast & 1 {@icon.clan-saxon} unit",
-        "zh": "鲁克·卡斯特及1 {@icon.clan-saxon} 支单位"
+        "zh": "鲁克·卡斯特及1 {@icon.clan-saxon} 单位"
       },
       "owner": "Rook Kast"
     },
@@ -18910,7 +18905,7 @@
       },
       "orders": {
         "en": "2 {@icon.clan-kryze} units",
-        "zh": "2 {@icon.clan-kryze} 支单位"
+        "zh": "2 {@icon.clan-kryze} 单位"
       },
       "owner": "{@icon.clan-kryze}{@icon.rank-commander} or {@icon.clan-kryze}{@icon.rank-operative}",
       "keywords": [
@@ -18983,7 +18978,7 @@
       },
       "orders": {
         "en": "3 {@icon.clan-saxon} units",
-        "zh": "3 {@icon.clan-saxon} 支单位"
+        "zh": "3 {@icon.clan-saxon} 单位"
       },
       "owner": "{@icon.clan-saxon} {@icon.rank-commander} or {@icon.clan-saxon} {@icon.rank-operative}",
       "keywords": [
@@ -19039,7 +19034,7 @@
       "slotPips": 3,
       "orders": {
         "en": "3 Units",
-        "zh": "3支单位"
+        "zh": "3单位"
       },
       "description": {
         "en": "This Round, while the nominated Commander is not Suppressed or Panicked, other allied Mandalorian Trooper units within {@icon.range-2} of it may upgrade 2 of their attack dice when attacking.\n\nWhile the nominated Commander is not Suppressed or Panicked, enemy units within {@icon.range-1} of it downgrade 1 of their attack dice when attacking.",
@@ -19398,7 +19393,7 @@
       "slotPips": 2,
       "orders": {
         "en": "2 Units",
-        "zh": "2支单位"
+        "zh": "2单位"
       },
       "description": {
         "en": "When building a Command Hand, treat this card as though it has 2 pips. Ahsoka Tano gains 3 Dodge tokens. Additionally, Ahsoka Tano gains Jar'Kai Mastery and loses Shien Mastery this Round.",
@@ -19705,7 +19700,7 @@
       "slotPips": 3,
       "orders": {
         "en": "The Armorer & 2 Units",
-        "zh": "军械师及2支单位"
+        "zh": "军械师及2单位"
       },
       "description": {
         "en": "Divulge: Resolve Setup Effects step. Choose 1 of the following effects:\n• 2 Allied {@icon.clan-covert} units gain Cache: Aim 1 this Game.\n• 2 Allied {@icon.clan-covert} units gain Cache: Dodge 1 this Game.\n\nWhen a unit is issued an Order with this card, it may make a Recover action.",
@@ -19985,7 +19980,7 @@
       },
       "orders": {
         "en": "General Veers & 2 Units",
-        "zh": "维尔斯将军及2 支单位"
+        "zh": "维尔斯将军及2 单位"
       },
       "owner": "General Veers"
     },
@@ -20163,7 +20158,7 @@
       },
       "orders": {
         "en": "3 {@icon.rank-corps} or {@icon.rank-heavy} Units",
-        "zh": "3 {@icon.rank-corps}或{@icon.rank-heavy} 支单位"
+        "zh": "3 {@icon.rank-corps}或{@icon.rank-heavy} 单位"
       },
       "owner": "Moff Gideon"
     },
@@ -20893,7 +20888,7 @@
       },
       "orders": {
         "en": "Count Dooku & 1 Unit",
-        "zh": "杜库伯爵及1 支单位"
+        "zh": "杜库伯爵及1 单位"
       },
       "owner": "Count Dooku"
     },
@@ -21436,7 +21431,7 @@
       "image": "assets/command-cards/68.webp",
       "description": {
         "en": "When R2-D2 issues an Order to another unit with this card, that unit may make a Speed-1 Move. At the start of the next Activation Phase, R2-D2 may make a {@icon.free-action}Smoke 1 free action.",
-        "zh": "R2-D2通过此卡向另一支单位发出命令时，该单位可以进行一次速度1移动。下一个激活阶段开始时，R2-D2可以执行一次{@icon.free-action}烟雾1免费行动。"
+        "zh": "R2-D2通过此卡向另一单位发出命令时，该单位可以进行一次速度1移动。下一个激活阶段开始时，R2-D2可以执行一次{@icon.free-action}烟雾1免费行动。"
       },
       "orders": {
         "en": "R2-D2 & 1 Trooper Unit",
@@ -21960,7 +21955,7 @@
       },
       "orders": {
         "en": "Leia Organa & 2 Units",
-        "zh": "莱娅·奥加纳及2 支单位"
+        "zh": "莱娅·奥加纳及2 单位"
       },
       "owner": "Leia Organa"
     },
@@ -22556,11 +22551,11 @@
       "image": "assets/command-cards/77.webp",
       "description": {
         "en": "At the start and end of Cad Baneʼs next Activation, he may remove any number of Suppression tokens. For each Suppression token removed in this way, choose another unit within {@icon.range-2} of him. The chosen unit gains 1 Suppression token. Each time an enemy Trooper unit gains 1 or more Suppression tokens in this way, if it has no Immobilize tokens, it gains 1 Immobilize token.",
-        "zh": "凯德·贝恩下次激活开始及结束时，可以移除任意数量的压制标记。每以此法移除1个压制标记，选择他{@icon.range-2}内的另一支单位；所选单位获得1个压制标记。敌方步兵单位每以此法获得至少1个压制标记时，若没有定身标记，则获得1个定身标记。"
+        "zh": "凯德·贝恩下次激活开始及结束时，可以移除任意数量的压制标记。每以此法移除1个压制标记，选择他{@icon.range-2}内的另一单位；所选单位获得1个压制标记。敌方步兵单位每以此法获得至少1个压制标记时，若没有定身标记，则获得1个定身标记。"
       },
       "orders": {
         "en": "Cad Bane & 1 Unit",
-        "zh": "凯德·贝恩及1 支单位"
+        "zh": "凯德·贝恩及1 单位"
       },
       "owner": "Cad Bane"
     },
@@ -22718,7 +22713,7 @@
       },
       "orders": {
         "en": "Obi-Wan Kenobi & 2 Units",
-        "zh": "欧比-旺·克诺比及2 支单位"
+        "zh": "欧比-旺·克诺比及2 单位"
       },
       "owner": "Obi-Wan Kenobi"
     },
@@ -22770,7 +22765,7 @@
       },
       "orders": {
         "en": "General Grievous & 2 Units",
-        "zh": "格里弗斯将军及2 支单位"
+        "zh": "格里弗斯将军及2 单位"
       },
       "owner": "General Grievous"
     },
@@ -22822,7 +22817,7 @@
       },
       "orders": {
         "en": "Han Solo & 1 Unit",
-        "zh": "汉·索洛及1 支单位"
+        "zh": "汉·索洛及1 单位"
       },
       "owner": "Han Solo"
     },
@@ -22922,7 +22917,7 @@
       "slotPips": 3,
       "orders": {
         "en": "3 Units",
-        "zh": "3支单位"
+        "zh": "3单位"
       },
       "description": {
         "en": "Though slower to organize, a coordinated offense can be decisive.",
@@ -23026,7 +23021,7 @@
       },
       "orders": {
         "en": "Anakin Skywalker & 1 Unit",
-        "zh": "阿纳金·天行者及1 支单位"
+        "zh": "阿纳金·天行者及1 单位"
       },
       "owner": "Anakin Skywalker"
     },
@@ -23273,7 +23268,7 @@
       },
       "orders": {
         "en": "2 {@icon.rank-support} or {@icon.rank-heavy} Units",
-        "zh": "2 {@icon.rank-support}或{@icon.rank-heavy} 支单位"
+        "zh": "2 {@icon.rank-support}或{@icon.rank-heavy} 单位"
       },
       "owner": "Rebel Alliance",
       "keywords": [
@@ -23438,7 +23433,7 @@
       },
       "orders": {
         "en": "1 {@icon.rank-commander} OR 1 {@icon.rank-support} Unit",
-        "zh": "1 {@icon.rank-commander}或1 {@icon.rank-support} 支单位"
+        "zh": "1 {@icon.rank-commander}或1 {@icon.rank-support} 单位"
       },
       "owner": "Galactic Republic",
       "weapons": [
@@ -23551,7 +23546,7 @@
       },
       "orders": {
         "en": "1 {@icon.rank-operative} or 1 {@icon.rank-special-forces} Unit",
-        "zh": "1 {@icon.rank-operative}或1 {@icon.rank-special-forces} 支单位"
+        "zh": "1 {@icon.rank-operative}或1 {@icon.rank-special-forces} 单位"
       },
       "owner": "Galactic Empire"
     },
@@ -23599,7 +23594,7 @@
       },
       "orders": {
         "en": "Maul & 1 Unit",
-        "zh": "摩尔及1 支单位"
+        "zh": "摩尔及1 单位"
       },
       "owner": "Maul, A Rival"
     },
@@ -23651,7 +23646,7 @@
       },
       "orders": {
         "en": "Darth Vader & 2 Units",
-        "zh": "达斯·维德及2 支单位"
+        "zh": "达斯·维德及2 单位"
       },
       "owner": "Darth Vader"
     },
@@ -23789,7 +23784,7 @@
       },
       "orders": {
         "en": "2 Units",
-        "zh": "2 支单位"
+        "zh": "2 单位"
       },
       "owner": "Echo Base Defenders"
     },
@@ -23888,7 +23883,7 @@
       },
       "orders": {
         "en": "1 {@icon.rank-commander} or {@icon.rank-heavy} Unit",
-        "zh": "1 {@icon.rank-commander}或{@icon.rank-heavy} 支单位"
+        "zh": "1 {@icon.rank-commander}或{@icon.rank-heavy} 单位"
       },
       "owner": "Separatist Alliance",
       "weapons": [
@@ -24021,7 +24016,7 @@
       },
       "orders": {
         "en": "Director Orson Krennic & 2 Units",
-        "zh": "奥森·克伦尼克主管及2 支单位"
+        "zh": "奥森·克伦尼克主管及2 单位"
       },
       "owner": "Director Orson Krennic"
     },
@@ -24163,7 +24158,7 @@
       },
       "orders": {
         "en": "3 {@icon.rank-corps} Units or {@icon.rank-support} Units",
-        "zh": "3 {@icon.rank-corps} 支单位或{@icon.rank-support} 支单位"
+        "zh": "3 {@icon.rank-corps} 单位或{@icon.rank-support} 单位"
       },
       "owner": "Echo Base Defenders"
     },
@@ -24302,7 +24297,7 @@
       "owner": "Generic",
       "orders": {
         "en": "1 Unit",
-        "zh": "1支单位"
+        "zh": "1单位"
       },
       "description": {
         "en": "A well-placed unit with the element of surprise on its side can turn the tide of an entire battle.",
@@ -24490,7 +24485,7 @@
       },
       "orders": {
         "en": "3 {@icon.rank-special-forces} OR {@icon.rank-corps} Units",
-        "zh": "3 {@icon.rank-special-forces}或{@icon.rank-corps} 支单位"
+        "zh": "3 {@icon.rank-special-forces}或{@icon.rank-corps} 单位"
       },
       "owner": "501st Legion",
       "keywords": [
@@ -24902,7 +24897,7 @@
       },
       "orders": {
         "en": "2 Units",
-        "zh": "2 支单位"
+        "zh": "2 单位"
       },
       "owner": "Blizzard Force",
       "weapons": [
@@ -25078,7 +25073,7 @@
       },
       "orders": {
         "en": "1 {@icon.rank-operative} or {@icon.rank-special-forces} Unit",
-        "zh": "1 {@icon.rank-operative}或{@icon.rank-special-forces} 支单位"
+        "zh": "1 {@icon.rank-operative}或{@icon.rank-special-forces} 单位"
       },
       "owner": "Rebel Alliance"
     },
@@ -25102,7 +25097,7 @@
       },
       "orders": {
         "en": "2 Units",
-        "zh": "2 支单位"
+        "zh": "2 单位"
       },
       "owner": "Blizzard Force"
     },
@@ -25154,7 +25149,7 @@
       },
       "orders": {
         "en": "Agent Kallus & 1 Unit",
-        "zh": "卡勒斯特工及1 支单位"
+        "zh": "卡勒斯特工及1 单位"
       },
       "owner": "Agent Kallus"
     },
@@ -25257,7 +25252,7 @@
       },
       "orders": {
         "en": "1 Unit",
-        "zh": "1 支单位"
+        "zh": "1 单位"
       },
       "owner": "Echo Base Defenders"
     },
@@ -25281,7 +25276,7 @@
       },
       "orders": {
         "en": "1 {@icon.rank-heavy} OR {@icon.rank-support} Unit",
-        "zh": "1 {@icon.rank-heavy}或{@icon.rank-support} 支单位"
+        "zh": "1 {@icon.rank-heavy}或{@icon.rank-support} 单位"
       },
       "owner": "Separatist Invasion"
     },
@@ -25305,7 +25300,7 @@
       },
       "orders": {
         "en": "3 Units",
-        "zh": "3 支单位"
+        "zh": "3 单位"
       },
       "owner": "Blizzard Force",
       "keywords": [
@@ -25353,7 +25348,7 @@
       },
       "orders": {
         "en": "3 {@icon.rank-corps} Units",
-        "zh": "3 {@icon.rank-corps} 支单位"
+        "zh": "3 {@icon.rank-corps} 单位"
       },
       "owner": "Separatist Invasion"
     },
@@ -25600,7 +25595,7 @@
       },
       "orders": {
         "en": "2 Units",
-        "zh": "2 支单位"
+        "zh": "2 单位"
       },
       "owner": "Moff Gideon"
     },
@@ -26059,7 +26054,7 @@
       "slotPips": 3,
       "orders": {
         "en": "Wicket & 2 Units",
-        "zh": "威基特及2支单位"
+        "zh": "威基特及2单位"
       },
       "description": {
         "en": "Allied {@icon.faction-ewoks} units with a faceup Order token treat their {@icon.courage} as “–” this Round. Until the end of the Round, each time an allied {@icon.faction-ewoks} Trooper unit that has a faceup Order token attacks, during the Form Attack Pool step, for each Wound token and miniature from that unit that was previously defeated, add 1 white attack die to the Attack Pool.",
@@ -26110,7 +26105,7 @@
       },
       "orders": {
         "en": "Seventh Sister & 2 Units",
-        "zh": "七妹及2 支单位"
+        "zh": "七妹及2 单位"
       },
       "owner": "Seventh Sister",
       "keywords": [
@@ -26171,7 +26166,7 @@
       },
       "orders": {
         "en": "Ahsoka Tano & 2 Units",
-        "zh": "阿索卡·塔诺及2 支单位"
+        "zh": "阿索卡·塔诺及2 单位"
       },
       "owner": "Ahsoka Tano, Fulcrum",
       "keywords": [
@@ -26731,7 +26726,7 @@
       },
       "orders": {
         "en": "1 Unit",
-        "zh": "1 支单位"
+        "zh": "1 单位"
       },
       "owner": "Poggle the Lesser",
       "keywords": [
@@ -26919,7 +26914,7 @@
       },
       "orders": {
         "en": "1 Unit",
-        "zh": "1 支单位"
+        "zh": "1 单位"
       },
       "owner": "Boba Fett",
       "keywords": [
@@ -27032,7 +27027,7 @@
       ]
     }
   ],
-  "updatedAt": "2026-11-16T07:52:49.517015+00:00",
+  "updatedAt": "2026-11-16T08:43:31.996688+00:00",
   "unitCategories": [
     {
       "id": "trooper",

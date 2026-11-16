@@ -14,7 +14,7 @@
   "unlockedBy": null,
   "titleMatch": "",
   "owner": "Rebel Alliance",
-  "orders": { "en": "3 {@icon.rank-corps} Units", "zh": "3 {@icon.rank-corps} 支单位" },
+  "orders": { "en": "3 {@icon.rank-corps} Units", "zh": "3 {@icon.rank-corps} 单位" },
   "description": { "en": "...", "zh": "..." },
   "image": "assets/command-cards/35.webp"
 }

@@ -29126,6 +29126,12 @@
         "locallyUnique": true,
         "unavailableWithIds": [
           "Agent Kallus"
+        ],
+        "slotGrants": [
+          {
+            "trigger": "equipped",
+            "slot": "heavy_weapon"
+          }
         ]
       },
       "review": {

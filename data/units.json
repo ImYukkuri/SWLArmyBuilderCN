@@ -1,6 +1,6 @@
 {
   "schema": "swl-unit-catalog/v2",
-  "updatedAt": "2026-11-16T07:19:34.669392+00:00",
+  "updatedAt": "2026-11-16T10:18:17.131234+00:00",
   "definitions": "catalog-definitions.json",
   "referenceVersion": "2026.11.04.0",
   "units": [
@@ -1725,7 +1725,7 @@
         {
           "name": {
             "en": "Dual Blaster Cannons",
-            "zh": "双管爆能炮"
+            "zh": "双管爆能枪"
           },
           "range": {
             "min": 3,
@@ -6465,7 +6465,7 @@
       "id": "empire-grand-moff-tarkin",
       "name": {
         "en": "Grand Moff Tarkin",
-        "zh": "塔金大总督"
+        "zh": "高级星区总督塔金"
       },
       "title": {
         "en": "Imperial High Command",
@@ -6597,12 +6597,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/empire/originals/id10-seeker_front.webp",
-        "portrait": "assets/portraits/empire-id10-seeker-34b563f54b274d9181bf.webp",
+        "portrait": "assets/portraits/empire-id10-seeker-40ad0e95874c3a4a685f.webp",
         "portraitCrop": [
-          0.6699999999999999,
-          0.12349862258953165,
-          0.99,
-          0.6965013774104682
+          0.01480786309492943,
+          0.18059057254033029,
+          0.3348078630949298,
+          0.7535933273612676
         ]
       },
       "review": {
@@ -10302,7 +10302,7 @@
       },
       "title": {
         "en": "Mounted Jedi General",
-        "zh": "骑乘绝地将军"
+        "zh": "飞车绝地将军"
       },
       "points": 110,
       "upgradeSlots": [
@@ -11451,12 +11451,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/gar/originals/c3po_front.webp",
-        "portrait": "assets/portraits/republic-c3po-fd418c6af604effbb1f5.webp",
+        "portrait": "assets/portraits/republic-c3po-1fd4e44b102a8b37f273.webp",
         "portraitCrop": [
-          0.6699999999999999,
-          0.12349862258953165,
-          0.99,
-          0.6965013774104682
+          0.014807790120925202,
+          0.15318636547786563,
+          0.33480779012092526,
+          0.7261891202988024
         ]
       },
       "review": {
@@ -12127,7 +12127,7 @@
       "id": "republic-clone-trooper",
       "name": {
         "en": "Clone Trooper Infantry",
-        "zh": "克隆人士兵步兵"
+        "zh": "克隆人士兵"
       },
       "title": {
         "en": "",
@@ -12265,7 +12265,7 @@
       "id": "republic-clonetrooper-marksmen",
       "name": {
         "en": "Clone Trooper Marksmen",
-        "zh": "克隆人神射手"
+        "zh": "克隆人精确射手"
       },
       "title": {
         "en": "",
@@ -13188,7 +13188,7 @@
       },
       "title": {
         "en": "Civilized Warrior",
-        "zh": "文明战士"
+        "zh": "文明武士"
       },
       "points": 150,
       "upgradeSlots": [
@@ -14067,7 +14067,7 @@
       },
       "title": {
         "en": "Kashyyyk Defenders",
-        "zh": "卡希克防御者"
+        "zh": "卡希克保卫者"
       },
       "points": 62,
       "upgradeSlots": [
@@ -15197,7 +15197,7 @@
       },
       "title": {
         "en": "The Child",
-        "zh": "孩子"
+        "zh": "小朋友"
       },
       "points": 17,
       "upgradeSlots": [],
@@ -15213,12 +15213,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/clan_covert/originals/grogu-covert_front.webp",
-        "portrait": "assets/portraits/mercenary-clan-covert-grogu-covert-af61584e8ebc770e32a8.webp",
+        "portrait": "assets/portraits/mercenary-clan-covert-grogu-covert-194b2d4dd1c23080260d.webp",
         "portraitCrop": [
-          0.6699999999999999,
-          0.12428571428571428,
-          0.99,
-          0.6957142857142857
+          0.013213672993269338,
+          0.19944050231550914,
+          0.33321367299326976,
+          0.7708690737440813
         ]
       },
       "review": {
@@ -15602,7 +15602,7 @@
       },
       "title": {
         "en": "Cunning Warrior",
-        "zh": "机敏的战士"
+        "zh": "机敏战士"
       },
       "points": 90,
       "upgradeSlots": [
@@ -15755,7 +15755,7 @@
       },
       "title": {
         "en": "Savior of Mandalore",
-        "zh": "曼达洛的救星"
+        "zh": "曼达洛的拯救者"
       },
       "points": 110,
       "upgradeSlots": [
@@ -17756,7 +17756,7 @@
       },
       "title": {
         "en": "Golden God",
-        "zh": "黄金之神"
+        "zh": "金色的神"
       },
       "points": 40,
       "upgradeSlots": [],
@@ -18884,7 +18884,7 @@
       },
       "title": {
         "en": "A Rival",
-        "zh": "劲敌"
+        "zh": "一个劲敌"
       },
       "points": 130,
       "upgradeSlots": [
@@ -19366,7 +19366,7 @@
         26
       ],
       "stats": {
-        "models": 1,
+        "models": 4,
         "wounds": 1,
         "courage": 1,
         "resilience": null,
@@ -21751,12 +21751,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/rogue/originals/omega_front.webp",
-        "portrait": "assets/portraits/mercenary-rogue-omega-748477e1d4707a508037.webp",
+        "portrait": "assets/portraits/mercenary-rogue-omega-b13d4e84b889e33314e2.webp",
         "portraitCrop": [
-          0.6699999999999999,
-          0.12349862258953165,
-          0.99,
-          0.6965013774104682
+          0.005242941406982393,
+          0.12578236749211047,
+          0.3252429414069827,
+          0.6987851223130476
         ]
       },
       "review": {
@@ -22377,12 +22377,12 @@
       },
       "assets": {
         "front": "assets/unit-cards/rebel/originals/c-3po-cyborg_front.webp",
-        "portrait": "assets/portraits/rebels-c-3po-cyborg-47075a2de38f206f1746.webp",
+        "portrait": "assets/portraits/rebels-c-3po-cyborg-7238bacf6579dbd46979.webp",
         "portraitCrop": [
-          0.6699999999999999,
-          0.12349862258953165,
-          0.99,
-          0.6965013774104682
+          0.013213745967274038,
+          0.11436406113263481,
+          0.3332137459672741,
+          0.6873668159535715
         ]
       },
       "review": {

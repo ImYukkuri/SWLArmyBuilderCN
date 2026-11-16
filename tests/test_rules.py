@@ -119,6 +119,21 @@ class SlotRegistryTest(unittest.TestCase):
         binoc = upgrades["gear-binoculars"]["rules"]["slotGrants"]
         self.assertTrue(any(g.get("trigger") == "unitQualifies" for g in binoc))
 
+    def test_kallus_grants_heavy_weapon_on_death_troopers_and_respects_fixed_caps(self):
+        units, upgrades, _ = rules.load_cards()
+        fixed = next(u for u in units.values() if u.get('factionId') == 2 and
+                     any(k.get('id') == 'flexible_response' for k in u.get('keywords', [])))
+        for unit in [units['empire-death-troopers'], units['empire-stormtroopers'], fixed]:
+            with self.subTest(unit=unit['id']):
+                inst = {'unitId': unit['id'], 'upgrades': []}
+                before = rules.slot_list_for(self.pkg, unit, inst, upgrades, 2)
+                slot = next(i for i, s in enumerate(before) if s['key'] == 'heavy_weapon')
+                inst['upgrades'] = [{'upgradeId': 'kallus', 'slotIndex': slot}]
+                after = rules.slot_list_for(self.pkg, unit, inst, upgrades, 2)
+                self.assertEqual(len(after), len(before) + (unit is not fixed))
+                self.assertEqual([s for s in after if s.get('addedBy') == 'kallus'],
+                                 [] if unit is fixed else [{'key': 'heavy_weapon', 'addedBy': 'kallus'}])
+
 
 class ValidateArmyTest(unittest.TestCase):
     def test_equip_slot_targets_accept_either_duplicate_slot_and_report_removal(self):
@@ -266,29 +281,59 @@ class ValidateArmyTest(unittest.TestCase):
         report = rules.validate_army(army)
         self.assertNotIn("dedicated_grant_virtual", [i["code"] for i in report["issues"]])
 
-    def test_shared_training_exempt_slot_accepts_one_effect_card(self):
-        # Mark II's printed 23/26 collapse into ONE shared training_exempt slot.
+    def test_independent_training_special_slots_accept_both_effect_cards(self):
         army = {"mode": "standard", "armyId": 1, "pointsLimit": 1000, "units": [
             {"instanceId": "u1", "unitId": "rebels-mark-2-blaster", "upgrades": [
-                {"instanceId": "c1", "upgradeId": "training-dug-in", "slotIndex": 1}]}],
+                {"instanceId": "c1", "upgradeId": "hit-the-dirt", "slotIndex": 1},
+                {"instanceId": "c2", "upgradeId": "training-dug-in", "slotIndex": 2}]}],
             "commandIds": [], "options": []}
         report = rules.validate_army(army)
         codes = [i["code"] for i in report["issues"]]
         self.assertNotIn("slot_mismatch", codes)
-        self.assertIn("dedicated_grant_virtual", codes)
+        self.assertNotIn("slot_missing", codes)
+        self.assertNotIn("slot_occupied", codes)
+        self.assertNotIn("dedicated_grant_virtual", codes)
 
-    def test_shared_training_exempt_slot_is_single(self):
-        # A second effect card cannot use the shared slot at the same time.
+    def test_special_slot_cannot_accept_a_different_effect_card(self):
         army = {"mode": "standard", "armyId": 1, "pointsLimit": 1000, "units": [
             {"instanceId": "u1", "unitId": "rebels-mark-2-blaster", "upgrades": [
                 {"instanceId": "c1", "upgradeId": "training-dug-in", "slotIndex": 1},
                 {"instanceId": "c2", "upgradeId": "hit-the-dirt", "slotIndex": 2}]}],
             "commandIds": [], "options": []}
         report = rules.validate_army(army)
-        self.assertIn("slot_missing", [i["code"] for i in report["issues"]])
+        self.assertEqual(2, [i["code"] for i in report["issues"]].count("slot_mismatch"))
+
+    def test_b1_independent_special_slots_and_candidate_query_agree(self):
+        units, upgrades, _ = rules.load_cards()
+        pkg = rules.load_package()
+        unit = units['separatists-b1']
+        slots = rules.slot_list_for(pkg, unit, {'upgrades': []}, upgrades, 5)
+        self.assertEqual(['special:gear-binoculars', 'special:gear-portable'],
+                         [s['key'] for s in slots if s.get('virtual')])
+        candidates = {c['upgradeId']: c for c in rules.query_candidates(unit['id'], pkg, units, upgrades, 5)}
+        for card in ['gear-binoculars', 'gear-portable']:
+            self.assertTrue(candidates[card]['available'])
+            self.assertEqual(['special:' + card], candidates[card]['matchedSlots'])
+        unit['upgradeSlots'].append(2)
+        occupied = {'upgrades': [{'upgradeId': 'gear-portable', 'slotIndex': 3}]}
+        self.assertFalse(any(s.get('virtual') for s in rules.slot_list_for(pkg, unit, occupied, upgrades, 5)))
+        candidates = {c['upgradeId']: c for c in rules.query_candidates(unit['id'], pkg, units, upgrades, 5)}
+        for card in ['gear-binoculars', 'gear-portable']:
+            self.assertEqual(['gear'], candidates[card]['matchedSlots'])
+
+    def test_special_slots_honor_restrictions_and_battleforce_categories(self):
+        units, upgrades, _ = rules.load_cards()
+        pkg = rules.load_package()
+        unit = units['separatists-b1']
+        slots = lambda: rules.slot_list_for(pkg, unit, {'upgrades': []}, upgrades, 5)
+        upgrades['gear-binoculars']['restrictions']['condition'] = {'field': 'unit.factionId', 'value': 1}
+        self.assertEqual(['special:gear-portable'], [s['key'] for s in slots() if s.get('virtual')])
+        for operation in ['deny', 'add']:
+            pkg['armyOverrides']['5'] = {'slots': [{'op': operation, 'slot': 'gear'}]}
+            self.assertFalse(any(s.get('virtual') for s in slots()))
 
     def test_added_slot_absent_without_carrying_card(self):
-        # B1 has 5 base slots; a heavy slot granted by grievous-heavy does not exist yet.
+        # B1 has 3 ordinary and 2 per-card slots; index 5 does not exist yet.
         army = {"mode": "standard", "armyId": 5, "pointsLimit": 1000, "units": [
             {"instanceId": "u1", "unitId": "separatists-b1", "upgrades": [
                 {"instanceId": "c1", "upgradeId": "gear-binoculars", "slotIndex": 5}]}],
@@ -298,7 +343,7 @@ class ValidateArmyTest(unittest.TestCase):
 
     def test_carried_upgrade_adds_slot(self):
         # carrying grievous-heavy appends one heavy_weapon slot (index 3);
-        # B1's shared gear_exempt slot moves to index 4.
+        # B1's special Electrobinoculars slot moves to index 4.
         army = {"mode": "standard", "armyId": 5, "pointsLimit": 1000, "units": [
             {"instanceId": "u1", "unitId": "separatists-b1", "upgrades": [
                 {"instanceId": "c0", "upgradeId": "grievous-heavy", "slotIndex": 0},

@@ -66,6 +66,8 @@ function createRoster(factionId) {
 function openRoster(record) {
   activeRecord = structuredClone(record);
   army = BuilderLibrary.normalize(record.army);
+  UpgradeFaces.normalizeArmy(army, data);
+  BuilderModel.migrateSlots(army, data);
   activeRecord.army = army;
   lastSavedRoster = collection.records.some(
     (r) => r.id === record.id && rosterFingerprint(r) === rosterFingerprint(activeRecord),

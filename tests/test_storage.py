@@ -49,13 +49,13 @@ class StorageTest(unittest.TestCase):
         result=server.commit_card(self.card,result['revision'])
         self.assertEqual(result['card']['equipSlotIds'],[])
 
-    def test_portraits_have_uniform_centre_and_fixed_ratio(self):
+    def test_portraits_allow_custom_positions_with_fixed_ratio_and_valid_bounds(self):
         from PIL import Image
         for u in self.catalog['units']:
             with Image.open(server.ROOT/u['assets']['front']) as im:
                 l,t,r,b=u['assets']['portraitCrop']
-                self.assertAlmostEqual((l+r)/2,.83)
-                self.assertAlmostEqual((t+b)/2,.41)
+                self.assertTrue(0 <= l < r <= 1, u['id'])
+                self.assertTrue(0 <= t < b <= 1, u['id'])
                 self.assertAlmostEqual((r-l)*im.width/((b-t)*im.height),.8)
     def setUp(self):
         self.tmp=tempfile.TemporaryDirectory();self.addCleanup(self.tmp.cleanup)

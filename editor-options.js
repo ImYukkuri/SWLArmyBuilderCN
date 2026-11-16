@@ -413,7 +413,7 @@ window.EditorOptions = (() => {
     input.setAttribute('aria-label', label);
     input.placeholder = '自由填写参数；留空表示无参数';
     box.append(input);
-    const global = defs.keywords?.find(k => k.id === keyword.id)?.timing?.includes('global');
+    const global = defs.keywords?.find(k => k.id === keyword.id)?.timing?.some(t => ['global', 'army_building'].includes(t));
     const freeText = ['mercenary', 'aid', 'independent'].includes(keyword.id) ||
       (!global && !['detachment', 'entourage', 'retinue'].includes(keyword.id));
     let redrawTargets;

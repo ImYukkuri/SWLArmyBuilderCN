@@ -6,6 +6,34 @@ const data={units:Object.fromEntries(read('units').units.map(u=>[u.id,u])),upgra
  defs:read('catalog-definitions'),pkg:read('slot-rules'),deckData:read('battle-deck'),ttsNames:read('tts-names')};
 data.nameIndex=RulesCore.buildNameIndex(data.upgrades,data.defs);
 let seq=0;const uid=()=>`transfer-${++seq}`,now='2026-11-16T00:00:00Z';
+
+test('native shared slots migrate once without losing choice identity or changing the imported source',()=>{
+ const army={mode:'standard',armyId:1,pointsLimit:1000,commandIds:[],options:[],units:[
+  {instanceId:'legacy-unit',unitId:'rebels-mark-2-blaster',upgrades:[
+   {instanceId:'legacy-dug-in',upgradeId:'training-dug-in',slotIndex:1}]}]};
+ const input=structuredClone(army),first=BuilderTransfer.readNative(input,data,uid,now).record;
+ assert.deepEqual(input,army);
+ assert.equal(first.army.units[0].upgrades[0].slotIndex,2);
+ assert.equal(first.army.units[0].upgrades[0].instanceId,'legacy-dug-in');
+ assert.equal(first.army.slotLayoutVersion,1);
+ const second=BuilderTransfer.readNative(first,data,uid,now).record;
+ assert.deepEqual(second.army,first.army);
+});
+
+test('TTS imports both independent special upgrades, including when a later card shifts their slots',()=>{
+ for(const upgrades of [['Electrobinoculars','Portable Scanner'],
+  ['Electrobinoculars','Portable Scanner',data.upgrades['grievous-heavy'].name.en]]) {
+  const source={armyFaction:'separatist',units:[{name:'B1 Battle Droids',upgrades}],commandCards:[]};
+  const result=BuilderTransfer.importTTS(source,data,uid,now);
+  assert.deepEqual(result.issues,[]);
+  const army=result.record.army,inst=army.units[0];
+  assert.equal(inst.upgrades.length,upgrades.length);
+  assert(!RulesCore.validateArmy(army,data).issues.some(i=>i.code.startsWith('slot_')));
+  assert.deepEqual(BuilderTransfer.exportTTS(result.record,data).json.units[0].upgrades.sort(),[...upgrades].sort());
+  const native=BuilderTransfer.readNative(result.record,data,uid,now);
+  assert.deepEqual(native.record.army,army);
+ }
+});
 const unit=(name,...upgrades)=>({name,upgrades});
 const examples=[{
  author:'Legion HQ',listname:'Untitled',points:1000,numActivations:13,armyFaction:'rebel',

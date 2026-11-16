@@ -9,7 +9,7 @@
   };
   const copy = value => JSON.parse(JSON.stringify(value));
   const timings = {
-    global: '全局 / 组军', setup: '设置', deployment: '部署', command: '命令阶段',
+    global: '全局', army_building: '组军', setup: '设置', deployment: '部署', command: '命令阶段',
     activation_start: '激活开始', activation: '激活', activation_end: '激活结束',
     movement: '移动', attack: '攻击', defense: '防御', end_round: '回合结束',
   };

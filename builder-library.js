@@ -96,6 +96,7 @@ window.BuilderLibrary = (() => {
   function create(factionId, name, data, makeId, now) {
     if (!FACTIONS.some((f) => f.id === Number(factionId))) throw Error("请选择一个势力。");
     const army = {
+      slotLayoutVersion: 1,
       mode: "standard",
       armyId: Number(factionId),
       pointsLimit: 1000,

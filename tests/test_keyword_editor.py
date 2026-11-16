@@ -50,7 +50,7 @@ class KeywordEditorTest(unittest.TestCase):
     def test_save_restore_and_command_revision_conflict(self):
         before = self.request('/api/keywords')
         self.card['summary'] = '测试新简写\n保留换行'
-        self.card['timing'] = ['attack', 'defense', 'activation_end']
+        self.card['timing'] = ['global', 'army_building', 'command', 'attack', 'defense', 'activation_end']
         self.card['actionTypes'] = ['action', 'free-action']
         saved = self.request('/api/keywords/save', {'card': self.card, 'revision': before['revision']})
         after = self.request('/api/keywords')['catalog']

@@ -6,7 +6,7 @@ from rule_schema import validate_rules,KNOWN
 from catalog_schema import validate_keyword_targets
 ROOT=Path(__file__).resolve().parent;LOCK=threading.Lock()
 CONFIG={'upgrades':('data/upgrades.json','cards'),'armies':('data/armies.json','armies'),'commands':('data/catalog-definitions.json','commands'),'keywords':('data/catalog-definitions.json','keywords')}
-KEYWORD_TIMINGS={'global','setup','deployment','command','activation_start','activation','activation_end','movement','attack','defense','end_round'}
+KEYWORD_TIMINGS={'global','army_building','setup','deployment','command','activation_start','activation','activation_end','movement','attack','defense','end_round'}
 ACTION_TYPES={'action','double-action','free-action','free-exhaust'}
 
 def validate_action_types(record):

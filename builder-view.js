@@ -1099,31 +1099,27 @@ function tag(k, { forceOpen = false, timing = false, showOrigin = true } = {}) {
 }
 
 function ruleTimings(k) {
-  if ((typeof k === 'string' ? k : k?.id) === 'equip') return ['global'];
   return BuilderModel.keywordActionTypes(k, data.defs).length ? ['action'] : ruleInfo(k).ref?.timing || [];
 }
-function phaseRules(ks, forceOpen = false) {
+function phaseRules(ks, forceOpen = false, { hideArmyBuilding = false } = {}) {
   const list = node("div", "phase-rules");
   const order = Object.keys(TIMING_LABEL),
     groups = new Map();
   for (const k of uniqueRules(ks)) {
-    const ts = ruleTimings(k).filter(Boolean);
-    const key = ts.length
-      ? [...new Set(ts)].sort((a, b) => order.indexOf(a) - order.indexOf(b)).join("|")
-      : "unclassified";
-    if (!groups.has(key)) groups.set(key, []);
-    groups.get(key).push(k);
+    const timings = [...new Set(ruleTimings(k).filter(Boolean))];
+    for (const timing of timings.length ? timings : ['unclassified']) {
+      if (!groups.has(timing)) groups.set(timing, []);
+      groups.get(timing).push(k);
+    }
   }
   for (const [key, entries] of [...groups].sort(
-    (a, b) => order.indexOf(a[0].split("|")[0]) - order.indexOf(b[0].split("|")[0]),
+    (a, b) => order.indexOf(a[0]) - order.indexOf(b[0]),
   )) {
+    if (hideArmyBuilding && key === 'army_building') continue;
     const row = node("div", "phase-row");
-    row.dataset.phase = key.split("|")[0];
+    row.dataset.phase = key;
     const label = node("div", "phase-title");
-    for (const [index, timing] of key.split("|").entries()) {
-      if (index) label.append(node("span", "phase-separator", "/"));
-      label.append(node("span", "phase-name", TIMING_LABEL[timing] || timing));
-    }
+    label.append(node("span", "phase-name", TIMING_LABEL[key] || key));
     const tags = node("div", "phase-tags");
     for (const k of entries) tags.append(tag(k, { forceOpen }));
     row.append(label, tags);
@@ -1339,7 +1335,7 @@ function hideRule(restoreFocus = true) {
 function removeUpgrade(c) {
   const inst = army.units.find(i => i.instanceId === c._unitId);
   if (!inst) return;
-  inst.upgrades = inst.upgrades.filter(ch => ch.instanceId !== c._choiceId);
+  BuilderModel.removeUpgrade(army, data, inst.instanceId, c._choiceId);
   hideRule(false);
   setStatus('已从 1 个单位移除 ' + named(c.name));
   render();
@@ -1473,11 +1469,12 @@ function selectGroupSlot(group, index, key, trigger) {
   );
 }
 
-function expandedContents(inst, { forceOpen = false } = {}) {
+function expandedContents(inst, { forceOpen = false, detail = false } = {}) {
   const u = data.units[inst.unitId],
     out = node("div", "unit-expanded");
   const rules = keywordEntries(inst);
-  if (rules.length) out.append(phaseRules(rules, forceOpen));
+  const phases = phaseRules(rules, forceOpen, { hideArmyBuilding: !detail });
+  if (phases.childElementCount) out.append(phases);
   out.append(unitWeapons(inst, forceOpen));
   if (inst.upgrades.length) {
     const section = node("section", "selected-upgrades");
@@ -1548,7 +1545,7 @@ function rosterCard(group, { detail = false } = {}) {
       }
     };
   }
-  if (isOpen) card.append(expandedContents(inst, { forceOpen: detail }));
+  if (isOpen) card.append(expandedContents(inst, { forceOpen: detail, detail }));
   return card;
 }
 
@@ -1567,7 +1564,7 @@ function showUnitDetail(group) {
 function refreshUnitFaces(card, group, detail = false) {
   card.dataset.groupKey = group.key;
   card.querySelector('.compact-slots')?.replaceWith(slotStrip(group, {readonly: detail}));
-  card.querySelector('.unit-expanded')?.replaceWith(expandedContents(group.instances[0], {forceOpen: detail}));
+  card.querySelector('.unit-expanded')?.replaceWith(expandedContents(group.instances[0], {forceOpen: detail, detail}));
   return card;
 }
 function renderUnits({changedInstanceId = null} = {}) {
@@ -1870,7 +1867,7 @@ function slotStrip(group, { readonly = false } = {}) {
       remove.onclick = (e) => {
         e.stopPropagation();
         if (c) removeUpgrade(c);
-        else {inst.upgrades = inst.upgrades.filter(ch => ch !== chosen); render();}
+        else {BuilderModel.removeUpgrade(army, data, inst.instanceId, chosen.instanceId); render();}
       };
       row.append(remove);
     }

@@ -3536,6 +3536,16 @@ body.sheet-open {
   --timing-color: #66718e;
 }
 
+.timing-mark[data-timing="army_building"] {
+  --timing-color: #81694e;
+}
+
+.phase-row[data-phase="army_building"] .phase-title {
+  color: #705b43;
+  border-color: #a48b6b;
+  background: #f3eee6;
+}
+
 .timing-mark[data-timing="setup"] {
   --timing-color: #987143;
 }

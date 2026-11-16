@@ -27,7 +27,8 @@ const RANK_LABEL = {
 let unitNameIndex = null;
 const TIMING_LABEL = {
   action: "行动",
-  global: "全局/组军",
+  global: "全局",
+  army_building: "组军",
   setup: "设置",
   deployment: "部署",
   command: "命令阶段",
@@ -168,6 +169,10 @@ function setStatus(t, error) {
 }
 
 function slotDef(key) {
+  if (key?.startsWith('special:')) {
+    const card = data.upgrades[key.slice(8)], name = card?.name?.zh || card?.name?.en || key.slice(8);
+    return {name: {zh: '【' + name + '】'}, iconGlyph: '+'};
+  }
   const s = (data.pkg.slots || []).find((x) => x.id === key);
   if (!s) return null;
   return (data.defs.upgradeSlots || []).find((x) => x.id === s.sourceId) || s;
@@ -299,7 +304,12 @@ function renderFaction() {
     );
   select.value = army.armyId;
   select.onchange = () => {
+    const before = new Map(army.units.filter(i => data.units[i.unitId]).map(i =>
+      [i.instanceId, unitSlotRecords(data.units[i.unitId], i)]));
     army.armyId = Number(select.value);
+    for (const inst of army.units) if (before.has(inst.instanceId))
+      BuilderModel.rebindSlots(inst, before.get(inst.instanceId), unitSlotRecords(data.units[inst.unitId], inst),
+        data, {allowOrphans: true});
     browser = null;
     cardView.applyAll = false;
     setStatus("已更新战斗部队限制，现有编制已保留。");
@@ -611,9 +621,9 @@ function choose(card) {
       setStatus(result.reason, true);
       return;
     }
-    const slot = browser.slotIndex;
     army = result.draft;
     const first = army.units.find((i) => i.instanceId === result.ids[0]);
+    const slot = first.upgrades.find(ch => ch.instanceId === result.chosenIds[0]).slotIndex;
     const records = unitSlotRecords(data.units[first.unitId], first);
     const next = nextEmptySlot(first, records, slot);
     const group = groupedUnits().find((g) =>

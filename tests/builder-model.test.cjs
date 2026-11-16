@@ -17,6 +17,130 @@ const data = {
 };
 data.nameIndex = RulesCore.buildNameIndex(data.upgrades, data.defs);
 
+test('exempt cards get independent exclusive slots and can all be equipped', () => {
+  for (const [id, faction, cards] of [
+    ['separatists-b1',5,['gear-binoculars','gear-portable']],
+    ['rebels-mark-2-blaster',1,['hit-the-dirt','training-dug-in']],
+  ]) {
+    let roster = {...armyOf(unit(id)), armyId: faction};
+    const host = data.units[id], inst = roster.units[0];
+    const slots = RulesCore.slotListFor(data.pkg,host,inst,data.upgrades,faction);
+    assert.deepEqual(slots.filter(s=>s.virtual).map(s=>s.key),cards.map(c=>'special:'+c));
+    const first = slots.findIndex(s=>s.key==='special:'+cards[0]);
+    const wrong = BuilderModel.equip(roster,data,{unitInstanceId:inst.instanceId,
+      slotIndex:first,slotKey:slots[first].key},cards[1],false,uid);
+    assert(!wrong.ok, 'a dedicated slot must reject every other special card');
+    for(const card of cards) {
+      const index=slots.findIndex(s=>s.key==='special:'+card);
+      const result=BuilderModel.equip(roster,data,{unitInstanceId:inst.instanceId,
+        slotIndex:index,slotKey:slots[index].key},card,false,uid);
+      assert(result.ok,result.reason);roster=result.draft;
+    }
+    assert.equal(roster.units[0].upgrades.length,2);
+    assert(!RulesCore.validateArmy(roster,data).issues.some(i=>i.code.startsWith('slot_')||i.code==='dedicated_grant_virtual'));
+  }
+});
+
+test('ordinary slots suppress exempt slots even when occupied and keep special cards selectable', () => {
+  const fixture=structuredClone(data),host=fixture.units['separatists-b1'];
+  host.upgradeSlots.push(2);
+  const roster={...armyOf(unit(host.id)),armyId:5},inst=roster.units[0];
+  const slots=RulesCore.slotListFor(fixture.pkg,host,inst,fixture.upgrades,5);
+  assert(!slots.some(s=>s.virtual));
+  const index=slots.findIndex(s=>s.key==='gear');
+  for(const id of ['gear-binoculars','gear-portable']) {
+    assert(RulesCore.accessKeys(fixture.upgrades[id],fixture.pkg).includes('gear'));
+    const result=BuilderModel.equip(roster,fixture,{unitInstanceId:inst.instanceId,
+      slotIndex:index,slotKey:'gear'},id,false,uid);
+    assert(result.ok,result.reason);
+    assert(!RulesCore.slotListFor(fixture.pkg,host,result.draft.units[0],fixture.upgrades,5).some(s=>s.virtual));
+  }
+});
+
+test('dedicated slots obey qualifying conditions, card restrictions and battle force slot rules', () => {
+  const fixture=structuredClone(data),host=fixture.units['separatists-b1'],inst={upgrades:[]};
+  const slots=()=>RulesCore.slotListFor(fixture.pkg,host,inst,fixture.upgrades,5);
+  fixture.upgrades['gear-binoculars'].restrictions.condition={field:'unit.factionId',value:1};
+  assert.deepEqual(slots().filter(s=>s.virtual).map(s=>s.key),['special:gear-portable']);
+  fixture.pkg.armyOverrides['5']={slots:[{op:'deny',slot:'gear'}]};
+  assert(!slots().some(s=>s.virtual));
+  fixture.pkg.armyOverrides['5']={slots:[{op:'add',slot:'gear'}]};
+  assert(!slots().some(s=>s.virtual));
+  assert(slots().some(s=>s.key==='gear'));
+});
+
+test('adding and removing a granting card preserves both equipped special cards and their IDs', () => {
+  let roster={...armyOf(unit('separatists-b1')),armyId:5};
+  const host=data.units['separatists-b1'];
+  const equip=(key,id)=>{
+    const inst=roster.units[0],slots=RulesCore.slotListFor(data.pkg,host,inst,data.upgrades,5);
+    const result=BuilderModel.equip(roster,data,{unitInstanceId:inst.instanceId,
+      slotIndex:slots.findIndex(s=>s.key===key),slotKey:key},id,false,uid);
+    assert(result.ok,result.reason);roster=result.draft;
+  };
+  for(const id of ['gear-binoculars','gear-portable'])equip('special:'+id,id);
+  const identities=roster.units[0].upgrades.map(c=>c.instanceId);
+  equip('heavy_weapon','grievous-heavy');
+  const inst=roster.units[0];
+  assert.deepEqual(inst.upgrades.slice(0,2).map(c=>c.slotIndex),[4,5]);
+  BuilderModel.removeUpgrade(roster,data,inst.instanceId,inst.upgrades.find(c=>c.upgradeId==='grievous-heavy').instanceId);
+  assert.deepEqual(inst.upgrades.map(c=>c.slotIndex),[3,4]);
+  assert.deepEqual(inst.upgrades.map(c=>c.instanceId),identities);
+  assert(!RulesCore.validateArmy(roster,data).issues.some(i=>i.code.startsWith('slot_')));
+});
+
+test('a newly granted ordinary category absorbs special selections atomically and removal restores them', () => {
+  const fixture=structuredClone(data),host=fixture.units['separatists-b1'];
+  fixture.upgrades['grievous-heavy'].rules.slotGrants=[{trigger:'equipped',slot:'gear'}];
+  let roster={...armyOf(unit(host.id)),armyId:5};
+  const equip=(key,id)=>{
+    const inst=roster.units[0],slots=RulesCore.slotListFor(fixture.pkg,host,inst,fixture.upgrades,5);
+    return BuilderModel.equip(roster,fixture,{unitInstanceId:inst.instanceId,
+      slotIndex:slots.findIndex(s=>s.key===key),slotKey:key},id,false,uid);
+  };
+  for(const id of ['gear-binoculars','gear-portable']) {
+    const result=equip('special:'+id,id);assert(result.ok,result.reason);roster=result.draft;
+  }
+  const before=JSON.stringify(roster),blocked=equip('heavy_weapon','grievous-heavy');
+  assert(!blocked.ok,'one ordinary slot cannot absorb two equipped cards');
+  assert.equal(JSON.stringify(roster),before,'rejection cannot remove either card');
+  const inst=roster.units[0];
+  BuilderModel.removeUpgrade(roster,fixture,inst.instanceId,inst.upgrades.find(c=>c.upgradeId==='gear-binoculars').instanceId);
+  const added=equip('heavy_weapon','grievous-heavy');assert(added.ok,added.reason);roster=added.draft;
+  const current=roster.units[0],scanner=current.upgrades.find(c=>c.upgradeId==='gear-portable');
+  assert.equal(scanner.slotIndex,3);
+  assert(!RulesCore.slotListFor(fixture.pkg,host,current,fixture.upgrades,5).some(s=>s.virtual));
+  BuilderModel.removeUpgrade(roster,fixture,current.instanceId,current.upgrades.find(c=>c.upgradeId==='grievous-heavy').instanceId);
+  assert.equal(scanner.slotIndex,4);
+  assert(!RulesCore.validateArmy(roster,fixture).issues.some(i=>i.code.startsWith('slot_')));
+});
+
+test('apply-all equips per-card special slots independently across merged units', () => {
+  let roster={...armyOf(unit('separatists-b1'),unit('separatists-b1')),armyId:5};
+  for(const id of ['gear-binoculars','gear-portable']) {
+    const inst=roster.units[0],key='special:'+id;
+    const slots=RulesCore.slotListFor(data.pkg,data.units[inst.unitId],inst,data.upgrades,5);
+    const result=BuilderModel.equip(roster,data,{unitInstanceId:inst.instanceId,
+      groupIds:roster.units.map(i=>i.instanceId),slotIndex:slots.findIndex(s=>s.key===key),slotKey:key},id,true,uid);
+    assert(result.ok,result.reason);roster=result.draft;
+  }
+  assert.equal(BuilderModel.groups(roster,data).length,1);
+  assert.equal(new Set(roster.units.flatMap(i=>i.upgrades.map(c=>c.instanceId))).size,4);
+});
+
+test('legacy shared slots migrate by card identity including ordinary battle force slots that follow', () => {
+  const fixture=structuredClone(data),host=fixture.units['rebels-mark-2-blaster'];
+  fixture.pkg.armyOverrides['1']={slots:[{op:'add',slot:'gear'}]};
+  const roster={...armyOf(unit(host.id)),armyId:1},inst=roster.units[0];
+  inst.upgrades=[{instanceId:uid(),upgradeId:'training-dug-in',slotIndex:1},
+    {instanceId:uid(),upgradeId:'gear-binoculars',slotIndex:2}];
+  BuilderModel.migrateSlots(roster,fixture);
+  assert.deepEqual(inst.upgrades.map(c=>c.slotIndex),[3,1]);
+  const snapshot=structuredClone(roster);BuilderModel.migrateSlots(roster,fixture);
+  assert.deepEqual(roster,snapshot);
+  assert(!RulesCore.validateArmy(roster,fixture).issues.some(i=>i.code.startsWith('slot_')));
+});
+
 test('Flexible Response suppresses heavy-slot modifiers at their source, preserving other slots and stored positions', () => {
   const fixture = structuredClone(data), unit = fixture.units['rebels-guerilla-troopers'];
   const grant = {id: 'test-grant', rules: {slotGrants: [
@@ -78,6 +202,37 @@ test('Jyn on Guerilla Troopers never creates a third slot or changes an equipped
   assert(!RulesCore.validateArmy(army, data).issues.some(i => i.code.startsWith('slot_') || i.code === 'required_slot'));
   army.units[0].upgrades = army.units[0].upgrades.filter(c => c.upgradeId !== 'jyn-erso');
   assert.deepEqual(RulesCore.slotListFor(data.pkg, unit, army.units[0], data.upgrades, army.armyId), before);
+});
+
+test('Kallus opens a usable heavy slot after himself on Death Troopers and other eligible hosts', () => {
+  for (const id of ['empire-death-troopers', 'empire-stormtroopers']) {
+    let roster = armyOf(unit(id));
+    const host = data.units[id], context = slotContext(roster, 'heavy_weapon');
+    const before = RulesCore.slotListFor(data.pkg, host, roster.units[0], data.upgrades, 2);
+    const added = BuilderModel.equip(roster, data, context, 'kallus', false, uid);
+    assert.equal(added.ok, true, added.reason);
+    roster = added.draft;
+    const records = RulesCore.slotListFor(data.pkg, host, roster.units[0], data.upgrades, 2);
+    assert.equal(records.length, before.length + 1);
+    const extra = records.findIndex(r => r.addedBy === 'kallus');
+    assert.equal(records[extra].key, 'heavy_weapon');
+    const order = BuilderModel.slotOrder(roster.units[0], records);
+    assert.equal(order[order.indexOf(context.slotIndex) + 1], extra);
+    const weaponId = id === 'empire-death-troopers' ? 'dlt-19d' : 'stormtrooper-dlt19';
+    const armed = BuilderModel.equip(roster, data, {...context, slotIndex: extra}, weaponId, false, uid);
+    assert.equal(armed.ok, true, armed.reason);
+    assert.ok(!RulesCore.validateArmy(armed.draft, data).issues.some(i => i.code.startsWith('slot_')));
+    roster.units[0].upgrades = [];
+    assert.deepEqual(RulesCore.slotListFor(data.pkg, host, roster.units[0], data.upgrades, 2), before);
+  }
+  const fixed = Object.values(data.units).find(u => u.factionId === 2 &&
+    u.keywords?.some(k => k.id === 'flexible_response'));
+  const roster = {...armyOf(unit(fixed.id)), armyId: fixed.factions[0].id};
+  const before = RulesCore.slotListFor(data.pkg, fixed, roster.units[0], data.upgrades, roster.armyId);
+  // Even imported equipment cannot override Flexible Response. This battle
+  // force may independently prohibit Kallus; do not relax its eligibility.
+  roster.units[0].upgrades = [{instanceId: uid(), upgradeId: 'kallus', slotIndex: 0}];
+  assert.deepEqual(RulesCore.slotListFor(data.pkg, fixed, roster.units[0], data.upgrades, roster.armyId), before);
 });
 
 test('Flexible Response allows gradual and batch equipment, rejects a third heavy weapon and retains imported excess', () => {

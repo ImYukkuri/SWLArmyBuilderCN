@@ -121,9 +121,12 @@ def slot_key(package, source_id):
 
 
 def access_keys(card, package, upgrade_rule=None):
-    if upgrade_rule and upgrade_rule.get("access"):
-        return [a.get("slot") for a in upgrade_rule["access"] if a.get("slot")]
-    return list(dict.fromkeys(slot_key(package, sid) for sid in (card.get("slotIds") or [])))
+    keys = ([a['slot'] for a in upgrade_rule['access'] if a.get('slot')]
+            if upgrade_rule and 'access' in upgrade_rule else
+            [slot_key(package, sid) for sid in card.get('slotIds') or []])
+    if any(g.get('trigger') == 'unitQualifies' for g in (card.get('rules') or {}).get('slotGrants') or []):
+        keys.append('special:' + card['id'])
+    return list(dict.fromkeys(keys))
 
 
 def _unit_context(unit, package):
@@ -186,7 +189,7 @@ def slot_grants_for(package, unit, inst, upgrades):
             else:
                 ok = uid in [str(h) for h in (grant.get("holders") or [])]
             if ok:
-                qualify_grants.append({"key": grant["slot"], "ifAbsentAny": grant.get("ifAbsentAny")})
+                qualify_grants.append({"key": grant["slot"], "ifAbsentAny": grant.get("ifAbsentAny"), "upgradeId": card_id})
     return equipped_grants, qualify_grants
 
 
@@ -268,7 +271,7 @@ def equip_slot_keys(unit, package):
     return keys
 
 
-def slot_list_for(package, unit, inst, upgrades, army_id=None):
+def slot_list_for(package, unit, inst, upgrades, army_id=None, legacy_shared=False):
     out = []
     by_id, _ = slot_registry(package)
     count = flexible_response_count(unit)
@@ -278,7 +281,7 @@ def slot_list_for(package, unit, inst, upgrades, army_id=None):
         raw = sid.get("id") if isinstance(sid, dict) else sid
         key = slot_key(package, raw)
         if by_id.get(key, {}).get("kind") == "dedicated":
-            continue  # printed dedicated slots are replaced by the shared exempt grants
+            continue  # derive per-card slots from current qualifying rules
         if fixed_heavy and key == "heavy_weapon":
             if heavy < count:
                 out.append({"key": "heavy_weapon", "required": True, "requiredBy": "flexible_response"})
@@ -292,7 +295,7 @@ def slot_list_for(package, unit, inst, upgrades, army_id=None):
                    for _ in range(count - heavy))
     equipped_grants, qualify_grants = slot_grants_for(package, unit, inst, upgrades)
     out.extend(equipped_grants)
-    for g in qualify_grants:
+    for g in qualify_grants if legacy_shared else []:
         if any(r["key"] == g["key"] for r in out):
             continue
         if g.get("ifAbsentAny") and any(r["key"] in g["ifAbsentAny"] for r in out):
@@ -307,6 +310,22 @@ def slot_list_for(package, unit, inst, upgrades, army_id=None):
     for r in slot_rules:
         if isinstance(r, dict) and r.get("op") == "add" and r.get("slot") and matches_target(unit, r.get("target")) and not any(x["key"] == r["slot"] for x in out):
             out.append({"key": r["slot"], "addedBy": "override"})
+    for g in [] if legacy_shared else qualify_grants:
+        card = upgrades[g['upgradeId']]
+        key = 'special:' + card['id']
+        if any(r['key'] == key for r in out):continue
+        rule = (package.get('upgradeRules') or {}).get(str((card.get('upstream') or {}).get('id')))
+        normal = [k for k in access_keys(card, package, rule) if k in by_id and by_id[k]['kind'] != 'dedicated']
+        if any(not r.get('virtual') and r['key'] in normal + (g.get('ifAbsentAny') or []) for r in out):continue
+        cond = (card.get('restrictions') or {}).get('condition')
+        if card.get('deprecated') or (cond is not None and evaluate(cond, _unit_context(unit, package), package.get('predicates') or {}) is False):continue
+        cr = card.get('rules') or {}
+        if army_id is not None and cr.get('factions') is not None and int(army_id) not in [int(f) for f in cr['factions']]:continue
+        if army_id is not None and cr.get('requiresTier'):
+            rank = army_rank(unit, army_id, package, {}, {})
+            if rank is not None and rank not in [int(r) for r in cr['requiresTier']]:continue
+        if any(r.get('op') == 'deny' and r.get('slot') in [key, g['key'], *normal] and matches_target(unit, r.get('target')) for r in slot_rules):continue
+        out.append({'key': key, 'required': False, 'virtual': True, 'upgradeId': card['id']})
     for key in equip_slot_keys(unit, package):
         matches = [(i,s) for i,s in enumerate(out) if s['key'] == key]
         def occupied(index):
@@ -815,7 +834,7 @@ def validate_army(army):
         if any((k or {}).get("id") == "flexible_response" for k in unit.get("keywords") or []) and heavy_required is None:
             issue("unknown", "flexible_response_value", "灵活响应的数值 X 未设置或无效，请在单位编辑器填写非负整数", key)
         for rec in slot_list:
-            if rec.get("virtual"):
+            if rec.get("virtual") and not rec.get('upgradeId'):
                 issue("unknown", "dedicated_grant_virtual",
                       f"该单位满足专用槽 {rec['key']} 的语义条件，但本地基础槽未包含；已按虚拟槽补入", key)
 
@@ -1299,27 +1318,10 @@ def query_candidates(unit_id, package=None, units=None, upgrades=None, army_id=N
     unit = units.get(unit_id)
     if not unit:
         return []
-    by_id, _ = slot_registry(package)
-    slot_keys = []
-    for s in unit.get("upgradeSlots") or []:
-        raw = s.get("id") if isinstance(s, dict) else s
-        key = slot_key(package, raw)
-        slot_def = by_id.get(key)
-        if slot_def and slot_def.get("kind") == "dedicated":
-            continue
-        slot_keys.append(key)
-    granted = set()
-    for g in dedicated_slot_keys(package, unit, upgrades):
-        if g.get("ifAbsentAny") and any(k in g["ifAbsentAny"] for k in slot_keys):
-            continue
-        if g["key"] in granted:
-            continue
-        if g["key"] not in slot_keys:
-            slot_keys.append(g["key"])
-            granted.add(g["key"])
     definitions = _read("data/catalog-definitions.json")
     name_index = build_name_index(upgrades, definitions)
     army = {"armyId": army_id if army_id is not None else ((unit.get("factions") or [{}])[0].get("id"))}
+    slot_keys = [s['key'] for s in slot_list_for(package, unit, {'upgrades': []}, upgrades, army['armyId'])]
     results = []
     for card in upgrades.values():
         rule = (package.get("upgradeRules") or {}).get(str(card.get("upstream", {}).get("id", "")), {})

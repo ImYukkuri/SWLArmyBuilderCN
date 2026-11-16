@@ -79,6 +79,7 @@ window.BuilderTransfer = (() => {
     }
     if(!Array.isArray(army.commandIds)||!Array.isArray(army.options))throw Error('指挥卡或选项必须为数组。');
     UpgradeFaces.normalizeArmy(army,data);
+    BuilderModel.migrateSlots(army,data);
     return {record:{...structuredClone(obj.army?obj:{}),id:makeId(),name:obj.name||'导入军表',
       factionId:BuilderLibrary.factionOf(army.armyId,data),createdAt:now,updatedAt:now,army},issues:[],warnings:[]};
   }
@@ -132,7 +133,10 @@ window.BuilderTransfer = (() => {
         RulesCore.accessKeys(card,data.pkg,data.pkg.upgradeRules?.[String(card.upstream?.id)]||{}).includes(s.key))})).filter(x=>x.slots.length)
         .sort((a,b)=>a.slots.length-b.slots.length);
       for(const option of options)for(const {i}of option.slots) {
-        const result=search([...selected,{upgradeId:option.card.id,slotIndex:i,...(option.card.dualSided?{face:'front'}:{})}],pending.filter((_,j)=>j!==option.index));
+        const next={...inst,upgrades:[...structuredClone(selected),{upgradeId:option.card.id,slotIndex:i,...(option.card.dualSided?{face:'front'}:{})}]};
+        const after=RulesCore.slotListFor(data.pkg,host,next,data.upgrades,army.armyId);
+        if(!BuilderModel.rebindSlots(next,slots,after,data).ok)continue;
+        const result=search(next.upgrades,pending.filter((_,j)=>j!==option.index));
         if(result)return result;
       }
       return null;

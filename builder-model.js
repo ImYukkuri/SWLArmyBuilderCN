@@ -58,6 +58,69 @@ window.BuilderModel = (() => {
     return order;
   }
 
+  // Slot indices are persisted. Match logical slots before changing those
+  // indices so grants/removals cannot silently move an existing card elsewhere.
+  function rebindSlots(instance, before, after, data, {allowOrphans = false} = {}) {
+    const identities = records => {
+      const counts = new Map();
+      return records.map(r => {
+        const key = JSON.stringify([r.key, r.addedBy || null]);
+        const n = counts.get(key) || 0;
+        counts.set(key, n + 1);
+        return key + ':' + n;
+      });
+    };
+    const oldIds = identities(before), newIds = identities(after), used = new Set();
+    const entries = (instance.upgrades || []).map(choice => {
+      const card = data.upgrades[choice.upgradeId];
+      const allowed = card ? RulesCore.accessKeys(card, data.pkg,
+        data.pkg.upgradeRules?.[String(card.upstream?.id)]) : [];
+      return {choice, allowed, index: -1};
+    });
+    const reserve = (entry, index) => {
+      if (index < 0 || used.has(index) || !entry.allowed.includes(after[index].key)) return false;
+      entry.index = index;
+      used.add(index);
+      return true;
+    };
+    // Preserve occupied ordinary slots before moving former exempt selections.
+    for (const e of entries) if (oldIds[e.choice.slotIndex] != null)
+      reserve(e, newIds.indexOf(oldIds[e.choice.slotIndex]));
+    for (const e of entries.filter(e => e.index < 0).sort((a,b) => a.allowed.length - b.allowed.length)) {
+      const special = after.findIndex(r => r.key === 'special:' + e.choice.upgradeId);
+      if (!reserve(e, special)) reserve(e, after.findIndex((r,i) => !used.has(i) && e.allowed.includes(r.key)));
+    }
+    const unresolved = entries.filter(e => e.index < 0).map(e => e.choice.upgradeId);
+    if (unresolved.length && !allowOrphans) return {ok: false, unresolved};
+    let orphanIndex = after.length;
+    for (const e of entries) e.choice.slotIndex = e.index < 0 ? orphanIndex++ : e.index;
+    return {ok: unresolved.length === 0, unresolved};
+  }
+
+  function migrateSlots(army, data) {
+    if (army.slotLayoutVersion >= 1) return army;
+    for (const inst of army.units || []) {
+      const unit = data.units[inst.unitId];
+      if (!unit) continue;
+      const old = RulesCore.slotListFor(data.pkg, unit, inst, data.upgrades, army.armyId, {legacyShared: true});
+      const current = RulesCore.slotListFor(data.pkg, unit, inst, data.upgrades, army.armyId);
+      if (JSON.stringify(old) !== JSON.stringify(current))
+        rebindSlots(inst, old, current, data, {allowOrphans: true});
+    }
+    army.slotLayoutVersion = 1;
+    return army;
+  }
+
+  function removeUpgrade(army, data, instanceId, choiceId) {
+    const inst = army.units.find(i => i.instanceId === instanceId);
+    if (!inst) return;
+    const unit = data.units[inst.unitId];
+    const records = () => unit ? RulesCore.slotListFor(data.pkg, unit, inst, data.upgrades, army.armyId) : [];
+    const before = records();
+    inst.upgrades = inst.upgrades.filter(ch => ch.instanceId !== choiceId);
+    rebindSlots(inst, before, records(), data, {allowOrphans: true});
+  }
+
   function uniqueUpgrade(card, data) {
     return (
       card?.rules?.unique === true ||
@@ -291,6 +354,10 @@ window.BuilderModel = (() => {
       warnings = [];
     const rule = data.pkg.upgradeRules?.[String(card.upstream?.id)] || {};
     const allowed = RulesCore.accessKeys(card, data.pkg, rule);
+    const originalSlots = new Map(targets.map(inst => [inst.instanceId,
+      data.units[inst.unitId] ? RulesCore.slotListFor(data.pkg, data.units[inst.unitId], inst,
+        data.upgrades, army.armyId) : []]));
+    const chosenIds = [];
     // Remove all replaced choices before checking mutual exclusion. No draft
     // state is exposed unless every target can receive the replacement.
     for (const instance of draft.units) {
@@ -303,13 +370,7 @@ window.BuilderModel = (() => {
       const instance = draft.units.find((i) => i.instanceId === id),
         unit = data.units[instance.unitId];
       if (!unit) return { ok: false, reason: "单位资料已不存在。" };
-      const records = RulesCore.slotListFor(
-        data.pkg,
-        unit,
-        instance,
-        data.upgrades,
-        draft.armyId,
-      );
+      const records = originalSlots.get(id);
       const record = records[context.slotIndex];
       if (!record || record.key !== context.slotKey || !allowed.includes(record.key)) {
         return { ok: false, reason: "升级变化导致槽位不再匹配。" };
@@ -337,17 +398,23 @@ window.BuilderModel = (() => {
       );
       const reason = selectionFailure(card, instance, draft, data);
       if (reason) return { ok: false, reason };
+      const choiceId = makeId();
+      chosenIds.push(choiceId);
       instance.upgrades.push({
-        instanceId: makeId(),
+        instanceId: choiceId,
         upgradeId: card.id,
         slotIndex: context.slotIndex,
         ...(card.dualSided ? {face: UpgradeFaces.mode(face)} : {}),
       });
+      const after = RulesCore.slotListFor(data.pkg, unit, instance, data.upgrades, draft.armyId);
+      const rebound = rebindSlots(instance, records, after, data);
+      if (!rebound.ok) return {ok: false, reason: '槽位变化后无法容纳已选升级，请先移除：' +
+        rebound.unresolved.map(id => data.upgrades[id]?.name?.zh || data.upgrades[id]?.name?.en || id).join('、')};
     }
     const errors = newErrors(army, draft, data);
     if (errors.length)
       return { ok: false, reason: [...new Set(errors.map((i) => i.message))].join("；") };
-    return { ok: true, draft, count: ids.length, ids, warnings: [...new Set(warnings)] };
+    return { ok: true, draft, count: ids.length, ids, chosenIds, warnings: [...new Set(warnings)] };
   }
   // Join presentation only. Eligibility, cost and stored upgrade IDs keep using the upgrade.
   function upgradePresentation(card, data, host = null) {
@@ -375,5 +442,5 @@ window.BuilderModel = (() => {
       counterpart: unit,
     };
   }
-  return { signature, groups, slotOrder, uniqueUpgrade, copyable, addUnit, duplicate, equip, equipDefaults, keywordActionTypes, upgradePresentation };
+  return { signature, groups, slotOrder, rebindSlots, migrateSlots, removeUpgrade, uniqueUpgrade, copyable, addUnit, duplicate, equip, equipDefaults, keywordActionTypes, upgradePresentation };
 })();
