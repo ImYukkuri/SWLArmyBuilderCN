@@ -132,6 +132,9 @@ def _unit_context(unit, package):
             "id": unit.get("id"),
             "upstreamId": str(unit.get("upstream", {}).get("id", "")),
             "unitTypeId": unit.get("unitTypeId"),
+            "unitCategoryId": unit.get("unitCategoryId"),
+            "unitSubtypeId": unit.get("unitSubtypeId"),
+            "nameIdentityId": unit.get("nameIdentityId"),
             "defenseDie": (unit.get("stats") or {}).get("defenseDie"),
             "factionId": unit.get("factionId"),
             "rankId": unit.get("rankId"),
@@ -398,13 +401,12 @@ def normalize_name(value):
 
 
 def keyword_targets(kw, units):
-    """Targets of an entourage/retinue/detachment keyword: unit id or unit type."""
+    """Explicit OR references override the display text; legacy refs still load."""
+    if isinstance(kw.get("parameterRefs"), list):
+        return [(r.get("kind"), r.get("id")) for r in kw["parameterRefs"]]
     ref = kw.get("parameterRef")
     if isinstance(ref, dict) and ref.get("id") not in (None, ""):
-        if ref.get("kind") == "unit" and ref["id"] in units:
-            return [("unit", ref["id"])]
-        if ref.get("kind") == "unitType":
-            return [("type", ref["id"])]
+        return [(ref.get("kind"), ref["id"])]
     name = kw.get("parameter")
     if name:
         key = normalize_name(name)
@@ -413,31 +415,62 @@ def keyword_targets(kw, units):
     return []
 
 
-def entourage_exemptions(army_units, units):
-    """ENTOURAGE: each entourage unit lets one copy of the named unit/type skip the rank maximum."""
-    budgets = {}
-    for inst in army_units:
-        u = units.get(inst.get("unitId")) or {}
-        for kw in u.get("keywords") or []:
-            if kw.get("id") != "entourage":
+def matches_keyword_target(unit, target, context=None):
+    kind, target_id = target
+    if not unit or target_id in (None, ""):
+        return False
+    if kind == "rank":
+        rank = army_rank(unit,context['armyId'],context['pkg'],context['defs'],context['units']) if context else unit.get('rankId')
+        return rank == target_id
+    field = {"unit": "id", "unitType": "unitTypeId", "type": "unitTypeId",
+             "unitCategory": "unitCategoryId", "unitSubtype": "unitSubtypeId",
+             "nameIdentity": "nameIdentityId"}.get(kind)
+    return bool(field) and unit.get(field) == target_id
+
+
+def detachment_limits(unit, army_units, units, context=None):
+    legacy = (unit.get("rules") or {}).get("quantityLimitedBy") or []
+    keywords = [k for k in unit.get("keywords", []) if k.get("id") == "detachment"]
+    targets = [t for k in keywords for t in keyword_targets(k, units)]
+    explicit = any(isinstance(k.get("parameterRefs"), list) or k.get("parameterRef") for k in keywords)
+    if explicit or (not legacy and targets):
+        cap = sum(1 for i in army_units if i.get("unitId") != unit["id"] and
+                  any(matches_keyword_target(units.get(i.get("unitId")), t, context) for t in targets))
+        return {"caps": [cap], "unresolved": not targets}
+    if legacy:
+        return {"caps": [(q.get("ratio") or 1) * sum(1 for i in army_units
+                          if i.get("unitId") != unit["id"] and
+                          str((units.get(i.get("unitId"), {}).get("upstream") or {}).get("id")) == str(q.get("unit")))
+                         for q in legacy], "unresolved": False}
+    return {"caps": [], "unresolved": bool(keywords)}
+
+
+def entourage_exemptions(army_units, units, context=None):
+    """One entitlement per keyword; OR alternatives share it. Keyed by local ID."""
+    budgets = []
+    for source, inst in enumerate(army_units):
+        for kw in (units.get(inst.get("unitId")) or {}).get("keywords", []):
+            if kw.get("id") == "entourage":
+                budgets.append((source, keyword_targets(kw, units)))
+    assignments = {}
+
+    def assign(index, seen):
+        source, targets = budgets[index]
+        for i, inst in enumerate(army_units):
+            if i == source or i in seen or not any(matches_keyword_target(units.get(inst.get("unitId")), t, context) for t in targets):
                 continue
-            for target in keyword_targets(kw, units):
-                slot = budgets.setdefault(target, {"n": 0, "sources": set()})
-                slot["n"] += 1
-                slot["sources"].add(u.get("id"))
+            seen.add(i)
+            if i not in assignments or assign(assignments[i], seen):
+                assignments[i] = index
+                return True
+        return False
+
+    for index in range(len(budgets)):
+        assign(index, set())
     exempt = {}
-    for inst in army_units:
-        u = units.get(inst.get("unitId"))
-        if not u:
-            continue
-        for target in (("unit", u["id"]), ("type", u.get("unitTypeId"))):
-            slot = budgets.get(target)
-            if not slot or slot["n"] <= 0 or u["id"] in slot["sources"]:
-                continue
-            slot["n"] -= 1
-            upstream = str((u.get("upstream") or {}).get("id", ""))
-            exempt[upstream] = exempt.get(upstream, 0) + 1
-            break
+    for i in assignments:
+        uid = army_units[i]["unitId"]
+        exempt[uid] = exempt.get(uid, 0) + 1
     return exempt
 
 
@@ -957,7 +990,7 @@ def validate_army(army):
             rt = (card.get("rules") or {}).get("replaceTier") if card else None
             if rt is not None:
                 unit_replace_tier[inst.get("unitId")] = int(rt)
-    entourage_exempt = entourage_exemptions(army.get("units", []), units)
+    entourage_exempt = entourage_exemptions(army.get("units", []), units, dict(pkg=package,defs=definitions,units=units,armyId=army.get("armyId")))
     for unit_id, copies in unit_id_counts.items():
         unit = units[unit_id]
         rank = army_rank(unit, army.get("armyId"), package, definitions, units)
@@ -991,8 +1024,8 @@ def validate_army(army):
                 waived_tiers.add(t)
         if not ignore_min:
             min_counts[rank] = min_counts.get(rank, 0) + copies
-        ent_exempt = entourage_exempt.get(str(unit.get("upstream", {}).get("id", "")), 0)
-        max_counts[rank] = max_counts.get(rank, 0) + copies - exempt_copies - ent_exempt
+        ent_exempt = entourage_exempt.get(unit_id, 0)
+        max_counts[rank] = max_counts.get(rank, 0) + (0 if ignore_max else max(0, copies - exempt_copies - ent_exempt))
 
     quotas = {q["rankId"]: q for q in mode.get("rankQuotas", [])}
     for rank_id, count in max_counts.items():
@@ -1161,12 +1194,11 @@ def validate_army(army):
                 issue("invalid", "choose_one", f"单位内互斥选择组「{ck}」只能选择其一", unit_key)
     for unit_id, copies in unit_id_counts.items():
         unit = units[unit_id]
-        for q in (unit.get("rules") or {}).get("quantityLimitedBy") or []:
-            src_id = str(q.get("unit"))
-            ratio = q.get("ratio") or 1
-            src_copies = army_unit_upstream_counts.get(src_id, 0)
-            if copies > ratio * src_copies:
-                issue("invalid", "quantity_limited", f"「{unit.get('name', {}).get('en', unit_id)}」数量受母单位限制", None)
+        limits = detachment_limits(unit, army.get("units", []), units, dict(pkg=package,defs=definitions,units=units,armyId=army.get("armyId")))
+        if any(copies > cap for cap in limits["caps"]):
+            issue("invalid", "quantity_limited", f"「{unit.get('name', {}).get('en', unit_id)}」数量受母单位限制", None)
+        if limits["unresolved"]:
+            issue("unknown", "detachment_target", f"「{unit.get('name', {}).get('en', unit_id)}」附属目标未关联，暂不能校验母单位", None)
 
     army_ov = army_overrides_for(package, army.get("armyId")) or {}
     if army_ov:

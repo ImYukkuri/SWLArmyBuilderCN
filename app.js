@@ -17,7 +17,7 @@ function formField(key,value,path){
   if(path.includes('keywords')&&key==='parameter'){
     const kw=get(path.slice(0,-1))||{};
     control=EditorOptions.keywordParameterControl(kw,mappings.definitions,setDirty,{label:displayPath(path)});
-  }else if(table){control=el('select');const none=el('option','未确认');none.value='';control.append(none);for(const item of (mappings.definitions[table]||[]).filter(x=>table!=='keywords'||x.id!=='equip')){const op=el('option',item.id+' · '+(item.name.zh||item.name.en)+' / '+item.name.en);op.value=String(item.id);control.append(op)}control.value=value==null?'':String(value);control.addEventListener('change',()=>{const item=mappings.definitions[table].find(x=>String(x.id)===control.value);if(table==='keywords'&&get(path)!==item?.id)delete get(path.slice(0,-1)).parameterRef;put(path,item?item.id:null);if(table==='keywords')renderForm()})}
+  }else if(table){control=el('select');const none=el('option','未确认');none.value='';control.append(none);for(const item of (mappings.definitions[table]||[]).filter(x=>table!=='keywords'||x.id!=='equip')){const op=el('option',item.id+' · '+(item.name.zh||item.name.en)+' / '+item.name.en);op.value=String(item.id);control.append(op)}control.value=value==null?'':String(value);control.addEventListener('change',()=>{const item=mappings.definitions[table].find(x=>String(x.id)===control.value);if(table==='keywords'&&get(path)!==item?.id){delete get(path.slice(0,-1)).parameterRef;delete get(path.slice(0,-1)).parameterRefs;}put(path,item?item.id:null);if(table==='keywords')renderForm()})}
   else if(enums[key]){control=el('select');const empty=el('option','未确认');empty.value='';control.append(empty);for(const v of [...new Set([...enums[key],...(value&&!enums[key].includes(value)?[value]:[])])]){const op=el('option',enumLabels[v]||v);op.value=v;control.append(op)}control.value=value??'';control.addEventListener('change',()=>put(path,control.value||null))}
   else if(typeof value==='boolean'){control=el('input');control.type='checkbox';control.checked=value;control.addEventListener('change',()=>put(path,control.checked))}
   else if(typeof value==='number'||(value===null&&['points','models','wounds','courage','resilience','speed','min','max','red','black','white','value'].includes(key))){control=el('input');control.type='number';control.step='1';control.value=value??'';control.placeholder='未确认 / null';control.addEventListener('input',()=>put(path,control.value===''?null:Number(control.value)))}
@@ -37,7 +37,9 @@ function arrayDefault(key){if(key==='weapons')return {name:{en:'New Weapon',zh:'
 function objectForm(object,path=[],container){
  for(const [key,value]of Object.entries(object)){
   if(key==='equipUpgradeIds'&&path.length===0)continue;
-  if(key==='parameterRef'&&path.includes('keywords'))continue;
+  if(['parameterRef','parameterRefs'].includes(key)&&path.includes('keywords'))continue;
+  if(path.length===0&&['unitCategoryId','unitSubtypeId','nameIdentityId'].includes(key))continue;
+  if(path.length===0&&key==='unitTypeId'){container.append(EditorOptions.unitClassificationControl(draft,mappings.definitions,setDirty));continue;}
   const p=[...path,key];
   if(key==='stats'&&path.length===0&&value){container.append(EditorForms.stats(value,setDirty));continue;}
   if(key==='weapons'&&Array.isArray(value)){container.append(EditorForms.weapons(value,mappings.definitions,setDirty));continue;}
@@ -92,7 +94,7 @@ function renderEquip(){
 let creating=false;
 function newUnitDraft(){
   const id='new-unit-'+Date.now().toString(36);
-  return {id,name:{en:'New Unit',zh:'新单位'},title:{en:'',zh:''},factionId:1,rankId:1,unitTypeId:1,affiliationIds:[],keywords:[],weapons:[],upgradeSlots:[],factions:[{id:1,rankId:1}],
+  return {id,name:{en:'New Unit',zh:'新单位'},title:{en:'',zh:''},factionId:1,rankId:1,unitTypeId:1,unitCategoryId:'trooper',unitSubtypeId:null,nameIdentityId:id,affiliationIds:[],keywords:[],weapons:[],upgradeSlots:[],factions:[{id:1,rankId:1}],
     stats:{models:1,wounds:1,courage:0,resilience:null,speed:null,defenseDie:'white'},points:0,
     assets:{front:null,portrait:null,portraitCrop:[.67,.1235,.99,.6965]},equipUpgradeIds:[],
     review:{status:'needs_review',notes:'',issues:['新建卡片，待补全字段']},usage:'army_unit'}
@@ -135,7 +137,7 @@ function renderDraftBanner(){
   box.append(text,save,drop);
 }
 function renderForm(){
-  $('#fields').replaceChildren();objectForm(Object.fromEntries(Object.entries(draft).filter(([k])=>!['assets','source','rules'].includes(k)).sort(([a],[b])=>{const keys=['id','name','title','points','stats','weapons'];const rank=k=>keys.includes(k)?keys.indexOf(k):99;return rank(a)-rank(b)})),[],$('#fields'));
+  $('#fields').replaceChildren();objectForm(Object.fromEntries(Object.entries(draft).filter(([k])=>!['assets','source','rules'].includes(k)).sort(([a],[b])=>{const keys=['id','name','title','unitTypeId','points','stats','weapons'];const rank=k=>keys.includes(k)?keys.indexOf(k):99;return rank(a)-rank(b)})),[],$('#fields'));
   for(const key of ['factions','affiliationIds','upgradeSlots','conditionalUpgradeSlots','weapons','keywords']){
     if(key in draft)continue;
     const add=el('button','＋ 添加'+(labels[key]||key));add.className='minor';
@@ -164,8 +166,8 @@ async function loadReferences(){
 }
 
 async function loadHistory(){try{const items=await api('/api/history');$('#history').replaceChildren();if(!items.length)$('#history').append(el('p','尚无历史。首次保存时自动创建。'));for(const x of items){const row=el('div');row.append(el('code',x.file));const b=el('button','恢复当前单位至此版本');b.addEventListener('click',async()=>{if(!confirm('恢复当前单位？恢复前会创建备份。'))return;try{busy=true;b.disabled=true;const result=await api('/api/restore',{id:selected,snapshot:x.file,revision});acceptSave(result);await loadHistory()}catch(e){status(e.message,true)}finally{busy=false;b.disabled=false}});row.append(b);$('#history').append(row)}}catch(e){status(e.message,true)}}
-function acceptSave(result){creating=false;revision=result.revision;draft=result.card;catalog.units[catalog.units.findIndex(u=>u.id===selected)]=structuredClone(draft);dirty=false;$('#dirty').textContent='';if(window.SaveUI)SaveUI.flashSaved();$('#raw-json').value=JSON.stringify(draft,null,2);renderForm();renderList();status('已保存到源文件；备份：history/'+result.snapshot)}
-async function reload(){if(dirty&&!confirm('放弃未保存修改并重新读取源文件？'))return;try{const [loaded,names]=await Promise.all([EditorOptions.load(true),fetch('references/unit-names.zh.json').then(r=>r.json()).catch(()=>null)]);catalog=loaded.units;mappings={definitions:loaded.defs,names};try{revision=(await api('/api/catalog')).revision}catch(e){revision=null}dirty=false;const previous=$('#faction').value;$('#faction').replaceChildren();const all=el('option','所有阵营');all.value='';$('#faction').append(all);for(const f of mappings.definitions.factions){const o=el('option',f.id+' · '+f.name.zh);o.value=String(f.id);$('#faction').append(o)}$('#faction').value=previous;select(catalog.units.find(u=>u.id===selected)?.id||catalog.units[0].id)}catch(e){status(e.message,true)}}
+function acceptSave(result){creating=false;revision=result.revision;draft=result.card;catalog.units[catalog.units.findIndex(u=>u.id===selected)]=structuredClone(draft);const defs=mappings.definitions, options=defs.editorOptions;defs.editorOptions=EditorOptions.create(defs,catalog.units,mappings.upgrades,options.pkg,options.fields);dirty=false;$('#dirty').textContent='';if(window.SaveUI)SaveUI.flashSaved();$('#raw-json').value=JSON.stringify(draft,null,2);renderForm();renderList();status('已保存到源文件；备份：history/'+result.snapshot)}
+async function reload(){if(dirty&&!confirm('放弃未保存修改并重新读取源文件？'))return;try{const [loaded,names]=await Promise.all([EditorOptions.load(true),fetch('references/unit-names.zh.json').then(r=>r.json()).catch(()=>null)]);catalog=loaded.units;mappings={definitions:loaded.defs,names,upgrades:loaded.upgrades.cards};try{revision=(await api('/api/catalog')).revision}catch(e){revision=null}dirty=false;const previous=$('#faction').value;$('#faction').replaceChildren();const all=el('option','所有阵营');all.value='';$('#faction').append(all);for(const f of mappings.definitions.factions){const o=el('option',f.id+' · '+f.name.zh);o.value=String(f.id);$('#faction').append(o)}$('#faction').value=previous;select(catalog.units.find(u=>u.id===selected)?.id||catalog.units[0].id)}catch(e){status(e.message,true)}}
 $('#save').addEventListener('click',async()=>{if(!syncRaw()||busy)return;try{busy=true;$('#save').disabled=true;acceptSave(await api('/api/save',{revision,card:draft,create:creating}))}catch(e){if(window.SaveUI)SaveUI.fail(e,reload);else status(e.message,true)}finally{busy=false;$('#save').disabled=false}});
 $('#apply-json').addEventListener('click',()=>{if(syncRaw()){setDirty();tab('form');status('JSON 已应用到表单，尚未写入源文件')}});
 $('#raw-json').addEventListener('input',()=>{dirty=true;$('#dirty').textContent='有未保存修改'});

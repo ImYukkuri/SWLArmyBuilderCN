@@ -188,7 +188,7 @@ window.EditorForms = (() => {
             k.id,
             defs.editorOptions.table("keywords"),
             (v) => {
-              if (k.id !== v) delete k.parameterRef;
+              if (k.id !== v) {delete k.parameterRef;delete k.parameterRefs;}
               k.id = v;
               change();
               draw();

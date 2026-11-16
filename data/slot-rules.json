@@ -1842,7 +1842,8 @@
         7,
         9,
         "local:wookiee_trooper",
-        "local:heavy_droid_trooper"
+        "local:heavy_droid_trooper",
+        "local:heavy_trooper"
       ]
     },
     "droidTrooperUnitType": {

@@ -7,7 +7,10 @@ window.ConditionEditor = (() => {
     return n;
   };
   const FIELDS = [
-    ["unit.unitTypeId", "单位类型"],
+    ["unit.unitCategoryId", "单位类型（士兵 / 载具）"],
+    ["unit.unitSubtypeId", "单位子类型"],
+    ["unit.nameIdentityId", "名称标识"],
+    ["unit.unitTypeId", "旧版混合类型（兼容）"],
     ["unit.factionId", "阵营"],
     ["unit.affiliationIds", "组织"],
     ["unit.title", "称号（含匹配用 contains）"],

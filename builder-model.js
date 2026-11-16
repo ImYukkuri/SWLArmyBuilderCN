@@ -157,13 +157,9 @@ window.BuilderModel = (() => {
     const count = army.units.filter((i) => i.unitId === unit.id).length;
     const cap = RulesCore.unitCapFor(unit, data.pkg, army.armyId);
     if (cap != null && count >= cap) return "已达到此单位的数量上限（" + cap + "）。";
-    for (const q of unit.rules?.quantityLimitedBy || []) {
-      const parents = army.units.filter(
-        (i) => String(data.units[i.unitId]?.upstream?.id) === String(q.unit),
-      ).length;
-      if (count + 1 > (q.ratio || 1) * parents)
-        return "需先加入对应的母单位，且不能超过其数量限制。";
-    }
+    const limits = RulesCore.detachmentLimits(unit, army.units, data.units, {...data, armyId: army.armyId});
+    if (limits.caps.some(cap => count + 1 > cap))
+      return "需先加入符合任一条件的母单位，且不能超过其数量限制。";
     return null;
   }
   function addUnit(army, data, unitId, makeId) {

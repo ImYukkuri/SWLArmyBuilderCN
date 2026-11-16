@@ -74,6 +74,9 @@ window.RulesCore = (() => {
       id: unit.id,
       upstreamId: String(unit.upstream && unit.upstream.id || ""),
       unitTypeId: unit.unitTypeId,
+      unitCategoryId: unit.unitCategoryId,
+      unitSubtypeId: unit.unitSubtypeId,
+      nameIdentityId: unit.nameIdentityId,
       defenseDie: (unit.stats || {}).defenseDie,
       factionId: unit.factionId,
       rankId: unit.rankId,
@@ -210,43 +213,71 @@ window.RulesCore = (() => {
     return String(s).toLowerCase().replace(/[^a-z0-9]/g, "");
   }
   function keywordTargets(kw, units) {
+    // Explicit OR references are authoritative; invalid references never fall
+    // back to a similarly spelled display name.
+    if (Array.isArray(kw?.parameterRefs)) return kw.parameterRefs.map(r => [r.kind, r.id]);
     const ref = kw && kw.parameterRef;
     if (ref && typeof ref === "object" && ref.id != null && ref.id !== "") {
-      if (ref.kind === "unit" && units[ref.id]) return [["unit", ref.id]];
-      if (ref.kind === "unitType") return [["type", ref.id]];
+      return [[ref.kind, ref.id]];
     }
     const name = kw && kw.parameter;
     if (!name) return [];
     const key = normalizeKey(name);
     return Object.values(units || {}).filter(u => normalizeKey((u.name && u.name.en) || "") === key).map(u => ["unit", u.id]);
   }
-  function entourageExemptions(armyUnits, units) {
-    const budgets = {};
-    for (const inst of armyUnits) {
+  function matchesKeywordTarget(unit, [kind, id], context = {}) {
+    if (!unit || id == null || id === '') return false;
+    if (kind === 'rank') return (context.pkg && context.armyId != null ? armyRank(unit, context.armyId, context.pkg, context.defs, context.units) : unit.rankId) === id;
+    const field = {unit: 'id', unitType: 'unitTypeId', type: 'unitTypeId',
+      unitCategory: 'unitCategoryId', unitSubtype: 'unitSubtypeId', nameIdentity: 'nameIdentityId'}[kind];
+    return !!field && unit[field] === id;
+  }
+  function detachmentLimits(unit, armyUnits, units, context = {}) {
+    const legacy = unit.rules?.quantityLimitedBy || [];
+    const keywords = (unit.keywords || []).filter(k => k.id === 'detachment');
+    const resolved = keywords.map(k => ({keyword: k, targets: keywordTargets(k, units)}));
+    // Older records retain quantityLimitedBy. Structured targets replace its
+    // duplicated parent constraint, so an OR does not accidentally become AND.
+    const explicit = keywords.some(k => Array.isArray(k.parameterRefs) || k.parameterRef);
+    if (explicit || (!legacy.length && resolved.some(k => k.targets.length))) {
+      const targets = resolved.flatMap(k => k.targets);
+      const cap = armyUnits.filter(i => i.unitId !== unit.id &&
+        targets.some(t => matchesKeywordTarget(units[i.unitId], t, context))).length;
+      return {caps: [cap], unresolved: !targets.length};
+    }
+    if (legacy.length) return {caps: legacy.map(q => (q.ratio || 1) * armyUnits.filter(i =>
+      i.unitId !== unit.id && String(units[i.unitId]?.upstream?.id) === String(q.unit)).length), unresolved: false};
+    return {caps: [], unresolved: keywords.length > 0};
+  }
+  function entourageExemptions(armyUnits, units, context = {}) {
+    const budgets = [];
+    for (const [source, inst] of armyUnits.entries()) {
       const u = units[inst.unitId] || {};
       for (const kw of u.keywords || []) {
         if (!kw || kw.id !== "entourage") continue;
-        for (const [kind, id] of keywordTargets(kw, units)) {
-          const key = kind + ":" + id;
-          const slot = (budgets[key] ||= { n: 0, sources: new Set() });
-          slot.n += 1;
-          slot.sources.add(u.id);
-        }
+        budgets.push({source, targets: keywordTargets(kw, units)});
       }
     }
-    const exempt = {};
-    for (const inst of armyUnits) {
-      const u = units[inst.unitId];
-      if (!u) continue;
-      for (const [kind, id] of [["unit", u.id], ["type", u.unitTypeId]]) {
-        const key = kind + ":" + id;
-        const slot = budgets[key];
-        if (!slot || slot.n <= 0 || slot.sources.has(u.id)) continue;
-        slot.n -= 1;
-        const upstream = String((u.upstream && u.upstream.id) || "");
-        exempt[upstream] = (exempt[upstream] || 0) + 1;
-        break;
+    // One entitlement per source keyword, not per OR alternative. Augmenting
+    // paths let a narrow target keep its slot when another source is broader.
+    const assignments = new Map();
+    function assign(budgetIndex, seen) {
+      const b = budgets[budgetIndex];
+      for (const [i, inst] of armyUnits.entries()) {
+        if (i === b.source || seen.has(i) || !b.targets.some(t => matchesKeywordTarget(units[inst.unitId], t, context))) continue;
+        seen.add(i);
+        if (!assignments.has(i) || assign(assignments.get(i), seen)) {
+          assignments.set(i, budgetIndex);
+          return true;
+        }
       }
+      return false;
+    }
+    budgets.forEach((b, i) => assign(i, new Set()));
+    const exempt = {};
+    for (const i of assignments.keys()) {
+      const id = armyUnits[i].unitId;
+      exempt[id] = (exempt[id] || 0) + 1;
     }
     return exempt;
   }
@@ -809,7 +840,7 @@ window.RulesCore = (() => {
         if (rt != null) unitReplaceTier[inst.unitId] = Number(rt);
       }
     }
-    const entourageExempt = entourageExemptions(army.units || [], units);
+    const entourageExempt = entourageExemptions(army.units || [], units, {pkg, defs, units, armyId: army.armyId});
     for (const [unitId, copies] of Object.entries(unitIdCounts)) {
       const unit = units[unitId];
       let rank = armyRank(unit, army.armyId, pkg, defs, units);
@@ -836,8 +867,8 @@ window.RulesCore = (() => {
       }
       if (tc.waivesMinimum) for (const t of tc.waivesMinimum.tiers || []) waivedTiers.add(t);
       if (!ignoreMin) minCounts[rank] = (minCounts[rank] || 0) + copies;
-      const entExempt = entourageExempt[String((unit.upstream && unit.upstream.id) || "")] || 0;
-      maxCounts[rank] = (maxCounts[rank] || 0) + copies - exempt - entExempt;
+      const entExempt = entourageExempt[unitId] || 0;
+      maxCounts[rank] = (maxCounts[rank] || 0) + (ignoreMax ? 0 : Math.max(0, copies - exempt - entExempt));
     }
     const quotas = {};
     for (const q of mode.rankQuotas || []) quotas[q.rankId] = q;
@@ -975,11 +1006,9 @@ window.RulesCore = (() => {
     }
     for (const [unitId, copies] of Object.entries(unitIdCounts)) {
       const unit = units[unitId];
-      for (const q of (unit.rules || {}).quantityLimitedBy || []) {
-        const srcId = String(q.unit), ratio = q.ratio || 1;
-        const srcCopies = armyUnitUpstreamCounts[srcId] || 0;
-        if (copies > ratio * srcCopies) issue("invalid", "quantity_limited", `「${(unit.name && unit.name.en) || unitId}」数量受母单位限制`, null);
-      }
+      const limits = detachmentLimits(unit, army.units || [], units, {pkg, defs, units, armyId: army.armyId});
+      if (limits.caps.some(cap => copies > cap)) issue("invalid", "quantity_limited", `「${unit.name?.en || unitId}」数量受母单位限制`, null);
+      if (limits.unresolved) issue("unknown", "detachment_target", `「${unit.name?.en || unitId}」附属目标未关联，暂不能校验母单位`, null);
     }
 
     const ov = armyOverridesFor(pkg, army.armyId);
@@ -1028,5 +1057,5 @@ window.RulesCore = (() => {
     });
   }
 
-  return { Dice, evaluate, validateArmy, unitContext, upgradeEligibility, entourageExemptions, armyRank, slotKey, accessKeys, slotGrantsFor, dedicatedSlotKeys, slotListFor, restrictionConditionOk, requiredPropertiesOk, normRp, buildNameIndex, unavailableSets, unitCapFor, commandUnitRequirements };
+  return { Dice, evaluate, validateArmy, unitContext, upgradeEligibility, keywordTargets, matchesKeywordTarget, detachmentLimits, entourageExemptions, armyRank, slotKey, accessKeys, slotGrantsFor, dedicatedSlotKeys, slotListFor, restrictionConditionOk, requiredPropertiesOk, normRp, buildNameIndex, unavailableSets, unitCapFor, commandUnitRequirements };
 })();

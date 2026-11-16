@@ -130,25 +130,6 @@ function resolveUnitIdByName(name) {
   return hits.size === 1 ? [...hits][0] : null;
 }
 
-function unitParentIds(u) {
-  const parents = [];
-  for (const q of (u.rules || {}).quantityLimitedBy || []) {
-    if (q && q.unit != null) parents.push({ id: String(q.unit), ratio: q.ratio || 1 });
-  }
-  for (const k of u.keywords || []) {
-    if (!k || typeof k !== "object") continue;
-    if (k.id === "detachment") {
-      const pid = resolveUnitIdByName(k.parameter);
-      if (pid) {
-        const x = data.units[pid];
-        const up = x && x.upstream ? String(x.upstream.id) : null;
-        if (up && !parents.some((p) => p.id === up)) parents.push({ id: up, ratio: 1 });
-      }
-    }
-  }
-  return parents;
-}
-
 function unitAvailability(u) {
   if (
     u.restrictions &&
@@ -156,20 +137,10 @@ function unitAvailability(u) {
     RulesCore.restrictionConditionOk(u, u, data.pkg) === false
   )
     return { hidden: true, orphan: false };
-  const parents = unitParentIds(u);
-  if (!parents.length) return { hidden: false, orphan: false };
-  const childCount = army.units.filter((inst) => inst.unitId === u.id).length;
-  let hidden = false,
-    orphan = false;
-  for (const p of parents) {
-    const parentCount = army.units.filter((inst) => {
-      const x = data.units[inst.unitId];
-      return x && x.upstream && String(x.upstream.id) === p.id;
-    }).length;
-    if (parentCount === 0 || childCount + 1 > parentCount * p.ratio) hidden = true;
-    if (childCount > parentCount * p.ratio) orphan = true;
-  }
-  return { hidden, orphan: orphan && childCount > 0 };
+  const limits = RulesCore.detachmentLimits(u, army.units, data.units, {...data, armyId: army.armyId});
+  const count = army.units.filter(i => i.unitId === u.id).length;
+  return {hidden: limits.caps.some(cap => count + 1 > cap),
+    orphan: limits.caps.some(cap => count > cap)};
 }
 
 function isUnique(u) {

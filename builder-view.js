@@ -86,7 +86,17 @@ function ruleInfo(k) {
     label = label.includes("X")
       ? label.replaceAll("X", String(item.value))
       : label + " " + item.value;
-  if (item.parameter) label = label.split(/[：:]/)[0] + "：" + item.parameter;
+  const targets = item.parameterRefs || (item.parameterRef ? [item.parameterRef] : []);
+  const targetLabel = targets.map(ref => {
+    if (ref.kind === 'unit') {
+      const unit = data.units[ref.id];
+      return unit ? [named(unit.name), named(unit.title)].filter(Boolean).join(' · ') : ref.id;
+    }
+    if (ref.kind === 'nameIdentity') return named(Object.values(data.units).find(u => u.nameIdentityId === ref.id)?.name) || ref.id;
+    const table = {unitCategory: 'unitCategories', unitSubtype: 'unitSubtypes', unitType: 'unitTypes', rank: 'ranks'}[ref.kind];
+    return named(data.defs[table]?.find(t => t.id === ref.id)?.name) || ref.id;
+  }).join(' 或 ');
+  if (targetLabel || item.parameter) label = label.split(/[：:]/)[0] + "：" + (targetLabel || item.parameter);
   return { item, ref, label };
 }
 
@@ -580,10 +590,11 @@ function uiIcon(kind, label) {
   return svg;
 }
 
-function statMatrix(u) {
+function statMatrix(u, { showModels = false } = {}) {
   const bar = node("dl", "attribute-band");
   const s = u.stats || {};
   const fields = [
+    ...(showModels ? [["人数", "models", s.models]] : []),
     ["生命", "wounds", s.wounds ?? s.woundsSymbol],
     ["防御", "defense", s.defenseDie],
     s.resilience != null || s.resilienceSymbol
@@ -950,6 +961,7 @@ function keywordKey(k) {
     String(k.id || k.ruleId || k.raw || ""),
     k.value ?? null,
     k.parameter ?? null,
+    k.parameterRefs || k.parameterRef || null,
     k.action ?? null,
   ]);
 }
@@ -1740,7 +1752,7 @@ function briefHeader(
   name.append(node("b", null, named(unit.name)));
   if (unit.name?.zh && unit.name.en && unit.name.en !== unit.name.zh)
     name.append(node("span", null, unit.name.en));
-  first.append(name, statMatrix(unit));
+  first.append(name, statMatrix(unit, { showModels: !candidateMode && !detail }));
   const second = node("div", "brief-meta");
   second.append(node("span", "rank-icon", RANK_GLYPH[rankOf(unit, army.armyId)] || ""));
   second.append(

@@ -3,6 +3,7 @@ import copy,hashlib,json,os,re,threading,uuid
 from datetime import datetime,timezone
 from pathlib import Path
 from rule_schema import validate_rules,KNOWN
+from catalog_schema import validate_keyword_targets
 ROOT=Path(__file__).resolve().parent;LOCK=threading.Lock()
 CONFIG={'upgrades':('data/upgrades.json','cards'),'armies':('data/armies.json','armies'),'commands':('data/catalog-definitions.json','commands'),'keywords':('data/catalog-definitions.json','keywords')}
 KEYWORD_TIMINGS={'global','setup','deployment','command','activation_start','activation','activation_end','movement','attack','defense','end_round'}
@@ -81,6 +82,11 @@ def validate(kind,card):
         if not isinstance(card.get('description'),dict)or any(not isinstance(card['description'].get(k),list)or any(not isinstance(s,str)for s in card['description'][k])for k in ['en','zh']):raise ValueError('卡文 en/zh 必须为文本数组')
         for k in ['keywords','weapons','requirementsText']:
             if not isinstance(card.get(k),list):raise ValueError(k+' 必须为数组')
+        keywords=card['keywords']+[k for w in card['weapons'] for k in w.get('keywords',[])]
+        if any(k.get('parameterRefs') is not None or k.get('parameterRef') is not None for k in keywords):
+            definitions=json.loads((ROOT/'data/catalog-definitions.json').read_bytes())
+            units=json.loads((ROOT/'data/units.json').read_bytes())['units']
+            for keyword in keywords:validate_keyword_targets(keyword,definitions,units)
         if not isinstance(card.get('review'),dict)or card['review'].get('status')not in ['needs_review','reviewed']:raise ValueError('校对状态无效')
         if 'dualSided' in card and type(card['dualSided']) is not bool:raise ValueError('dualSided 必须为布尔值')
         if card.get('back') is not None:

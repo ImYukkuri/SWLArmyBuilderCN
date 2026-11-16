@@ -5,7 +5,7 @@ from http.server import BaseHTTPRequestHandler,ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlsplit,unquote
 from PIL import Image
-from catalog_schema import DEFINITIONS,migrate_legacy
+from catalog_schema import DEFINITIONS,migrate_legacy,validate_unit_classification,validate_keyword_targets
 import maintenance_store
 import rules
 from rule_schema import validate_rules
@@ -47,6 +47,21 @@ def validate(card):
     if legacy and any(not isinstance(v,str)for key in ['factions','affiliations']for v in card[key]):raise ValueError('阵营和组织必须为文本数组')
     if not legacy:
         definitions=json.loads(DEFINITIONS.read_bytes())
+        validate_unit_classification(card,definitions)
+        existing_units=json.loads(DATA.read_bytes())['units']
+        target_units=[u for u in existing_units if u['id']!=card['id']]+[card]
+        previous=next((u for u in existing_units if u['id']==card['id']),{})
+        old_identity=previous.get('nameIdentityId')
+        if old_identity and old_identity!=card.get('nameIdentityId') and not any(u.get('nameIdentityId')==old_identity for u in target_units):
+            # Do not leave another card's rule pointing at an empty namespace.
+            cards=target_units+json.loads((ROOT/'data/upgrades.json').read_bytes())['cards']
+            for owner in cards:
+                for face in [owner,owner.get('back') or {}]:
+                    keywords=face.get('keywords',[])+[k for w in face.get('weapons',[]) for k in w.get('keywords',[])]
+                    for keyword in keywords:
+                        refs=keyword.get('parameterRefs') or ([keyword['parameterRef']] if keyword.get('parameterRef') else [])
+                        if any(r.get('kind')=='nameIdentity' and r.get('id')==old_identity for r in refs):
+                            raise ValueError('名称标识仍被「'+str(owner.get('name',{}).get('zh') or owner['id'])+'」关联，请先调整其目标条件')
         def check_ref(table,value,nullable=False):
             if nullable and value is None:return
             if not any(type(x['id'])is type(value)and x['id']==value for x in definitions[table]):raise ValueError(f'{table} 引用不存在：{value}')
@@ -86,7 +101,9 @@ def validate(card):
         if not isinstance(k,dict):raise ValueError('词条必须为对象')
         if legacy:
             if not isinstance(k.get('raw'),str):raise ValueError('词条必须为含 raw 的对象')
-        else:check_ref('keywords',k.get('id'))
+        else:
+            check_ref('keywords',k.get('id'))
+            validate_keyword_targets(k,definitions,target_units)
         if k.get('action')not in [None,'none','action','double-action','free-action','free-exhaust']:raise ValueError('行动类型无效')
     assets=card.get('assets',{})
     box=assets.get('portraitCrop')

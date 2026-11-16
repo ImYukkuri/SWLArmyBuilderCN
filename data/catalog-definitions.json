@@ -4084,7 +4084,7 @@
       "id": 4,
       "name": {
         "en": "Emplacement Trooper",
-        "zh": "架设士兵"
+        "zh": "炮兵士兵"
       }
     },
     {
@@ -4105,7 +4105,7 @@
       "id": 7,
       "name": {
         "en": "Creature Trooper",
-        "zh": "生物士兵"
+        "zh": "骑兵士兵"
       }
     },
     {
@@ -4133,7 +4133,14 @@
       "id": "local:flying_vehicle",
       "name": {
         "en": "Flying Vehicle",
-        "zh": "飞行载具"
+        "zh": "飞机"
+      }
+    },
+    {
+      "id": "local:heavy_trooper",
+      "name": {
+        "en": "Heavy Trooper",
+        "zh": "重型士兵"
       }
     }
   ],
@@ -27011,5 +27018,123 @@
       ]
     }
   ],
-  "updatedAt": "2026-11-16T04:25:56.241203+00:00"
+  "updatedAt": "2026-11-16T04:25:56.241203+00:00",
+  "unitCategories": [
+    {
+      "id": "trooper",
+      "name": {
+        "en": "Trooper",
+        "zh": "士兵"
+      },
+      "legacyTypeId": 1
+    },
+    {
+      "id": "vehicle",
+      "name": {
+        "en": "Vehicle",
+        "zh": "载具"
+      }
+    }
+  ],
+  "unitSubtypes": [
+    {
+      "id": "clone_trooper",
+      "categoryId": "trooper",
+      "legacyTypeId": 5,
+      "name": {
+        "en": "Clone Trooper",
+        "zh": "克隆人士兵"
+      }
+    },
+    {
+      "id": "creature_trooper",
+      "categoryId": "trooper",
+      "legacyTypeId": 7,
+      "name": {
+        "en": "Creature Trooper",
+        "zh": "骑兵士兵"
+      }
+    },
+    {
+      "id": "droid_trooper",
+      "categoryId": "trooper",
+      "legacyTypeId": 6,
+      "name": {
+        "en": "Droid Trooper",
+        "zh": "机器人士兵"
+      }
+    },
+    {
+      "id": "emplacement_trooper",
+      "categoryId": "trooper",
+      "legacyTypeId": 4,
+      "name": {
+        "en": "Emplacement Trooper",
+        "zh": "炮兵士兵"
+      }
+    },
+    {
+      "id": "heavy_trooper",
+      "categoryId": "trooper",
+      "legacyTypeId": "local:heavy_trooper",
+      "name": {
+        "en": "Heavy Trooper",
+        "zh": "重型士兵"
+      }
+    },
+    {
+      "id": "heavy_droid_trooper",
+      "categoryId": "trooper",
+      "legacyTypeId": "local:heavy_droid_trooper",
+      "name": {
+        "en": "Heavy Droid Trooper",
+        "zh": "重型机器人士兵"
+      }
+    },
+    {
+      "id": "wookiee_trooper",
+      "categoryId": "trooper",
+      "legacyTypeId": "local:wookiee_trooper",
+      "name": {
+        "en": "Wookiee Trooper",
+        "zh": "伍基人士兵"
+      }
+    },
+    {
+      "id": "mandalorian_trooper",
+      "categoryId": "trooper",
+      "legacyTypeId": 9,
+      "name": {
+        "en": "Mandalorian Trooper",
+        "zh": "曼达洛士兵"
+      }
+    },
+    {
+      "id": "ground_vehicle",
+      "categoryId": "vehicle",
+      "legacyTypeId": 3,
+      "name": {
+        "en": "Ground Vehicle",
+        "zh": "地面载具"
+      }
+    },
+    {
+      "id": "repulsor_vehicle",
+      "categoryId": "vehicle",
+      "legacyTypeId": 2,
+      "name": {
+        "en": "Repulsor Vehicle",
+        "zh": "反重力载具"
+      }
+    },
+    {
+      "id": "flying_vehicle",
+      "categoryId": "vehicle",
+      "legacyTypeId": "local:flying_vehicle",
+      "name": {
+        "en": "Flying Vehicle",
+        "zh": "飞机"
+      }
+    }
+  ]
 }

@@ -1,6 +1,6 @@
 {
   "schema": "swl-unit-catalog/v2",
-  "updatedAt": "2026-11-16T04:25:34.563704+00:00",
+  "updatedAt": "2026-11-16T05:17:21.091280+00:00",
   "definitions": "catalog-definitions.json",
   "referenceVersion": "2026.11.04.0",
   "units": [
@@ -71,10 +71,12 @@
         {
           "id": "entourage",
           "parameter": "Kraken",
-          "parameterRef": {
-            "kind": "unit",
-            "id": "separatists-kraken"
-          }
+          "parameterRefs": [
+            {
+              "kind": "nameIdentity",
+              "id": "kraken"
+            }
+          ]
         },
         {
           "id": "equip",
@@ -153,7 +155,10 @@
       ],
       "equipUpgradeIds": [
         "caught-in-a-web"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "admiral-trench"
     },
     {
       "id": "separatists-b2-rocket",
@@ -257,7 +262,10 @@
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "droid_trooper",
+      "nameIdentityId": "b2-super-rocket-battle-droids"
     },
     {
       "id": "separatists-geonosian-engineer",
@@ -385,7 +393,10 @@
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "geonosian-engineers"
     },
     {
       "id": "separatists-aat",
@@ -529,7 +540,10 @@
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "vehicle",
+      "unitSubtypeId": "repulsor_vehicle",
+      "nameIdentityId": "aat-battle-tank"
     },
     {
       "id": "separatists-aqua-droids",
@@ -652,7 +666,10 @@
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "heavy_droid_trooper",
+      "nameIdentityId": "aqua-droids"
     },
     {
       "id": "separatists-asajj",
@@ -776,7 +793,10 @@
         "5183",
         "5184",
         "5182"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "asajj-ventress"
     },
     {
       "id": "separatists-b1",
@@ -911,7 +931,10 @@
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "droid_trooper",
+      "nameIdentityId": "b1-battle-droids"
     },
     {
       "id": "separatists-b2",
@@ -1039,7 +1062,10 @@
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "droid_trooper",
+      "nameIdentityId": "b2-super-battle-droids"
     },
     {
       "id": "separatists-bx",
@@ -1185,7 +1211,10 @@
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "droid_trooper",
+      "nameIdentityId": "bx-series-droid-commandos"
     },
     {
       "id": "separatists-bx-strike",
@@ -1253,7 +1282,13 @@
         },
         {
           "id": "detachment",
-          "parameter": "YAY Bx-series Droid"
+          "parameter": "BX-Series Droid Commandos",
+          "parameterRefs": [
+            {
+              "kind": "unit",
+              "id": "separatists-bx"
+            }
+          ]
         },
         {
           "id": "pending_commmmmandos"
@@ -1314,18 +1349,15 @@
         "tierCounting": {
           "ignoreMaximum": true
         },
-        "quantityLimitedBy": [
-          {
-            "unit": 64,
-            "ratio": 1
-          }
-        ],
         "unlimited": true
       },
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "droid_trooper",
+      "nameIdentityId": "bx-series-droid-commandos"
     },
     {
       "id": "separatists-dooku",
@@ -1480,7 +1512,10 @@
         "67",
         "66",
         "5185"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "count-dooku"
     },
     {
       "id": "separatists-drk1-droid",
@@ -1541,7 +1576,13 @@
         },
         {
           "id": "detachment",
-          "parameter": "Maul"
+          "parameter": "Maul",
+          "parameterRefs": [
+            {
+              "kind": "unit",
+              "id": "separatists-maul"
+            }
+          ]
         },
         {
           "id": "hover_ground",
@@ -1582,18 +1623,15 @@
         "tierCounting": {
           "ignoreMaximum": true
         },
-        "quantityLimitedBy": [
-          {
-            "unit": 74,
-            "ratio": 1
-          }
-        ],
         "unlimited": true
       },
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "droid_trooper",
+      "nameIdentityId": "drk-1-sith-probe-droids"
     },
     {
       "id": "separatists-droidekas",
@@ -1716,7 +1754,10 @@
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "heavy_droid_trooper",
+      "nameIdentityId": "droidekas"
     },
     {
       "id": "separatists-dsd1-dwarf",
@@ -1827,7 +1868,10 @@
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "vehicle",
+      "unitSubtypeId": "ground_vehicle",
+      "nameIdentityId": "dsd1-dwarf-spider-droid"
     },
     {
       "id": "separatists-geonosian",
@@ -1949,7 +1993,10 @@
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "geonosian-warriors"
     },
     {
       "id": "separatists-grievous-wheelbike",
@@ -2029,10 +2076,12 @@
         {
           "id": "entourage",
           "parameter": "TSMEU-6 Wheel Bikes",
-          "parameterRef": {
-            "kind": "unit",
-            "id": "separatists-tsmeu-wheel-bikes"
-          }
+          "parameterRefs": [
+            {
+              "kind": "nameIdentity",
+              "id": "tsmeu-6-wheel-bikes"
+            }
+          ]
         },
         {
           "id": "immune_melee_pierce"
@@ -2126,7 +2175,10 @@
         "50",
         "53",
         "52"
-      ]
+      ],
+      "unitCategoryId": "vehicle",
+      "unitSubtypeId": "ground_vehicle",
+      "nameIdentityId": "general-grievous"
     },
     {
       "id": "separatists-grievous",
@@ -2193,7 +2245,13 @@
         },
         {
           "id": "entourage",
-          "parameter": "I1G-100 Magnaguard"
+          "parameter": "IG-100 MagnaGuard",
+          "parameterRefs": [
+            {
+              "kind": "nameIdentity",
+              "id": "ig-100-magnaguard"
+            }
+          ]
         },
         {
           "id": "immune_pierce"
@@ -2292,7 +2350,10 @@
         "50",
         "53",
         "52"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "general-grievous"
     },
     {
       "id": "separatists-kalani",
@@ -2431,7 +2492,10 @@
         "787",
         "786",
         "785"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "droid_trooper",
+      "nameIdentityId": "kalani"
     },
     {
       "id": "separatists-kraken",
@@ -2580,7 +2644,10 @@
         "787",
         "786",
         "785"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "droid_trooper",
+      "nameIdentityId": "kraken"
     },
     {
       "id": "separatists-lm-432-crab",
@@ -2699,7 +2766,10 @@
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "vehicle",
+      "unitSubtypeId": "ground_vehicle",
+      "nameIdentityId": "lm-432-crab-droid"
     },
     {
       "id": "separatists-magna",
@@ -2840,7 +2910,10 @@
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "droid_trooper",
+      "nameIdentityId": "ig-100-magnaguard"
     },
     {
       "id": "separatists-magnaguard-prototype",
@@ -2960,7 +3033,10 @@
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "droid_trooper",
+      "nameIdentityId": "ig-100-magnaguard"
     },
     {
       "id": "separatists-maul",
@@ -3085,7 +3161,10 @@
         "90",
         "91",
         "92"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "maul"
     },
     {
       "id": "separatists-persuader",
@@ -3228,7 +3307,10 @@
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "vehicle",
+      "unitSubtypeId": "ground_vehicle",
+      "nameIdentityId": "persuader-class-tank-droid"
     },
     {
       "id": "separatists-persuader-prototype",
@@ -3384,7 +3466,10 @@
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "vehicle",
+      "unitSubtypeId": "ground_vehicle",
+      "nameIdentityId": "persuader-class-tank-droid"
     },
     {
       "id": "separatists-poggle",
@@ -3453,10 +3538,12 @@
         {
           "id": "entourage",
           "parameter": "B2 Super Battle Droids",
-          "parameterRef": {
-            "kind": "unit",
-            "id": "separatists-b2"
-          }
+          "parameterRefs": [
+            {
+              "kind": "nameIdentity",
+              "id": "b2-super-battle-droids"
+            }
+          ]
         },
         {
           "id": "override"
@@ -3517,7 +3604,10 @@
         "9452",
         "9454",
         "9453"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "poggle-the-lesser"
     },
     {
       "id": "separatists-sun-fac",
@@ -3663,7 +3753,10 @@
       ],
       "commandIds": [
         "9451"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "sun-fac"
     },
     {
       "id": "separatists-super-tactica-command-droid-aux",
@@ -3805,7 +3898,10 @@
         "17930",
         "17931"
       ],
-      "equipUpgradeIds": []
+      "equipUpgradeIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "droid_trooper",
+      "nameIdentityId": "super-tactical-command-droid"
     },
     {
       "id": "separatists-super-tactica-command-droid-cnc",
@@ -3944,7 +4040,10 @@
         "17930",
         "17931"
       ],
-      "equipUpgradeIds": []
+      "equipUpgradeIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "droid_trooper",
+      "nameIdentityId": "super-tactical-command-droid"
     },
     {
       "id": "separatists-tactical-droid",
@@ -4067,7 +4166,10 @@
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "droid_trooper",
+      "nameIdentityId": "t-series-tactical-droid"
     },
     {
       "id": "separatists-save-opress-cis",
@@ -4222,7 +4324,10 @@
       ],
       "commandIds": [
         "19886"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "savage-opress"
     },
     {
       "id": "separatists-stap",
@@ -4350,7 +4455,10 @@
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "vehicle",
+      "unitSubtypeId": "repulsor_vehicle",
+      "nameIdentityId": "stap-riders"
     },
     {
       "id": "separatists-tsmeu-wheel-bikes",
@@ -4495,7 +4603,10 @@
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "vehicle",
+      "unitSubtypeId": "ground_vehicle",
+      "nameIdentityId": "tsmeu-6-wheel-bikes"
     },
     {
       "id": "empire-74-z-speeder",
@@ -4631,7 +4742,10 @@
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "vehicle",
+      "unitSubtypeId": "repulsor_vehicle",
+      "nameIdentityId": "74-z-speeder-bikes"
     },
     {
       "id": "empire-at-st",
@@ -4769,7 +4883,10 @@
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "vehicle",
+      "unitSubtypeId": "ground_vehicle",
+      "nameIdentityId": "at-st"
     },
     {
       "id": "empire-dark-troopers",
@@ -4902,7 +5019,10 @@
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "droid_trooper",
+      "nameIdentityId": "imperial-dark-troopers"
     },
     {
       "id": "empire-darth-vader-apprentice",
@@ -5059,7 +5179,10 @@
         "59",
         "61",
         "4"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "darth-vader"
     },
     {
       "id": "empire-darth-vader-lord",
@@ -5201,7 +5324,10 @@
         "59",
         "61",
         "4"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "darth-vader"
     },
     {
       "id": "empire-death-troopers",
@@ -5355,7 +5481,10 @@
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "imperial-death-troopers"
     },
     {
       "id": "empire-dewback",
@@ -5465,7 +5594,10 @@
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "creature_trooper",
+      "nameIdentityId": "dewback-rider"
     },
     {
       "id": "empire-df-90-mortar",
@@ -5525,10 +5657,12 @@
         {
           "id": "detachment",
           "parameter": "Shoretroopers",
-          "parameterRef": {
-            "kind": "unit",
-            "id": "empire-shoretroopers"
-          }
+          "parameterRefs": [
+            {
+              "kind": "unit",
+              "id": "empire-shoretroopers"
+            }
+          ]
         },
         {
           "id": "pending_fire_support"
@@ -5596,18 +5730,15 @@
         "tierCounting": {
           "ignoreMaximum": true
         },
-        "quantityLimitedBy": [
-          {
-            "unit": 39,
-            "ratio": 1
-          }
-        ],
         "unlimited": true
       },
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "emplacement_trooper",
+      "nameIdentityId": "df-90-mortar-trooper"
     },
     {
       "id": "empire-e-web",
@@ -5751,7 +5882,10 @@
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "emplacement_trooper",
+      "nameIdentityId": "e-web-heavy-blaster-team"
     },
     {
       "id": "empire-fifth-brother",
@@ -5894,7 +6028,10 @@
       "commandIds": [
         "9458",
         "9457"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "fifth-brother"
     },
     {
       "id": "empire-general-tagge",
@@ -6030,7 +6167,10 @@
       ],
       "equipUpgradeIds": [
         "logistical-prowess"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "general-tagge"
     },
     {
       "id": "empire-gideon",
@@ -6100,10 +6240,12 @@
         {
           "id": "entourage",
           "parameter": "Imperial Dark Troopers",
-          "parameterRef": {
-            "kind": "unit",
-            "id": "empire-dark-troopers"
-          }
+          "parameterRefs": [
+            {
+              "kind": "nameIdentity",
+              "id": "imperial-dark-troopers"
+            }
+          ]
         },
         {
           "id": "ruthless"
@@ -6174,7 +6316,10 @@
         "4122",
         "4120",
         "4121"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "moff-gideon"
     },
     {
       "id": "empire-grand-admiral-thrawn",
@@ -6311,7 +6456,10 @@
         "18898",
         "18901",
         "18906"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "grand-admiral-thrawn"
     },
     {
       "id": "empire-grand-moff-tarkin",
@@ -6375,7 +6523,13 @@
         },
         {
           "id": "entourage",
-          "parameter": "Darth Vader"
+          "parameter": "Darth Vader",
+          "parameterRefs": [
+            {
+              "kind": "nameIdentity",
+              "id": "darth-vader"
+            }
+          ]
         }
       ],
       "weapons": [
@@ -6414,7 +6568,10 @@
         "18310",
         "18902",
         "18906"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "grand-moff-tarkin"
     },
     {
       "id": "empire-id10-seeker",
@@ -6550,7 +6707,10 @@
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "droid_trooper",
+      "nameIdentityId": "iden-s-id10-seeker-droid"
     },
     {
       "id": "empire-iden-versio",
@@ -6724,7 +6884,10 @@
         "82",
         "84",
         "83"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "iden-versio"
     },
     {
       "id": "empire-imperial-agent-order-to-galaxy",
@@ -6858,7 +7021,10 @@
       "commandIds": [
         "17862"
       ],
-      "equipUpgradeIds": []
+      "equipUpgradeIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "imperial-agent"
     },
     {
       "id": "empire-imperial-officer-ruthless-efficiency",
@@ -6997,7 +7163,10 @@
       ],
       "commandIds": [
         "17861"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "imperial-officer"
     },
     {
       "id": "empire-imperial-probe-droid",
@@ -7082,7 +7251,13 @@
         },
         {
           "id": "detachment",
-          "parameter": "Va"
+          "parameter": "Special Forces",
+          "parameterRefs": [
+            {
+              "kind": "rank",
+              "id": 3
+            }
+          ]
         },
         {
           "id": "disengage"
@@ -7124,7 +7299,10 @@
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "droid_trooper",
+      "nameIdentityId": "imperial-probe-droid"
     },
     {
       "id": "empire-inferno-squad",
@@ -7268,7 +7446,10 @@
       "equipUpgradeIds": [
         "del-meeko",
         "gideon-hask"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "imperial-special-forces"
     },
     {
       "id": "empire-kallus",
@@ -7399,7 +7580,10 @@
         "104",
         "99",
         "103"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "agent-kallus"
     },
     {
       "id": "empire-laat-empire",
@@ -7524,7 +7708,10 @@
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "vehicle",
+      "unitSubtypeId": "repulsor_vehicle",
+      "nameIdentityId": "laat-le-patrol-transport"
     },
     {
       "id": "empire-marquand",
@@ -7702,7 +7889,10 @@
         "8115",
         "8117",
         "8116"
-      ]
+      ],
+      "unitCategoryId": "vehicle",
+      "unitSubtypeId": "ground_vehicle",
+      "nameIdentityId": "major-marquand"
     },
     {
       "id": "empire-orson-krennic",
@@ -7773,10 +7963,12 @@
         {
           "id": "entourage",
           "parameter": "Imperial Death Troopers",
-          "parameterRef": {
-            "kind": "unit",
-            "id": "empire-death-troopers"
-          }
+          "parameterRefs": [
+            {
+              "kind": "nameIdentity",
+              "id": "imperial-death-troopers"
+            }
+          ]
         },
         {
           "id": "exemplar"
@@ -7834,7 +8026,10 @@
         "31",
         "43",
         "44"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "director-orson-krennic"
     },
     {
       "id": "empire-range-trooper",
@@ -7954,7 +8149,10 @@
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "range-troopers"
     },
     {
       "id": "empire-riot-squad",
@@ -8081,7 +8279,10 @@
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "stormtrooper-riot-squad"
     },
     {
       "id": "empire-scout",
@@ -8219,7 +8420,10 @@
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "scout-troopers"
     },
     {
       "id": "empire-scout-strike",
@@ -8286,7 +8490,13 @@
       "keywords": [
         {
           "id": "detachment",
-          "parameter": "VAY Scout Troopers"
+          "parameter": "Scout Troopers",
+          "parameterRefs": [
+            {
+              "kind": "unit",
+              "id": "empire-scout"
+            }
+          ]
         },
         {
           "id": "heavy_weapon_team"
@@ -8350,18 +8560,15 @@
         "tierCounting": {
           "ignoreMaximum": true
         },
-        "quantityLimitedBy": [
-          {
-            "unit": 17,
-            "ratio": 1
-          }
-        ],
         "unlimited": true
       },
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "scout-troopers"
     },
     {
       "id": "empire-seventh-sister",
@@ -8522,7 +8729,10 @@
         "9459",
         "9461",
         "9460"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "seventh-sister"
     },
     {
       "id": "empire-shoretroopers",
@@ -8663,7 +8873,10 @@
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "shoretroopers"
     },
     {
       "id": "empire-snowtroopers",
@@ -8796,7 +9009,10 @@
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "snowtroopers"
     },
     {
       "id": "empire-special-forces",
@@ -8918,7 +9134,10 @@
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "imperial-special-forces"
     },
     {
       "id": "empire-stormtroopers",
@@ -9065,7 +9284,10 @@
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "stormtroopers"
     },
     {
       "id": "empire-stormtroopers-hwu",
@@ -9183,7 +9405,10 @@
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "stormtroopers"
     },
     {
       "id": "empire-tx-225",
@@ -9330,7 +9555,10 @@
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "vehicle",
+      "unitSubtypeId": "ground_vehicle",
+      "nameIdentityId": "tx-225-gavw-occupier-tank"
     },
     {
       "id": "empire-veers",
@@ -9464,7 +9692,10 @@
         "10",
         "16",
         "15"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "general-veers"
     },
     {
       "id": "republic-jedi-barc",
@@ -9621,7 +9852,10 @@
         "20053",
         "17929",
         "17928"
-      ]
+      ],
+      "unitCategoryId": "vehicle",
+      "unitSubtypeId": "repulsor_vehicle",
+      "nameIdentityId": "jedi-knight"
     },
     {
       "id": "republic-ki-aadi-mundu",
@@ -9752,7 +9986,10 @@
         "19764",
         "19074",
         "19077"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "ki-adi-mundi"
     },
     {
       "id": "republic-mace-windu",
@@ -9910,7 +10147,10 @@
         "19764",
         "19074",
         "19079"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "mace-windu"
     },
     {
       "id": "republic-ahsoka-padawan-commander",
@@ -10052,7 +10292,10 @@
         "16484",
         "16486",
         "16485"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "ahsoka-tano"
     },
     {
       "id": "republic-anakin-barc",
@@ -10214,7 +10457,10 @@
         "20053",
         "89",
         "88"
-      ]
+      ],
+      "unitCategoryId": "vehicle",
+      "unitSubtypeId": "repulsor_vehicle",
+      "nameIdentityId": "anakin-skywalker"
     },
     {
       "id": "republic-anakin",
@@ -10346,7 +10592,10 @@
         "14378",
         "89",
         "88"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "anakin-skywalker"
     },
     {
       "id": "republic-arc-troopers",
@@ -10466,7 +10715,10 @@
       "divisions": [
         "Light"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "clone_trooper",
+      "nameIdentityId": "arc-troopers"
     },
     {
       "id": "republic-arc-troopers-strike",
@@ -10538,7 +10790,13 @@
         },
         {
           "id": "detachment",
-          "parameter": "Waw ARC Troopers"
+          "parameter": "ARC Troopers",
+          "parameterRefs": [
+            {
+              "kind": "unit",
+              "id": "republic-arc-troopers"
+            }
+          ]
         },
         {
           "id": "heavy_weapon_team"
@@ -10580,18 +10838,15 @@
         "tierCounting": {
           "ignoreMaximum": true
         },
-        "quantityLimitedBy": [
-          {
-            "unit": 62,
-            "ratio": 1
-          }
-        ],
         "unlimited": true
       },
       "divisions": [
         "Light"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "clone_trooper",
+      "nameIdentityId": "arc-troopers"
     },
     {
       "id": "republic-arf-troopers",
@@ -10719,7 +10974,10 @@
       "divisions": [
         "Light"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "clone_trooper",
+      "nameIdentityId": "arf-troopers"
     },
     {
       "id": "republic-at-rt-gar",
@@ -10857,7 +11115,10 @@
       "divisions": [
         "Light"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "vehicle",
+      "unitSubtypeId": "ground_vehicle",
+      "nameIdentityId": "at-rt"
     },
     {
       "id": "republic-bad-batch-gar",
@@ -11028,7 +11289,10 @@
         "wrecker",
         "echo-bb",
         "crosshair"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "clone_trooper",
+      "nameIdentityId": "the-bad-batch"
     },
     {
       "id": "republic-barc",
@@ -11161,7 +11425,10 @@
       "divisions": [
         "Light"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "vehicle",
+      "unitSubtypeId": "repulsor_vehicle",
+      "nameIdentityId": "barc-speeder"
     },
     {
       "id": "republic-c3po",
@@ -11227,7 +11494,7 @@
       ],
       "affiliationIds": [],
       "rankId": null,
-      "unitTypeId": null,
+      "unitTypeId": 6,
       "isCounterpart": true,
       "keywords": [
         {
@@ -11291,7 +11558,10 @@
       "divisions": [
         "Light"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "droid_trooper",
+      "nameIdentityId": "c-3po"
     },
     {
       "id": "republic-chewbacca-gar",
@@ -11447,7 +11717,10 @@
         "34",
         "33",
         "28"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "wookiee_trooper",
+      "nameIdentityId": "chewbacca"
     },
     {
       "id": "republic-chieftain",
@@ -11579,7 +11852,10 @@
       "divisions": [
         "Light"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "wookiee_trooper",
+      "nameIdentityId": "wookiee-chieftain"
     },
     {
       "id": "republic-clone-commander-leadership",
@@ -11698,7 +11974,10 @@
       "divisions": [
         "Light"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "clone_trooper",
+      "nameIdentityId": "clone-commander"
     },
     {
       "id": "republic-clone-commandos",
@@ -11842,7 +12121,10 @@
       "commandIds": [],
       "equipUpgradeIds": [
         "katarn-armor"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "clone_trooper",
+      "nameIdentityId": "clone-commandos"
     },
     {
       "id": "republic-clone-trooper",
@@ -11977,7 +12259,10 @@
       "divisions": [
         "Light"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "clone_trooper",
+      "nameIdentityId": "clone-trooper-infantry"
     },
     {
       "id": "republic-clonetrooper-marksmen",
@@ -12114,7 +12399,10 @@
       "divisions": [
         "Light"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "clone_trooper",
+      "nameIdentityId": "clone-trooper-marksmen"
     },
     {
       "id": "republic-cody",
@@ -12259,7 +12547,10 @@
         "6131",
         "6129",
         "6130"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "clone_trooper",
+      "nameIdentityId": "clone-commander-cody"
     },
     {
       "id": "republic-delta-squad",
@@ -12412,7 +12703,10 @@
       "commandIds": [],
       "equipUpgradeIds": [
         "katarn-armor"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "clone_trooper",
+      "nameIdentityId": "clone-commandos"
     },
     {
       "id": "republic-isp",
@@ -12523,7 +12817,10 @@
       "divisions": [
         "Light"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "vehicle",
+      "unitSubtypeId": "repulsor_vehicle",
+      "nameIdentityId": "infantry-support-platform"
     },
     {
       "id": "republic-jedi-knight",
@@ -12635,7 +12932,10 @@
         "17929",
         "17928"
       ],
-      "equipUpgradeIds": []
+      "equipUpgradeIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "jedi-knight"
     },
     {
       "id": "republic-jedi-knight-general",
@@ -12750,7 +13050,10 @@
         "17929",
         "17928"
       ],
-      "equipUpgradeIds": []
+      "equipUpgradeIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "jedi-knight-general"
     },
     {
       "id": "republic-laat-gar",
@@ -12879,7 +13182,10 @@
       "divisions": [
         "Light"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "vehicle",
+      "unitSubtypeId": "repulsor_vehicle",
+      "nameIdentityId": "laat-le-patrol-transport"
     },
     {
       "id": "republic-obiwan",
@@ -13016,7 +13322,10 @@
         "54",
         "51",
         "49"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "obi-wan-kenobi"
     },
     {
       "id": "republic-padme",
@@ -13145,7 +13454,10 @@
         "76",
         "78",
         "86"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "padme-amidala"
     },
     {
       "id": "republic-r2d2-gar",
@@ -13261,7 +13573,10 @@
         "70",
         "68",
         "63"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "droid_trooper",
+      "nameIdentityId": "r2-d2"
     },
     {
       "id": "republic-raddaugh-gnasp",
@@ -13366,7 +13681,10 @@
       "divisions": [
         "Light"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "vehicle",
+      "unitSubtypeId": "repulsor_vehicle",
+      "nameIdentityId": "raddaugh-gnasp-fluttercraft"
     },
     {
       "id": "republic-raddaugh",
@@ -13474,7 +13792,10 @@
       "divisions": [
         "Light"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "vehicle",
+      "unitSubtypeId": "repulsor_vehicle",
+      "nameIdentityId": "raddaugh-gnasp-fluttercraft"
     },
     {
       "id": "republic-rex",
@@ -13608,7 +13929,10 @@
         "65",
         "58",
         "64"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "clone_trooper",
+      "nameIdentityId": "clone-captain-rex"
     },
     {
       "id": "republic-saber-class",
@@ -13737,7 +14061,10 @@
       "divisions": [
         "Light"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "vehicle",
+      "unitSubtypeId": "repulsor_vehicle",
+      "nameIdentityId": "saber-class-tank"
     },
     {
       "id": "republic-wookiee-kashyyk",
@@ -13854,7 +14181,10 @@
       "divisions": [
         "Light"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "wookiee_trooper",
+      "nameIdentityId": "wookiee-warriors"
     },
     {
       "id": "republic-wookiee-noble",
@@ -13974,7 +14304,10 @@
       "divisions": [
         "Light"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "wookiee_trooper",
+      "nameIdentityId": "wookiee-warriors"
     },
     {
       "id": "republic-yoda",
@@ -14122,7 +14455,10 @@
         "257",
         "258",
         "256"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "yoda"
     },
     {
       "id": "republic-plo-koon",
@@ -14253,7 +14589,10 @@
         "19764",
         "19074",
         "19078"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "plo-koon"
     },
     {
       "id": "republic-shaak-ti",
@@ -14385,7 +14724,10 @@
         "19764",
         "19074",
         "19080"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "shaak-ti"
     },
     {
       "id": "mercenary-black-sun-black-sun-enforcers",
@@ -14531,7 +14873,10 @@
         "1903",
         "1902",
         "1901"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "black-sun-enforcers"
     },
     {
       "id": "mercenary-black-sun-black-sun-vigo",
@@ -14657,7 +15002,10 @@
         "1903",
         "1902",
         "1901"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "black-sun-vigo"
     },
     {
       "id": "mercenary-clan-covert-din-djarin-covert",
@@ -14842,7 +15190,10 @@
         "3050",
         "3052",
         "1901"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "mandalorian_trooper",
+      "nameIdentityId": "din-djarin"
     },
     {
       "id": "mercenary-clan-covert-grogu-covert",
@@ -14950,7 +15301,10 @@
       ],
       "commandIds": [
         "19515"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "grogu"
     },
     {
       "id": "mercenary-clan-covert-paz-vizsla",
@@ -15098,7 +15452,10 @@
         "19483",
         "19515",
         "1901"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "mandalorian_trooper",
+      "nameIdentityId": "paz-vizsla"
     },
     {
       "id": "mercenary-clan-covert-the-armorer",
@@ -15238,7 +15595,10 @@
         "19515",
         "19484",
         "1901"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "mandalorian_trooper",
+      "nameIdentityId": "the-armorer"
     },
     {
       "id": "mercenary-clan-kryze-axe-woves",
@@ -15388,7 +15748,10 @@
         "1902",
         "19511",
         "1901"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "mandalorian_trooper",
+      "nameIdentityId": "axe-woves"
     },
     {
       "id": "mercenary-clan-kryze-bo-katan-kryze",
@@ -15539,7 +15902,10 @@
         "19487",
         "19511",
         "1901"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "mandalorian_trooper",
+      "nameIdentityId": "bo-katan-kryze"
     },
     {
       "id": "mercenary-clan-kryze-clan-kryze-veterans",
@@ -15689,7 +16055,10 @@
         "1902",
         "19511",
         "1901"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "mandalorian_trooper",
+      "nameIdentityId": "clan-kryze-veterans"
     },
     {
       "id": "mercenary-clan-saxon-gar-saxon-leader",
@@ -15847,7 +16216,10 @@
         "19512",
         "1961",
         "1901"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "mandalorian_trooper",
+      "nameIdentityId": "gar-saxon"
     },
     {
       "id": "mercenary-clan-saxon-rook-kast",
@@ -15976,7 +16348,10 @@
         "19516",
         "19512",
         "1901"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "mandalorian_trooper",
+      "nameIdentityId": "rook-kast"
     },
     {
       "id": "mercenary-clan-saxon-super-commandos-saxon",
@@ -16106,7 +16481,10 @@
         "1902",
         "19512",
         "1901"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "mandalorian_trooper",
+      "nameIdentityId": "super-commandos"
     },
     {
       "id": "mercenary-clan-wren-clan-wren-veterans",
@@ -16255,7 +16633,10 @@
         "1902",
         "19518",
         "1901"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "mandalorian_trooper",
+      "nameIdentityId": "clan-wren-veterans"
     },
     {
       "id": "mercenary-clan-wren-sabine-wren-clan",
@@ -16388,7 +16769,10 @@
         "47",
         "48",
         "1901"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "mandalorian_trooper",
+      "nameIdentityId": "sabine-wren"
     },
     {
       "id": "mercenary-clan-wren-ursa-wren",
@@ -16475,10 +16859,12 @@
         {
           "id": "entourage",
           "parameter": "Clan Wren Veterans",
-          "parameterRef": {
-            "kind": "unit",
-            "id": "mercenary-clan-wren-clan-wren-veterans"
-          }
+          "parameterRefs": [
+            {
+              "kind": "nameIdentity",
+              "id": "clan-wren-veterans"
+            }
+          ]
         },
         {
           "id": "impervious"
@@ -16529,7 +16915,10 @@
         "19518",
         "19514",
         "1901"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "mandalorian_trooper",
+      "nameIdentityId": "ursa-wren"
     },
     {
       "id": "mercenary-creedless-mandalorian-hunter",
@@ -16729,7 +17118,10 @@
         "19531",
         "1901"
       ],
-      "equipUpgradeIds": []
+      "equipUpgradeIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "mandalorian_trooper",
+      "nameIdentityId": "mandalorian-hunter"
     },
     {
       "id": "mercenary-creedless-mandalorian-leader",
@@ -16894,7 +17286,10 @@
         "19530",
         "1901"
       ],
-      "equipUpgradeIds": []
+      "equipUpgradeIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "mandalorian_trooper",
+      "nameIdentityId": "mandalorian-leader"
     },
     {
       "id": "mercenary-creedless-mandalorian-initiates",
@@ -17027,7 +17422,10 @@
         "1903",
         "1902",
         "1901"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "mandalorian_trooper",
+      "nameIdentityId": "mandalorian-initiates"
     },
     {
       "id": "mercenary-creedless-mandalorian-warriors-corps",
@@ -17178,7 +17576,10 @@
         "1903",
         "1902",
         "1901"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "mandalorian_trooper",
+      "nameIdentityId": "mandalorian-warriors"
     },
     {
       "id": "mercenary-creedless-mandalorian-warriors-support",
@@ -17253,7 +17654,13 @@
         },
         {
           "id": "detachment",
-          "parameter": "Mandalorian Warriors"
+          "parameter": "Mandalorian Warriors",
+          "parameterRefs": [
+            {
+              "kind": "unit",
+              "id": "mercenary-creedless-mandalorian-warriors-corps"
+            }
+          ]
         },
         {
           "id": "heavy_weapon_team"
@@ -17329,12 +17736,6 @@
             "upgradeIndex": 5
           }
         ],
-        "quantityLimitedBy": [
-          {
-            "unit": 33797,
-            "ratio": 1
-          }
-        ],
         "unlimited": true
       },
       "divisions": [
@@ -17344,7 +17745,10 @@
         "1903",
         "1902",
         "1901"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "mandalorian_trooper",
+      "nameIdentityId": "mandalorian-warriors"
     },
     {
       "id": "mercenary-ewoks-c3po-golden",
@@ -17437,7 +17841,10 @@
         "1903",
         "1902",
         "1901"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "droid_trooper",
+      "nameIdentityId": "c-3po"
     },
     {
       "id": "mercenary-ewoks-chewbacca",
@@ -17618,7 +18025,10 @@
         "1901",
         "33",
         "28"
-      ]
+      ],
+      "unitCategoryId": "vehicle",
+      "unitSubtypeId": "ground_vehicle",
+      "nameIdentityId": "chewbacca"
     },
     {
       "id": "mercenary-ewoks-ewok-skirmishers",
@@ -17738,7 +18148,10 @@
         "1903",
         "1902",
         "1901"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "ewok-skirmishers"
     },
     {
       "id": "mercenary-ewoks-ewok-slingers",
@@ -17886,7 +18299,10 @@
         "1903",
         "1902",
         "1901"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "ewok-slingers"
     },
     {
       "id": "mercenary-ewoks-logray",
@@ -18005,7 +18421,10 @@
         "1903",
         "1902",
         "1901"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "logray"
     },
     {
       "id": "mercenary-ewoks-wicket",
@@ -18171,7 +18590,10 @@
         "1901",
         "7328",
         "7326"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "wicket"
     },
     {
       "id": "mercenary-maul-loyalists-gar-saxon",
@@ -18320,7 +18742,10 @@
         "1963",
         "1961",
         "1901"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "mandalorian_trooper",
+      "nameIdentityId": "gar-saxon"
     },
     {
       "id": "mercenary-maul-loyalists-mandalorian-super",
@@ -18447,7 +18872,10 @@
         "1903",
         "1902",
         "1901"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "mandalorian_trooper",
+      "nameIdentityId": "mandalorian-super-commandos"
     },
     {
       "id": "mercenary-maul-loyalists-maul-rival",
@@ -18585,7 +19013,10 @@
         "92",
         "1901",
         "1826"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "maul"
     },
     {
       "id": "mercenary-maul-loyalists-savage-opress-maul",
@@ -18741,7 +19172,10 @@
         "19886",
         "19081",
         "1901"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "savage-opress"
     },
     {
       "id": "mercenary-pyke-syndicate-pyke-syndicate-capo",
@@ -18909,7 +19343,10 @@
         "1903",
         "1902",
         "1901"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "pyke-syndicate-capo"
     },
     {
       "id": "mercenary-pyke-syndicate-pyke-syndicate-footsoldier",
@@ -19084,7 +19521,10 @@
         "1903",
         "1902",
         "1901"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "pyke-syndicate-foot-soldiers"
     },
     {
       "id": "mercenary-raiders-aa5-speeder-truck",
@@ -19185,7 +19625,10 @@
         "1903",
         "1902",
         "1901"
-      ]
+      ],
+      "unitCategoryId": "vehicle",
+      "unitSubtypeId": "repulsor_vehicle",
+      "nameIdentityId": "a-a5-speeder-truck"
     },
     {
       "id": "mercenary-raiders-hondo-ohnaka",
@@ -19373,7 +19816,10 @@
         "1903",
         "1902",
         "1901"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "hondo-ohnaka"
     },
     {
       "id": "mercenary-raiders-swoop-bike",
@@ -19528,7 +19974,10 @@
         "1903",
         "1902",
         "1901"
-      ]
+      ],
+      "unitCategoryId": "vehicle",
+      "unitSubtypeId": "repulsor_vehicle",
+      "nameIdentityId": "swoop-bike-riders"
     },
     {
       "id": "mercenary-raiders-weequay-pirate",
@@ -19706,7 +20155,10 @@
         "1903",
         "1902",
         "1901"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "weequay-pirates"
     },
     {
       "id": "mercenary-raiders-wlo5-speeder-tank",
@@ -19897,7 +20349,10 @@
         "1903",
         "1902",
         "1901"
-      ]
+      ],
+      "unitCategoryId": "vehicle",
+      "unitSubtypeId": "repulsor_vehicle",
+      "nameIdentityId": "wlo-5-speeder-tank"
     },
     {
       "id": "mercenary-rogue-han-and-chewie",
@@ -20032,7 +20487,10 @@
       "equipUpgradeIds": [
         "upstream-23420",
         "upstream-23419"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "han-chewie"
     },
     {
       "id": "mercenary-rogue-bad-batch",
@@ -20207,7 +20665,10 @@
         "hunter",
         "echo-bb",
         "tech"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "clone_trooper",
+      "nameIdentityId": "the-bad-batch"
     },
     {
       "id": "mercenary-rogue-boba-fett-daimyo",
@@ -20372,7 +20833,10 @@
         "20",
         "1901",
         "2375"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "mandalorian_trooper",
+      "nameIdentityId": "boba-fett"
     },
     {
       "id": "mercenary-rogue-boba-fett-infamous",
@@ -20557,7 +21021,10 @@
         "20",
         "1901",
         "2375"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "mandalorian_trooper",
+      "nameIdentityId": "boba-fett"
     },
     {
       "id": "mercenary-rogue-bossk",
@@ -20728,7 +21195,10 @@
         "1901",
         "45",
         "46"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "bossk"
     },
     {
       "id": "mercenary-rogue-cad-bane",
@@ -20899,7 +21369,10 @@
         "85",
         "77",
         "1901"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "cad-bane"
     },
     {
       "id": "mercenary-rogue-ig-11",
@@ -21082,7 +21555,10 @@
         "1901",
         "3085",
         "3086"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "droid_trooper",
+      "nameIdentityId": "ig-11"
     },
     {
       "id": "mercenary-rogue-ig-88",
@@ -21252,7 +21728,10 @@
         "1901",
         "3085",
         "3084"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "droid_trooper",
+      "nameIdentityId": "ig-88"
     },
     {
       "id": "mercenary-rogue-omega",
@@ -21377,7 +21856,10 @@
       "divisions": [
         "Dark"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "omega"
     },
     {
       "id": "rebels-1-4-fd-laser-cannon-team",
@@ -21521,7 +22003,10 @@
       "divisions": [
         "Light"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "emplacement_trooper",
+      "nameIdentityId": "1-4-fd-laser-cannon-team"
     },
     {
       "id": "rebels-a-a5-speeder-truck-rebel",
@@ -21612,7 +22097,10 @@
       "divisions": [
         "Light"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "vehicle",
+      "unitSubtypeId": "repulsor_vehicle",
+      "nameIdentityId": "a-a5-speeder-truck"
     },
     {
       "id": "rebels-ahsoka",
@@ -21742,7 +22230,10 @@
         "6509",
         "6510",
         "6511"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "ahsoka-tano"
     },
     {
       "id": "rebels-at-rt-rebel",
@@ -21863,7 +22354,10 @@
       "divisions": [
         "Light"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "vehicle",
+      "unitSubtypeId": "ground_vehicle",
+      "nameIdentityId": "at-rt"
     },
     {
       "id": "rebels-c-3po-cyborg",
@@ -21993,7 +22487,10 @@
       "divisions": [
         "Light"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "droid_trooper",
+      "nameIdentityId": "c-3po"
     },
     {
       "id": "rebels-cassian",
@@ -22143,7 +22640,10 @@
       ],
       "equipUpgradeIds": [
         "cassian-a280-pistol"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "cassian-andor"
     },
     {
       "id": "rebels-chewbacca-rebel",
@@ -22298,7 +22798,10 @@
         "34",
         "33",
         "28"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "wookiee_trooper",
+      "nameIdentityId": "chewbacca"
     },
     {
       "id": "rebels-commandos",
@@ -22424,7 +22927,10 @@
       "divisions": [
         "Light"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "rebel-commandos"
     },
     {
       "id": "rebels-fleet-troopers",
@@ -22537,7 +23043,10 @@
       "divisions": [
         "Light"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "fleet-troopers"
     },
     {
       "id": "rebels-guerilla-troopers",
@@ -22664,7 +23173,10 @@
       "divisions": [
         "Light"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "guerilla-troopers"
     },
     {
       "id": "rebels-han-solo-tauntaun",
@@ -22820,7 +23332,10 @@
         "18905",
         "14",
         "23"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "creature_trooper",
+      "nameIdentityId": "han-solo"
     },
     {
       "id": "rebels-jyn",
@@ -22966,7 +23481,10 @@
         "16620",
         "16619",
         "40"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "jyn-erso"
     },
     {
       "id": "rebels-k-2so",
@@ -23032,10 +23550,12 @@
         {
           "id": "detachment",
           "parameter": "Cassian Andor",
-          "parameterRef": {
-            "kind": "unit",
-            "id": "rebels-cassian"
-          }
+          "parameterRefs": [
+            {
+              "kind": "unit",
+              "id": "rebels-cassian"
+            }
+          ]
         },
         {
           "id": "incognito"
@@ -23082,12 +23602,6 @@
         "tierCounting": {
           "ignoreMaximum": true
         },
-        "quantityLimitedBy": [
-          {
-            "unit": 29930,
-            "ratio": 1
-          }
-        ],
         "unlimited": false
       },
       "divisions": [
@@ -23095,7 +23609,10 @@
       ],
       "commandIds": [
         "80"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "droid_trooper",
+      "nameIdentityId": "k-2so"
     },
     {
       "id": "rebels-lando",
@@ -23229,7 +23746,10 @@
         "100",
         "16624",
         "16618"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "lando-calrissian"
     },
     {
       "id": "rebels-leia-organa",
@@ -23367,7 +23887,10 @@
         "18",
         "19",
         "13"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "leia-organa"
     },
     {
       "id": "rebels-luke-skywalker-jedi",
@@ -23502,7 +24025,10 @@
         "56",
         "11",
         "6"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "luke-skywalker"
     },
     {
       "id": "rebels-luke-tauntaun",
@@ -23668,7 +24194,10 @@
         "62",
         "11",
         "6"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "creature_trooper",
+      "nameIdentityId": "luke-skywalker"
     },
     {
       "id": "rebels-luke-skywalker-hero",
@@ -23830,7 +24359,10 @@
         "62",
         "11",
         "6"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "luke-skywalker"
     },
     {
       "id": "rebels-mark-2-blaster",
@@ -23895,10 +24427,12 @@
         {
           "id": "detachment",
           "parameter": "Rebel Veterans",
-          "parameterRef": {
-            "kind": "unit",
-            "id": "rebels-rebel-veterans"
-          }
+          "parameterRefs": [
+            {
+              "kind": "unit",
+              "id": "rebels-rebel-veterans"
+            }
+          ]
         },
         {
           "id": "pending_fire_support"
@@ -23967,18 +24501,15 @@
         "tierCounting": {
           "ignoreMaximum": true
         },
-        "quantityLimitedBy": [
-          {
-            "unit": 36,
-            "ratio": 1
-          }
-        ],
         "unlimited": true
       },
       "divisions": [
         "Light"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "emplacement_trooper",
+      "nameIdentityId": "mark-ii-medium-blaster-trooper"
     },
     {
       "id": "rebels-r2d2-hero",
@@ -24097,7 +24628,10 @@
         "70",
         "68",
         "63"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "droid_trooper",
+      "nameIdentityId": "r2-d2"
     },
     {
       "id": "rebels-rebel-agent-defender-democracy",
@@ -24223,7 +24757,10 @@
       "commandIds": [
         "17864"
       ],
-      "equipUpgradeIds": []
+      "equipUpgradeIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "rebel-agent"
     },
     {
       "id": "rebels-rebel-officer-fight-freedom",
@@ -24347,7 +24884,10 @@
       "commandIds": [
         "17863"
       ],
-      "equipUpgradeIds": []
+      "equipUpgradeIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "rebel-officer"
     },
     {
       "id": "rebels-rebel-commandos",
@@ -24410,7 +24950,13 @@
       "keywords": [
         {
           "id": "detachment",
-          "parameter": "YAY Rebel Commandos"
+          "parameter": "Rebel Commandos",
+          "parameterRefs": [
+            {
+              "kind": "unit",
+              "id": "rebels-commandos"
+            }
+          ]
         },
         {
           "id": "heavy_weapon_team"
@@ -24468,18 +25014,15 @@
         "tierCounting": {
           "ignoreMaximum": true
         },
-        "quantityLimitedBy": [
-          {
-            "unit": 13,
-            "ratio": 1
-          }
-        ],
         "unlimited": true
       },
       "divisions": [
         "Light"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "rebel-commandos"
     },
     {
       "id": "rebels-rebel-troopers",
@@ -24621,7 +25164,10 @@
       "divisions": [
         "Light"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "rebel-troopers"
     },
     {
       "id": "rebels-rebel-veterans",
@@ -24765,7 +25311,10 @@
       "divisions": [
         "Light"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "rebel-veterans"
     },
     {
       "id": "rebels-sabine",
@@ -24885,7 +25434,10 @@
         "41",
         "47",
         "48"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "mandalorian_trooper",
+      "nameIdentityId": "sabine-wren"
     },
     {
       "id": "rebels-sleeper-cell",
@@ -25032,7 +25584,10 @@
       "divisions": [
         "Light"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "rebel-sleeper-cell"
     },
     {
       "id": "rebels-solo",
@@ -25175,7 +25730,10 @@
         "22",
         "14",
         "23"
-      ]
+      ],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "han-solo"
     },
     {
       "id": "rebels-t-47",
@@ -25310,7 +25868,10 @@
       "divisions": [
         "Light"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "vehicle",
+      "unitSubtypeId": "repulsor_vehicle",
+      "nameIdentityId": "t-47-airspeeder"
     },
     {
       "id": "rebels-tauntaun-riders",
@@ -25438,7 +25999,10 @@
       "divisions": [
         "Light"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "creature_trooper",
+      "nameIdentityId": "tauntaun-riders"
     },
     {
       "id": "rebels-wookiee-freedom",
@@ -25555,7 +26119,10 @@
       "divisions": [
         "Light"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "wookiee_trooper",
+      "nameIdentityId": "wookiee-warriors"
     },
     {
       "id": "rebels-wookiee-resistance",
@@ -25668,7 +26235,10 @@
       "divisions": [
         "Light"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "wookiee_trooper",
+      "nameIdentityId": "wookiee-warriors"
     },
     {
       "id": "rebels-x-34-landspeeder",
@@ -25773,7 +26343,10 @@
       "divisions": [
         "Light"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "vehicle",
+      "unitSubtypeId": "repulsor_vehicle",
+      "nameIdentityId": "x-34-landspeeder"
     },
     {
       "id": "new-unit-mw9obgc9",
@@ -25850,7 +26423,13 @@
         },
         {
           "id": "entourage",
-          "value": 3
+          "parameter": "BARC Speeder",
+          "parameterRefs": [
+            {
+              "kind": "nameIdentity",
+              "id": "barc-speeder"
+            }
+          ]
         },
         {
           "id": "immune_pierce"
@@ -25905,7 +26484,10 @@
       "divisions": [
         "Light"
       ],
-      "commandIds": []
+      "commandIds": [],
+      "unitCategoryId": "vehicle",
+      "unitSubtypeId": "repulsor_vehicle",
+      "nameIdentityId": "obi-wan-kenobi"
     }
   ]
 }

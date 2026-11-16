@@ -47,7 +47,10 @@ window.EditorOptions = (() => {
     ],
   };
   const conditionFields = [
-    ["unit.unitTypeId", "单位类型"],
+    ["unit.unitCategoryId", "单位类型（士兵 / 载具）"],
+    ["unit.unitSubtypeId", "单位子类型"],
+    ["unit.nameIdentityId", "名称标识"],
+    ["unit.unitTypeId", "旧版混合类型（兼容）"],
     ["unit.factionId", "阵营"],
     ["unit.affiliationIds", "组织"],
     ["unit.title", "单位称号"],
@@ -100,12 +103,27 @@ window.EditorOptions = (() => {
     );
     tables.localUpgrades = upgrades.map(c => option(c.id,
       labelOf(c) + (c.usage === 'counterpart' ? ' · 伙伴' : '') + ' · ' + c.id));
+    const identities = new Map();
+    for (const u of units) if (u.nameIdentityId) {
+      const row = identities.get(u.nameIdentityId) || {id: u.nameIdentityId, names: new Set(), count: 0};
+      row.names.add(labelOf(u)); row.count++; identities.set(row.id, row);
+    }
+    tables.unitNameIdentities = [...identities.values()].map(row => ({
+      ...option(row.id, [...row.names].join(' / ') + ' · ' + row.count + ' 个版本 · ' + row.id),
+      text: [...row.names][0],
+    }));
     tables.keywordTargets = [
       ...units.map(u => ({...option({kind: 'unit', id: u.id},
         [labelOf(u), labelOf({name: u.title}), u.id].filter(Boolean).join(' · ')),
         text: u.name?.en || u.name?.zh || u.id})),
       ...(defs.unitTypes || []).map(t => ({...option({kind: 'unitType', id: t.id},
         '单位类型 · ' + labelOf(t)), text: t.name?.en || t.name?.zh || String(t.id)})),
+      ...['unitCategories', 'unitSubtypes'].flatMap(table => (defs[table] || []).map(t => ({
+        ...option({kind: table === 'unitCategories' ? 'unitCategory' : 'unitSubtype', id: t.id}, labelOf(t)),
+        text: t.name?.en || t.name?.zh || t.id,
+      }))),
+      ...(defs.ranks || []).map(t => ({...option({kind:'rank', id:t.id}, labelOf(t)), text: t.name?.en || String(t.id)})),
+      ...tables.unitNameIdentities.map(t => ({...option({kind: 'nameIdentity', id: t.value}, t.label), text: t.text})),
     ];
     tables.semanticSlots = (pkg.slots || []).map((s) => option(s.id, labelOf(s) + " · " + s.id));
     tables.predicates = Object.keys(pkg.predicates || {}).map((k) => option(k));
@@ -168,6 +186,9 @@ window.EditorOptions = (() => {
     }
     function condition(field, op = "eq") {
       const t = {
+        "unit.unitCategoryId": "unitCategories",
+        "unit.unitSubtypeId": "unitSubtypes",
+        "unit.nameIdentityId": "unitNameIdentities",
         "unit.unitTypeId": "unitTypes",
         "unit.factionId": "factions",
         "unit.affiliationIds": "affiliations",
@@ -271,7 +292,7 @@ window.EditorOptions = (() => {
           defs.ruleFields = fields;
           Object.defineProperty(defs, "editorOptions", {
             value: create(defs, units.units, upgrades.cards, pkg, fields),
-            enumerable: false,
+            enumerable: false, writable: true,
           });
           return { defs, units, upgrades, pkg, fields };
         })
@@ -380,6 +401,7 @@ window.EditorOptions = (() => {
   // leave an older target reference silently overriding the visible text.
   function setKeywordParameter(keyword, text, reference = null) {
     keyword.parameter = text === '' ? null : text;
+    delete keyword.parameterRefs;
     if (reference) keyword.parameterRef = structuredClone(reference);
     else delete keyword.parameterRef;
   }
@@ -392,40 +414,87 @@ window.EditorOptions = (() => {
     input.placeholder = '自由填写参数；留空表示无参数';
     box.append(input);
     const global = defs.keywords?.find(k => k.id === keyword.id)?.timing?.includes('global');
-    const freeText = ['mercenary', 'aid', 'independent'].includes(keyword.id) || !global;
-    let picker;
+    const freeText = ['mercenary', 'aid', 'independent'].includes(keyword.id) ||
+      (!global && !['detachment', 'entourage', 'retinue'].includes(keyword.id));
+    let redrawTargets;
     if (!freeText) {
       const targets = defs.editorOptions?.table('keywordTargets') || [];
-      picker = document.createElement('select');
-      picker.setAttribute('aria-label', label + '关联目标');
-      picker.append(new Option('手填参数（无关联目标）', ''));
-      targets.forEach((target, i) => picker.append(new Option(target.label, String(i))));
-      const index = targets.findIndex(t => t.value.kind === keyword.parameterRef?.kind &&
-        t.value.id === keyword.parameterRef?.id);
-      if (keyword.parameterRef && index < 0) {
-        picker.append(new Option('保留原关联：' + keyword.parameterRef.id, 'existing'));
-        picker.value = 'existing';
-      } else picker.value = index < 0 ? '' : String(index);
-      picker.onchange = () => {
-        if (picker.value === 'existing') return;
-        const target = picker.value === '' ? null : targets[Number(picker.value)];
-        if (target) input.value = target.text;
-        setKeywordParameter(keyword, input.value, target?.value);
-        change();
-      };
-      box.append(picker);
+      let rows = structuredClone(keyword.parameterRefs || (keyword.parameterRef ? [keyword.parameterRef] : []));
+      const list = document.createElement('div'); list.className = 'keyword-targets';
+      const note = document.createElement('small');note.textContent = '关联目标：满足任一条件（或）。手填参数会清除关联。';
+      const kinds = [['unitCategory','单位类型'], ['unitSubtype','单位子类型'],
+        ['nameIdentity','名称标识'], ['unit','具体单位'], ['rank','军阶']];
+      function write() {
+        const refs = unique(rows.filter(r => r.id != null).map(value => ({value}))).map(r => r.value);
+        delete keyword.parameterRef;
+        if (refs.length) {
+          keyword.parameterRefs = structuredClone(refs);
+          keyword.parameter = refs.map(ref => targets.find(t => t.value.kind === ref.kind && t.value.id === ref.id)?.text || String(ref.id)).join(' 或 ');
+        } else {delete keyword.parameterRefs; keyword.parameter = null;}
+        input.value = keyword.parameter || ''; change();
+      }
+      function render() {
+        list.replaceChildren();
+        rows.forEach((ref, i) => {
+          const row = document.createElement('div');row.className = 'keyword-target-row';
+          const badge = document.createElement('span');badge.textContent = i ? '或' : '匹配';
+          const kindChoices = kinds.map(([v,l]) => option(v,l));
+          if (ref.kind === 'unitType') kindChoices.push(option('unitType','旧版类型（兼容）'));
+          row.append(badge, control(ref.kind, kindChoices, kind => {
+            rows[i] = {kind, id: null};write();render();
+          }, {label: label + '匹配方式 ' + (i + 1), nullable: false}));
+          row.append(control(ref.id, targets.filter(t => t.value.kind === ref.kind).map(t => option(t.value.id, t.label)), id => {
+            rows[i].id = id;write();
+          }, {label: label + '关联目标 ' + (i + 1), preserveType: false}));
+          const remove = document.createElement('button');remove.type = 'button';remove.textContent = '删除';
+          remove.setAttribute('aria-label', '删除目标条件 ' + (i + 1));
+          remove.onclick = () => {rows.splice(i, 1);write();render();};row.append(remove);list.append(row);
+        });
+      }
+      redrawTargets = () => {rows = [];render();};
+      const add = document.createElement('button');add.type = 'button';add.className = 'minor';add.textContent = '＋ 添加匹配条件（或）';
+      add.onclick = () => {rows.push({kind: 'unit', id: null});render();};
+      box.append(note, list, add);render();
     }
     input.oninput = () => {
-      if (picker && picker.value !== '') {
-        picker.value = '';
-        // Notify enhanced selects too, so their label cannot show the old target.
-        picker.dispatchEvent(new Event('change', { bubbles: true }));
-      } else {
-        setKeywordParameter(keyword, input.value);
-        change();
-      }
+      setKeywordParameter(keyword, input.value);redrawTargets?.();change();
     };
     return box;
   }
-  return { create, load, control, conditionFields, setKeywordParameter, keywordParameterControl };
+  function unitClassificationControl(unit, defs, change) {
+    const box = document.createElement('fieldset');box.className = 'unit-classification';
+    const legend = document.createElement('legend');legend.textContent = '单位分类与名称标识';box.append(legend);
+    const fields = document.createElement('div');fields.className = 'classification-fields';box.append(fields);
+    const subtypes = defs.unitSubtypes || [], categories = defs.unitCategories || [];
+    const legacy = subtypes.find(s => s.legacyTypeId === unit.unitTypeId);
+    const category = () => unit.unitCategoryId || legacy?.categoryId || 'trooper';
+    const subtype = () => 'unitSubtypeId' in unit ? unit.unitSubtypeId : legacy?.id || null;
+    const update = (cat, sub) => {
+      unit.unitCategoryId = cat;unit.unitSubtypeId = sub;
+      unit.unitTypeId = subtypes.find(s => s.id === sub)?.legacyTypeId || categories.find(c => c.id === cat)?.legacyTypeId || null;
+      change();render();
+    };
+    function field(label, node) {
+      const row = document.createElement('label');row.className = 'field';
+      const name = document.createElement('span');name.textContent = label;row.append(name, node);fields.append(row);
+    }
+    function render() {
+      fields.replaceChildren();
+      field('单位类型', control(category(), categories.map(c => option(c.id, labelOf(c))), cat => {
+        const next = subtypes.find(s => s.id === subtype() && s.categoryId === cat);
+        update(cat, next?.id || (cat === 'vehicle' ? subtypes.find(s => s.categoryId === cat)?.id : null));
+      }, {label: '单位类型', nullable: false}));
+      const choices = subtypes.filter(s => s.categoryId === category()).map(s => option(s.id, labelOf(s)));
+      if (category() === 'trooper') choices.unshift(option(null, '普通士兵（无子类型）'));
+      field('单位子类型', control(subtype(), choices, sub => update(category(), sub), {label: '单位子类型', nullable: false}));
+      field('名称标识', control(unit.nameIdentityId || null, defs.editorOptions?.table('unitNameIdentities') || [], value => {
+        unit.nameIdentityId = value;change();
+      }, {label: '名称标识', nullable: false, custom: true}));
+    }
+    render();
+    const note = document.createElement('small');note.className = 'hint';
+    note.textContent = '同名不同形态可选同一标识；仅在规则按名称标识匹配时视为同一单位。新标识使用小写英文字母、数字、连字符或下划线，保存后会进入下拉词典。';box.append(note);
+    return box;
+  }
+  return { create, load, control, conditionFields, setKeywordParameter, keywordParameterControl, unitClassificationControl };
 })();
