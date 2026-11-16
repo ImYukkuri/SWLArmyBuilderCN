@@ -1997,10 +1997,10 @@
       "id": "immune_range_1_weapons",
       "name": {
         "en": "IMMUNE: 1 WEAPONS",
-        "zh": "免疫： 1武器"
+        "zh": "免疫： 射程1武器"
       },
       "actionTypes": [],
-      "summary": "以本单位为目标的攻击池不能包含最大射程为1的武器。",
+      "summary": "最大射程1的武器不能攻击本单位",
       "full": "分配给带有免疫：1武器关键词的单位的攻击池不能包含带有最大距离为 1的武器。",
       "timing": [
         "defense"
@@ -3027,12 +3027,14 @@
       "id": "pending_interrogate",
       "name": {
         "en": "Interrogate",
-        "zh": ""
+        "zh": "审讯"
       },
       "actionTypes": [],
-      "summary": "",
-      "full": "During the Command Phase, if a player reveals a Command Card that belongs to a unit within Range 1 of 1 or more enemy units with the Interrogate keyword and there would be a tie for priority, treat that Command Card as having 1 more pip.",
-      "timing": [],
+      "summary": "在你1距离内的敌方单位的指挥卡在先后手平局时点数+1",
+      "full": "During the Command Phase, if a player reveals a Command Card that belongs to a unit within Range 1 of 1 or more enemy units with the Interrogate keyword and there would be a tie for priority, treat that Command Card as having 1 more pip.\n在指挥阶段中，如果一个玩家展示了一张带有审讯词条的单位1距离以内的1个或更多敌方单位所属的指挥卡，并且在确定先后手时平局，那张指挥卡视为点数+1",
+      "timing": [
+        "command"
+      ],
       "status": "english_only",
       "upstreamIds": [
         135
@@ -27007,5 +27009,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-11-15T19:38:31.782683+00:00"
+  "updatedAt": "2026-11-16T03:02:02.520896+00:00"
 }

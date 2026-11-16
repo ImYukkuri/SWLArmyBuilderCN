@@ -211,8 +211,9 @@ function commandBody(c, { keywords = true, collapse = null } = {}) {
 function selectContext(value, trigger) {
   lastOpener = trigger || document.activeElement;
   hideRule(false);
+  // Batch preference belongs to the open browser, not an individual slot.
+  if (!browser) cardView.applyAll = false;
   browser = value;
-  cardView.applyAll = false;
   $("#candidate-search").value = "";
   $("#show-unavailable").checked = false;
   render();
@@ -294,6 +295,8 @@ function renderBrowser() {
     $(".masthead").inert = false;
   }
   if (!browser) {
+    cardView.applyAll = false;
+    $("#apply-all-units").checked = false;
     currentCandidates = [];
     $("#batch-apply").hidden = true;
     $("#candidate-search").disabled = true;
@@ -342,13 +345,8 @@ function renderBrowser() {
     const group = groupedUnits().find((g) =>
       g.instances.some((i) => i.instanceId === inst.instanceId),
     );
-    const groupIds = group.instances.map((i) => i.instanceId);
-    if (JSON.stringify(browser.groupIds) !== JSON.stringify(groupIds))
-      cardView.applyAll = false;
-    browser.groupIds = groupIds;
+    browser.groupIds = group.instances.map((i) => i.instanceId);
     $("#browser-title").textContent = "选择" + slotName(browser.slotKey);
-    $("#browser-context").textContent =
-      named(u.name) + " / " + slotName(browser.slotKey) + "槽位";
     $("#browser-category").textContent = "升级资料库";
     currentCandidates = Object.values(data.upgrades).map((c) => displayUpgrade(UpgradeFaces.view(c, 'front'), inst)).filter((c) =>
       accessOf(c).includes(browser.slotKey),
@@ -592,8 +590,8 @@ function statMatrix(u) {
       ? ["韧性", "resilience", s.resilience ?? s.resilienceSymbol]
       : ["勇气", "courage", s.courage ?? s.courageSymbol],
     ["速度", "speed", s.speed],
-    ["攻增", "attack", s.attackSurge],
-    ["防增", "defenseSurge", s.defenseSurge],
+    ["攻转", "attack", s.attackSurge],
+    ["防转", "defenseSurge", s.defenseSurge],
   ];
   for (const [label, key, value] of fields) {
     if (value == null) continue;
@@ -1416,7 +1414,6 @@ function positionRulePopover(anchor) {
 }
 
 function selectGroupSlot(group, index, key, trigger) {
-  cardView.applyAll = false;
   selectContext(
     {
       mode: "upgrades",
@@ -2016,9 +2013,12 @@ function updateBatchControl() {
   $("#batch-apply").hidden = n < 2;
   $("#apply-all-units").checked = cardView.applyAll;
   $("#batch-label").textContent = "应用到全部单位（" + n + " 个相同配置）";
-  if (browser?.mode === "upgrades")
-    $("#browser-context").textContent +=
-      " / " + (n > 1 ? "合并组 " + n + " 个，默认只改 1 个" : "仅当前单位");
+  if (browser?.mode === "upgrades") {
+    const inst = army.units.find(i => i.instanceId === browser.unitInstanceId);
+    $("#browser-context").textContent =
+      named(data.units[inst?.unitId]?.name) + " / " + slotName(browser.slotKey) + "槽位 / " +
+      (n > 1 ? "合并组 " + n + " 个，" + (cardView.applyAll ? "全部应用" : "仅修改 1 个") : "仅当前单位");
+  }
 }
 function renderIssues(report) {
   const box = $("#issues");
@@ -2094,6 +2094,7 @@ function wireEditor() {
   $("#show-unavailable").onchange = filterCandidates;
   $("#apply-all-units").onchange = () => {
     cardView.applyAll = $("#apply-all-units").checked;
+    updateBatchControl();
     stateCache.clear();
     filterCandidates();
   };

@@ -5,6 +5,20 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 import server
 
 class StorageTest(unittest.TestCase):
+    def test_free_text_keyword_parameters_survive_save_and_reload(self):
+        self.card['keywords'] = [
+            {'id': key, 'parameter': '瞄准 1 或闪避 1 / 自定义目标', 'value': 2, 'action': 'none'}
+            for key in ['mercenary', 'aid', 'independent', 'retinue']
+        ]
+        result = server.commit_card(self.card, server.digest(self.path.read_bytes()))
+        saved = next(u for u in json.loads(self.path.read_bytes())['units'] if u['id'] == self.card['id'])
+        self.assertEqual(saved['keywords'], self.card['keywords'])
+        self.assertEqual(result['card']['keywords'], saved['keywords'])
+        self.card['keywords'][0]['parameter'] = None
+        server.commit_card(self.card, result['revision'])
+        saved = next(u for u in json.loads(self.path.read_bytes())['units'] if u['id'] == self.card['id'])
+        self.assertIsNone(saved['keywords'][0]['parameter'])
+
     def test_all_action_types_can_be_saved_on_unit_keywords(self):
         for action in ['action','double-action','free-action','free-exhaust']:
             self.card['keywords'][0]['action']=action

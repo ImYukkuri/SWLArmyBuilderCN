@@ -1,6 +1,6 @@
 {
   "schema": "swl-unit-catalog/v2",
-  "updatedAt": "2026-11-15T19:11:38.510423+00:00",
+  "updatedAt": "2026-11-16T02:40:02.720420+00:00",
   "definitions": "catalog-definitions.json",
   "referenceVersion": "2026.11.04.0",
   "units": [
@@ -18771,10 +18771,10 @@
       },
       "assets": {
         "front": "assets/unit-cards/mercenary/pyke_syndicate/originals/pyke-syndicate-capo_front.webp",
-        "portrait": "assets/portraits/mercenary-pyke-syndicate-pyke-syndicate-capo-9ff51ca177b5245d19df.webp",
+        "portrait": "assets/portraits/mercenary-pyke-syndicate-pyke-syndicate-capo-e47f2e4d3e8d5801381b.webp",
         "portraitCrop": [
           0.6699999999999999,
-          0.12349862258953165,
+          0.12349862258953154,
           0.99,
           0.6965013774104682
         ]
@@ -18843,11 +18843,12 @@
       "keywords": [
         {
           "id": "mercenary",
-          "parameter": "QPF XD"
+          "parameter": "帝国，义军，共和，分离"
         },
         {
-          "id": "pending_ap_o",
-          "parameter": "$o"
+          "id": "aid",
+          "parameter": "派克辛迪加",
+          "value": null
         },
         {
           "id": "danger_sense",
@@ -18855,7 +18856,8 @@
         },
         {
           "id": "independent",
-          "parameter": "Dodge 1"
+          "parameter": "闪避 1",
+          "value": null
         }
       ],
       "weapons": [
@@ -18878,7 +18880,7 @@
         {
           "name": {
             "en": "Capo's Long Blaster",
-            "zh": ""
+            "zh": "头目的长管爆能枪"
           },
           "range": {
             "min": 1,
@@ -19010,7 +19012,7 @@
       "keywords": [
         {
           "id": "mercenary",
-          "parameter": "QQ FF"
+          "parameter": "帝国，义军，共和，分离"
         },
         {
           "id": "danger_sense",
@@ -19018,7 +19020,7 @@
         },
         {
           "id": "independent",
-          "parameter": "Dodge 1"
+          "parameter": "闪避 1"
         },
         {
           "id": "outmaneuver"
@@ -25248,11 +25250,26 @@
           "value": 1
         },
         {
-          "id": "pending_immune_blast_melee_weapons"
-        },
-        {
           "id": "speeder",
           "value": 2
+        },
+        {
+          "id": "immune_blast",
+          "value": null,
+          "parameter": null,
+          "action": "none"
+        },
+        {
+          "id": "immune_melee",
+          "value": null,
+          "parameter": null,
+          "action": "none"
+        },
+        {
+          "id": "immune_range_1_weapons",
+          "value": null,
+          "parameter": null,
+          "action": "none"
         }
       ],
       "weapons": [

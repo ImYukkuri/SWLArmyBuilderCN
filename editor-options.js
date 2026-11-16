@@ -100,6 +100,13 @@ window.EditorOptions = (() => {
     );
     tables.localUpgrades = upgrades.map(c => option(c.id,
       labelOf(c) + (c.usage === 'counterpart' ? ' · 伙伴' : '') + ' · ' + c.id));
+    tables.keywordTargets = [
+      ...units.map(u => ({...option({kind: 'unit', id: u.id},
+        [labelOf(u), labelOf({name: u.title}), u.id].filter(Boolean).join(' · ')),
+        text: u.name?.en || u.name?.zh || u.id})),
+      ...(defs.unitTypes || []).map(t => ({...option({kind: 'unitType', id: t.id},
+        '单位类型 · ' + labelOf(t)), text: t.name?.en || t.name?.zh || String(t.id)})),
+    ];
     tables.semanticSlots = (pkg.slots || []).map((s) => option(s.id, labelOf(s) + " · " + s.id));
     tables.predicates = Object.keys(pkg.predicates || {}).map((k) => option(k));
     tables.properties = Object.entries(fields.properties || {}).map(([k, v]) =>
@@ -369,5 +376,56 @@ window.EditorOptions = (() => {
     }
     return box;
   }
-  return { create, load, control, conditionFields };
+  // Parameter text stays separate from keyword identity. Editing it must never
+  // leave an older target reference silently overriding the visible text.
+  function setKeywordParameter(keyword, text, reference = null) {
+    keyword.parameter = text === '' ? null : text;
+    if (reference) keyword.parameterRef = structuredClone(reference);
+    else delete keyword.parameterRef;
+  }
+  function keywordParameterControl(keyword, defs, change, {label = '参数'} = {}) {
+    const box = document.createElement('div');
+    box.className = 'keyword-parameter-control';
+    const input = document.createElement('input');
+    input.type = 'text';input.value = keyword.parameter ?? '';
+    input.setAttribute('aria-label', label);
+    input.placeholder = '自由填写参数；留空表示无参数';
+    box.append(input);
+    const global = defs.keywords?.find(k => k.id === keyword.id)?.timing?.includes('global');
+    const freeText = ['mercenary', 'aid', 'independent'].includes(keyword.id) || !global;
+    let picker;
+    if (!freeText) {
+      const targets = defs.editorOptions?.table('keywordTargets') || [];
+      picker = document.createElement('select');
+      picker.setAttribute('aria-label', label + '关联目标');
+      picker.append(new Option('手填参数（无关联目标）', ''));
+      targets.forEach((target, i) => picker.append(new Option(target.label, String(i))));
+      const index = targets.findIndex(t => t.value.kind === keyword.parameterRef?.kind &&
+        t.value.id === keyword.parameterRef?.id);
+      if (keyword.parameterRef && index < 0) {
+        picker.append(new Option('保留原关联：' + keyword.parameterRef.id, 'existing'));
+        picker.value = 'existing';
+      } else picker.value = index < 0 ? '' : String(index);
+      picker.onchange = () => {
+        if (picker.value === 'existing') return;
+        const target = picker.value === '' ? null : targets[Number(picker.value)];
+        if (target) input.value = target.text;
+        setKeywordParameter(keyword, input.value, target?.value);
+        change();
+      };
+      box.append(picker);
+    }
+    input.oninput = () => {
+      if (picker && picker.value !== '') {
+        picker.value = '';
+        // Notify enhanced selects too, so their label cannot show the old target.
+        picker.dispatchEvent(new Event('change', { bubbles: true }));
+      } else {
+        setKeywordParameter(keyword, input.value);
+        change();
+      }
+    };
+    return box;
+  }
+  return { create, load, control, conditionFields, setKeywordParameter, keywordParameterControl };
 })();

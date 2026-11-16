@@ -1,7 +1,7 @@
 {
   "schema": "swl-upgrades/v1",
   "referenceVersion": "2026.11.04.0",
-  "updatedAt": "2026-11-15T19:46:08.830427+00:00",
+  "updatedAt": "2026-11-15T19:51:49.885233+00:00",
   "cards": [
     {
       "id": "21b-medical-droid",
@@ -10050,7 +10050,7 @@
       "id": "clone-shock-pilot",
       "name": {
         "en": "Clone Shock Trooper Pilot",
-        "zh": "冲击部队驾驶员"
+        "zh": "克隆人冲击部队驾驶员"
       },
       "actionTypes": [],
       "points": 4,
@@ -12839,7 +12839,7 @@
       "id": "cr-24-flame",
       "name": {
         "en": "CR-24 Flame Rifle",
-        "zh": "CR-24火焰步枪"
+        "zh": "CR-24喷火步枪"
       },
       "actionTypes": [],
       "points": 14,
@@ -12947,7 +12947,7 @@
       "id": "crew-door-gunner",
       "name": {
         "en": "Door Gunners",
-        "zh": "舱门炮手"
+        "zh": "舱门枪手"
       },
       "actionTypes": [],
       "points": 12,
@@ -13066,7 +13066,7 @@
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "crew-door-gunner",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "251aad6c6d80712820191dd963c9db01a73f30f74c35bfeff6708851633ff217"
@@ -14838,7 +14838,7 @@
       "id": "dual-armaments",
       "name": {
         "en": "Dual Armaments",
-        "zh": "双重武装"
+        "zh": "双持武器"
       },
       "actionTypes": [],
       "points": 8,

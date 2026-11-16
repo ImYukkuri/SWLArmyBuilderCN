@@ -262,3 +262,5 @@ body.maintenance-editor { --bg:#eef1f4;--panel:#fff;--line:#d2dde5;--ink:#253540
 .equip-editor .equip-link .option-control { flex:1; min-width:0; }
 .equip-editor .equip-link > button { flex:none; }
 .equip-editor .option-control select { max-width:100%; }
+.keyword-parameter-control { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.keyword-parameter-control > input, .keyword-parameter-control > select { width: 100%; min-width: 0; }

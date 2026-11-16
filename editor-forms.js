@@ -188,8 +188,10 @@ window.EditorForms = (() => {
             k.id,
             defs.editorOptions.table("keywords"),
             (v) => {
+              if (k.id !== v) delete k.parameterRef;
               k.id = v;
               change();
+              draw();
             },
             { label: "武器词条 " + (i + 1), nullable: false },
           ),
@@ -204,10 +206,11 @@ window.EditorForms = (() => {
             },
             "number",
           ),
-          input("参数", k.parameter, (v) => {
-            k.parameter = v || null;
-            change();
-          }),
+          (() => {
+            const field = el('div', null, 'metric-input');
+            field.append(el('span', '参数'), EditorOptions.keywordParameterControl(k, defs, change));
+            return field;
+          })(),
         );
         const del = el("button", "×", "minor");
         del.type = "button";

@@ -658,7 +658,6 @@ function choose(card) {
             groupIds: group.instances.map((i) => i.instanceId),
           }
         : null;
-    cardView.applyAll = false;
     $("#candidate-search").value = "";
     setStatus("已为 " + result.count + " 个单位装备 " + named(card.name) + "。");
     render();

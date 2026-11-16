@@ -4,6 +4,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 global.window = global;
 require("../editor-options.js");
+require("../rules-core.js");
 const read = (name) =>
   JSON.parse(fs.readFileSync(path.join(__dirname, "../data", name + ".json"), "utf8"));
 const defs = read("catalog-definitions"),
@@ -12,6 +13,57 @@ const defs = read("catalog-definitions"),
 const pkg = read("slot-rules"),
   fields = read("rule-fields");
 const options = EditorOptions.create(defs, units.units, upgrades.cards, pkg, fields);
+
+test('manual parameter edits clear stale targets but preserve keyword identity, value and action', () => {
+  for (const id of ['mercenary', 'aid', 'independent', 'retinue', 'entourage']) {
+    const keyword = {id, value: 2, action: 'free-action', parameter: 'Old target',
+      parameterRef: {kind: 'unit', id: 'rebels-solo'}};
+    EditorOptions.setKeywordParameter(keyword, '瞄准 1 或闪避 1');
+    assert.deepEqual(keyword, {id, value: 2, action: 'free-action', parameter: '瞄准 1 或闪避 1'});
+    EditorOptions.setKeywordParameter(keyword, '');
+    assert.equal(keyword.parameter, null);
+    assert.equal(keyword.id, id);
+  }
+});
+
+test('parameter target dictionaries preserve numeric and local string IDs independently of labels', () => {
+  for (const id of [1, 'local:wookiee_trooper']) {
+    const target = options.table('keywordTargets').find(t => t.value.kind === 'unitType' && t.value.id === id);
+    assert.ok(target);
+    const keyword = {id: 'entourage'};
+    EditorOptions.setKeywordParameter(keyword, target.text, target.value);
+    assert.deepEqual(keyword.parameterRef, {kind: 'unitType', id});
+    assert.notEqual(keyword.parameterRef, target.value);
+    assert.equal(keyword.parameter, target.text);
+  }
+  const target = options.table('keywordTargets').find(t => t.value.kind === 'unit' && t.value.id === 'rebels-solo');
+  assert.equal(target.text, 'Han Solo');
+  assert.ok(target.label.includes('汉'));
+});
+
+test('manual non-global parameters preserve upgrade eligibility while keyword identity remains required', () => {
+  const data = {defs, pkg,
+    units: Object.fromEntries(units.units.map(u => [u.id, u])),
+    upgrades: Object.fromEntries(upgrades.cards.map(c => [c.id, c]))};
+  data.nameIndex = RulesCore.buildNameIndex(data.upgrades, defs);
+  for (const [id, unitId, upgradeId, armyId] of [
+    ['transport', 'separatists-persuader', 'crew-door-gunner', 5],
+    ['infiltrate', 'empire-iden-versio', 'lying-in-wait', 2],
+    ['prepared_position', 'separatists-bx-strike', 'lying-in-wait', 5],
+    ['speeder', 'separatists-stap', 'training-strike-and-fade', 5],
+  ]) {
+    const unit = structuredClone(data.units[unitId]), card = data.upgrades[upgradeId];
+    const keyword = unit.keywords.find(k => k.id === id), army = {armyId, mode: 'standard'};
+    const before = RulesCore.upgradeEligibility(card, unit, army, data, []);
+    assert.equal(before.ok, true, id);
+    for (const text of ['自由参数 / 任意中文 2', '']) {
+      EditorOptions.setKeywordParameter(keyword, text);
+      assert.deepEqual(RulesCore.upgradeEligibility(card, unit, army, data, []), before, id);
+    }
+    unit.keywords = unit.keywords.filter(k => k.id !== id);
+    assert.equal(RulesCore.upgradeEligibility(card, unit, army, data, []).ok, false, id);
+  }
+});
 
 test("catalog indexes retain local and upstream identity and bilingual searchable names", () => {
   const unit = units.units.find((u) => u.id === "rebels-solo");
