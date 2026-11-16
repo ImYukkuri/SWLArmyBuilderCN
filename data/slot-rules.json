@@ -523,7 +523,25 @@
       "machineRules": [],
       "options": [],
       "status": "quotas_only",
-      "alignment": "Dark"
+      "alignment": "Dark",
+      "textRulesZh": [
+        "帝国残党属于银河帝国。",
+        "侦察兵和帝国死亡士兵在组军时视为核心单位。每种核心单位至少各选 1 个前，任一种不能超过 1 个；不能包含附属单位。",
+        "指定指挥官只能向距离 2 内友方单位发出命令。未部署或不在任一友方指挥官距离 2 内的单位获得独立：瞄准 1 或闪避 1。",
+        "检查恐慌时，不能使用距离 2 以外友方单位的勇气值。",
+        "拥有重武器槽的非机器人士兵，可装备限定冲锋队、岸防兵、侦察兵或帝国死亡士兵使用的重武器，忽略该宿主要求。"
+      ],
+      "rulesSource": {
+        "document": "DOC56_BattleForces-3.pdf",
+        "pages": [
+          8
+        ],
+        "reviewedAt": "2026-11-17"
+      },
+      "unitLimitsText": [
+        "冲锋队：1–2 个；岸防兵：1–2 个。",
+        "每种核心单位至少各选 1 个前，任一种不能超过 1 个。禁止附属单位。"
+      ]
     },
     "8": {
       "name": "Mandalorian Clans",
@@ -615,60 +633,37 @@
         "During Setup, a player may choose to align their army with the Light Side or the Dark Side.",
         "During Army Building, if all your {{Commander}} and {{Operative}} units have the same Affiliation, your army gains that Affiliation's special rules:"
       ],
-      "options": [
-        {
-          "id": "clanWren",
-          "name": "Clan Wren",
-          "chooseOneKey": "a"
-        },
-        {
-          "id": "childrenOfTheWatch",
-          "name": "Children of the Watch",
-          "chooseOneKey": "a"
-        },
-        {
-          "id": "clanKryze",
-          "name": "Clan Kryze",
-          "chooseOneKey": "a"
-        },
-        {
-          "id": "clanSaxon",
-          "name": "Clan Saxon",
-          "chooseOneKey": "a"
-        },
-        {
-          "id": "unaffiliated",
-          "name": "Unaffiliated",
-          "chooseOneKey": "a"
-        },
-        {
-          "id": "veterans",
-          "name": "Veterans",
-          "chooseOneKey": null
-        },
-        {
-          "id": "toolsOfTrade",
-          "name": "Tools of the Trade",
-          "chooseOneKey": null
-        },
-        {
-          "id": null,
-          "name": "Rapid Deployment",
-          "chooseOneKey": null
-        },
-        {
-          "id": "gunsForHire",
-          "name": "Guns for Hire",
-          "chooseOneKey": null
-        },
-        {
-          "id": "featsOfValor",
-          "name": "Feats of Valor",
-          "chooseOneKey": null
-        }
-      ],
+      "options": [],
       "machineRules": [],
-      "status": "text_only"
+      "status": "implemented",
+      "nameZh": "曼达洛氏族 · 标准混搭",
+      "mandalorian": {
+        "allowedAffiliations": [
+          "965",
+          "1081",
+          "1082",
+          "1083",
+          "1084"
+        ]
+      },
+      "textRulesZh": [
+        "雇佣兵单位计入军阶最低数量要求，且不受通常的雇佣兵数量限制；军阶上限仍然适用。",
+        "军表中每个单位须与至少一个指挥官或特工拥有相同组织。按装备升级后的组织校验；不阻止加入单位，未满足时标红。",
+        "设置期间可以选择光明面或黑暗面。此项由玩家在对局中决定。",
+        "本工具通过选择氏族战斗部队启用对应规则；标准规则允许混搭。氏族列表允许该氏族及曼达洛人组织单位。"
+      ],
+      "rulesSource": {
+        "document": "DOC56_BattleForces-3.pdf",
+        "pages": [
+          9,
+          10
+        ],
+        "reviewedAt": "2026-11-17",
+        "note": "组军实现按用户确认：氏族由战斗部队选择，不模拟局内效果。"
+      },
+      "unitLimitsText": [
+        "曼达洛学徒：0–2 个。"
+      ]
     },
     "9": {
       "name": "Shadow Collective",
@@ -763,7 +758,19 @@
         }
       },
       "machineRules": [],
-      "status": "quotas_only"
+      "status": "quotas_only",
+      "textRulesZh": [
+        "暗影集会必须全由雇佣兵组成。雇佣兵计入最低军阶要求，每个军阶的雇佣兵数量不限，军阶上限仍适用。",
+        "军队属于黑暗面。",
+        "具有运输词条的单位可向其运输的单位发出命令，无视组织。"
+      ],
+      "rulesSource": {
+        "document": "DOC56_BattleForces-3.pdf",
+        "pages": [
+          14
+        ],
+        "reviewedAt": "2026-11-17"
+      }
     },
     "10": {
       "name": "Stormtrooper Battalion",
@@ -844,7 +851,19 @@
       "machineRules": [],
       "options": [],
       "status": "quotas_only",
-      "alignment": "Dark"
+      "alignment": "Dark",
+      "textRulesZh": [
+        "冲锋队营属于银河帝国。",
+        "非独特指挥官及非独特特工获得目标 2；获得命令时再获得 1 个激增标记。",
+        "指挥官在被指定为指挥官期间获得强迫。"
+      ],
+      "rulesSource": {
+        "document": "DOC56_BattleForces-3.pdf",
+        "pages": [
+          15
+        ],
+        "reviewedAt": "2026-11-17"
+      }
     },
     "11": {
       "name": "Separatist Invasion",
@@ -941,7 +960,18 @@
       "machineRules": [],
       "options": [],
       "status": "quotas_only",
-      "alignment": "Dark"
+      "alignment": "Dark",
+      "textRulesZh": [
+        "分离主义入侵部队属于分离主义势力。",
+        "不能使用战地指挥官词条。"
+      ],
+      "rulesSource": {
+        "document": "DOC56_BattleForces-3.pdf",
+        "pages": [
+          13
+        ],
+        "reviewedAt": "2026-11-17"
+      }
     },
     "12": {
       "name": "212th Attack Battalion",
@@ -1025,7 +1055,18 @@
       "machineRules": [],
       "options": [],
       "status": "text_only",
-      "alignment": "Light"
+      "alignment": "Light",
+      "textRulesZh": [
+        "212 攻击营属于银河共和国。",
+        "友方非指挥官、非特工载具攻击或防御时，可以视作自己持有而花费距离 2 内且在视线内另一友方非指挥官、非特工载具的至多 1 个瞄准、闪避或激增标记，或友方克隆人士兵的至多 1 个瞄准或闪避标记。"
+      ],
+      "rulesSource": {
+        "document": "DOC56_BattleForces-3.pdf",
+        "pages": [
+          2
+        ],
+        "reviewedAt": "2026-11-17"
+      }
     },
     "13": {
       "name": "Echo Base Defenders",
@@ -1122,7 +1163,18 @@
       "machineRules": [],
       "options": [],
       "status": "quotas_only",
-      "alignment": "Light"
+      "alignment": "Light",
+      "textRulesZh": [
+        "回声基地守军属于义军。",
+        "不能使用战地指挥官词条。"
+      ],
+      "rulesSource": {
+        "document": "DOC56_BattleForces-3.pdf",
+        "pages": [
+          6
+        ],
+        "reviewedAt": "2026-11-17"
+      }
     },
     "14": {
       "name": "The Ohnaka Gang",
@@ -1191,7 +1243,24 @@
         }
       },
       "machineRules": [],
-      "status": "quotas_only"
+      "status": "quotas_only",
+      "textRulesZh": [
+        "大中帮必须全由威奎海盗组织的雇佣兵组成。雇佣兵计入军阶最低数量要求，每阶雇佣兵数量不限，军阶上限仍适用。",
+        "设置时可以选择光明面或黑暗面。",
+        "WLO-5 浮空坦克的数量不能超过威奎海盗单位数量；每辆坦克必须运输一个威奎海盗单位。",
+        "本多·大中部署时，可改为进行一次速度 1 移动，移动尺一侧的两个端点接触战场上的友方 WLO-5 坦克底座；此次移动的垂直距离也从该坦克计算。",
+        "士兵单位获得紧盯奖赏：无情。威奎海盗组织单位在本多距离 3 内检查恐慌时，使用本多的勇气。本多额外获得一个指挥升级槽，并可在命令阶段被指定为指挥官。"
+      ],
+      "rulesSource": {
+        "document": "DOC56_BattleForces-3.pdf",
+        "pages": [
+          11
+        ],
+        "reviewedAt": "2026-11-17"
+      },
+      "unitLimitsText": [
+        "WLO-5 浮空坦克数量不能超过威奎海盗单位数量。"
+      ]
     },
     "15": {
       "name": "Rapid Interdiction Force",
@@ -1288,7 +1357,21 @@
       "machineRules": [],
       "options": [],
       "status": "quotas_only",
-      "alignment": "Dark"
+      "alignment": "Dark",
+      "textRulesZh": [
+        "快速拦截部队属于分离主义势力。",
+        "首个命令阶段开始时，每个友方重型机器人士兵或载具卡上放置 1 个优势标记。这类单位在激活中进行第三次移动行动时，若没有优势标记，获得 1 个。",
+        "命令卡揭示后、效果结算前，若自己命令卡牌点较低，可选择至多 3 个没有优势标记的友方重型机器人士兵或载具，各获得 1 个优势标记；牌点相同或较高则可选择 1 个。",
+        "上述单位激活开始时，可花费卡上的 1 个优势标记，选择：本次激活中移动时可将该次移动速度增加或减少 1；或获得 1 个闪避标记。",
+        "BX 系列突击机器人在组军及战场卡方面视为核心单位，并获得渗透。"
+      ],
+      "rulesSource": {
+        "document": "DOC56_BattleForces-3.pdf",
+        "pages": [
+          12
+        ],
+        "reviewedAt": "2026-11-17"
+      }
     },
     "16": {
       "name": "501st Legion",
@@ -1379,7 +1462,17 @@
       "machineRules": [],
       "options": [],
       "status": "text_only",
-      "alignment": "Light"
+      "alignment": "Light",
+      "textRulesZh": [
+        "501 军团属于银河共和国。"
+      ],
+      "rulesSource": {
+        "document": "DOC56_BattleForces-3.pdf",
+        "pages": [
+          3
+        ],
+        "reviewedAt": "2026-11-17"
+      }
     },
     "17": {
       "name": "Blizzard Force",
@@ -1470,6 +1563,21 @@
       "alignment": "Dark",
       "unparsedRules": [
         "Imperial Probe Droid units in this army do not have the Detachment keyword."
+      ],
+      "textRulesZh": [
+        "暴雪部队属于银河帝国。",
+        "不能使用战地指挥官词条。",
+        "军队中的帝国探测机器人失去附属词条。"
+      ],
+      "rulesSource": {
+        "document": "DOC56_BattleForces-3.pdf",
+        "pages": [
+          4
+        ],
+        "reviewedAt": "2026-11-17"
+      },
+      "unitLimitsText": [
+        "冲锋队：0–2 个。"
       ]
     },
     "18": {
@@ -1562,7 +1670,24 @@
       "machineRules": [],
       "options": [],
       "status": "quotas_only",
-      "alignment": "Light"
+      "alignment": "Light",
+      "textRulesZh": [
+        "亮树村属于义军。",
+        "雇佣兵计入最低军阶要求，可在每个军阶带任意数量雇佣兵，但军阶上限仍适用。必须包含至少 2 个非伊沃克的义军单位。",
+        "结束阶段移除标记步骤中，伊沃克单位少移除 1 个压制标记。",
+        "义军指挥官获得权益之盟。"
+      ],
+      "rulesSource": {
+        "document": "DOC56_BattleForces-3.pdf",
+        "pages": [
+          5
+        ],
+        "reviewedAt": "2026-11-17"
+      },
+      "unitLimitsText": [
+        "至少 2 个非伊沃克的义军单位。",
+        "义军士兵：0–2 个；义军突击队：0–2 个。"
+      ]
     },
     "19": {
       "name": "Tempest Force",
@@ -1659,7 +1784,20 @@
       "machineRules": [],
       "options": [],
       "status": "quotas_only",
-      "alignment": "Dark"
+      "alignment": "Dark",
+      "textRulesZh": [
+        "暴风部队属于银河帝国。",
+        "载具获得侦察 2。",
+        "不在友方指挥官距离 3 内且未装备通讯升级的单位，在移除标记步骤少移除 1 个压制标记。",
+        "设置时，可暂置 1 个未携带资产目标标记的友方特种或支援单位，并以优势标记标识。本局它首次将激活时，必须将其按凝聚部署在所有敌方单位距离 2 以外（如能如此做），视为已激活，命令标记翻面；随后移除优势标记。"
+      ],
+      "rulesSource": {
+        "document": "DOC56_BattleForces-3.pdf",
+        "pages": [
+          16
+        ],
+        "reviewedAt": "2026-11-17"
+      }
     },
     "20": {
       "name": "Experimental Droids",
@@ -1730,7 +1868,22 @@
       "machineRules": [],
       "options": [],
       "status": "quotas_only",
-      "alignment": "Dark"
+      "alignment": "Dark",
+      "textRulesZh": [
+        "实验机器人属于分离主义势力。",
+        "IG-100 磁卫（原型刺杀机器人）在组军及战场卡方面视为核心单位。",
+        "每个激活阶段开始时，可选择至多 1 个指挥官，在其卡上放置 3 个优势标记。拥有 AI 的友方特种、核心或支援单位，在自身激活期间一次，可通过免费行动花费距离 3 内该指挥官上的 1 个优势标记，选择以下一项：本次激活下次移动行动速度 +1；获得 1 个瞄准或闪避标记；本次激活下次攻击行动的一个攻击池加入 1 黑骰和 1 白骰；移除至多 2 个压制标记。"
+      ],
+      "rulesSource": {
+        "document": "DOC56_BattleForces-3.pdf",
+        "pages": [
+          7
+        ],
+        "reviewedAt": "2026-11-17"
+      },
+      "unitLimitsText": [
+        "B1 战斗机器人：0–2 个；B2 战斗机器人：0–2 个；BX 系列突击机器人：0–2 个。"
+      ]
     },
     "21": {
       "name": "Wookiee Defenders",
@@ -1827,7 +1980,641 @@
       "machineRules": [],
       "options": [],
       "status": "quotas_only",
-      "alignment": "Light"
+      "alignment": "Light",
+      "textRulesZh": [
+        "伍基守军属于银河共和国。",
+        "伍基战士（高贵战士）在组军及战场卡方面视为核心单位。",
+        "至少包含 3 个伍基人士兵单位。",
+        "每轮每个伍基人士兵单位首次有一个或更多模型被击败时，该单位可进行一次速度 1 移动，无论其本身速度如何。"
+      ],
+      "rulesSource": {
+        "document": "DOC56_BattleForces-3.pdf",
+        "pages": [
+          17
+        ],
+        "reviewedAt": "2026-11-17"
+      },
+      "unitLimitsText": [
+        "至少 3 个伍基人士兵单位。",
+        "ARC 士兵、BARC 飞行机车、步兵支援平台、军刀级坦克：各 0–1 个；克隆人士兵步兵：0–2 个。"
+      ]
+    },
+    "22": {
+      "name": "Children of the Watch",
+      "parentFaction": "Mandalorian Clans",
+      "alignment": "Mercenaries",
+      "modes": {
+        "standard": {
+          "rankQuotas": [
+            {
+              "rankId": 1,
+              "min": 1,
+              "max": 2
+            },
+            {
+              "rankId": 2,
+              "min": 2,
+              "max": 6
+            },
+            {
+              "rankId": 3,
+              "min": 0,
+              "max": 3
+            },
+            {
+              "rankId": 4,
+              "min": 0,
+              "max": 3
+            },
+            {
+              "rankId": 5,
+              "min": 0,
+              "max": 2
+            },
+            {
+              "rankId": 6,
+              "min": 0,
+              "max": 2
+            }
+          ],
+          "combined": []
+        },
+        "recon": {
+          "rankQuotas": [
+            {
+              "rankId": 1,
+              "min": 1,
+              "max": 3
+            },
+            {
+              "rankId": 2,
+              "min": 2,
+              "max": 4
+            },
+            {
+              "rankId": 3,
+              "min": 0,
+              "max": 3
+            },
+            {
+              "rankId": 4,
+              "min": 0,
+              "max": 3
+            },
+            {
+              "rankId": 5,
+              "min": 0,
+              "max": 1
+            },
+            {
+              "rankId": 6,
+              "min": 0,
+              "max": 2
+            }
+          ],
+          "combined": [
+            {
+              "tiers": [
+                1,
+                6
+              ],
+              "maximum": 3
+            }
+          ]
+        }
+      },
+      "textRules": [],
+      "options": [],
+      "machineRules": [],
+      "status": "implemented",
+      "nameZh": "守望之子",
+      "mandalorian": {
+        "allowedAffiliations": [
+          "1084",
+          "965"
+        ],
+        "clanAffiliation": "965",
+        "custom": false
+      },
+      "textRulesZh": [
+        "雇佣兵单位计入军阶最低数量要求，且不受通常的雇佣兵数量限制；军阶上限仍然适用。",
+        "军表中每个单位须与至少一个指挥官或特工拥有相同组织。按装备升级后的组织校验；不阻止加入单位，未满足时标红。",
+        "设置期间可以选择光明面或黑暗面。此项由玩家在对局中决定。",
+        "本工具通过选择氏族战斗部队启用对应规则；标准规则允许混搭。氏族列表允许该氏族及曼达洛人组织单位。",
+        "曼达洛学徒不受通常的 2 个上限限制，仍受军阶要求限制。曼达洛学徒装备独特人员升级时，该升级减 5 分。"
+      ],
+      "rulesSource": {
+        "document": "DOC56_BattleForces-3.pdf",
+        "pages": [
+          9,
+          10
+        ],
+        "reviewedAt": "2026-11-17",
+        "note": "组军实现按用户确认：氏族由战斗部队选择，不模拟局内效果。"
+      },
+      "unitLimitsText": [
+        "曼达洛学徒不设额外数量上限，仍受核心军阶上限限制。"
+      ]
+    },
+    "23": {
+      "name": "Clan Kryze",
+      "parentFaction": "Mandalorian Clans",
+      "alignment": "Mercenaries",
+      "modes": {
+        "standard": {
+          "rankQuotas": [
+            {
+              "rankId": 1,
+              "min": 1,
+              "max": 2
+            },
+            {
+              "rankId": 2,
+              "min": 2,
+              "max": 6
+            },
+            {
+              "rankId": 3,
+              "min": 0,
+              "max": 3
+            },
+            {
+              "rankId": 4,
+              "min": 0,
+              "max": 3
+            },
+            {
+              "rankId": 5,
+              "min": 0,
+              "max": 2
+            },
+            {
+              "rankId": 6,
+              "min": 0,
+              "max": 2
+            }
+          ],
+          "combined": []
+        },
+        "recon": {
+          "rankQuotas": [
+            {
+              "rankId": 1,
+              "min": 1,
+              "max": 3
+            },
+            {
+              "rankId": 2,
+              "min": 2,
+              "max": 4
+            },
+            {
+              "rankId": 3,
+              "min": 0,
+              "max": 3
+            },
+            {
+              "rankId": 4,
+              "min": 0,
+              "max": 3
+            },
+            {
+              "rankId": 5,
+              "min": 0,
+              "max": 1
+            },
+            {
+              "rankId": 6,
+              "min": 0,
+              "max": 2
+            }
+          ],
+          "combined": [
+            {
+              "tiers": [
+                1,
+                6
+              ],
+              "maximum": 3
+            }
+          ]
+        }
+      },
+      "textRules": [],
+      "options": [],
+      "machineRules": [],
+      "status": "implemented",
+      "nameZh": "克里兹氏族",
+      "mandalorian": {
+        "allowedAffiliations": [
+          "1084",
+          "1081"
+        ],
+        "clanAffiliation": "1081",
+        "custom": false
+      },
+      "textRulesZh": [
+        "雇佣兵单位计入军阶最低数量要求，且不受通常的雇佣兵数量限制；军阶上限仍然适用。",
+        "军表中每个单位须与至少一个指挥官或特工拥有相同组织。按装备升级后的组织校验；不阻止加入单位，未满足时标红。",
+        "设置期间可以选择光明面或黑暗面。此项由玩家在对局中决定。",
+        "本工具通过选择氏族战斗部队启用对应规则；标准规则允许混搭。氏族列表允许该氏族及曼达洛人组织单位。",
+        "结束阶段移除标记步骤中，选择友方单位上的至多 3 个绿色标记；所选标记不移除。"
+      ],
+      "rulesSource": {
+        "document": "DOC56_BattleForces-3.pdf",
+        "pages": [
+          9,
+          10
+        ],
+        "reviewedAt": "2026-11-17",
+        "note": "组军实现按用户确认：氏族由战斗部队选择，不模拟局内效果。"
+      },
+      "unitLimitsText": [
+        "曼达洛学徒：0–2 个。"
+      ]
+    },
+    "24": {
+      "name": "Clan Wren",
+      "parentFaction": "Mandalorian Clans",
+      "alignment": "Mercenaries",
+      "modes": {
+        "standard": {
+          "rankQuotas": [
+            {
+              "rankId": 1,
+              "min": 1,
+              "max": 2
+            },
+            {
+              "rankId": 2,
+              "min": 2,
+              "max": 6
+            },
+            {
+              "rankId": 3,
+              "min": 0,
+              "max": 3
+            },
+            {
+              "rankId": 4,
+              "min": 0,
+              "max": 3
+            },
+            {
+              "rankId": 5,
+              "min": 0,
+              "max": 2
+            },
+            {
+              "rankId": 6,
+              "min": 0,
+              "max": 2
+            }
+          ],
+          "combined": []
+        },
+        "recon": {
+          "rankQuotas": [
+            {
+              "rankId": 1,
+              "min": 1,
+              "max": 3
+            },
+            {
+              "rankId": 2,
+              "min": 2,
+              "max": 4
+            },
+            {
+              "rankId": 3,
+              "min": 0,
+              "max": 3
+            },
+            {
+              "rankId": 4,
+              "min": 0,
+              "max": 3
+            },
+            {
+              "rankId": 5,
+              "min": 0,
+              "max": 1
+            },
+            {
+              "rankId": 6,
+              "min": 0,
+              "max": 2
+            }
+          ],
+          "combined": [
+            {
+              "tiers": [
+                1,
+                6
+              ],
+              "maximum": 3
+            }
+          ]
+        }
+      },
+      "textRules": [],
+      "options": [],
+      "machineRules": [],
+      "status": "implemented",
+      "nameZh": "雷恩氏族",
+      "mandalorian": {
+        "allowedAffiliations": [
+          "1084",
+          "1082"
+        ],
+        "clanAffiliation": "1082",
+        "custom": false
+      },
+      "textRulesZh": [
+        "雇佣兵单位计入军阶最低数量要求，且不受通常的雇佣兵数量限制；军阶上限仍然适用。",
+        "军表中每个单位须与至少一个指挥官或特工拥有相同组织。按装备升级后的组织校验；不阻止加入单位，未满足时标红。",
+        "设置期间可以选择光明面或黑暗面。此项由玩家在对局中决定。",
+        "本工具通过选择氏族战斗部队启用对应规则；标准规则允许混搭。氏族列表允许该氏族及曼达洛人组织单位。",
+        "友方曼达洛人士兵获得护卫 1：雷恩氏族。拥有护卫 X 的单位可以对其他拥有护卫 X 的友方单位使用该词条。拥有护卫 X 的指挥官和特工可以受益于 Backup。"
+      ],
+      "rulesSource": {
+        "document": "DOC56_BattleForces-3.pdf",
+        "pages": [
+          9,
+          10
+        ],
+        "reviewedAt": "2026-11-17",
+        "note": "组军实现按用户确认：氏族由战斗部队选择，不模拟局内效果。"
+      },
+      "unitLimitsText": [
+        "曼达洛学徒：0–2 个。"
+      ]
+    },
+    "25": {
+      "name": "Clan Saxon",
+      "parentFaction": "Mandalorian Clans",
+      "alignment": "Mercenaries",
+      "modes": {
+        "standard": {
+          "rankQuotas": [
+            {
+              "rankId": 1,
+              "min": 1,
+              "max": 2
+            },
+            {
+              "rankId": 2,
+              "min": 2,
+              "max": 6
+            },
+            {
+              "rankId": 3,
+              "min": 0,
+              "max": 3
+            },
+            {
+              "rankId": 4,
+              "min": 0,
+              "max": 3
+            },
+            {
+              "rankId": 5,
+              "min": 0,
+              "max": 2
+            },
+            {
+              "rankId": 6,
+              "min": 0,
+              "max": 2
+            }
+          ],
+          "combined": []
+        },
+        "recon": {
+          "rankQuotas": [
+            {
+              "rankId": 1,
+              "min": 1,
+              "max": 3
+            },
+            {
+              "rankId": 2,
+              "min": 2,
+              "max": 4
+            },
+            {
+              "rankId": 3,
+              "min": 0,
+              "max": 3
+            },
+            {
+              "rankId": 4,
+              "min": 0,
+              "max": 3
+            },
+            {
+              "rankId": 5,
+              "min": 0,
+              "max": 1
+            },
+            {
+              "rankId": 6,
+              "min": 0,
+              "max": 2
+            }
+          ],
+          "combined": [
+            {
+              "tiers": [
+                1,
+                6
+              ],
+              "maximum": 3
+            }
+          ]
+        }
+      },
+      "textRules": [],
+      "options": [],
+      "machineRules": [],
+      "status": "implemented",
+      "nameZh": "萨克森氏族",
+      "mandalorian": {
+        "allowedAffiliations": [
+          "1084",
+          "1083"
+        ],
+        "clanAffiliation": "1083",
+        "custom": false
+      },
+      "textRulesZh": [
+        "雇佣兵单位计入军阶最低数量要求，且不受通常的雇佣兵数量限制；军阶上限仍然适用。",
+        "军表中每个单位须与至少一个指挥官或特工拥有相同组织。按装备升级后的组织校验；不阻止加入单位，未满足时标红。",
+        "设置期间可以选择光明面或黑暗面。此项由玩家在对局中决定。",
+        "本工具通过选择氏族战斗部队启用对应规则；标准规则允许混搭。氏族列表允许该氏族及曼达洛人组织单位。",
+        "友方单位击败敌方单位后，该单位可以进行一次恢复行动或一次速度 1 移动。"
+      ],
+      "rulesSource": {
+        "document": "DOC56_BattleForces-3.pdf",
+        "pages": [
+          9,
+          10
+        ],
+        "reviewedAt": "2026-11-17",
+        "note": "组军实现按用户确认：氏族由战斗部队选择，不模拟局内效果。"
+      },
+      "unitLimitsText": [
+        "曼达洛学徒：0–2 个。"
+      ]
+    },
+    "26": {
+      "name": "Custom Clan",
+      "parentFaction": "Mandalorian Clans",
+      "alignment": "Mercenaries",
+      "modes": {
+        "standard": {
+          "rankQuotas": [
+            {
+              "rankId": 1,
+              "min": 1,
+              "max": 2
+            },
+            {
+              "rankId": 2,
+              "min": 2,
+              "max": 6
+            },
+            {
+              "rankId": 3,
+              "min": 0,
+              "max": 3
+            },
+            {
+              "rankId": 4,
+              "min": 0,
+              "max": 3
+            },
+            {
+              "rankId": 5,
+              "min": 0,
+              "max": 2
+            },
+            {
+              "rankId": 6,
+              "min": 0,
+              "max": 2
+            }
+          ],
+          "combined": []
+        },
+        "recon": {
+          "rankQuotas": [
+            {
+              "rankId": 1,
+              "min": 1,
+              "max": 3
+            },
+            {
+              "rankId": 2,
+              "min": 2,
+              "max": 4
+            },
+            {
+              "rankId": 3,
+              "min": 0,
+              "max": 3
+            },
+            {
+              "rankId": 4,
+              "min": 0,
+              "max": 3
+            },
+            {
+              "rankId": 5,
+              "min": 0,
+              "max": 1
+            },
+            {
+              "rankId": 6,
+              "min": 0,
+              "max": 2
+            }
+          ],
+          "combined": [
+            {
+              "tiers": [
+                1,
+                6
+              ],
+              "maximum": 3
+            }
+          ]
+        }
+      },
+      "textRules": [],
+      "options": [
+        {
+          "id": "veterans",
+          "name": "Veterans",
+          "nameZh": "老兵",
+          "text": "曼达洛战士装备 GALAAR-15 Carbines 时，该升级减 5 分。设置时可以选择 2 个友方曼达洛人组织单位，它们获得无畏。"
+        },
+        {
+          "id": "toolsOfTrade",
+          "name": "Tools of the Trade",
+          "nameZh": "行当工具",
+          "text": "额外提供火焰喷射器、喷气背包火箭、缆索发射器各 1 张免费独特副本。仅曼达洛人士兵可用，忽略原宿主限制，正常占用装备／手雷槽。同一单位不能重复装备同名升级。取消本规则时移除免费副本。"
+        },
+        {
+          "id": "rapidDeployment",
+          "name": "Rapid Deployment",
+          "nameZh": "快速部署",
+          "text": "设置时可暂置至多 2 个没有携带资产目标标记的友方曼达洛人组织单位，并以优势标记标识。本局首次将被选择激活时，可将其部署在所有敌方单位距离 2 以外（如能如此做），其余模型按凝聚放置；视为已激活，命令标记翻面，随后移除优势标记。"
+        },
+        {
+          "id": "gunsForHire",
+          "name": "Guns for Hire",
+          "nameZh": "雇佣火力",
+          "text": "A-A5 浮空卡车、TX-225 GAVw 占领者坦克、WLO-5 浮空坦克三选一，全军合计最多 1 辆。使用雇佣兵版本（TX-225 使用现有版本），组织改为曼达洛人，并获得协同：曼达洛战士与独立：激增 1。"
+        },
+        {
+          "id": "featsOfValor",
+          "name": "Feats of Valor",
+          "nameZh": "英勇事迹",
+          "text": "友方单位击败敌方单位后，获得 1 个英勇标记。至少 1 个：获得无畏；至少 2 个：激活开始时获得 1 个瞄准、闪避或激增标记；至少 3 个：获得典范。各档效果累积。"
+        }
+      ],
+      "machineRules": [],
+      "status": "implemented",
+      "nameZh": "自定义氏族",
+      "mandalorian": {
+        "allowedAffiliations": [
+          "1084"
+        ],
+        "clanAffiliation": null,
+        "custom": true
+      },
+      "textRulesZh": [
+        "雇佣兵单位计入军阶最低数量要求，且不受通常的雇佣兵数量限制；军阶上限仍然适用。",
+        "军表中每个单位须与至少一个指挥官或特工拥有相同组织。按装备升级后的组织校验；不阻止加入单位，未满足时标红。",
+        "设置期间可以选择光明面或黑暗面。此项由玩家在对局中决定。",
+        "本工具通过选择氏族战斗部队启用对应规则；标准规则允许混搭。氏族列表允许该氏族及曼达洛人组织单位。",
+        "只能选择曼达洛人组织单位；从五条自定义规则中选择两条。雇佣火力启用后提供对应载具变体。"
+      ],
+      "rulesSource": {
+        "document": "DOC56_BattleForces-3.pdf",
+        "pages": [
+          9,
+          10
+        ],
+        "reviewedAt": "2026-11-17",
+        "note": "组军实现按用户确认：氏族由战斗部队选择，不模拟局内效果。"
+      },
+      "optionCount": 2,
+      "unitLimitsText": [
+        "曼达洛学徒：0–2 个。",
+        "雇佣火力：三种载具全军合计最多 1 辆，仅在选择该规则时可用。"
+      ]
     }
   },
   "predicates": {

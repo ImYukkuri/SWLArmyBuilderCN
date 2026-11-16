@@ -118,7 +118,8 @@
           "imageSha256": "72ab4bdecfd5ce0d6f5a01420b4de675c37c74fcea55cf46f781240083ee3b98"
         },
         "image": "assets/upgrade-cards/21b-medical-droid.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "aa5-heavy-laser",
@@ -2897,7 +2898,14 @@
           "imageSha256": "c24d68a8d4e1d605bee9f0b12817790b964a05817b73b1a0d71ae83c3ba94b4c"
         },
         "image": "assets/upgrade-cards/axe-woves.webp"
-      }
+      },
+      "nameIdentityId": "axe-woves",
+      "affiliationIds": [
+        "1081"
+      ],
+      "affiliationSourceUnitIds": [
+        "mercenary-clan-kryze-axe-woves"
+      ]
     },
     {
       "id": "b1-e5c",
@@ -3211,7 +3219,8 @@
           "imageSha256": "7e36ceb83b2350f55ad24891cc11b4f8d6217c75dc06a8a43e638dfbeca1bf8f"
         },
         "image": "assets/upgrade-cards/b1-miniature.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "b1-oom",
@@ -3318,7 +3327,8 @@
           "imageSha256": "bbc70519d5689184c3b51ea8915dcd62f375e3ece4ebb7d5835a534dea473a5f"
         },
         "image": "assets/upgrade-cards/b1-oom.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "b1-radiation",
@@ -3532,7 +3542,8 @@
           "imageSha256": "e42ba5544664906d9abc1df9f749b592d5d2defb707a600595b3b05cc482859e"
         },
         "image": "assets/upgrade-cards/b1-security.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "b1-sniper",
@@ -3764,7 +3775,8 @@
           "imageSha256": "ae4b5732b293cb4f9d785c7d621799ef4f736aa5aaf0190a7cd4c7032f274f9a"
         },
         "image": "assets/upgrade-cards/b1-squad.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "b2-acm",
@@ -4372,7 +4384,8 @@
           "imageSha256": "95d0e84da99df03ebc1c013ea5a7783d24ae49498ac5b7890454b3f705757f49"
         },
         "image": "assets/upgrade-cards/b2-miniature.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "b2-rocket-mini",
@@ -4468,7 +4481,8 @@
           "imageSha256": "c2a7fa79802102e590b4feea0f11ddcce9cddcd35d17625f4ba03494d8b4a125"
         },
         "image": "assets/upgrade-cards/b2-rocket-mini.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "b2-squad",
@@ -4590,7 +4604,8 @@
           "imageSha256": "3c8f976877231a7baf1785ebd5ac65916a1046e33f77e07195a4495494deb23b"
         },
         "image": "assets/upgrade-cards/b2-squad.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "backworld-medic",
@@ -6150,7 +6165,14 @@
           "imageSha256": "9f1331d5a08b52e12a1e1d2de04caec104529304eeecc4e573f788af3aa2b0c8"
         },
         "image": "assets/upgrade-cards/bo-katan-kryze.webp"
-      }
+      },
+      "nameIdentityId": "bo-katan-kryze",
+      "affiliationIds": [
+        "1081"
+      ],
+      "affiliationSourceUnitIds": [
+        "mercenary-clan-kryze-bo-katan-kryze"
+      ]
     },
     {
       "id": "bowcaster",
@@ -8851,7 +8873,8 @@
           "imageSha256": "ea45caab36f086ee165f8faab6695693722ed7af5a57d7e2c4d1503e41eb34be"
         },
         "image": "assets/upgrade-cards/clone-comms.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "clone-dp23",
@@ -9088,7 +9111,8 @@
           "imageSha256": "ef7350c505cd18063d0d35dc41d7afbc73af8bfb96aad077cadb700bdc8fc5b5"
         },
         "image": "assets/upgrade-cards/clone-engineer.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "clone-fox",
@@ -9325,7 +9349,8 @@
           "imageSha256": "618883efc87d228054df4c80c87b998b2879b255ec54321633c003f610bdfe2d"
         },
         "image": "assets/upgrade-cards/clone-marksmen-miniature.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "clone-marksmen-squad",
@@ -9446,7 +9471,8 @@
           "imageSha256": "83c736ce52054445ab116e5389922f228de0cabfe18ed5ed6fb364d4d2e6dfd4"
         },
         "image": "assets/upgrade-cards/clone-marksmen-squad.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "clone-medic",
@@ -9635,7 +9661,12 @@
           "imageSha256": "2f8985ea5ebd6522bc583dec31ae3f4152c07de3507bf2778f65e60b358d3a28"
         },
         "image": "assets/upgrade-cards/clone-miniature.webp"
-      }
+      },
+      "nameIdentityId": "clone-trooper-infantry",
+      "affiliationIds": [],
+      "affiliationSourceUnitIds": [
+        "republic-clone-trooper"
+      ]
     },
     {
       "id": "clone-mortar",
@@ -10265,7 +10296,8 @@
           "imageSha256": "591c42bee73ceeb9da5bbeb9219cb3bf7a3465275730c6b67ea246a4adf1bb9b"
         },
         "image": "assets/upgrade-cards/clone-specialist.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "clone-squad",
@@ -10387,7 +10419,8 @@
           "imageSha256": "73e683634a2a032241688886f13f7f06307e11ab36f5893d1f253728afb7ee52"
         },
         "image": "assets/upgrade-cards/clone-squad.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "clone-veteran-pilot",
@@ -13324,7 +13357,8 @@
           "imageSha256": "d9a636369d9e89fd646500adb6e2a60d7068ec5a42086bf15082fa9d34071030"
         },
         "image": "assets/upgrade-cards/dark-trooper-miniature.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "dc-15x-sniper",
@@ -14039,7 +14073,14 @@
           "imageSha256": "e8c924e07a1aa1f7cd34e02dbb064953b7c5b52d7889a5a7152f882733bf2cf0"
         },
         "image": "assets/upgrade-cards/din-djarin.webp"
-      }
+      },
+      "nameIdentityId": "din-djarin",
+      "affiliationIds": [
+        "965"
+      ],
+      "affiliationSourceUnitIds": [
+        "mercenary-clan-covert-din-djarin-covert"
+      ]
     },
     {
       "id": "din-djarin-darksaber",
@@ -15392,7 +15433,8 @@
           "imageSha256": "25a67f2ba4f5ef12e9293fe5fabc8633f08bf7b72badc18b7e74e1ba839750af"
         },
         "image": "assets/upgrade-cards/e4-medical.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "echo-arc",
@@ -17043,7 +17085,8 @@
           "imageSha256": "b5e797e8279c927b3a729cee55778eff47618c76fdfc2aaf69731c028e4090b0"
         },
         "image": "assets/upgrade-cards/ewoks-skirmish-squad.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "ewoks-slinger-squad",
@@ -17165,7 +17208,8 @@
           "imageSha256": "8d9a74abd88a4356e0df152a8d13d42b4790816372035c120fe6dd398a76dfd6"
         },
         "image": "assets/upgrade-cards/ewoks-slinger-squad.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "ewoks-trapper",
@@ -17279,7 +17323,8 @@
           "imageSha256": "e259e7c87f97b0f926b2348ae7dc9bca583e7d3c27456d2817e9173e090d69e4"
         },
         "image": "assets/upgrade-cards/ewoks-trapper.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "expanded-databanks",
@@ -18345,7 +18390,8 @@
           "imageSha256": "39ca442125049eb8631b7815b2825ec60b4e3413e14715674db07a6388dfed75"
         },
         "image": "assets/upgrade-cards/fleet-squad.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "fleet-trooper",
@@ -18441,7 +18487,8 @@
           "imageSha256": "d70c2166b6397e324ae82364b19df2716d6ed7f4ff8a15c85655dd10ae95b677"
         },
         "image": "assets/upgrade-cards/fleet-trooper.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "force-absorb",
@@ -20540,7 +20587,8 @@
           "imageSha256": "e7edea5799264e5f1bd72d832266e1a7b5dfb30b45c2ced02eaa4a8591c55418"
         },
         "image": "assets/upgrade-cards/fx-9-medical.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "galaar-15-carbines",
@@ -21280,7 +21328,8 @@
           "imageSha256": "c9f390d5ef1fc44a83ad80dd9627956a7060d5b699288e8907b3b04a15ef20cc"
         },
         "image": "assets/upgrade-cards/gar-arf-miniatures.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "gar-arf-rps",
@@ -21697,7 +21746,15 @@
           "imageSha256": "96a616d24c42cb4ac9f35e0a65d206e4b909d55ad4022d4b0f6fd9e6ef04efae"
         },
         "image": "assets/upgrade-cards/gar-saxon.webp"
-      }
+      },
+      "nameIdentityId": "gar-saxon",
+      "affiliationIds": [
+        "1083"
+      ],
+      "affiliationSourceUnitIds": [
+        "mercenary-clan-saxon-gar-saxon-leader",
+        "mercenary-maul-loyalists-gar-saxon"
+      ]
     },
     {
       "id": "gear-ascension",
@@ -23220,7 +23277,8 @@
           "imageSha256": "9bca06fb989ba2e3fa1f5cfe5fcb11d1a6d64b2a55224f326b7a08453a9bcd12"
         },
         "image": "assets/upgrade-cards/geonosian-miniature.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "geonosian-pike-1",
@@ -23649,7 +23707,8 @@
           "imageSha256": "a45357c9c0468e268b9e8cf1dfff74c3756abf77fa32de8b79853b090f80506e"
         },
         "image": "assets/upgrade-cards/geonosian-squad.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "gideon-darksaber",
@@ -27231,7 +27290,8 @@
           "imageSha256": "06b0642c158edbae734b0a0e478afda270c7bdde87d1e191e6426dc71fbb053b"
         },
         "image": "assets/upgrade-cards/imperial-comms.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "imperial-hammers",
@@ -27459,7 +27519,12 @@
           "imageSha256": "e8741ac0d1640b2bad3e8231890a483931c219c1399f00e8b3f77c98142f457a"
         },
         "image": "assets/upgrade-cards/imperial-officer.webp"
-      }
+      },
+      "nameIdentityId": "imperial-officer",
+      "affiliationIds": [],
+      "affiliationSourceUnitIds": [
+        "empire-imperial-officer-ruthless-efficiency"
+      ]
     },
     {
       "id": "imperial-probe-droid",
@@ -31410,7 +31475,8 @@
           "imageSha256": "160e2d5783d29e6751fe1a8826a12ff15146c568cab1492aa543053db544ef7d"
         },
         "image": "assets/upgrade-cards/mandalorian-initiate-squad.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "mandalorian-rockets-clan",
@@ -33094,7 +33160,14 @@
           "imageSha256": "cc3d9b2ffb1704dfb30160cccc5045aaa20aa241dd34926a6c6c8fe722acae47"
         },
         "image": "assets/upgrade-cards/paz-vizzla.webp"
-      }
+      },
+      "nameIdentityId": "paz-vizsla",
+      "affiliationIds": [
+        "965"
+      ],
+      "affiliationSourceUnitIds": [
+        "mercenary-clan-covert-paz-vizsla"
+      ]
     },
     {
       "id": "peacekeeping-mission",
@@ -33459,7 +33532,8 @@
           "imageSha256": "02c209d4fca4b191f8e2d5f2d7437a8b4f179e2ae9d69edde9c992256d0a18dd"
         },
         "image": "assets/upgrade-cards/personnel-blacksun-miniature.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "personnel-blacksun-vigo",
@@ -33565,7 +33639,14 @@
           "imageSha256": "76d5f32de97c86808c9df7aa8146fd9a43f2fa323662421fba90851f70916166"
         },
         "image": "assets/upgrade-cards/personnel-blacksun-vigo.webp"
-      }
+      },
+      "nameIdentityId": "black-sun-vigo",
+      "affiliationIds": [
+        "2"
+      ],
+      "affiliationSourceUnitIds": [
+        "mercenary-black-sun-black-sun-vigo"
+      ]
     },
     {
       "id": "personnel-pyke-capo",
@@ -33667,7 +33748,14 @@
           "imageSha256": "093ae8f3545963d40047f278518da455295197788ab3f4cd52c42418ed7a1f03"
         },
         "image": "assets/upgrade-cards/personnel-pyke-capo.webp"
-      }
+      },
+      "nameIdentityId": "pyke-syndicate-capo",
+      "affiliationIds": [
+        "1"
+      ],
+      "affiliationSourceUnitIds": [
+        "mercenary-pyke-syndicate-pyke-syndicate-capo"
+      ]
     },
     {
       "id": "personnel-pyke-miniature",
@@ -33779,7 +33867,8 @@
           "imageSha256": "3d3ee683339156a5b2468b1727fbb75308ea79dc6d18309808b9afe36535e6f6"
         },
         "image": "assets/upgrade-cards/personnel-pyke-miniature.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "pilot-frenzied",
@@ -34278,7 +34367,8 @@
           "imageSha256": "e8ba95c4486ccb8010069e37d3dddd7046912cfecdc7f4225a365fe4f270754c"
         },
         "image": "assets/upgrade-cards/pk-worker.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "platoon-commander",
@@ -35695,7 +35785,8 @@
           "imageSha256": "41d091ee06f4092c0d29b2658797070d78df0dd9dde0d7ad493fc81178efacee"
         },
         "image": "assets/upgrade-cards/pyke-syndicate-squad.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "r4-astromech",
@@ -35815,7 +35906,8 @@
           "imageSha256": "6cb7d2f1eca40fc1e58c1aa94268c6acda2953de0fdc3e6b97f033d33513db41"
         },
         "image": "assets/upgrade-cards/r4-astromech.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "range-trooper-dlt20a",
@@ -36019,7 +36111,8 @@
           "imageSha256": "a8bd421cbd205f5862741195eb78f4fea29a4015168023dc74e8c33eafcaf239"
         },
         "image": "assets/upgrade-cards/range-trooper-miniature.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "range-trooper-t21a",
@@ -36240,7 +36333,8 @@
           "imageSha256": "2d7592cc9aa3f2bbeb7f36fa02ba6cc24eb23615e2ab2192331c0ee3740d11ba"
         },
         "image": "assets/upgrade-cards/rebel-astromech.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "rebel-captain",
@@ -36352,7 +36446,8 @@
           "imageSha256": "12bd7a74e48b59f3268bce9416f17f1d63866cf9400f6b4c5da3f0098c463349"
         },
         "image": "assets/upgrade-cards/rebel-captain.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "rebel-cm093",
@@ -36572,7 +36667,8 @@
           "imageSha256": "676a413eab9a72f6f5d989d093d3b59f2d228c595c790a7a3948908bdc99b84c"
         },
         "image": "assets/upgrade-cards/rebel-comms.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "rebel-dlt-20",
@@ -37021,7 +37117,12 @@
           "imageSha256": "2175b0dc77c8d3c3d622038288d10367ebcf8a8deada01943ab961056de17e0d"
         },
         "image": "assets/upgrade-cards/rebel-officer.webp"
-      }
+      },
+      "nameIdentityId": "rebel-officer",
+      "affiliationIds": [],
+      "affiliationSourceUnitIds": [
+        "rebels-rebel-officer-fight-freedom"
+      ]
     },
     {
       "id": "rebel-specialist",
@@ -37128,7 +37229,8 @@
           "imageSha256": "3c5be0454abd9f9f2b29f5f33a6376daca01add40123e7f84b51aa3e8549b33e"
         },
         "image": "assets/upgrade-cards/rebel-specialist.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "rebel-squad",
@@ -37250,7 +37352,8 @@
           "imageSha256": "33933a3813250e470bfa340a72f136f0d596033f852d6baff0c756616674a830"
         },
         "image": "assets/upgrade-cards/rebel-squad.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "rebel-sx21-trooper",
@@ -37456,7 +37559,8 @@
           "imageSha256": "36f6a23a6021931f162b7e4c13aa98ef891574419c378655f5ebbd1284dbef78"
         },
         "image": "assets/upgrade-cards/rebel-trooper-miniature.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "rebel-veteran",
@@ -37552,7 +37656,8 @@
           "imageSha256": "7e94fd7daf3c33c859f94016c87457b014d93cc9d534fa29f2d935d8b96a0661"
         },
         "image": "assets/upgrade-cards/rebel-veteran.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "rebel-z6",
@@ -38274,7 +38379,14 @@
           "imageSha256": "288418f7e368ea32cfba008a26d56ab72af966034ef315c3b6611d4f45f3ddb8"
         },
         "image": "assets/upgrade-cards/rook-kast-clan.webp"
-      }
+      },
+      "nameIdentityId": "rook-kast",
+      "affiliationIds": [
+        "1083"
+      ],
+      "affiliationSourceUnitIds": [
+        "mercenary-clan-saxon-rook-kast"
+      ]
     },
     {
       "id": "rt-97c-blaster",
@@ -39010,7 +39122,15 @@
           "imageSha256": "71e49fddc8dfe2aec47a01560749ca8b4c501c0ecd64461d0ac90dbeaa4b5170"
         },
         "image": "assets/upgrade-cards/sabine-wren.webp"
-      }
+      },
+      "nameIdentityId": "sabine-wren",
+      "affiliationIds": [
+        "1082"
+      ],
+      "affiliationSourceUnitIds": [
+        "mercenary-clan-wren-sabine-wren-clan",
+        "rebels-sabine"
+      ]
     },
     {
       "id": "saxon-darksaber",
@@ -40043,7 +40163,12 @@
           "imageSha256": "03294258daf05b44c3d458e38bc3b9c2a082474d5c7ec4618480c58a3a58ce12"
         },
         "image": "assets/upgrade-cards/shaak-ti.webp"
-      }
+      },
+      "nameIdentityId": "shaak-ti",
+      "affiliationIds": [],
+      "affiliationSourceUnitIds": [
+        "republic-shaak-ti"
+      ]
     },
     {
       "id": "shore-squad",
@@ -40165,7 +40290,8 @@
           "imageSha256": "54d70ef062fe2a7adf9db185e38f2dce82585ba84d7702faf684977726e72de0"
         },
         "image": "assets/upgrade-cards/shore-squad.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "shore-t21b",
@@ -40423,7 +40549,8 @@
           "imageSha256": "d8f6fac90e8906b03cbce3f5339b7ca6319fc7ddc24f0138a9210935491e684f"
         },
         "image": "assets/upgrade-cards/shore-trooper.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "shriv",
@@ -40768,7 +40895,8 @@
           "imageSha256": "281111d38a3254c38cd9098a03ce059abe9b3a81b7c376edbfe54a5dd7c35f62"
         },
         "image": "assets/upgrade-cards/sleeper-astromech.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "sleeper-marksman",
@@ -41427,7 +41555,8 @@
           "imageSha256": "000bc0eb3110f34a0cb9ed1a3e1ba2f93b491c470b3ff9da5e2d34fdf602dfbe"
         },
         "image": "assets/upgrade-cards/snow-squad.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "snowtrooper",
@@ -41523,7 +41652,8 @@
           "imageSha256": "d6b90d40e96a30146ed7ecfd886596d3bf163cb52d4e6c781720f9211d3891ae"
         },
         "image": "assets/upgrade-cards/snowtrooper.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "special-t21",
@@ -42350,7 +42480,8 @@
           "imageSha256": "9e57af0610cc46251d8615f2f36fa6d0ef00b5995b48336b1fa955666348de21"
         },
         "image": "assets/upgrade-cards/stormtrooper.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "stormtrooper-captain",
@@ -42465,7 +42596,8 @@
           "imageSha256": "83a26fbab69eb171aa17f7c2c722f93b937b5208aadfa7d28c58bdfd535dba3c"
         },
         "image": "assets/upgrade-cards/stormtrooper-captain.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "stormtrooper-dlt19",
@@ -43066,7 +43198,8 @@
           "imageSha256": "9b0cc976575247c27d219767bde7b687e4aab5e2d70ae59a703bab9538b4f83b"
         },
         "image": "assets/upgrade-cards/stormtrooper-specialist.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "stormtrooper-squad",
@@ -43190,7 +43323,8 @@
           "imageSha256": "cd32b5395e5997d31cf9d56ab502adce41715281327f6616dd2bf7907115d6c0"
         },
         "image": "assets/upgrade-cards/stormtrooper-squad.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "stormtrooper-t21",
@@ -44629,7 +44763,12 @@
           "imageSha256": "3edd181a88cc502498fd3dbe7fa2876cb0ee3d315bd80b5ffe5fceebb0ab8e13"
         },
         "image": "assets/upgrade-cards/t-series-tactical.webp"
-      }
+      },
+      "nameIdentityId": "t-series-tactical-droid",
+      "affiliationIds": [],
+      "affiliationSourceUnitIds": [
+        "separatists-tactical-droid"
+      ]
     },
     {
       "id": "tactical-acument",
@@ -45180,7 +45319,14 @@
           "imageSha256": "1cf0a643bdec51e150c33529855f9702038011af5d98e2d096624397c43d9050"
         },
         "image": "assets/upgrade-cards/the-armorer.webp"
-      }
+      },
+      "nameIdentityId": "the-armorer",
+      "affiliationIds": [
+        "965"
+      ],
+      "affiliationSourceUnitIds": [
+        "mercenary-clan-covert-the-armorer"
+      ]
     },
     {
       "id": "thermal-detonator",
@@ -51766,6 +51912,15 @@
           "imageSha256": "26658ac7794a5f017ee06eb836d5b500259917537bfd5d15c3d74680434fac7d"
         },
         "image": "assets/upgrade-cards/tristan-wren-clan.webp"
+      },
+      "affiliationIds": [
+        "1083",
+        "1082"
+      ],
+      "affiliationReview": {
+        "status": "reviewed",
+        "source": "user-confirmed",
+        "reviewedAt": "2026-11-17"
       }
     },
     {
@@ -52754,7 +52909,14 @@
           "imageSha256": "0778a9b935e0a1c438fd7e6101ec61e712dacebedebb4c8b228c7d2dcd187369"
         },
         "image": "assets/upgrade-cards/ursa-wren-clan.webp"
-      }
+      },
+      "nameIdentityId": "ursa-wren",
+      "affiliationIds": [
+        "1082"
+      ],
+      "affiliationSourceUnitIds": [
+        "mercenary-clan-wren-ursa-wren"
+      ]
     },
     {
       "id": "veteran-squad",
@@ -52876,7 +53038,8 @@
           "imageSha256": "64c6a05a66cceb7736ed0ce24face2726542fbd53bbad3e5340752e9599231e8"
         },
         "image": "assets/upgrade-cards/veteran-squad.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "vibro-axe",
@@ -53306,7 +53469,8 @@
           "imageSha256": "d7ca78172cf2415549988b7143461d1e6c9c93c2384ed3eb9ca8682a6fc19603"
         },
         "image": "assets/upgrade-cards/viper-droid.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "war-party-leader",
@@ -53824,7 +53988,8 @@
           "imageSha256": "4116113dcee6a520226dac4c69315a91b3e9d91a1107dcb9a381fd554a4760c9"
         },
         "image": "assets/upgrade-cards/weequay-captain.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "weequay-crew",
@@ -54037,7 +54202,8 @@
           "imageSha256": "6d7182b4f7ff05a00a3891ec528d3100526dd0fbb8a14d6bb83b1b008b89aa1e"
         },
         "image": "assets/upgrade-cards/weequay-squad.webp"
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "whipcord-launcher",
@@ -55350,7 +55516,16 @@
         "sources": [],
         "verification": "no_image",
         "condition": null
-      }
+      },
+      "nameIdentityId": "chewbacca",
+      "affiliationIds": [
+        "6"
+      ],
+      "affiliationSourceUnitIds": [
+        "republic-chewbacca-gar",
+        "mercenary-ewoks-chewbacca",
+        "rebels-chewbacca-rebel"
+      ]
     },
     {
       "id": "upstream-23968",
@@ -55876,7 +56051,13 @@
         "sources": [],
         "verification": "no_image",
         "condition": null
-      }
+      },
+      "nameIdentityId": "han-solo",
+      "affiliationIds": [],
+      "affiliationSourceUnitIds": [
+        "rebels-han-solo-tauntaun",
+        "rebels-solo"
+      ]
     },
     {
       "id": "upstream-143",
@@ -56543,7 +56724,8 @@
         "sources": [],
         "verification": "no_image",
         "condition": null
-      }
+      },
+      "affiliationIds": []
     },
     {
       "id": "upstream-15628",

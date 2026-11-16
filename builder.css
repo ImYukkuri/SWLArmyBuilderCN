@@ -1993,7 +1993,7 @@ dialog, .card-browser, .keyword-popover {
 }
 
 .roster-unit.invalid {
-  border-left: 3px solid #b2875d;
+  border-left: 3px solid #b33d4b;
 }
 
 .rank-chip.invalid {
@@ -2007,7 +2007,7 @@ dialog, .card-browser, .keyword-popover {
   gap: 12px;
   background: white;
   padding: 12px;
-  border-left: 3px solid #b2875d;
+  border-left: 3px solid #b33d4b;
 }
 
 .command-art {
@@ -3906,3 +3906,20 @@ dialog, .card-browser, .keyword-popover {
 .transfer-resolution small { color:#9d4b46; }
 .transfer-resolution select,.transfer-resolution input { width:100%; min-width:0; padding:7px; border:1px solid #b7c9d6; }
 @media(max-width:600px){.transfer-dialog {padding:14px;}.transfer-json {min-height:180px;}.transfer-actions button{flex:1;}}
+
+/* Battle-force reference and optional custom rules. */
+.battleforce-info{align-self:center;width:34px;height:34px;border:0;background:transparent;color:var(--faction);font-size:24px;cursor:pointer}
+.battleforce-dialog{width:min(680px,calc(100vw - 28px));max-height:85dvh;padding:22px;overflow-y:auto;border:1px solid #b7c1bd;border-radius:12px;background:#fafaf7;color:#263c35}
+.battleforce-dialog .dialog-head{position:sticky;top:-22px;background:#fafaf7;padding:12px 0;z-index:1}
+.battleforce-dialog h3{margin:20px 0 8px;font-size:17px}.battleforce-dialog h4{margin:16px 0 5px}
+.battleforce-dialog p,.battleforce-dialog .prose{line-height:1.65;margin:8px 0}
+.battleforce-quotas{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;text-align:left}
+.battleforce-quotas th,.battleforce-quotas td{padding:8px 12px;border-bottom:1px solid #d9ded9}
+.battleforce-quotas th{color:#557068;font-size:13px}.force-cap{font-weight:600}
+#army-options{margin:18px 0;padding:16px 0;border-top:1px solid #bdcbc4;border-bottom:1px solid #bdcbc4}
+#army-options[hidden]{display:none}#army-options h3{margin:0 0 6px;font-size:17px}
+.army-option-tags{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.army-option-tag{padding:8px 12px;background:#f2f5f0;border:1px solid #b9c8bf;border-radius:20px;color:#334e42;cursor:pointer}
+.army-option-tag[aria-pressed=true]{color:white;background:#476b5c;border-color:#476b5c}
+.army-option-copy{line-height:1.6;font-size:14px;margin:8px 0}.variant-label{display:inline-block;font-size:12px;color:#476b5c;font-weight:700}
+@media(max-width:760px){.battleforce-dialog{padding:16px}.battleforce-dialog .dialog-head{top:-16px}.battleforce-dialog h2{font-size:19px}.army-option-tag{min-height:40px}}

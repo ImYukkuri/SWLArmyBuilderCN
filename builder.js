@@ -90,6 +90,7 @@ async function load() {
       deckData: bj,
       ttsNames: tj,
     };
+    RulesCore.prepareData(data);
     data.nameIndex = RulesCore.buildNameIndex(data.upgrades, data.defs);
     initializeLibrary();
     wireRosterActions();
@@ -293,7 +294,7 @@ function renderFaction() {
   if (document.activeElement !== $("#roster-name"))
     $("#roster-name").value = activeRecord.name;
   const select = $("#battleforce");
-  select.replaceChildren(new Option("无 · 基础规则", String(base.id)));
+  select.replaceChildren(new Option(base.id === 8 ? "标准规则 · 氏族混搭" : "无 · 基础规则", String(base.id)));
   for (const entry of BuilderLibrary.battleforces(base.id, data))
     select.append(new Option(named(entry.name), String(entry.id)));
   if (![...select.options].some((o) => Number(o.value) === army.armyId))
@@ -308,14 +309,16 @@ function renderFaction() {
     const before = new Map(army.units.filter(i => data.units[i.unitId]).map(i =>
       [i.instanceId, unitSlotRecords(data.units[i.unitId], i)]));
     army.armyId = Number(select.value);
+    const removed = RulesCore.cleanupArmy(army,data);
     for (const inst of army.units) if (before.has(inst.instanceId))
       BuilderModel.rebindSlots(inst, before.get(inst.instanceId), unitSlotRecords(data.units[inst.unitId], inst),
         data, {allowOrphans: true});
     browser = null;
     cardView.applyAll = false;
-    setStatus("已更新战斗部队限制，现有编制已保留。");
+    setStatus("已更新战斗部队限制。" + (removed.length ? "已移除失效的规则赠送卡／单位：" + removed.join('、') : ''));
     render();
   };
+  $("#battleforce-info").onclick = () => showBattleForceRules();
 }
 
 function renderMode() {
@@ -500,6 +503,7 @@ function render() {
   renderRankBar(report);
   renderUnits();
   renderDeck();
+  renderArmyOptions();
   renderBrowser();
   renderIssues(report);
   const bad = report.issues.filter((i) => i.status === "invalid").length;

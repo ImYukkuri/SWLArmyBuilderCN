@@ -76,7 +76,7 @@ test("battleforces are restricted to the selected parent faction", () => {
     library.battleforces(5, data).map((a) => a.id),
     [11, 15, 20],
   );
-  assert.deepEqual(library.battleforces(8, data), []);
+  assert.deepEqual(library.battleforces(8, data).map(a => a.id), [22,23,24,25,26]);
   assert.deepEqual(library.battleforces(9, data), []);
   for (const id of [7, 10, 17, 19]) assert.equal(library.factionOf(id, data), 2);
   assert.equal(

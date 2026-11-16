@@ -155,7 +155,7 @@ window.BuilderModel = (() => {
       return "同一单位不能重复装备同名升级。";
     if (
       selected.some(
-        (c) => name(c) === name(card) && (uniqueUpgrade(c, data) || uniqueUpgrade(card, data)),
+        (c) => (c.rules?.uniqueScope === 'card' || card.rules?.uniqueScope === 'card' ? c.id === card.id : name(c) === name(card)) && (uniqueUpgrade(c, data) || uniqueUpgrade(card, data)),
       )
     )
       return "独特升级整军只能携带一张。";
@@ -202,7 +202,7 @@ window.BuilderModel = (() => {
     const beforeReport = RulesCore.validateArmy(before, data),
       afterReport = RulesCore.validateArmy(after, data);
     const blocking = (i) =>
-      i.status === "invalid" && !transitional.has(i.code) && !/^rank_/.test(i.code);
+      i.status === "invalid" && !transitional.has(i.code) && !RulesCore.isTransitionalIssue(i.code,after,data.pkg) && !/^rank_/.test(i.code);
     for (const issue of beforeReport.issues.filter(blocking)) {
       const key = issueKey(issue, before);
       counts.set(key, (counts.get(key) || 0) + 1);
@@ -243,6 +243,7 @@ window.BuilderModel = (() => {
   }
 
   function unitAdditionFailure(unit, army, data) {
+    if (!RulesCore.runtimeAvailable(unit,army,data.pkg)) return '此单位需要启用对应的战斗部队规则。';
     const count = army.units.filter((i) => i.unitId === unit.id).length;
     const cap = RulesCore.unitCapFor(unit, data.pkg, army.armyId);
     if (cap != null && count >= cap) return "已达到此单位的数量上限（" + cap + "）。";
@@ -269,7 +270,8 @@ window.BuilderModel = (() => {
   function equipDefaults(army, data, instanceId, makeId) {
     let draft = army;
     const unit = data.units[draft.units.find(i => i.instanceId === instanceId).unitId];
-    const wanted = [...new Set(unit.equipUpgradeIds || [])];
+    const instance = draft.units.find(i => i.instanceId === instanceId);
+    const wanted = [...new Set([...(unit.equipUpgradeIds || []),...RulesCore.defaultUpgradeIds(unit,instance,army,data)])];
     const failures = new Map(), warnings = [];
     // Refresh after each real selection: a mandatory upgrade may grant additional slots.
     // A complete pass is required even after a match; retry earlier slots if grants changed.

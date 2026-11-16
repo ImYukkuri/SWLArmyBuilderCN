@@ -59,9 +59,9 @@ test('212th example imports its battle force, all nine units and every upgrade, 
  assert.equal(out.json.listlink,'');
 });
 
-test('all 15 local battle forces import and export canonical names independently of renamed labels',()=>{
+test('all 20 local battle forces import and export canonical names independently of renamed labels',()=>{
  const factions={1:'rebel',2:'empire',4:'republic',5:'separatist',8:'mandalorian',9:'mercenary'};
- assert.equal(Object.keys(data.ttsNames.battleForces).length,15);
+ assert.equal(Object.keys(data.ttsNames.battleForces).length,20);
  for(const [id,ref] of Object.entries(data.ttsNames.battleForces)) {
   const input={armyFaction:factions[ref.factionId],battleForce:ref.name,units:[],commandCards:[]};
   const r=BuilderTransfer.importTTS(input,data,uid,now);assert.deepEqual(r.issues,[],ref.name);

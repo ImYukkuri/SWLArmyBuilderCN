@@ -44,6 +44,7 @@ async function loadBfData(){
     fetch('data/upgrades.json').then(r=>r.json())
   ]);
   bfData={units:Object.fromEntries((units.units||[]).map(u=>[u.id,u])),upgrades:Object.fromEntries((upgrades.cards||[]).map(c=>[c.id,c]))};
+  window.RulesCore?.prepareData({...bfData,pkg:rules,defs});
   bfData.nameIndex=window.RulesCore?window.RulesCore.buildNameIndex(bfData.upgrades,defs):{};
   return bfData;
 }
@@ -101,6 +102,10 @@ function renderAllowedUnits(box,bf,rerender){
     const loading=el('p','正在载入单位数据…');loading.className='hint';sec.append(loading);box.append(sec);
     loadBfData().then(()=>renderBattleForces()).catch(e=>status(e.message,true));
     return;
+  }
+  if (bf.mandalorian) {
+    const names=Object.values(bfData.units).filter(u=>!u.runtimeVariant&&window.RulesCore.armyRank(u,Number(bfId),rules,defs,bfData.units)!=null).map(u=>u.name.zh||u.name.en);
+    sec.append(el('p','此部队通过曼达洛独立模块按组织筛选，氏族／自定义规则决定可用单位。'),el('p',names.join('、')));box.append(sec);return;
   }
   const rankName={1:'指挥官',6:'特工',2:'核心',3:'特种部队',4:'支援',5:'重型'};
   const derived={};
@@ -250,7 +255,7 @@ function renderPreview(box,bf,rerender){
   if(!bfData){const h2=el('p','正在载入单位/升级数据…');h2.className='hint';sec.append(h2);box.append(sec);
     loadBfData().then(()=>renderBattleForces()).catch(e=>status(e.message,true));
     return}
-  const units=Object.values(bfData.units||{}).filter(u=>(u.factions||[]).some(f=>String(f.id)===String(bfId)));
+  const units=Object.values(bfData.units||{}).filter(u=>window.RulesCore.armyRank(u,Number(bfId),rules,defs,bfData.units)!=null);
   if(!bfPreview.unitId&&units.length)bfPreview.unitId=units[0].id;
   const unitSel=bfSelect(units.map(u=>[u.id,(u.name.zh||u.name.en)+' · '+u.id]),bfPreview.unitId,v=>{bfPreview.unitId=v;rerender()});
   const cards=Object.values(bfData.upgrades||{});
@@ -336,10 +341,19 @@ function renderBattleForces(){
 
   /* text rules */
   const tbox=el('div');tbox.className='bf-section';
-  tbox.append(el('h3','特殊规则文本'));
+  tbox.append(el('h3','特殊规则文本 · 中文'));
+  const zh=el('textarea');zh.value=(bf.textRulesZh||[]).join('\n');zh.rows=6;
+  zh.oninput=()=>{bf.textRulesZh=zh.value.split('\n').map(s=>s.trim()).filter(Boolean);setDirty()};tbox.append(zh,el('h3','英文原文／参考文本'));
   const ta=el('textarea');ta.value=(bf.textRules||[]).join('\n');ta.rows=4;
   ta.onchange=()=>{bf.textRules=ta.value.split('\n').map(s=>s.trim()).filter(Boolean);setDirty()};
   tbox.append(ta);
+  tbox.append(el('h3','单位数量限制说明'));
+  const limits=el('textarea');limits.rows=3;limits.value=(bf.unitLimitsText||[]).join('\n');limits.oninput=()=>{bf.unitLimitsText=limits.value.split('\n').map(s=>s.trim()).filter(Boolean);setDirty()};tbox.append(limits);
+  for(const option of bf.options||[]) if(option.text!=null){
+    tbox.append(el('h4',option.nameZh||option.name));
+    const text=el('textarea');text.rows=3;text.value=option.text;text.oninput=()=>{option.text=text.value;setDirty()};tbox.append(text);
+  }
+  const note=el('p','规则文本用于写表器说明窗口；修改文字不会自动改写机器规则。');note.className='hint';tbox.append(note);
   main.append(tbox);
 
   renderAllowedUnits(main,bf,renderBattleForces);

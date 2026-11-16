@@ -198,7 +198,7 @@ function renderSavedRosters() {
         });
     title.append(node("small", null, bf + (stamp ? " · " + stamp : "")));
     const numbers = node("span", "saved-roster-numbers");
-    const total = RulesCore.validateArmy(record.army, data).basePoints;
+    const total = RulesCore.validateArmy(record.army, data).effectivePoints;
     const points = node("span", "saved-points");
     points.append(
       node("b", null, total),

@@ -5593,7 +5593,8 @@
       "hqIds": [
         "mc"
       ],
-      "factionId": 8
+      "factionId": 8,
+      "armyFaction": ""
     },
     "9": {
       "name": "Shadow Collective",
@@ -5688,6 +5689,36 @@
         "wd"
       ],
       "factionId": 4
+    },
+    "22": {
+      "name": "Children of the Watch",
+      "factionId": 8,
+      "aliases": [],
+      "armyFaction": ""
+    },
+    "23": {
+      "name": "Clan Kryze",
+      "factionId": 8,
+      "aliases": [],
+      "armyFaction": ""
+    },
+    "24": {
+      "name": "Clan Wren",
+      "factionId": 8,
+      "aliases": [],
+      "armyFaction": ""
+    },
+    "25": {
+      "name": "Clan Saxon",
+      "factionId": 8,
+      "aliases": [],
+      "armyFaction": ""
+    },
+    "26": {
+      "name": "Custom Clan",
+      "factionId": 8,
+      "aliases": [],
+      "armyFaction": ""
     }
   }
 }

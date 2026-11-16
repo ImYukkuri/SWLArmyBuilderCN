@@ -21,7 +21,7 @@ window.BuilderTransfer = (() => {
       const ref = data.ttsNames?.units?.[counterpart?.id];
       if (ref) return ref;
     }
-    return data.ttsNames?.[kind]?.[card.id] || null;
+    return data.ttsNames?.[kind]?.[card.runtimeVariant?.sourceId || card.id] || null;
   }
   function aliases(kind, c, data) {
     const names=[english(c),fullName(c),reference(kind,c,data)?.name];
@@ -38,7 +38,10 @@ window.BuilderTransfer = (() => {
     const exact = all.filter(c=>normalizeName(reference(kind,c,data,context.host)?.name)===key);
     let hits = exact.length ? exact : all.filter(c=>aliases(kind,c,data).some(n=>normalizeName(n)===key));
     const narrow = predicate => {const filtered=hits.filter(predicate);if(filtered.length)hits=filtered;};
-    if(kind==='units' && context.army) narrow(c=>RulesCore.armyRank(c,context.army.armyId,data.pkg,data.defs,data.units)!=null);
+    if(kind==='units' && context.army) {
+      narrow(c=>RulesCore.armyRank(c,context.army.armyId,data.pkg,data.defs,data.units)!=null);
+      narrow(c=>RulesCore.runtimeAvailable(c,context.army,data.pkg));
+    }
     if(kind==='battle') {
       const collection = context.deckKind === 'advantage' ? data.deckData.conditions
         : context.deckKind === 'primary' ? data.deckData.deployments : data.deckData.objectives;
@@ -50,6 +53,9 @@ window.BuilderTransfer = (() => {
       narrow(c=>RulesCore.upgradeEligibility(c,context.host,context.army,data,equipped).ok);
       const slots=RulesCore.slotListFor(data.pkg,context.host,context.inst||{upgrades:[]},data.upgrades,context.army.armyId);
       narrow(c=>RulesCore.accessKeys(c,data.pkg,data.pkg.upgradeRules?.[String(c.upstream?.id)]||{}).some(k=>slots.some(s=>s.key===k)));
+      // Names-only TTS cannot distinguish a paid copy from a granted copy.
+      // Keep the ordinary card unless the file explicitly resolves its local ID.
+      narrow(c=>!c.runtimeVariant);
     }
     return hits;
   }
@@ -104,13 +110,14 @@ window.BuilderTransfer = (() => {
     }
     const faction=BuilderLibrary.factionOf(army.armyId,data),factionCode=factionCodes[faction];
     if(!factionCode)issues.push('该势力没有已知的 TTS 代码。');
-    if(faction===8||faction===9)warnings.push('曼达洛人／暗影集会的势力代码需在所用 TTS 模组版本中确认；Legion HQ 当前未完整输出这两类代码。');
+    if(faction===9)warnings.push('暗影集会的势力代码需在所用 TTS 模组版本中确认。');
     const out={author:'SWLArmyBuilderCN',listname:record.name||'Untitled',
       points:RulesCore.validateArmy(army,data).effectivePoints,numActivations:army.units.length,
       armyFaction:factionCode||'',commandCards:[],contingencies:[],units:[],
       battlefieldDeck:{conditions:[],deployment:[],objective:[],scenario:army.mode==='recon'?'recon':'standard'},listlink:''};
     if(data.pkg.battleForces?.[army.armyId]) {
       const ref=data.ttsNames?.battleForces?.[army.armyId];
+      if (ref?.armyFaction != null) out.armyFaction = ref.armyFaction;
       out.battleForce=ref?.name||data.defs.armies.find(a=>a.id===army.armyId)?.name.en;
       if(!ref)warnings.push('战斗部队英文引用未校对：'+(out.battleForce||army.armyId));
       if(!out.battleForce)issues.push('战斗部队缺少英文名称');
@@ -130,7 +137,7 @@ window.BuilderTransfer = (() => {
     if(army.units.some(u=>u.upgrades.some(c=>c.face==='back'||c.face==='both')))
       warnings.push('TTS 仅记录实体卡名称；反面／双面显示状态不会写入，重新导入时默认正面。');
     if(army.pointsLimit!==(army.mode==='recon'?600:1000))warnings.push('TTS 不保存自定义分数上限；请用原生 JSON 保留。');
-    if(army.options?.length)warnings.push('TTS 不包含本地自定义 options；请用原生 JSON 保留。');
+    if(army.options?.length)warnings.push('TTS 名称格式不包含自定义规则选项，也不能区分免费副本；请同时导出原生 JSON 完整保留这些设置。');
     return {json:out,warnings:[...new Set(warnings)],issues};
   }
   // Slot assignment is independent of unit order and can wait for upgrades that grant slots.

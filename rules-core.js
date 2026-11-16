@@ -258,6 +258,10 @@ window.RulesCore = (() => {
     return keywords;
   }
   function unitCapFor(unit, pkg, armyId) {
+    for (const ext of extensions(armyId,pkg)) {
+      const cap = ext.cap?.(unit,armyId,pkg);
+      if (cap !== undefined) return cap;
+    }
     const ov = armyOverridesFor(pkg, armyId);
     for (const cap of (ov && ov.unitCaps) || []) {
       if (cap && cap.unitName != null && matchesTarget(unit, { unitNames: [cap.unitName] })) return Number(cap.max);
@@ -485,6 +489,10 @@ window.RulesCore = (() => {
     return a ? a.id : null;
   }
   function armyRank(unit, armyId, pkg, defs, units) {
+    for (const ext of extensions(armyId,pkg)) {
+      const rank = ext.rank?.(unit,armyId,pkg);
+      if (rank !== undefined) return rank;
+    }
     const ov = armyOverridesFor(pkg, armyId);
     const overrideName = normalizeKey((unit.name && unit.name.en) || "");
     for (const rule of (ov && ov.rankOverrides) || []) {
@@ -536,6 +544,8 @@ window.RulesCore = (() => {
     const hostRank = armyRank(unit, army.armyId, pkg, defs, data.units);
     const issues = [];
     const add = (status, code, message) => issues.push({ status, code, message });
+    if (!runtimeAvailable(card,army,pkg)) add('invalid','extension_card_unavailable','此卡需要启用对应的战斗部队规则');
+    for (const ext of extensions(army.armyId,pkg)) issues.push(...(ext.eligibility?.(card,unit,army,data,api) || []));
     const h = hosts(rule, card);
     const aliasOk = hostAliasAllows(card, unit, army, data, rule);
     const printedCondition = (card.restrictions || {}).condition;
@@ -544,10 +554,11 @@ window.RulesCore = (() => {
       add("invalid", "host_restriction", "此升级仅限特定角色/版本");
     }
     const facs = (card.rules || {}).factions;
-    if (facs && !facs.map(Number).includes(army.armyId)) {
+    const armyIds = [army.armyId,...extensions(army.armyId,pkg).flatMap(e => e.inheritedArmyIds?.(army,pkg) || [])];
+    if (facs && !facs.map(Number).some(id => armyIds.includes(id))) {
       add("invalid", "upgrade_faction", `升级「${name}」不属于当前军队/战斗部队`);
     }
-    if (unavailableSets(card, idx, defs).fac.has(army.armyId)) {
+    if (armyIds.some(id => unavailableSets(card, idx, defs).fac.has(id))) {
       add("invalid", "unavailable_faction", `升级「${name}」无法加入当前军队/战斗部队`);
     }
     const rp = (card.rules || {}).requiredProperties;
@@ -613,8 +624,8 @@ window.RulesCore = (() => {
   // Required unique children reserve their characters even before equipping.
   function characterConflicts(army, data) {
     const { units, upgrades, pkg } = data;
-    const uniqueUpgrade = c => c?.rules?.unique === true ||
-      pkg.upgradeRules?.[String(c?.upstream?.id)]?.armyUnique === true;
+    const uniqueUpgrade = c => c?.rules?.uniqueScope !== 'card' && (c?.rules?.unique === true ||
+      pkg.upgradeRules?.[String(c?.upstream?.id)]?.armyUnique === true);
     const known = new Set(Object.values(units).filter(u => u.rules?.unlimited === false)
       .map(u => normalizeKey(u.name?.en || u.id)));
     const names = card => {
@@ -689,6 +700,7 @@ window.RulesCore = (() => {
         issue("invalid", "counterpart_as_unit", "伙伴卡需通过宿主单位的伙伴槽加入，不能作为独立单位", key);
       }
       basePoints += unit.points || 0;
+      if (!runtimeAvailable(unit,army,pkg)) issue('invalid','extension_card_unavailable','此单位需要启用对应的战斗部队规则',key);
       const memberRank = armyRank(unit, army.armyId, pkg, defs, units);
       if (memberRank == null) { issue("invalid", "army_membership", "此单位未列入当前军队", key); continue; }
       const urc = (unit.restrictions || {}).condition;
@@ -771,6 +783,7 @@ window.RulesCore = (() => {
         const have = (inst.upgrades || []).map(u => upgrades[u.upgradeId]).filter(Boolean)
           .map(c => String(c.upstream && c.upstream.id || ""));
         for (const child of children) {
+          if (extensions(army.armyId,pkg).some(e => e.requiredChildActive?.(child,army,pkg) === false)) continue;
           if (locallyChecked.has(String(child.id))) continue;
           if (!have.includes(String(child.id))) issue("invalid", "required_child_missing", `缺少必带升级（上游 ID ${child.id}）`, key);
         }
@@ -782,7 +795,7 @@ window.RulesCore = (() => {
     for (const [upstreamId, cardId, ckey] of seen) {
       const card = upgrades[cardId] || {};
       const name = String((card.name && card.name.en) || cardId).toLowerCase();
-      (byName[name] ||= new Set()).add(cardId);
+      (byName[card.rules?.uniqueScope === 'card' ? cardId : name] ||= new Set()).add(cardId);
       const rule = (pkg.upgradeRules || {})[upstreamId] || {};
       if (rule.conflictGroup) (conflictGroups[rule.conflictGroup] ||= new Set()).add(upstreamId);
       selectedUpstream.add(upstreamId);
@@ -918,6 +931,7 @@ window.RulesCore = (() => {
           if (ftc.ignoreMaximum === true) ignoreMax = true;
         }
       }
+      if (extensions(army.armyId,pkg).some(e => e.countMercenaries)) ignoreMin = false;
       let exempt = 0;
       const ex = tc.exempt || tc.ignoreMaximumWhenArmyIncludes;
       if (ex) {
@@ -1021,7 +1035,7 @@ window.RulesCore = (() => {
 
     // mercenary pool (local)
     const pool = (mode.pools || {}).mercenary;
-    if (pool) {
+    if (pool && !extensions(army.armyId,pkg).some(e => e.countMercenaries)) {
       let bonus = 0;
       for (const x of sel) {
         const card = upgrades[x.cardId] || {};
@@ -1041,18 +1055,9 @@ window.RulesCore = (() => {
 
     // effects (local)
     let effectivePoints = basePoints;
-    for (const x of sel) {
-      const card = upgrades[x.cardId] || {};
-      for (const m of (card.rules || {}).modifiedPointsWith || []) {
-        const prop = m.property, mid = String(m.id), mod = m.modifier || 0;
-        let applies = false;
-        if (prop === "options") {
-          if ((army.options || []).some(o => String(o) === mid) && armyUnitUpstream.has(String(m.in))) applies = true;
-        } else if (prop === "units") {
-          if (armyUnitUpstream.has(mid)) applies = true;
-        }
-        if (applies) effectivePoints += mod;
-      }
+    for (const selection of sel) {
+      const card = upgrades[selection.cardId];
+      effectivePoints += upgradePoints(card,units[selection.unitId],army,data) - (card.points || 0);
     }
     const chooseGroups = {};
     for (const x of sel) {
@@ -1096,6 +1101,7 @@ window.RulesCore = (() => {
       if (copies > cap) issue("invalid", "unit_limit_exceeded", `「${(u.name && u.name.en) || u.id}」最多 ${cap} 个（当前 ${copies}）`, null);
     }
     if (bf) battleForceChecks(army, bf, units, upgrades, defs, issue);
+    for (const ext of extensions(army.armyId,pkg)) ext.validate?.(army,data,api,issue);
     if (effectivePoints > pointsLimit) issue("invalid", "points_limit", `有效费用 ${effectivePoints} 超过上限 ${pointsLimit}`, null);
 
     const hasInvalid = issues.some(i => i.status === "invalid");
@@ -1119,5 +1125,29 @@ window.RulesCore = (() => {
     });
   }
 
-  return { Dice, evaluate, validateArmy, unitContext, upgradeEligibility, keywordTargets, matchesKeywordTarget, detachmentLimits, entourageExemptions, armyRank, slotKey, accessKeys, slotGrantsFor, dedicatedSlotKeys, equipSlotKeys, slotListFor, restrictionConditionOk, requiredPropertiesOk, normRp, buildNameIndex, unavailableSets, unitCapFor, commandUnitRequirements };
+  // Optional faction modules share this narrow contract; the base engine knows
+  // nothing about clan IDs, special cards, or faction-specific option names.
+  const allExtensions = () => window.ArmyRuleExtensions || [];
+  const extensions = (armyId,pkg) => allExtensions().filter(e => e.applies(armyId,pkg));
+  function prepareData(data) { for (const ext of allExtensions()) ext.prepareData?.(data); return data; }
+  function runtimeAvailable(card,army,pkg) { return allExtensions().every(e => !e.available || e.available(card,army,pkg)); }
+  function upgradePoints(card,unit,army,data) {
+    let points = card.points || 0;
+    const unitIds = new Set((army.units || []).map(i => String(data.units[i.unitId]?.upstream?.id)));
+    for (const m of card.rules?.modifiedPointsWith || []) {
+      if (allExtensions().some(e => e.ownsPointModifier?.(m))) continue;
+      if ((m.property === 'units' && unitIds.has(String(m.id))) ||
+          (m.property === 'options' && (army.options || []).map(String).includes(String(m.id)) && unitIds.has(String(m.in)))) points += m.modifier || 0;
+    }
+    for (const ext of extensions(army.armyId,data.pkg)) points += ext.adjustment?.(card,unit,army,data.pkg) || 0;
+    return Math.max(0,points);
+  }
+  function defaultUpgradeIds(unit,instance,army,data) {
+    return extensions(army.armyId,data.pkg).flatMap(e => e.defaultUpgrades?.(unit,instance,army,data,api) || []);
+  }
+  function cleanupArmy(army,data) { return allExtensions().flatMap(e => e.cleanup?.(army,data) || []); }
+  function isTransitionalIssue(code,army,pkg) { return extensions(army.armyId,pkg).some(e => e.transitionalCodes?.includes(code)); }
+  const api = { Dice, evaluate, validateArmy, unitContext, upgradeEligibility, keywordTargets, matchesKeywordTarget, detachmentLimits, entourageExemptions, armyRank, slotKey, accessKeys, slotGrantsFor, dedicatedSlotKeys, equipSlotKeys, slotListFor, restrictionConditionOk, requiredPropertiesOk, normRp, buildNameIndex, unavailableSets, unitCapFor, commandUnitRequirements,
+    applyPropertyEffects,prepareData,runtimeAvailable,upgradePoints,defaultUpgradeIds,cleanupArmy,isTransitionalIssue };
+  return api;
 })();

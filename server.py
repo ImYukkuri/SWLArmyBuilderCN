@@ -225,6 +225,9 @@ def commit_rules(package,revision,definitions_revision=None):
         renamed=False
         for key,bf in package.get('battleForces',{}).items():
             if not isinstance(bf,dict):raise ValueError('战斗部队必须为对象')
+            for field in ['textRules','textRulesZh','unitLimitsText']:
+                if field in bf and (not isinstance(bf[field],list) or any(not isinstance(s,str) for s in bf[field])):
+                    raise ValueError('战斗部队 '+field+' 必须为文本数组')
             old=previous.get('battleForces',{}).get(key,{})
             army=armies.get(key)
             for field in ['name','nameZh']:
@@ -303,6 +306,7 @@ class Handler(BaseHTTPRequestHandler):
             files['/builder-transfer.js']='builder-transfer.js'
             files['/builder-transfer-ui.js']='builder-transfer-ui.js'
             files['/builder-overlays.js']='builder-overlays.js'
+            files['/mandalorian-rules.js']='mandalorian-rules.js'
             files.update({'/keywords':'keywords.html','/keywords.html':'keywords.html','/keyword-editor.js':'keyword-editor.js','/keyword-editor.css':'keyword-editor.css'})
             if path in files:p=ROOT/files[path]
             elif path.startswith('/assets/'):

@@ -348,7 +348,7 @@ function renderBrowser() {
       (u) =>
         u.usage !== "counterpart" &&
         !u.isCounterpart &&
-        rankOf(u, army.armyId) === browser.rank,
+        rankOf(u, army.armyId) === browser.rank && RulesCore.runtimeAvailable(u,army,data.pkg),
     );
   } else if (browser.mode === "upgrades") {
     const inst = army.units.find((i) => i.instanceId === browser.unitInstanceId),
@@ -365,7 +365,7 @@ function renderBrowser() {
     $("#browser-title").textContent = "选择" + slotName(browser.slotKey);
     $("#browser-category").textContent = "升级资料库";
     currentCandidates = Object.values(data.upgrades).map((c) => displayUpgrade(UpgradeFaces.view(c, 'front'), inst)).filter((c) =>
-      accessOf(c).includes(browser.slotKey),
+      accessOf(c).includes(browser.slotKey) && RulesCore.runtimeAvailable(c,army,data.pkg),
     );
   } else {
     const p = commandSlotPips()[browser.slotIndex];
@@ -527,14 +527,81 @@ function renderDeck() {
   deck.append(missions);
 }
 
+function upgradeDisplayPoints(card, instance = null) {
+  if (!card) return 0;
+  instance ||= army.units.find(i => i.instanceId === card._unitId);
+  return RulesCore.upgradePoints(card, data.units[instance?.unitId], army, data);
+}
+
+function renderArmyOptions() {
+  const box = $('#army-options'), bf = data.pkg.battleForces?.[army.armyId];
+  const options = bf?.options || [];
+  box.hidden = !bf?.optionCount || !options.length;
+  box.replaceChildren();
+  if (box.hidden) return;
+  const count = options.filter(o => army.options.includes(o.id)).length;
+  box.append(node('h3',null,`自定义氏族规则 · ${count} / ${bf.optionCount}`),node('p','muted','选择两项；再次点击可取消。'));
+  const tags = node('div','army-option-tags');
+  for (const option of options) {
+    const selected = army.options.includes(option.id), b = node('button','army-option-tag',option.nameZh || option.name);
+    b.type = 'button'; b.dataset.optionId = option.id; b.setAttribute('aria-pressed',String(selected));
+    b.title = option.text || '';
+    b.onclick = () => {
+      if (!selected && count >= bf.optionCount) {setStatus('最多选择两条规则；请先取消其中一条。',true); return;}
+      if (selected) army.options = army.options.filter(id => id !== option.id); else army.options.push(option.id);
+      const before = new Map(army.units.map(inst => [inst.instanceId,unitSlotRecords(data.units[inst.unitId],inst)]));
+      const removed = RulesCore.cleanupArmy(army,data);
+      for (const inst of army.units) BuilderModel.rebindSlots(inst,before.get(inst.instanceId),unitSlotRecords(data.units[inst.unitId],inst),data,{allowOrphans:true});
+      setStatus((selected ? '已取消：' : '已启用：') + (option.nameZh || option.name) + (removed.length ? '；已移除 '+removed.join('、') : ''));
+      render();
+    };
+    tags.append(b);
+  }
+  box.append(tags);
+  for (const option of options.filter(o => army.options.includes(o.id))) {
+    const p = node('p','army-option-copy');p.append(node('b',null,option.nameZh+'：'),document.createTextNode(option.text || ''));box.append(p);
+  }
+}
+
+let battleForceDialog;
+function showBattleForceRules() {
+  if (!battleForceDialog) {battleForceDialog = node('dialog','battleforce-dialog');battleForceDialog.setAttribute('aria-label','战斗部队规则');document.body.append(battleForceDialog);}
+  const dialog = battleForceDialog, bf = data.pkg.battleForces?.[army.armyId], config = BuilderLibrary.configuration(army,data).rules;
+  dialog.replaceChildren();
+  const head = node('div','dialog-head'), close = node('button',null,'×');close.type='button';close.setAttribute('aria-label','关闭战斗部队规则');close.onclick=()=>dialog.close();
+  head.append(node('h2',null,bf?.nameZh || named(data.defs.armies.find(a => a.id === army.armyId)?.name)),close);dialog.append(head);
+  dialog.append(node('p','muted',army.mode === 'recon' ? '侦察 · 600 分及以下' : '标准 · 超过 600 分'));
+  const table = node('table','battleforce-quotas'), heading = node('tr');
+  for (const text of ['军阶','最低数量','最高数量']) heading.append(node('th',null,text));table.append(heading);
+  for (const id of RANK_ORDER) {
+    const quota = config.rankQuotas?.find(q => q.rankId === id);if (!quota) continue;
+    const row=node('tr');for (const text of [RANK_SHORT[id],quota.min ?? 0,quota.max ?? '—']) row.append(node('td',null,text));table.append(row);
+  }
+  dialog.append(table);
+  for (const c of config.combined || []) dialog.append(node('p','force-cap',(c.tiers || []).map(id => RANK_SHORT[id]).join(' + ')+'合计最多 '+c.maximum+' 个'));
+  const caps = Object.values(data.units).filter(u => !u.runtimeVariant && rankOf(u,army.armyId)!=null)
+    .map(u => ({u,cap:RulesCore.unitCapFor(u,data.pkg,army.armyId)})).filter(x => x.cap!=null);
+  if (caps.length || bf?.unitLimitsText?.length) {
+    dialog.append(node('h3',null,'单位数量限制'));
+    for(const text of bf?.unitLimitsText || []) dialog.append(node('p','force-cap',text));
+    if (!bf?.unitLimitsText?.length) for(const {u,cap} of caps) dialog.append(node('p','force-cap',named(u.name)+'：最多 '+cap+' 个'));
+  }
+  dialog.append(node('h3',null,'特殊规则'));
+  const paragraph = text => {const p=node('p');p.append(proseNode(text));return p;};
+  for (const text of bf?.textRulesZh?.length ? bf.textRulesZh : bf?.textRules || ['使用当前势力的基础组军规则。']) dialog.append(paragraph(text));
+  for (const o of bf?.options || []) if (o.text) {dialog.append(node('h4',null,o.nameZh || o.name),paragraph(o.text));}
+  if (bf?.rulesSource) dialog.append(node('p','muted','规则来源：'+bf.rulesSource.document+'，第 '+bf.rulesSource.pages.join('、')+' 页。局内效果由玩家执行。'));
+  showDialog(dialog,$('#battleforce-info'));
+}
+
 function renderPoints(report) {
   const lim = army.pointsLimit || 1000;
   $("#points").replaceChildren(
-    node("b", null, report.basePoints),
+    node("b", null, report.effectivePoints),
     node("span", "limit", "/ " + lim),
-    node("span", "remaining", "剩余 " + (lim - report.basePoints) + " 分"),
+    node("span", "remaining", "剩余 " + (lim - report.effectivePoints) + " 分"),
   );
-  $("#points-fill").style.width = Math.min(100, (report.basePoints / lim) * 100) + "%";
+  $("#points-fill").style.width = Math.min(100, (report.effectivePoints / lim) * 100) + "%";
   $("#summary-activations").textContent = army.units.length;
   $("#summary-commands").replaceChildren(
     document.createTextNode(army.commandIds.filter(Boolean).length),
@@ -647,7 +714,7 @@ function statMatrix(u, { showModels = false } = {}) {
 function perUnitPoints(inst) {
   return (
     (data.units[inst.unitId]?.points || 0) +
-    inst.upgrades.reduce((s, ch) => s + (data.upgrades[ch.upgradeId]?.points || 0), 0)
+    inst.upgrades.reduce((s, ch) => s + upgradeDisplayPoints(data.upgrades[ch.upgradeId],inst), 0)
   );
 }
 
@@ -1306,7 +1373,7 @@ function upgradeDetail(c, { forceOpen = false, compact = false, removable = fals
 
 function upgradeEntryActions(c, removable) {
   const actions = node('span', 'upgrade-entry-actions');
-  if (c.points != null) actions.append(node('span', 'upgrade-cost', c.points + ' 分'));
+  if (c.points != null) actions.append(node('span', 'upgrade-cost', upgradeDisplayPoints(c) + ' 分'));
   if (removable && c._choiceId) actions.append(upgradeRemoveButton(c));
   return actions;
 }
@@ -1651,9 +1718,11 @@ function upgradeCandidate(c) {
   item.dataset.id = c.id;
   item.dataset.state = state.kind;
   item.dataset.face = c._face || "front";
-  const head = identity(c);
+  const host = army.units.find(i => i.instanceId === browser?.unitInstanceId);
+  const head = identity(c, {points: upgradeDisplayPoints(c,host)});
   head.prepend(artButton(c, "upgrade-art candidate-art"));
   head.querySelector(".identity-main").append(usageBadges(c));
+  if (c.variantLabel) head.querySelector('.identity-main').append(node('span','variant-label',c.variantLabel));
   if (UpgradeFaces.isDual(c)) head.querySelector(".identity-main").append(node("span", "face-badge", "双面卡 · " + faceLabel(c)));
   item.append(head);
   const req = textParts(
@@ -1855,7 +1924,7 @@ function slotStrip(group, { readonly = false } = {}) {
       node("span", "slot-glyph", rec ? slotDef(rec.key)?.iconGlyph || "+" : "!"),
       document.createTextNode(name),
     );
-    if (c?.points != null) label.append(node("span", "slot-cost", c.points + "分"));
+    if (c?.points != null) label.append(node("span", "slot-cost", upgradeDisplayPoints(c,inst) + "分"));
     if (c?._face === 'both') label.append(node('span', 'face-badge', '正面'));
     if (rec?.required && !chosen) label.append(node("small", "required-slot", "必选"));
     if (orphan) label.title = "当前配置无匹配槽位；已保留，可移除";

@@ -12,7 +12,40 @@ import copy
 from unit_identity import resolve_id
 from upgrade_schema import normalize_army_faces
 import re
+import sys
 from pathlib import Path
+
+# Optional faction extensions can be detached without changing base calculations.
+try:
+    import mandalorian_rules
+    ARMY_RULE_EXTENSIONS = [mandalorian_rules]
+except ModuleNotFoundError as error:
+    if error.name != 'mandalorian_rules':
+        raise
+    ARMY_RULE_EXTENSIONS = []
+
+def extensions(army_id, package):
+    return [e for e in ARMY_RULE_EXTENSIONS if e.applies(army_id, package)]
+
+def prepare_data(data):
+    for extension in ARMY_RULE_EXTENSIONS:
+        extension.prepare_data(data)
+    return data
+
+def runtime_available(card,army,package):
+    return all(e.available(card,army,package) for e in ARMY_RULE_EXTENSIONS)
+
+def upgrade_points(card,unit,army,data):
+    points=card.get('points') or 0
+    unit_ids={str(data['units'].get(i['unitId'],{}).get('upstream',{}).get('id')) for i in army.get('units',[])}
+    for modifier in card.get('rules',{}).get('modifiedPointsWith',[]):
+        if any(e.owns_point_modifier(modifier) for e in ARMY_RULE_EXTENSIONS):
+            continue
+        if (modifier.get('property')=='units' and str(modifier.get('id')) in unit_ids) or (modifier.get('property')=='options' and str(modifier.get('id')) in list(map(str,army.get('options',[]))) and str(modifier.get('in')) in unit_ids):
+            points+=modifier.get('modifier') or 0
+    for e in extensions(army['armyId'],data['pkg']):
+        points+=e.adjustment(card,unit,army,data['pkg'])
+    return max(0,points)
 
 from dice_enums import (
     AttackDieColor,
@@ -234,6 +267,10 @@ def effective_keywords(unit, equipped, definitions, package, army_id):
 
 
 def unit_cap_for(unit, package, army_id):
+    for ext in extensions(army_id,package):
+        cap=ext.cap(unit,army_id,package)
+        if cap is not NotImplemented:
+            return cap
     ov = army_overrides_for(package, army_id) or {}
     for cap in ov.get("unitCaps") or []:
         if isinstance(cap, dict) and cap.get("unitName") is not None and matches_target(unit, {"unitNames": [cap["unitName"]]}):
@@ -644,6 +681,10 @@ def parent_faction_id(package, definitions, army_id):
 
 
 def unit_rank_in_army(unit, army_id, package, definitions):
+    for ext in extensions(army_id,package):
+        rank=ext.rank(unit,army_id,package)
+        if rank is not NotImplemented:
+            return rank
     for f in unit.get("factions") or []:
         if f.get("id") == army_id:
             return f.get("rankId")
@@ -654,6 +695,10 @@ def unit_rank_in_army(unit, army_id, package, definitions):
 
 
 def army_rank(unit, army_id, package, definitions, units):
+    for ext in extensions(army_id,package):
+        rank=ext.rank(unit,army_id,package)
+        if rank is not NotImplemented:
+            return rank
     ov = army_overrides_for(package, army_id) or {}
     unit_name = normalize_name((unit.get("name") or {}).get("en") or "")
     for rule in ov.get("rankOverrides") or []:
@@ -720,15 +765,20 @@ def upgrade_eligibility(card, unit, army, package, definitions, name_index, equi
     host_rank = unit_rank_in_army(unit, army.get("armyId"), package, definitions)
     out = []
     hosts = upstream_hosts(rule, card)
+    if not runtime_available(card,army,package):
+        out.append(('invalid','extension_card_unavailable','此卡需要启用对应的战斗部队规则'))
+    for ext in extensions(army['armyId'],package):
+        out.extend(ext.eligibility(card,unit,army,{'pkg':package,'defs':definitions},sys.modules[__name__]))
     alias_ok = host_alias_allows(card, unit, army, package, definitions, rule)
     printed_condition = (card.get("restrictions") or {}).get("condition")
     condition_governs_host = printed_condition is not None and condition_is_host_only(printed_condition)
     if hosts is not None and str(unit.get("upstream", {}).get("id", "")) not in hosts and not alias_ok and not condition_governs_host:
         out.append(("invalid", "host_restriction", "此升级仅限特定角色/版本"))
     facs = (card.get("rules") or {}).get("factions")
-    if facs and army.get("armyId") not in [int(f) for f in facs]:
+    army_ids=[army['armyId']]+[i for e in extensions(army['armyId'],package) for i in e.inherited_army_ids(army,package)]
+    if facs and not set(army_ids) & set(map(int,facs)):
         out.append(("invalid", "upgrade_faction", f"升级「{name}」不属于当前军队/战斗部队"))
-    if army.get("armyId") in unavailable_sets(card, name_index, definitions)["fac"]:
+    if set(army_ids) & unavailable_sets(card, name_index, definitions)["fac"]:
         out.append(("invalid", "unavailable_faction", f"升级「{name}」无法加入当前军队/战斗部队"))
     rp = (card.get("rules") or {}).get("requiredProperties")
     if rp and not _required_properties_ok(unit, rp, definitions):
@@ -755,6 +805,7 @@ def upgrade_eligibility(card, unit, army, package, definitions, name_index, equi
 def validate_army(army):
     package = load_package()
     units, upgrades, definitions = load_cards()
+    data=prepare_data({'units':units,'upgrades':upgrades,'defs':definitions,'pkg':package})
     aliases = _read('data/units.json').get('idAliases', {})
     if aliases:
         army = copy.deepcopy(army)
@@ -820,6 +871,8 @@ def validate_army(army):
         if unit.get("usage") == "counterpart" or unit.get("isCounterpart"):
             issue("invalid", "counterpart_as_unit", "伙伴卡需通过宿主单位的伙伴槽加入，不能作为独立单位", key)
         base_points += unit.get("points") or 0
+        if not runtime_available(unit,army,package):
+            issue('invalid','extension_card_unavailable','此单位需要启用对应的战斗部队规则',key)
         member_rank = army_rank(unit, army.get("armyId"), package, definitions, units)
         if member_rank is None:
             issue("invalid", "army_membership", "此单位未列入当前军队", key)
@@ -927,6 +980,8 @@ def validate_army(army):
                 if c:
                     have.append(str(c.get("upstream", {}).get("id", "")))
             for child in children:
+                if any(not e.required_child_active(child,army,package) for e in extensions(army['armyId'],package)):
+                    continue
                 if str(child.get('id')) in locally_checked:
                     continue
                 if str(child.get("id")) not in have:
@@ -939,7 +994,7 @@ def validate_army(army):
     for upstream_id, card_id, ckey in seen:
         card = upgrades.get(card_id) or {}
         name = ((card.get("name") or {}).get("en") or card_id).lower()
-        by_name.setdefault(name, set()).add(card_id)
+        by_name.setdefault(card_id if card.get('rules',{}).get('uniqueScope')=='card' else name, set()).add(card_id)
         rule = (package.get("upgradeRules") or {}).get(upstream_id, {})
         group = rule.get("conflictGroup")
         if group:
@@ -983,7 +1038,7 @@ def validate_army(army):
     for upstream_id, card_id, ckey in seen:
         card = upgrades.get(card_id) or {}
         key = normalize_name((card.get("name") or {}).get("en") or card_id)
-        unique_by_name.setdefault(key, set()).add(card_id)
+        unique_by_name.setdefault(card_id if card.get('rules',{}).get('uniqueScope')=='card' else key, set()).add(card_id)
     for key, ids in unique_by_name.items():
         if len(ids) > 1 and any(((upgrades.get(cid) or {}).get("rules") or {}).get("unique") is True for cid in ids):
             label = (upgrades.get(next(iter(ids))) or {}).get("name", {}).get("en") or key
@@ -1079,6 +1134,8 @@ def validate_army(army):
                     ignore_min = True
                 if ftc.get("ignoreMaximum") is True:
                     ignore_max = True
+        if any(e.count_mercenaries for e in extensions(army['armyId'],package)):
+            ignore_min=False
         exempt_copies = 0
         ex = tc.get("exempt") or tc.get("ignoreMaximumWhenArmyIncludes")
         if ex:
@@ -1215,7 +1272,7 @@ def validate_army(army):
 
     # mercenary pool (membership + bonus from local data)
     pool = (mode.get("pools") or {}).get("mercenary")
-    if pool:
+    if pool and not any(e.count_mercenaries for e in extensions(army['armyId'],package)):
         bonus = 0
         for x in sel:
             card = upgrades.get(x["card_id"]) or {}
@@ -1238,21 +1295,9 @@ def validate_army(army):
 
     # effects: effective points / chooseOneKey / quantityLimitedBy (local)
     effective_points = base_points
-    for x in sel:
-        card = upgrades.get(x["card_id"]) or {}
-        for m in (card.get("rules") or {}).get("modifiedPointsWith") or []:
-            prop = m.get("property")
-            m_id = str(m.get("id"))
-            mod = m.get("modifier") or 0
-            applies = False
-            if prop == "options":
-                if any(str(o) == m_id for o in army.get("options", [])) and str(m.get("in")) in army_unit_upstream_ids:
-                    applies = True
-            elif prop == "units":
-                if m_id in army_unit_upstream_ids:
-                    applies = True
-            if applies:
-                effective_points += mod
+    for selection in sel:
+        card=upgrades[selection['card_id']]
+        effective_points += upgrade_points(card,units.get(selection['unit_id']),army,data)-(card.get('points') or 0)
     by_unit_choose = {}
     for x in sel:
         card = upgrades.get(x["card_id"]) or {}
@@ -1283,19 +1328,21 @@ def validate_army(army):
                 equipped = [upgrades[x.get("upgradeId")] for x in inst.get("upgrades", []) if x.get("upgradeId") in upgrades]
                 if rule["keyword"] in effective_keywords(u, equipped, definitions, package, army.get("armyId")):
                     issue("invalid", "army_keyword_banned", f"本军表禁用关键词「{rule['keyword']}」", inst.get("instanceId"))
-        for inst in army.get("units", []):
-            u = units.get(inst.get("unitId"))
-            if not u:
-                continue
-            cap = unit_cap_for(u, package, army.get("armyId"))
-            if cap is None:
-                continue
-            copies = sum(1 for x in army.get("units", []) if x.get("unitId") == inst.get("unitId"))
-            if copies > cap:
-                issue("invalid", "unit_limit_exceeded", f"「{(u.get('name') or {}).get('en') or u.get('id')}」最多 {cap} 个（当前 {copies}）", None)
+    for inst in army.get("units", []):
+        u = units.get(inst.get("unitId"))
+        if not u:
+            continue
+        cap = unit_cap_for(u, package, army.get("armyId"))
+        if cap is None:
+            continue
+        copies = sum(1 for x in army.get("units", []) if x.get("unitId") == inst.get("unitId"))
+        if copies > cap:
+            issue("invalid", "unit_limit_exceeded", f"「{(u.get('name') or {}).get('en') or u.get('id')}」最多 {cap} 个（当前 {copies}）", None)
 
     if battle_force:
         battle_force_checks(battle_force, units, upgrades, definitions)
+    for ext in extensions(army['armyId'],package):
+        ext.validate(army,data,sys.modules[__name__],issue)
 
     if effective_points > points_limit:
         issue("invalid", "points_limit", f"有效费用 {effective_points} 超过上限 {points_limit}", None)

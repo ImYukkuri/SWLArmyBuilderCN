@@ -75,6 +75,7 @@
                 <option value="">无 · 基础规则</option>
               </select></label
             >
+            <button type="button" id="battleforce-info" class="battleforce-info" aria-label="查看战斗部队规则" title="查看战斗部队规则">ⓘ</button>
             <label
               >分数上限<input
                 id="points-limit"
@@ -133,6 +134,7 @@
             >
           </div>
           <div id="army-units" class="army-list"></div>
+          <section id="army-options" hidden aria-label="自定义战斗部队规则"></section>
           <div id="deck-panel"></div>
           <p class="draft-note">军表自动保存在当前浏览器。</p>
         </section>
@@ -200,6 +202,7 @@
     </script>
     <script src="dice-enums.js"></script><script src="upgrade-faces.js"></script>
     <script src="rules-core.js"></script>
+    <script src="mandalorian-rules.js"></script>
     <script src="builder-model.js"></script>
     <script src="builder-library.js"></script>
     <script src="builder-transfer.js"></script>

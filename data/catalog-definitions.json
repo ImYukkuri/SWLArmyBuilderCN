@@ -4015,6 +4015,46 @@
         "zh": "伍基守军"
       },
       "parentName": "Galactic Republic"
+    },
+    {
+      "id": 22,
+      "name": {
+        "en": "Children of the Watch",
+        "zh": "守望之子"
+      },
+      "parentName": "Mandalorian Clans"
+    },
+    {
+      "id": 23,
+      "name": {
+        "en": "Clan Kryze",
+        "zh": "克里兹氏族"
+      },
+      "parentName": "Mandalorian Clans"
+    },
+    {
+      "id": 24,
+      "name": {
+        "en": "Clan Wren",
+        "zh": "雷恩氏族"
+      },
+      "parentName": "Mandalorian Clans"
+    },
+    {
+      "id": 25,
+      "name": {
+        "en": "Clan Saxon",
+        "zh": "萨克森氏族"
+      },
+      "parentName": "Mandalorian Clans"
+    },
+    {
+      "id": 26,
+      "name": {
+        "en": "Custom Clan",
+        "zh": "自定义氏族"
+      },
+      "parentName": "Mandalorian Clans"
     }
   ],
   "ranks": [

@@ -22,6 +22,7 @@ FILES = [
     "builder-home.js",
     "dice-enums.js",
     "rules-core.js",
+    "mandalorian-rules.js",
     "builder.css",
     "data/units.json",
     "data/upgrades.json",

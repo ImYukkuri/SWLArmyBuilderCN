@@ -68,6 +68,11 @@ def validate(kind,card):
     if not isinstance(card,dict)or not isinstance(card.get('id'),str)or not re.fullmatch(r'[a-z0-9][a-z0-9_-]{0,150}',card['id']):raise ValueError('记录 ID 无效')
     if kind=='upgrades':
         validate_action_types(card)
+        if 'affiliationIds' in card:
+            known={str(a['id']) for a in json.loads((ROOT/'data/catalog-definitions.json').read_bytes()).get('affiliations',[])}
+            values=card['affiliationIds']
+            if not isinstance(values,list) or any(not isinstance(v,str) or v not in known for v in values) or len(values)!=len(set(values)):
+                raise ValueError('升级卡组织必须为有效且不重复的组织 ID 数组')
         if not isinstance(card.get('name'),dict)or any(not isinstance(card['name'].get(k),str)for k in ['en','zh'])or not card['name']['en'].strip():raise ValueError('升级卡需要中英文名称字段')
         if card.get('points')is not None and(type(card['points'])is not int or card['points']<0):raise ValueError('费用必须为非负整数或 null')
         if not isinstance(card.get('slotIds'),list)or any(type(x)is not int or not 1<=x<=30 for x in card['slotIds']):raise ValueError('slotIds 必须为槽位 ID 数组')
