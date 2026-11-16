@@ -1,5 +1,90 @@
+import copy
 import unittest
+from unittest.mock import patch
 import rules
+
+
+class FlexibleResponseTest(unittest.TestCase):
+    def setUp(self):
+        self.units, self.upgrades, self.defs = rules.load_cards()
+        self.pkg = rules.load_package()
+
+    def test_suppressed_modifiers_preserve_other_slots_and_positions(self):
+        unit = self.units['rebels-guerilla-troopers']
+        grant = {'id': 'test-grant', 'rules': {'slotGrants': [
+            {'trigger': 'equipped', 'slot': 'heavy_weapon'},
+            {'trigger': 'equipped', 'slot': 'heavy_weapon'},
+            {'trigger': 'equipped', 'slot': 'force'},
+            {'trigger': 'unitQualifies', 'slot': 'heavy_weapon',
+             'condition': {'field': 'unit.id', 'value': unit['id']}},
+        ]}}
+        self.upgrades[grant['id']] = grant
+        inst = {'unitId': unit['id'], 'instanceId': 'flex', 'upgrades': []}
+        slots = lambda: rules.slot_list_for(self.pkg, unit, inst, self.upgrades, 1)
+        for count, base in [(0,[4,4,2]), (1,[4,4,2]), (2,[2]), (2,[4,10,4,2,4]), (3,[4,2])]:
+            with self.subTest(count=count, base=base):
+                unit['keywords'] = [{'id': 'flexible_response', 'value': count}]
+                unit['upgradeSlots'] = base
+                inst['upgrades'] = []
+                self.pkg['armyOverrides']['1'] = {}
+                before = slots()
+                inst['upgrades'] = [{'upgradeId': grant['id'], 'slotIndex': 0}]
+                self.pkg['armyOverrides']['1'] = {'slots': [
+                    {'op': 'deny', 'slot': 'heavy_weapon'}, {'op': 'add', 'slot': 'heavy_weapon'}]}
+                after = slots()
+                heavy = [s for s in after if s['key'] == 'heavy_weapon']
+                granted, qualified = rules.slot_grants_for(self.pkg, unit, inst, self.upgrades)
+                self.assertFalse(any(s['key'] == 'heavy_weapon' for s in granted + qualified))
+                self.assertEqual(len(heavy), count)
+                self.assertTrue(all(s['required'] for s in heavy))
+                self.assertEqual(after[:len(before)], before)
+                self.assertEqual(after[-1]['key'], 'force')
+                self.pkg['armyOverrides']['1']['slots'].pop()
+                self.assertEqual(slots(), after)
+        unit['keywords'] = []
+        granted, qualified = rules.slot_grants_for(self.pkg, unit, inst, self.upgrades)
+        self.assertEqual(sum(s['key'] == 'heavy_weapon' for s in granted), 2)
+        self.assertEqual(sum(s['key'] == 'heavy_weapon' for s in qualified), 1)
+
+    def test_jyn_does_not_create_third_slot_or_move_training(self):
+        unit = self.units['rebels-guerilla-troopers']
+        inst = {'unitId': unit['id'], 'instanceId': 'jyn-flex', 'upgrades': []}
+        slots = lambda: rules.slot_list_for(self.pkg, unit, inst, self.upgrades, 1)
+        before = slots()
+        for index, card in [(2,'training-offensive'), (0,'jyn-erso'), (1,'upstream-23948')]:
+            inst['upgrades'].append({'upgradeId': card, 'slotIndex': index, 'instanceId': card})
+            self.assertEqual(slots(), before)
+        army = {'armyId': 1, 'mode': 'standard', 'pointsLimit': 1000,
+                'units': [inst], 'commandIds': [], 'options': []}
+        self.assertFalse(any(i['code'].startswith('slot_') or i['code'] == 'required_slot'
+                             for i in rules.validate_army(army)['issues']))
+        inst['upgrades'] = [c for c in inst['upgrades'] if c['upgradeId'] != 'jyn-erso']
+        self.assertEqual(slots(), before)
+
+    def test_missing_and_excess_upgrades_and_invalid_x(self):
+        unit = self.units['empire-stormtroopers']
+        unit['keywords'].append({'id': 'flexible_response', 'value': 2})
+        unit['upgradeSlots'] = [4,4,1,2]
+        grant = self.upgrades['stormtrooper-squad']
+        grant['rules']['slotGrants'] = [{'trigger': 'equipped', 'slot': 'heavy_weapon'}]
+        inst = {'unitId': unit['id'], 'instanceId': 'flex', 'upgrades': []}
+        army = {'armyId': 2, 'mode': 'standard', 'pointsLimit': 1000,
+                'units': [inst], 'commandIds': [], 'options': []}
+        with patch.object(rules, 'load_cards', return_value=(self.units, self.upgrades, self.defs)):
+            report = lambda: rules.validate_army(army)
+            for index, card in enumerate(['stormtrooper-dlt19','stormtrooper-hh12','stormtrooper-squad']):
+                self.assertEqual(sum(i['code'] == 'required_slot' for i in report()['issues']), max(2-index,0))
+                inst['upgrades'].append({'instanceId': str(index), 'upgradeId': card, 'slotIndex': index})
+            self.assertFalse(any(i['code'].startswith(('slot_', 'flexible_response')) for i in report()['issues']))
+            inst['upgrades'].append({'instanceId': 'excess', 'upgradeId': 'del-meeko', 'slotIndex': 99})
+            before = copy.deepcopy(army)
+            codes = [i['code'] for i in report()['issues']]
+            self.assertIn('flexible_response_limit', codes)
+            self.assertIn('slot_missing', codes)
+            self.assertEqual(army, before)
+            for value in [None, '2', -1, 1.5, True]:
+                unit['keywords'][-1]['value'] = value
+                self.assertIn('flexible_response_value', [i['code'] for i in report()['issues']])
 
 
 class EvaluateTest(unittest.TestCase):

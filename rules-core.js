@@ -90,12 +90,14 @@ window.RulesCore = (() => {
   function slotGrantsFor(pkg, unit, inst, upgrades) {
     const ctx = unitContext(unit);
     const predicates = pkg.predicates || {};
+    const fixedHeavy = flexibleResponseCount(unit) !== null;
     const equipped = [];
     for (const sel of (inst && inst.upgrades) || []) {
       const card = upgrades[sel.upgradeId];
       if (!card) continue;
       for (const grant of (card.rules || {}).slotGrants || []) {
         if (!grant || grant.trigger !== "equipped" || !grant.slot) continue;
+        if (fixedHeavy && grant.slot === "heavy_weapon") continue;
         if (grant.when && evaluate(grant.when, ctx, predicates) !== true) continue;
         equipped.push({ key: grant.slot, addedBy: card.id });
       }
@@ -106,6 +108,7 @@ window.RulesCore = (() => {
       const card = upgrades[cardId];
       for (const grant of (card.rules || {}).slotGrants || []) {
         if (!grant || grant.trigger !== "unitQualifies" || !grant.slot) continue;
+        if (fixedHeavy && grant.slot === "heavy_weapon") continue;
         let ok;
         if (grant.condition != null) ok = evaluate(grant.condition, ctx, predicates) === true;
         else ok = (grant.holders || []).map(String).includes(uid);
@@ -117,15 +120,34 @@ window.RulesCore = (() => {
   function dedicatedSlotKeys(pkg, unit, upgrades) {
     return slotGrantsFor(pkg, unit, null, upgrades || {}).qualify;
   }
+  function flexibleResponseCount(unit) {
+    const value = (unit.keywords || []).find(k => k && k.id === "flexible_response")?.value;
+    return Number.isSafeInteger(value) && value >= 0 ? value : null;
+  }
   function slotListFor(pkg, unit, inst, upgrades, armyId) {
     const { byId } = slotRegistry(pkg);
+    const count = flexibleResponseCount(unit);
+    const fixedHeavy = count !== null;
     const out = [];
+    let heavy = 0;
+    const appendHeavy = () => {
+      out.push({ key: "heavy_weapon", required: true, requiredBy: "flexible_response" });
+      heavy++;
+    };
     for (const s of (unit.upgradeSlots || [])) {
       const sid = (typeof s === "object") ? s.id : s;
       const key = slotKey(pkg, sid);
       if (byId[key] && byId[key].kind === "dedicated") continue; // printed dedicated slots are replaced by the shared exempt grants
+      if (fixedHeavy && key === "heavy_weapon") {
+        if (heavy < count) appendHeavy();
+        continue;
+      }
       out.push({ key, required: !!(typeof s === "object" && s.required) });
     }
+    // Flexible Response has precedence over every modifier. Reserve exactly X
+    // slots up front and suppress heavy-slot modifiers, so no transient third
+    // slot is created and other choices retain their indices.
+    if (fixedHeavy) while (heavy < count) appendHeavy();
     const grants = slotGrantsFor(pkg, unit, inst, upgrades);
     for (const g of grants.equipped) out.push({ key: g.key, addedBy: g.addedBy });
     const ov = armyOverridesFor(pkg, armyId);
@@ -135,7 +157,7 @@ window.RulesCore = (() => {
       out.push({ key: g.key, required: false, virtual: true });
     }
     if (ov) {
-      const rules = ov.slots || [];
+      const rules = (ov.slots || []).filter(r => !(fixedHeavy && r?.slot === "heavy_weapon"));
       for (const r of rules) if (r && r.op === "deny" && r.slot && matchesTarget(unit, r.target)) {
         for (let i = out.length - 1; i >= 0; i--) if (out[i].key === r.slot) out.splice(i, 1);
       }
@@ -590,12 +612,21 @@ window.RulesCore = (() => {
       }
 
       const slotList = slotListFor(pkg, unit, inst, upgrades, army.armyId);
+      const heavyRequired = flexibleResponseCount(unit);
+      if ((unit.keywords || []).some(k => k && k.id === "flexible_response") && heavyRequired === null)
+        issue("unknown", "flexible_response_value", "灵活响应的数值 X 未设置或无效，请在单位编辑器填写非负整数", key);
       for (const rec of slotList) {
         if (rec.virtual) issue("unknown", "dedicated_grant_virtual", `该单位满足专用槽 ${rec.key} 的语义条件，但本地基础槽未包含；已按虚拟槽补入`, key);
       }
 
       const assigned = {};
       const equippedCards = (inst.upgrades || []).map(x => upgrades[x.upgradeId]).filter(Boolean);
+      if (heavyRequired !== null) {
+        const heavyCount = equippedCards.filter(c => accessKeys(c, pkg,
+          (pkg.upgradeRules || {})[String(c.upstream?.id || "")] || {}).includes("heavy_weapon")).length;
+        if (heavyCount > heavyRequired)
+          issue("invalid", "flexible_response_limit", `灵活响应 ${heavyRequired}：只能装备 ${heavyRequired} 张重武器升级，当前 ${heavyCount} 张`, key);
+      }
       for (const selected of inst.upgrades || []) {
         const ckey = selected.instanceId;
         const card = upgrades[selected.upgradeId];
@@ -620,7 +651,10 @@ window.RulesCore = (() => {
         for (const e of elig.issues) issue(e.status, e.code, e.message, ckey);
       }
       for (let i = 0; i < slotList.length; i++) {
-        if (slotList[i].required && !(i in assigned)) issue("invalid", "required_slot", `必选槽位 ${slotList[i].key} 尚未配置升级`, key);
+        if (slotList[i].required && !(i in assigned)) issue("invalid", "required_slot",
+          slotList[i].requiredBy === "flexible_response"
+            ? `灵活响应 ${heavyRequired}：必选重武器槽尚未配置升级（须装备 ${heavyRequired} 张）`
+            : `必选槽位 ${slotList[i].key} 尚未配置升级`, key);
       }
       const seenLocal = {}, seenLocalNames = {};
       for (const selected of inst.upgrades || []) {

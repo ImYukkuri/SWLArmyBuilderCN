@@ -156,6 +156,7 @@ def slot_grants_for(package, unit, inst, upgrades):
     """
     ctx = _unit_context(unit, package)
     predicates = package.get("predicates") or {}
+    fixed_heavy = flexible_response_count(unit) is not None
     equipped_grants = []
     for sel in (inst.get("upgrades") if inst else []) or []:
         card = upgrades.get(sel.get("upgradeId"))
@@ -163,6 +164,8 @@ def slot_grants_for(package, unit, inst, upgrades):
             continue
         for grant in (card.get("rules") or {}).get("slotGrants") or []:
             if not isinstance(grant, dict) or grant.get("trigger") != "equipped" or not grant.get("slot"):
+                continue
+            if fixed_heavy and grant["slot"] == "heavy_weapon":
                 continue
             if grant.get("when") is not None and evaluate(grant["when"], ctx, predicates) is not True:
                 continue
@@ -172,6 +175,8 @@ def slot_grants_for(package, unit, inst, upgrades):
     for card_id in sorted(upgrades):
         for grant in (upgrades[card_id].get("rules") or {}).get("slotGrants") or []:
             if not isinstance(grant, dict) or grant.get("trigger") != "unitQualifies" or not grant.get("slot"):
+                continue
+            if fixed_heavy and grant["slot"] == "heavy_weapon":
                 continue
             if grant.get("condition") is not None:
                 ok = evaluate(grant["condition"], ctx, predicates) is True
@@ -229,15 +234,34 @@ def unit_cap_for(unit, package, army_id):
     return own if isinstance(own, int) else None
 
 
+def flexible_response_count(unit):
+    value = next((k.get("value") for k in unit.get("keywords") or []
+                  if isinstance(k, dict) and k.get("id") == "flexible_response"), None)
+    return value if type(value) is int and 0 <= value <= 9007199254740991 else None
+
+
 def slot_list_for(package, unit, inst, upgrades, army_id=None):
     out = []
     by_id, _ = slot_registry(package)
+    count = flexible_response_count(unit)
+    fixed_heavy = count is not None
+    heavy = 0
     for sid in unit.get("upgradeSlots") or []:
         raw = sid.get("id") if isinstance(sid, dict) else sid
         key = slot_key(package, raw)
         if by_id.get(key, {}).get("kind") == "dedicated":
             continue  # printed dedicated slots are replaced by the shared exempt grants
+        if fixed_heavy and key == "heavy_weapon":
+            if heavy < count:
+                out.append({"key": "heavy_weapon", "required": True, "requiredBy": "flexible_response"})
+                heavy += 1
+            continue
         out.append({"key": key, "required": bool(sid.get("required")) if isinstance(sid, dict) else False})
+    # Reserve the highest-priority slots before modifiers; never create an
+    # intermediate excess slot or shift other stored choices.
+    if fixed_heavy:
+        out.extend({"key": "heavy_weapon", "required": True, "requiredBy": "flexible_response"}
+                   for _ in range(count - heavy))
     equipped_grants, qualify_grants = slot_grants_for(package, unit, inst, upgrades)
     out.extend(equipped_grants)
     for g in qualify_grants:
@@ -247,10 +271,12 @@ def slot_list_for(package, unit, inst, upgrades, army_id=None):
             continue
         out.append({"key": g["key"], "required": False, "virtual": True})
     ov = army_overrides_for(package, army_id) or {}
-    for r in ov.get("slots") or []:
+    slot_rules = [r for r in ov.get("slots") or []
+                  if not (fixed_heavy and isinstance(r, dict) and r.get("slot") == "heavy_weapon")]
+    for r in slot_rules:
         if isinstance(r, dict) and r.get("op") == "deny" and r.get("slot") and matches_target(unit, r.get("target")):
             out = [x for x in out if x["key"] != r["slot"]]
-    for r in ov.get("slots") or []:
+    for r in slot_rules:
         if isinstance(r, dict) and r.get("op") == "add" and r.get("slot") and matches_target(unit, r.get("target")) and not any(x["key"] == r["slot"] for x in out):
             out.append({"key": r["slot"], "addedBy": "override"})
     return out
@@ -709,6 +735,9 @@ def validate_army(army):
                 issue("unknown", "unit_restriction_condition_unknown", f"单位「{(unit.get('name') or {}).get('en', unit.get('id'))}」的卡面限制条件存在未覆盖语义", key)
 
         slot_list = slot_list_for(package, unit, inst, upgrades, army.get("armyId"))
+        heavy_required = flexible_response_count(unit)
+        if any((k or {}).get("id") == "flexible_response" for k in unit.get("keywords") or []) and heavy_required is None:
+            issue("unknown", "flexible_response_value", "灵活响应的数值 X 未设置或无效，请在单位编辑器填写非负整数", key)
         for rec in slot_list:
             if rec.get("virtual"):
                 issue("unknown", "dedicated_grant_virtual",
@@ -716,6 +745,13 @@ def validate_army(army):
 
         assigned = {}
         equipped = [upgrades[x.get("upgradeId")] for x in inst.get("upgrades", []) if x.get("upgradeId") in upgrades]
+        if heavy_required is not None:
+            heavy_count = sum("heavy_weapon" in access_keys(c, package,
+                (package.get("upgradeRules") or {}).get(str((c.get("upstream") or {}).get("id", "")), {}))
+                for c in equipped)
+            if heavy_count > heavy_required:
+                issue("invalid", "flexible_response_limit",
+                      f"灵活响应 {heavy_required}：只能装备 {heavy_required} 张重武器升级，当前 {heavy_count} 张", key)
         for selected in inst.get("upgrades", []):
             ckey = selected.get("instanceId")
             card = upgrades.get(selected.get("upgradeId"))
@@ -750,7 +786,10 @@ def validate_army(army):
 
         for i, s in enumerate(slot_list):
             if s.get("required") and i not in assigned:
-                issue("invalid", "required_slot", f"必选槽位 {s['key']} 尚未配置升级", key)
+                message = (f"灵活响应 {heavy_required}：必选重武器槽尚未配置升级（须装备 {heavy_required} 张）"
+                           if s.get("requiredBy") == "flexible_response"
+                           else f"必选槽位 {s['key']} 尚未配置升级")
+                issue("invalid", "required_slot", message, key)
 
         seen_local = {}
         seen_local_names = {}

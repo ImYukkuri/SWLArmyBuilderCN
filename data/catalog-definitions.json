@@ -3067,12 +3067,12 @@
     {
       "id": "pending_flexible_response_2",
       "name": {
-        "en": "Flexible Response 2",
-        "zh": ""
+        "en": "Flexible Response",
+        "zh": "灵活响应2（废弃）"
       },
       "actionTypes": null,
-      "summary": "",
-      "full": "",
+      "summary": "该单位必须携带X个重武器升级",
+      "full": "组建军队期间，带有灵活响应关键词的单位必须配备X个重武器升级。",
       "timing": [],
       "status": "unresolved"
     },
@@ -3792,13 +3792,15 @@
     {
       "id": "flexible_response",
       "name": {
-        "en": "flexible_response_x",
-        "zh": "灵活应对"
+        "en": "flexible_response",
+        "zh": "灵活响应"
       },
       "actionTypes": null,
-      "summary": "",
-      "full": "",
-      "timing": [],
+      "summary": "该单位必须携带X个重武器升级",
+      "full": "组建军队期间，带有灵活响应关键词的单位必须配备X个重武器升级。",
+      "timing": [
+        "global"
+      ],
       "status": "needs_review"
     }
   ],
@@ -27009,5 +27011,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-11-16T03:02:02.520896+00:00"
+  "updatedAt": "2026-11-16T04:25:56.241203+00:00"
 }

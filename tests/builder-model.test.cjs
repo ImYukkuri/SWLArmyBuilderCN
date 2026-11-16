@@ -17,6 +17,107 @@ const data = {
 };
 data.nameIndex = RulesCore.buildNameIndex(data.upgrades, data.defs);
 
+test('Flexible Response suppresses heavy-slot modifiers at their source, preserving other slots and stored positions', () => {
+  const fixture = structuredClone(data), unit = fixture.units['rebels-guerilla-troopers'];
+  const grant = {id: 'test-grant', rules: {slotGrants: [
+    {trigger: 'equipped', slot: 'heavy_weapon'}, {trigger: 'equipped', slot: 'heavy_weapon'},
+    {trigger: 'equipped', slot: 'force'},
+    {trigger: 'unitQualifies', slot: 'heavy_weapon', condition: {field: 'unit.id', value: unit.id}},
+  ]}};
+  fixture.upgrades[grant.id] = grant;
+  const inst = {unitId: unit.id, instanceId: 'flex', upgrades: []};
+  const slots = () => RulesCore.slotListFor(fixture.pkg, unit, inst, fixture.upgrades, 1);
+  for (const [count, base] of [[0,[4,4,2]], [1,[4,4,2]], [2,[2]], [2,[4,10,4,2,4]], [3,[4,2]]]) {
+    unit.keywords = [{id: 'flexible_response', value: count}];
+    unit.upgradeSlots = base;
+    inst.upgrades = [];
+    fixture.pkg.armyOverrides['1'] = {};
+    const before = slots();
+    inst.upgrades = [{upgradeId: grant.id, slotIndex: 0}];
+    fixture.pkg.armyOverrides['1'] = {slots: [
+      {op: 'deny', slot: 'heavy_weapon'}, {op: 'add', slot: 'heavy_weapon'},
+    ]};
+    const after = slots(), heavy = after.filter(s => s.key === 'heavy_weapon');
+    const grants = RulesCore.slotGrantsFor(fixture.pkg, unit, inst, fixture.upgrades);
+    assert(![...grants.equipped, ...grants.qualify].some(s => s.key === 'heavy_weapon'));
+    assert.equal(heavy.length, count);
+    assert(heavy.every(s => s.required));
+    assert.deepEqual(after.slice(0, before.length), before);
+    assert.equal(after.at(-1).key, 'force');
+    fixture.pkg.armyOverrides['1'].slots.pop();
+    assert.deepEqual(slots(), after, 'deny alone cannot remove final mandatory slots');
+  }
+  for (const id of ['empire-stormtroopers-hwu', 'rebels-guerilla-troopers']) {
+    const real = data.units[id];
+    const heavy = RulesCore.slotListFor(data.pkg, real, {upgrades: []}, data.upgrades, real.factions[0].id)
+      .filter(s => s.key === 'heavy_weapon');
+    assert.equal(heavy.length, 2);
+    assert(heavy.every(s => s.required));
+  }
+  unit.keywords = [];
+  const ordinary = RulesCore.slotGrantsFor(fixture.pkg, unit, inst, fixture.upgrades);
+  assert.equal(ordinary.equipped.filter(s => s.key === 'heavy_weapon').length, 2);
+  assert.equal(ordinary.qualify.filter(s => s.key === 'heavy_weapon').length, 1);
+});
+
+test('Jyn on Guerilla Troopers never creates a third slot or changes an equipped training slot', () => {
+  let seq = 0;
+  const uid = () => `jyn-flex-${++seq}`, unit = data.units['rebels-guerilla-troopers'];
+  let army = {armyId: 1, mode: 'standard', pointsLimit: 1000, units: [], commandIds: [], options: []};
+  const added = BuilderModel.addUnit(army, data, unit.id, uid);
+  assert(added.ok, added.reason); army = added.draft;
+  const before = RulesCore.slotListFor(data.pkg, unit, army.units[0], data.upgrades, army.armyId);
+  for (const [slotIndex, slotKey, cardId] of [[2,'training','training-offensive'],
+    [0,'heavy_weapon','jyn-erso'], [1,'heavy_weapon','upstream-23948']]) {
+    const result = BuilderModel.equip(army, data, {unitInstanceId: army.units[0].instanceId,
+      slotIndex, slotKey}, cardId, false, uid);
+    assert(result.ok, result.reason); army = result.draft;
+    assert.deepEqual(RulesCore.slotListFor(data.pkg, unit, army.units[0], data.upgrades, army.armyId), before);
+  }
+  assert.equal(army.units[0].upgrades.find(c => c.upgradeId === 'training-offensive').slotIndex, 2);
+  assert(!RulesCore.validateArmy(army, data).issues.some(i => i.code.startsWith('slot_') || i.code === 'required_slot'));
+  army.units[0].upgrades = army.units[0].upgrades.filter(c => c.upgradeId !== 'jyn-erso');
+  assert.deepEqual(RulesCore.slotListFor(data.pkg, unit, army.units[0], data.upgrades, army.armyId), before);
+});
+
+test('Flexible Response allows gradual and batch equipment, rejects a third heavy weapon and retains imported excess', () => {
+  const fixture = structuredClone(data), unit = fixture.units['empire-stormtroopers'];
+  unit.keywords.push({id: 'flexible_response', value: 2});
+  unit.upgradeSlots = [4, 4, 1, 2];
+  const grant = fixture.upgrades['stormtrooper-squad'];
+  grant.rules.slotGrants = [{trigger: 'equipped', slot: 'heavy_weapon'}];
+  let seq = 0;
+  const uid = () => `flex-${++seq}`;
+  let army = {armyId: 2, mode: 'standard', pointsLimit: 1000, units: [], commandIds: [], options: []};
+  for (let i = 0; i < 2; i++) {
+    const added = BuilderModel.addUnit(army, fixture, unit.id, uid);
+    assert(added.ok, added.reason); army = added.draft;
+  }
+  const report = () => RulesCore.validateArmy(army, fixture);
+  assert.equal(report().issues.filter(i => i.code === 'required_slot').length, 4);
+  for (const [slotIndex, cardId] of [[0,'stormtrooper-dlt19'], [1,'stormtrooper-hh12'], [2,grant.id]]) {
+    const context = {unitInstanceId: army.units[0].instanceId, groupIds: army.units.map(u => u.instanceId),
+      slotIndex, slotKey: slotIndex === 2 ? 'personnel' : 'heavy_weapon'};
+    const equipped = BuilderModel.equip(army, fixture, context, cardId, true, uid);
+    assert(equipped.ok, equipped.reason); army = equipped.draft;
+    assert.equal(report().issues.filter(i => i.code === 'required_slot').length, slotIndex === 0 ? 2 : 0);
+  }
+  assert.equal(report().issues.some(i => /slot_|flexible_response/.test(i.code)), false);
+  const before = JSON.stringify(army);
+  const failed = BuilderModel.equip(army, fixture, {unitInstanceId: army.units[0].instanceId,
+    slotIndex: 4, slotKey: 'heavy_weapon'}, 'del-meeko', false, uid);
+  assert.equal(failed.ok, false);
+  assert.equal(JSON.stringify(army), before);
+  army.units[0].upgrades.push({instanceId: uid(), upgradeId: 'del-meeko', slotIndex: 99});
+  const imported = JSON.stringify(army);
+  assert(report().issues.some(i => i.code === 'flexible_response_limit'));
+  assert(report().issues.some(i => i.code === 'slot_missing'));
+  assert.equal(JSON.stringify(army), imported);
+  // Missing X must not silently mean zero or fall back to a hardcoded two.
+  delete unit.keywords.at(-1).value;
+  assert(report().issues.some(i => i.code === 'flexible_response_value'));
+});
+
 test('every named Equip loads all required cards through real slots with independent choices',()=>{
  let seq=0;
  for(const u of Object.values(data.units).filter(u=>u.equipUpgradeIds?.length)){
