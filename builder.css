@@ -1073,6 +1073,21 @@ body.sheet-open {
   overflow: hidden;
 }
 
+html.page-overlay-open {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+html.page-overlay-open body {
+  position: fixed;
+  top: var(--overlay-page-top);
+  left: var(--overlay-page-left);
+  right: var(--overlay-page-gutter);
+  overflow-anchor: none;
+}
+dialog, .card-browser, .keyword-popover {
+  overscroll-behavior: contain;
+}
+
 .grouped-army-list {
   background: transparent;
   border-radius: 0;

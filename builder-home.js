@@ -64,6 +64,7 @@ function createRoster(factionId) {
 }
 
 function openRoster(record) {
+  closeEditorPanels();
   activeRecord = structuredClone(record);
   army = BuilderLibrary.normalize(record.army);
   UpgradeFaces.normalizeArmy(army, data);
@@ -117,6 +118,7 @@ function saveActiveRoster() {
 }
 
 function closeEditorPanels() {
+  BuilderOverlays.reset();
   browser = null;
   hideRule(false);
   renderBrowser();

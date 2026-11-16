@@ -13,6 +13,7 @@ FILES = [
     "index.html",
     "builder.js",
     "builder-view.js",
+    "builder-overlays.js",
     "builder-model.js",
     "upgrade-faces.js",
     "builder-library.js",

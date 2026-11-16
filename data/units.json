@@ -1,6 +1,6 @@
 {
   "schema": "swl-unit-catalog/v2",
-  "updatedAt": "2026-11-16T10:57:49.922079+00:00",
+  "updatedAt": "2026-11-16T16:52:00.858617+00:00",
   "definitions": "catalog-definitions.json",
   "referenceVersion": "2026.11.04.0",
   "units": [
@@ -17035,7 +17035,7 @@
         {
           "name": {
             "en": "Vibroknife",
-            "zh": "震动刀"
+            "zh": "振动刀"
           },
           "range": {
             "min": 0,
@@ -17207,8 +17207,8 @@
       "weapons": [
         {
           "name": {
-            "en": "Vienokwre",
-            "zh": ""
+            "en": "VIBROKNIFE",
+            "zh": "振动刀"
           },
           "range": {
             "min": 0,
@@ -17351,7 +17351,7 @@
         {
           "name": {
             "en": "Vibro Blades",
-            "zh": ""
+            "zh": "振动刀"
           },
           "range": {
             "min": 0,
@@ -17505,7 +17505,7 @@
         {
           "name": {
             "en": "Vibro Blades",
-            "zh": ""
+            "zh": "振动刀"
           },
           "range": {
             "min": 0,
@@ -17675,7 +17675,7 @@
         {
           "name": {
             "en": "Vibro Blades",
-            "zh": ""
+            "zh": "振动刀"
           },
           "range": {
             "min": 0,
@@ -18842,7 +18842,7 @@
         {
           "name": {
             "en": "Blaster Carbines",
-            "zh": ""
+            "zh": "爆能卡宾枪"
           },
           "range": {
             "min": 1,
@@ -26368,7 +26368,8 @@
         "speed": 3,
         "defenseDie": "red",
         "attackSurge": "none",
-        "defenseSurge": "block"
+        "defenseSurge": "block",
+        "resilienceSymbol": "dash"
       },
       "assets": {
         "front": "assets/unit-cards/new-unit-mw9obgc9.webp",

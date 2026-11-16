@@ -302,6 +302,7 @@ class Handler(BaseHTTPRequestHandler):
             files['/upgrade-faces.js']='upgrade-faces.js'
             files['/builder-transfer.js']='builder-transfer.js'
             files['/builder-transfer-ui.js']='builder-transfer-ui.js'
+            files['/builder-overlays.js']='builder-overlays.js'
             files.update({'/keywords':'keywords.html','/keywords.html':'keywords.html','/keyword-editor.js':'keyword-editor.js','/keyword-editor.css':'keyword-editor.css'})
             if path in files:p=ROOT/files[path]
             elif path.startswith('/assets/'):

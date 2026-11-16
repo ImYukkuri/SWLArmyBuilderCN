@@ -437,7 +437,7 @@ function deckCatalog(kind) {
     : kind === "secondary" ? data.deckData.secondary || data.deckData.objectives
       : data.deckData.conditions) || [];
 }
-function openDeckSlot(kind, label, index = 0) {
+function openDeckSlot(kind, label, index = 0, opener) {
   document.getElementById("deck-picker")?.close();
   const selected = BuilderLibrary.normalizeDeck(army.deck)[kind];
   const dialog = node("dialog", "deck-picker-dialog");
@@ -479,7 +479,7 @@ function openDeckSlot(kind, label, index = 0) {
   dialog.addEventListener("click", (e) => { if (e.target === dialog) dialog.close(); });
   dialog.addEventListener("close", () => dialog.remove(), { once: true });
   document.body.append(dialog);
-  showDialog(dialog);
+  showDialog(dialog, opener);
 }
 
 function save() {

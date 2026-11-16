@@ -40,7 +40,8 @@ const cardView = {
 };
 const stateCache = new Map();
 const modalStack = [];
-let lastOpener = null,
+const watchedDialogs = new WeakSet();
+let browserReturn = null,
   priorContext = "",
   currentCandidates = [],
   invalidUnitIds = new Set();
@@ -220,7 +221,9 @@ function commandBody(c, { keywords = true, collapse = null } = {}) {
 }
 
 function selectContext(value, trigger) {
-  lastOpener = trigger || document.activeElement;
+  if (!browser) browserReturn = BuilderOverlays.rememberFocus(trigger || document.activeElement);
+  if (matchMedia("(max-width:760px)").matches)
+    BuilderOverlays.open($("#card-browser"), browserReturn);
   hideRule(false);
   // Batch preference belongs to the open browser, not an individual slot.
   if (!browser) cardView.applyAll = false;
@@ -229,14 +232,14 @@ function selectContext(value, trigger) {
   $("#show-unavailable").checked = false;
   render();
   $("#card-grid").scrollTop = 0;
-  if (matchMedia("(max-width:760px)").matches) $("#browser-close").focus();
+  if (matchMedia("(max-width:760px)").matches) BuilderOverlays.focus($("#browser-close"));
 }
 
 function closeBrowser() {
+  hideRule(false);
   browser = null;
   render();
-  const target = lastOpener?.isConnected ? lastOpener : $("#rank-bar button");
-  target?.focus();
+  BuilderOverlays.focus(browserReturn?.());
 }
 
 function filterCandidates() {
@@ -305,6 +308,8 @@ function renderBrowser() {
     $(".rank-nav").inert = false;
     $(".masthead").inert = false;
   }
+  if (browser && mobile) BuilderOverlays.open(aside, browserReturn);
+  else BuilderOverlays.close(aside, {restoreFocus: !browser});
   if (!browser) {
     cardView.applyAll = false;
     $("#apply-all-units").checked = false;
@@ -439,7 +444,7 @@ function renderDeck() {
       const standing = node("button", "standing-order-tag", named(c.name));
       standing.title = c.name.en;
       standing.setAttribute("aria-label", "查看" + named(c.name) + "原图");
-      standing.onclick = () => showImage(c);
+      standing.onclick = () => showImage(c, standing);
       head.insertBefore(standing, head.lastChild);
       return;
     }
@@ -493,14 +498,14 @@ function renderDeck() {
         node("span", "battle-card-caption", selected[index] || `选择第 ${index + 1} 张`));
       if (unavailable) choose.append(node("small", "mission-unavailable", "不适用当前配置 · 点击更换"));
       choose.disabled = index >= 3 || index > selected.length;
-      choose.onclick = () => openDeckSlot(kind, label, index);
+      choose.onclick = () => openDeckSlot(kind, label, index, choose);
       slot.append(choose);
       if (selected[index]) {
         const actions = node("div", "mission-card-actions");
         if (card?.image) {
           const preview = node("button", null, "查看");
           preview.setAttribute("aria-label", "查看" + named(card.name) + "大图");
-          preview.onclick = () => showImage(card);
+          preview.onclick = () => showImage(card, preview);
           actions.append(preview);
         }
         const remove = node("button", "card-remove");
@@ -840,14 +845,14 @@ function artButton(c, cls = "unit-art") {
   b.append(im);
   b.onclick = (e) => {
     e.stopPropagation();
-    showImage(c);
+    showImage(c, b);
   };
   return b;
 }
 
-function showImage(c) {
+function showImage(c, opener) {
   c = liveUpgrade(displayUpgrade(c));
-  if (UpgradeFaces.isDual(c)) return showDualImage(c);
+  if (UpgradeFaces.isDual(c)) return showDualImage(c, opener);
   delete imageDialog.dataset.cardKey;
   imageDialog.replaceChildren();
   const h = node("div", "dialog-head");
@@ -876,10 +881,10 @@ function showImage(c) {
   }
   if (cardKeywords(c).length) imageDialog.append(ruleTags(cardKeywords(c).map((k) =>
     ({ ...(typeof k === "string" ? { id: k } : k), origins: c.counterpart ? [c] : [] }))));
-  showDialog(imageDialog);
+  showDialog(imageDialog, opener);
 }
 
-function showDualImage(c) {
+function showDualImage(c, opener) {
   const key = [c.id, c._unitId, c._choiceId].join(':');
   const scroll = imageDialog.scrollTop;
   const restoreTabFocus = imageDialog.contains(document.activeElement) && document.activeElement.matches('.face-tab');
@@ -908,7 +913,7 @@ function showDualImage(c) {
   imageDialog.querySelector('.face-tabs').replaceWith(faceControl(c, {tabs: true, onChange: showDualImage}));
   for (const section of imageDialog.querySelectorAll('.image-face'))
     section.hidden = c._face !== 'both' && section.dataset.face !== c._face;
-  showDialog(imageDialog);
+  showDialog(imageDialog, opener);
   imageDialog.scrollTop = scroll;
   if (restoreTabFocus) imageDialog.querySelector(`.face-tab[data-face="${c._face}"]`)?.focus({preventScroll: true});
 }
@@ -1290,7 +1295,7 @@ function upgradeDetail(c, { forceOpen = false, compact = false, removable = fals
     );
     b.onclick = (e) => {
       e.stopPropagation();
-      showWeapons(c);
+      showWeapons(c, b);
     };
     body.append(b);
   }
@@ -1314,7 +1319,7 @@ function upgradeRemoveButton(c) {
   return remove;
 }
 
-function showWeapons(c) {
+function showWeapons(c, opener) {
   weaponDialog.replaceChildren();
   const h = node("div", "dialog-head");
   h.append(node("h2", null, named(c.name) + " · 武器"));
@@ -1324,12 +1329,12 @@ function showWeapons(c) {
   h.append(close);
   weaponDialog.append(h);
   for (const w of c.weapons || []) weaponDialog.append(weaponBlock(w, c, true));
-  showDialog(weaponDialog);
+  showDialog(weaponDialog, opener);
 }
 
 function hideRule(restoreFocus = true) {
   rulePop.hidden = true;
-  if (restoreFocus) ruleAnchor?.focus?.();
+  if (restoreFocus) BuilderOverlays.focus(ruleAnchor);
 }
 
 function removeUpgrade(c) {
@@ -1351,7 +1356,7 @@ function presentRulePopover(anchor, close) {
   (parent || document.body).append(rulePop);
   rulePop.hidden = false;
   positionRulePopover(anchor);
-  close.focus();
+  BuilderOverlays.focus(close);
 }
 
 function openUpgradeRule(card, anchor) {
@@ -1536,12 +1541,12 @@ function rosterCard(group, { detail = false } = {}) {
     summary.setAttribute("role", "button");
     summary.setAttribute("aria-label", "查看" + named(u.name) + "完整详情");
     h.onclick = (e) => {
-      if (!e.target.closest("button,.compact-slots")) showUnitDetail(group);
+      if (!e.target.closest("button,.compact-slots")) showUnitDetail(group, summary);
     };
     h.onkeydown = (e) => {
       if (e.target === summary && (e.key === "Enter" || e.key === " ")) {
         e.preventDefault();
-        showUnitDetail(group);
+        showUnitDetail(group, summary);
       }
     };
   }
@@ -1549,7 +1554,7 @@ function rosterCard(group, { detail = false } = {}) {
   return card;
 }
 
-function showUnitDetail(group) {
+function showUnitDetail(group, opener) {
   unitDetail.replaceChildren();
   const h = node("div", "dialog-head");
   h.append(node("h2", null, "单位完整详情"));
@@ -1558,7 +1563,7 @@ function showUnitDetail(group) {
   close.onclick = () => unitDetail.close();
   h.append(close);
   unitDetail.append(h, rosterCard(group, { detail: true }));
-  showDialog(unitDetail);
+  showDialog(unitDetail, opener);
 }
 
 function refreshUnitFaces(card, group, detail = false) {
@@ -1671,7 +1676,7 @@ function upgradeCandidate(c) {
       "weapon-inspect candidate-weapon-link",
       "查看武器属性 · " + c.weapons.map((w) => named(w.name)).join(" / "),
     );
-    b.onclick = () => showWeapons(c);
+    b.onclick = () => showWeapons(c, b);
     item.append(b);
   }
   item.append(candidateStatus(state));
@@ -1718,19 +1723,22 @@ function candidate(c) {
   return selectableCandidate(card, c, state);
 }
 
-function showDialog(dialog) {
+function showDialog(dialog, opener = document.activeElement) {
   hideRule(false);
   if (dialog.open) return;
+  BuilderOverlays.open(dialog, opener);
   dialog.showModal();
-  modalStack.push(dialog);
-  dialog.addEventListener(
-    "close",
-    () => {
+  if (!modalStack.includes(dialog)) modalStack.push(dialog);
+  if (!watchedDialogs.has(dialog)) {
+    watchedDialogs.add(dialog);
+    dialog.addEventListener("close", () => {
+      // A reusable dialog can reopen before the queued close event arrives.
+      if (dialog.open) return;
       const index = modalStack.lastIndexOf(dialog);
       if (index >= 0) modalStack.splice(index, 1);
-    },
-    { once: true },
-  );
+      BuilderOverlays.close(dialog);
+    });
+  }
 }
 function briefHeader(
   unit,
@@ -2005,7 +2013,7 @@ function commandCard(card, { state, slotIndex = null }) {
         return;
       if (e.target.closest(".command-mask-wrap") || !src)
         selectContext({ mode: "commands", slotIndex }, item);
-      else showImage(card);
+      else showImage(card, item);
     };
     item.onkeydown = (e) => {
       if (e.target === item && ["Enter", " "].includes(e.key)) {
@@ -2025,7 +2033,7 @@ function commandCard(card, { state, slotIndex = null }) {
       if (e.target.closest("button,input,select,textarea,summary,a,.rule-tag,.command-keywords")) return;
       if (!state.ok || window.getSelection()?.toString()) return;
       if (e.target.closest(".command-mask-wrap")) choose(card);
-      else if (src) showImage(card);
+      else if (src) showImage(card, item);
     };
     item.onkeydown = (e) => {
       if (e.target !== item || !["Enter", " "].includes(e.key)) return;
@@ -2131,7 +2139,7 @@ function deckPicker(title, items, onPick) {
   dialog.addEventListener("close", () => dialog.remove(), { once: true });
   draw();
   showDialog(dialog);
-  input.focus();
+  BuilderOverlays.focus(input);
 }
 function wireEditor() {
   $("#browser-close").onclick = closeBrowser;
