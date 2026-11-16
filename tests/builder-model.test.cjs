@@ -173,6 +173,62 @@ test('Equip accepts counterpart IDs, and generic category Equip stays a player c
  assert(generic.ok,generic.reason);assert.deepEqual(generic.draft.units[0].upgrades,[]);
  assert(RulesCore.validateArmy(generic.draft,data).issues.some(i=>i.code==='required_slot'));
 });
+
+test('Equip slot targets require one choice per category, including a later identical slot', () => {
+ const fixture=structuredClone(data),unit=fixture.units['empire-stormtroopers'];
+ unit.upgradeSlots=[2,2,10];unit.equipSlotIds=['gear','training'];unit.equipUpgradeIds=[];
+ const army={armyId:2,mode:'standard',pointsLimit:1000,units:[],commandIds:[],options:[]};let n=0;
+ const added=BuilderModel.addUnit(army,fixture,unit.id,()=>`slot-equip-${++n}`);
+ assert(added.ok,added.reason);assert.deepEqual(added.draft.units[0].upgrades,[]);
+ const missing=a=>RulesCore.validateArmy(a,fixture).issues.filter(i=>i.code==='required_slot');
+ assert.equal(missing(added.draft).length,2);
+ const gear=BuilderModel.equip(added.draft,fixture,{unitInstanceId:added.instanceId,slotKey:'gear',slotIndex:1},'gear-binoculars',false,()=>`g-${++n}`);
+ assert(gear.ok,gear.reason);assert.equal(missing(gear.draft).length,1);
+ const slots=RulesCore.slotListFor(fixture.pkg,unit,gear.draft.units[0],fixture.upgrades,2);
+ assert(!slots[0].required);assert(slots[1].equipRequired);
+ const trained=BuilderModel.equip(gear.draft,fixture,{unitInstanceId:added.instanceId,slotKey:'training',slotIndex:2},'training-tenacity',false,()=>`t-${++n}`);
+ assert(trained.ok,trained.reason);assert.equal(missing(trained.draft).length,0);
+ trained.draft.units[0].upgrades=[];assert.equal(missing(trained.draft).length,2);
+ assert.equal(unit.upgradeSlots.length,3,'Equip never adds slots');
+});
+
+test('Equip supports named cards, counterpart auto-equipment, granted slots and missing categories together',()=>{
+ const fixture=structuredClone(data),unit=fixture.units['empire-stormtroopers'];
+ unit.upgradeSlots=[2];unit.equipUpgradeIds=['gear-binoculars'];unit.equipSlotIds=['gear','training'];
+ fixture.upgrades['gear-binoculars'].rules.slotGrants=[{trigger:'equipped',slot:'training'}];
+ const army={armyId:2,mode:'standard',pointsLimit:1000,units:[],commandIds:[],options:[]};let n=0;
+ const added=BuilderModel.addUnit(army,fixture,unit.id,()=>`auto-slot-${++n}`);
+ assert(added.ok,added.reason);assert.deepEqual(added.draft.units[0].upgrades.map(c=>c.upgradeId),['gear-binoculars']);
+ const slots=RulesCore.slotListFor(fixture.pkg,unit,added.draft.units[0],fixture.upgrades,2);
+ assert.equal(slots[1].key,'training');assert(slots[1].required);
+ fixture.pkg.armyOverrides['2']={slots:[{op:'deny',slot:'training'}]};
+ assert.equal(RulesCore.slotListFor(fixture.pkg,unit,added.draft.units[0],fixture.upgrades,2).length,1);
+ assert(RulesCore.validateArmy(added.draft,fixture).issues.some(i=>i.code==='required_slot'&&i.message.includes('没有可用')));
+});
+
+test('Equip legacy text and slot refs resolve conservatively, and explicit empty targets remove fallback',()=>{
+ for(const parameter of ['Equip: Doctrine，Armament','学说、武装','doctrine; armament'])
+  assert.deepEqual(RulesCore.equipSlotKeys({keywords:[{id:'equip',parameter}]},data.pkg),['doctrine','armament']);
+ assert.deepEqual(RulesCore.equipSlotKeys({keywords:[{id:'equip',parameter:'Katarn Pattern Armor'}]},data.pkg),[]);
+ assert.deepEqual(RulesCore.equipSlotKeys({keywords:[{id:'equip',parameterRef:{kind:'slot',id:24}}]},data.pkg),['doctrine']);
+ assert.deepEqual(RulesCore.equipSlotKeys({equipSlotIds:[],keywords:[{id:'equip',parameter:'Doctrine'}]},data.pkg),[]);
+ const unit=structuredClone(data.units['rebels-guerilla-troopers']);unit.equipSlotIds=['heavy_weapon'];
+ const slots=RulesCore.slotListFor(data.pkg,unit,{upgrades:[]},data.upgrades,1);
+ assert.equal(slots.filter(s=>s.key==='heavy_weapon').length,2);
+ assert(slots.filter(s=>s.key==='heavy_weapon').every(s=>s.required&&s.requiredBy==='flexible_response'));
+});
+
+test('Equip batch choices satisfy every instance independently and retain source data',()=>{
+ const fixture=structuredClone(data),unit=fixture.units['empire-stormtroopers'];
+ unit.upgradeSlots=[2];unit.equipSlotIds=['gear'];unit.equipUpgradeIds=[];
+ const army={armyId:2,mode:'standard',pointsLimit:1000,units:[
+  {unitId:unit.id,instanceId:'a',upgrades:[]},{unitId:unit.id,instanceId:'b',upgrades:[]}],commandIds:[],options:[]};
+ let n=0;const result=BuilderModel.equip(army,fixture,{unitInstanceId:'a',groupIds:['a','b'],slotKey:'gear',slotIndex:0},'gear-binoculars',true,()=>`batch-${++n}`);
+ assert(result.ok,result.reason);assert(!RulesCore.validateArmy(result.draft,fixture).issues.some(i=>i.code==='required_slot'));
+ assert(army.units.every(i=>!i.upgrades.length));
+ result.draft.units[1].upgrades=[];
+ assert.deepEqual(RulesCore.validateArmy(result.draft,fixture).issues.filter(i=>i.code==='required_slot').map(i=>i.instanceId),['b']);
+});
 test("Not Out of it Yet requires both character groups, allowing each printed unit version", () => {
   const cmd = data.defs.commands.find(c=>c.id==='18903');
   const hans=['rebels-solo','rebels-han-solo-tauntaun'];
@@ -282,6 +338,57 @@ test("groups ignore instance IDs and selection order but preserve configuration 
   b.upgrades = structuredClone(a.upgrades);
   b.unitId = "empire-scout-troopers";
   assert.equal(BuilderModel.groups(roster, data).length, 2);
+});
+
+test('granted slots follow their source in each batch unit without changing stored selections', () => {
+  let roster = {...armyOf(unit('rebels-rebel-troopers'), unit('rebels-rebel-troopers')), armyId: 1};
+  const gear = BuilderModel.equip(roster, data, slotContext(roster, 'gear'), 'gear-binoculars', true, uid);
+  assert.equal(gear.ok, true, gear.reason);
+  roster = gear.draft;
+  const before = JSON.stringify(roster);
+  const result = BuilderModel.equip(roster, data, slotContext(roster, 'personnel'), 'rebel-captain', true, uid);
+  assert.equal(result.ok, true, result.reason);
+  assert.equal(JSON.stringify(roster), before);
+  for (const instance of result.draft.units) {
+    const records = RulesCore.slotListFor(data.pkg, data.units[instance.unitId], instance, data.upgrades, 1);
+    const snapshot = JSON.stringify([instance, records]);
+    const order = BuilderModel.slotOrder(instance, records);
+    const parent = instance.upgrades.find(c => c.upgradeId === 'rebel-captain').slotIndex;
+    const child = records.findIndex(s => s.addedBy === 'rebel-captain');
+    assert.equal(order[order.indexOf(parent) + 1], child);
+    assert.deepEqual(instance.upgrades.find(c => c.upgradeId === 'gear-binoculars'),
+      roster.units.find(u => u.instanceId === instance.instanceId).upgrades[0]);
+    assert.equal(JSON.stringify([instance, records]), snapshot);
+    assert.deepEqual(BuilderModel.slotOrder(JSON.parse(JSON.stringify(instance)), records), order);
+  }
+  const first = result.draft.units[0];
+  const records = RulesCore.slotListFor(data.pkg, data.units[first.unitId], first, data.upgrades, 1);
+  const child = records.findIndex(s => s.addedBy === 'rebel-captain');
+  const trained = BuilderModel.equip(result.draft, data, {unitInstanceId: first.instanceId,
+    groupIds: result.ids, slotIndex: child, slotKey: 'training'}, 'training-tenacity', true, uid);
+  assert.equal(trained.ok, true, trained.reason);
+  assert.equal(BuilderModel.groups(trained.draft, data).length, 1);
+  assert.ok(trained.draft.units.every(u => u.upgrades.find(c => c.upgradeId === 'training-tenacity').slotIndex === child));
+});
+
+test('multiple and chained grants are adjacent in printed order, independent of equipment selection order', () => {
+  const records = [{key:'personnel'}, {key:'gear'}, {key:'training',addedBy:'parent'},
+    {key:'comms',addedBy:'parent'}, {key:'force',addedBy:'child'}, {key:'protocol',virtual:true}];
+  const instance = {upgrades: [{upgradeId:'child',slotIndex:2}, {upgradeId:'parent',slotIndex:0}]};
+  assert.deepEqual(BuilderModel.slotOrder(instance, records), [0,2,4,3,1,5]);
+  assert.deepEqual(BuilderModel.slotOrder({upgrades:instance.upgrades.toReversed()}, records), [0,2,4,3,1,5]);
+  assert.deepEqual(BuilderModel.slotOrder({upgrades:[]}, records.slice(0,2)), [0,1]);
+});
+
+test('invalid legacy grant links preserve every slot once and cannot loop', () => {
+  const records = [{key:'gear',addedBy:'b'}, {key:'training',addedBy:'a'},
+    {key:'comms',addedBy:'missing'}, {key:'command',addedBy:'override'}, {key:'force',addedBy:'self'}];
+  const instance = {upgrades:[{upgradeId:'a',slotIndex:0}, {upgradeId:'b',slotIndex:1},
+    {upgradeId:'self',slotIndex:4}, {upgradeId:'override',slotIndex:0}]};
+  const order = BuilderModel.slotOrder(instance, records);
+  assert.deepEqual(order, [2,3,4,0,1]);
+  assert.equal(new Set(order).size, records.length);
+  assert.deepEqual(BuilderModel.slotOrder(instance, []), []);
 });
 test("copy duplicates all upgrades with independent IDs and leaves the input untouched", () => {
   const roster = armyOf(unit());

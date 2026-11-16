@@ -213,7 +213,8 @@ function commandBody(c, { keywords = true, collapse = null } = {}) {
     p.append(proseNode(desc));
     out.append(p);
   }
-  if (keywords && c.keywords?.length) out.append(ruleTags(c.keywords));
+  const entries = keywords ? cardKeywords(c) : [];
+  if (entries.length) out.append(ruleTags(entries));
   if (c.weapons?.length) out.append(heading("关联武器"), weaponRows(c.weapons));
   return out;
 }
@@ -254,7 +255,7 @@ function filterCandidates() {
           named(c.name),
           c.name?.en,
           named(c.title),
-          ...(c.keywords || []).map((k) => ruleInfo(k).label),
+          ...cardKeywords(c).map((k) => ruleInfo(k).label),
           ...(c.weapons || []).flatMap((w) => [named(w.name), w.name?.en]),
           textParts(named(c.description)),
         ]
@@ -873,7 +874,7 @@ function showImage(c) {
     else section.append(proseNode(rules));
     imageDialog.append(section);
   }
-  if (c.keywords?.length) imageDialog.append(ruleTags(c.keywords.map((k) =>
+  if (cardKeywords(c).length) imageDialog.append(ruleTags(cardKeywords(c).map((k) =>
     ({ ...(typeof k === "string" ? { id: k } : k), origins: c.counterpart ? [c] : [] }))));
   showDialog(imageDialog);
 }
@@ -898,7 +899,7 @@ function showDualImage(c) {
       setCardImage(im, side.assets?.front, side);section.append(im);
       const effect = upgradeEffect(side);
       if (effect.childNodes.length) section.append(effect);
-      if (side.keywords?.length) section.append(ruleTags(side.keywords));
+      if (cardKeywords(side).length) section.append(ruleTags(cardKeywords(side)));
       if (side.weapons?.length) section.append(weaponRows(side.weapons));
       imageDialog.append(section);
     }
@@ -921,7 +922,7 @@ function upgradeEffect(c) {
     const stats = c.counterpart.stats;
     if (stats?.wounds != null) heading.append(node("span", null, "生命 " + stats.wounds));
     effect.append(heading);
-    for (const k of uniqueRules(c.counterpart.keywords)) {
+    for (const k of uniqueRules(cardKeywords(c.counterpart))) {
       const { ref, label } = ruleInfo(k);
       const text = ref?.summary || ref?.full;
       if (!text) continue;
@@ -978,11 +979,11 @@ function keywordEntries(inst) {
     if (origin && !current.origins.some((x) => x.id === origin.id && x._face === origin._face))
       current.origins.push(origin);
   };
-  for (const k of u?.keywords || []) add(k, null);
+  for (const k of cardKeywords(u)) add(k, null);
   for (const choice of inst.upgrades) {
     const card = displayUpgrade(data.upgrades[choice.upgradeId], inst, choice);
     for (const c of card ? printedUpgrades(card) : []) {
-      for (const k of c.keywords || []) add(k, c);
+      for (const k of cardKeywords(c)) add(k, c);
       if (c.actionTypes?.length) map.set('upgrade:' + choice.instanceId + ':' + c._face, {
         id: 'upgrade-action:' + choice.instanceId + ':' + c._face, actionTypes: c.actionTypes, _actionUpgrade: c,
       });
@@ -991,10 +992,43 @@ function keywordEntries(inst) {
   return [...map.values()];
 }
 
+function cardKeywords(card) {
+  if (!card) return [];
+  const keywords = card.keywords || [];
+  const equip = keywords.filter(k => (typeof k === 'string' ? k : k?.id) === 'equip');
+  if (!equip.length && !card.equipUpgradeIds?.length && !card.equipSlotIds?.length) return keywords;
+  const labels = [];
+  const add = name => {if (name && !labels.includes(name)) labels.push(name);};
+  for (const id of card.equipUpgradeIds || []) {
+    const target = data.upgrades[id];
+    add(target ? named(BuilderModel.upgradePresentation(target, data, card).name) : id);
+  }
+  for (const id of RulesCore.equipSlotKeys(card, data.pkg)) add(slotName(id));
+  const linked = Array.isArray(card.equipUpgradeIds) || Array.isArray(card.equipSlotIds);
+  if (!linked) for (const keyword of equip) {
+    const refs = keyword.parameterRefs || (keyword.parameterRef ? [keyword.parameterRef] : []);
+    for (const ref of refs) {
+      if (ref.kind === 'unit') add(named(data.units[ref.id]?.name) || ref.id);
+      if (ref.kind === 'upgrade') add(named(data.upgrades[ref.id]?.name) || ref.id);
+    }
+    if (refs.length || labels.length) continue;
+    // Legacy text is only translated through exact catalog names. Canonical
+    // Equip IDs above take precedence over stale or incomplete OCR parameters.
+    const norm = value => String(value || '').trim().toLocaleLowerCase();
+    for (const part of String(keyword.parameter || '').split(/[,，、;；]+/).filter(s => s.trim())) {
+      const target = [...Object.values(data.upgrades), ...Object.values(data.units)]
+        .find(c => [c.id, c.name?.en, c.name?.zh].some(n => n && norm(n) === norm(part)));
+      add(target ? named(target.name) : part.trim());
+    }
+  }
+  const other = keywords.filter(k => (typeof k === 'string' ? k : k?.id) !== 'equip');
+  if (labels.length || equip.length) other.push({id: 'equip', parameter: labels.join('、') || null});
+  return other;
+}
+
 function uniqueRules(ks) {
   const seen = new Set();
   return (ks || []).filter((k) => {
-    if ((typeof k === 'string' ? k : k?.id) === 'equip') return false;
     const key = keywordKey(typeof k === "string" ? { id: k } : k);
     if (seen.has(key)) return false;
     seen.add(key);
@@ -1065,6 +1099,7 @@ function tag(k, { forceOpen = false, timing = false, showOrigin = true } = {}) {
 }
 
 function ruleTimings(k) {
+  if ((typeof k === 'string' ? k : k?.id) === 'equip') return ['global'];
   return BuilderModel.keywordActionTypes(k, data.defs).length ? ['action'] : ruleInfo(k).ref?.timing || [];
 }
 function phaseRules(ks, forceOpen = false) {
@@ -1247,7 +1282,7 @@ function upgradeDetail(c, { forceOpen = false, compact = false, removable = fals
     }
   }
   const footer = node("div", "upgrade-tags");
-  for (const k of uniqueRules(c.keywords))
+  for (const k of uniqueRules(cardKeywords(c)))
     footer.append(
       tag({ ...(typeof k === "string" ? { id: k } : k), origins: [c] }, { forceOpen, showOrigin: false }),
     );
@@ -1447,7 +1482,9 @@ function expandedContents(inst, { forceOpen = false } = {}) {
   if (inst.upgrades.length) {
     const section = node("section", "selected-upgrades");
     section.append(node("h4", "compact-section-title", "升级卡"));
-    for (const ch of inst.upgrades) {
+    const order = BuilderModel.slotOrder(inst, unitSlotRecords(u, inst));
+    const position = ch => {const i = order.indexOf(ch.slotIndex);return i < 0 ? order.length : i;};
+    for (const ch of [...inst.upgrades].sort((a, b) => position(a) - position(b))) {
       const c = displayUpgrade(data.upgrades[ch.upgradeId], inst, ch);
       if (c) section.append(upgradeDetail(c, { forceOpen, compact: true, removable: true }));
     }
@@ -1628,7 +1665,7 @@ function upgradeCandidate(c) {
   const effect = upgradeEffect(c);
   if (effect.childNodes.length) item.append(effect);
   const tags = node("div", "upgrade-tags");
-  for (const k of uniqueRules(c.keywords))
+  for (const k of uniqueRules(cardKeywords(c)))
     tags.append(tag({ ...(typeof k === "string" ? { id: k } : k), origins: [c] }, { showOrigin: false }));
   if (tags.children.length) item.append(tags);
   if (c.weapons?.length) {
@@ -1676,7 +1713,7 @@ function candidate(c) {
   head.append(toggle);
   content.append(
     head,
-    ruleTags(c.keywords, { forceOpen: open, timing: true }),
+    ruleTags(cardKeywords(c), { forceOpen: open, timing: true }),
     unitWeapons(inst, open, true),
     candidateStatus(state),
   );
@@ -1846,7 +1883,8 @@ function slotStrip(group, { readonly = false } = {}) {
     strip.append(row);
     if (chosen) displayed.add(chosen);
   }
-  records.forEach((rec, index) => {
+  for (const index of BuilderModel.slotOrder(inst, records)) {
+    const rec = records[index];
     const choices = inst.upgrades.filter((ch) => ch.slotIndex === index);
     if (!choices.length) slot(rec, index, null);
     else
@@ -1859,7 +1897,7 @@ function slotStrip(group, { readonly = false } = {}) {
             !accessOf(data.upgrades[ch.upgradeId]).includes(rec.key),
         ),
       );
-  });
+  }
   for (const ch of inst.upgrades)
     if (!displayed.has(ch)) slot(null, ch.slotIndex, ch, true);
   return strip;

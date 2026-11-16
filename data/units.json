@@ -1,6 +1,6 @@
 {
   "schema": "swl-unit-catalog/v2",
-  "updatedAt": "2026-11-16T05:46:19.285435+00:00",
+  "updatedAt": "2026-11-16T07:19:34.669392+00:00",
   "definitions": "catalog-definitions.json",
   "referenceVersion": "2026.11.04.0",
   "units": [
@@ -222,7 +222,7 @@
         },
         {
           "id": "ai",
-          "parameter": "Attack"
+          "parameter": "攻击"
         },
         {
           "id": "target",
@@ -233,7 +233,7 @@
         {
           "name": {
             "en": "Twin ARM Cannons",
-            "zh": ""
+            "zh": "双手手炮"
           },
           "range": {
             "min": 0,
@@ -817,7 +817,7 @@
         17
       ],
       "stats": {
-        "models": 3,
+        "models": 6,
         "wounds": 1,
         "courage": 1,
         "resilience": null,
@@ -865,11 +865,11 @@
       "keywords": [
         {
           "id": "ai",
-          "parameter": "Artack"
+          "parameter": "攻击"
         },
         {
           "id": "coordinate",
-          "parameter": "Drooid Trooper"
+          "parameter": "机器人士兵"
         }
       ],
       "weapons": [
@@ -997,7 +997,7 @@
       "keywords": [
         {
           "id": "ai",
-          "parameter": "Arrack"
+          "parameter": "攻击"
         }
       ],
       "weapons": [
@@ -1025,7 +1025,7 @@
         {
           "name": {
             "en": "Arm Cannons",
-            "zh": "臂载炮"
+            "zh": "手炮"
           },
           "range": {
             "min": 0,
@@ -3770,10 +3770,7 @@
       },
       "points": 60,
       "upgradeSlots": [
-        {
-          "id": 24,
-          "required": true
-        },
+        24,
         18,
         18,
         6,
@@ -3901,7 +3898,10 @@
       "equipUpgradeIds": [],
       "unitCategoryId": "trooper",
       "unitSubtypeId": "droid_trooper",
-      "nameIdentityId": "super-tactical-command-droid"
+      "nameIdentityId": "super-tactical-command-droid",
+      "equipSlotIds": [
+        "doctrine"
+      ]
     },
     {
       "id": "separatists-super-tactica-command-droid-cnc",
@@ -3915,10 +3915,7 @@
       },
       "points": 70,
       "upgradeSlots": [
-        {
-          "id": 24,
-          "required": true
-        },
+        24,
         18,
         18,
         18,
@@ -4043,7 +4040,10 @@
       "equipUpgradeIds": [],
       "unitCategoryId": "trooper",
       "unitSubtypeId": "droid_trooper",
-      "nameIdentityId": "super-tactical-command-droid"
+      "nameIdentityId": "super-tactical-command-droid",
+      "equipSlotIds": [
+        "doctrine"
+      ]
     },
     {
       "id": "separatists-tactical-droid",
@@ -6901,10 +6901,7 @@
       },
       "points": 50,
       "upgradeSlots": [
-        {
-          "id": 24,
-          "required": true
-        },
+        24,
         9,
         10,
         2,
@@ -7024,7 +7021,10 @@
       "equipUpgradeIds": [],
       "unitCategoryId": "trooper",
       "unitSubtypeId": null,
-      "nameIdentityId": "imperial-agent"
+      "nameIdentityId": "imperial-agent",
+      "equipSlotIds": [
+        "doctrine"
+      ]
     },
     {
       "id": "empire-imperial-officer-ruthless-efficiency",
@@ -7038,10 +7038,7 @@
       },
       "points": 55,
       "upgradeSlots": [
-        {
-          "id": 24,
-          "required": true
-        },
+        24,
         9,
         10,
         10,
@@ -7105,9 +7102,6 @@
       "unitTypeId": 1,
       "keywords": [
         {
-          "id": "pending_equir"
-        },
-        {
           "id": "inspire",
           "value": 1
         }
@@ -7166,7 +7160,10 @@
       ],
       "unitCategoryId": "trooper",
       "unitSubtypeId": null,
-      "nameIdentityId": "imperial-officer"
+      "nameIdentityId": "imperial-officer",
+      "equipSlotIds": [
+        "doctrine"
+      ]
     },
     {
       "id": "empire-imperial-probe-droid",
@@ -12834,16 +12831,10 @@
       },
       "points": 85,
       "upgradeSlots": [
-        {
-          "id": 24,
-          "required": true
-        },
+        24,
         5,
         10,
-        {
-          "id": 12,
-          "required": true
-        }
+        12
       ],
       "stats": {
         "models": 1,
@@ -12935,7 +12926,11 @@
       "equipUpgradeIds": [],
       "unitCategoryId": "trooper",
       "unitSubtypeId": null,
-      "nameIdentityId": "jedi-knight"
+      "nameIdentityId": "jedi-knight",
+      "equipSlotIds": [
+        "doctrine",
+        "armament"
+      ]
     },
     {
       "id": "republic-jedi-knight-general",
@@ -12949,18 +12944,12 @@
       },
       "points": 105,
       "upgradeSlots": [
-        {
-          "id": 24,
-          "required": true
-        },
+        24,
         5,
         5,
         10,
         10,
-        {
-          "id": 12,
-          "required": true
-        }
+        12
       ],
       "stats": {
         "models": 1,
@@ -13053,7 +13042,11 @@
       "equipUpgradeIds": [],
       "unitCategoryId": "trooper",
       "unitSubtypeId": null,
-      "nameIdentityId": "jedi-knight-general"
+      "nameIdentityId": "jedi-knight-general",
+      "equipSlotIds": [
+        "doctrine",
+        "armament"
+      ]
     },
     {
       "id": "republic-laat-gar",
@@ -16934,17 +16927,11 @@
       },
       "points": 75,
       "upgradeSlots": [
-        {
-          "id": 24,
-          "required": true
-        },
+        24,
         10,
         2,
         2,
-        {
-          "id": 12,
-          "required": true
-        },
+        12,
         3,
         25
       ],
@@ -17123,7 +17110,11 @@
       "equipUpgradeIds": [],
       "unitCategoryId": "trooper",
       "unitSubtypeId": "mandalorian_trooper",
-      "nameIdentityId": "mandalorian-hunter"
+      "nameIdentityId": "mandalorian-hunter",
+      "equipSlotIds": [
+        "doctrine",
+        "armament"
+      ]
     },
     {
       "id": "mercenary-creedless-mandalorian-leader",
@@ -17137,18 +17128,12 @@
       },
       "points": 90,
       "upgradeSlots": [
-        {
-          "id": 24,
-          "required": true
-        },
+        24,
         9,
         10,
         2,
         2,
-        {
-          "id": 12,
-          "required": true
-        },
+        12,
         3,
         25
       ],
@@ -17298,7 +17283,11 @@
       "equipUpgradeIds": [],
       "unitCategoryId": "trooper",
       "unitSubtypeId": "mandalorian_trooper",
-      "nameIdentityId": "mandalorian-leader"
+      "nameIdentityId": "mandalorian-leader",
+      "equipSlotIds": [
+        "doctrine",
+        "armament"
+      ]
     },
     {
       "id": "mercenary-creedless-mandalorian-initiates",
@@ -20439,15 +20428,6 @@
           "parameter": "HAN Solo"
         },
         {
-          "id": "pending_reckless_smuggler"
-        },
-        {
-          "id": "pending_chewbacca"
-        },
-        {
-          "id": "pending_courageous_co_pilot"
-        },
-        {
           "id": "eyes_on_the_prize",
           "parameter": "Steady"
         },
@@ -20759,7 +20739,7 @@
         },
         {
           "id": "independent",
-          "parameter": "Standby 1"
+          "parameter": "待命 1"
         },
         {
           "id": "sentinel"
@@ -20931,7 +20911,7 @@
         },
         {
           "id": "independent",
-          "parameter": "Aim 1 Or Dobge 1"
+          "parameter": "瞄准 1 或 闪避 1"
         },
         {
           "id": "sharpshooter",
@@ -22173,7 +22153,7 @@
       "unitTypeId": 1,
       "keywords": [
         {
-          "id": "pending_allume_2",
+          "id": "jump",
           "value": 2,
           "action": "action"
         },
@@ -23260,7 +23240,7 @@
         },
         {
           "id": "independent",
-          "parameter": "Aim 1 AND Dodge 1"
+          "parameter": "瞄准1 和 闪避 1"
         },
         {
           "id": "reposition"
@@ -24659,10 +24639,7 @@
       },
       "points": 50,
       "upgradeSlots": [
-        {
-          "id": 24,
-          "required": true
-        },
+        24,
         9,
         10,
         2,
@@ -24774,7 +24751,10 @@
       "equipUpgradeIds": [],
       "unitCategoryId": "trooper",
       "unitSubtypeId": null,
-      "nameIdentityId": "rebel-agent"
+      "nameIdentityId": "rebel-agent",
+      "equipSlotIds": [
+        "doctrine"
+      ]
     },
     {
       "id": "rebels-rebel-officer-fight-freedom",
@@ -24788,10 +24768,7 @@
       },
       "points": 55,
       "upgradeSlots": [
-        {
-          "id": 24,
-          "required": true
-        },
+        24,
         9,
         10,
         10,
@@ -24901,7 +24878,10 @@
       "equipUpgradeIds": [],
       "unitCategoryId": "trooper",
       "unitSubtypeId": null,
-      "nameIdentityId": "rebel-officer"
+      "nameIdentityId": "rebel-officer",
+      "equipSlotIds": [
+        "doctrine"
+      ]
     },
     {
       "id": "rebels-rebel-commandos",

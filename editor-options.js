@@ -496,5 +496,56 @@ window.EditorOptions = (() => {
     note.textContent = '同名不同形态可选同一标识；仅在规则按名称标识匹配时视为同一单位。新标识使用小写英文字母、数字、连字符或下划线，保存后会进入下拉词典。';box.append(note);
     return box;
   }
-  return { create, load, control, conditionFields, setKeywordParameter, keywordParameterControl, unitClassificationControl };
+  function equipControl(unit, defs, change) {
+    const box = document.createElement('fieldset');box.className = 'equip-editor';
+    const legend = document.createElement('legend');legend.textContent = 'Equip · 必带卡牌与槽位';box.append(legend);
+    const hint = document.createElement('p');hint.className = 'hint';
+    hint.textContent = '具体卡牌：加入单位时自动装备。槽位：该类槽至少装备一张升级，由你选卡；多个关联分别满足，不新增槽位。';box.append(hint);
+    const options = defs.editorOptions, pkg = options.pkg;
+    let kind = 'upgrade';
+    const list = document.createElement('div'), add = document.createElement('div');
+    add.className = 'equip-link equip-add';box.append(list, add);
+    const slotIds = () => RulesCore.equipSlotKeys(unit, pkg);
+    const items = type => options.table(type === 'slot' ? 'semanticSlots' : 'localUpgrades');
+    const ids = type => type === 'slot' ? slotIds() : unit.equipUpgradeIds || [];
+    const field = type => type === 'slot' ? 'equipSlotIds' : 'equipUpgradeIds';
+    function write(type, next) {
+      if (type === 'slot') {
+        // Move legacy required flags into this association before editing, so
+        // removing it really removes this Equip requirement.
+        const migrated = new Set(Array.isArray(unit.equipSlotIds) ? [] : slotIds());
+        unit.upgradeSlots = (unit.upgradeSlots || []).map(s => {
+          if (!s || typeof s !== 'object' || !s.required ||
+              !migrated.has(RulesCore.slotKey(pkg, s.id))) return s;
+          const next = {...s};delete next.required;
+          return Object.keys(next).length === 1 ? next.id : next;
+        });
+      }
+      unit[field(type)] = [...new Set(next)];change();render();
+    }
+    function render() {
+      list.replaceChildren();add.replaceChildren();
+      for (const type of ['upgrade', 'slot']) {
+        const current = ids(type);
+        current.forEach((id, index) => {
+          const row = document.createElement('div');row.className = 'equip-link';
+          const label = document.createElement('span');label.className = 'equip-kind';label.textContent = type === 'slot' ? '必选槽位' : '自动装备';
+          row.append(label, control(id, items(type).filter(o => o.value === id || !current.includes(o.value)), value => {
+            const next = [...current];next[index] = value;write(type, next);
+          }, {label: (type === 'slot' ? '必选槽位 ' : '必带升级卡 ') + (index + 1), nullable: false}));
+          const remove = document.createElement('button');remove.type = 'button';remove.textContent = '移除关联';
+          remove.setAttribute('aria-label', '移除' + (type === 'slot' ? '槽位' : '卡牌') + '关联 ' + (index + 1));
+          remove.onclick = () => write(type, current.filter((_, i) => i !== index));row.append(remove);list.append(row);
+        });
+      }
+      add.append(control(kind, [option('upgrade','升级卡 / 伙伴卡'),option('slot','槽位')], type => {
+        kind = type;render();
+      }, {label:'Equip 关联类型',nullable:false}));
+      add.append(control(null, items(kind).filter(o => !ids(kind).includes(o.value)), value => {
+        if (value != null) write(kind, [...ids(kind), value]);
+      }, {label:kind === 'slot' ? '添加必选槽位' : '添加必带升级或伙伴卡'}));
+    }
+    render();return box;
+  }
+  return { create, load, control, conditionFields, setKeywordParameter, keywordParameterControl, unitClassificationControl, equipControl };
 })();

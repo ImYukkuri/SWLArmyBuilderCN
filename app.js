@@ -36,7 +36,7 @@ function lookup(table,id){return mappings?.definitions?.[table]?.find(x=>x.id===
 function arrayDefault(key){if(key==='weapons')return {name:{en:'New Weapon',zh:''},range:{min:null,max:null},dice:{red:null,black:null,white:null},keywords:[]};if(key==='keywords')return {id:'jump',value:null,parameter:null,action:'none'};if(key==='factions')return {id:1,rankId:2};if(key==='affiliationIds')return '1';if(key==='upgradeSlots')return 1;if(key==='conditionalUpgradeSlots')return {id:1,upgradeId:mappings.definitions.upgrades[0]?.id||null};return ''}
 function objectForm(object,path=[],container){
  for(const [key,value]of Object.entries(object)){
-  if(key==='equipUpgradeIds'&&path.length===0)continue;
+  if(['equipUpgradeIds','equipSlotIds'].includes(key)&&path.length===0)continue;
   if(['parameterRef','parameterRefs'].includes(key)&&path.includes('keywords'))continue;
   if(path.length===0&&['unitCategoryId','unitSubtypeId','nameIdentityId'].includes(key))continue;
   if(path.length===0&&key==='unitTypeId'){container.append(EditorOptions.unitClassificationControl(draft,mappings.definitions,setDirty));continue;}
@@ -80,23 +80,14 @@ function objectForm(object,path=[],container){
 }
 function renderRules(){ConditionEditor.render(document.querySelector('#condition-editor'),draft.restrictions||(draft.restrictions={}),mappings.definitions,()=>setDirty(),renderRules);RuleEditor.render(document.querySelector('#unit-rules'),draft.rules||(draft.rules={}),mappings.definitions,()=>{setDirty()},{kind:'units',usage:draft.usage||'army_unit'});}
 function renderEquip(){
- const box=el('fieldset');box.className='equip-editor';box.append(el('legend','Equip · 自动配备'));
- const hint=el('p','指定卡牌会在单位加入军表时按实际可选槽自动装备。仅指定升级类别的 Equip 请在基础升级槽设为必选，仍由玩家选卡。');hint.className='hint';box.append(hint);
- const options=mappings.definitions.editorOptions.table('localUpgrades');
- const ids=draft.equipUpgradeIds||[];
- ids.forEach((id,index)=>{
-  const row=el('div');row.className='equip-link';
-  row.append(EditorOptions.control(id,options.filter(o=>o.value===id||!ids.includes(o.value)),v=>{draft.equipUpgradeIds[index]=v;setDirty();renderForm()},{label:'必带升级卡 '+(index+1),nullable:false}));
-  const remove=el('button','移除关联');remove.onclick=()=>{draft.equipUpgradeIds.splice(index,1);setDirty();renderForm()};row.append(remove);box.append(row);
- });
- const add=EditorOptions.control(null,options.filter(o=>!ids.includes(o.value)),v=>{if(!v)return;draft.equipUpgradeIds=[...ids,v];setDirty();renderForm()},{label:'添加必带升级或伙伴卡'});box.append(add);$('#fields').append(box);
+ $('#fields').append(EditorOptions.equipControl(draft,mappings.definitions,setDirty));
 }
 let creating=false;
 function newUnitDraft(){
   const id='new-unit-'+Date.now().toString(36);
   return {id,name:{en:'New Unit',zh:'新单位'},title:{en:'',zh:''},factionId:1,rankId:1,unitTypeId:1,unitCategoryId:'trooper',unitSubtypeId:null,nameIdentityId:id,affiliationIds:[],keywords:[],weapons:[],upgradeSlots:[],factions:[{id:1,rankId:1}],
     stats:{models:1,wounds:1,courage:0,resilience:null,speed:null,defenseDie:'white'},points:0,
-    assets:{front:null,portrait:null,portraitCrop:[.67,.1235,.99,.6965]},equipUpgradeIds:[],
+    assets:{front:null,portrait:null,portraitCrop:[.67,.1235,.99,.6965]},equipUpgradeIds:[],equipSlotIds:[],
     review:{status:'needs_review',notes:'',issues:['新建卡片，待补全字段']},usage:'army_unit'}
 }
 function startDraft(template,label){

@@ -121,6 +121,32 @@ class SlotRegistryTest(unittest.TestCase):
 
 
 class ValidateArmyTest(unittest.TestCase):
+    def test_equip_slot_targets_accept_either_duplicate_slot_and_report_removal(self):
+        units,upgrades,defs=rules.load_cards();package=rules.load_package()
+        unit=units['empire-stormtroopers'];unit['upgradeSlots']=[2,2,10]
+        unit['equipSlotIds']=['gear','training'];unit['equipUpgradeIds']=[]
+        inst={'unitId':unit['id'],'instanceId':'slot-equip','upgrades':[]}
+        army={'mode':'standard','armyId':2,'pointsLimit':1000,'units':[inst],'commandIds':[],'options':[]}
+        with patch('rules.load_cards',return_value=(units,upgrades,defs)),patch('rules.load_package',return_value=package):
+            missing=lambda:[i for i in rules.validate_army(army)['issues'] if i['code']=='required_slot']
+            self.assertEqual(len(missing()),2)
+            inst['upgrades']=[{'instanceId':'g','upgradeId':'gear-binoculars','slotIndex':1}]
+            self.assertEqual(len(missing()),1)
+            slots=rules.slot_list_for(package,unit,inst,upgrades,2)
+            self.assertFalse(slots[0]['required']);self.assertTrue(slots[1]['equipRequired'])
+            inst['upgrades'].append({'instanceId':'t','upgradeId':'training-tenacity','slotIndex':2})
+            self.assertEqual(len(missing()),0)
+            inst['upgrades']=[];self.assertEqual(len(missing()),2)
+            package['armyOverrides']['2']={'slots':[{'op':'deny','slot':'training'}]}
+            self.assertTrue(any('没有可用' in i['message'] for i in missing()))
+
+    def test_equip_legacy_text_refs_and_explicit_empty_targets(self):
+        pkg=rules.load_package()
+        for parameter in ['Equip: Doctrine，Armament','学说、武装','doctrine; armament']:
+            self.assertEqual(rules.equip_slot_keys({'keywords':[{'id':'equip','parameter':parameter}]},pkg),['doctrine','armament'])
+        self.assertEqual(rules.equip_slot_keys({'keywords':[{'id':'equip','parameterRef':{'kind':'slot','id':24}}]},pkg),['doctrine'])
+        self.assertEqual(rules.equip_slot_keys({'equipSlotIds':[],'keywords':[{'id':'equip','parameter':'Doctrine'}]},pkg),[])
+
     def test_missing_equip_is_reported_once_per_card(self):
         units, _, _ = rules.load_cards()
         for unit in units.values():

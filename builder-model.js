@@ -32,6 +32,32 @@ window.BuilderModel = (() => {
     return [...result.values()];
   }
 
+  // Keep stored slot indices intact; display grants immediately after their
+  // granting upgrade, including upgrades equipped in another granted slot.
+  function slotOrder(instance, records) {
+    const parents = new Map(), children = new Map();
+    records.forEach((record, index) => {
+      if (!record.addedBy || record.addedBy === 'override') return;
+      const owner = (instance.upgrades || []).find(choice => choice.upgradeId === record.addedBy);
+      const parent = owner?.slotIndex;
+      if (!Number.isInteger(parent) || !records[parent] || parent === index) return;
+      parents.set(index, parent);
+      if (!children.has(parent)) children.set(parent, []);
+      children.get(parent).push(index);
+    });
+    const order = [], seen = new Set();
+    const visit = index => {
+      if (seen.has(index)) return;
+      seen.add(index);
+      order.push(index);
+      for (const child of children.get(index) || []) visit(child);
+    };
+    records.forEach((_, index) => { if (!parents.has(index)) visit(index); });
+    // Malformed legacy links must not hide slots or create an infinite loop.
+    records.forEach((_, index) => visit(index));
+    return order;
+  }
+
   function uniqueUpgrade(card, data) {
     return (
       card?.rules?.unique === true ||
@@ -349,5 +375,5 @@ window.BuilderModel = (() => {
       counterpart: unit,
     };
   }
-  return { signature, groups, uniqueUpgrade, copyable, addUnit, duplicate, equip, equipDefaults, keywordActionTypes, upgradePresentation };
+  return { signature, groups, slotOrder, uniqueUpgrade, copyable, addUnit, duplicate, equip, equipDefaults, keywordActionTypes, upgradePresentation };
 })();

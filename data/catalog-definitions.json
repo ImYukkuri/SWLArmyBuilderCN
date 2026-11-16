@@ -3452,7 +3452,7 @@
       "id": "pending_swashbuckler",
       "name": {
         "en": "Swashbuckler",
-        "zh": ""
+        "zh": "潇洒斗士"
       },
       "actionTypes": [],
       "summary": "若此单位在攻击行动中花费过瞄准标，获得1闪避",
@@ -3800,6 +3800,20 @@
       "full": "组建军队期间，带有灵活响应关键词的单位必须配备X个重武器升级。",
       "timing": [
         "global"
+      ],
+      "status": "needs_review"
+    },
+    {
+      "id": "tough",
+      "actionTypes": [],
+      "name": {
+        "zh": "硬骨头",
+        "en": "TOUGH"
+      },
+      "summary": "该模型无视分配伤害的大部分限制",
+      "full": "该模型即使不是队长或不是受伤最多的模型也能被分配伤害",
+      "timing": [
+        "defense"
       ],
       "status": "needs_review"
     }
@@ -15317,7 +15331,7 @@
       ],
       "unlockedBy": null,
       "campaigns": [],
-      "slotPips": 1,
+      "slotPips": 2,
       "image": "assets/command-cards/14377.webp",
       "description": {
         "en": "When building a Command Hand, treat this card as though it has 2 pips. When an allied {@icon.rank-commander} is issued an Order with this card, choose up to 3 other allied units within {@icon.range-1} of that {@icon.rank-commander} unit. Each chosen unit gains 1 Aim token or 1 Dodge token.",
@@ -15427,7 +15441,7 @@
       "id": "20010",
       "name": {
         "en": "Boring Conversation Anyway",
-        "zh": "反正这谈话也够无聊的"
+        "zh": "无话可聊"
       },
       "pips": 3,
       "factions": [
@@ -19349,9 +19363,9 @@
       "id": "16485",
       "name": {
         "en": "Revenge Is Not the Jedi Way",
-        "zh": "复仇并非绝地之道"
+        "zh": "复仇可不是绝地之道"
       },
-      "pips": 2,
+      "pips": 4,
       "factions": [
         1,
         2,
@@ -25819,7 +25833,7 @@
         }
       ],
       "campaigns": [],
-      "slotPips": 3,
+      "slotPips": 2,
       "image": "assets/command-cards/5185.webp",
       "description": {
         "en": "When building a Command Hand, treat this card as though it has 2 pips. Count Dooku gains 1 Aim token and 1 Dodge token. \n\n After Count Dookuʼs next Activation, if Asajj Ventress does not have a facedown Order token, she activates. After she activates, if she has a faceup Order token, flip it face down. If she does not have an Order token, assign her a facedown {@icon.rank-operative} Order token from your Order Pool, then shuffle your Order Pool.",
@@ -27018,7 +27032,7 @@
       ]
     }
   ],
-  "updatedAt": "2026-11-16T04:25:56.241203+00:00",
+  "updatedAt": "2026-11-16T07:52:49.517015+00:00",
   "unitCategories": [
     {
       "id": "trooper",

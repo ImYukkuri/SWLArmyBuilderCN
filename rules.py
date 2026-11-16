@@ -243,6 +243,31 @@ def flexible_response_count(unit):
     return value if type(value) is int and 0 <= value <= 9007199254740991 else None
 
 
+def equip_slot_keys(unit, package):
+    """Explicit slot targets override legacy text, including an empty list."""
+    if isinstance(unit.get('equipSlotIds'), list):
+        return list(dict.fromkeys(unit['equipSlotIds']))
+    import re
+    slots = package.get('slots') or []
+    keys = []
+    def add(slot):
+        if slot and slot['id'] not in keys:keys.append(slot['id'])
+    def norm(value):return re.sub(r'[\s_-]+', '', str(value or '').strip().lower())
+    for kw in unit.get('keywords') or []:
+        if kw.get('id') != 'equip':continue
+        for ref in kw.get('parameterRefs') or ([kw['parameterRef']] if kw.get('parameterRef') else []):
+            if ref.get('kind') == 'slot':
+                add(next((s for s in slots if s['id'] == ref.get('id') or s['sourceId'] == ref.get('id')), None))
+        text = re.sub(r'^\s*equip\s*[:：]\s*', '', str(kw.get('parameter') or ''), flags=re.I)
+        for part in re.split(r'[,，、;/；]+', text):
+            add(next((s for s in slots if any(n and norm(n) == norm(part)
+                for n in (s['id'], s.get('name', {}).get('en'), s.get('name', {}).get('zh')))), None))
+        for raw in unit.get('upgradeSlots') or []:
+            if isinstance(raw, dict) and raw.get('required'):
+                add(next((s for s in slots if s['sourceId'] == raw.get('id')), None))
+    return keys
+
+
 def slot_list_for(package, unit, inst, upgrades, army_id=None):
     out = []
     by_id, _ = slot_registry(package)
@@ -282,6 +307,20 @@ def slot_list_for(package, unit, inst, upgrades, army_id=None):
     for r in slot_rules:
         if isinstance(r, dict) and r.get("op") == "add" and r.get("slot") and matches_target(unit, r.get("target")) and not any(x["key"] == r["slot"] for x in out):
             out.append({"key": r["slot"], "addedBy": "override"})
+    for key in equip_slot_keys(unit, package):
+        matches = [(i,s) for i,s in enumerate(out) if s['key'] == key]
+        def occupied(index):
+            for choice in inst.get('upgrades') or []:
+                card = upgrades.get(choice.get('upgradeId'))
+                if choice.get('slotIndex') == index and card and key in access_keys(card, package,
+                        (package.get('upgradeRules') or {}).get(str((card.get('upstream') or {}).get('id')))):
+                    return True
+            return False
+        target = next((s for i,s in matches if occupied(i)), None)
+        if target is None:target = next((s for _,s in matches if s.get('required')), matches[0][1] if matches else None)
+        if target is not None:
+            target['equipRequired'] = True
+            if not target.get('required'):target.update(required=True, requiredBy='equip')
     return out
 
 
@@ -768,6 +807,10 @@ def validate_army(army):
                 issue("unknown", "unit_restriction_condition_unknown", f"单位「{(unit.get('name') or {}).get('en', unit.get('id'))}」的卡面限制条件存在未覆盖语义", key)
 
         slot_list = slot_list_for(package, unit, inst, upgrades, army.get("armyId"))
+        for slot in equip_slot_keys(unit, package):
+            if not any(s['key'] == slot for s in slot_list):
+                name = next((s.get('name') or {} for s in package.get('slots', []) if s['id'] == slot), {})
+                issue('invalid', 'required_slot', f"Equip：需要装备「{name.get('zh') or name.get('en') or slot}」升级，但当前没有可用的该类槽位", key)
         heavy_required = flexible_response_count(unit)
         if any((k or {}).get("id") == "flexible_response" for k in unit.get("keywords") or []) and heavy_required is None:
             issue("unknown", "flexible_response_value", "灵活响应的数值 X 未设置或无效，请在单位编辑器填写非负整数", key)
@@ -821,6 +864,8 @@ def validate_army(army):
             if s.get("required") and i not in assigned:
                 message = (f"灵活响应 {heavy_required}：必选重武器槽尚未配置升级（须装备 {heavy_required} 张）"
                            if s.get("requiredBy") == "flexible_response"
+                           else f"Equip：必选「{next((r.get('name', {}).get('zh') for r in package.get('slots', []) if r['id'] == s['key']), None) or s['key']}」槽尚未配置升级"
+                           if s.get('equipRequired')
                            else f"必选槽位 {s['key']} 尚未配置升级")
                 issue("invalid", "required_slot", message, key)
 

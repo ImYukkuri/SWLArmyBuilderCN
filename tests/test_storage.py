@@ -34,6 +34,21 @@ class StorageTest(unittest.TestCase):
             self.card['equipUpgradeIds']=value
             with self.subTest(value=value),self.assertRaises(ValueError):server.validate(self.card)
 
+    def test_equip_slot_ids_and_cards_survive_save_without_changing_slots(self):
+        self.card['equipSlotIds']=['doctrine','armament']
+        self.card['equipUpgradeIds']=['caught-in-a-web']
+        slots=copy.deepcopy(self.card['upgradeSlots'])
+        result=server.commit_card(self.card,server.digest(self.path.read_bytes()))
+        self.assertEqual(result['card']['equipSlotIds'],['doctrine','armament'])
+        self.assertEqual(result['card']['equipUpgradeIds'],['caught-in-a-web'])
+        self.assertEqual(result['card']['upgradeSlots'],slots)
+        for value in ['doctrine',[24],['missing'],['doctrine','doctrine'],None]:
+            self.card['equipSlotIds']=value
+            with self.subTest(value=value),self.assertRaises(ValueError):server.validate(self.card)
+        self.card['equipSlotIds']=[]
+        result=server.commit_card(self.card,result['revision'])
+        self.assertEqual(result['card']['equipSlotIds'],[])
+
     def test_portraits_have_uniform_centre_and_fixed_ratio(self):
         from PIL import Image
         for u in self.catalog['units']:

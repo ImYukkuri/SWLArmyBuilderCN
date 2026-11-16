@@ -1,7 +1,7 @@
 {
   "schema": "swl-upgrades/v1",
   "referenceVersion": "2026.11.04.0",
-  "updatedAt": "2026-11-15T19:51:49.885233+00:00",
+  "updatedAt": "2026-11-16T07:44:45.581389+00:00",
   "cards": [
     {
       "id": "21b-medical-droid",
@@ -55201,23 +55201,78 @@
       "id": "upstream-23419",
       "name": {
         "en": "Chewbacca, Courageous Co-Pilot",
-        "zh": ""
+        "zh": "楚巴卡，无畏副驾驶"
       },
       "actionTypes": null,
       "points": 0,
       "slotIds": [
-        1
+        1,
+        4
       ],
       "usage": "unit_upgrade",
       "description": {
         "en": [],
-        "zh": []
+        "zh": [
+          "添加1个楚巴卡模型",
+          "此模型获得硬骨头",
+          "此单位获得防御1"
+        ]
       },
       "requirementsText": [],
       "keywords": [],
-      "weapons": [],
+      "weapons": [
+        {
+          "name": {
+            "en": "OVERWHELM",
+            "zh": "重击"
+          },
+          "range": {
+            "min": 0,
+            "max": 0
+          },
+          "dice": {
+            "red": 3,
+            "black": 0,
+            "white": 0
+          },
+          "keywords": [
+            {
+              "id": "lethal",
+              "value": 1,
+              "parameter": null
+            }
+          ]
+        },
+        {
+          "name": {
+            "en": "CHEWBACCA'S BOWCASTER",
+            "zh": "楚巴卡的爆能弩"
+          },
+          "range": {
+            "min": 1,
+            "max": 3
+          },
+          "dice": {
+            "red": 1,
+            "black": 0,
+            "white": 2
+          },
+          "keywords": [
+            {
+              "id": "impact",
+              "value": 1,
+              "parameter": null
+            },
+            {
+              "id": "pierce",
+              "value": 1,
+              "parameter": null
+            }
+          ]
+        }
+      ],
       "assets": {
-        "front": null
+        "front": "assets/upgrade-cards/upstream-23419-front-90b4879a0173.webp"
       },
       "rules": {
         "availableIn": [
@@ -55253,7 +55308,8 @@
           5
         ],
         "slotTypes": [
-          1
+          1,
+          4
         ],
         "locallyUnique": true,
         "unavailableWithIds": [
@@ -55674,23 +55730,74 @@
       "id": "upstream-23420",
       "name": {
         "en": "Han Solo, Reckless Smuggler",
-        "zh": ""
+        "zh": "汉·索罗，亡命走私犯"
       },
       "actionTypes": null,
       "points": 0,
       "slotIds": [
-        1
+        1,
+        4
       ],
       "usage": "unit_upgrade",
       "description": {
         "en": [],
-        "zh": []
+        "zh": [
+          "添加1个汉·索罗模型",
+          "此模型获得硬骨头",
+          "此单位获得快枪手和独立：瞄准1。当使用快枪手时，只有此模型的武器能被添加到攻击池中。"
+        ]
       },
-      "requirementsText": [],
-      "keywords": [],
-      "weapons": [],
+      "requirementsText": [
+        "汉&丘伊限定"
+      ],
+      "keywords": [
+        {
+          "id": "tough",
+          "value": null,
+          "parameter": null
+        },
+        {
+          "id": "gunslinger",
+          "value": null,
+          "parameter": null
+        },
+        {
+          "id": "independent",
+          "value": null,
+          "parameter": "瞄准 1"
+        },
+        {
+          "id": "leader",
+          "value": null,
+          "parameter": null
+        }
+      ],
+      "weapons": [
+        {
+          "name": {
+            "en": "HAN'S DL-44 BLASTER",
+            "zh": "汉的DL-44爆能枪"
+          },
+          "range": {
+            "min": 0,
+            "max": 2
+          },
+          "dice": {
+            "red": 0,
+            "black": 3,
+            "white": 0
+          },
+          "keywords": [
+            {
+              "id": "lethal",
+              "value": 1,
+              "parameter": null
+            }
+          ]
+        }
+      ],
       "assets": {
-        "front": null
+        "front": "assets/upgrade-cards/upstream-23420-front-b02e6459d829.webp"
       },
       "rules": {
         "availableIn": [
@@ -55727,7 +55834,8 @@
           5
         ],
         "slotTypes": [
-          1
+          1,
+          4
         ],
         "locallyUnique": true,
         "unavailableWithIds": [

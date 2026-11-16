@@ -69,6 +69,9 @@ def validate_keyword_targets(keyword,definitions,units):
     known={kind:[r['id'] for r in definitions.get(table,[])] for kind,table in tables.items()}
     known['unit']=[u['id'] for u in units]
     known['nameIdentity']=[u.get('nameIdentityId') for u in units if u.get('nameIdentityId')]
+    if keyword.get('id')=='equip':
+        slots=json.loads((ROOT/'data/slot-rules.json').read_bytes())['slots']
+        known['slot']=[v for s in slots for v in (s['id'],s['sourceId'])]
     seen=set()
     for ref in refs:
         if not isinstance(ref,dict) or not isinstance(ref.get('kind'),str) or ref['kind'] not in known:raise ValueError('关联目标匹配方式无效')

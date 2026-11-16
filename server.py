@@ -39,6 +39,12 @@ def validate(card):
             raise ValueError('Equip 关联必须为不重复的本地升级卡 ID 数组')
         known={c['id'] for c in json.loads((ROOT/'data/upgrades.json').read_bytes())['cards']}
         if any(v not in known for v in ids):raise ValueError('Equip 关联的升级卡 ID 不存在，请用选择器选择正面主记录')
+    if 'equipSlotIds' in card:
+        ids=card['equipSlotIds']
+        if not isinstance(ids,list) or any(not isinstance(v,str) for v in ids) or len(ids)!=len(set(ids)):
+            raise ValueError('Equip 槽位关联必须为不重复的槽位 ID 数组')
+        known={s['id'] for s in rules.load_package()['slots']}
+        if any(v not in known for v in ids):raise ValueError('Equip 关联的槽位不存在，请用槽位选择器选择')
     legacy='factionId'not in card
     for key in ['keywords','weapons','factions',*(['affiliations']if legacy else['affiliationIds'])]:
         if not isinstance(card.get(key),list):raise ValueError(key+' 必须为数组')

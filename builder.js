@@ -204,9 +204,9 @@ function slotVisible(inst, rec, i) {
 }
 
 function nextEmptySlot(inst, records, after) {
-  const n = records.length;
-  for (let k = 1; k <= n; k++) {
-    const i = (after + k) % n;
+  const order = BuilderModel.slotOrder(inst, records), start = order.indexOf(after);
+  for (let k = 1; k <= order.length; k++) {
+    const i = order[(start + k) % order.length];
     if (slotVisible(inst, records[i], i)) return i;
   }
   return -1;

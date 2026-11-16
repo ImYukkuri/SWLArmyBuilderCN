@@ -127,6 +127,31 @@ window.RulesCore = (() => {
     const value = (unit.keywords || []).find(k => k && k.id === "flexible_response")?.value;
     return Number.isSafeInteger(value) && value >= 0 ? value : null;
   }
+  function equipSlotKeys(unit, pkg) {
+    // The explicit list (including []) overrides historical Equip text.
+    if (Array.isArray(unit.equipSlotIds)) return [...new Set(unit.equipSlotIds)];
+    const slots = pkg.slots || [], keys = new Set();
+    const norm = s => String(s ?? '').trim().toLowerCase().replace(/[\s_-]+/g, '');
+    for (const kw of unit.keywords || []) {
+      if (kw?.id !== 'equip') continue;
+      for (const ref of kw.parameterRefs || (kw.parameterRef ? [kw.parameterRef] : [])) {
+        if (ref.kind !== 'slot') continue;
+        const slot = slots.find(s => s.id === ref.id || s.sourceId === ref.id);
+        if (slot) keys.add(slot.id);
+      }
+      const text = String(kw.parameter || '').replace(/^\s*equip\s*[:：]\s*/i, '');
+      for (const part of text.split(/[,，、;/；]+/)) {
+        const slot = slots.find(s => [s.id, s.name?.en, s.name?.zh].some(n => n && norm(n) === norm(part)));
+        if (slot) keys.add(slot.id);
+      }
+      // Old catalogs stored generic Equip directly on the printed slot.
+      for (const raw of unit.upgradeSlots || []) if (raw?.required) {
+        const slot = slots.find(s => s.sourceId === raw.id);
+        if (slot) keys.add(slot.id);
+      }
+    }
+    return [...keys];
+  }
   function slotListFor(pkg, unit, inst, upgrades, armyId) {
     const { byId } = slotRegistry(pkg);
     const count = flexibleResponseCount(unit);
@@ -166,6 +191,20 @@ window.RulesCore = (() => {
       }
       for (const r of rules) if (r && r.op === "add" && r.slot && matchesTarget(unit, r.target) && !out.some(x => x.key === r.slot)) {
         out.push({ key: r.slot, addedBy: "override" });
+      }
+    }
+    for (const key of equipSlotKeys(unit, pkg)) {
+      const matches = out.map((slot, index) => ({slot, index})).filter(r => r.slot.key === key);
+      // Any one legal selection in this category satisfies Equip. Prefer its
+      // occupied slot; preserve stronger pre-existing mandatory requirements.
+      const target = matches.find(r => (inst.upgrades || []).some(ch => {
+        const card = upgrades[ch.upgradeId];
+        return ch.slotIndex === r.index && card && accessKeys(card, pkg,
+          pkg.upgradeRules?.[String(card.upstream?.id)]).includes(key);
+      })) || matches.find(r => r.slot.required) || matches[0];
+      if (target) {
+        target.slot.equipRequired = true;
+        if (!target.slot.required) {target.slot.required = true;target.slot.requiredBy = 'equip';}
       }
     }
     return out;
@@ -643,6 +682,10 @@ window.RulesCore = (() => {
       }
 
       const slotList = slotListFor(pkg, unit, inst, upgrades, army.armyId);
+      for (const slot of equipSlotKeys(unit, pkg)) if (!slotList.some(r => r.key === slot)) {
+        const name = (pkg.slots || []).find(s => s.id === slot)?.name;
+        issue('invalid', 'required_slot', `Equip：需要装备「${name?.zh || name?.en || slot}」升级，但当前没有可用的该类槽位`, key);
+      }
       const heavyRequired = flexibleResponseCount(unit);
       if ((unit.keywords || []).some(k => k && k.id === "flexible_response") && heavyRequired === null)
         issue("unknown", "flexible_response_value", "灵活响应的数值 X 未设置或无效，请在单位编辑器填写非负整数", key);
@@ -685,6 +728,8 @@ window.RulesCore = (() => {
         if (slotList[i].required && !(i in assigned)) issue("invalid", "required_slot",
           slotList[i].requiredBy === "flexible_response"
             ? `灵活响应 ${heavyRequired}：必选重武器槽尚未配置升级（须装备 ${heavyRequired} 张）`
+            : slotList[i].equipRequired
+              ? `Equip：必选「${(pkg.slots || []).find(s => s.id === slotList[i].key)?.name?.zh || slotList[i].key}」槽尚未配置升级`
             : `必选槽位 ${slotList[i].key} 尚未配置升级`, key);
       }
       const seenLocal = {}, seenLocalNames = {};
@@ -1057,5 +1102,5 @@ window.RulesCore = (() => {
     });
   }
 
-  return { Dice, evaluate, validateArmy, unitContext, upgradeEligibility, keywordTargets, matchesKeywordTarget, detachmentLimits, entourageExemptions, armyRank, slotKey, accessKeys, slotGrantsFor, dedicatedSlotKeys, slotListFor, restrictionConditionOk, requiredPropertiesOk, normRp, buildNameIndex, unavailableSets, unitCapFor, commandUnitRequirements };
+  return { Dice, evaluate, validateArmy, unitContext, upgradeEligibility, keywordTargets, matchesKeywordTarget, detachmentLimits, entourageExemptions, armyRank, slotKey, accessKeys, slotGrantsFor, dedicatedSlotKeys, equipSlotKeys, slotListFor, restrictionConditionOk, requiredPropertiesOk, normRp, buildNameIndex, unavailableSets, unitCapFor, commandUnitRequirements };
 })();
