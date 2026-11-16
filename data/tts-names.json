@@ -5579,5 +5579,115 @@
         "Gl"
       ]
     }
+  },
+  "battleForces": {
+    "7": {
+      "name": "Imperial Remnant",
+      "hqIds": [
+        "ir"
+      ],
+      "factionId": 2
+    },
+    "8": {
+      "name": "Mandalorian Clans",
+      "hqIds": [
+        "mc"
+      ],
+      "factionId": 8
+    },
+    "9": {
+      "name": "Shadow Collective",
+      "hqIds": [
+        "sc"
+      ],
+      "factionId": 9
+    },
+    "10": {
+      "name": "Stormtrooper Battalion",
+      "hqIds": [
+        "sb"
+      ],
+      "factionId": 2
+    },
+    "11": {
+      "name": "Separatist Invasion",
+      "hqIds": [
+        "si"
+      ],
+      "factionId": 5
+    },
+    "12": {
+      "name": "212th Attack Battalion",
+      "hqIds": [
+        "2t"
+      ],
+      "factionId": 4,
+      "aliases": [
+        "212 Attack Battalion"
+      ]
+    },
+    "13": {
+      "name": "Echo Base Defenders",
+      "hqIds": [
+        "ebd"
+      ],
+      "factionId": 1
+    },
+    "14": {
+      "name": "The Ohnaka Gang",
+      "hqIds": [
+        "og"
+      ],
+      "factionId": 9
+    },
+    "15": {
+      "name": "Rapid Interdiction Force",
+      "hqIds": [
+        "rf"
+      ],
+      "factionId": 5
+    },
+    "16": {
+      "name": "501st Legion",
+      "hqIds": [
+        "5t"
+      ],
+      "factionId": 4
+    },
+    "17": {
+      "name": "Blizzard Force",
+      "hqIds": [
+        "bf"
+      ],
+      "factionId": 2
+    },
+    "18": {
+      "name": "Bright Tree Village",
+      "hqIds": [
+        "btv"
+      ],
+      "factionId": 1
+    },
+    "19": {
+      "name": "Tempest Force",
+      "hqIds": [
+        "tf"
+      ],
+      "factionId": 2
+    },
+    "20": {
+      "name": "Experimental Droids",
+      "hqIds": [
+        "exd"
+      ],
+      "factionId": 5
+    },
+    "21": {
+      "name": "Wookiee Defenders",
+      "hqIds": [
+        "wd"
+      ],
+      "factionId": 4
+    }
   }
 }

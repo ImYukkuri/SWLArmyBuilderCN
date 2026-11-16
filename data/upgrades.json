@@ -1,7 +1,7 @@
 {
   "schema": "swl-upgrades/v1",
   "referenceVersion": "2026.11.04.0",
-  "updatedAt": "2026-11-16T07:44:45.581389+00:00",
+  "updatedAt": "2026-11-16T10:54:23.483224+00:00",
   "cards": [
     {
       "id": "21b-medical-droid",
@@ -14126,7 +14126,8 @@
         "limit": 1,
         "factions": [
           1,
-          8
+          8,
+          2
         ],
         "slotTypes": [
           12
@@ -53433,7 +53434,7 @@
       "id": "waxer",
       "name": {
         "en": "Waxer",
-        "zh": "打蜡"
+        "zh": "蜡匠"
       },
       "actionTypes": [],
       "points": 20,
@@ -53459,10 +53460,12 @@
           "id": "leader"
         },
         {
-          "id": "disciplined"
+          "id": "disciplined",
+          "value": 1
         },
         {
-          "id": "scout"
+          "id": "scout",
+          "value": 1
         }
       ],
       "weapons": [],

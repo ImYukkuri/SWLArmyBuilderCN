@@ -13,7 +13,7 @@
 | points | 现有规则引擎计算的已用点数，不是上限 |
 | numActivations | 独立单位实例数量，合并显示的相同单位仍逐条导出 |
 | armyFaction | 义军 rebel、帝国 empire、共和国 republic、分离主义 separatist |
-| battleForce | 有战斗部队时输出英文名称，HQ 已支持此可选字段 |
+| battleForce | 使用 battleForces 映射中的标准英文引用，独立于可编辑显示名称 |
 | commandCards | 指挥卡英文引用；Standing Orders 输出一次 |
 | contingencies | 备用指挥卡；导入保留在 contingencyIds 中并可再次导出，当前无专门编辑界面 |
 | units | 单位英文名＋称号；upgrades 为实体升级卡英文名称数组 |
@@ -27,6 +27,34 @@
 TTS 没有分数上限。导入 standard 默认 1000，recon 默认 600，均可在预览时修改；不能把示例的 983 已用点数当作 983 分上限。现有“600 及以下侦察、超过 600 标准”的规则继续适用。卡牌点数更新导致原文件与本地计算不同，会显示双方数值，不覆盖本地点数。
 
 曼达洛人和暗影集会在当前 HQ 导出实现中仍出现空 armyFaction；本工具输出 `mandalorian`／`mercenary` 并附带 `Mandalorian Clans`／`Shadow Collective`，界面明确提示需核对接收模组版本。导入可指定缺失势力。不能保证所有旧 TTS 模组都识别这两类代码。
+
+## 战斗部队名称
+
+2026-11-16 对照 [Legion HQ 战斗部队索引](https://legionhq2.com/static/js/471.f021ef23.chunk.js)，本地 15 个战斗部队全部建立 `data/tts-names.json.battleForces` 映射，包含标准名称、HQ ID 和本地所属势力 ID。运行时读取本地映射，不请求上游。
+
+| 本地 ID | 标准 TTS 名称 | 所属势力 |
+| --- | --- | --- |
+| 7 | Imperial Remnant | 银河帝国 |
+| 8 | Mandalorian Clans | 曼达洛人 |
+| 9 | Shadow Collective | 暗影集会 |
+| 10 | Stormtrooper Battalion | 银河帝国 |
+| 11 | Separatist Invasion | 分离主义 |
+| 12 | 212th Attack Battalion | 银河共和国 |
+| 13 | Echo Base Defenders | 义军 |
+| 14 | The Ohnaka Gang | 暗影集会／佣兵 |
+| 15 | Rapid Interdiction Force | 分离主义 |
+| 16 | 501st Legion | 银河共和国 |
+| 17 | Blizzard Force | 银河帝国 |
+| 18 | Bright Tree Village | 义军 |
+| 19 | Tempest Force | 银河帝国 |
+| 20 | Experimental Droids | 分离主义 |
+| 21 | Wookiee Defenders | 银河共和国 |
+
+原先导入仅匹配名称字典，212 的本地英文名 `212 Attack Battalion` 缺少 `th`，因此无法匹配。现在兼容两种写法，导出始终使用标准名。其余 14 项没有发现同类拼写差异；另修正奥纳卡帮缺少所属势力映射的问题。用户提供的 212 示例已验证 9 激活、999 分及全部升级、指挥卡和任务／优势卡往返导入导出。
+
+规则库 → 战斗部队可修改中英文显示名称；保存同步 `slot-rules.json` 与 `catalog-definitions.json`，旧英文名保留在 `nameAliases`。改名不会改变固定 ID、规则关联和标准 TTS 引用。遇到未知、重复或势力不符的战斗部队名称时，导入暂停并提供当前势力内的搜索选择器，不自动猜测。
+
+HQ 中的 224th Armored Division、Children of the Watch、Clan Kryze、Clan Saxon、Clan Wren、Custom Clan 尚无本地战斗部队规则，不能直接导入为这些部队；需明确选择本地已有部队。名称映射不代表补齐了缺失规则。
 
 ## 双面卡与伙伴
 

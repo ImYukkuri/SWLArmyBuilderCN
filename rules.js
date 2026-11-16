@@ -1,6 +1,6 @@
 /* Rule library editor for data/slot-rules.json (semantic rule package). */
 const {el,api}=EditorCommon,$=s=>document.querySelector(s);
-let rules,defs,revision,dirty=false,tab='slots';
+let rules,defs,revision,definitionsRevision,ttsNames={},dirty=false,tab='slots';
 let bfId=null,bfData=null,bfPreview={unitId:'',cardId:''};
 function status(t,error=false){$('#status').textContent=t;$('#status').classList.toggle('error',error)}
 function setDirty(){dirty=true;$('#dirty').textContent='有未保存修改';$('#raw-json').value=JSON.stringify(rules,null,2)}
@@ -288,7 +288,9 @@ function renderBattleForces(){
   const layout=el('div');layout.className='bf-editor';
   const aside=el('aside');aside.className='bf-list';
   for(const id of ids){
-    const b=el('button',id+' · '+(rules.battleForces[id].name||''));
+    const bf=rules.battleForces[id],name=defs.armies.find(a=>String(a.id)===id)?.name;
+    const b=el('button',id+' · '+(bf.nameZh||name?.zh||bf.name||''));
+    b.dataset.forceId=id;
     b.className=id===bfId?'active':'';
     b.onclick=()=>{bfId=id;bfPreview={unitId:'',cardId:''};renderBattleForces()};
     aside.append(b);
@@ -297,9 +299,20 @@ function renderBattleForces(){
   const main=el('div');main.className='bf-main';
   const bf=rules.battleForces[bfId];
   const head=el('div');head.className='bf-head';
-  head.append(el('h2',bf.name||''));
+  const definition=defs.armies.find(a=>String(a.id)===bfId);
+  head.append(el('h2',bf.nameZh||definition?.name.zh||bf.name||''));
   const sub=el('p','所属阵营：'+(bf.parentFaction||'未标注')+' · 规则类型：'+(bf.status==='quotas_only'?'仅军阶配额':'规则 + 配额'));sub.className='hint';head.append(sub);
   main.append(head);
+
+  const names=el('section');names.className='bf-section bf-names';
+  names.append(el('h3','名称'),
+    EditorCommon.field('中文名称',bf.nameZh||definition?.name.zh||'',v=>{bf.nameZh=v;setDirty()}),
+    EditorCommon.field('英文名称',bf.name||definition?.name.en||'',v=>{bf.name=v;setDirty()}));
+  const canonical=ttsNames.battleForces?.[bfId]?.name;
+  names.append(el('p',canonical?'TTS 标准名称：'+canonical+'。修改显示名称不会改变导出引用，旧英文名称仍可导入。'
+    :'未校对 TTS 名称；导出时使用英文名称并提示。'));
+  const hint=el('p','保存后同步写表器与单位编辑器的战斗部队名称；固定 ID '+bfId+' 和规则关联保持不变。');hint.className='hint';names.append(hint);
+  main.append(names);
 
   /* quotas */
   const qbox=el('div');qbox.className='bf-section';
@@ -347,14 +360,15 @@ function setTab(t){tab=t;for(const k of ['slots','dedicated','upgradeRules','bat
 async function reload(){
   if(dirty&&!confirm('放弃未保存修改？'))return;
   try{
-    let loaded=null;revision=null;
-    try{const resp=await api('/api/slot-rules');loaded=resp.rules;revision=resp.revision}catch(e){loaded=await fetch('data/slot-rules.json').then(r=>r.json())}
+    let loaded=null;revision=null;definitionsRevision=null;
+    try{const resp=await api('/api/slot-rules');loaded=resp.rules;revision=resp.revision;definitionsRevision=resp.definitionsRevision}catch(e){loaded=await fetch('data/slot-rules.json').then(r=>r.json())}
     rules=loaded;
     defs=await fetch('data/catalog-definitions.json').then(r=>r.json());
+    ttsNames=await fetch('data/tts-names.json').then(r=>r.json());
     dirty=false;$('#dirty').textContent='';render();$('#raw-json').value=JSON.stringify(rules,null,2);status('')
   }catch(e){status(e.message,true)}
 }
-$('#save').onclick=async()=>{try{if(tab==='json'){rules=JSON.parse($('#raw-json').value)}$('#save').disabled=true;const resp=await fetch('/api/slot-rules/save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({rules,revision})});const text=await resp.text();let r;try{r=JSON.parse(text)}catch{throw Error('保存需要 python server.py（当前静态服务无法写回源文件）。')}if(!resp.ok)throw Error(r.error||('HTTP '+resp.status));revision=r.revision;dirty=false;$('#dirty').textContent='';if(window.SaveUI)SaveUI.flashSaved();render();status('已保存规则包；备份 history/slot-rules/'+r.snapshot)}catch(e){if(window.SaveUI)SaveUI.fail(e,reload);else status(e.message,true)}finally{$('#save').disabled=false}};
+$('#save').onclick=async()=>{try{if(tab==='json'){rules=JSON.parse($('#raw-json').value)}$('#save').disabled=true;const resp=await fetch('/api/slot-rules/save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({rules,revision,definitionsRevision})});const text=await resp.text();let r;try{r=JSON.parse(text)}catch{throw Error('保存需要 python server.py（当前静态服务无法写回源文件）。')}if(!resp.ok)throw Error(r.error||('HTTP '+resp.status));revision=r.revision;definitionsRevision=r.definitionsRevision;rules=r.rules||rules;defs=r.definitions||defs;dirty=false;$('#dirty').textContent='';if(window.SaveUI)SaveUI.flashSaved();render();status('已保存规则包与名称；备份 history/slot-rules/'+r.snapshot)}catch(e){if(window.SaveUI)SaveUI.fail(e,reload);else status(e.message,true)}finally{$('#save').disabled=false}};
 $('#apply-json').onclick=()=>{try{rules=JSON.parse($('#raw-json').value);setDirty();render();setTab('slots')}catch(e){status('JSON 无效：'+e.message,true)}};
 $('#raw-json').oninput=()=>setDirty();
 $('#reload').onclick=reload;

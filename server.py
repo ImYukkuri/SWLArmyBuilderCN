@@ -8,6 +8,7 @@ from PIL import Image
 from catalog_schema import DEFINITIONS,migrate_legacy,validate_unit_classification,validate_keyword_targets
 import maintenance_store
 import rules
+from unit_identity import rename_documents, resolve_id, rewrite_references
 from rule_schema import validate_rules
 
 ROOT=Path(__file__).resolve().parent;DATA=ROOT/'data/units.json';HISTORY=ROOT/'history'
@@ -167,6 +168,7 @@ def commit_card(card,revision,create=False):
         original=DATA.read_bytes()
         if revision!=digest(original):raise FileExistsError('源文件已发生修改，请重新载入后合并修改；未覆盖你的草稿。')
         catalog=json.loads(original);index=next((i for i,c in enumerate(catalog['units'])if c['id']==card['id']),None)
+        if create and card['id'] in catalog.get('idAliases',{}):raise ValueError('该 ID 用于旧军表兼容，不能重复使用')
         if index is None and not create:raise ValueError('单位 ID 不存在；为避免误覆盖，不允许直接更改 ID')
         if index is not None and create:raise ValueError('该单位 ID 已存在')
         stamp=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S.%fZ');snapshot=stamp+'-'+digest(original)[:12]+'.json'
@@ -177,20 +179,87 @@ def commit_card(card,revision,create=False):
         catalog['updatedAt']=datetime.now(timezone.utc).isoformat()
         content=encoded(catalog);atomic(DATA,content)
         return {'revision':digest(content),'card':card,'snapshot':snapshot}
-def commit_rules(package,revision):
+def rename_unit(old_id,new_id,revision):
+    with LOCK, maintenance_store.LOCK:
+        paths={'units.json':DATA,**{name:ROOT/'data'/name for name in
+            ['upgrades.json','catalog-definitions.json','slot-rules.json','armies.json','tts-names.json']}}
+        original={name:path.read_bytes() for name,path in paths.items() if path.is_file()}
+        if revision!=digest(original['units.json']):raise FileExistsError('单位源文件已修改，请重新载入后再修改 ID')
+        documents={name:json.loads(raw) for name,raw in original.items()}
+        renamed=rename_documents(documents,old_id,new_id)
+        stamp=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S.%fZ')
+        snapshot=stamp+'-'+digest(original['units.json'])[:12]+'.json'
+        updates={name:encoded(doc) for name,doc in renamed.items() if doc!=documents[name]}
+        atomic(HISTORY/snapshot,original['units.json'])
+        for name in updates:atomic(ROOT/'history/unit-id-changes'/stamp/name,original[name])
+        written=[]
+        try:
+            for name,content in updates.items():
+                # Recheck files changed outside this process before replacing them.
+                if paths[name].read_bytes()!=original[name]:raise FileExistsError('关联数据已修改，请重新载入后重试')
+                atomic(paths[name],content);written.append(name)
+        except Exception:
+            for name in reversed(written):atomic(paths[name],original[name])
+            raise
+        return {'revision':digest(updates['units.json']),'snapshot':snapshot,
+                'card':next(u for u in renamed['units.json']['units'] if u['id']==new_id),
+                'changedFiles':list(updates),'oldId':old_id,'newId':new_id}
+
+
+def commit_rules(package,revision,definitions_revision=None):
     if not isinstance(package,dict):raise ValueError('规则包必须为对象')
     if package.get('schema')!='swl-rules/v1':raise ValueError('规则包 schema 必须为 swl-rules/v1')
     if not isinstance(package.get('slots'),list)or not package['slots']:raise ValueError('slots 必须为非空数组')
     for s in package['slots']:
         if not isinstance(s,dict)or not isinstance(s.get('id'),str)or not isinstance(s.get('sourceId'),int)or s.get('kind')not in ['category','counterpart','dedicated']:raise ValueError('槽位注册表项无效')
     path=ROOT/'data/slot-rules.json'
-    with LOCK:
+    with LOCK, maintenance_store.LOCK:
         original=path.read_bytes()
         if revision!=digest(original):raise FileExistsError('规则包源文件已修改，请重新载入后合并。')
+        package=copy.deepcopy(package)
+        previous=json.loads(original)
+        definitions_path=ROOT/'data/catalog-definitions.json'
+        definitions_bytes=definitions_path.read_bytes()
+        definitions=json.loads(definitions_bytes)
+        armies={str(a['id']):a for a in definitions['armies']}
+        renamed=False
+        for key,bf in package.get('battleForces',{}).items():
+            if not isinstance(bf,dict):raise ValueError('战斗部队必须为对象')
+            old=previous.get('battleForces',{}).get(key,{})
+            army=armies.get(key)
+            for field in ['name','nameZh']:
+                if field in bf and (not isinstance(bf[field],str) or not bf[field].strip()):
+                    raise ValueError('战斗部队中英文名称不能为空')
+            if 'nameAliases' in bf and (not isinstance(bf['nameAliases'],list) or
+                    any(not isinstance(n,str) or not n.strip() for n in bf['nameAliases'])):
+                raise ValueError('战斗部队旧名称必须为非空文本数组')
+            name=bf.get('name',old.get('name'))
+            zh=bf.get('nameZh',old.get('nameZh',army['name']['zh'] if army else ''))
+            changed=name!=old.get('name') or zh!=old.get('nameZh',army['name']['zh'] if army else '')
+            if not changed:continue
+            if not army:raise ValueError('战斗部队 ID 不存在，不能通过改名新建部队')
+            if definitions_revision!=digest(definitions_bytes):
+                raise FileExistsError('名称字典已修改，请重新载入后合并；尚未保存任何修改。')
+            name=name.strip();zh=zh.strip()
+            aliases=[*old.get('nameAliases',[]),*bf.get('nameAliases',[]),old.get('name'),army['name']['en']]
+            bf['nameAliases']=list(dict.fromkeys(n for n in aliases if n and n!=name))
+            bf['name']=name;bf['nameZh']=zh
+            army['name']={'en':name,'zh':zh}
+            renamed=True
         stamp=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S.%fZ');snapshot=stamp+'-'+digest(original)[:12]+'.json'
         (ROOT/'history/slot-rules').mkdir(parents=True,exist_ok=True);atomic(ROOT/'history/slot-rules'/snapshot,original)
-        content=encoded(package);atomic(path,content)
-        return {'revision':digest(content),'snapshot':snapshot}
+        content=encoded(package)
+        if renamed:
+            atomic(ROOT/'history/battleforce-names'/(stamp+'-'+digest(definitions_bytes)[:12]+'.json'),definitions_bytes)
+            definitions['updatedAt']=datetime.now(timezone.utc).isoformat()
+            atomic(definitions_path,encoded(definitions))
+        try:atomic(path,content)
+        except Exception:
+            if renamed:atomic(definitions_path,definitions_bytes)
+            raise
+        return {'revision':digest(content),'snapshot':snapshot,'rules':package,
+                'definitionsRevision':digest(encoded(definitions) if renamed else definitions_bytes),
+                'definitions':definitions}
 class Handler(BaseHTTPRequestHandler):
     def reply(self,status,value,kind='application/json; charset=utf-8'):
         body=encoded(value)if not isinstance(value,bytes)else value
@@ -219,8 +288,11 @@ class Handler(BaseHTTPRequestHandler):
                 if slot_rules.is_file(): definitions['slotRules']=json.loads(slot_rules.read_bytes())
                 return self.reply(200,definitions)
             if path=='/api/slot-rules':
-                content=(ROOT/'data/slot-rules.json').read_bytes()
-                return self.reply(200,{'revision':digest(content),'rules':json.loads(content)})
+                with LOCK, maintenance_store.LOCK:
+                    content=(ROOT/'data/slot-rules.json').read_bytes()
+                    definitions=(ROOT/'data/catalog-definitions.json').read_bytes()
+                return self.reply(200,{'revision':digest(content),'rules':json.loads(content),
+                    'definitionsRevision':digest(definitions)})
             if path.startswith('/api/evidence/'):
                 key=path.removeprefix('/api/evidence/');records=json.loads((ROOT/'data/extraction-evidence.json').read_bytes())['units']
                 if key not in records:return self.reply(404,{'error':'没有此单位的提取依据'})
@@ -272,6 +344,7 @@ class Handler(BaseHTTPRequestHandler):
                 if ';base64'not in head:raise ValueError('需要 base64 图片')
                 return self.reply(200,save_unit_image(data['id'],base64.b64decode(b64),data['revision']))
             if path=='/api/save':return self.reply(200,commit_card(copy.deepcopy(data['card']),data['revision'],bool(data.get('create'))))
+            if path=='/api/units/rename':return self.reply(200,rename_unit(data['id'],data['newId'],data['revision']))
             if path in ['/api/upgrades/save','/api/armies/save','/api/armies/create','/api/commands/save','/api/keywords/save']:
                 kind=path.split('/')[2];return self.reply(200,maintenance_store.save(kind,copy.deepcopy(data['card']),data['revision'],path.endswith('/create')or bool(data.get('create'))))
             if path in ['/api/upgrades/restore','/api/armies/restore','/api/commands/restore','/api/keywords/restore']:
@@ -284,13 +357,17 @@ class Handler(BaseHTTPRequestHandler):
             if path=='/api/restore':
                 name=data['snapshot']
                 if not re.fullmatch(r'\d{8}T\d{6}\.\d{6}Z-[a-f0-9]{12}\.json',name):raise ValueError('历史文件名称无效')
-                old=json.loads((HISTORY/name).read_bytes());card=next((u for u in old['units']if u['id']==data['id']),None)
+                old=json.loads((HISTORY/name).read_bytes())
+                aliases=json.loads(DATA.read_bytes()).get('idAliases',{})
+                card=next((u for u in old['units']if resolve_id(u['id'],aliases)==data['id']),None)
                 if card is None:raise ValueError('该版本没有此单位')
+                for previous,current in aliases.items():card=rewrite_references(card,previous,current)
+                card['id']=data['id']
                 return self.reply(200,commit_card(card,data['revision']))
             if path=='/api/candidates':
                 return self.reply(200,rules.query_candidates(data.get('unitId')))
             if path=='/api/slot-rules/save':
-                return self.reply(200,commit_rules(data['rules'],data['revision']))
+                return self.reply(200,commit_rules(data['rules'],data['revision'],data.get('definitionsRevision')))
             return self.reply(404,{'error':'没有此操作'})
         except FileExistsError as e:return self.reply(409,{'error':str(e)})
         except (OSError,ValueError,KeyError,TypeError)as e:return self.reply(400,{'error':str(e)})

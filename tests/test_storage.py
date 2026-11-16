@@ -69,6 +69,17 @@ class StorageTest(unittest.TestCase):
         self.assertEqual(r['revision'],server.digest(self.path.read_bytes()))
         with self.assertRaises(FileExistsError):server.commit_card(self.card,server.digest(before))
         self.assertEqual(len(list(self.history.glob('*.json'))),1)
+    def test_new_and_copied_cards_accept_custom_ids_without_replacing_source(self):
+        before=copy.deepcopy(self.catalog)
+        card=copy.deepcopy(self.card);card['id']='custom-new-unit';card['assets']['front']=None
+        result=server.commit_card(card,server.digest(self.path.read_bytes()),create=True)
+        saved=json.loads(self.path.read_bytes())
+        self.assertEqual(saved['units'][:-1],before['units'])
+        self.assertEqual(saved['units'][-1]['id'],'custom-new-unit')
+        with self.assertRaises(ValueError):server.commit_card(card,result['revision'],create=True)
+        saved['idAliases']={'reserved-old-id':'custom-new-unit'};self.path.write_bytes(server.encoded(saved))
+        card['id']='reserved-old-id'
+        with self.assertRaises(ValueError):server.commit_card(card,server.digest(self.path.read_bytes()),create=True)
     def test_invalid_does_not_change_file(self):
         before=self.path.read_bytes();self.card['assets']['portraitCrop']=[.9,0,.1,1]
         with self.assertRaises(ValueError):server.commit_card(self.card,server.digest(before))

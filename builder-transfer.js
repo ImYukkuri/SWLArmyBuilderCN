@@ -11,6 +11,7 @@ window.BuilderTransfer = (() => {
   function catalogs(data) {
     return {units:Object.values(data.units).filter(u=>!u.isCounterpart&&u.usage!=='counterpart'),
       upgrades:Object.values(data.upgrades),commands:data.defs.commands,
+      battleForce:data.defs.armies.filter(a=>data.pkg.battleForces?.[String(a.id)]),
       battle:[...new Map(Object.values(data.deckData).filter(Array.isArray).flat().map(c=>[c.id,c])).values()]};
   }
   function reference(kind, card, data, host = null) {
@@ -51,6 +52,15 @@ window.BuilderTransfer = (() => {
       narrow(c=>RulesCore.accessKeys(c,data.pkg,data.pkg.upgradeRules?.[String(c.upstream?.id)]||{}).some(k=>slots.some(s=>s.key===k)));
     }
     return hits;
+  }
+  function resolveBattleForce(name, data) {
+    const key=normalizeName(name);
+    if(!key)return [];
+    return catalogs(data).battleForce.filter(a=>{
+      const ref=data.ttsNames?.battleForces?.[a.id],local=data.pkg.battleForces[a.id];
+      return [ref?.name,...(ref?.aliases||[]),a.name.en,local.name,...(local.nameAliases||[])]
+        .some(n=>n&&normalizeName(n)===key);
+    });
   }
   function parse(text) {
     const raw=String(text).replace(/^\uFEFF/,'').trim();
@@ -99,8 +109,12 @@ window.BuilderTransfer = (() => {
       points:RulesCore.validateArmy(army,data).effectivePoints,numActivations:army.units.length,
       armyFaction:factionCode||'',commandCards:[],contingencies:[],units:[],
       battlefieldDeck:{conditions:[],deployment:[],objective:[],scenario:army.mode==='recon'?'recon':'standard'},listlink:''};
-    if(army.armyId!==faction) out.battleForce=data.defs.armies.find(a=>a.id===army.armyId)?.name.en;
-    else if(faction===8||faction===9)out.battleForce=faction===8?'Mandalorian Clans':'Shadow Collective';
+    if(data.pkg.battleForces?.[army.armyId]) {
+      const ref=data.ttsNames?.battleForces?.[army.armyId];
+      out.battleForce=ref?.name||data.defs.armies.find(a=>a.id===army.armyId)?.name.en;
+      if(!ref)warnings.push('战斗部队英文引用未校对：'+(out.battleForce||army.armyId));
+      if(!out.battleForce)issues.push('战斗部队缺少英文名称');
+    }
     const command=id=>data.defs.commands.find(c=>String(c.id)===String(id));
     for(const id of army.commandIds.filter(Boolean))out.commandCards.push(name('commands',command(id),'指挥卡 '+id));
     out.commandCards=out.commandCards.filter(n=>n!=='Standing Orders');out.commandCards.push('Standing Orders');
@@ -146,9 +160,13 @@ window.BuilderTransfer = (() => {
   function importTTS(obj,data,makeId,now,{pointsLimit,resolutions={},factionId}={}) {
     if(detect(obj)!=='tts')throw Error('所选文件不是 TTS JSON格式。');
     if(obj.units.length>150)throw Error('单位数量超过 150。');
+    if(obj.battleForce!=null&&typeof obj.battleForce!=='string')throw Error('battleForce 必须为英文名称字符串。');
+    const forces=obj.battleForce?resolveBattleForce(obj.battleForce,data):[];
+    const resolvedForce=resolutions.battleForce
+      ? catalogs(data).battleForce.find(a=>String(a.id)===String(resolutions.battleForce))
+      : forces.length===1?forces[0]:null;
     let faction=factionIds[obj.armyFaction.toLowerCase()]||Number(factionId);
-    if(!faction && obj.battleForce==='Shadow Collective')faction=9;
-    if(!faction && obj.battleForce==='Mandalorian Clans')faction=8;
+    if(!faction&&resolvedForce)faction=BuilderLibrary.factionOf(resolvedForce.id,data);
     if(!factionCodes[faction])throw Error('无法识别势力“'+obj.armyFaction+'”，请在导入选项中指定势力。');
     const scenario=obj.battlefieldDeck?.scenario||'standard',warnings=[],issues=[];
     if(!['standard','recon'].includes(scenario))throw Error('暂不支持场景：'+scenario);
@@ -156,8 +174,11 @@ window.BuilderTransfer = (() => {
     const record=BuilderLibrary.create(faction,typeof obj.listname==='string'?obj.listname:'导入军表',data,makeId,now);
     const army=record.army;army.pointsLimit=cap;army.mode=BuilderLibrary.modeForPoints(cap);
     if(obj.battleForce) {
-      const force=data.defs.armies.find(a=>normalizeName(a.name.en)===normalizeName(obj.battleForce));
-      if(force)army.armyId=force.id;else issues.push({key:'battleForce',kind:'battleForce',name:obj.battleForce,message:'找不到战斗部队'});
+      const matchesFaction=resolvedForce&&BuilderLibrary.factionOf(resolvedForce.id,data)===faction;
+      if(matchesFaction)army.armyId=resolvedForce.id;
+      else issues.push({key:'battleForce',kind:'battleForce',name:obj.battleForce,
+        factionId:faction,candidates:forces.filter(a=>BuilderLibrary.factionOf(a.id,data)===faction).map(a=>a.id),
+        message:resolvedForce?'战斗部队与所选势力不匹配':forces.length>1?'战斗部队名称存在多个匹配':'找不到战斗部队，请指定对应项'});
     }
     function get(kind,n,key,context={}) {
       if(typeof n!=='string'||!n.trim())throw Error(key+' 必须为非空英文名称。');
@@ -213,5 +234,5 @@ window.BuilderTransfer = (() => {
     if(obj.numActivations!=null&&obj.numActivations!==obj.units.length)warnings.push('原文件激活数与单位条目数量不同；本地按实际单位数量计算。');
     return {record,issues,warnings:[...new Set(warnings)]};
   }
-  return {normalizeName,catalogs,reference,resolve,parse,detect,readNative,exportTTS,importTTS,assignSlots};
+  return {normalizeName,catalogs,reference,resolve,resolveBattleForce,parse,detect,readNative,exportTTS,importTTS,assignSlots};
 })();

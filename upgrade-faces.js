@@ -24,6 +24,12 @@ window.UpgradeFaces = (() => {
   }
   // Migrate only recognized old back IDs. Never drop unknown selections.
   function normalizeArmy(army, data) {
+    for (const inst of army.units || []) {
+      const aliases=data.unitIdAliases||{},seen=new Set();
+      while(Object.hasOwn(aliases,inst.unitId)&&!seen.has(inst.unitId)) {
+        seen.add(inst.unitId);inst.unitId=aliases[inst.unitId];
+      }
+    }
     for (const inst of army.units || []) for (const choice of inst.upgrades || []) {
       const card = data.upgrades[choice.upgradeId];
       if (!card) continue;

@@ -270,6 +270,16 @@ body.maintenance-editor { --bg:#eef1f4;--panel:#fff;--line:#d2dde5;--ink:#253540
   .equip-editor .equip-add { flex-direction:column; align-items:stretch; }
 }
 .keyword-parameter-control { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.unit-id-control { display:flex; flex-wrap:wrap; gap:6px; min-width:0; }
+.unit-id-control input { flex:1; min-width:120px; }
+.unit-id-control small { flex-basis:100%; color:#60788a; }
+.unit-id-dialog { width:min(520px,calc(100vw - 36px)); padding:22px; border:1px solid #aebfcc; border-radius:8px; color:#203b4e; background:#f7fafc; }
+.unit-id-dialog::backdrop { background:#152f4666; }
+.unit-id-dialog > label { display:flex; gap:9px; align-items:center; margin:16px 0; }
+.unit-id-dialog input:not([type=checkbox]) { min-width:0; flex:1; }
+.unit-id-dialog input[type=checkbox] { width:auto; }
+.unit-id-dialog [role=status] { color:#a53f43; }
+.bf-names > p { overflow-wrap:anywhere; }
 .keyword-parameter-control > input, .keyword-parameter-control > select { width: 100%; min-width: 0; }
 .unit-classification { min-width: 0; }
 .classification-fields { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; }

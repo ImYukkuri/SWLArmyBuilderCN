@@ -15,6 +15,8 @@ def audit():
         'upgrades': read('upgrades.json')['cards'],
         'commands': read('catalog-definitions.json')['commands'],
         'battle': list({c['id']: c for v in deck.values() if isinstance(v, list) for c in v}.values()),
+        'battleForces': [a for a in read('catalog-definitions.json')['armies']
+                         if str(a['id']) in read('slot-rules.json')['battleForces']],
     }
     report = {}
     for kind, cards in collections.items():

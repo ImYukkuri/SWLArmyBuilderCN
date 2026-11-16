@@ -1,6 +1,6 @@
 {
   "schema": "swl-unit-catalog/v2",
-  "updatedAt": "2026-11-16T10:18:17.131234+00:00",
+  "updatedAt": "2026-11-16T10:57:49.922079+00:00",
   "definitions": "catalog-definitions.json",
   "referenceVersion": "2026.11.04.0",
   "units": [
@@ -12954,7 +12954,7 @@
       "stats": {
         "models": 1,
         "wounds": 6,
-        "courage": 7,
+        "courage": 3,
         "resilience": null,
         "speed": 2,
         "defenseDie": "red",
@@ -15097,7 +15097,7 @@
         },
         {
           "id": "independent",
-          "parameter": "Aim 1 AND Dobpge 1"
+          "parameter": "瞄准1 和 闪避 1"
         },
         {
           "id": "tactical",

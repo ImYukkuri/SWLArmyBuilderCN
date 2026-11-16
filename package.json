@@ -1,6 +1,6 @@
 {
   "name": "swlarmybuildercn",
-  "version": "0.11.3",
+  "version": "0.12.0",
   "description": "Local Chinese Star Wars Legion unit card data editor",
   "main": "index.js",
   "scripts": {

@@ -83,6 +83,7 @@ async function load() {
     ]);
     data = {
       units: Object.fromEntries(uj.units.map((u) => [u.id, u])),
+      unitIdAliases: uj.idAliases || {},
       upgrades: UpgradeFaces.index(gj.cards),
       defs: dj,
       pkg: pj,

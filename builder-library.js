@@ -13,6 +13,8 @@ window.BuilderLibrary = (() => {
   function factionOf(armyId, data) {
     const id = Number(armyId);
     if (FACTIONS.some((f) => f.id === id)) return id;
+    const mapped = data.ttsNames?.battleForces?.[id]?.factionId;
+    if (FACTIONS.some(f => f.id === mapped)) return mapped;
     const definition = data.defs.armies.find((a) => a.id === id);
     const parent = definition?.parentName || data.pkg.battleForces?.[id]?.parentFaction;
     return (
@@ -36,9 +38,7 @@ window.BuilderLibrary = (() => {
     return data.defs.armies.filter(
       (a) =>
         a.id !== base.id &&
-        [a.parentName, data.pkg.battleForces?.[a.id]?.parentFaction].some(
-          (parent) => parent && [base.name.en, base.name.zh].includes(parent),
-        ),
+        !!data.pkg.battleForces?.[a.id] && factionOf(a.id, data) === base.id,
     );
   }
   function modeForPoints(points) {

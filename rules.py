@@ -8,6 +8,8 @@ snapshot is a development-time source only and is not loaded at runtime.
 from __future__ import annotations
 
 import json
+import copy
+from unit_identity import resolve_id
 from upgrade_schema import normalize_army_faces
 import re
 from pathlib import Path
@@ -753,6 +755,11 @@ def upgrade_eligibility(card, unit, army, package, definitions, name_index, equi
 def validate_army(army):
     package = load_package()
     units, upgrades, definitions = load_cards()
+    aliases = _read('data/units.json').get('idAliases', {})
+    if aliases:
+        army = copy.deepcopy(army)
+        for inst in army.get('units', []):
+            inst['unitId'] = resolve_id(inst.get('unitId'), aliases)
     army = normalize_army_faces(army, upgrades, units)
 
     issues = []

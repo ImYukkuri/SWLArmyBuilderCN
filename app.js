@@ -12,6 +12,7 @@ function get(path){return path.reduce((o,k)=>o[k],draft)}
 function put(path,value){const p=path.slice(),k=p.pop();get(p)[k]=value;if(k==='usage'){draft.isCounterpart=value==='counterpart';if(draft.isCounterpart)draft.rankId=null}if(k==='action')delete get(p).actionDetection;setDirty()}
 function displayPath(path){return path.map(x=>labels[x]||x).join(' / ')}
 function formField(key,value,path){
+  if(key==='id'&&path.length===1)return unitIdControl();
   const row=el('label');row.className='field';row.title=path.join('.');row.append(el('span',labels[key]||key));let control;
   const table=referenceTable(key,path);if(table==='keywords')row.firstChild.textContent='词条 ID';else if(table==='armies')row.firstChild.textContent='军队 ID';
   if(path.includes('keywords')&&key==='parameter'){
@@ -23,7 +24,46 @@ function formField(key,value,path){
   else if(typeof value==='number'||(value===null&&['points','models','wounds','courage','resilience','speed','min','max','red','black','white','value'].includes(key))){control=el('input');control.type='number';control.step='1';control.value=value??'';control.placeholder='未确认 / null';control.addEventListener('input',()=>put(path,control.value===''?null:Number(control.value)))}
   else if(value===null){control=el('textarea');control.value='null';control.setAttribute('aria-label',displayPath(path));control.addEventListener('change',()=>{try{put(path,JSON.parse(control.value));status('字段已应用')}catch{status('该字段需要有效 JSON，例如 null 或 []',true)}})}
   else{control=el(String(value).length>80?'textarea':'input');control.value=value;control.addEventListener('input',()=>put(path,control.value))}
-  control.setAttribute('aria-label',displayPath(path));if(key==='id'&&path.length===1)control.disabled=true;row.append(control);return row;
+  control.setAttribute('aria-label',displayPath(path));row.append(control);return row;
+}
+function unitIdError(id){
+  if(!/^[a-z0-9][a-z0-9_-]{0,150}$/.test(id))return '使用小写英文字母、数字、连字符或下划线，长度 1–151。';
+  if(catalog.units.some(u=>u.id===id&&u.id!==selected)||catalog.idAliases?.[id])return '该 ID 已存在或保留给旧军表，请换一个。';
+  return '';
+}
+function unitIdControl(){
+  const row=el('div');row.className='field unit-id-field';row.append(el('span','固定 ID'));
+  const box=el('div');box.className='unit-id-control';
+  const input=el('input');input.value=draft.id;input.setAttribute('aria-label','固定 ID');input.readOnly=!creating;
+  const hint=el('small',creating?'新建／复制的 ID 可直接填写，保存时检查是否重复。':'已保存的 ID 仅通过专用按钮修改。');
+  if(creating){input.oninput=()=>{draft.id=input.value;setDirty();const error=unitIdError(input.value);input.setCustomValidity(error);hint.textContent=error||'ID 可用；保存后生效。'};}
+  else{
+    const edit=el('button','修改 ID');edit.type='button';edit.id='change-unit-id';edit.onclick=changeUnitId;box.append(edit);
+  }
+  box.prepend(input);box.append(hint);row.append(box);return row;
+}
+function changeUnitId(){
+  if(busy)return;
+  if(dirty){status('请先保存当前修改，再通过“修改 ID”按钮更换固定 ID。',true);return;}
+  const dialog=el('dialog');dialog.className='unit-id-dialog';dialog.setAttribute('aria-label','修改单位固定 ID');
+  dialog.append(el('h2','修改单位固定 ID'),el('p','当前 ID：'+selected),
+    el('p','将同步规则关联与 TTS 名称映射，并保留旧军表兼容。名称标识和上游编号不会改变。'));
+  const label=el('label','新 ID'),input=el('input');input.value=selected;input.setAttribute('aria-label','新单位 ID');label.append(input);
+  const confirmation=el('label'),check=el('input');check.type='checkbox';confirmation.append(check,el('span','确认修改此单位的固定 ID'));
+  const error=el('p');error.setAttribute('role','status');
+  const actions=el('div');actions.className='rowtools';const cancel=el('button','取消'),save=el('button','确认修改 ID');save.className='primary';save.disabled=true;
+  const update=()=>{const problem=unitIdError(input.value.trim());error.textContent=problem;save.disabled=!!problem||!check.checked||input.value.trim()===selected;};
+  input.oninput=update;check.onchange=update;cancel.onclick=()=>dialog.close();actions.append(cancel,save);
+  save.onclick=async()=>{
+    if(save.disabled)return;save.disabled=true;busy=true;
+    try{
+      const result=await api('/api/units/rename',{id:selected,newId:input.value.trim(),revision});
+      selected=result.newId;dialog.close();busy=false;await reload();
+      status('已修改 ID：'+result.oldId+' → '+result.newId+'；关联已同步，旧军表仍可读取。');
+    }catch(e){error.textContent=e.message;}
+    finally{busy=false;update();}
+  };
+  dialog.append(label,confirmation,error,actions);dialog.onclose=()=>dialog.remove();document.body.append(dialog);dialog.showModal();input.focus();input.select();
 }
 function referenceTable(key,path){
  if(key==='factionId')return 'factions';if(key==='rankId')return 'ranks';if(key==='unitTypeId')return 'unitTypes';if(key==='upgradeId')return 'upgrades';
@@ -92,11 +132,15 @@ function newUnitDraft(){
 }
 function startDraft(template,label){
   if(dirty&&!confirm('当前单位有未保存修改，确定放弃并新建？'))return;
+  if(creating)catalog.units=catalog.units.filter(u=>u.id!==selected);
   draft=template;selected=draft.id;creating=true;dirty=false;
   catalog.units.push(structuredClone(draft));
   $('#dirty').textContent='';
   $('#raw-json').value=JSON.stringify(draft,null,2);
-  renderForm();renderList();status('已创建'+label+'草稿：保存后才会写入源文件');
+  currentTab='form';for(const name of ['form','rules','json','history','refs'])$('#'+name+'-pane').hidden=name!=='form';
+  document.querySelectorAll('[data-tab]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.tab==='form')));
+  renderForm();renderList();status('已创建'+label+'草稿：请填写固定 ID，保存后写入源文件');
+  const idInput=$('[aria-label="固定 ID"]');idInput.focus();idInput.select();
 }
 function newUnit(){startDraft(newUnitDraft(),'空白')}
 function copyUnit(){
@@ -142,7 +186,7 @@ function renderForm(){
   renderEquip();
 }
 function renderList(){const q=$('#search').value.trim().toLocaleLowerCase(),f=$('#faction').value,r=$('#review-filter').value;$('#list').replaceChildren();for(const u of catalog.units){if(f&&u.factionId!==Number(f)||r&&u.review.status!==r||q&&!JSON.stringify([u.id,u.name,u.title]).toLocaleLowerCase().includes(q))continue;const b=el('button');b.dataset.id=u.id;b.classList.toggle('active',u.id===selected);const img=el('img');img.src=u.assets.portrait;img.alt='';img.loading='lazy';const text=el('span');text.append(el('strong',u.name.zh||u.name.en),el('small',u.name.en),el('small',(u.title.zh||u.title.en||lookup('ranks',u.rankId)?.name.zh||'军阶待校对')+' · '+(u.review.status==='reviewed'?'已校对':'待校对')));b.append(img,text);b.addEventListener('click',()=>select(u.id));$('#list').append(b)}$('#counts').textContent=catalog.units.length+' 张卡 · '+catalog.units.filter(u=>u.review.status==='reviewed').length+' 已校对'}
-function syncRaw(){if(currentTab!=='json')return true;try{const v=JSON.parse($('#raw-json').value);if(v.id!==selected)throw Error('不可更改单位 ID');if(!v.name||!v.assets||!v.review)throw Error('缺少单位必要字段');draft=v;return true}catch(e){status('JSON 未应用：'+e.message,true);return false}}
+function syncRaw(){if(currentTab!=='json')return true;try{const v=JSON.parse($('#raw-json').value);if(!creating&&v.id!==selected)throw Error('请通过字段编辑中的“修改 ID”按钮更换已保存单位的 ID');if(creating&&unitIdError(v.id))throw Error(unitIdError(v.id));if(!v.name||!v.assets||!v.review)throw Error('缺少单位必要字段');draft=v;return true}catch(e){status('JSON 未应用：'+e.message,true);return false}}
 function select(id){if(busy)return;if(dirty&&!confirm('当前单位有未保存修改，确定放弃并切换？'))return;if(creating){catalog.units=catalog.units.filter(u=>u.id!==selected);creating=false;}selected=id;draft=structuredClone(catalog.units.find(u=>u.id===id));dirty=false;$('#dirty').textContent='';$('#raw-json').value=JSON.stringify(draft,null,2);renderForm();renderList();status('');if(currentTab==='rules')renderRules();if(currentTab==='history')loadHistory();if(currentTab==='refs')loadReferences()}
 async function tab(name){if(!syncRaw())return;currentTab=name;for(const n of ['form','rules','json','history','refs'])$('#'+n+'-pane').hidden=n!==name;document.querySelectorAll('[data-tab]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.tab===name)));if(name==='form')renderForm();if(name==='rules')renderRules();if(name==='json')$('#raw-json').value=JSON.stringify(draft,null,2);if(name==='history')await loadHistory();if(name==='refs')await loadReferences()}
 
@@ -157,9 +201,9 @@ async function loadReferences(){
 }
 
 async function loadHistory(){try{const items=await api('/api/history');$('#history').replaceChildren();if(!items.length)$('#history').append(el('p','尚无历史。首次保存时自动创建。'));for(const x of items){const row=el('div');row.append(el('code',x.file));const b=el('button','恢复当前单位至此版本');b.addEventListener('click',async()=>{if(!confirm('恢复当前单位？恢复前会创建备份。'))return;try{busy=true;b.disabled=true;const result=await api('/api/restore',{id:selected,snapshot:x.file,revision});acceptSave(result);await loadHistory()}catch(e){status(e.message,true)}finally{busy=false;b.disabled=false}});row.append(b);$('#history').append(row)}}catch(e){status(e.message,true)}}
-function acceptSave(result){creating=false;revision=result.revision;draft=result.card;catalog.units[catalog.units.findIndex(u=>u.id===selected)]=structuredClone(draft);const defs=mappings.definitions, options=defs.editorOptions;defs.editorOptions=EditorOptions.create(defs,catalog.units,mappings.upgrades,options.pkg,options.fields);dirty=false;$('#dirty').textContent='';if(window.SaveUI)SaveUI.flashSaved();$('#raw-json').value=JSON.stringify(draft,null,2);renderForm();renderList();status('已保存到源文件；备份：history/'+result.snapshot)}
+function acceptSave(result){creating=false;revision=result.revision;draft=result.card;catalog.units[catalog.units.findIndex(u=>u.id===selected)]=structuredClone(draft);selected=draft.id;const defs=mappings.definitions, options=defs.editorOptions;defs.editorOptions=EditorOptions.create(defs,catalog.units,mappings.upgrades,options.pkg,options.fields);dirty=false;$('#dirty').textContent='';if(window.SaveUI)SaveUI.flashSaved();$('#raw-json').value=JSON.stringify(draft,null,2);renderForm();renderList();status('已保存到源文件；备份：history/'+result.snapshot)}
 async function reload(){if(dirty&&!confirm('放弃未保存修改并重新读取源文件？'))return;try{const [loaded,names]=await Promise.all([EditorOptions.load(true),fetch('references/unit-names.zh.json').then(r=>r.json()).catch(()=>null)]);catalog=loaded.units;mappings={definitions:loaded.defs,names,upgrades:loaded.upgrades.cards};try{revision=(await api('/api/catalog')).revision}catch(e){revision=null}dirty=false;const previous=$('#faction').value;$('#faction').replaceChildren();const all=el('option','所有阵营');all.value='';$('#faction').append(all);for(const f of mappings.definitions.factions){const o=el('option',f.id+' · '+f.name.zh);o.value=String(f.id);$('#faction').append(o)}$('#faction').value=previous;select(catalog.units.find(u=>u.id===selected)?.id||catalog.units[0].id)}catch(e){status(e.message,true)}}
-$('#save').addEventListener('click',async()=>{if(!syncRaw()||busy)return;try{busy=true;$('#save').disabled=true;acceptSave(await api('/api/save',{revision,card:draft,create:creating}))}catch(e){if(window.SaveUI)SaveUI.fail(e,reload);else status(e.message,true)}finally{busy=false;$('#save').disabled=false}});
+$('#save').addEventListener('click',async()=>{if(!syncRaw()||busy)return;if(creating&&unitIdError(draft.id)){status(unitIdError(draft.id),true);return;}try{busy=true;$('#save').disabled=true;acceptSave(await api('/api/save',{revision,card:draft,create:creating}))}catch(e){if(window.SaveUI)SaveUI.fail(e,reload);else status(e.message,true)}finally{busy=false;$('#save').disabled=false}});
 $('#apply-json').addEventListener('click',()=>{if(syncRaw()){setDirty();tab('form');status('JSON 已应用到表单，尚未写入源文件')}});
 $('#raw-json').addEventListener('input',()=>{dirty=true;$('#dirty').textContent='有未保存修改'});
 $('#new-unit').addEventListener('click',newUnit);$('#copy-unit').addEventListener('click',copyUnit);

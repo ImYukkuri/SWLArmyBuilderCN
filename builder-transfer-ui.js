@@ -79,11 +79,12 @@ function openTransferDialog(operation) {
           const row=node('div','transfer-resolution');
           row.append(node('strong',null,issue.name),node('small',null,issue.message));
           if(BuilderTransfer.catalogs(data)[issue.kind]) {
-            const options=BuilderTransfer.catalogs(data)[issue.kind];
+            const options=BuilderTransfer.catalogs(data)[issue.kind].filter(c=>issue.kind!=='battleForce'||
+              BuilderLibrary.factionOf(c.id,data)===issue.factionId);
             const search=node('input');search.type='search';search.placeholder='搜索中文名、英文名或 ID';search.setAttribute('aria-label','查找匹配 '+issue.name);
             const select=node('select');select.setAttribute('aria-label','选择匹配 '+issue.name);
             function fill() {
-              const q=search.value.toLowerCase();select.replaceChildren(new Option('请指定对应卡牌',''));
+              const q=search.value.toLowerCase();select.replaceChildren(new Option(issue.kind==='battleForce'?'请指定战斗部队':'请指定对应卡牌',''));
               const filtered=options.filter(c=>[c.id,c.name?.zh,c.name?.en,c.title?.en,c.title?.zh].join(' ').toLowerCase().includes(q));
               filtered.sort((a,b)=>Number(issue.candidates?.includes(b.id))-Number(issue.candidates?.includes(a.id)));
               for(const c of filtered)select.append(new Option([c.name?.zh,c.name?.en,c.title?.en,'['+c.id+']'].filter(Boolean).join(' · '),c.id));
