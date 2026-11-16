@@ -1,6 +1,6 @@
 {
   "schema": "swl-unit-catalog/v2",
-  "updatedAt": "2026-11-16T05:17:21.091280+00:00",
+  "updatedAt": "2026-11-16T05:46:19.285435+00:00",
   "definitions": "catalog-definitions.json",
   "referenceVersion": "2026.11.04.0",
   "units": [
@@ -14807,7 +14807,8 @@
       "unitTypeId": 1,
       "keywords": [
         {
-          "id": "mercenary"
+          "id": "mercenary",
+          "parameter": "帝国，分离"
         },
         {
           "id": "dauntless"
@@ -14955,11 +14956,11 @@
       "keywords": [
         {
           "id": "mercenary",
-          "parameter": "3"
+          "parameter": "帝国，分离"
         },
         {
           "id": "aid",
-          "parameter": "1"
+          "parameter": "黑日单位"
         },
         {
           "id": "dauntless"
@@ -15089,7 +15090,7 @@
       "keywords": [
         {
           "id": "mercenary",
-          "parameter": "Q)"
+          "parameter": "义军，帝国"
         },
         {
           "id": "arsenal",
@@ -15682,7 +15683,7 @@
       "keywords": [
         {
           "id": "mercenary",
-          "parameter": "HF"
+          "parameter": "义军，共和"
         },
         {
           "id": "jump",
@@ -15835,7 +15836,7 @@
       "keywords": [
         {
           "id": "mercenary",
-          "parameter": "QB"
+          "parameter": "义军，共和"
         },
         {
           "id": "jump",
@@ -15987,7 +15988,7 @@
       "keywords": [
         {
           "id": "mercenary",
-          "parameter": "QB"
+          "parameter": "义军，共和"
         },
         {
           "id": "jump",
@@ -16286,14 +16287,14 @@
         },
         {
           "id": "coordinate",
-          "parameter": "I"
+          "parameter": "萨克森氏族"
         },
         {
           "id": "impervious"
         },
         {
           "id": "retinue",
-          "parameter": "A"
+          "parameter": "萨克森氏族指挥官"
         },
         {
           "id": "target",
@@ -16557,7 +16558,7 @@
       "keywords": [
         {
           "id": "mercenary",
-          "parameter": "Q"
+          "parameter": "义军"
         },
         {
           "id": "jump",
@@ -16844,7 +16845,8 @@
       "unitTypeId": 9,
       "keywords": [
         {
-          "id": "mercenary"
+          "id": "mercenary",
+          "parameter": "义军"
         },
         {
           "id": "bolster",
@@ -17028,7 +17030,7 @@
       "keywords": [
         {
           "id": "mercenary",
-          "parameter": "P HBO"
+          "parameter": "帝国，义军，共和，分离"
         },
         {
           "id": "jump",
@@ -17192,7 +17194,14 @@
       "unitTypeId": 9,
       "keywords": [
         {
-          "id": "pending_le_av"
+          "id": "retinue",
+          "parameter": "曼达洛战士 / Mandalorian Warriors",
+          "parameterRefs": [
+            {
+              "kind": "nameIdentity",
+              "id": "mandalorian-warriors"
+            }
+          ]
         },
         {
           "id": "jump",
@@ -18100,7 +18109,7 @@
       "keywords": [
         {
           "id": "mercenary",
-          "parameter": "J)"
+          "parameter": "义军"
         },
         {
           "id": "low_profile"
@@ -18223,7 +18232,8 @@
       "unitTypeId": 1,
       "keywords": [
         {
-          "id": "mercenary"
+          "id": "mercenary",
+          "parameter": "义军"
         },
         {
           "id": "independent",
@@ -18363,8 +18373,8 @@
       "unitTypeId": 1,
       "keywords": [
         {
-          "id": "pending_aip_trooper",
-          "parameter": "§ TROOPER"
+          "id": "aid",
+          "parameter": "伊沃克士兵"
         },
         {
           "id": "independent",
@@ -18495,7 +18505,7 @@
       "keywords": [
         {
           "id": "mercenary",
-          "parameter": ""
+          "parameter": "义军"
         },
         {
           "id": "independent",
@@ -19733,7 +19743,7 @@
       "keywords": [
         {
           "id": "mercenary",
-          "parameter": "QJ) FF"
+          "parameter": "帝国，义军，共和，分离"
         },
         {
           "id": "arsenal"
@@ -19902,7 +19912,7 @@
       "keywords": [
         {
           "id": "mercenary",
-          "parameter": "FB"
+          "parameter": "义军，共和"
         },
         {
           "id": "cover",
@@ -20086,7 +20096,7 @@
       "keywords": [
         {
           "id": "mercenary",
-          "parameter": "QPF FP"
+          "parameter": "帝国，义军，共和，分离"
         },
         {
           "id": "charge"
@@ -20267,7 +20277,7 @@
       "keywords": [
         {
           "id": "mercenary",
-          "parameter": "QP FF"
+          "parameter": "帝国，义军，共和，分离"
         },
         {
           "id": "armor",
@@ -20422,7 +20432,7 @@
       "keywords": [
         {
           "id": "mercenary",
-          "parameter": "Q)"
+          "parameter": "义军"
         },
         {
           "id": "equip",
@@ -20557,7 +20567,7 @@
       "keywords": [
         {
           "id": "mercenary",
-          "parameter": "J)"
+          "parameter": "义军"
         },
         {
           "id": "equip",
@@ -20738,7 +20748,7 @@
         },
         {
           "id": "mercenary",
-          "parameter": "J)"
+          "parameter": "义军"
         },
         {
           "id": "arsenal",
@@ -20906,7 +20916,8 @@
           "action": "action"
         },
         {
-          "id": "mercenary"
+          "id": "mercenary",
+          "parameter": "帝国"
         },
         {
           "id": "arsenal",
@@ -21102,7 +21113,8 @@
       "unitTypeId": 1,
       "keywords": [
         {
-          "id": "mercenary"
+          "id": "mercenary",
+          "parameter": "帝国，分离"
         },
         {
           "id": "bounty"
@@ -21284,7 +21296,8 @@
         },
         {
           "id": "mercenary",
-          "parameter": "3"
+          "parameter": "帝国，分离",
+          "value": null
         },
         {
           "id": "bounty"
@@ -21452,7 +21465,7 @@
       "keywords": [
         {
           "id": "mercenary",
-          "parameter": "BQ)"
+          "parameter": "义军，共和"
         },
         {
           "id": "armor",
@@ -21623,7 +21636,8 @@
       "unitTypeId": 6,
       "keywords": [
         {
-          "id": "mercenary"
+          "id": "mercenary",
+          "parameter": "帝国"
         },
         {
           "id": "armor",
