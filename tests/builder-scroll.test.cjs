@@ -152,3 +152,45 @@ test('desktop detail and side selector keep the current viewport', async t => {
   const current = await page.evaluate(() => scrollY);
   await page.locator('#browser-close').evaluate(n => n.click());await samePosition(page, current);
 });
+
+for (const mobile of [true, false]) test(`${mobile ? 'mobile' : 'desktop'} upgrade picker offers Dug In in ordinary and missing-slot categories`, async t => {
+  const page = await setup(t, mobile);
+  const hosts = await page.evaluate(() => Object.values(data.units).filter(u =>
+    u.unitTypeId === 4 || (u.unitCategoryId === 'trooper' && u.keywords.some(k => k.id === 'prepared_position'))).map(u => u.id));
+  assert.equal(hosts.length, 11);
+  for (const id of hosts) {
+    const target = await page.evaluate(id => {
+      const u = data.units[id], record = BuilderLibrary.create(u.factions[0].id, 'Upgrade slot regression', data, uid, new Date().toISOString());
+      record.army.units = [{unitId: id, instanceId: uid(), upgrades: []}];openRoster(record);
+      const slots = unitSlotRecords(u, army.units[0]), normal = slots.some(s => s.key === 'training');
+      if (normal && slots.some(s => s.key === 'special:training-dug-in')) throw Error('Duplicate special slot');
+      return {index: slots.findIndex(s => s.key === (normal ? 'training' : 'special:training-dug-in'))};
+    }, id);
+    await page.locator(`.compact-slot[data-slot-index="${target.index}"] .slot-name`).click();
+    const candidate = page.locator('#card-grid .candidate[data-id="training-dug-in"]');
+    assert.equal(await candidate.getAttribute('data-state'), 'available', id);
+    await candidate.locator('.identity h3').click();
+    assert.deepEqual(await page.evaluate(() => army.units[0].upgrades.map(c => [c.upgradeId, c.slotIndex])),
+      [['training-dug-in', target.index]], id);
+  }
+  // Reproduce a dedicated-only legacy access list, then replace an occupied
+  // ordinary slot in a merged group through the same controls the user uses.
+  const index = await page.evaluate(() => {
+    data.upgrades['training-dug-in'].slotIds = [23, 27];
+    data.pkg.upgradeRules['19830'] = {access: [{slot: 'training_exempt'}]};
+    const record = BuilderLibrary.create(1, 'Legacy access regression', data, uid, new Date().toISOString());
+    record.army.units = [0, 1].map(() => ({unitId: 'rebels-rebel-veterans', instanceId: uid(), upgrades: []}));
+    const slots = RulesCore.slotListFor(data.pkg, data.units['rebels-rebel-veterans'], record.army.units[0], data.upgrades, 1);
+    const index = slots.findIndex(s => s.key === 'training');
+    for (const inst of record.army.units) inst.upgrades = [{upgradeId: 'training-offensive', instanceId: uid(), slotIndex: index}];
+    openRoster(record);return index;
+  });
+  await page.locator(`.compact-slot[data-slot-index="${index}"] .slot-name`).click();
+  await page.locator('#apply-all-units').check();
+  const candidate = page.locator('#card-grid .candidate[data-id="training-dug-in"]');
+  assert.equal(await candidate.getAttribute('data-state'), 'available');
+  await candidate.locator('.identity h3').click();
+  assert.deepEqual(await page.evaluate(() => army.units.map(i => i.upgrades.map(c => [c.upgradeId, c.slotIndex]))),
+    [[['training-dug-in', index]], [['training-dug-in', index]]]);
+  assert.equal(await page.locator('#apply-all-units').isChecked(), true);
+});

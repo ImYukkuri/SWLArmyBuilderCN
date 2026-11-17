@@ -68,7 +68,17 @@ window.RulesCore = (() => {
   function accessKeys(card, pkg, rule) {
     const keys = rule?.access ? rule.access.filter(a => a.slot).map(a => a.slot)
       : (card.slotIds || []).map(sid => slotKey(pkg, sid));
-    if (card.rules?.slotGrants?.some(g => g.trigger === 'unitQualifies')) keys.push('special:' + card.id);
+    const grants = (card.rules?.slotGrants || []).filter(g => g?.trigger === 'unitQualifies' && g.slot);
+    if (grants.length) {
+      const { byId } = slotRegistry(pkg);
+      // A missing-slot exception also names the ordinary categories this card
+      // belongs in. Use that relationship for candidates, equip and validation,
+      // even when a legacy access list contains only its dedicated slot.
+      for (const grant of grants) for (const key of grant.ifAbsentAny || []) {
+        if (byId[key]?.kind === 'category') keys.push(key);
+      }
+      keys.push('special:' + card.id);
+    }
     return [...new Set(keys)];
   }
   function unitContext(unit) {

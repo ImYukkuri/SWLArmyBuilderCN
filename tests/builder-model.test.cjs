@@ -77,6 +77,34 @@ test('Dug In admits every emplacement or Prepared Position trooper through its r
   }
 });
 
+test('exempt upgrades remain selectable in their ordinary category when legacy access lists only special slots', () => {
+  const exempt = Object.values(data.upgrades).filter(c => c.rules?.slotGrants?.some(g =>
+    g.trigger === 'unitQualifies' && g.ifAbsentAny?.length));
+  assert.equal(exempt.length, 7);
+  for (const source of exempt) for (const override of [false, true]) {
+    const fixture = structuredClone(data), card = fixture.upgrades[source.id];
+    const category = card.rules.slotGrants.find(g => g.trigger === 'unitQualifies').ifAbsentAny[0];
+    const slot = fixture.pkg.slots.find(s => s.id === category);
+    const host = Object.values(fixture.units).find(u =>
+      RulesCore.slotGrantsFor(fixture.pkg, u, {upgrades: []}, fixture.upgrades).qualify.some(g => g.upgradeId === card.id) &&
+      RulesCore.upgradeEligibility(card, u, {armyId: u.factions[0]?.id}, fixture, []).ok);
+    assert(host, source.id + ' needs a qualifying host');
+    const roster = {...armyOf(unit(host.id)), armyId: host.factions[0].id}, inst = roster.units[0];
+    if (!host.upgradeSlots.some(s => (s.id ?? s) === slot.sourceId)) host.upgradeSlots.push(slot.sourceId);
+    // An imported/edited legacy access list can omit the ordinary category.
+    card.slotIds = card.slotIds.filter(id => id !== slot.sourceId);
+    if (override) fixture.pkg.upgradeRules[card.upstream.id] = {access: card.slotIds.map(id =>
+      ({slot: RulesCore.slotKey(fixture.pkg, id)}))};
+    const slots = RulesCore.slotListFor(fixture.pkg, host, inst, fixture.upgrades, roster.armyId);
+    assert(!slots.some(s => s.key === 'special:' + card.id), card.id);
+    const result = BuilderModel.equip(roster, fixture, {unitInstanceId: inst.instanceId,
+      slotIndex: slots.findIndex(s => s.key === category), slotKey: category}, card.id, false, uid);
+    assert(result.ok, card.id + ': ' + result.reason);
+    assert(!RulesCore.validateArmy(result.draft, fixture).issues.some(i =>
+      i.code === 'slot_mismatch' || i.code === 'slot_missing'), card.id);
+  }
+});
+
 test('Prepared Position without training gets an exclusive Dug In slot; training suppresses it', () => {
   const fixture=structuredClone(data),host=fixture.units['rebels-rebel-veterans'];
   host.upgradeSlots=host.upgradeSlots.filter(s=>(s.id ?? s)!==10);

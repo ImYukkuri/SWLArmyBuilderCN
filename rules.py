@@ -159,7 +159,14 @@ def access_keys(card, package, upgrade_rule=None):
     keys = ([a['slot'] for a in upgrade_rule['access'] if a.get('slot')]
             if upgrade_rule and 'access' in upgrade_rule else
             [slot_key(package, sid) for sid in card.get('slotIds') or []])
-    if any(g.get('trigger') == 'unitQualifies' for g in (card.get('rules') or {}).get('slotGrants') or []):
+    grants = [g for g in (card.get('rules') or {}).get('slotGrants') or []
+              if isinstance(g, dict) and g.get('trigger') == 'unitQualifies' and g.get('slot')]
+    if grants:
+        by_id, _ = slot_registry(package)
+        # Missing-slot exceptions also admit the card to the named ordinary
+        # categories; legacy access lists must not hide those candidates.
+        for grant in grants:
+            keys.extend(k for k in grant.get('ifAbsentAny') or [] if by_id.get(k, {}).get('kind') == 'category')
         keys.append('special:' + card['id'])
     return list(dict.fromkeys(keys))
 
