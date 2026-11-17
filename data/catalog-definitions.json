@@ -12483,35 +12483,35 @@
       "id": "veterans",
       "name": {
         "en": "Veterans",
-        "zh": ""
+        "zh": "百战老兵"
       }
     },
     {
       "id": "toolsOfTrade",
       "name": {
         "en": "Tools of the Trade",
-        "zh": ""
+        "zh": "看家装备"
       }
     },
     {
       "id": "Rapid Deployment",
       "name": {
         "en": "Rapid Deployment",
-        "zh": ""
+        "zh": "快速部署"
       }
     },
     {
       "id": "gunsForHire",
       "name": {
         "en": "Guns for Hire",
-        "zh": ""
+        "zh": "雇佣火力"
       }
     },
     {
       "id": "featsOfValor",
       "name": {
         "en": "Feats of Valor",
-        "zh": ""
+        "zh": "英勇战绩"
       }
     }
   ],

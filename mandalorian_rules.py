@@ -39,7 +39,7 @@ def prepare_data(data):
             continue
         card = deepcopy(upgrades[source_id])
         card.update(id=card_id,points=0,upstream={'collection':'local','id':card_id},selectionGroup=card_id,
-                    runtimeVariant={'sourceId':source_id,'option':'toolsOfTrade','kind':'upgrade'},variantLabel='行当工具 · 免费独特副本')
+                    runtimeVariant={'sourceId':source_id,'option':'toolsOfTrade','kind':'upgrade'},variantLabel='看家装备 · 免费独特副本')
         card['rules'] = {'unique':True,'uniqueScope':'card','limit':1,'locallyUnique':True,'slotTypes':card['slotIds'][:],'factions':custom}
         card['restrictions'] = {'text':{'zh':['仅限曼达洛人士兵；正常占用升级槽。'],'en':['Mandalorian Trooper only.']},
                                 'condition':{'field':'unit.unitSubtypeId','op':'eq','value':'mandalorian_trooper'}}

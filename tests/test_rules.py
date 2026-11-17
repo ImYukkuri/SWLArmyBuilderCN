@@ -273,6 +273,31 @@ class ValidateArmyTest(unittest.TestCase):
         b1 = units["separatists-b1"]
         self.assertFalse(any(g["key"] == "training_exempt" for g in rules.dedicated_slot_keys(pkg, b1)))
 
+    def test_dug_in_eligibility_and_slots_follow_printed_or_condition(self):
+        pkg = rules.load_package()
+        units, upgrades, defs = rules.load_cards()
+        card = upgrades['training-dug-in']
+        name_index = rules.build_name_index(upgrades, defs)
+        for unit in units.values():
+            expected = unit.get('unitSubtypeId') == 'emplacement_trooper' or (
+                unit.get('unitCategoryId') == 'trooper' and
+                any(k['id'] == 'prepared_position' for k in unit.get('keywords', [])))
+            army_id = (unit.get('factions') or [{}])[0].get('id', unit.get('factionId'))
+            with self.subTest(unit=unit['id']):
+                issues = rules.upgrade_eligibility(card, unit, {'armyId': army_id}, pkg, defs, name_index)
+                self.assertEqual(not any(i[0] == 'invalid' for i in issues), expected)
+                slots = rules.slot_list_for(pkg, unit, {'upgrades': []}, upgrades, army_id)
+                self.assertEqual(any(s['key'] == 'special:training-dug-in' for s in slots),
+                                 expected and not any(s['key'] == 'training' for s in slots))
+        host = copy.deepcopy(units['rebels-rebel-veterans'])
+        host['upgradeSlots'] = [s for s in host['upgradeSlots']
+                                if (s.get('id') if isinstance(s, dict) else s) != 10]
+        slots = rules.slot_list_for(pkg, host, {'upgrades': []}, upgrades, 1)
+        self.assertTrue(any(s['key'] == 'special:training-dug-in' for s in slots))
+        host['keywords'] = [k for k in host['keywords'] if k['id'] != 'prepared_position']
+        slots = rules.slot_list_for(pkg, host, {'upgrades': []}, upgrades, 1)
+        self.assertFalse(any(s['key'] == 'special:training-dug-in' for s in slots))
+
     def test_training_exempt_slot_not_granted_when_training_slot_exists(self):
         # empire-scout already has a training slot, so no virtual training slot.
         army = {"mode": "standard", "armyId": 2, "pointsLimit": 1000, "units": [

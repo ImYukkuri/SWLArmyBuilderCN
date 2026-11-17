@@ -57,6 +57,47 @@ test('ordinary slots suppress exempt slots even when occupied and keep special c
   }
 });
 
+test('Dug In admits every emplacement or Prepared Position trooper through its real slot', () => {
+  const card=data.upgrades['training-dug-in'];
+  for (const host of Object.values(data.units)) {
+    const expected=host.unitSubtypeId==='emplacement_trooper' ||
+      (host.unitCategoryId==='trooper' && host.keywords.some(k=>k.id==='prepared_position'));
+    const roster={...armyOf(unit(host.id)),armyId:host.factions[0]?.id || host.factionId};
+    assert.equal(RulesCore.upgradeEligibility(card,host,roster,data,[]).ok,expected,host.id);
+    const inst=roster.units[0],slots=RulesCore.slotListFor(data.pkg,host,inst,data.upgrades,roster.armyId);
+    const training=slots.some(s=>s.key==='training');
+    assert.equal(slots.some(s=>s.key==='special:'+card.id),expected && !training,host.id);
+    if (!expected) continue;
+    const index=slots.findIndex(s=>s.key===(training?'training':'special:'+card.id));
+    const result=BuilderModel.equip(roster,data,{unitInstanceId:inst.instanceId,
+      slotIndex:index,slotKey:slots[index].key},card.id,false,uid);
+    assert(result.ok,host.id+': '+result.reason);
+    assert(!RulesCore.validateArmy(result.draft,data).issues.some(i=>i.instanceId===
+      result.draft.units[0].upgrades[0].instanceId && i.status==='invalid'),host.id);
+  }
+});
+
+test('Prepared Position without training gets an exclusive Dug In slot; training suppresses it', () => {
+  const fixture=structuredClone(data),host=fixture.units['rebels-rebel-veterans'];
+  host.upgradeSlots=host.upgradeSlots.filter(s=>(s.id ?? s)!==10);
+  const roster=armyOf(unit(host.id));roster.armyId=1;
+  const inst=roster.units[0],slots=()=>RulesCore.slotListFor(fixture.pkg,host,inst,fixture.upgrades,1);
+  const key='special:training-dug-in',index=slots().findIndex(s=>s.key===key);
+  assert(index>=0,'qualifying troopers must get Dug In even without a training slot');
+  const target={unitInstanceId:inst.instanceId,slotIndex:index,slotKey:key};
+  assert(BuilderModel.equip(roster,fixture,target,'training-dug-in',false,uid).ok);
+  assert(!BuilderModel.equip(roster,fixture,target,'hit-the-dirt',false,uid).ok);
+  fixture.pkg.armyOverrides['1']={slots:[{op:'add',slot:'training'}]};
+  assert(slots().some(s=>s.key==='training'));
+  assert(!slots().some(s=>s.key===key));
+  fixture.pkg.armyOverrides['1']={slots:[{op:'deny',slot:'training'}]};
+  assert(!slots().some(s=>s.key===key),'a battle force ban still takes precedence');
+  fixture.pkg.armyOverrides['1']={};
+  host.keywords=host.keywords.filter(k=>k.id!=='prepared_position');
+  assert(!slots().some(s=>s.key===key));
+  assert(!RulesCore.upgradeEligibility(fixture.upgrades['training-dug-in'],host,roster,fixture,[]).ok);
+});
+
 test('dedicated slots obey qualifying conditions, card restrictions and battle force slot rules', () => {
   const fixture=structuredClone(data),host=fixture.units['separatists-b1'],inst={upgrades:[]};
   const slots=()=>RulesCore.slotListFor(fixture.pkg,host,inst,fixture.upgrades,5);

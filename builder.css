@@ -2430,31 +2430,6 @@ dialog, .card-browser, .keyword-popover {
   flex: 1;
 }
 
-.setup-fields input {
-  width: 90px;
-  min-height: 34px;
-  padding: 5px 8px;
-  border: 1px solid #bdcdd8;
-  border-radius: 4px;
-  background: white;
-  font: 15px var(--numeric);
-}
-
-.rule-mode {
-  font-size: 11px;
-  color: var(--accent);
-  padding: 3px 7px;
-  background: #e1ebf2;
-  border-radius: 3px;
-}
-
-.rules-context {
-  font-size: 11px;
-  color: var(--muted);
-  margin-top: 8px;
-  max-width: 620px;
-}
-
 .rank-quota {
   font: 12px var(--numeric);
   color: var(--muted);
@@ -3219,15 +3194,6 @@ dialog, .card-browser, .keyword-popover {
     min-height: 36px;
   }
 
-  .setup-fields input {
-    width: 77px;
-    min-height: 36px;
-  }
-
-  .rules-context {
-    font-size: 10px;
-  }
-
   .army-caption {
     flex-wrap: wrap;
   }
@@ -3908,18 +3874,29 @@ dialog, .card-browser, .keyword-popover {
 @media(max-width:600px){.transfer-dialog {padding:14px;}.transfer-json {min-height:180px;}.transfer-actions button{flex:1;}}
 
 /* Battle-force reference and optional custom rules. */
-.battleforce-info{align-self:center;width:34px;height:34px;border:0;background:transparent;color:var(--faction);font-size:24px;cursor:pointer}
+.battleforce-field{display:flex;align-items:center;gap:2px;max-width:100%}
+.battleforce-field label{min-width:0}
+.battleforce-info{display:inline-flex;align-items:center;justify-content:center;flex:0 0 30px;height:34px;padding:0;border:0;border-radius:4px;background:transparent;color:var(--faction);cursor:pointer}
+.battleforce-info svg{display:block;width:18px;height:18px}
+.battleforce-info:hover{background:#e1ebf2}
+.battleforce-info:focus-visible{outline:2px solid var(--faction);outline-offset:1px}
 .battleforce-dialog{width:min(680px,calc(100vw - 28px));max-height:85dvh;padding:22px;overflow-y:auto;border:1px solid #b7c1bd;border-radius:12px;background:#fafaf7;color:#263c35}
 .battleforce-dialog .dialog-head{position:sticky;top:-22px;background:#fafaf7;padding:12px 0;z-index:1}
 .battleforce-dialog h3{margin:20px 0 8px;font-size:17px}.battleforce-dialog h4{margin:16px 0 5px}
 .battleforce-dialog p,.battleforce-dialog .prose{line-height:1.65;margin:8px 0}
 .battleforce-quotas{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;text-align:left}
-.battleforce-quotas th,.battleforce-quotas td{padding:8px 12px;border-bottom:1px solid #d9ded9}
-.battleforce-quotas th{color:#557068;font-size:13px}.force-cap{font-weight:600}
-#army-options{margin:18px 0;padding:16px 0;border-top:1px solid #bdcbc4;border-bottom:1px solid #bdcbc4}
-#army-options[hidden]{display:none}#army-options h3{margin:0 0 6px;font-size:17px}
-.army-option-tags{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
-.army-option-tag{padding:8px 12px;background:#f2f5f0;border:1px solid #b9c8bf;border-radius:20px;color:#334e42;cursor:pointer}
+.battleforce-quotas th,.battleforce-quotas td{padding:8px 12px;border-bottom:1px solid #d9ded9;vertical-align:middle}
+.battleforce-quotas thead th{color:#557068;font-size:13px}
+.battleforce-quotas th:not(:first-child),.battleforce-quotas td{text-align:center}
+.battleforce-quotas .force-rank-cell{font-size:14px;font-weight:600}
+.force-rank{display:inline-flex;align-items:center;gap:8px;line-height:24px;vertical-align:middle;white-space:nowrap}
+.force-rank .rank-icon{display:inline-flex;align-items:center;justify-content:center;flex:0 0 24px;min-width:0;width:24px;height:24px;font-size:21px;line-height:1}
+.force-cap{font-weight:600}
+.force-combined{display:flex;align-items:center;flex-wrap:wrap;gap:5px 8px}
+#army-options{margin:10px 0 0;padding:0}
+#army-options[hidden]{display:none}
+.army-option-tags{display:flex;gap:6px;flex-wrap:wrap}
+.army-option-tag{padding:6px 11px;min-height:32px;font-size:13px;line-height:1.4;background:#f2f5f0;border:1px solid #b9c8bf;border-radius:20px;color:#334e42;cursor:pointer}
 .army-option-tag[aria-pressed=true]{color:white;background:#476b5c;border-color:#476b5c}
-.army-option-copy{line-height:1.6;font-size:14px;margin:8px 0}.variant-label{display:inline-block;font-size:12px;color:#476b5c;font-weight:700}
-@media(max-width:760px){.battleforce-dialog{padding:16px}.battleforce-dialog .dialog-head{top:-16px}.battleforce-dialog h2{font-size:19px}.army-option-tag{min-height:40px}}
+.variant-label{display:inline-block;font-size:12px;color:#476b5c;font-weight:700}
+@media(max-width:760px){.battleforce-info{height:36px}.battleforce-dialog{padding:16px}.battleforce-dialog .dialog-head{top:-16px}.battleforce-dialog h2{font-size:19px}.army-option-tags{gap:4px}.army-option-tag{min-height:36px;padding-inline:8px}}

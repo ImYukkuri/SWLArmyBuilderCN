@@ -101,34 +101,36 @@ function ruleInfo(k) {
   return { item, ref, label };
 }
 
+// Printed icon aliases reference the same catalog entries used by rule conditions.
+// Read their names at render time so catalog corrections apply everywhere.
+const PROSE_CATALOG_ICONS = Object.fromEntries([
+  ['ranks', [[1,'rank-commander'],[6,'rank-operative'],[2,'rank-corps'],
+    [3,'rank-special-forces','rank-special'],[4,'rank-support'],[5,'rank-heavy','heavy']]],
+  ['factions', [[1,'faction-rebel'],[2,'faction-empire'],[3,'faction-mercenary'],
+    [4,'faction-gar','faction-republic'],[5,'faction-cis','faction-separatist']]],
+  ['affiliations', [['965','clan-covert'],['1081','clan-kryze'],['1082','clan-wren'],
+    ['1083','clan-saxon'],['1084','faction-creedless'],['1','faction-pyke'],
+    ['2','faction-blacksun'],['3','faction-raiders'],['5','faction-maul'],['7','faction-ewoks']]],
+  ['upgradeSlots', [[1,'slot-personnel'],[2,'slot-gear'],[3,'slot-grenade','slot-grenades'],
+    [4,'slot-heavy','slot-heavy-weapon'],[5,'slot-force'],[6,'slot-comms'],[7,'slot-pilot'],
+    [8,'slot-hardpoint'],[9,'slot-command'],[10,'slot-training'],[11,'slot-generator'],
+    [12,'slot-armament'],[13,'slot-crew'],[14,'slot-ordnance'],[15,'slot-counterpart'],
+    [18,'slot-programming','slot-protocol'],[19,'slot-squad-leader'],[24,'slot-doctrine'],[25,'slot-helmet']]],
+].flatMap(([table, rows]) => rows.flatMap(([id, ...aliases]) => aliases.map(key => [key, {table, id}]))));
+const PROSE_SYMBOL_LABELS = {
+  ...ACTION_LABEL, hit:'命中', critical:'暴击', block:'格挡', surge:'攻击激增',
+  'surge-block':'防御激增', exhaust:'横置', expend:'消耗', courage:'勇气', resilience:'韧性',
+  'defense-die-white':'白色防御骰', 'defense-die-inverted':'红色防御骰',
+  'range-half':'距离 ½', rangeInfinite:'射程', melee:'近战', overrun:'碾压',
+};
+function proseIconLabel(key) {
+  const ref = PROSE_CATALOG_ICONS[key];
+  if (ref) return named(data.defs[ref.table]?.find(row => String(row.id) === String(ref.id))?.name) || key;
+  return PROSE_SYMBOL_LABELS[key] || (/^range-\d+$/.test(key) ? '距离 '+key.slice(6) : key);
+}
 function proseNode(raw) {
   const box = node("span");
   const text = textParts(raw).replace(/\{@icon\.action\}\s*\{@icon\.action\}/g, '{@icon.double-action}');
-  const labels = {
-    "rank-commander": "指挥官",
-    "rank-operative": "特工",
-    "rank-corps": "核心",
-    "rank-special-forces": "特种部队",
-    "rank-support": "支援",
-    "rank-heavy": "重型",
-    action: "行动",
-    "double-action": "双行动",
-    "free-action": "免费行动",
-    hit: "命中",
-    critical: "暴击",
-    block: "格挡",
-    surge: "攻击激增",
-    "surge-block": "防御激增",
-    exhaust: "横置",
-    expend: "消耗",
-    "free-exhaust": "免费行动：横置",
-    "faction-empire": named(data.defs.factions.find((f) => f.id === 2)?.name),
-    "faction-ewoks": "伊沃克",
-    "faction-rebel": named(data.defs.factions.find((f) => f.id === 1)?.name),
-    "faction-republic": named(data.defs.factions.find((f) => f.id === 4)?.name),
-    "faction-separatist": named(data.defs.factions.find((f) => f.id === 5)?.name),
-    "slot-heavy": named(data.defs.upgradeSlots.find((s) => s.id === 4)?.name),
-  };
   let pos = 0;
   for (const m of text.matchAll(/\{@icon\.([\w-]+)\}/g)) {
     box.append(actionText(text.slice(pos, m.index)));
@@ -136,10 +138,10 @@ function proseNode(raw) {
     if (ORDER_GLYPH[m[1]]) {
       token.append(
         node("span", "rank-icon", ORDER_GLYPH[m[1]]),
-        document.createTextNode(labels[m[1]] || m[1]),
+        document.createTextNode(proseIconLabel(m[1])),
       );
     } else
-      token.append(actionText(labels[m[1]] || (/^range-/.test(m[1]) ? "距离 " + m[1].slice(6) : m[1])));
+      token.append(actionText(proseIconLabel(m[1])));
     box.append(token);
     pos = m.index + m[0].length;
   }
@@ -540,7 +542,6 @@ function renderArmyOptions() {
   box.replaceChildren();
   if (box.hidden) return;
   const count = options.filter(o => army.options.includes(o.id)).length;
-  box.append(node('h3',null,`自定义氏族规则 · ${count} / ${bf.optionCount}`),node('p','muted','选择两项；再次点击可取消。'));
   const tags = node('div','army-option-tags');
   for (const option of options) {
     const selected = army.options.includes(option.id), b = node('button','army-option-tag',option.nameZh || option.name);
@@ -558,9 +559,6 @@ function renderArmyOptions() {
     tags.append(b);
   }
   box.append(tags);
-  for (const option of options.filter(o => army.options.includes(o.id))) {
-    const p = node('p','army-option-copy');p.append(node('b',null,option.nameZh+'：'),document.createTextNode(option.text || ''));box.append(p);
-  }
 }
 
 let battleForceDialog;
@@ -570,15 +568,25 @@ function showBattleForceRules() {
   dialog.replaceChildren();
   const head = node('div','dialog-head'), close = node('button',null,'×');close.type='button';close.setAttribute('aria-label','关闭战斗部队规则');close.onclick=()=>dialog.close();
   head.append(node('h2',null,bf?.nameZh || named(data.defs.armies.find(a => a.id === army.armyId)?.name)),close);dialog.append(head);
-  dialog.append(node('p','muted',army.mode === 'recon' ? '侦察 · 600 分及以下' : '标准 · 超过 600 分'));
-  const table = node('table','battleforce-quotas'), heading = node('tr');
-  for (const text of ['军阶','最低数量','最高数量']) heading.append(node('th',null,text));table.append(heading);
+  dialog.append(node('p','muted',army.pointsLimit+' 分 · '+(army.mode === 'recon' ? '侦察' : '标准')));
+  const rankLabel = id => {
+    const label = node('span','force-rank'), icon = node('span','rank-icon',RANK_GLYPH[id] || '');
+    icon.setAttribute('aria-hidden','true');label.append(icon,node('span',null,RANK_SHORT[id]));return label;
+  };
+  const table = node('table','battleforce-quotas'), heading = node('tr'), thead = node('thead'), tbody = node('tbody');
+  for (const text of ['军阶','最低数量','最高数量']) {const th=node('th',null,text);th.scope='col';heading.append(th);}
+  thead.append(heading);table.append(thead,tbody);
   for (const id of RANK_ORDER) {
     const quota = config.rankQuotas?.find(q => q.rankId === id);if (!quota) continue;
-    const row=node('tr');for (const text of [RANK_SHORT[id],quota.min ?? 0,quota.max ?? '—']) row.append(node('td',null,text));table.append(row);
+    const row=node('tr'), label=node('th','force-rank-cell');label.scope='row';label.append(rankLabel(id));row.append(label);
+    for (const text of [quota.min ?? 0,quota.max ?? '—']) row.append(node('td',null,text));tbody.append(row);
   }
   dialog.append(table);
-  for (const c of config.combined || []) dialog.append(node('p','force-cap',(c.tiers || []).map(id => RANK_SHORT[id]).join(' + ')+'合计最多 '+c.maximum+' 个'));
+  for (const c of config.combined || []) {
+    const cap=node('p','force-cap force-combined');
+    (c.tiers || []).forEach((id,index)=>{if(index)cap.append(node('span',null,'+'));cap.append(rankLabel(id));});
+    cap.append(node('span',null,'合计最多 '+c.maximum+' 个'));dialog.append(cap);
+  }
   const caps = Object.values(data.units).filter(u => !u.runtimeVariant && rankOf(u,army.armyId)!=null)
     .map(u => ({u,cap:RulesCore.unitCapFor(u,data.pkg,army.armyId)})).filter(x => x.cap!=null);
   if (caps.length || bf?.unitLimitsText?.length) {
@@ -590,7 +598,6 @@ function showBattleForceRules() {
   const paragraph = text => {const p=node('p');p.append(proseNode(text));return p;};
   for (const text of bf?.textRulesZh?.length ? bf.textRulesZh : bf?.textRules || ['使用当前势力的基础组军规则。']) dialog.append(paragraph(text));
   for (const o of bf?.options || []) if (o.text) {dialog.append(node('h4',null,o.nameZh || o.name),paragraph(o.text));}
-  if (bf?.rulesSource) dialog.append(node('p','muted','规则来源：'+bf.rulesSource.document+'，第 '+bf.rulesSource.pages.join('、')+' 页。局内效果由玩家执行。'));
   showDialog(dialog,$('#battleforce-info'));
 }
 

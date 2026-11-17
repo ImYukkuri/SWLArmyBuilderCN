@@ -50195,12 +50195,12 @@
             "trigger": "unitQualifies",
             "slot": "training_exempt",
             "condition": {
-              "ref": "emplacementTrooperUnitType"
+              "ref": "dugInEligibleUnit"
             },
             "ifAbsentAny": [
               "training"
             ],
-            "note": "架设士兵限定（已确定）"
+            "note": "炮兵士兵，或拥有预设阵地的士兵；与卡面使用条件共用同一判断。"
           }
         ]
       },
@@ -50241,32 +50241,7 @@
         ],
         "verification": "text_matched",
         "condition": {
-          "all": [
-            {
-              "any": [
-                {
-                  "ref": "emplacementTrooperUnitType"
-                },
-                {
-                  "all": [
-                    {
-                      "ref": "trooperUnitType"
-                    },
-                    {
-                      "field": "unit.keywords",
-                      "op": "contains",
-                      "value": "prepared_position"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "field": "unit.unitTypeId",
-              "op": "eq",
-              "value": 4
-            }
-          ]
+          "ref": "dugInEligibleUnit"
         },
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",

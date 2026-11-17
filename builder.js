@@ -294,7 +294,7 @@ function renderFaction() {
   if (document.activeElement !== $("#roster-name"))
     $("#roster-name").value = activeRecord.name;
   const select = $("#battleforce");
-  select.replaceChildren(new Option(base.id === 8 ? "标准规则 · 氏族混搭" : "无 · 基础规则", String(base.id)));
+  select.replaceChildren(new Option(base.id === 8 ? "标准规则" : "无 · 基础规则", String(base.id)));
   for (const entry of BuilderLibrary.battleforces(base.id, data))
     select.append(new Option(named(entry.name), String(entry.id)));
   if (![...select.options].some((o) => Number(o.value) === army.armyId))
@@ -325,25 +325,21 @@ function renderMode() {
   const config = BuilderLibrary.configuration(army, data);
   army.mode = config.mode;
   const input = $("#points-limit");
-  if (document.activeElement !== input) input.value = army.pointsLimit;
-  $("#rule-mode").textContent = config.mode === "recon" ? "侦察限制" : "标准限制";
-  $("#rules-context").textContent =
-    "600 分及以下采用侦察限制，超过 600 分采用标准限制。" +
-    (army.armyId === activeRecord.factionId ? "" : "当前已叠加战斗部队限制。");
+  input.querySelector('[data-legacy]')?.remove();
+  // Preserve older/imported custom budgets until the player chooses a preset.
+  if (![...input.options].some(o => Number(o.value) === army.pointsLimit)) {
+    const legacy = new Option(army.pointsLimit + '（已存分数）', String(army.pointsLimit));
+    legacy.disabled = true; legacy.dataset.legacy = 'true'; input.append(legacy);
+  }
+  input.value = army.pointsLimit;
   input.onchange = () => {
-    const points = input.valueAsNumber;
-    if (!Number.isSafeInteger(points) || points <= 0) {
-      input.setCustomValidity("请输入大于 0 的整数分数。");
-      input.reportValidity();
-      return;
-    }
-    input.setCustomValidity("");
+    const points = Number(input.value);
+    if (![600, 800, 1000, 1200].includes(points)) return;
     army.pointsLimit = points;
     army.mode = BuilderLibrary.modeForPoints(points);
     setStatus("分数上限已更新为 " + points + "，编制限制已重新计算。");
     render();
   };
-  input.oninput = () => input.setCustomValidity("");
 }
 
 function commandOf(id) {

@@ -22,7 +22,7 @@ window.MandalorianRules = (() => {
       const card = structuredClone(source);
       card.id = id; card.points = 0;
       card.runtimeVariant = {sourceId, option: 'toolsOfTrade', kind:'upgrade'};
-      card.variantLabel = '行当工具 · 免费独特副本';
+      card.variantLabel = '看家装备 · 免费独特副本';
       // These are extra physical copies, unique among themselves, independent
       // of the paid copy's army limit. Their name still prevents local duplicates.
       card.upstream = {collection:'local', id}; card.selectionGroup = id;

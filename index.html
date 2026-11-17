@@ -70,25 +70,22 @@
             ><input id="roster-name" aria-label="军表名称" maxlength="100" autocomplete="off" />
           </h1>
           <div class="setup-fields">
-            <label
-              >战斗部队<select id="battleforce" aria-label="战斗部队">
+            <div class="battleforce-field">
+              <label>战斗部队<select id="battleforce" aria-label="战斗部队">
                 <option value="">无 · 基础规则</option>
-              </select></label
-            >
-            <button type="button" id="battleforce-info" class="battleforce-info" aria-label="查看战斗部队规则" title="查看战斗部队规则">ⓘ</button>
-            <label
-              >分数上限<input
-                id="points-limit"
-                type="number"
-                min="1"
-                step="1"
-                value="1000"
-                inputmode="numeric"
-                aria-label="分数上限"
-            /></label>
-            <span id="rule-mode" class="rule-mode"></span>
+              </select></label>
+              <button type="button" id="battleforce-info" class="battleforce-info" aria-label="查看战斗部队规则" title="查看战斗部队规则">
+                <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><circle cx="10" cy="10" r="7.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 9v5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="10" cy="6" r="1" fill="currentColor"/></svg>
+              </button>
+            </div>
+            <label>分数上限<select id="points-limit" aria-label="分数上限">
+              <option value="600">600 侦察</option>
+              <option value="800">800</option>
+              <option value="1000" selected>1000 标准</option>
+              <option value="1200">1200</option>
+            </select></label>
           </div>
-          <p id="rules-context" class="rules-context"></p>
+          <section id="army-options" hidden aria-label="自定义氏族规则，选择两项"></section>
         </div>
         <div class="army-summary">
           <div class="points-readout">
@@ -134,7 +131,6 @@
             >
           </div>
           <div id="army-units" class="army-list"></div>
-          <section id="army-options" hidden aria-label="自定义战斗部队规则"></section>
           <div id="deck-panel"></div>
           <p class="draft-note">军表自动保存在当前浏览器。</p>
         </section>
