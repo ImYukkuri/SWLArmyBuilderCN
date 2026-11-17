@@ -293,6 +293,7 @@ function renderBrowser() {
   const aside = $("#card-browser"),
     mobile = matchMedia("(max-width:760px)").matches;
   aside.classList.toggle("is-open", !!browser);
+  aside.classList.toggle("upgrade-browser", browser?.mode === "upgrades");
   $("#browser-backdrop").hidden = !browser || !mobile;
   document.body.classList.toggle("sheet-open", !!browser && mobile);
   if (mobile && browser) {
@@ -609,6 +610,11 @@ function renderPoints(report) {
     node("span", "remaining", "剩余 " + (lim - report.effectivePoints) + " 分"),
   );
   $("#points-fill").style.width = Math.min(100, (report.effectivePoints / lim) * 100) + "%";
+  const progress = $('#roster-info .points-track');
+  progress.setAttribute('aria-valuemax', String(lim));
+  progress.setAttribute('aria-valuenow', String(Math.min(lim, report.effectivePoints)));
+  progress.setAttribute('aria-valuetext', report.effectivePoints + ' / ' + lim + ' 分');
+  $('#roster-info').classList.toggle('over-limit', report.effectivePoints > lim);
   $("#summary-activations").textContent = army.units.length;
   $("#summary-commands").replaceChildren(
     document.createTextNode(army.commandIds.filter(Boolean).length),
@@ -1669,6 +1675,7 @@ function renderUnits({changedInstanceId = null} = {}) {
     else list.insertBefore(child, cursor);
   }
   for (const child of [...list.children]) if (!wanted.includes(child)) child.remove();
+  window.BuilderSticky?.refresh();
 }
 
 function timingMarkers(timings) {
@@ -1746,16 +1753,18 @@ function upgradeCandidate(c) {
   for (const k of uniqueRules(cardKeywords(c)))
     tags.append(tag({ ...(typeof k === "string" ? { id: k } : k), origins: [c] }, { showOrigin: false }));
   if (tags.children.length) item.append(tags);
+  const footer = candidateStatus(state);
   if (c.weapons?.length) {
+    item.append(weaponRows(c.weapons));
     const b = node(
       "button",
       "weapon-inspect candidate-weapon-link",
-      "查看武器属性 · " + c.weapons.map((w) => named(w.name)).join(" / "),
+      "展开武器释义",
     );
     b.onclick = () => showWeapons(c, b);
-    item.append(b);
+    footer.append(b);
   }
-  item.append(candidateStatus(state));
+  item.append(footer);
   return selectableCandidate(item, c, state);
 }
 
@@ -1820,7 +1829,7 @@ function briefHeader(
   unit,
   instance,
   group,
-  { candidateMode = false, detail = false } = {},
+  { candidateMode = false, detail = false, summaryOnly = false } = {},
 ) {
   const header = node(
     "div",
@@ -1828,7 +1837,7 @@ function briefHeader(
       (candidateMode ? " candidate-brief" : "") +
       (detail ? " detail-brief" : ""),
   );
-  if (!candidateMode && !detail) {
+  if (!candidateMode && !detail && !summaryOnly) {
     const controls = node("div", "instance-controls");
     if (canDuplicate(group)) {
       const plus = node("button", "copy-unit", "＋"),
@@ -1868,7 +1877,7 @@ function briefHeader(
     first = node("div", "brief-first"),
     name = node("div", "bilingual-name");
   name.append(node("b", null, named(unit.name)));
-  if (unit.name?.zh && unit.name.en && unit.name.en !== unit.name.zh)
+  if (!summaryOnly && unit.name?.zh && unit.name.en && unit.name.en !== unit.name.zh)
     name.append(node("span", null, unit.name.en));
   first.append(name, statMatrix(unit, { showModels: !candidateMode && !detail }));
   const second = node("div", "brief-meta");
@@ -1886,13 +1895,18 @@ function briefHeader(
         .join(" / "),
     ),
   );
-  if (named(unit.title)) {
+  if (!summaryOnly && named(unit.title)) {
     const title = node("span", "bilingual-title", named(unit.title));
     if (unit.title.zh && unit.title.en && unit.title.en !== unit.title.zh)
       title.append(node("span", null, unit.title.en));
     second.append(title);
   }
-  body.append(first, second, slotStrip(group, { readonly: candidateMode || detail }));
+  body.append(first, second);
+  if (summaryOnly) {
+    header.classList.add('summary-brief');
+    name.title = [unit.name?.en, named(unit.title)].filter(Boolean).join(' · ');
+    second.append(node('b', 'summary-quantity', '×' + group.instances.length));
+  } else body.append(slotStrip(group, { readonly: candidateMode || detail }));
   header.append(body);
   const cost = node("div", "brief-cost"),
     single = candidateMode ? unit.points : perUnitPoints(instance),

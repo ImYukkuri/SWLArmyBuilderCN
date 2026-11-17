@@ -1,7 +1,7 @@
 {
   "schema": "swl-upgrades/v1",
   "referenceVersion": "2026.11.04.0",
-  "updatedAt": "2026-11-17T09:53:55.755419+00:00",
+  "updatedAt": "2026-11-17T10:25:31.483657+00:00",
   "cards": [
     {
       "id": "21b-medical-droid",
@@ -50545,8 +50545,16 @@
             "slot": "training_exempt",
             "condition": {
               "all": [
-                { "field": "unit.factionId", "op": "eq", "value": 2 },
-                { "field": "unit.rankId", "op": "eq", "value": 2 }
+                {
+                  "field": "unit.factionId",
+                  "op": "eq",
+                  "value": 2
+                },
+                {
+                  "field": "unit.rankId",
+                  "op": "eq",
+                  "value": 2
+                }
               ]
             },
             "ifAbsentAny": [
@@ -57621,7 +57629,7 @@
         "availableIn": [
           {
             "kind": "unit",
-            "id": "separatists-admiral-trench"
+            "id": "empire-wet-weather-troopers"
           }
         ]
       },

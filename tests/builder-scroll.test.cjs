@@ -55,6 +55,68 @@ async function samePosition(page, y) {
 }
 const unit = page => page.locator('#army-units > .roster-unit').nth(10);
 
+for (const mobile of [true, false]) test(`${mobile ? 'mobile' : 'desktop'} sticky summary replaces a single unit in both scroll directions`, async t => {
+  const page = await setup(t, mobile);
+  const totals = await page.locator('#roster-info').innerText();
+  const show = async index => {
+    const id = await page.evaluate(index => {
+      const card = document.querySelectorAll('#army-units > .roster-unit')[index];
+      const line = document.querySelector('#roster-info').offsetHeight + 8 + document.querySelector('#current-unit-dock').offsetHeight;
+      window.scrollTo({top: scrollY + card.getBoundingClientRect().top - line + 20, behavior: 'instant'});
+      return card.dataset.instance;
+    }, index);
+    await frames(page);
+    assert.equal(await page.locator('#current-unit-summary').getAttribute('data-instance'), id);
+    assert.equal(await page.locator('#current-unit-summary > .unit-brief').count(), 1);
+    assert.equal(await page.locator('#current-unit-summary .compact-slots').count(), 0);
+    assert.equal(await page.locator('#roster-info').innerText(), totals);
+    assert.equal(await page.locator('#summary-activations').count(), 1);
+    assert(Math.abs((await page.locator('#roster-info').boundingBox()).y) <= 1);
+    const bounds = await page.locator('#current-unit-dock').boundingBox();
+    const bar = await page.locator('#roster-info').boundingBox();
+    assert(bounds.y >= bar.y + bar.height, 'unit summary must sit below global totals');
+    const brief = await page.locator('#current-unit-summary .brief-body').boundingBox();
+    assert(brief.y + brief.height <= bounds.y + bounds.height + 1, 'summary must fit its reserved height');
+    if (!mobile) {
+      const panel = await page.locator('#card-browser').boundingBox();
+      assert(panel.y >= bar.y + bar.height, 'desktop selector must remain below the global row');
+    }
+  };
+  for (const index of [1, 2, 3, 9, 10, 9, 3, 2, 1]) await show(index);
+  const before = await page.evaluate(() => scrollY);
+  await page.evaluate(() => renderUnits());await frames(page);
+  assert.equal(await page.evaluate(() => scrollY), before, 'refreshing the active unit cannot change scroll position');
+  await page.evaluate(() => {
+    const list = document.querySelector('#army-units');
+    scrollTo(0, scrollY + list.getBoundingClientRect().bottom);
+  });await frames(page);
+  assert.equal(await page.locator('#current-unit-summary').isVisible(), false);
+  assert.equal(await page.locator('#roster-info').isVisible(), true);
+  await page.evaluate(() => scrollTo(0,0));await frames(page);
+  assert.equal(await page.locator('#current-unit-summary').isVisible(), false);
+  assert.equal(await page.locator('#roster-heading-tools').isVisible(), true);
+  await page.evaluate(() => showLibrary());await frames(page);
+  assert.equal(await page.locator('#roster-info').isVisible(), false);
+});
+
+test('mobile picker hides background sticky rows and keeps weapon data directly visible and interactive', async t => {
+  const page = await setup(t);
+  const slot = page.locator('#army-units > .roster-unit').nth(9).locator('.slot-name').last();
+  const y = await positionAt(page, slot);await slot.tap();
+  assert.equal(await page.locator('#roster-info').isVisible(), false);
+  assert.equal(await page.locator('#current-unit-dock').isVisible(), false);
+  const card = page.locator('#card-grid .upgrade-candidate').filter({has:page.locator('.weapon-card')}).first();
+  await card.scrollIntoViewIfNeeded();
+  assert.equal(await card.locator('.range-pill').first().isVisible(), true);
+  assert.equal(await card.locator('.attack-pool').first().isVisible(), true);
+  await card.locator('.weapon-inspect').tap();
+  await page.getByRole('button',{name:'关闭武器属性',exact:true}).tap();
+  assert.equal(await page.locator('#card-browser').isVisible(), true);
+  assert.equal(await page.locator('#roster-info').isVisible(), false);
+  await page.locator('#browser-close').tap();await samePosition(page, y);
+  assert.equal(await page.locator('#roster-info').isVisible(), true);
+});
+
 test('mobile upgrade selector survives repeated close button, backdrop and Escape without jumping', async t => {
   const page = await setup(t);
   for (const method of ['button','backdrop','escape','button']) {
@@ -157,7 +219,8 @@ for (const mobile of [true, false]) test(`${mobile ? 'mobile' : 'desktop'} upgra
   const page = await setup(t, mobile);
   const hosts = await page.evaluate(() => Object.values(data.units).filter(u =>
     u.unitTypeId === 4 || (u.unitCategoryId === 'trooper' && u.keywords.some(k => k.id === 'prepared_position'))).map(u => u.id));
-  assert.equal(hosts.length, 11);
+  assert(hosts.includes('rebels-rebel-veterans') && hosts.includes('rebels-mark-2-blaster'),
+    'exercise both Prepared Position and emplacement hosts, including newly added units');
   for (const id of hosts) {
     const target = await page.evaluate(id => {
       const u = data.units[id], record = BuilderLibrary.create(u.factions[0].id, 'Upgrade slot regression', data, uid, new Date().toISOString());

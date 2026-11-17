@@ -88,12 +88,6 @@
           <section id="army-options" hidden aria-label="自定义氏族规则，选择两项"></section>
         </div>
         <div class="army-summary">
-          <div class="points-readout">
-            <span>军表总分</span>
-            <div id="points"></div>
-            <div class="points-track"><i id="points-fill"></i></div>
-          </div>
-          <div class="summary-count" title="每个独立单位计为一次激活，合并显示的单位分别计数"><b id="summary-activations">0</b><span>激活数</span></div>
           <div class="summary-count">
             <b id="summary-commands">0<span> / 7</span></b
             ><span>战术卡</span>
@@ -102,6 +96,11 @@
             <span id="issue-count"></span><span>查看校验</span>
           </button>
         </div>
+      </section>
+      <section id="roster-info" class="roster-info" aria-label="军表分数与激活数">
+        <div class="points-readout"><span>军表总分</span><div id="points"></div></div>
+        <div class="points-track" role="progressbar" aria-label="军表分数进度" aria-valuemin="0"><i id="points-fill"></i></div>
+        <div class="summary-count" title="每个独立单位计为一次激活，合并显示的单位分别计数"><b id="summary-activations">0</b><span>激活数</span></div>
       </section>
       <div class="roster-actions" id="roster-actions">
         <button type="button" id="roster-export">导出 JSON</button>
@@ -118,17 +117,22 @@
       <div id="composition-rules" class="composition-rules"></div>
       <div class="builder-body">
         <section class="army-col" aria-labelledby="roster-heading">
-          <div class="column-head">
-            <div>
-              <h2 id="roster-heading">当前军表</h2>
-              <p>单位、装备与战术指令</p>
+          <div id="current-unit-dock" class="current-unit-dock">
+            <div id="roster-heading-tools">
+              <div class="column-head">
+                <div>
+                  <h2 id="roster-heading">当前军表</h2>
+                  <p>单位、装备与战术指令</p>
+                </div>
+                <button class="text-button" id="view-toggle">全部展开</button>
+              </div>
+              <div class="card-display-tools">
+                <label class="explanation-switch"
+                  ><input type="checkbox" id="open-explanations" />打开词条释义</label
+                >
+              </div>
             </div>
-            <button class="text-button" id="view-toggle">全部展开</button>
-          </div>
-          <div class="card-display-tools">
-            <label class="explanation-switch"
-              ><input type="checkbox" id="open-explanations" />打开词条释义</label
-            >
+            <div id="current-unit-summary" aria-label="当前单位速览" hidden></div>
           </div>
           <div id="army-units" class="army-list"></div>
           <div id="deck-panel"></div>
@@ -205,6 +209,7 @@
     <script src="builder.js"></script>
     <script src="builder-overlays.js"></script>
     <script src="builder-view.js"></script>
+    <script src="builder-sticky.js"></script>
     <script src="builder-transfer-ui.js"></script>
     <script src="builder-home.js"></script>
   </body>

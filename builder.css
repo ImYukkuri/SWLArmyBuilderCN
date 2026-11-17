@@ -5,6 +5,8 @@
 }
 
 :root {
+  --roster-info-height: 66px;
+  --unit-dock-height: 104px;
   --bg: #eef1f4;
   --paper: #fff;
   --ink: #253540;
@@ -659,14 +661,14 @@ h1 {
 
 .card-browser {
   position: sticky;
-  top: 16px;
+  top: calc(var(--roster-info-height) + 8px);
   background: #fff;
   border-radius: 8px;
   overflow: hidden;
   border-top: 3px solid var(--accent);
   display: flex;
   flex-direction: column;
-  max-height: calc(100dvh - 32px);
+  max-height: calc(100dvh - var(--roster-info-height) - 24px);
   min-width: 0;
   border-top-width: 3px;
 }
@@ -3882,6 +3884,92 @@ dialog, .card-browser, .keyword-popover {
 .battleforce-info:focus-visible{outline:2px solid var(--faction);outline-offset:1px}
 .battleforce-dialog{width:min(680px,calc(100vw - 28px));max-height:85dvh;padding:22px;overflow-y:auto;border:1px solid #b7c1bd;border-radius:12px;background:#fafaf7;color:#263c35}
 .battleforce-dialog .dialog-head{position:sticky;top:-22px;background:#fafaf7;padding:12px 0;z-index:1}
+
+/* Roster-only sticky readouts retain their own space in normal document flow. */
+.roster-info {
+  position: sticky;
+  top: 0;
+  z-index: 22;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  min-height: 66px;
+  padding: 8px 14px;
+  border-block: 1px solid #c2d0da;
+  background: #f7fafc;
+}
+.roster-info .points-readout { min-width: 0; max-width: none; flex: none; }
+.roster-info .points-readout > span { font-size: 11px; }
+.roster-info #points { display: flex; align-items: baseline; gap: 7px; }
+.roster-info #points b { font-size: 28px; line-height: 1.15; }
+.roster-info #points .limit { font-size: 15px; margin: 0; }
+.roster-info #points .remaining { font-size: 11px; margin-left: 8px; }
+.roster-info .points-track { flex: 1; min-width: 40px; height: 5px; margin: 0; border-radius: 2px; overflow: hidden; }
+.roster-info .summary-count { flex-direction: row; align-items: baseline; gap: 8px; white-space: nowrap; }
+.roster-info .summary-count > b { font-size: 28px; color: var(--accent); }
+.roster-info.over-limit #points b { color: #a52d40; }
+.roster-info.over-limit .points-track i { background: #a52d40; }
+.army-header .army-summary { padding-top: 0; }
+.current-unit-dock {
+  position: sticky;
+  top: calc(var(--roster-info-height) + 8px);
+  z-index: 18;
+  height: var(--unit-dock-height);
+  margin-bottom: 8px;
+  background: var(--bg);
+}
+#roster-heading-tools .column-head { min-height: 54px; }
+#roster-heading-tools .column-head p { display: none; }
+.current-unit-dock.past-units { visibility: hidden; }
+.current-unit-dock::before { content: ''; position: absolute; inset: -8px 0 auto; height: 8px; background: var(--bg); }
+#current-unit-summary { height: 100%; border: 1px solid #b5c9d6; border-left: 3px solid var(--faction); border-radius: 5px; background: #f9fbfc; }
+.summary-brief { height: 100%; grid-template-columns: 38px minmax(0,1fr); padding: 6px 8px; gap: 8px; }
+.summary-brief .unit-art { width: 38px; height: 50px; min-height: 0; }
+.summary-brief .brief-first { gap: 3px 7px; }
+.summary-brief .bilingual-name { flex: 1; max-width: none; }
+.summary-brief .bilingual-name > b { font-size: 15px; line-height: 1.3; }
+.summary-brief .attribute-band { order: 3; flex-basis: 100%; padding-block: 2px; }
+.summary-brief .brief-cost { max-width: 65px; }
+.summary-brief .brief-cost > b { font-size: 22px; }
+.summary-brief .brief-cost > span { font-size: 10px; line-height: 1.2; }
+.summary-brief .brief-meta { margin-top: 3px; }
+.summary-quantity { margin-left: auto; font: 600 13px var(--numeric); color: var(--accent); }
+html.page-overlay-open .roster-info,
+html.page-overlay-open .current-unit-dock { visibility: hidden; pointer-events: none; }
+#army-units > .roster-unit { scroll-margin-top: calc(var(--roster-info-height) + var(--unit-dock-height) + 16px); }
+
+/* Upgrade choices keep the full rule and weapon content, with tighter rhythm. */
+.upgrade-browser .browser-top { padding: 9px 14px 0; }
+.upgrade-browser .browser-heading { margin-bottom: 2px; }
+.upgrade-browser .browser-top h2 { font-size: 20px; }
+.upgrade-browser .browser-top > p { margin-top: 2px; line-height: 1.5; }
+.upgrade-browser .search-row { margin-top: 7px; }
+.upgrade-browser .result-controls { padding: 6px 0; }
+.upgrade-browser .batch-apply { margin-block: 0; padding-block: 5px; }
+.upgrade-browser .browser-foot { padding-block: 7px; }
+.candidate.upgrade-candidate { padding: 12px 14px; }
+.upgrade-candidate .identity { gap: 8px; }
+.upgrade-candidate .candidate-art { width: 34px; height: 46px; margin: 0; }
+.upgrade-candidate .requirements { margin-top: 6px; padding: 6px 9px; line-height: 1.55; }
+.upgrade-candidate > .upgrade-effect { margin-top: 6px; font-size: 13px; line-height: 1.65; }
+.upgrade-candidate .upgrade-tags { margin-top: 5px; gap: 3px; }
+.upgrade-candidate > .weapon-groups { margin-block: 6px 3px; gap: 5px; }
+.upgrade-candidate .weapon-card-head { padding: 5px 8px; gap: 5px 8px; }
+.upgrade-candidate .weapon-tags { padding: 3px 7px; }
+.upgrade-candidate .candidate-weapon-link { display: inline-block; margin: 0 0 0 auto; padding: 3px 0; min-height: 30px; }
+.upgrade-candidate .candidate-footer { margin-top: 5px; gap: 4px; }
+@media (max-width: 760px) {
+  .roster-info { gap: 10px; padding: 7px 10px; }
+  .roster-info #points { flex-wrap: wrap; column-gap: 5px; row-gap: 0; max-width: 155px; }
+  .roster-info #points .remaining { margin: 0; flex-basis: 100%; font-size: 10px; }
+  .roster-info .summary-count { flex-direction: column; align-items: center; gap: 0; }
+  .roster-info .summary-count > b { font-size: 26px; }
+  .roster-info .summary-count > span { font-size: 11px; }
+  .army-header .army-summary { justify-content: flex-start; gap: 20px; padding-top: 12px; }
+  .upgrade-browser .browser-top { padding-inline: 12px; }
+  .candidate.upgrade-candidate { padding: 10px 12px; }
+  .upgrade-candidate .weapon-title { flex-basis: 100%; }
+}
 .battleforce-dialog h3{margin:20px 0 8px;font-size:17px}.battleforce-dialog h4{margin:16px 0 5px}
 .battleforce-dialog p,.battleforce-dialog .prose{line-height:1.65;margin:8px 0}
 .battleforce-quotas{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;text-align:left}
