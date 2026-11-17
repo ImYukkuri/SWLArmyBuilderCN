@@ -163,7 +163,7 @@ def restore(kind,name,record_id,revision):
     if not re.fullmatch(r'\d{8}T\d{6}\.\d{6}Z-[a-f0-9]{12}\.json',name):raise ValueError('历史文件名无效')
     _,key=CONFIG[kind];old=json.loads((ROOT/'history'/kind/name).read_bytes());card=next((c for c in old[key]if c['id']==record_id),None)
     if card is None:raise ValueError('此版本没有该记录')
-    missing=kind=='armies' and not any(c['id']==record_id for c in read(kind)['catalog'][key])
+    missing=kind in ('armies','upgrades') and not any(c['id']==record_id for c in read(kind)['catalog'][key])
     return save(kind,card,revision,create=missing)
 def delete_army(record_id,revision):
     path=ROOT/CONFIG['armies'][0]

@@ -82,6 +82,45 @@ test("reference enumeration is pure and does not mutate any source catalog", () 
   EditorOptions.create(defs, units.units, upgrades.cards, pkg, fields);
   assert.equal(JSON.stringify({ defs, units, upgrades, pkg, fields }), before);
 });
+
+test('allowed hosts include new local units without conflating them with unlinked source names', () => {
+  const local = {id: 'test-local-mudtroopers', name: {zh: '新建泥地部队', en: 'Imperial Mudtroopers'}, title: {en: '', zh: ''}};
+  const index = EditorOptions.create(defs, [...units.units, local], upgrades.cards, pkg, fields);
+  const choices = index.rule(['availableIn', 0], [], null);
+  const target = choices.find(o => o.value?.kind === 'unit' && o.value.id === local.id);
+  assert(target.label.includes('新建泥地部队'));
+  const grantChoices = index.rule(['slotGrants', 0, 'holders', 0], [], null);
+  assert.deepEqual(grantChoices, choices, 'slot-grant hosts use the same live local unit dictionary');
+  const legacy = choices.find(o => o.value === '36899');
+  assert(legacy.label.includes('来源编号') && legacy.label.includes('未关联本地单位'));
+  assert(!index.condition('unit.upstreamId').some(o => typeof o.value === 'object'));
+  const linked = {...local, upstream: {collection: 'units', id: '36899'}};
+  const linkedIndex = EditorOptions.create(defs, [...units.units, linked], upgrades.cards, pkg, fields);
+  const source = linkedIndex.rule(['availableIn', 0], [], null).find(o => o.value === '36899');
+  assert(source.label.includes('新建泥地部队') && source.label.includes('已关联本地单位'));
+});
+
+test('local host references match exact IDs and cannot be bypassed by generic printed conditions', () => {
+  const data = {defs, pkg: structuredClone(pkg), units: Object.fromEntries(units.units.map(u => [u.id, u])), upgrades: {}};
+  const base = data.units['empire-stormtroopers'], local = {...base, id: 'test-local-host', upstream: undefined};
+  const card = {id: 'test-local-card', name: {en: 'Test'}, upstream: {id: 'test-package-host'},
+    rules: {availableIn: [{kind: 'unit', id: local.id}]},
+    restrictions: {condition: {field: 'unit.unitTypeId', op: 'eq', value: base.unitTypeId}}};
+  data.pkg.upgradeRules['test-package-host'] = {host: [base.upstream.id]};
+  const allowed = host => RulesCore.upgradeEligibility(card, host, {armyId: 2}, data, []).ok;
+  assert(allowed(local));
+  assert(!allowed({...local, id: 'same-name-other-id'}));
+  assert(!allowed(base), 'explicit local targets replace legacy package hosts');
+  delete data.pkg.upgradeRules['test-package-host'];
+  card.rules.availableIn.push(base.upstream.id);
+  assert(allowed(base), 'local and source references are OR alternatives');
+  card.rules.availableIn = [base.upstream.id];
+  card.restrictions.condition = null;
+  assert(!allowed(local), 'same English name does not establish a source linkage');
+  assert(allowed(base));
+  card.rules.availableIn = [];
+  assert(allowed(local), 'an empty host filter does not block all units');
+});
 test("effect keyword arrays resolve numeric source IDs while conditions use local IDs", () => {
   const atom = { property: "keywords", value: [6] };
   const effect = options.rule(["addProperties", 0, 0, "value", 0], atom.value, 6, [atom]);

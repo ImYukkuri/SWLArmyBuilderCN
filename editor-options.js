@@ -74,12 +74,12 @@ window.EditorOptions = (() => {
           .filter((x) => x && x.id != null)
           .map((x) => option(x.id, (labelOf(x) || String(x.id)) + " · " + x.id));
     function merge(key, rows) {
-      tables[key] = unique([...(rows || []), ...(tables[key] || [])]);
+      tables[key] = unique([...(tables[key] || []), ...(rows || [])]);
     }
     merge(
       "sourceUnits",
       units
-        .filter((u) => u.upstream?.id != null)
+        .filter((u) => u.upstream?.id != null && u.upstream.collection !== 'upgrades')
         .map((u) =>
           option(
             String(u.upstream.id),
@@ -101,6 +101,13 @@ window.EditorOptions = (() => {
         [labelOf(u), labelOf({ name: u.title })].filter(Boolean).join(" · ") + " · " + u.id,
       ),
     );
+    const linkedSources = new Set(units.filter(u => u.upstream?.id != null && u.upstream.collection !== 'upgrades')
+      .map(u => String(u.upstream.id)));
+    tables.unitHosts = [
+      ...tables.units.map(o => option({kind: 'unit', id: o.value}, '本地单位 · ' + o.label)),
+      ...tables.sourceUnits.map(o => option(o.value, '来源编号 · ' + o.label +
+        (linkedSources.has(String(o.value)) ? ' · 已关联本地单位' : ' · 未关联本地单位'))),
+    ];
     tables.localUpgrades = upgrades.map(c => option(c.id,
       labelOf(c) + (c.usage === 'counterpart' ? ' · 伙伴' : '') + ' · ' + c.id));
     const identities = new Map();
@@ -223,6 +230,8 @@ window.EditorOptions = (() => {
       const key = String(path.at(-1)),
         root = path[0],
         strings = path.map(String);
+      if (root === 'availableIn' && path.length <= 2) return table('unitHosts');
+      if (root === 'slotGrants' && strings.includes('holders')) return table('unitHosts');
       const atom = [parent, ...ancestors.toReversed()].find(
         (x) => x && !Array.isArray(x) && typeof x.property === "string",
       );
@@ -255,8 +264,7 @@ window.EditorOptions = (() => {
         return collection(parent.elementPropertyName || "upgrades");
       if (
         (root === "quantityLimitedBy" && key === "unit") ||
-        strings.includes("whenArmyIncludes") ||
-        strings.includes("holders")
+        strings.includes("whenArmyIncludes")
       )
         return table("sourceUnits");
       if (strings.includes("tiers") || ["tier", "rank", "replaceTier"].includes(key))

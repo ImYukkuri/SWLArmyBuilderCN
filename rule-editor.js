@@ -51,6 +51,9 @@ window.RuleEditor = (() => {
     type: "效果类型",
     slot: "槽位",
     when: "触发条件",
+    holders: "指定单位",
+    ifAbsentAny: "已有以下任一槽位时，不增加专属槽",
+    note: "备注",
     field: "字段",
     op: "操作符",
   };
@@ -166,7 +169,7 @@ window.RuleEditor = (() => {
         object[key] = next;
         notify();
         if (
-          ["property", "propertyName", "elementPropertyName", "field", "op"].includes(
+          ["property", "propertyName", "elementPropertyName", "field", "op", "trigger"].includes(
             String(key),
           ) ||
           (typeof next === "object" && next !== null)
@@ -271,8 +274,62 @@ window.RuleEditor = (() => {
       return choices.length ? structuredClone(choices[0].value) : "";
     }
 
-    function fields(object, path, into) {
-      for (const key of Object.keys(object)) {
+    function slotGrant(grant, path, into) {
+      const rerender = () => render(container, rules, defs, onchange, context);
+      const isQualify = grant.trigger === "unitQualifies";
+      into.classList.add("slot-grant-item");
+      into.append(control(grant, "trigger", [...path, "trigger"]));
+      into.append(control(grant, "slot", [...path, "slot"]));
+      if (isQualify) {
+        const mode = grant.condition != null || !Array.isArray(grant.holders) ? "condition" : "holders";
+        const row = E("div");
+        row.className = "field";
+        row.append(E("span", "匹配方式"), EditorOptions.control(mode, [
+          { value: "condition", label: "按条件匹配（阵营、军阶等）" },
+          { value: "holders", label: "指定单位" },
+        ], next => {
+          if (next === mode) return;
+          delete grant.condition;
+          delete grant.holders;
+          if (next === "holders") grant.holders = [];
+          notify();
+          rerender();
+        }, { label: "槽位授予匹配方式", nullable: false }));
+        into.append(row);
+        if (mode === "holders") fields(grant, path, into, ["holders"]);
+        else {
+          const condition = E("div");
+          ConditionEditor.render(condition, grant, defs, notify, rerender, {
+            title: "单位授予条件",
+            emptyText: "尚未设置授予条件；不会增加专属槽。",
+          });
+          into.append(condition);
+          if (grant.holders?.length) {
+            const hint = E("p", "已设置条件，旧指定单位名单不参与匹配。切换为指定单位可重新选择。");
+            hint.className = "hint";
+            into.append(hint);
+          }
+        }
+      } else {
+        const condition = E("div");
+        ConditionEditor.render(condition, grant, defs, notify, rerender, {
+          key: "when", title: "携带时的附加条件", emptyText: "未设置附加条件，携带此卡即增加槽位。",
+        });
+        into.append(condition);
+      }
+      if (Array.isArray(grant.ifAbsentAny)) fields(grant, path, into, ["ifAbsentAny"]);
+      else if (isQualify) {
+        const add = E("button", "设置缺少对应槽位时才授予");
+        add.type = "button";
+        add.onclick = () => { grant.ifAbsentAny = []; notify(); rerender(); };
+        into.append(add);
+      }
+      fields(grant, path, into, Object.keys(grant).filter(k =>
+        !["trigger", "slot", "condition", "holders", "when", "ifAbsentAny"].includes(k)));
+    }
+
+    function fields(object, path, into, keys = Object.keys(object)) {
+      for (const key of keys) {
         const value = object[key],
           p = [...path, key];
         if (Array.isArray(value)) {
@@ -286,8 +343,10 @@ window.RuleEditor = (() => {
           value.forEach((v, i) => {
             const row = E("div");
             row.className = "rule-item";
-            if (
-              ["unavailableWith", "unavailableWithIds"].includes(p[0]) &&
+            if (key === "slotGrants" && v && typeof v === "object" && !Array.isArray(v)) {
+              slotGrant(v, [...p, i], row);
+            } else if (
+              (["availableIn", "unavailableWith", "unavailableWithIds"].includes(p[0]) || key === "holders") &&
               v &&
               typeof v === "object" &&
               !Array.isArray(v)
@@ -316,7 +375,7 @@ window.RuleEditor = (() => {
             } else {
               row.append(control(value, i, [...p, i]));
             }
-            const remove = E("button", "删除");
+            const remove = E("button", key === "slotGrants" ? "删除此槽位授予" : "删除");
             remove.type = "button";
             remove.className = "minor";
             remove.onclick = () => {

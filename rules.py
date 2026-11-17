@@ -229,7 +229,10 @@ def slot_grants_for(package, unit, inst, upgrades):
             if grant.get("condition") is not None:
                 ok = evaluate(grant["condition"], ctx, predicates) is True
             else:
-                ok = uid in [str(h) for h in (grant.get("holders") or [])]
+                ok = any(ref.get('id') == unit.get('id')
+                         if isinstance(ref, dict) and ref.get('kind') == 'unit'
+                         else isinstance(ref, (int, str)) and str(ref) == uid
+                         for ref in grant.get('holders') or [])
             if ok:
                 qualify_grants.append({"key": grant["slot"], "ifAbsentAny": grant.get("ifAbsentAny"), "upgradeId": card_id})
     return equipped_grants, qualify_grants
@@ -394,11 +397,13 @@ def unit_divisions(unit):
 
 
 def upstream_hosts(upgrade_rule, card):
-    if upgrade_rule and upgrade_rule.get("host"):
-        return [str(h) for h in upgrade_rule["host"]]
     local = (card.get("rules") or {}).get("availableIn")
+    if local and any(isinstance(h, dict) and h.get('kind') == 'unit' for h in local):
+        return local
+    if upgrade_rule and upgrade_rule.get("host"):
+        return upgrade_rule["host"]
     if local:
-        return [str(h) for h in local]
+        return local
     return None
 
 
@@ -779,7 +784,11 @@ def upgrade_eligibility(card, unit, army, package, definitions, name_index, equi
     alias_ok = host_alias_allows(card, unit, army, package, definitions, rule)
     printed_condition = (card.get("restrictions") or {}).get("condition")
     condition_governs_host = printed_condition is not None and condition_is_host_only(printed_condition)
-    if hosts is not None and str(unit.get("upstream", {}).get("id", "")) not in hosts and not alias_ok and not condition_governs_host:
+    host_matches = hosts is not None and any(
+        ref.get('id') == unit.get('id') if isinstance(ref, dict) and ref.get('kind') == 'unit'
+        else str(ref) == str((unit.get('upstream') or {}).get('id', '')) for ref in hosts)
+    explicit_hosts = hosts is not None and any(isinstance(ref, dict) and ref.get('kind') == 'unit' for ref in hosts)
+    if hosts is not None and not host_matches and not alias_ok and (not condition_governs_host or explicit_hosts):
         out.append(("invalid", "host_restriction", "此升级仅限特定角色/版本"))
     facs = (card.get("rules") or {}).get("factions")
     army_ids=[army['armyId']]+[i for e in extensions(army['armyId'],package) for i in e.inherited_army_ids(army,package)]

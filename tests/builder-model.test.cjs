@@ -57,6 +57,65 @@ test('ordinary slots suppress exempt slots even when occupied and keep special c
   }
 });
 
+test('new units without upstream IDs can equip upgrades selected by their local host reference', () => {
+  const fixture = structuredClone(data), host = structuredClone(fixture.units['empire-stormtroopers']);
+  host.id = 'test-local-mudtroopers';delete host.upstream;fixture.units[host.id] = host;
+  const card = fixture.upgrades['gear-binoculars'];
+  card.rules.availableIn = [{kind: 'unit', id: host.id}];
+  const roster = armyOf(unit(host.id)), inst = roster.units[0];
+  const slots = RulesCore.slotListFor(fixture.pkg, host, inst, fixture.upgrades, 2);
+  const result = BuilderModel.equip(roster, fixture, {unitInstanceId: inst.instanceId,
+    slotIndex: slots.findIndex(s => s.key === 'gear'), slotKey: 'gear'}, card.id, false, uid);
+  assert(result.ok, result.reason);
+  assert.equal(result.draft.units[0].upgrades[0].upgradeId, card.id);
+  const renamed = {...host, id: 'test-other-host'};
+  assert(!RulesCore.upgradeEligibility(card, renamed, roster, fixture, []).ok);
+});
+
+test('Imperial March uses faction and rank for current and future local units, with normal or exclusive slots', () => {
+  const fixture = structuredClone(data), card = fixture.upgrades['training-imperial-march'];
+  const host = {...structuredClone(fixture.units['empire-stormtroopers']), id: 'test-future-corps'};
+  delete host.upstream;fixture.units[host.id] = host;
+  assert.equal(card.rules.slotGrants[0].holders, undefined);
+  assert.deepEqual(card.rules.slotGrants[0].condition, card.restrictions.condition);
+  for (const candidate of Object.values(fixture.units).filter(u => u.factionId === 2 && u.rankId === 2)) {
+    assert(RulesCore.slotGrantsFor(fixture.pkg, candidate, {}, fixture.upgrades).qualify.some(g => g.upgradeId === card.id), candidate.id);
+  }
+  for (const hasTraining of [false, true]) {
+    host.upgradeSlots = hasTraining ? [10] : [];
+    const roster = armyOf(unit(host.id)), inst = roster.units[0];
+    const slots = RulesCore.slotListFor(fixture.pkg, host, inst, fixture.upgrades, 2);
+    const key = hasTraining ? 'training' : 'special:' + card.id;
+    assert.equal(slots.some(s => s.key === 'special:' + card.id), !hasTraining);
+    const result = BuilderModel.equip(roster, fixture, {unitInstanceId: inst.instanceId,
+      slotIndex: slots.findIndex(s => s.key === key), slotKey: key}, card.id, false, uid);
+    assert(result.ok, result.reason);
+    const selected = result.draft.units[0].upgrades[0];
+    assert(!RulesCore.validateArmy(result.draft, fixture).issues.some(i =>
+      i.instanceId === selected.instanceId && i.status === 'invalid'));
+  }
+  for (const [factionId, rankId] of [[1, 2], [2, 4]]) {
+    Object.assign(host, {factionId, rankId, upgradeSlots: []});
+    assert(!RulesCore.slotListFor(fixture.pkg, host, {}, fixture.upgrades, 2).some(s => s.key === 'special:' + card.id));
+    assert(!RulesCore.upgradeEligibility(card, host, {armyId: 2}, fixture, []).ok);
+  }
+  Object.assign(host, {factionId: 2, rankId: 2});
+  fixture.pkg.armyOverrides['2'] = {slots: [{op: 'deny', slot: 'training'}]};
+  assert(!RulesCore.slotListFor(fixture.pkg, host, {}, fixture.upgrades, 2).some(s => s.key === 'special:' + card.id));
+});
+
+test('specified slot-grant hosts accept local IDs and legacy IDs without confusing identical names', () => {
+  const fixture = structuredClone(data), base = fixture.units['empire-stormtroopers'];
+  const host = {...base, id: 'test-local-grant-host', upstream: undefined};
+  const card = fixture.upgrades['training-imperial-march'], grant = card.rules.slotGrants[0];
+  delete grant.condition;
+  grant.holders = [{kind: 'unit', id: host.id}, base.upstream.id];
+  const granted = u => RulesCore.slotGrantsFor(fixture.pkg, u, {}, fixture.upgrades).qualify.some(g => g.upgradeId === card.id);
+  assert(granted(host));assert(granted(base));assert(!granted({...host, id: 'other-host'}));
+  grant.condition = {field: 'unit.factionId', op: 'eq', value: 1};
+  assert(!granted(host));
+});
+
 test('Dug In admits every emplacement or Prepared Position trooper through its real slot', () => {
   const card=data.upgrades['training-dug-in'];
   for (const host of Object.values(data.units)) {

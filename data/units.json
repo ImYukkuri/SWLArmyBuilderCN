@@ -1,6 +1,6 @@
 {
   "schema": "swl-unit-catalog/v2",
-  "updatedAt": "2026-11-16T16:52:00.858617+00:00",
+  "updatedAt": "2026-11-17T10:20:24.123061+00:00",
   "definitions": "catalog-definitions.json",
   "referenceVersion": "2026.11.04.0",
   "units": [
@@ -233,7 +233,7 @@
         {
           "name": {
             "en": "Twin ARM Cannons",
-            "zh": "双手手炮"
+            "zh": "双臂炮"
           },
           "range": {
             "min": 0,
@@ -1025,7 +1025,7 @@
         {
           "name": {
             "en": "Arm Cannons",
-            "zh": "手炮"
+            "zh": "臂炮"
           },
           "range": {
             "min": 0,
@@ -26483,6 +26483,267 @@
       "unitCategoryId": "vehicle",
       "unitSubtypeId": "repulsor_vehicle",
       "nameIdentityId": "obi-wan-kenobi"
+    },
+    {
+      "id": "empire-mudtroopers",
+      "name": {
+        "en": "Imperial Mudtroopers",
+        "zh": "帝国泥地部队"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "points": 46,
+      "upgradeSlots": [
+        4,
+        1,
+        2,
+        3,
+        22
+      ],
+      "stats": {
+        "models": 5,
+        "wounds": 1,
+        "courage": 1,
+        "resilience": null,
+        "speed": 2,
+        "defenseDie": "white",
+        "attackSurge": "hit",
+        "defenseSurge": "block"
+      },
+      "assets": {
+        "front": "assets/unit-cards/empire-mudtroopers.webp",
+        "portrait": "assets/portraits/empire-mudtroopers-c3de78a009297260119f.webp",
+        "portraitCrop": [
+          0.6699999999999999,
+          0.12377410468319555,
+          0.99,
+          0.6962258953168043
+        ]
+      },
+      "review": {
+        "status": "needs_review",
+        "notes": "",
+        "issues": [
+          "复制自 empire-stormtroopers，待校对"
+        ]
+      },
+      "factionId": 2,
+      "factions": [
+        {
+          "id": 2,
+          "rankId": 2
+        }
+      ],
+      "affiliationIds": [],
+      "rankId": 2,
+      "unitTypeId": 1,
+      "keywords": [
+        {
+          "id": "unhindered",
+          "value": null
+        }
+      ],
+      "weapons": [
+        {
+          "name": {
+            "en": "Bludgeon",
+            "zh": "重击"
+          },
+          "range": {
+            "min": 0,
+            "max": 0
+          },
+          "dice": {
+            "red": 0,
+            "black": 0,
+            "white": 1
+          },
+          "keywords": []
+        },
+        {
+          "name": {
+            "en": "E-10 Blaster Rifle",
+            "zh": "E-10爆能步枪"
+          },
+          "range": {
+            "min": 1,
+            "max": 3
+          },
+          "dice": {
+            "red": 0,
+            "black": 0,
+            "white": 1
+          },
+          "keywords": []
+        }
+      ],
+      "conditionalUpgradeSlots": [
+        {
+          "id": 4,
+          "upgradeId": "21906"
+        },
+        {
+          "id": 4,
+          "upgradeId": "20801"
+        },
+        {
+          "id": 2,
+          "upgradeId": "135"
+        },
+        {
+          "id": 10,
+          "upgradeId": "134"
+        },
+        {
+          "id": 6,
+          "upgradeId": "67"
+        }
+      ],
+      "usage": "army_unit",
+      "rules": {
+        "unlimited": true
+      },
+      "divisions": [
+        "Dark"
+      ],
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "mudtrooper"
+    },
+    {
+      "id": "empire-wet-weather-troopers",
+      "name": {
+        "en": "Wet-Weather Gear Stormtroopers",
+        "zh": "潮湿气候装备冲锋队"
+      },
+      "title": {
+        "en": "",
+        "zh": ""
+      },
+      "points": 50,
+      "upgradeSlots": [
+        4,
+        2,
+        3,
+        10
+      ],
+      "stats": {
+        "models": 4,
+        "wounds": 1,
+        "courage": 2,
+        "resilience": null,
+        "speed": 2,
+        "defenseDie": "red",
+        "attackSurge": "hit",
+        "defenseSurge": "none"
+      },
+      "assets": {
+        "front": "assets/unit-cards/empire-wet-weather-troopers.webp",
+        "portrait": "assets/portraits/empire-wet-weather-troopers-87d1ffb0a564813e95b3.webp",
+        "portraitCrop": [
+          0.6699999999999999,
+          0.12377410468319555,
+          0.99,
+          0.6962258953168043
+        ]
+      },
+      "review": {
+        "status": "needs_review",
+        "notes": "",
+        "issues": [
+          "复制自 empire-mudtroopers，待校对"
+        ]
+      },
+      "factionId": 2,
+      "factions": [
+        {
+          "id": 2,
+          "rankId": 4
+        }
+      ],
+      "affiliationIds": [],
+      "rankId": 4,
+      "unitTypeId": 1,
+      "keywords": [
+        {
+          "id": "coordinate",
+          "value": null,
+          "parameter": "帝国泥地部队"
+        },
+        {
+          "id": "low_profile",
+          "value": null,
+          "parameter": null,
+          "action": "none"
+        },
+        {
+          "id": "prepared_position",
+          "value": null,
+          "parameter": null,
+          "action": "none"
+        },
+        {
+          "id": "unhindered",
+          "value": null,
+          "parameter": null,
+          "action": "none"
+        }
+      ],
+      "weapons": [
+        {
+          "name": {
+            "en": "Bludgeon",
+            "zh": "重击"
+          },
+          "range": {
+            "min": 0,
+            "max": 0
+          },
+          "dice": {
+            "red": 0,
+            "black": 0,
+            "white": 1
+          },
+          "keywords": []
+        },
+        {
+          "name": {
+            "en": "E-11 Blaster Rifle",
+            "zh": "E-11爆能步枪"
+          },
+          "range": {
+            "min": 1,
+            "max": 3
+          },
+          "dice": {
+            "red": 0,
+            "black": 0,
+            "white": 1
+          },
+          "keywords": [
+            {
+              "id": "assault",
+              "value": 1,
+              "parameter": null
+            }
+          ]
+        }
+      ],
+      "conditionalUpgradeSlots": [],
+      "usage": "army_unit",
+      "rules": {
+        "unlimited": true
+      },
+      "divisions": [
+        "Dark"
+      ],
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "wet-weather-trooper"
     }
   ]
 }

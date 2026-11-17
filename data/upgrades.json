@@ -1,7 +1,7 @@
 {
   "schema": "swl-upgrades/v1",
   "referenceVersion": "2026.11.04.0",
-  "updatedAt": "2026-11-16T10:54:23.483224+00:00",
+  "updatedAt": "2026-11-17T09:53:55.755419+00:00",
   "cards": [
     {
       "id": "21b-medical-droid",
@@ -37383,7 +37383,7 @@
         {
           "name": {
             "en": "SX-21 Scatter Blaster",
-            "zh": "SX-21 散射 爆能枪"
+            "zh": "SX-21散弹爆能枪"
           },
           "range": {
             "min": 1,
@@ -37457,7 +37457,7 @@
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "rebel-sx21-trooper",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "1daa498c1a51c8a9230ee3a6a79ce6e6587be4658337bd7da4e0a144880942fc"
@@ -42700,6 +42700,10 @@
                 "propertyName": "factions"
               }
             ]
+          },
+          {
+            "kind": "unit",
+            "id": "empire-wet-weather-troopers"
           }
         ],
         "unique": false,
@@ -43027,6 +43031,10 @@
                 "propertyName": "factions"
               }
             ]
+          },
+          {
+            "kind": "unit",
+            "id": "empire-wet-weather-troopers"
           }
         ],
         "unique": false,
@@ -50535,17 +50543,15 @@
           {
             "trigger": "unitQualifies",
             "slot": "training_exempt",
-            "holders": [
-              5,
-              7,
-              48,
-              5880,
-              36899
-            ],
+            "condition": {
+              "all": [
+                { "field": "unit.factionId", "op": "eq", "value": 2 },
+                { "field": "unit.rankId", "op": "eq", "value": 2 }
+              ]
+            },
             "ifAbsentAny": [
               "training"
-            ],
-            "note": "待读图完善：帝国士兵限定？"
+            ]
           }
         ]
       },
@@ -56629,7 +56635,7 @@
       "id": "upstream-23984",
       "name": {
         "en": "Mudtrooper Squad",
-        "zh": ""
+        "zh": "泥地部队小队"
       },
       "actionTypes": null,
       "points": 32,
@@ -56639,17 +56645,30 @@
       "usage": "unit_upgrade",
       "description": {
         "en": [],
-        "zh": []
+        "zh": [
+          "加入4个泥地部队模型。本单位获得不屈；即使这些模型被击败，仍拥有该关键词。只要本单位所有模型距离单位队长{@icon.range-1}内（而非{@icon.range-half}内），即符合队形要求；即使这些模型被击败，仍保留此规则。本单位不能通过运输关键词部署或获发命令。"
+        ]
       },
-      "requirementsText": [],
-      "keywords": [],
+      "requirementsText": [
+        "帝国泥地部队限定"
+      ],
+      "keywords": [
+        {
+          "id": "indomitable",
+          "value": null,
+          "parameter": null
+        }
+      ],
       "weapons": [],
       "assets": {
-        "front": null
+        "front": "assets/upgrade-cards/upstream-23984-front-62aa424559fc.webp"
       },
       "rules": {
         "availableIn": [
-          36899
+          {
+            "kind": "unit",
+            "id": "empire-mudtroopers"
+          }
         ],
         "addProperties": [
           [
@@ -56660,14 +56679,6 @@
               ]
             }
           ]
-        ],
-        "modifiedPointsWith": [
-          {
-            "id": "Children of the Watch",
-            "property": "options",
-            "modifier": -5,
-            "in": "33788"
-          }
         ],
         "slotTypes": [
           1
@@ -57399,7 +57410,7 @@
       "id": "upstream-23982",
       "name": {
         "en": "Z-6 Mudtrooper",
-        "zh": ""
+        "zh": "Z-6 泥地士兵"
       },
       "actionTypes": null,
       "points": 20,
@@ -57409,17 +57420,45 @@
       "usage": "unit_upgrade",
       "description": {
         "en": [],
-        "zh": []
+        "zh": [
+          "加入1个 Z-6 泥地士兵模型"
+        ]
       },
       "requirementsText": [],
       "keywords": [],
-      "weapons": [],
+      "weapons": [
+        {
+          "name": {
+            "en": "Z-6 ROTARY BLASTER",
+            "zh": "Z-6 旋转爆能枪"
+          },
+          "range": {
+            "min": 1,
+            "max": 3
+          },
+          "dice": {
+            "red": 0,
+            "black": 0,
+            "white": 3
+          },
+          "keywords": [
+            {
+              "id": "anti_personnel",
+              "value": 3,
+              "parameter": null
+            }
+          ]
+        }
+      ],
       "assets": {
-        "front": null
+        "front": "assets/upgrade-cards/upstream-23982-front-30926429574f.webp"
       },
       "rules": {
         "availableIn": [
-          36899
+          {
+            "kind": "unit",
+            "id": "empire-mudtroopers"
+          }
         ],
         "slotTypes": [
           4
@@ -57452,6 +57491,187 @@
         "verification": "no_image",
         "condition": null
       }
+    },
+    {
+      "id": "new-upgrade-mwkely2o",
+      "name": {
+        "en": "SX-21 Mudtrooper",
+        "zh": "SX-21泥地士兵"
+      },
+      "points": 13,
+      "slotIds": [
+        4
+      ],
+      "usage": "unit_upgrade",
+      "rules": {
+        "slotTypes": [
+          4
+        ],
+        "unique": false,
+        "locallyUnique": true,
+        "availableIn": [
+          {
+            "kind": "unit",
+            "id": "empire-mudtroopers"
+          }
+        ]
+      },
+      "assets": {
+        "front": "assets/upgrade-cards/new-upgrade-mwkely2o-front-18b7927e8f4e.webp"
+      },
+      "description": {
+        "en": [
+          ""
+        ],
+        "zh": [
+          "加入1个SX-21泥地士兵模型。"
+        ]
+      },
+      "requirementsText": [],
+      "keywords": [],
+      "weapons": [
+        {
+          "name": {
+            "en": "SX-21 SCATTER GUN",
+            "zh": "SX-21散弹爆能枪"
+          },
+          "range": {
+            "min": 1,
+            "max": 2
+          },
+          "dice": {
+            "red": 0,
+            "black": 2,
+            "white": 2
+          },
+          "keywords": []
+        }
+      ],
+      "review": {
+        "status": "needs_review",
+        "notes": "",
+        "issues": [
+          "新建卡片，待补全字段"
+        ]
+      },
+      "matching": {
+        "status": "unmatched",
+        "candidates": []
+      },
+      "restrictions": {}
+    },
+    {
+      "id": "new-upgrade-mwkes1mz",
+      "name": {
+        "en": "Z-6 Mudtrooper",
+        "zh": "新升级"
+      },
+      "points": 0,
+      "slotIds": [
+        1
+      ],
+      "usage": "unit_upgrade",
+      "rules": {
+        "slotTypes": [
+          1
+        ],
+        "unique": false,
+        "locallyUnique": true
+      },
+      "assets": {
+        "front": null
+      },
+      "description": {
+        "en": [],
+        "zh": []
+      },
+      "requirementsText": [],
+      "keywords": [],
+      "weapons": [],
+      "review": {
+        "status": "needs_review",
+        "notes": "",
+        "issues": [
+          "新建卡片，待补全字段"
+        ]
+      },
+      "matching": {
+        "status": "unmatched",
+        "candidates": []
+      },
+      "restrictions": {}
+    },
+    {
+      "id": "new-upgrade-mwkggzem",
+      "name": {
+        "en": "Gas Grenades",
+        "zh": "毒气手雷"
+      },
+      "points": 5,
+      "slotIds": [
+        3
+      ],
+      "usage": "unit_upgrade",
+      "rules": {
+        "slotTypes": [
+          3
+        ],
+        "unique": false,
+        "locallyUnique": true,
+        "availableIn": [
+          {
+            "kind": "unit",
+            "id": "separatists-admiral-trench"
+          }
+        ]
+      },
+      "assets": {
+        "front": "assets/upgrade-cards/new-upgrade-mwkggzem-front-69c0edcf0a93.webp"
+      },
+      "description": {
+        "en": [],
+        "zh": []
+      },
+      "requirementsText": [
+        "战壕奇兵&潮湿气候装备冲锋队专属"
+      ],
+      "keywords": [],
+      "weapons": [
+        {
+          "name": {
+            "en": "GAS GRENADE",
+            "zh": "毒气手雷"
+          },
+          "range": {
+            "min": 0,
+            "max": 1
+          },
+          "dice": {
+            "red": 0,
+            "black": 1,
+            "white": 0
+          },
+          "keywords": [
+            {
+              "id": "poison",
+              "value": null,
+              "parameter": null
+            }
+          ]
+        }
+      ],
+      "review": {
+        "status": "needs_review",
+        "notes": "",
+        "issues": [
+          "新建卡片，待补全字段"
+        ]
+      },
+      "matching": {
+        "status": "unmatched",
+        "candidates": []
+      },
+      "restrictions": {}
     }
   ]
 }

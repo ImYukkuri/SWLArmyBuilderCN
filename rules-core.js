@@ -126,7 +126,8 @@ window.RulesCore = (() => {
         if (fixedHeavy && grant.slot === "heavy_weapon") continue;
         let ok;
         if (grant.condition != null) ok = evaluate(grant.condition, ctx, predicates) === true;
-        else ok = (grant.holders || []).map(String).includes(uid);
+        else ok = (grant.holders || []).some(ref => ref?.kind === 'unit' ? ref.id === unit.id
+          : ref !== null && typeof ref !== 'object' && String(ref) === uid);
         if (ok) qualify.push({ key: grant.slot, ifAbsentAny: grant.ifAbsentAny || null, upgradeId: card.id });
       }
     }
@@ -240,9 +241,12 @@ window.RulesCore = (() => {
     return (unit.divisions || []).map(String);
   }
   function hosts(rule, card) {
-    if (rule && rule.host) return rule.host.map(String);
     const local = (card.rules || {}).availableIn;
-    if (local) return local.map(String);
+    // Explicit local targets are editor-authored; legacy package host lists
+    // must not override them. Numeric/string references retain source-ID semantics.
+    if (local?.some(h => h?.kind === 'unit')) return local;
+    if (rule?.host?.length) return rule.host;
+    if (local?.length) return local;
     return null;
   }
   function matchesTarget(unit, target) {
@@ -560,7 +564,10 @@ window.RulesCore = (() => {
     const aliasOk = hostAliasAllows(card, unit, army, data, rule);
     const printedCondition = (card.restrictions || {}).condition;
     const conditionGovernsHost = printedCondition != null && conditionIsHostOnly(printedCondition);
-    if (h != null && !h.includes(String(unit.upstream && unit.upstream.id || "")) && !aliasOk && !conditionGovernsHost) {
+    const hostMatches = h?.some(ref => ref?.kind === 'unit' ? ref.id === unit.id
+      : String(ref) === String(unit.upstream?.id || ''));
+    const explicitHosts = h?.some(ref => ref?.kind === 'unit');
+    if (h != null && !hostMatches && !aliasOk && (!conditionGovernsHost || explicitHosts)) {
       add("invalid", "host_restriction", "此升级仅限特定角色/版本");
     }
     const facs = (card.rules || {}).factions;

@@ -25,7 +25,7 @@
 |---|---|---|---|---|---|
 | `slotIds` / `rules.slotTypes` | 卡可匹配的槽位 | 数字 sourceId，来自 `slot-rules.json.slots`（26 类，sourceId↔语义键） | S5 生成槽、S1 比对 | `slot_mismatch` `slot_missing` `slot_occupied` `required_slot` | 生效 |
 | `rules.slotEffects` | 携带后增加槽位 | `[{type:"addSlot", slot:"<语义槽键>", when?:<条件>}]`，slot 取 `slot-rules.slots` 语义键 | S5 | 通过槽位间接生效 | 生效 |
-| `rules.availableIn` | 宿主白名单（上游单位 id） | `catalog-definitions.sourceUnits`（183） | S1、S2 | `host_restriction` | 生效 |
+| `rules.availableIn` | 宿主白名单；条件之间为 OR | 本地单位 `{kind:"unit",id:"固定 ID"}`，或旧来源编号；编辑器从 `units.json` 和 `catalog-definitions.sourceUnits` 动态取值 | S1、S2 | `host_restriction` | 生效；含本地引用时作为明确白名单，不被旧来源名单或通用卡面条件绕过 |
 | `rules.unavailableIn` | 宿主黑名单 | 同上 | — | — | **未执行**（只存） |
 | `upgradeRules[].access` | 规则包覆盖槽位访问 | `slot-rules.slots` 语义键 | S1、S2 | 间接 | 生效 |
 

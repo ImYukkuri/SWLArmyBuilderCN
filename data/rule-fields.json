@@ -26,7 +26,7 @@
     },
     "availableIn": {
       "zh": "允许的单位",
-      "values": "sourceUnits",
+      "values": "unitHosts",
       "kind": "array"
     },
     "unavailableIn": {

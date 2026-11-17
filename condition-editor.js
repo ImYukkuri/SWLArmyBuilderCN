@@ -302,30 +302,31 @@ window.ConditionEditor = (() => {
     box.append(item);
   }
 
-  function render(container, restrictions, defs, onChange, rerender) {
+  function render(container, restrictions, defs, onChange, rerender, options = {}) {
+    const key = options.key || "condition";
     container.replaceChildren();
     const field = E("fieldset");
     field.className = "restriction-section";
-    field.append(E("legend", "卡面限制条件（表达式）"));
+    field.append(E("legend", options.title || "卡面限制条件（表达式）"));
     const hint = E(
       "p",
       "先选择条件字段，再从对应目录选择值；“属于”可逐项添加多个值。需要部分名称匹配时可切换手动输入。",
     );
     hint.className = "hint";
     field.append(hint);
-    if (!restrictions.condition) {
-      field.append(E("p", "当前未设置条件。"));
+    if (!restrictions[key]) {
+      field.append(E("p", options.emptyText || "当前未设置条件。"));
       const add = E("button", "添加条件");
       add.type = "button";
       add.onclick = () => {
-        restrictions.condition = { all: [{ field: "unit.unitTypeId", op: "eq", value: 1 }] };
+        restrictions[key] = { all: [{ field: "unit.unitCategoryId", op: "eq", value: "trooper" }] };
         onChange();
         rerender();
       };
       field.append(add);
     } else {
-      renderNode(field, restrictions.condition, defs, onChange, rerender, () => {
-        delete restrictions.condition;
+      renderNode(field, restrictions[key], defs, onChange, rerender, () => {
+        delete restrictions[key];
         onChange();
         rerender();
       });
