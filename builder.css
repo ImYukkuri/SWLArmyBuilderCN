@@ -5,8 +5,7 @@
 }
 
 :root {
-  --roster-info-height: 66px;
-  --unit-dock-height: 104px;
+  --roster-info-height: 64px;
   --bg: #eef1f4;
   --paper: #fff;
   --ink: #253540;
@@ -3255,7 +3254,7 @@ dialog, .card-browser, .keyword-popover {
 
 .unit-brief {
   display: grid;
-  grid-template-columns: 26px 58px minmax(0, 1fr) 22px;
+  grid-template-columns: 48px minmax(0, 1fr) 22px;
   align-items: center;
   gap: 8px;
   padding: 8px;
@@ -3271,6 +3270,18 @@ dialog, .card-browser, .keyword-popover {
   min-width: 0;
   container: unit-summary / inline-size;
 }
+
+.brief-end {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  flex: 0 0 auto;
+}
+.brief-end .instance-controls { flex-direction: row; gap: 2px; }
+.brief-end .instance-controls button { width: 26px; height: 28px; border-radius: 3px; }
+.brief-end .group-count { min-width: 18px; text-align: center; }
+.brief-end .brief-cost { margin: 0; }
 
 .brief-first {
   display: flex;
@@ -3418,7 +3429,7 @@ dialog, .card-browser, .keyword-popover {
 
 @container unit-summary (max-width:470px) {
   .brief-first .bilingual-name {
-    max-width: calc(100% - 64px);
+    max-width: none;
     flex: 1 1 auto;
   }
   .brief-first .attribute-band {
@@ -3633,9 +3644,9 @@ dialog, .card-browser, .keyword-popover {
 
 @media (max-width: 760px) {
   .unit-brief {
-    grid-template-columns: 28px 40px minmax(0, 1fr) 24px;
+    grid-template-columns: 36px minmax(0, 1fr) 22px;
     gap: 5px;
-    padding: 8px 6px;
+    padding: 6px;
   }
   .detail-brief {
     grid-template-columns: 44px minmax(0, 1fr);
@@ -3885,58 +3896,56 @@ dialog, .card-browser, .keyword-popover {
 .battleforce-dialog{width:min(680px,calc(100vw - 28px));max-height:85dvh;padding:22px;overflow-y:auto;border:1px solid #b7c1bd;border-radius:12px;background:#fafaf7;color:#263c35}
 .battleforce-dialog .dialog-head{position:sticky;top:-22px;background:#fafaf7;padding:12px 0;z-index:1}
 
-/* Roster-only sticky readouts retain their own space in normal document flow. */
+/* Shared totals stay above the roster; each real card header sticks in place. */
 .roster-info {
   position: sticky;
   top: 0;
   z-index: 22;
-  display: flex;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas: "points progress activations" "points ranks ranks";
   align-items: center;
-  gap: 22px;
-  min-height: 66px;
-  padding: 8px 14px;
+  gap: 2px 16px;
+  padding: 3px 12px 5px;
   border-block: 1px solid #c2d0da;
   background: #f7fafc;
 }
-.roster-info .points-readout { min-width: 0; max-width: none; flex: none; }
-.roster-info .points-readout > span { font-size: 11px; }
-.roster-info #points { display: flex; align-items: baseline; gap: 7px; }
-.roster-info #points b { font-size: 28px; line-height: 1.15; }
-.roster-info #points .limit { font-size: 15px; margin: 0; }
-.roster-info #points .remaining { font-size: 11px; margin-left: 8px; }
-.roster-info .points-track { flex: 1; min-width: 40px; height: 5px; margin: 0; border-radius: 2px; overflow: hidden; }
-.roster-info .summary-count { flex-direction: row; align-items: baseline; gap: 8px; white-space: nowrap; }
-.roster-info .summary-count > b { font-size: 28px; color: var(--accent); }
+.roster-info .points-readout { grid-area: points; min-width: 0; max-width: none; }
+.roster-info #points { display: flex; align-items: baseline; gap: 5px; white-space: nowrap; }
+.roster-info #points b { font-size: 32px; line-height: 1.1; }
+.roster-info #points .limit { font-size: 14px; margin: 0; }
+.roster-info .points-track { grid-area: progress; min-width: 24px; height: 4px; margin: 0; border-radius: 2px; overflow: hidden; }
+.roster-info .summary-count { grid-area: activations; flex-direction: row; align-items: baseline; gap: 5px; white-space: nowrap; }
+.roster-info .summary-count > b { font-size: 21px; line-height: 1; color: var(--accent); }
+.roster-info .summary-count > span { font-size: 11px; }
 .roster-info.over-limit #points b { color: #a52d40; }
 .roster-info.over-limit .points-track i { background: #a52d40; }
+.roster-info #rank-bar { grid-area: ranks; display: flex; justify-content: space-between; gap: 7px; width: min(350px, 100%); margin-left: auto; padding-top: 2px; }
+.rank-shortcut { position: relative; display: grid; place-items: center; flex: 0 0 32px; width: 32px; height: 32px; padding: 0; border: 1px solid #aebfcb; border-radius: 50%; color: var(--accent); background: #f9fbfc; }
+.rank-shortcut .rank-icon { min-width: 0; font-size: 20px; }
+.rank-shortcut .rank-plus { font: 25px/1 var(--body); }
+.rank-shortcut .rank-badge { position: absolute; right: -5px; top: -4px; min-width: 16px; padding: 0 3px; border-radius: 8px; background: #f7fafc; color: inherit; font: 700 12px/16px var(--numeric); }
+.rank-shortcut.empty:not(.invalid) { color: #7d909d; border-color: #c9d3db; }
+.rank-shortcut.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.rank-shortcut.active .rank-badge { background: var(--accent); color: #fff; }
+.rank-shortcut.invalid { color: #aa3545; border-color: #ca8490; background: #fff2f4; }
+.rank-shortcut.invalid.active { background: #a13044; border-color: #a13044; color: #fff; }
+.rank-shortcut.invalid.active .rank-badge { background: #a13044; }
+.rank-shortcut:hover { border-color: currentColor; }
+.rank-shortcut:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .army-header .army-summary { padding-top: 0; }
-.current-unit-dock {
-  position: sticky;
-  top: calc(var(--roster-info-height) + 8px);
-  z-index: 18;
-  height: var(--unit-dock-height);
-  margin-bottom: 8px;
-  background: var(--bg);
-}
-#roster-heading-tools .column-head { min-height: 54px; }
-#roster-heading-tools .column-head p { display: none; }
-.current-unit-dock.past-units { visibility: hidden; }
-.current-unit-dock::before { content: ''; position: absolute; inset: -8px 0 auto; height: 8px; background: var(--bg); }
-#current-unit-summary { height: 100%; border: 1px solid #b5c9d6; border-left: 3px solid var(--faction); border-radius: 5px; background: #f9fbfc; }
-.summary-brief { height: 100%; grid-template-columns: 38px minmax(0,1fr); padding: 6px 8px; gap: 8px; }
-.summary-brief .unit-art { width: 38px; height: 50px; min-height: 0; }
-.summary-brief .brief-first { gap: 3px 7px; }
-.summary-brief .bilingual-name { flex: 1; max-width: none; }
-.summary-brief .bilingual-name > b { font-size: 15px; line-height: 1.3; }
-.summary-brief .attribute-band { order: 3; flex-basis: 100%; padding-block: 2px; }
-.summary-brief .brief-cost { max-width: 65px; }
-.summary-brief .brief-cost > b { font-size: 22px; }
-.summary-brief .brief-cost > span { font-size: 10px; line-height: 1.2; }
-.summary-brief .brief-meta { margin-top: 3px; }
-.summary-quantity { margin-left: auto; font: 600 13px var(--numeric); color: var(--accent); }
+#roster-heading-tools { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 5px; }
+#roster-heading-tools .text-button { padding-block: 6px; }
+#army-units > .roster-unit { overflow: visible; scroll-margin-top: var(--roster-info-height); }
+#army-units > .roster-unit > .unit-brief { position: sticky; top: var(--roster-info-height); z-index: 10; border-radius: 5px 5px 0 0; border-bottom: 1px solid #dbe4eb; }
+.roster-unit > .compact-slots { padding: 5px 8px 7px; }
+.roster-unit > .unit-brief .unit-art { height: 58px; }
+.roster-unit > .unit-brief .brief-first { gap: 4px 8px; }
+.roster-unit > .unit-brief .bilingual-name { flex: 1 1 auto; }
+.roster-unit > .unit-brief .brief-meta { margin-top: 3px; }
+.browser-heading { justify-content: flex-end; }
 html.page-overlay-open .roster-info,
-html.page-overlay-open .current-unit-dock { visibility: hidden; pointer-events: none; }
-#army-units > .roster-unit { scroll-margin-top: calc(var(--roster-info-height) + var(--unit-dock-height) + 16px); }
+html.page-overlay-open #army-units > .roster-unit > .unit-brief { visibility: hidden; pointer-events: none; }
 
 /* Upgrade choices keep the full rule and weapon content, with tighter rhythm. */
 .upgrade-browser .browser-top { padding: 9px 14px 0; }
@@ -3959,12 +3968,19 @@ html.page-overlay-open .current-unit-dock { visibility: hidden; pointer-events: 
 .upgrade-candidate .candidate-weapon-link { display: inline-block; margin: 0 0 0 auto; padding: 3px 0; min-height: 30px; }
 .upgrade-candidate .candidate-footer { margin-top: 5px; gap: 4px; }
 @media (max-width: 760px) {
-  .roster-info { gap: 10px; padding: 7px 10px; }
-  .roster-info #points { flex-wrap: wrap; column-gap: 5px; row-gap: 0; max-width: 155px; }
-  .roster-info #points .remaining { margin: 0; flex-basis: 100%; font-size: 10px; }
-  .roster-info .summary-count { flex-direction: column; align-items: center; gap: 0; }
-  .roster-info .summary-count > b { font-size: 26px; }
-  .roster-info .summary-count > span { font-size: 11px; }
+  .roster-info { column-gap: 10px; padding: 3px 7px 5px; }
+  .roster-info #points { flex-direction: column; align-items: flex-start; gap: 1px; }
+  .roster-info #points b { font-size: 28px; }
+  .roster-info #points .limit { font-size: 12px; }
+  .roster-info #rank-bar { gap: 5px; }
+  .rank-shortcut { flex-basis: 30px; width: 30px; height: 30px; }
+  .rank-shortcut .rank-icon { font-size: 19px; }
+  .rank-shortcut .rank-plus { font-size: 24px; }
+  .brief-end { gap: 5px; }
+  .brief-end .instance-controls button { width: 25px; }
+  .brief-end .group-count { min-width: 15px; font-size: 11px; }
+  .roster-unit > .unit-brief .brief-first { column-gap: 5px; }
+  .roster-unit > .compact-slots { padding-inline: 6px; }
   .army-header .army-summary { justify-content: flex-start; gap: 20px; padding-top: 12px; }
   .upgrade-browser .browser-top { padding-inline: 12px; }
   .candidate.upgrade-candidate { padding: 10px 12px; }

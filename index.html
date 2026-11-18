@@ -98,9 +98,10 @@
         </div>
       </section>
       <section id="roster-info" class="roster-info" aria-label="军表分数与激活数">
-        <div class="points-readout"><span>军表总分</span><div id="points"></div></div>
+        <div class="points-readout" aria-label="军表分数"><div id="points"></div></div>
         <div class="points-track" role="progressbar" aria-label="军表分数进度" aria-valuemin="0"><i id="points-fill"></i></div>
         <div class="summary-count" title="每个独立单位计为一次激活，合并显示的单位分别计数"><b id="summary-activations">0</b><span>激活数</span></div>
+        <nav id="rank-bar" aria-label="军阶定位与添加"></nav>
       </section>
       <div class="roster-actions" id="roster-actions">
         <button type="button" id="roster-export">导出 JSON</button>
@@ -109,40 +110,24 @@
         <input type="file" id="roster-file" accept=".json,application/json" hidden />
         <span id="roster-share-status"></span>
       </div>
-      <nav class="rank-nav" aria-label="添加单位">
-        <div class="rank-label">添加单位<span>点击下方军阶</span></div>
-        <div id="rank-bar"></div>
-        <div class="rank-caption">点击军阶添加单位<br />点击单位槽位配置升级</div>
-      </nav>
       <div id="composition-rules" class="composition-rules"></div>
       <div class="builder-body">
         <section class="army-col" aria-labelledby="roster-heading">
-          <div id="current-unit-dock" class="current-unit-dock">
-            <div id="roster-heading-tools">
-              <div class="column-head">
-                <div>
-                  <h2 id="roster-heading">当前军表</h2>
-                  <p>单位、装备与战术指令</p>
-                </div>
-                <button class="text-button" id="view-toggle">全部展开</button>
-              </div>
-              <div class="card-display-tools">
-                <label class="explanation-switch"
-                  ><input type="checkbox" id="open-explanations" />打开词条释义</label
-                >
-              </div>
-            </div>
-            <div id="current-unit-summary" aria-label="当前单位速览" hidden></div>
+          <h2 id="roster-heading" class="sr-only">当前军表</h2>
+          <div id="roster-heading-tools">
+            <button class="text-button" id="view-toggle">全部展开</button>
+            <label class="explanation-switch"
+              ><input type="checkbox" id="open-explanations" />词条释义</label
+            >
           </div>
           <div id="army-units" class="army-list"></div>
           <div id="deck-panel"></div>
-          <p class="draft-note">军表自动保存在当前浏览器。</p>
         </section>
         <div id="browser-backdrop" class="browser-backdrop" hidden></div>
         <aside id="card-browser" class="card-browser" aria-labelledby="browser-title">
           <div class="browser-top">
             <div class="browser-heading">
-              <span id="browser-category">候选资料库</span
+              <span id="browser-category" hidden>候选资料库</span
               ><button id="browser-close" aria-label="关闭选择面板">×</button>
             </div>
             <h2 id="browser-title">选择单位</h2>
@@ -171,9 +156,6 @@
             ></label>
           </div>
           <div id="card-grid" class="card-grid"></div>
-          <div class="browser-foot">
-            <span>查看词条可展开完整规则</span><span>选择后自动更新军表</span>
-          </div>
         </aside>
       </div>
       <dialog id="issues-panel" aria-label="军表校验">

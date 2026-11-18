@@ -119,6 +119,7 @@ function saveActiveRoster() {
 
 function closeEditorPanels() {
   BuilderOverlays.reset();
+  window.BuilderSticky?.reset();
   browser = null;
   hideRule(false);
   renderBrowser();

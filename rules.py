@@ -204,7 +204,6 @@ def slot_grants_for(package, unit, inst, upgrades):
     """
     ctx = _unit_context(unit, package)
     predicates = package.get("predicates") or {}
-    fixed_heavy = flexible_response_count(unit) is not None
     equipped_grants = []
     for sel in (inst.get("upgrades") if inst else []) or []:
         card = upgrades.get(sel.get("upgradeId"))
@@ -212,8 +211,6 @@ def slot_grants_for(package, unit, inst, upgrades):
             continue
         for grant in (card.get("rules") or {}).get("slotGrants") or []:
             if not isinstance(grant, dict) or grant.get("trigger") != "equipped" or not grant.get("slot"):
-                continue
-            if fixed_heavy and grant["slot"] == "heavy_weapon":
                 continue
             if grant.get("when") is not None and evaluate(grant["when"], ctx, predicates) is not True:
                 continue
@@ -223,8 +220,6 @@ def slot_grants_for(package, unit, inst, upgrades):
     for card_id in sorted(upgrades):
         for grant in (upgrades[card_id].get("rules") or {}).get("slotGrants") or []:
             if not isinstance(grant, dict) or grant.get("trigger") != "unitQualifies" or not grant.get("slot"):
-                continue
-            if fixed_heavy and grant["slot"] == "heavy_weapon":
                 continue
             if grant.get("condition") is not None:
                 ok = evaluate(grant["condition"], ctx, predicates) is True
@@ -324,23 +319,17 @@ def slot_list_for(package, unit, inst, upgrades, army_id=None, legacy_shared=Fal
     out = []
     by_id, _ = slot_registry(package)
     count = flexible_response_count(unit)
-    fixed_heavy = count is not None
-    heavy = 0
     for sid in unit.get("upgradeSlots") or []:
         raw = sid.get("id") if isinstance(sid, dict) else sid
         key = slot_key(package, raw)
         if by_id.get(key, {}).get("kind") == "dedicated":
             continue  # derive per-card slots from current qualifying rules
-        if fixed_heavy and key == "heavy_weapon":
-            if heavy < count:
-                out.append({"key": "heavy_weapon", "required": True, "requiredBy": "flexible_response"})
-                heavy += 1
-            continue
         out.append({"key": key, "required": bool(sid.get("required")) if isinstance(sid, dict) else False})
-    # Reserve the highest-priority slots before modifiers; never create an
-    # intermediate excess slot or shift other stored choices.
-    if fixed_heavy:
-        out.extend({"key": "heavy_weapon", "required": True, "requiredBy": "flexible_response"}
+    # Reserve the minimum before grants, preserving printed slots and indices.
+    # Subsequent slot modifiers still apply normally.
+    if count is not None:
+        heavy = sum(s['key'] == 'heavy_weapon' for s in out)
+        out.extend({"key": "heavy_weapon", "required": False}
                    for _ in range(count - heavy))
     equipped_grants, qualify_grants = slot_grants_for(package, unit, inst, upgrades)
     out.extend(equipped_grants)
@@ -351,8 +340,7 @@ def slot_list_for(package, unit, inst, upgrades, army_id=None, legacy_shared=Fal
             continue
         out.append({"key": g["key"], "required": False, "virtual": True})
     ov = army_overrides_for(package, army_id) or {}
-    slot_rules = [r for r in ov.get("slots") or []
-                  if not (fixed_heavy and isinstance(r, dict) and r.get("slot") == "heavy_weapon")]
+    slot_rules = ov.get("slots") or []
     for r in slot_rules:
         if isinstance(r, dict) and r.get("op") == "deny" and r.get("slot") and matches_target(unit, r.get("target")):
             out = [x for x in out if x["key"] != r["slot"]]
@@ -375,6 +363,19 @@ def slot_list_for(package, unit, inst, upgrades, army_id=None, legacy_shared=Fal
             if rank is not None and rank not in [int(r) for r in cr['requiresTier']]:continue
         if any(r.get('op') == 'deny' and r.get('slot') in [key, g['key'], *normal] and matches_target(unit, r.get('target')) for r in slot_rules):continue
         out.append({'key': key, 'required': False, 'virtual': True, 'upgradeId': card['id']})
+    if count is not None:
+        # Any X occupied heavy slots satisfy the minimum, including granted slots.
+        occupied = set()
+        for choice in (inst or {}).get('upgrades') or []:
+            card = upgrades.get(choice.get('upgradeId'))
+            if card and 'heavy_weapon' in access_keys(card, package,
+                    (package.get('upgradeRules') or {}).get(str((card.get('upstream') or {}).get('id')))):
+                occupied.add(choice.get('slotIndex'))
+        heavy = [(i, s) for i, s in enumerate(out) if s['key'] == 'heavy_weapon']
+        heavy.sort(key=lambda row: (row[0] not in occupied, not row[1].get('required')))
+        for _, slot in heavy[:count]:
+            if not slot.get('required'):
+                slot.update(required=True, requiredBy='flexible_response')
     for key in equip_slot_keys(unit, package):
         matches = [(i,s) for i,s in enumerate(out) if s['key'] == key]
         def occupied(index):
@@ -909,6 +910,8 @@ def validate_army(army):
         heavy_required = flexible_response_count(unit)
         if any((k or {}).get("id") == "flexible_response" for k in unit.get("keywords") or []) and heavy_required is None:
             issue("unknown", "flexible_response_value", "灵活响应的数值 X 未设置或无效，请在单位编辑器填写非负整数", key)
+        if heavy_required is not None and sum(s['key'] == 'heavy_weapon' for s in slot_list) < heavy_required:
+            issue("invalid", "required_slot", f"灵活响应 {heavy_required}：至少需要 {heavy_required} 个重武器槽，当前可用槽位不足", key)
         for rec in slot_list:
             if rec.get("virtual") and not rec.get('upgradeId'):
                 issue("unknown", "dedicated_grant_virtual",
@@ -916,13 +919,6 @@ def validate_army(army):
 
         assigned = {}
         equipped = [upgrades[x.get("upgradeId")] for x in inst.get("upgrades", []) if x.get("upgradeId") in upgrades]
-        if heavy_required is not None:
-            heavy_count = sum("heavy_weapon" in access_keys(c, package,
-                (package.get("upgradeRules") or {}).get(str((c.get("upstream") or {}).get("id", "")), {}))
-                for c in equipped)
-            if heavy_count > heavy_required:
-                issue("invalid", "flexible_response_limit",
-                      f"灵活响应 {heavy_required}：只能装备 {heavy_required} 张重武器升级，当前 {heavy_count} 张", key)
         for selected in inst.get("upgrades", []):
             ckey = selected.get("instanceId")
             card = upgrades.get(selected.get("upgradeId"))
@@ -957,7 +953,7 @@ def validate_army(army):
 
         for i, s in enumerate(slot_list):
             if s.get("required") and i not in assigned:
-                message = (f"灵活响应 {heavy_required}：必选重武器槽尚未配置升级（须装备 {heavy_required} 张）"
+                message = (f"灵活响应 {heavy_required}：必选重武器槽尚未配置升级（须至少装备 {heavy_required} 张）"
                            if s.get("requiredBy") == "flexible_response"
                            else f"Equip：必选「{next((r.get('name', {}).get('zh') for r in package.get('slots', []) if r['id'] == s['key']), None) or s['key']}」槽尚未配置升级"
                            if s.get('equipRequired')

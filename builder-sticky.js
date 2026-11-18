@@ -1,87 +1,67 @@
-/* One live unit summary for the roster column. No per-card sticky layers or
- * copied roster state: resolve the active instance against the current groups. */
+/* Unit headers stick within their own cards in CSS. This module only measures
+ * the shared top bar and handles the two-step rank navigation. */
 window.BuilderSticky = (() => {
   const page = document.querySelector('#editor-page');
   const info = document.querySelector('#roster-info');
-  const dock = document.querySelector('#current-unit-dock');
-  const summary = document.querySelector('#current-unit-summary');
-  const tools = document.querySelector('#roster-heading-tools');
+  const ranks = document.querySelector('#rank-bar');
   const list = document.querySelector('#army-units');
-  let activeUnit = null, frame = 0, dirty = true, cards = [];
+  let selectedRank = null, selectedY = null, frame = 0;
 
-  function schedule() {
-    if (!frame) frame = requestAnimationFrame(update);
+  function refreshNavigation() {
+    for (const button of ranks.querySelectorAll('button')) {
+      const rank = Number(button.dataset.rank), selected = rank === selectedRank;
+      button.classList.toggle('active', selected);
+      button.setAttribute('aria-pressed', String(selected));
+      button.setAttribute('aria-label', (selected ? '添加' : '定位') + RANK_SHORT[rank] + '单位，当前 ' + button.dataset.count + ' 个');
+      const icon = button.querySelector('.rank-icon');
+      icon.classList.toggle('rank-plus', selected);
+      icon.textContent = selected ? '+' : RANK_GLYPH[rank];
+    }
   }
 
-  function update() {
+  function reset() {
+    selectedRank = null;
+    selectedY = null;
+    refreshNavigation();
+  }
+
+  function measure() {
     frame = 0;
-    if (page.hidden || !army) {
-      activeUnit = null;
-      summary.replaceChildren();
-      summary.hidden = true;
-      tools.hidden = false;
-      dock.classList.remove('past-units');
-      delete summary.dataset.instance;
-      return;
-    }
-    // Fixed-body modal locking temporarily changes viewport coordinates. Keep
-    // the current selection until the page has been unlocked and restored.
-    if (document.documentElement.classList.contains('page-overlay-open')) return;
-    const infoRect = info.getBoundingClientRect();
-    const height = Math.ceil(infoRect.height);
+    if (page.hidden) return;
+    const height = Math.ceil(info.getBoundingClientRect().height);
     if (page.style.getPropertyValue('--roster-info-height') !== height + 'px')
       page.style.setProperty('--roster-info-height', height + 'px');
-    const dockRect = dock.getBoundingClientRect();
-    const line = height + 8 + dockRect.height;
-    let next = null;
-    const pinned = infoRect.top <= 1 && dockRect.top <= height + 9;
-    let lastBottom = Infinity;
-    if (pinned) {
-      for (const card of cards) {
-        const rect = card.getBoundingClientRect();
-        lastBottom = rect.bottom;
-        if (rect.top <= line + 1) next = card.dataset.instance;
-      }
-      if (lastBottom <= line) next = null;
-    }
-    dock.classList.toggle('past-units', pinned && cards.length > 0 && lastBottom <= line);
-    if (next === activeUnit && !dirty) return;
-    activeUnit = next;
-    dirty = false;
-    const group = next && groupedUnits().find(g => g.instances[0].instanceId === next);
-    summary.hidden = !group?.unit;
-    tools.hidden = !!group?.unit;
-    summary.replaceChildren();
-    delete summary.dataset.instance;
-    if (!group?.unit) return;
-    summary.dataset.instance = next;
-    const header = briefHeader(group.unit, group.instances[0], group, {summaryOnly: true});
-    const first = header.querySelector('.brief-first');
-    first.tabIndex = 0;
-    first.setAttribute('role', 'button');
-    first.setAttribute('aria-label', '查看' + named(group.unit.name) + '完整详情');
-    first.onclick = () => showUnitDetail(group, first);
-    first.onkeydown = e => {
-      if (e.target === first && ['Enter', ' '].includes(e.key)) {
-        e.preventDefault();showUnitDetail(group, first);
-      }
-    };
-    summary.append(header);
   }
 
   function refresh() {
-    cards = [...list.querySelectorAll(':scope > .roster-unit')];
-    dirty = true;
-    schedule();
+    if (!frame) frame = requestAnimationFrame(measure);
   }
-  // Reads are coalesced to one animation frame, including reverse scrolling,
-  // large jumps and variable card heights after expanding rules or loading art.
-  window.addEventListener('scroll', schedule, {passive: true});
-  window.addEventListener('resize', schedule, {passive: true});
-  const sizes = new ResizeObserver(schedule);
-  for (const element of [info, list, dock]) sizes.observe(element);
-  const visibility = new MutationObserver(schedule);
-  visibility.observe(page, {attributes: true, attributeFilter: ['hidden']});
-  visibility.observe(document.documentElement, {attributes: true, attributeFilter: ['class']});
-  return {refresh};
+
+  function selectRank(rank, trigger) {
+    if (rank === selectedRank) {
+      selectContext({mode: 'units', rank}, trigger);
+      return;
+    }
+    selectedRank = rank;
+    refreshNavigation();
+    measure();
+    const target = list.querySelector(`:scope > .roster-unit[data-rank="${rank}"]`);
+    if (target) {
+      // An instant jump keeps the button under the finger for the second tap.
+      // Capture its result so this intentional scroll retains the selection.
+      const top = scrollY + target.getBoundingClientRect().top - info.getBoundingClientRect().height;
+      window.scrollTo({top, behavior: 'instant'});
+    }
+    selectedY = scrollY;
+  }
+
+  window.addEventListener('scroll', () => {
+    // Modal body locking/restoration is not a navigation gesture.
+    if (document.documentElement.classList.contains('page-overlay-open')) return;
+    if (selectedY !== null && Math.abs(scrollY - selectedY) > 1) reset();
+  }, {passive: true});
+  window.addEventListener('resize', refresh, {passive: true});
+  new ResizeObserver(refresh).observe(info);
+  new MutationObserver(refresh).observe(page, {attributes: true, attributeFilter: ['hidden']});
+  return {refresh, refreshNavigation, selectRank, reset};
 })();

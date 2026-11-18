@@ -55,48 +55,137 @@ async function samePosition(page, y) {
 }
 const unit = page => page.locator('#army-units > .roster-unit').nth(10);
 
-for (const mobile of [true, false]) test(`${mobile ? 'mobile' : 'desktop'} sticky summary replaces a single unit in both scroll directions`, async t => {
+for (const mobile of [true, false]) test(`${mobile ? 'mobile' : 'desktop'} real card headers stick and are pushed away in both scroll directions`, async t => {
   const page = await setup(t, mobile);
+  await page.evaluate(() => {for (const inst of army.units) cardView.expanded.add(inst.instanceId); renderUnits();});
   const totals = await page.locator('#roster-info').innerText();
+  assert.equal(await page.locator('#current-unit-dock, #current-unit-summary').count(), 0);
   const show = async index => {
-    const id = await page.evaluate(index => {
+    await page.evaluate(index => {
       const card = document.querySelectorAll('#army-units > .roster-unit')[index];
-      const line = document.querySelector('#roster-info').offsetHeight + 8 + document.querySelector('#current-unit-dock').offsetHeight;
-      window.scrollTo({top: scrollY + card.getBoundingClientRect().top - line + 20, behavior: 'instant'});
-      return card.dataset.instance;
+      window.scrollTo({top: scrollY + card.getBoundingClientRect().top - document.querySelector('#roster-info').offsetHeight + 20, behavior: 'instant'});
     }, index);
     await frames(page);
-    assert.equal(await page.locator('#current-unit-summary').getAttribute('data-instance'), id);
-    assert.equal(await page.locator('#current-unit-summary > .unit-brief').count(), 1);
-    assert.equal(await page.locator('#current-unit-summary .compact-slots').count(), 0);
-    assert.equal(await page.locator('#roster-info').innerText(), totals);
-    assert.equal(await page.locator('#summary-activations').count(), 1);
-    assert(Math.abs((await page.locator('#roster-info').boundingBox()).y) <= 1);
-    const bounds = await page.locator('#current-unit-dock').boundingBox();
+    const card = page.locator('#army-units > .roster-unit').nth(index);
+    const head = card.locator(':scope > .unit-brief');
     const bar = await page.locator('#roster-info').boundingBox();
-    assert(bounds.y >= bar.y + bar.height, 'unit summary must sit below global totals');
-    const brief = await page.locator('#current-unit-summary .brief-body').boundingBox();
-    assert(brief.y + brief.height <= bounds.y + bounds.height + 1, 'summary must fit its reserved height');
-    if (!mobile) {
-      const panel = await page.locator('#card-browser').boundingBox();
-      assert(panel.y >= bar.y + bar.height, 'desktop selector must remain below the global row');
-    }
+    assert(Math.abs(bar.y) <= 1);
+    assert(Math.abs((await head.boundingBox()).y - bar.height) <= 1, 'the original header sticks directly below totals');
+    assert.equal(await card.locator('.unit-brief').count(), 1);
+    assert.equal(await head.locator('.compact-slots').count(), 0);
+    assert.equal(await card.locator(':scope > .compact-slots').count(), 1);
+    assert.equal(await page.locator('#roster-info').innerText(), totals);
+    const controls = await head.locator('.instance-controls').boundingBox();
+    const cost = await head.locator('.brief-cost').boundingBox();
+    assert(controls.x >= cost.x + cost.width, 'copy and delete controls follow points');
+    if (!mobile) assert((await page.locator('#card-browser').boundingBox()).y >= bar.height);
   };
-  for (const index of [1, 2, 3, 9, 10, 9, 3, 2, 1]) await show(index);
-  const before = await page.evaluate(() => scrollY);
-  await page.evaluate(() => renderUnits());await frames(page);
-  assert.equal(await page.evaluate(() => scrollY), before, 'refreshing the active unit cannot change scroll position');
+  for (const index of [0, 1, 2, 3, 9, 10, 9, 3, 2, 1]) await show(index);
+  // At the boundary the previous header slides out, never stacking over the next one.
   await page.evaluate(() => {
-    const list = document.querySelector('#army-units');
-    scrollTo(0, scrollY + list.getBoundingClientRect().bottom);
+    const cards = document.querySelectorAll('#army-units > .roster-unit');
+    const height = cards[1].querySelector('.unit-brief').offsetHeight;
+    scrollTo(0, scrollY + cards[2].getBoundingClientRect().top - document.querySelector('#roster-info').offsetHeight - height / 2);
+  }); await frames(page);
+  const previous = await page.locator('#army-units > .roster-unit').nth(1).locator(':scope > .unit-brief').boundingBox();
+  const next = await page.locator('#army-units > .roster-unit').nth(2).locator(':scope > .unit-brief').boundingBox();
+  assert(previous.y < (await page.locator('#roster-info').boundingBox()).height);
+  assert(previous.y + previous.height <= next.y + 1, 'neighboring headers do not overlap');
+  await show(3);
+  const y = await page.evaluate(() => scrollY);
+  await page.evaluate(() => renderUnits());await frames(page);
+  assert.equal(await page.evaluate(() => scrollY), y);
+  // Collapsed cards use the same header and leave only their upgrade slots below it.
+  await page.evaluate(() => {cardView.expanded.clear();renderUnits();});
+  await show(3);
+  await page.evaluate(() => {
+    const list = document.querySelector('#army-units');scrollTo(0, scrollY + list.getBoundingClientRect().bottom);
   });await frames(page);
-  assert.equal(await page.locator('#current-unit-summary').isVisible(), false);
-  assert.equal(await page.locator('#roster-info').isVisible(), true);
+  const last = await page.locator('#army-units > .roster-unit > .unit-brief').last().boundingBox();
+  assert(last.y + last.height <= (await page.locator('#roster-info').boundingBox()).height);
   await page.evaluate(() => scrollTo(0,0));await frames(page);
-  assert.equal(await page.locator('#current-unit-summary').isVisible(), false);
   assert.equal(await page.locator('#roster-heading-tools').isVisible(), true);
   await page.evaluate(() => showLibrary());await frames(page);
   assert.equal(await page.locator('#roster-info').isVisible(), false);
+});
+
+for (const mobile of [true, false]) test(`${mobile ? 'mobile' : 'desktop'} rank shortcut jumps, adds on second click and resets on page scroll`, async t => {
+  const page = await setup(t, mobile);
+  const rank = await page.evaluate(() => Number([...document.querySelectorAll('#rank-bar button')].find(b => Number(b.dataset.count) > 0).dataset.rank));
+  const button = page.locator(`#rank-bar [data-rank="${rank}"]`);
+  assert(!/军表总分|剩余/.test(await page.locator('#roster-info').innerText()));
+  assert.equal(await page.locator('#rank-bar button').count(), 6);
+  await page.evaluate(() => scrollTo(0, document.querySelector('#army-units').offsetTop + 1000));await frames(page);
+  await button.click();await frames(page);
+  assert.equal(await button.getAttribute('aria-pressed'), 'true');
+  assert.equal(await button.locator('.rank-icon').innerText(), '+');
+  const target = await page.locator(`#army-units > .roster-unit[data-rank="${rank}"]`).first().boundingBox();
+  assert(Math.abs(target.y - (await page.locator('#roster-info').boundingBox()).height) <= 1);
+  const y = await page.evaluate(() => scrollY);
+  await button.click();await frames(page);
+  assert.deepEqual(await page.evaluate(() => ({mode:browser.mode,rank:browser.rank})), {mode:'units',rank});
+  await page.locator('#browser-close').click();await samePosition(page,y);
+  assert.equal(await button.getAttribute('aria-pressed'), 'true', 'closing a panel is not user scrolling');
+  await page.evaluate(() => scrollBy(0,80));await frames(page);
+  assert.equal(await button.getAttribute('aria-pressed'), 'false');
+  assert.notEqual(await button.locator('.rank-icon').innerText(), '+');
+  await button.click();await frames(page);
+  assert.equal(await button.getAttribute('aria-pressed'), 'true');
+  await page.evaluate(() => scrollBy(0,-60));await frames(page);
+  assert.equal(await button.getAttribute('aria-pressed'), 'false');
+});
+
+test('rank counts include merged copies and empty ranks still open the correct add list', async t => {
+  const page = await setup(t);
+  await page.evaluate(() => {
+    const record = BuilderLibrary.create(1, 'Rank counts', data, uid, new Date().toISOString());
+    const trooper = Object.values(data.units).find(u => u.name.en === 'Rebel Troopers' && rankOf(u,1) === 2);
+    record.army.units = [0,1,2].map(() => ({unitId:trooper.id,instanceId:uid(),upgrades:[]}));
+    openRoster(record);
+  });
+  assert.equal(await page.locator('#army-units > .roster-unit').count(), 1);
+  assert.equal(await page.locator('#rank-bar [data-rank="2"] .rank-badge').innerText(), '3');
+  assert.equal(await page.locator('#summary-activations').innerText(), '3');
+  await page.locator('#army-units .copy-unit').click();
+  assert.equal(await page.locator('#rank-bar [data-rank="2"] .rank-badge').innerText(), '4');
+  await page.locator('#army-units .remove-unit').click();
+  assert.equal(await page.locator('#rank-bar [data-rank="2"] .rank-badge').innerText(), '3');
+  assert.equal(await page.locator('#unit-detail-dialog').evaluate(n => n.open), false);
+  const zero = page.locator('#rank-bar [data-rank="6"]');
+  assert.equal(await zero.locator('.rank-badge').innerText(), '—');
+  await zero.click();await frames(page);assert.equal(await zero.getAttribute('aria-pressed'), 'true');
+  await zero.click();assert.equal(await page.evaluate(() => browser.rank), 6);
+  await page.locator('#browser-close').click();
+  await page.evaluate(() => showLibrary());
+  await page.evaluate(() => createRoster(2));
+  assert.equal(await page.locator('#rank-bar [aria-pressed="true"]').count(), 0);
+});
+
+test('compact slots omit face tabs while image and expanded upgrade controls still switch both faces', async t => {
+  const page = await setup(t);
+  const slotIndex = await page.evaluate(() => {
+    const record = BuilderLibrary.create(4, 'Dual card controls', data, uid, new Date().toISOString());
+    const added = BuilderModel.addUnit(record.army, data, 'republic-clone-commandos', uid);
+    if (!added.ok) throw Error(added.reason);
+    const inst = added.draft.units[0], unit = data.units[inst.unitId];
+    const card = Object.values(data.upgrades).find(c => UpgradeFaces.isDual(c) && /DC-17m/i.test(c.name.en));
+    const slots = unitSlotRecords(unit, inst);
+    const slotIndex = slots.findIndex(s => RulesCore.accessKeys(card,data.pkg,data.pkg.upgradeRules?.[String(card.upstream?.id)]).includes(s.key));
+    const equipped = BuilderModel.equip(added.draft, data, {unitInstanceId:inst.instanceId,slotIndex,slotKey:slots[slotIndex].key}, card.id, false, uid);
+    if (!equipped.ok) throw Error(equipped.reason);
+    record.army = equipped.draft;openRoster(record);return slotIndex;
+  });
+  const slots = page.locator('#army-units > .roster-unit > .compact-slots');
+  assert.equal(await slots.locator('.face-control, .face-tabs').count(), 0);
+  await slots.locator(`[data-slot-index="${slotIndex}"] .slot-art`).click();
+  await page.locator('.image-dialog .face-tabs [data-face="both"]').click();
+  await page.getByRole('button',{name:'关闭卡图',exact:true}).click();
+  assert.equal(await slots.locator('.slot-back-line').count(), 1);
+  assert.equal(await slots.locator('.face-control, .face-tabs').count(), 0);
+  await page.locator('#army-units .expand-unit').click();
+  await page.locator('#army-units .selected-upgrades .face-control [data-face="back"]').click();
+  assert.equal(await slots.locator('.slot-back-line').count(), 0);
+  assert.equal(await page.locator('#army-units .selected-upgrades .face-control [data-face="back"]').getAttribute('aria-pressed'), 'true');
 });
 
 test('mobile picker hides background sticky rows and keeps weapon data directly visible and interactive', async t => {
@@ -104,7 +193,7 @@ test('mobile picker hides background sticky rows and keeps weapon data directly 
   const slot = page.locator('#army-units > .roster-unit').nth(9).locator('.slot-name').last();
   const y = await positionAt(page, slot);await slot.tap();
   assert.equal(await page.locator('#roster-info').isVisible(), false);
-  assert.equal(await page.locator('#current-unit-dock').isVisible(), false);
+  assert.equal(await page.locator('#army-units > .roster-unit > .unit-brief').first().isVisible(), false);
   const card = page.locator('#card-grid .upgrade-candidate').filter({has:page.locator('.weapon-card')}).first();
   await card.scrollIntoViewIfNeeded();
   assert.equal(await card.locator('.range-pill').first().isVisible(), true);

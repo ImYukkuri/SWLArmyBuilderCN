@@ -301,14 +301,14 @@ function renderBrowser() {
     aside.setAttribute("aria-modal", "true");
     $(".army-col").inert = true;
     $(".army-header").inert = true;
-    $(".rank-nav").inert = true;
+    $("#roster-info").inert = true;
     $(".masthead").inert = true;
   } else {
     aside.removeAttribute("role");
     aside.removeAttribute("aria-modal");
     $(".army-col").inert = false;
     $(".army-header").inert = false;
-    $(".rank-nav").inert = false;
+    $("#roster-info").inert = false;
     $(".masthead").inert = false;
   }
   if (browser && mobile) BuilderOverlays.open(aside, browserReturn);
@@ -321,10 +321,10 @@ function renderBrowser() {
     $("#candidate-search").disabled = true;
     $("#candidate-sort").disabled = true;
     $("#show-unavailable").disabled = true;
-    $("#browser-title").textContent = "候选资料库";
-    $("#browser-context").textContent = "选择军阶、升级槽位或战术卡槽位开始配置。";
+    $("#browser-title").textContent = "候选";
+    $("#browser-context").textContent = "";
     $("#card-grid").replaceChildren(
-      node("p", "empty-result", "左侧保留你的当前编制，候选规则将在这里显示。"),
+      node("p", "empty-result", "选择军阶、升级槽或指挥卡"),
     );
     $("#browser-category").textContent = "编制对照";
     $("#result-count").textContent = "";
@@ -392,33 +392,25 @@ function renderRankBar(report) {
       (i) => data.units[i.unitId] && rankOf(data.units[i.unitId], army.armyId) === rank,
     ).length;
     const quota = (rules.rankQuotas || []).find((q) => q.rankId === rank);
-    const b = node(
-      "button",
-      "rank-chip" + (browser?.mode === "units" && browser.rank === rank ? " active" : ""),
-    );
-    b.setAttribute("aria-label", "添加" + RANK_SHORT[rank] + "单位");
-    b.setAttribute(
-      "aria-pressed",
-      String(browser?.mode === "units" && browser.rank === rank),
-    );
+    const b = node("button", "rank-shortcut");
+    b.type = "button";
+    b.dataset.count = count;
     const rankIssues = report.issues.filter((i) => i.status === "invalid" &&
       (Number(i.rank) === rank || (i.ranks || []).map(Number).includes(rank)));
     if (rankIssues.length)
       b.classList.add("invalid");
     b.dataset.rank = rank;
     b.classList.toggle("empty", count === 0);
-    const text = node("span", "rank-name", RANK_SHORT[rank]);
     const limits = quota ? (quota.min ?? 0) + "–" + (quota.max ?? "不限") : "未设配额";
-    const total = node("span", "rank-count");
-    const countDisplay = node("strong", "rank-total", count || "—");
-    countDisplay.setAttribute("aria-label", "当前 " + count + " 个单位");
-    total.append(countDisplay, node("span", "rank-quota", "（/" + (quota?.max ?? "∞") + "）"));
-    b.append(node("span", "rank-icon", RANK_GLYPH[rank]), text, total, node("span", "rank-add", "+"));
-    b.title = "当前 " + count + " 个" + RANK_SHORT[rank] + "单位；允许数量 " + limits + "；点击添加";
+    const glyph = node("span", "rank-icon", RANK_GLYPH[rank]);
+    glyph.setAttribute("aria-hidden", "true");
+    b.append(glyph, node("span", "rank-badge", count || "—"));
+    b.title = RANK_SHORT[rank] + "：" + count + " 个；允许数量 " + limits;
     if (rankIssues.length) b.title += "\n" + rankIssues.map(i => i.message).join("\n");
-    b.onclick = () => selectContext({ mode: "units", rank }, b);
+    b.onclick = () => BuilderSticky.selectRank(rank, b);
     bar.append(b);
   }
+  window.BuilderSticky?.refreshNavigation();
   const combined = (rules.combined || []).map(
     (c) =>
       (c.tiers || []).map((r) => RANK_SHORT[r] || r).join(" + ") + " 合计 ≤ " + c.maximum,
@@ -607,7 +599,6 @@ function renderPoints(report) {
   $("#points").replaceChildren(
     node("b", null, report.effectivePoints),
     node("span", "limit", "/ " + lim),
-    node("span", "remaining", "剩余 " + (lim - report.effectivePoints) + " 分"),
   );
   $("#points-fill").style.width = Math.min(100, (report.effectivePoints / lim) * 100) + "%";
   const progress = $('#roster-info .points-track');
@@ -1594,6 +1585,7 @@ function rosterCard(group, { detail = false } = {}) {
     card.title = "此单位存在规则问题，请查看军表校验";
   }
   card.dataset.unitId = u.id;
+  card.dataset.rank = rankOf(u, army.armyId);
   card.dataset.count = instances.length;
   card.dataset.instance = inst.instanceId;
   card.dataset.groupKey = group.key;
@@ -1614,7 +1606,7 @@ function rosterCard(group, { detail = false } = {}) {
       ?.focus({ preventScroll: true });
   };
   if (!detail) h.append(toggle);
-  card.append(h);
+  card.append(h, slotStrip(group, {readonly: detail}));
   if (!detail) {
     const summary = h.querySelector(".brief-first");
     summary.setAttribute("tabindex", "0");
@@ -1829,7 +1821,7 @@ function briefHeader(
   unit,
   instance,
   group,
-  { candidateMode = false, detail = false, summaryOnly = false } = {},
+  { candidateMode = false, detail = false } = {},
 ) {
   const header = node(
     "div",
@@ -1837,8 +1829,9 @@ function briefHeader(
       (candidateMode ? " candidate-brief" : "") +
       (detail ? " detail-brief" : ""),
   );
-  if (!candidateMode && !detail && !summaryOnly) {
-    const controls = node("div", "instance-controls");
+  let controls;
+  if (!candidateMode && !detail) {
+    controls = node("div", "instance-controls");
     if (canDuplicate(group)) {
       const plus = node("button", "copy-unit", "＋"),
         minus = node("button", "remove-unit", "−");
@@ -1870,14 +1863,13 @@ function briefHeader(
       if (group.instances.length > 1)
         controls.append(node("span", "group-count", "×" + group.instances.length));
     }
-    header.append(controls);
   }
   if (!candidateMode) header.append(artButton(unit));
   const body = node("div", "brief-body"),
     first = node("div", "brief-first"),
     name = node("div", "bilingual-name");
   name.append(node("b", null, named(unit.name)));
-  if (!summaryOnly && unit.name?.zh && unit.name.en && unit.name.en !== unit.name.zh)
+  if (unit.name?.zh && unit.name.en && unit.name.en !== unit.name.zh)
     name.append(node("span", null, unit.name.en));
   first.append(name, statMatrix(unit, { showModels: !candidateMode && !detail }));
   const second = node("div", "brief-meta");
@@ -1895,18 +1887,14 @@ function briefHeader(
         .join(" / "),
     ),
   );
-  if (!summaryOnly && named(unit.title)) {
+  if (named(unit.title)) {
     const title = node("span", "bilingual-title", named(unit.title));
     if (unit.title.zh && unit.title.en && unit.title.en !== unit.title.zh)
       title.append(node("span", null, unit.title.en));
     second.append(title);
   }
   body.append(first, second);
-  if (summaryOnly) {
-    header.classList.add('summary-brief');
-    name.title = [unit.name?.en, named(unit.title)].filter(Boolean).join(' · ');
-    second.append(node('b', 'summary-quantity', '×' + group.instances.length));
-  } else body.append(slotStrip(group, { readonly: candidateMode || detail }));
+  if (candidateMode) body.append(slotStrip(group, {readonly: true}));
   header.append(body);
   const cost = node("div", "brief-cost"),
     single = candidateMode ? unit.points : perUnitPoints(instance),
@@ -1915,7 +1903,11 @@ function briefHeader(
     cost.append(node("b", null, single * quantity), node("small", null, "分"));
     if (quantity > 1) cost.append(node("span", null, single + " × " + quantity));
   }
-  first.append(cost);
+  if (controls) {
+    const end = node("div", "brief-end");
+    end.append(cost, controls);
+    first.append(end);
+  } else first.append(cost);
   return header;
 }
 function slotStrip(group, { readonly = false } = {}) {
@@ -1958,7 +1950,6 @@ function slotStrip(group, { readonly = false } = {}) {
       };
     }
     row.append(label);
-    if (c && UpgradeFaces.isDual(c) && !readonly) row.append(faceControl(c));
     if (chosen && !readonly) {
       const remove = node("button", "slot-remove", "×");
       remove.setAttribute("aria-label", "从其中1个单位移除" + name);
