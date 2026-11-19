@@ -2917,12 +2917,6 @@
         "qn"
       ]
     },
-    "programming-bounty": {
-      "name": "\"Bounty\" Programming",
-      "hqIds": [
-        "ub"
-      ]
-    },
     "programming-defense": {
       "name": "Defense Protocols",
       "hqIds": [
@@ -2933,12 +2927,6 @@
       "name": "Engagement Protocols",
       "hqIds": [
         "ql"
-      ]
-    },
-    "programming-nanny": {
-      "name": "\"Nanny\" Programming",
-      "hqIds": [
-        "tp"
       ]
     },
     "proven-tactician": {

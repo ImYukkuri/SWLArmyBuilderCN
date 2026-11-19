@@ -22,8 +22,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
       - name: Check reviewed release notes
         run: python tools/release.py check
+      - name: Check aircraft quotas and draft battle forces
+        run: node --test tests/flier-rank.test.cjs tests/battleforce-drafts.test.cjs
       - name: Assemble public site
         run: python tools/build_public.py
       - uses: actions/configure-pages@v4

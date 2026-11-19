@@ -5,6 +5,14 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 import server
 
 class StorageTest(unittest.TestCase):
+    def test_flier_rank_saves_on_card_and_faction_membership(self):
+        self.card['rankId'] = 7
+        for membership in self.card['factions']:
+            membership['rankId'] = 7
+        saved = server.commit_card(self.card, server.digest(self.path.read_bytes()))
+        self.assertEqual(saved['card']['rankId'], 7)
+        self.assertTrue(all(f['rankId'] == 7 for f in saved['card']['factions']))
+
     def test_free_text_keyword_parameters_survive_save_and_reload(self):
         self.card['keywords'] = [
             {'id': key, 'parameter': '瞄准 1 或闪避 1 / 自定义目标', 'value': 2, 'action': 'none'}

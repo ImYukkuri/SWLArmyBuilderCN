@@ -10,6 +10,15 @@ import rules
 
 
 class CommandRequirementsTest(unittest.TestCase):
+    def test_hidden_command_does_not_count_toward_hand(self):
+        army = {'armyId': 2, 'mode': 'standard', 'pointsLimit': 1000,
+                'units': [], 'options': [], 'commandIds': ['3086', '3086', '8']}
+        before = copy.deepcopy(army)
+        issues = rules.validate_army(army)['issues']
+        self.assertEqual(sum(i['code'] == 'command_hidden' for i in issues), 2)
+        self.assertTrue(any(i['code'] == 'command_min' and '3 点' in i['message'] for i in issues))
+        self.assertEqual(army, before)
+
     def test_both_characters_and_all_versions(self):
         hans=['rebels-solo','rebels-han-solo-tauntaun']
         lukes=['rebels-luke-skywalker-hero','rebels-luke-skywalker-jedi','rebels-luke-tauntaun']

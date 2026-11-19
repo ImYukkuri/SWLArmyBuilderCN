@@ -210,7 +210,8 @@ test('uncalibrated exports contain an explicit name warning and reference maps c
  const r=input(0),fixture=structuredClone(data);delete fixture.ttsNames.units['rebels-lando'];
  assert(BuilderTransfer.exportTTS(r.record,fixture).warnings.some(n=>n.includes('Lando Calrissian Canny General')));
  for(const kind of ['units','upgrades','commands','battle'])for(const [id,ref]of Object.entries(data.ttsNames[kind])) {
-  assert(BuilderTransfer.catalogs(data)[kind].some(c=>String(c.id)===id)||kind==='units'&&data.units[id]);
+  assert(BuilderTransfer.catalogs(data)[kind].some(c=>String(c.id)===id)||kind==='units'&&data.units[id]
+    ||kind==='commands'&&data.defs.commands.some(c=>String(c.id)===id&&c.hidden), `${kind}/${id}`);
   assert.equal(typeof ref.name,'string');assert.deepEqual(Object.keys(ref).sort(),['hqIds','name']);
  }
 });

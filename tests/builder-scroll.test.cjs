@@ -1,6 +1,7 @@
 /* Optional real-browser regression: npm run test:scroll (requires Playwright).
  * PLAYWRIGHT_CHROMIUM_EXECUTABLE may point at an existing Chrome installation.
- * All data is served read-only; browser storage is isolated and discarded.
+ * BUILDER_TEST_URL can target the real local server. Requests remain read-only;
+ * browser storage is isolated and discarded.
  */
 const {test, before, after} = require('node:test');
 const assert = require('node:assert/strict');
@@ -11,21 +12,26 @@ const {chromium} = require('playwright');
 let server, browser, base;
 const root = path.resolve(__dirname, '..');
 before(async () => {
-  server = createServer(async (req, res) => {
-    const file = path.resolve(root, '.' + decodeURIComponent(new URL(req.url, 'http://local').pathname).replace(/\/$/, '/index.html'));
-    if (!file.startsWith(root + path.sep)) {res.writeHead(403).end(); return;}
-    try {
-      const body = await readFile(file);
-      res.setHeader('Content-Type', {'.js':'text/javascript','.css':'text/css','.html':'text/html','.json':'application/json',
-        '.webp':'image/webp','.png':'image/png','.jpg':'image/jpeg','.ttf':'font/ttf'}[path.extname(file)] || 'application/octet-stream');
-      res.setHeader('Cache-Control', 'no-store');res.end(body);
-    } catch {res.writeHead(404).end();}
-  });
-  await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
-  base = `http://127.0.0.1:${server.address().port}/`;
+  // Also run against the real local server to catch missing runtime routes.
+  if (process.env.BUILDER_TEST_URL) {
+    base = process.env.BUILDER_TEST_URL.replace(/\/?$/, '/');
+  } else {
+    server = createServer(async (req, res) => {
+      const file = path.resolve(root, '.' + decodeURIComponent(new URL(req.url, 'http://local').pathname).replace(/\/$/, '/index.html'));
+      if (!file.startsWith(root + path.sep)) {res.writeHead(403).end(); return;}
+      try {
+        const body = await readFile(file);
+        res.setHeader('Content-Type', {'.js':'text/javascript','.css':'text/css','.html':'text/html','.json':'application/json',
+          '.webp':'image/webp','.png':'image/png','.jpg':'image/jpeg','.ttf':'font/ttf'}[path.extname(file)] || 'application/octet-stream');
+        res.setHeader('Cache-Control', 'no-store');res.end(body);
+      } catch {res.writeHead(404).end();}
+    });
+    await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
+    base = `http://127.0.0.1:${server.address().port}/`;
+  }
   browser = await chromium.launch({headless:true, executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE || undefined});
 });
-after(async () => {await browser?.close(); await new Promise(resolve => server.close(resolve));});
+after(async () => {await browser?.close(); if (server) await new Promise(resolve => server.close(resolve));});
 
 async function setup(t, mobile = true) {
   const context = await browser.newContext({viewport:mobile ? {width:390,height:844} : {width:1440,height:1000},
@@ -54,6 +60,35 @@ async function samePosition(page, y) {
   assert.equal(await page.locator('html').evaluate(n => n.classList.contains('page-overlay-open')), false);
 }
 const unit = page => page.locator('#army-units > .roster-unit').nth(10);
+
+for (const width of [320, 390, 1440]) test(`Flier navigation and empty selection at ${width}px`, async t => {
+  const page=await setup(t,width<760);
+  await page.setViewportSize({width,height:900});
+  const add=page.locator('#rank-add-bar [data-rank="7"]'), shortcut=page.locator('#rank-bar [data-rank="7"]');
+  assert.equal(await page.locator('#rank-bar button').count(),7);
+  assert((await add.innerText()).includes('飞机'));
+  assert((await add.innerText()).includes('/2'));
+  assert.equal(await shortcut.locator('svg[data-rule-icon="rank-flier"]').count(),1);
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+  await shortcut.click();assert.equal(await shortcut.getAttribute('aria-pressed'),'true');
+  assert.equal(await shortcut.locator('.rank-icon').innerText(),'+');
+  await shortcut.click();
+  assert.equal(await page.evaluate(()=>browser.rank),7);
+  assert.equal(await page.locator('#card-grid .candidate').count(),0);
+  assert((await page.locator('#card-grid').innerText()).includes('没有可选项目'));
+  await page.locator('#browser-close').click();
+  await page.evaluate(()=>scrollBy(0,250));await frames(page);
+  assert.equal(await shortcut.getAttribute('aria-pressed'),'false');
+  assert.equal(await shortcut.locator('svg').count(),1);
+  await add.click();assert.equal(await page.evaluate(()=>browser.rank),7);
+  await page.locator('#browser-close').click();
+  await page.evaluate(()=>{army.pointsLimit=600;army.mode='recon';render();});
+  assert((await add.innerText()).includes('/1'));
+  await page.evaluate(()=>showBattleForceRules());
+  const row=page.locator('.battleforce-quotas tbody tr').filter({hasText:'飞机'});
+  assert.equal(await row.count(),1);assert.equal(await row.locator('td').last().innerText(),'1');
+  assert.equal(await row.locator('svg[data-rule-icon="rank-flier"]').count(),1);
+});
 
 for (const mobile of [true, false]) test(`${mobile ? 'mobile' : 'desktop'} real card headers stick and are pushed away in both scroll directions`, async t => {
   const page = await setup(t, mobile);
@@ -114,7 +149,7 @@ for (const mobile of [true, false]) test(`${mobile ? 'mobile' : 'desktop'} rank 
   const rank = await page.evaluate(() => Number([...document.querySelectorAll('#rank-bar button')].find(b => Number(b.dataset.count) > 0).dataset.rank));
   const button = page.locator(`#rank-bar [data-rank="${rank}"]`);
   assert(!/军表总分|剩余/.test(await page.locator('#roster-info').innerText()));
-  assert.equal(await page.locator('#rank-bar button').count(), 6);
+  assert.equal(await page.locator('#rank-bar button').count(), 7);
   await page.evaluate(() => scrollTo(0, document.querySelector('#army-units').offsetTop + 1000));await frames(page);
   await button.click();await frames(page);
   assert.equal(await button.getAttribute('aria-pressed'), 'true');
@@ -145,9 +180,11 @@ test('rank counts include merged copies and empty ranks still open the correct a
   });
   assert.equal(await page.locator('#army-units > .roster-unit').count(), 1);
   assert.equal(await page.locator('#rank-bar [data-rank="2"] .rank-badge').innerText(), '3');
+  assert.equal(await page.locator('#rank-add-bar [data-rank="2"] .rank-total').innerText(), '3');
   assert.equal(await page.locator('#summary-activations').innerText(), '3');
   await page.locator('#army-units .copy-unit').click();
   assert.equal(await page.locator('#rank-bar [data-rank="2"] .rank-badge').innerText(), '4');
+  assert.equal(await page.locator('#rank-add-bar [data-rank="2"] .rank-total').innerText(), '4');
   await page.locator('#army-units .remove-unit').click();
   assert.equal(await page.locator('#rank-bar [data-rank="2"] .rank-badge').innerText(), '3');
   assert.equal(await page.locator('#unit-detail-dialog').evaluate(n => n.open), false);
@@ -159,6 +196,23 @@ test('rank counts include merged copies and empty ranks still open the correct a
   await page.evaluate(() => showLibrary());
   await page.evaluate(() => createRoster(2));
   assert.equal(await page.locator('#rank-bar [aria-pressed="true"]').count(), 0);
+});
+
+for (const mobile of [true, false]) test(`${mobile ? 'mobile' : 'desktop'} list-top rank buttons open each rank with one click`, async t => {
+  const page = await setup(t, mobile);
+  const addBar = page.locator('#rank-add-bar');
+  assert.equal(await addBar.locator('button').count(), 7);
+  assert((await addBar.boundingBox()).y < (await page.locator('#army-units').boundingBox()).y);
+  for (const rank of [1,6,2,3,4,5,7]) {
+    const button = addBar.locator(`[data-rank="${rank}"]`);
+    await button.scrollIntoViewIfNeeded();await frames(page);
+    const y = await page.evaluate(() => scrollY);
+    if (mobile) await button.tap(); else await button.click();
+    assert.deepEqual(await page.evaluate(() => ({mode:browser?.mode,rank:browser?.rank})), {mode:'units',rank});
+    assert.equal(await button.getAttribute('aria-pressed'), 'true');
+    await page.locator('#browser-close').click();await samePosition(page,y);
+    assert.equal(await button.getAttribute('aria-pressed'), 'false');
+  }
 });
 
 test('compact slots omit face tabs while image and expanded upgrade controls still switch both faces', async t => {

@@ -310,4 +310,9 @@ body.maintenance-editor { --bg:#eef1f4;--panel:#fff;--line:#d2dde5;--ink:#253540
 
 .upgrade-affiliations label{display:inline-flex;align-items:center;gap:6px;margin:6px 16px 6px 0;white-space:nowrap;cursor:pointer;min-height:28px}
 .upgrade-affiliations input[type=checkbox]{margin:0;width:16px;height:16px;flex:none}
+.upgrade-action-fields{min-width:0}
+.upgrade-action-options{display:flex;flex-wrap:wrap;gap:4px 18px}
+.upgrade-action-options label{display:inline-flex;align-items:center;gap:7px;min-height:36px;cursor:pointer;white-space:nowrap}
+.upgrade-action-options input[type=checkbox]{margin:0;width:16px;height:16px;flex:none;accent-color:var(--accent)}
 .upgrade-affiliations p{margin:6px 0;line-height:1.5;color:#805c24}
+.bf-draft-units th:first-child,.bf-draft-units td:first-child{white-space:nowrap;width:5em}

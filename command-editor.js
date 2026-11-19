@@ -43,7 +43,7 @@ function renderList(){
 }
 function select(id){
   if(dirty&&!confirm('当前战术卡有未保存修改，确定放弃并切换？'))return;
-  const card=rows().find(c=>c.id===id);if(!card)return;
+  const card=rows().find(c=>!c.hidden&&c.id===id);if(!card)return;
   selected=id;creating=false;draft=JSON.parse(JSON.stringify(card));dirty=false;$('#dirty').textContent='';
   $('#raw-json').value=JSON.stringify(draft,null,2);
   renderForm();renderList();renderImage();
@@ -112,7 +112,7 @@ function renderForm(){
       revision=res.revision;
       catalog.commands=catalog.commands.filter(c=>c.id!==selected);
       dirty=false;$('#dirty').textContent='';
-      const first=(catalog.commands||[])[0];
+      const first=rows().find(c=>!c.hidden);
       if(first){selected=first.id;draft=JSON.parse(JSON.stringify(first));}
       else{draft=null;selected=null}
       renderForm();renderList();status('已删除；快照：history/commands/'+res.snapshot);
@@ -233,9 +233,10 @@ async function reload(){
     defs=await fetch('data/catalog-definitions.json').then(r=>r.json());
     unitsById=Object.fromEntries((unitsRes.units||[]).filter(u=>u.upstream?.collection==='units').map(u=>[String(u.upstream.id),u]));
     dirty=false;$('#dirty').textContent='';
-    const first=(catalog.commands||[])[0];
+    const first=rows().find(c=>!c.hidden);
     renderList();
     if(first)select(first.id);
+    else{draft=null;selected=null;$('#title').textContent='暂无指挥卡';$('#subtitle').textContent='';$('#raw-json').value='';renderForm();renderImage();}
     status('');
   }catch(e){
     status(e.message,true);

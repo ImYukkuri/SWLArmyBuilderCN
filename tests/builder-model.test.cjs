@@ -17,6 +17,42 @@ const data = {
 };
 data.nameIndex = RulesCore.buildNameIndex(data.upgrades, data.defs);
 
+test('hidden commands remain identifiable but cannot fill a command hand', () => {
+  const roster = {...armyOf(), commandIds: ['3086', '3086', '8']};
+  const before = structuredClone(roster);
+  const issues = RulesCore.validateArmy(roster, data).issues;
+  assert.equal(issues.filter(i => i.code === 'command_hidden').length, 2);
+  assert(issues.some(i => i.code === 'command_min' && i.message.startsWith('3 点')));
+  assert.deepEqual(roster, before);
+});
+
+test('new bounty hunter training cards equip only on their named hosts and cannot be duplicated', () => {
+  const pairs = [
+    ['training-mechanical-carnage', 'mercenary-rogue-ig-11'],
+    ['training-cold-blooded', 'mercenary-rogue-bossk'],
+    ['training-focused-on-the-kill', 'mercenary-rogue-ig-88'],
+    ['training-i-make-the-rules-now', 'mercenary-rogue-cad-bane'],
+  ];
+  for (const [id, hostId] of pairs) {
+    const roster = armyOf(unit(hostId)), inst = roster.units[0], card = data.upgrades[id];
+    for (const [, candidateId] of pairs)
+      assert.equal(RulesCore.upgradeEligibility(card, data.units[candidateId], roster, data, []).ok,
+        candidateId === hostId, id + ' / ' + candidateId);
+    const slots = RulesCore.slotListFor(data.pkg, data.units[hostId], inst, data.upgrades, roster.armyId);
+    const result = BuilderModel.equip(roster, data, {unitInstanceId: inst.instanceId,
+      slotIndex: slots.findIndex(s => s.key === 'training'), slotKey: 'training'}, id, false, uid);
+    assert(result.ok, result.reason);
+    assert.equal(result.draft.units[0].upgrades[0].upgradeId, id);
+    assert.equal(card.points, 0);
+    const training = slots.map((s, i) => s.key === 'training' ? i : -1).filter(i => i >= 0);
+    if (training.length > 1) {
+      const duplicate = BuilderModel.equip(result.draft, data, {unitInstanceId: inst.instanceId,
+        slotIndex: training[1], slotKey: 'training'}, id, false, uid);
+      assert(!duplicate.ok, 'unique training must not occupy both slots');
+    }
+  }
+});
+
 test('exempt cards get independent exclusive slots and can all be equipped', () => {
   for (const [id, faction, cards] of [
     ['separatists-b1',5,['gear-binoculars','gear-portable']],
@@ -345,8 +381,8 @@ test('Jyn on Guerilla Troopers adds a usable third slot without moving training,
   assert.equal(RulesCore.validateArmy(army, data).issues.filter(i => i.code === 'required_slot').length, 1);
 });
 
-test('Kallus opens a usable heavy slot after himself on Death Troopers and other eligible hosts', () => {
-  for (const id of ['empire-death-troopers', 'empire-stormtroopers']) {
+test('Kallus opens a usable heavy slot after himself on currently eligible hosts', () => {
+  for (const id of ['empire-riot-squad', 'empire-stormtroopers']) {
     let roster = armyOf(unit(id));
     const host = data.units[id], context = slotContext(roster, 'heavy_weapon');
     const before = RulesCore.slotListFor(data.pkg, host, roster.units[0], data.upgrades, 2);
@@ -359,7 +395,7 @@ test('Kallus opens a usable heavy slot after himself on Death Troopers and other
     assert.equal(records[extra].key, 'heavy_weapon');
     const order = BuilderModel.slotOrder(roster.units[0], records);
     assert.equal(order[order.indexOf(context.slotIndex) + 1], extra);
-    const weaponId = id === 'empire-death-troopers' ? 'dlt-19d' : 'stormtrooper-dlt19';
+    const weaponId = id === 'empire-riot-squad' ? 'riot-squad-marksman' : 'stormtrooper-dlt19';
     const armed = BuilderModel.equip(roster, data, {...context, slotIndex: extra}, weaponId, false, uid);
     assert.equal(armed.ok, true, armed.reason);
     assert.ok(!RulesCore.validateArmy(armed.draft, data).issues.some(i => i.code.startsWith('slot_')));
@@ -402,12 +438,12 @@ test('Flexible Response allows gradual and batch equipment and a third heavy wea
   assert.equal(report().issues.some(i => /slot_|flexible_response/.test(i.code)), false);
   const before = JSON.stringify(army);
   const third = BuilderModel.equip(army, fixture, {unitInstanceId: army.units[0].instanceId,
-    slotIndex: 4, slotKey: 'heavy_weapon'}, 'del-meeko', false, uid);
+    slotIndex: 4, slotKey: 'heavy_weapon'}, 'stormtrooper-rt97c', false, uid);
   assert.equal(third.ok, true, third.reason);
   assert.equal(JSON.stringify(army), before);
   army = third.draft;
   assert.equal(report().issues.some(i => /slot_|flexible_response/.test(i.code)), false);
-  army.units[0].upgrades.find(c => c.upgradeId === 'del-meeko').slotIndex = 99;
+  army.units[0].upgrades.find(c => c.upgradeId === 'stormtrooper-rt97c').slotIndex = 99;
   const imported = JSON.stringify(army);
   assert(!report().issues.some(i => i.code === 'flexible_response_limit'));
   assert(report().issues.some(i => i.code === 'slot_missing'));
@@ -752,7 +788,7 @@ test("batch equipment commits independent selections for every merged unit", () 
   assert.equal(RulesCore.validateArmy(result.draft, data).basePoints, 124);
 });
 test("unique batch failure is atomic; replacing a slot ignores its removed selection", () => {
-  const roster = armyOf(unit(), unit()),
+  const roster = armyOf(unit('empire-shoretroopers'), unit('empire-shoretroopers')),
     ctx = slotContext(roster, "heavy_weapon"),
     snapshot = JSON.stringify(roster);
   const failed = BuilderModel.equip(roster, data, ctx, "del-meeko", true, uid);
@@ -761,10 +797,10 @@ test("unique batch failure is atomic; replacing a slot ignores its removed selec
   assert.equal(JSON.stringify(roster), snapshot);
   const first = BuilderModel.equip(roster, data, ctx, "del-meeko", false, uid);
   assert.equal(first.ok, true, first.reason);
-  const replacement = BuilderModel.equip(first.draft, data, ctx, "stormtrooper-dlt19", false, uid);
+  const replacement = BuilderModel.equip(first.draft, data, ctx, "shore-t21b", false, uid);
   assert.equal(replacement.ok, true, replacement.reason);
   assert.equal(replacement.draft.units[0].upgrades.length, 1);
-  assert.equal(replacement.draft.units[0].upgrades[0].upgradeId, "stormtrooper-dlt19");
+  assert.equal(replacement.draft.units[0].upgrades[0].upgradeId, "shore-t21b");
 });
 test("stale or mismatched targets and wrong slots never mutate a roster", () => {
   const roster = armyOf(unit(), unit()),

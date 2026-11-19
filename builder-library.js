@@ -38,6 +38,7 @@ window.BuilderLibrary = (() => {
     return data.defs.armies.filter(
       (a) =>
         a.id !== base.id &&
+        data.pkg.battleForces?.[a.id]?.status !== 'draft' &&
         !!data.pkg.battleForces?.[a.id] && factionOf(a.id, data) === base.id,
     );
   }

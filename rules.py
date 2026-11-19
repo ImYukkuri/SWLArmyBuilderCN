@@ -875,6 +875,8 @@ def validate_army(army):
     if battle_force:
         bf_mode = (battle_force.get("modes") or {}).get(army.get("mode", "standard"), {})
         mode = {**mode, **bf_mode}
+        if battle_force.get('status') == 'draft':
+            issue('unknown', 'battle_force_draft', '此战斗部队为尚未启用的规则草案，不能据此确认军表合法性。', None)
         if battle_force.get("unparsedRules"):
             issue("unknown", "battle_force_rules", "战斗部队仍有未机器化的规则文本：" + " / ".join(battle_force["unparsedRules"]), None)
     points_limit = army.get("pointsLimit") or mode.get("points") or 1000
@@ -1190,6 +1192,9 @@ def validate_army(army):
             issue("invalid", "command_missing", f"命令卡引用不存在：{cid}", None)
             continue
         name = (cmd.get("name") or {}).get("en") or cid
+        if cmd.get("hidden"):
+            issue("invalid", "command_hidden", f"命令卡「{name}」已停用，请替换", None)
+            continue
         title_match = str(cmd.get("titleMatch") or "").strip()
         if title_match:
             key = normalize_name(title_match)
@@ -1273,7 +1278,7 @@ def validate_army(army):
         pips = []
         for cid in army.get("commandIds"):
             cmd = next((c for c in definitions.get("commands", []) if str(c.get("id")) == str(cid)), None)
-            if cmd and cmd.get("pips") is not None:
+            if cmd and not cmd.get("hidden") and cmd.get("pips") is not None:
                 slot_pips = cmd.get("slotPips")
                 pips.append(slot_pips if slot_pips is not None else cmd["pips"])
         for rule in hand:

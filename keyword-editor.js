@@ -102,7 +102,7 @@
     $('#keyword-history').open = false;
     renderPreview(); renderReferences(); controls();
   }
-  function previewText(text) {
+  function previewActions(text) {
     const fragment = document.createDocumentFragment(); let start = 0;
     for (const match of text.matchAll(/免费(?:行动|动)(?:(?:\s*[：:]\s*|并)横置)?|普通行动|双行动|行动/g)) {
       const label = match[0].includes('横置') ? '免费行动：横置' : match[0].startsWith('免费') ? '免费行动'
@@ -111,6 +111,17 @@
       start = match.index + match[0].length;
     }
     fragment.append(document.createTextNode(text.slice(start))); return fragment;
+  }
+  function previewText(text) {
+    const out=document.createDocumentFragment();let start=0;
+    const source=String(text).replace(/\{@icon\.action\}\s*\{@icon\.action\}/g,'{@icon.double-action}');
+    for(const match of source.matchAll(/\{@icon\.([\w-]+)\}/g)) {
+      out.append(previewActions(source.slice(start,match.index)));
+      const label=RuleIcons.label(match[1],catalog);
+      out.append(RuleIcons.icon(match[1],label) || previewActions(label));
+      start=match.index+match[0].length;
+    }
+    out.append(previewActions(source.slice(start)));return out;
   }
   function renderPreview() {
     if (!draft) return;

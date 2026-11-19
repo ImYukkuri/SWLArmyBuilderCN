@@ -101,33 +101,8 @@ function ruleInfo(k) {
   return { item, ref, label };
 }
 
-// Printed icon aliases reference the same catalog entries used by rule conditions.
-// Read their names at render time so catalog corrections apply everywhere.
-const PROSE_CATALOG_ICONS = Object.fromEntries([
-  ['ranks', [[1,'rank-commander'],[6,'rank-operative'],[2,'rank-corps'],
-    [3,'rank-special-forces','rank-special'],[4,'rank-support'],[5,'rank-heavy','heavy']]],
-  ['factions', [[1,'faction-rebel'],[2,'faction-empire'],[3,'faction-mercenary'],
-    [4,'faction-gar','faction-republic'],[5,'faction-cis','faction-separatist']]],
-  ['affiliations', [['965','clan-covert'],['1081','clan-kryze'],['1082','clan-wren'],
-    ['1083','clan-saxon'],['1084','faction-creedless'],['1','faction-pyke'],
-    ['2','faction-blacksun'],['3','faction-raiders'],['5','faction-maul'],['7','faction-ewoks']]],
-  ['upgradeSlots', [[1,'slot-personnel'],[2,'slot-gear'],[3,'slot-grenade','slot-grenades'],
-    [4,'slot-heavy','slot-heavy-weapon'],[5,'slot-force'],[6,'slot-comms'],[7,'slot-pilot'],
-    [8,'slot-hardpoint'],[9,'slot-command'],[10,'slot-training'],[11,'slot-generator'],
-    [12,'slot-armament'],[13,'slot-crew'],[14,'slot-ordnance'],[15,'slot-counterpart'],
-    [18,'slot-programming','slot-protocol'],[19,'slot-squad-leader'],[24,'slot-doctrine'],[25,'slot-helmet']]],
-].flatMap(([table, rows]) => rows.flatMap(([id, ...aliases]) => aliases.map(key => [key, {table, id}]))));
-const PROSE_SYMBOL_LABELS = {
-  ...ACTION_LABEL, hit:'命中', critical:'暴击', block:'格挡', surge:'攻击激增',
-  'surge-block':'防御激增', exhaust:'横置', expend:'消耗', courage:'勇气', resilience:'韧性',
-  'defense-die-white':'白色防御骰', 'defense-die-inverted':'红色防御骰',
-  'range-half':'距离 ½', rangeInfinite:'射程', melee:'近战', overrun:'碾压',
-};
-function proseIconLabel(key) {
-  const ref = PROSE_CATALOG_ICONS[key];
-  if (ref) return named(data.defs[ref.table]?.find(row => String(row.id) === String(ref.id))?.name) || key;
-  return PROSE_SYMBOL_LABELS[key] || (/^range-\d+$/.test(key) ? '距离 '+key.slice(6) : key);
-}
+// Resolve names against the live catalog, shared with the keyword editor preview.
+function proseIconLabel(key) { return RuleIcons.label(key, data.defs); }
 function proseNode(raw) {
   const box = node("span");
   const text = textParts(raw).replace(/\{@icon\.action\}\s*\{@icon\.action\}/g, '{@icon.double-action}');
@@ -135,13 +110,8 @@ function proseNode(raw) {
   for (const m of text.matchAll(/\{@icon\.([\w-]+)\}/g)) {
     box.append(actionText(text.slice(pos, m.index)));
     const token = node("span", "inline-token");
-    if (ORDER_GLYPH[m[1]]) {
-      token.append(
-        node("span", "rank-icon", ORDER_GLYPH[m[1]]),
-        document.createTextNode(proseIconLabel(m[1])),
-      );
-    } else
-      token.append(actionText(proseIconLabel(m[1])));
+    const label=proseIconLabel(m[1]);
+    token.append(RuleIcons.icon(m[1],label) || actionText(label));
     box.append(token);
     pos = m.index + m[0].length;
   }
@@ -153,7 +123,7 @@ function identity(c, { unit = false, points = c.points, command = false } = {}) 
   const head = node("div", "identity");
   if (unit) {
     const seal = node("div", "rank-seal");
-    seal.append(node("span", "rank-icon", RANK_GLYPH[rankOf(c, army.armyId)] || ""));
+    seal.append(rankIcon(rankOf(c, army.armyId)));
     head.append(seal);
   }
   const main = node("div", "identity-main");
@@ -384,8 +354,9 @@ function renderBrowser() {
 }
 
 function renderRankBar(report) {
-  const bar = $("#rank-bar");
+  const bar = $("#rank-bar"), addBar = $("#rank-add-bar");
   bar.replaceChildren();
+  addBar.replaceChildren();
   const rules = BuilderLibrary.configuration(army, data).rules;
   for (const rank of RANK_ORDER) {
     const count = army.units.filter(
@@ -402,13 +373,31 @@ function renderRankBar(report) {
     b.dataset.rank = rank;
     b.classList.toggle("empty", count === 0);
     const limits = quota ? (quota.min ?? 0) + "–" + (quota.max ?? "不限") : "未设配额";
-    const glyph = node("span", "rank-icon", RANK_GLYPH[rank]);
+    const glyph = rankIcon(rank);
     glyph.setAttribute("aria-hidden", "true");
     b.append(glyph, node("span", "rank-badge", count || "—"));
     b.title = RANK_SHORT[rank] + "：" + count + " 个；允许数量 " + limits;
     if (rankIssues.length) b.title += "\n" + rankIssues.map(i => i.message).join("\n");
     b.onclick = () => BuilderSticky.selectRank(rank, b);
     bar.append(b);
+
+    const add = node("button", "rank-chip");
+    add.type = "button";
+    add.dataset.rank = rank;
+    add.classList.toggle("invalid", rankIssues.length > 0);
+    add.classList.toggle("empty", count === 0);
+    const active = browser?.mode === "units" && browser.rank === rank;
+    add.classList.toggle("active", active);
+    add.setAttribute("aria-pressed", String(active));
+    add.setAttribute("aria-label", "添加" + RANK_SHORT[rank] + "单位");
+    add.title = b.title;
+    const total = node("span", "rank-count");
+    total.append(node("strong", "rank-total", count || "—"),
+      node("span", "rank-quota", "（/" + (quota?.max ?? "∞") + "）"));
+    add.append(rankIcon(rank),
+      node("span", "rank-name", RANK_SHORT[rank]), total, node("span", "rank-add", "+"));
+    add.onclick = () => selectContext({mode: "units", rank}, add);
+    addBar.append(add);
   }
   window.BuilderSticky?.refreshNavigation();
   const combined = (rules.combined || []).map(
@@ -428,7 +417,7 @@ function renderDeck() {
     node(
       "span",
       "count",
-      army.commandIds.filter(Boolean).length + " / " + commandSlots(),
+      army.commandIds.filter(id => commandOf(id)).length + " / " + commandSlots(),
     ),
   );
   deck.append(head);
@@ -563,7 +552,7 @@ function showBattleForceRules() {
   head.append(node('h2',null,bf?.nameZh || named(data.defs.armies.find(a => a.id === army.armyId)?.name)),close);dialog.append(head);
   dialog.append(node('p','muted',army.pointsLimit+' 分 · '+(army.mode === 'recon' ? '侦察' : '标准')));
   const rankLabel = id => {
-    const label = node('span','force-rank'), icon = node('span','rank-icon',RANK_GLYPH[id] || '');
+    const label = node('span','force-rank'), icon = rankIcon(id);
     icon.setAttribute('aria-hidden','true');label.append(icon,node('span',null,RANK_SHORT[id]));return label;
   };
   const table = node('table','battleforce-quotas'), heading = node('tr'), thead = node('thead'), tbody = node('tbody');
@@ -608,7 +597,7 @@ function renderPoints(report) {
   $('#roster-info').classList.toggle('over-limit', report.effectivePoints > lim);
   $("#summary-activations").textContent = army.units.length;
   $("#summary-commands").replaceChildren(
-    document.createTextNode(army.commandIds.filter(Boolean).length),
+    document.createTextNode(army.commandIds.filter(id => commandOf(id)).length),
     node("span", null, " / " + commandSlots()),
   );
 }
@@ -1873,7 +1862,7 @@ function briefHeader(
     name.append(node("span", null, unit.name.en));
   first.append(name, statMatrix(unit, { showModels: !candidateMode && !detail }));
   const second = node("div", "brief-meta");
-  second.append(node("span", "rank-icon", RANK_GLYPH[rankOf(unit, army.armyId)] || ""));
+  second.append(rankIcon(rankOf(unit, army.armyId)));
   second.append(
     node(
       "span",

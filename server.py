@@ -119,7 +119,7 @@ def validate(card):
         with Image.open(relative_asset(assets['front']))as im:
             if round(box[2]*im.width)<=round(box[0]*im.width)or round(box[3]*im.height)<=round(box[1]*im.height):raise ValueError('裁剪范围至少包含一个像素')
     if card.get('review',{}).get('status')not in ['needs_review','reviewed']:raise ValueError('校对状态无效')
-    if legacy and card.get('rank')not in [None,'commander','operative','corps','special-forces','support','heavy','counterpart']:raise ValueError('军阶枚举无效')
+    if legacy and card.get('rank')not in [None,'commander','operative','corps','special-forces','support','heavy','flier','counterpart']:raise ValueError('军阶枚举无效')
 def make_portrait(card):
     front=(card.get('assets') or {}).get('front')
     if not front:
@@ -306,7 +306,10 @@ class Handler(BaseHTTPRequestHandler):
             files['/builder-transfer.js']='builder-transfer.js'
             files['/builder-transfer-ui.js']='builder-transfer-ui.js'
             files['/builder-overlays.js']='builder-overlays.js'
+            files['/builder-sticky.js']='builder-sticky.js'
             files['/mandalorian-rules.js']='mandalorian-rules.js'
+            files['/rule-icons.js']='rule-icons.js'
+            files['/rule-icons.css']='rule-icons.css'
             files.update({'/keywords':'keywords.html','/keywords.html':'keywords.html','/keyword-editor.js':'keyword-editor.js','/keyword-editor.css':'keyword-editor.css'})
             if path in files:p=ROOT/files[path]
             elif path.startswith('/assets/'):

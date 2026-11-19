@@ -330,6 +330,11 @@
           "rankId": 5,
           "min": 0,
           "max": 2
+        },
+        {
+          "rankId": 7,
+          "min": 0,
+          "max": 2
         }
       ],
       "commandHand": [
@@ -397,6 +402,11 @@
         },
         {
           "rankId": 5,
+          "min": 0,
+          "max": 1
+        },
+        {
+          "rankId": 7,
           "min": 0,
           "max": 1
         }
@@ -468,6 +478,11 @@
               "rankId": 6,
               "min": 0,
               "max": 1
+            },
+            {
+              "rankId": 7,
+              "min": 0,
+              "max": 2
             }
           ],
           "combined": [
@@ -504,6 +519,11 @@
             },
             {
               "rankId": 6,
+              "min": 0,
+              "max": 1
+            },
+            {
+              "rankId": 7,
               "min": 0,
               "max": 1
             }
@@ -579,6 +599,11 @@
               "rankId": 6,
               "min": 0,
               "max": 2
+            },
+            {
+              "rankId": 7,
+              "min": 0,
+              "max": 2
             }
           ],
           "combined": []
@@ -614,6 +639,11 @@
               "rankId": 6,
               "min": 0,
               "max": 2
+            },
+            {
+              "rankId": 7,
+              "min": 0,
+              "max": 1
             }
           ],
           "combined": [
@@ -701,6 +731,11 @@
               "rankId": 6,
               "min": 0,
               "max": 3
+            },
+            {
+              "rankId": 7,
+              "min": 0,
+              "max": 2
             }
           ],
           "combined": [
@@ -742,6 +777,11 @@
             },
             {
               "rankId": 6,
+              "min": 0,
+              "max": 1
+            },
+            {
+              "rankId": 7,
               "min": 0,
               "max": 1
             }
@@ -807,6 +847,11 @@
               "rankId": 6,
               "min": 0,
               "max": 2
+            },
+            {
+              "rankId": 7,
+              "min": 0,
+              "max": 2
             }
           ],
           "combined": []
@@ -840,6 +885,11 @@
             },
             {
               "rankId": 6,
+              "min": 0,
+              "max": 1
+            },
+            {
+              "rankId": 7,
               "min": 0,
               "max": 1
             }
@@ -900,6 +950,11 @@
               "rankId": 6,
               "min": 0,
               "max": 1
+            },
+            {
+              "rankId": 7,
+              "min": 0,
+              "max": 2
             }
           ],
           "combined": [
@@ -941,6 +996,11 @@
             },
             {
               "rankId": 6,
+              "min": 0,
+              "max": 1
+            },
+            {
+              "rankId": 7,
               "min": 0,
               "max": 1
             }
@@ -1008,6 +1068,11 @@
               "rankId": 6,
               "min": 0,
               "max": 1
+            },
+            {
+              "rankId": 7,
+              "min": 0,
+              "max": 2
             }
           ],
           "combined": []
@@ -1041,6 +1106,11 @@
             },
             {
               "rankId": 6,
+              "min": 0,
+              "max": 1
+            },
+            {
+              "rankId": 7,
               "min": 0,
               "max": 1
             }
@@ -1103,6 +1173,11 @@
               "rankId": 6,
               "min": 0,
               "max": 3
+            },
+            {
+              "rankId": 7,
+              "min": 0,
+              "max": 2
             }
           ],
           "combined": [
@@ -1146,6 +1221,11 @@
               "rankId": 6,
               "min": 0,
               "max": 2
+            },
+            {
+              "rankId": 7,
+              "min": 0,
+              "max": 1
             }
           ],
           "combined": [
@@ -1207,6 +1287,11 @@
               "rankId": 6,
               "min": 1,
               "max": 1
+            },
+            {
+              "rankId": 7,
+              "min": 0,
+              "max": 0
             }
           ],
           "combined": []
@@ -1237,6 +1322,11 @@
               "rankId": 6,
               "min": 1,
               "max": 1
+            },
+            {
+              "rankId": 7,
+              "min": 0,
+              "max": 0
             }
           ],
           "combined": []
@@ -1297,6 +1387,11 @@
               "rankId": 6,
               "min": 0,
               "max": 2
+            },
+            {
+              "rankId": 7,
+              "min": 0,
+              "max": 2
             }
           ],
           "combined": [
@@ -1338,6 +1433,11 @@
             },
             {
               "rankId": 6,
+              "min": 0,
+              "max": 1
+            },
+            {
+              "rankId": 7,
               "min": 0,
               "max": 1
             }
@@ -1408,6 +1508,11 @@
               "rankId": 6,
               "min": 0,
               "max": 1
+            },
+            {
+              "rankId": 7,
+              "min": 0,
+              "max": 2
             }
           ],
           "combined": [
@@ -1449,6 +1554,11 @@
             },
             {
               "rankId": 6,
+              "min": 0,
+              "max": 1
+            },
+            {
+              "rankId": 7,
               "min": 0,
               "max": 1
             }
@@ -1509,6 +1619,11 @@
               "rankId": 6,
               "min": 0,
               "max": 1
+            },
+            {
+              "rankId": 7,
+              "min": 0,
+              "max": 2
             }
           ],
           "combined": [
@@ -1545,6 +1660,11 @@
             },
             {
               "rankId": 5,
+              "min": 0,
+              "max": 1
+            },
+            {
+              "rankId": 7,
               "min": 0,
               "max": 1
             }
@@ -1615,6 +1735,11 @@
               "rankId": 6,
               "min": 0,
               "max": 4
+            },
+            {
+              "rankId": 7,
+              "min": 0,
+              "max": 0
             }
           ],
           "combined": [
@@ -1653,6 +1778,11 @@
               "rankId": 6,
               "min": 0,
               "max": 3
+            },
+            {
+              "rankId": 7,
+              "min": 0,
+              "max": 0
             }
           ],
           "combined": [
@@ -1724,6 +1854,11 @@
               "rankId": 6,
               "min": 0,
               "max": 1
+            },
+            {
+              "rankId": 7,
+              "min": 0,
+              "max": 2
             }
           ],
           "combined": [
@@ -1765,6 +1900,11 @@
             },
             {
               "rankId": 6,
+              "min": 0,
+              "max": 1
+            },
+            {
+              "rankId": 7,
               "min": 0,
               "max": 1
             }
@@ -1829,6 +1969,11 @@
               "rankId": 5,
               "min": 0,
               "max": 2
+            },
+            {
+              "rankId": 7,
+              "min": 0,
+              "max": 2
             }
           ],
           "combined": []
@@ -1857,6 +2002,11 @@
             },
             {
               "rankId": 5,
+              "min": 0,
+              "max": 1
+            },
+            {
+              "rankId": 7,
               "min": 0,
               "max": 1
             }
@@ -1920,6 +2070,11 @@
               "rankId": 6,
               "min": 0,
               "max": 1
+            },
+            {
+              "rankId": 7,
+              "min": 0,
+              "max": 2
             }
           ],
           "combined": [
@@ -1963,6 +2118,11 @@
               "rankId": 6,
               "min": 0,
               "max": 1
+            },
+            {
+              "rankId": 7,
+              "min": 0,
+              "max": 1
             }
           ],
           "combined": [
@@ -1997,7 +2157,273 @@
       "unitLimitsText": [
         "至少 3 个伍基人士兵单位。",
         "ARC 士兵、BARC 飞行机车、步兵支援平台、军刀级坦克：各 0–1 个；克隆人士兵步兵：0–2 个。"
-      ]
+      ],
+      "pendingRevision": {
+        "name": "Wookiee War Grove",
+        "nameZh": "伍基战争林地",
+        "parentFaction": "Galactic Republic",
+        "alignment": "Light",
+        "status": "draft",
+        "modes": {
+          "standard": {
+            "rankQuotas": [
+              {
+                "rankId": 1,
+                "min": 1,
+                "max": 2
+              },
+              {
+                "rankId": 6,
+                "min": 0,
+                "max": 2
+              },
+              {
+                "rankId": 2,
+                "min": 3,
+                "max": 6
+              },
+              {
+                "rankId": 3,
+                "min": 0,
+                "max": 3
+              },
+              {
+                "rankId": 4,
+                "min": 0,
+                "max": 3
+              },
+              {
+                "rankId": 5,
+                "min": 0,
+                "max": 2
+              },
+              {
+                "rankId": 7,
+                "min": 0,
+                "max": 2
+              }
+            ],
+            "combined": []
+          },
+          "recon": {
+            "rankQuotas": [
+              {
+                "rankId": 1,
+                "min": 1,
+                "max": 2
+              },
+              {
+                "rankId": 6,
+                "min": 0,
+                "max": 1
+              },
+              {
+                "rankId": 2,
+                "min": 2,
+                "max": 4
+              },
+              {
+                "rankId": 3,
+                "min": 0,
+                "max": 2
+              },
+              {
+                "rankId": 4,
+                "min": 0,
+                "max": 2
+              },
+              {
+                "rankId": 5,
+                "min": 0,
+                "max": 1
+              },
+              {
+                "rankId": 7,
+                "min": 0,
+                "max": 1
+              }
+            ],
+            "combined": []
+          }
+        },
+        "allowedUnits": {},
+        "textRulesZh": [
+          "伍基战争林地属于银河共和国。",
+          "伍基战士（树冠守卫者）装备顽强（Tenacity）升级卡时，该卡费用改为 0 分。",
+          "友方拉达赫蚋扑翼机获得运输。"
+        ],
+        "textRules": [
+          "A Wookiee War Grove Battle Force is part of the Galactic Republic Faction.",
+          "Reduce the cost of the Tenacity Upgrade Card to 0 points for Wookiee Warriors (Treetop Defenders).",
+          "Allied Raddaugh Gnasp Fluttercraft gain Transport."
+        ],
+        "options": [],
+        "machineRules": [],
+        "rulesSource": {
+          "document": "DOC61_BattleForces.pdf",
+          "pages": [
+            21
+          ],
+          "effectiveDate": "2026-12-01",
+          "reviewedAt": "2026-11-19"
+        },
+        "unparsedRules": [
+          "新版战斗部队草案尚未启用：单位许可、飞行军阶及特殊规则待接入。"
+        ],
+        "draftSpec": {
+          "allowedUnits": [
+            {
+              "rankId": 1,
+              "name": "Yoda",
+              "unitIds": [
+                "republic-yoda"
+              ],
+              "resolution": "matched"
+            },
+            {
+              "rankId": 1,
+              "name": "Chewbacca",
+              "unitIds": [
+                "republic-chewbacca-gar"
+              ],
+              "resolution": "matched"
+            },
+            {
+              "rankId": 1,
+              "name": "Wookiee Chieftain",
+              "unitIds": [
+                "republic-chieftain"
+              ],
+              "resolution": "matched"
+            },
+            {
+              "rankId": 6,
+              "name": "Jedi Knight",
+              "unitIds": [
+                "republic-jedi-knight"
+              ],
+              "resolution": "matched"
+            },
+            {
+              "rankId": 3,
+              "name": "Wookiee Warriors (Fearsome Guardians)",
+              "unitIds": [],
+              "resolution": "missing"
+            },
+            {
+              "rankId": 2,
+              "name": "Wookiee Warriors (Treetop Defenders)",
+              "unitIds": [],
+              "min": 2,
+              "resolution": "missing"
+            },
+            {
+              "rankId": 2,
+              "name": "Clone Trooper Infantry",
+              "unitIds": [
+                "republic-clone-trooper"
+              ],
+              "max": 2,
+              "resolution": "matched"
+            },
+            {
+              "rankId": 4,
+              "name": "Raddaugh Gnasp Fluttercraft",
+              "unitIds": [
+                "republic-raddaugh-gnasp",
+                "republic-raddaugh"
+              ],
+              "resolution": "matched"
+            },
+            {
+              "rankId": 4,
+              "name": "BARC Speeder",
+              "unitIds": [
+                "republic-barc"
+              ],
+              "max": 1,
+              "resolution": "matched"
+            },
+            {
+              "rankId": 5,
+              "name": "Infantry Support Platform",
+              "unitIds": [
+                "republic-isp"
+              ],
+              "max": 1,
+              "resolution": "matched"
+            },
+            {
+              "rankId": 5,
+              "name": "Saber-class Tank",
+              "unitIds": [
+                "republic-saber-class"
+              ],
+              "max": 1,
+              "resolution": "matched"
+            },
+            {
+              "rankId": 7,
+              "name": "V-Wing",
+              "unitIds": [],
+              "resolution": "missing"
+            }
+          ],
+          "uniqueUpgrades": [
+            {
+              "name": "Chewbacca",
+              "upgradeIds": [
+                "chewbacca-heavy"
+              ]
+            },
+            {
+              "name": "Improvised Orders",
+              "upgradeIds": [
+                "command-improvised"
+              ]
+            },
+            {
+              "name": "Jedi Consular",
+              "upgradeIds": [
+                "jedi-consular"
+              ]
+            },
+            {
+              "name": "Jedi Guardian",
+              "upgradeIds": [
+                "gar-jedi-guardian",
+                "jedi-guardian"
+              ]
+            },
+            {
+              "name": "Jedi Negotiator",
+              "upgradeIds": [
+                "jedi-negotiator"
+              ]
+            },
+            {
+              "name": "Strike Team Leader",
+              "upgradeIds": [
+                "training-strike-team-leader"
+              ]
+            },
+            {
+              "name": "Yoda",
+              "upgradeIds": []
+            }
+          ],
+          "implementationGaps": [
+            "本草案是现有 ID 21 的待迁移版本，保留旧军表引用，不另建第二个伍基战斗部队 ID。",
+            "缺少 Treetop Defenders／Fearsome Guardians 两个新形态，不把 Noble Fighters／Kashyyyk Defenders 自动当成新卡。",
+            "需要新增单位最低 2 个校验，以及按宿主形态的 Tenacity 归零费用规则。",
+            "飞行军阶及 V-Wing 卡牌尚未接入。"
+          ]
+        },
+        "unitLimitsText": [
+          "至少 2 个伍基战士（Treetop Defenders）；克隆人士兵步兵最多 2 个。",
+          "BARC 飞行摩托、步兵支援平台、军刀级坦克各最多 1 个。"
+        ]
+      }
     },
     "22": {
       "name": "Children of the Watch",
@@ -2035,6 +2461,11 @@
               "rankId": 6,
               "min": 0,
               "max": 2
+            },
+            {
+              "rankId": 7,
+              "min": 0,
+              "max": 2
             }
           ],
           "combined": []
@@ -2070,6 +2501,11 @@
               "rankId": 6,
               "min": 0,
               "max": 2
+            },
+            {
+              "rankId": 7,
+              "min": 0,
+              "max": 1
             }
           ],
           "combined": [
@@ -2152,6 +2588,11 @@
               "rankId": 6,
               "min": 0,
               "max": 2
+            },
+            {
+              "rankId": 7,
+              "min": 0,
+              "max": 2
             }
           ],
           "combined": []
@@ -2187,6 +2628,11 @@
               "rankId": 6,
               "min": 0,
               "max": 2
+            },
+            {
+              "rankId": 7,
+              "min": 0,
+              "max": 1
             }
           ],
           "combined": [
@@ -2269,6 +2715,11 @@
               "rankId": 6,
               "min": 0,
               "max": 2
+            },
+            {
+              "rankId": 7,
+              "min": 0,
+              "max": 2
             }
           ],
           "combined": []
@@ -2304,6 +2755,11 @@
               "rankId": 6,
               "min": 0,
               "max": 2
+            },
+            {
+              "rankId": 7,
+              "min": 0,
+              "max": 1
             }
           ],
           "combined": [
@@ -2386,6 +2842,11 @@
               "rankId": 6,
               "min": 0,
               "max": 2
+            },
+            {
+              "rankId": 7,
+              "min": 0,
+              "max": 2
             }
           ],
           "combined": []
@@ -2421,6 +2882,11 @@
               "rankId": 6,
               "min": 0,
               "max": 2
+            },
+            {
+              "rankId": 7,
+              "min": 0,
+              "max": 1
             }
           ],
           "combined": [
@@ -2503,6 +2969,11 @@
               "rankId": 6,
               "min": 0,
               "max": 2
+            },
+            {
+              "rankId": 7,
+              "min": 0,
+              "max": 2
             }
           ],
           "combined": []
@@ -2538,6 +3009,11 @@
               "rankId": 6,
               "min": 0,
               "max": 2
+            },
+            {
+              "rankId": 7,
+              "min": 0,
+              "max": 1
             }
           ],
           "combined": [
@@ -2614,6 +3090,983 @@
       "unitLimitsText": [
         "曼达洛学徒：0–2 个。",
         "雇佣火力：全军最多加入所列三种载具中的 1 辆。"
+      ]
+    },
+    "27": {
+      "name": "224th Armored Division",
+      "nameZh": "224装甲师",
+      "parentFaction": "Empire",
+      "alignment": "Dark",
+      "status": "draft",
+      "modes": {
+        "standard": {
+          "rankQuotas": [
+            {
+              "rankId": 1,
+              "min": 1,
+              "max": 5
+            },
+            {
+              "rankId": 6,
+              "min": 0,
+              "max": 4
+            },
+            {
+              "rankId": 2,
+              "min": 4,
+              "max": 7
+            },
+            {
+              "rankId": 3,
+              "min": 0,
+              "max": 3
+            },
+            {
+              "rankId": 4,
+              "min": 0,
+              "max": 5
+            },
+            {
+              "rankId": 5,
+              "min": 0,
+              "max": 2
+            },
+            {
+              "rankId": 7,
+              "min": 0,
+              "max": 2
+            }
+          ],
+          "combined": [
+            {
+              "tiers": [
+                1,
+                6
+              ],
+              "maximum": 5
+            }
+          ]
+        },
+        "recon": {
+          "rankQuotas": [
+            {
+              "rankId": 1,
+              "min": 1,
+              "max": 4
+            },
+            {
+              "rankId": 6,
+              "min": 0,
+              "max": 3
+            },
+            {
+              "rankId": 2,
+              "min": 3,
+              "max": 5
+            },
+            {
+              "rankId": 3,
+              "min": 0,
+              "max": 2
+            },
+            {
+              "rankId": 4,
+              "min": 0,
+              "max": 4
+            },
+            {
+              "rankId": 5,
+              "min": 0,
+              "max": 1
+            },
+            {
+              "rankId": 7,
+              "min": 0,
+              "max": 1
+            }
+          ],
+          "combined": [
+            {
+              "tiers": [
+                1,
+                6
+              ],
+              "maximum": 4
+            }
+          ]
+        }
+      },
+      "allowedUnits": {},
+      "textRulesZh": [
+        "组军时，军队可以额外包含学院训练、纵深防御、排长及矛锋升级卡各 1 张。",
+        "在结算设置效果步骤，于己方领土内放置 2 个战壕标记（资产）。完全位于战壕标记距离 ½ 内的士兵单位受益于重掩护。",
+        "在结算设置效果步骤，放置己方战壕标记后，可以选择至多 2 个友方士兵单位。若所选单位拥有预设阵地，则其部署时获得 1 个瞄准标记；否则获得预设阵地。所选单位部署时，如可能，必须完全位于己方领土内的一个战壕标记距离 ½ 内。"
+      ],
+      "textRules": [
+        "During Army Building, your army may include 1 additional copy each of Academy Trained, Defend in Depth, Platoon Commander, and Tip of the Spear.",
+        "During the Resolve Setup Effects step, place 2 Trench tokens (Asset) within allied Territory. Trooper units completely within {@icon.range-half} of a Trench token benefit from heavy Cover.",
+        "During the Resolve Setup Effects step, after placing allied Trench tokens, you may choose up to 2 allied Trooper units. If a chosen unit has Prepared Position, when they Deploy it gains 1 Aim token. Otherwise, it gains Prepared Position. When the chosen units Deploy, they must Deploy completely within {@icon.range-half} of a Trench token in allied Territory, if able."
+      ],
+      "options": [],
+      "machineRules": [],
+      "rulesSource": {
+        "document": "DOC61_BattleForces.pdf",
+        "pages": [
+          3
+        ],
+        "effectiveDate": "2026-12-01",
+        "reviewedAt": "2026-11-19"
+      },
+      "unparsedRules": [
+        "新版战斗部队草案尚未启用：单位许可、飞行军阶及特殊规则待接入。"
+      ],
+      "draftSpec": {
+        "allowedUnits": [
+          {
+            "rankId": 1,
+            "name": "Imperial Officer",
+            "unitIds": [
+              "empire-imperial-officer-ruthless-efficiency"
+            ],
+            "resolution": "matched"
+          },
+          {
+            "rankId": 6,
+            "name": "Imperial Agent",
+            "unitIds": [
+              "empire-imperial-agent-order-to-galaxy"
+            ],
+            "resolution": "matched"
+          },
+          {
+            "rankId": 2,
+            "name": "Imperial Mud Troopers",
+            "unitIds": [
+              "empire-mudtroopers"
+            ],
+            "resolution": "matched"
+          },
+          {
+            "rankId": 2,
+            "name": "Stormtroopers",
+            "unitIds": [
+              "empire-stormtroopers"
+            ],
+            "max": 2,
+            "note": "不自动纳入仅限暴雪部队的 Heavy Response Unit。",
+            "resolution": "matched"
+          },
+          {
+            "rankId": 3,
+            "name": "Stormtrooper Riot Squad (Trench Busters)",
+            "unitIds": [
+              "empire-riot-squad-trench-buster"
+            ],
+            "note": "现有 title 为 Trench Buster；使用帝国归属中的特种军阶，不取卡牌顶层 rankId=2。",
+            "resolution": "matched"
+          },
+          {
+            "rankId": 4,
+            "name": "E-Web Heavy Blaster Team",
+            "unitIds": [
+              "empire-e-web"
+            ],
+            "resolution": "matched"
+          },
+          {
+            "rankId": 4,
+            "name": "Wet Weather Gear Stormtroopers",
+            "unitIds": [
+              "empire-wet-weather-troopers"
+            ],
+            "max": 4,
+            "resolution": "matched"
+          },
+          {
+            "rankId": 5,
+            "name": "AT-ST",
+            "unitIds": [
+              "empire-at-st"
+            ],
+            "resolution": "matched"
+          },
+          {
+            "rankId": 5,
+            "name": "TX-225 GAVw Occupier Tank",
+            "unitIds": [
+              "empire-tx-225"
+            ],
+            "resolution": "matched"
+          },
+          {
+            "rankId": 7,
+            "name": "TIE/ln Fighter",
+            "unitIds": [],
+            "resolution": "missing"
+          }
+        ],
+        "uniqueUpgrades": [
+          {
+            "name": "Academy Trained",
+            "upgradeIds": [
+              "academy-trained"
+            ]
+          },
+          {
+            "name": "Frontal Assault",
+            "upgradeIds": []
+          },
+          {
+            "name": "Tip of the Spear",
+            "upgradeIds": [
+              "tip-of-the-spear"
+            ]
+          },
+          {
+            "name": "Platoon Commander",
+            "upgradeIds": [
+              "platoon-commander"
+            ]
+          },
+          {
+            "name": "Defend in Depth",
+            "upgradeIds": [
+              "defend-in-depth"
+            ]
+          },
+          {
+            "name": "Command and Control Uplink",
+            "upgradeIds": [
+              "command-and-control-uplink"
+            ]
+          },
+          {
+            "name": "Fire Control",
+            "upgradeIds": [
+              "fire-control"
+            ]
+          },
+          {
+            "name": "Strike Team Leader",
+            "upgradeIds": [
+              "training-strike-team-leader"
+            ]
+          },
+          {
+            "name": "Trusted Agent",
+            "upgradeIds": [
+              "command-trusted-agent"
+            ]
+          }
+        ],
+        "implementationGaps": [
+          "四张指定升级额外 1 份：须统一放宽数量校验、候选过滤及命名空间冲突，不是免费副本。",
+          "按单位 ID 和形态维护许可，防止同名普通镇暴小队／Heavy Response Unit 被误放行。",
+          "飞行军阶候选入口及 TIE/ln Fighter 数据尚未接入。"
+        ]
+      },
+      "unitLimitsText": [
+        "指挥官与特工合计：标准 1–5 个；侦察 1–4 个；至少 1 个指挥官。",
+        "冲锋队最多 2 个；潮湿气候装备冲锋队最多 4 个。"
+      ]
+    },
+    "28": {
+      "name": "Custom Clone Battalion",
+      "nameZh": "自定义克隆人营",
+      "parentFaction": "Galactic Republic",
+      "alignment": "Light",
+      "status": "draft",
+      "modes": {
+        "standard": {
+          "rankQuotas": [
+            {
+              "rankId": 1,
+              "min": 1,
+              "max": 2
+            },
+            {
+              "rankId": 6,
+              "min": 0,
+              "max": 2
+            },
+            {
+              "rankId": 2,
+              "min": 3,
+              "max": 6
+            },
+            {
+              "rankId": 3,
+              "min": 0,
+              "max": 3
+            },
+            {
+              "rankId": 4,
+              "min": 0,
+              "max": 3
+            },
+            {
+              "rankId": 5,
+              "min": 0,
+              "max": 2
+            },
+            {
+              "rankId": 7,
+              "min": 0,
+              "max": 2
+            }
+          ],
+          "combined": []
+        },
+        "recon": {
+          "rankQuotas": [
+            {
+              "rankId": 1,
+              "min": 1,
+              "max": 2
+            },
+            {
+              "rankId": 6,
+              "min": 0,
+              "max": 1
+            },
+            {
+              "rankId": 2,
+              "min": 2,
+              "max": 4
+            },
+            {
+              "rankId": 3,
+              "min": 0,
+              "max": 2
+            },
+            {
+              "rankId": 4,
+              "min": 0,
+              "max": 2
+            },
+            {
+              "rankId": 5,
+              "min": 0,
+              "max": 1
+            },
+            {
+              "rankId": 7,
+              "min": 0,
+              "max": 1
+            }
+          ],
+          "combined": []
+        }
+      },
+      "allowedUnits": {},
+      "textRulesZh": [
+        "自定义克隆人营属于银河共和国。",
+        "在命令阶段，如果揭示的命令卡是 Ambush、Push 或 Assault，军队获得“严阵以待”（At the Ready）状态，持续至本回合结束。",
+        "创建军队时，分别选择 1 项绝地武士特质、1 项营特质和 1 项老兵特质。军队获得这三项特质的全部特殊规则。"
+      ],
+      "textRules": [
+        "A Custom Clone Battalion Battle Force is part of the Galactic Republic Faction.",
+        "During the Command Phase, if your revealed Command Card is Ambush, Push, or Assault, your army is At the Ready until the end of the Round.",
+        "When creating a Custom Clone Battalion, choose one of each of the listed Jedi Knight, Battalion, and Veteran Traits. Your Battalion gains all of the special rules for each of the selected Traits."
+      ],
+      "options": [
+        {
+          "id": "ccb_assault",
+          "name": "Assault",
+          "nameZh": "突击",
+          "chooseOneKey": "ccb_battalion",
+          "text": "每个友方士兵单位激活结束时，若处于近战，获得 1 个激增标记。激活阶段开始时，若军队严阵以待，友方核心单位获得冲锋，持续至回合结束。允许加入 ARC 士兵及 ARC 士兵突击小队。",
+          "draftEffects": {
+            "allowedUnitNames": [
+              "ARC Troopers",
+              "ARC Troopers (Strike Team)"
+            ]
+          }
+        },
+        {
+          "id": "ccb_garrison",
+          "name": "Garrison",
+          "nameZh": "驻防",
+          "chooseOneKey": "ccb_battalion",
+          "text": "每个激活阶段开始时，选择 1 个友方非核心士兵单位；若军队严阵以待，改为可选任意友方单位。所选单位获得 1 个待命标记。友方单位防御远程攻击时，若在己方领土内或正在争夺 POI，且本次攻击未使其受到伤害，则在向防御者分配压制标记步骤不获得压制标记。允许加入 ARF 士兵。",
+          "draftEffects": {
+            "allowedUnitNames": [
+              "ARF Troopers"
+            ]
+          }
+        },
+        {
+          "id": "ccb_scout",
+          "name": "Scout",
+          "nameZh": "侦察",
+          "chooseOneKey": "ccb_battalion",
+          "text": "友方单位攻击拥有观测标记的敌军时，可在宣告防御者步骤花费该敌军的 1 个观测标记；若如此做，攻击者获得 1 个瞄准标记。友方指挥官和特工激活结束时，可进行免费行动“观测 1”；若军队严阵以待，友方载具激活结束时也可如此做。允许加入 LAAT/le 巡逻运输机和 BARC 飞行摩托。",
+          "draftEffects": {
+            "allowedUnitNames": [
+              "LAAT/le Patrol Transport",
+              "BARC Speeder"
+            ]
+          }
+        },
+        {
+          "id": "ccb_decisive",
+          "name": "Decisive",
+          "nameZh": "果决",
+          "chooseOneKey": "ccb_jedi",
+          "text": "友方绝地武士将军和绝地武士的近战武器获得致命 1；若武器已有致命 1，则失去它并改为获得穿刺 1。友方绝地武士将军获得玛卡希精通。",
+          "draftEffects": {
+            "allowedUnitNames": []
+          }
+        },
+        {
+          "id": "ccb_patient",
+          "name": "Patient",
+          "nameZh": "耐心",
+          "chooseOneKey": "ccb_jedi",
+          "text": "每个敌方单位激活结束时，没有背面朝上命令标记的友方绝地武士将军获得 1 个耐心标记，上限 3 个。该将军激活开始时，可花费 3 个耐心标记；若如此做，本次激活可额外进行 1 个行动，且距离 2 内每个友方绝地武士获得 1 个瞄准或闪避标记。移除标记步骤移除所有耐心标记。",
+          "draftEffects": {
+            "allowedUnitNames": []
+          }
+        },
+        {
+          "id": "ccb_wise",
+          "name": "Wise",
+          "nameZh": "睿智",
+          "chooseOneKey": "ccb_jedi",
+          "text": "友方绝地武士将军和绝地武士获得援助：克隆人士兵。每个友方绝地武士将军激活开始时，距离 1 内每有一个其他友方单位，选择瞄准、闪避或激增之一；将军获得每种已选类型的标记各 1 个，每类最多 1 个。",
+          "draftEffects": {
+            "allowedUnitNames": []
+          }
+        },
+        {
+          "id": "ccb_armored_support",
+          "name": "Armored Support",
+          "nameZh": "装甲支援",
+          "chooseOneKey": "ccb_veteran",
+          "text": "装备至少 1 张人员升级的友方核心士兵获得机械化步兵。允许加入军刀级坦克。",
+          "draftEffects": {
+            "allowedUnitNames": [
+              "Saber-class Tank"
+            ]
+          }
+        },
+        {
+          "id": "ccb_elite_repulsor_crews",
+          "name": "Elite Repulsor Crews",
+          "nameZh": "精锐反重力乘员",
+          "chooseOneKey": "ccb_veteran",
+          "text": "友方反重力载具的远程武器获得突击 2。允许加入 LAAT/le 巡逻运输机和 BARC 飞行摩托。",
+          "draftEffects": {
+            "allowedUnitNames": [
+              "LAAT/le Patrol Transport",
+              "BARC Speeder"
+            ]
+          }
+        },
+        {
+          "id": "ccb_forward_observers",
+          "name": "Forward Observers",
+          "nameZh": "前进观测员",
+          "chooseOneKey": "ccb_veteran",
+          "text": "友方 ARF 士兵获得侦察 1 和行动“观测 1”。允许加入 ARF 士兵。",
+          "draftEffects": {
+            "allowedUnitNames": [
+              "ARF Troopers"
+            ]
+          }
+        },
+        {
+          "id": "ccb_hand_picked",
+          "name": "Hand Picked",
+          "nameZh": "精挑细选",
+          "chooseOneKey": "ccb_veteran",
+          "text": "友方克隆人突击队获得扈从：指挥官。允许加入克隆人突击队。",
+          "draftEffects": {
+            "allowedUnitNames": [
+              "Clone Commandos"
+            ]
+          }
+        },
+        {
+          "id": "ccb_reinforced",
+          "name": "Reinforced",
+          "nameZh": "增援",
+          "chooseOneKey": "ccb_veteran",
+          "text": "友方核心士兵增加 1 个人员升级图标。军队可以额外加入至多 1 个指挥官及至多 1 个特工。",
+          "draftEffects": {
+            "allowedUnitNames": [],
+            "slotChanges": [
+              {
+                "target": {
+                  "rankId": 2,
+                  "unitCategoryId": "trooper"
+                },
+                "slotKey": "personnel",
+                "count": 1
+              }
+            ],
+            "rankMaximumModifiers": [
+              {
+                "rankId": 1,
+                "modifier": 1
+              },
+              {
+                "rankId": 6,
+                "modifier": 1
+              }
+            ]
+          }
+        },
+        {
+          "id": "ccb_superior_arc_training",
+          "name": "Superior ARC Training",
+          "nameZh": "精锐 ARC 训练",
+          "chooseOneKey": "ccb_veteran",
+          "text": "友方 ARC 士兵及 ARC 士兵突击小队获得精准 1。允许加入这两种单位。",
+          "draftEffects": {
+            "allowedUnitNames": [
+              "ARC Troopers",
+              "ARC Troopers (Strike Team)"
+            ]
+          }
+        }
+      ],
+      "machineRules": [],
+      "rulesSource": {
+        "document": "DOC61_BattleForces.pdf",
+        "pages": [
+          7,
+          8
+        ],
+        "effectiveDate": "2026-12-01",
+        "reviewedAt": "2026-11-19"
+      },
+      "unparsedRules": [
+        "新版战斗部队草案尚未启用：单位许可、飞行军阶及特殊规则待接入。"
+      ],
+      "draftSpec": {
+        "allowedUnits": [
+          {
+            "rankId": 1,
+            "name": "Jedi Knight General",
+            "unitIds": [
+              "republic-jedi-knight-general"
+            ],
+            "min": 1,
+            "max": 1,
+            "resolution": "matched"
+          },
+          {
+            "rankId": 1,
+            "name": "BARC Speeder",
+            "unitIds": [],
+            "note": "PDF 明确列在指挥官栏；现有普通 BARC 为支援，骑乘绝地将军名为 Jedi Knight。尚未确认对应卡，禁止按同名自动改阶。",
+            "resolution": "needs_review"
+          },
+          {
+            "rankId": 1,
+            "name": "Clone Commander",
+            "unitIds": [
+              "republic-clone-commander-leadership"
+            ],
+            "resolution": "matched"
+          },
+          {
+            "rankId": 6,
+            "name": "Jedi Knight",
+            "unitIds": [
+              "republic-jedi-knight"
+            ],
+            "resolution": "matched"
+          },
+          {
+            "rankId": 2,
+            "name": "Clone Trooper Infantry",
+            "unitIds": [
+              "republic-clone-trooper"
+            ],
+            "resolution": "matched"
+          },
+          {
+            "rankId": 2,
+            "name": "Clone Trooper Marksmen",
+            "unitIds": [
+              "republic-clonetrooper-marksmen"
+            ],
+            "resolution": "matched"
+          },
+          {
+            "rankId": 4,
+            "name": "AT-RT",
+            "unitIds": [
+              "republic-at-rt-gar"
+            ],
+            "resolution": "matched"
+          },
+          {
+            "rankId": 5,
+            "name": "Infantry Support Platform",
+            "unitIds": [
+              "republic-isp"
+            ],
+            "resolution": "matched"
+          },
+          {
+            "rankId": 7,
+            "name": "V-Wing",
+            "unitIds": [],
+            "resolution": "missing"
+          }
+        ],
+        "uniqueUpgrades": [
+          {
+            "name": "Improvised Orders",
+            "upgradeIds": [
+              "command-improvised"
+            ]
+          },
+          {
+            "name": "Fire Control",
+            "upgradeIds": [
+              "fire-control"
+            ]
+          },
+          {
+            "name": "Strike Team Leader",
+            "upgradeIds": [
+              "training-strike-team-leader"
+            ]
+          }
+        ],
+        "implementationGaps": [
+          "三组特质分别恰选 1 项；不能复用曼达洛的任意 N 选 2 校验。",
+          "特质引起的单位许可取并集，去重；取消特质后仅撤销其贡献。",
+          "Reinforced：有效核心士兵增加 1 个人员槽，指挥官／特工上限各 +1。",
+          "恰好 1 个 Jedi Knight General 的必选条件须新增最小数量校验。",
+          "基础许可中指挥官 BARC Speeder 的确切卡牌尚待确认。",
+          "飞行军阶／V-Wing 卡牌缺失；动态词条和武器效果需接入有效展示层。"
+        ],
+        "optionGroups": [
+          {
+            "id": "ccb_battalion",
+            "nameZh": "营特质",
+            "min": 1,
+            "max": 1
+          },
+          {
+            "id": "ccb_jedi",
+            "nameZh": "绝地武士特质",
+            "min": 1,
+            "max": 1
+          },
+          {
+            "id": "ccb_veteran",
+            "nameZh": "老兵特质",
+            "min": 1,
+            "max": 1
+          }
+        ]
+      },
+      "unitLimitsText": [
+        "必须且只能包含 1 个 Jedi Knight General。",
+        "基础特种部队许可为空；须由特质解锁相应单位。",
+        "Reinforced 可将指挥官和特工数量上限各增加 1。"
+      ]
+    },
+    "29": {
+      "name": "Irregulars",
+      "nameZh": "非正规军",
+      "parentFaction": "Rebels",
+      "alignment": "Light",
+      "status": "draft",
+      "modes": {
+        "standard": {
+          "rankQuotas": [
+            {
+              "rankId": 1,
+              "min": 0,
+              "max": 0
+            },
+            {
+              "rankId": 6,
+              "min": 1,
+              "max": 4
+            },
+            {
+              "rankId": 2,
+              "min": 1,
+              "max": 6
+            },
+            {
+              "rankId": 3,
+              "min": 1,
+              "max": 3
+            },
+            {
+              "rankId": 4,
+              "min": 0,
+              "max": 3
+            },
+            {
+              "rankId": 5,
+              "min": 1,
+              "max": 3
+            },
+            {
+              "rankId": 7,
+              "min": 0,
+              "max": 2
+            }
+          ],
+          "combined": []
+        },
+        "recon": {
+          "rankQuotas": [
+            {
+              "rankId": 1,
+              "min": 0,
+              "max": 0
+            },
+            {
+              "rankId": 6,
+              "min": 1,
+              "max": 2
+            },
+            {
+              "rankId": 2,
+              "min": 1,
+              "max": 4
+            },
+            {
+              "rankId": 3,
+              "min": 1,
+              "max": 2
+            },
+            {
+              "rankId": 4,
+              "min": 0,
+              "max": 2
+            },
+            {
+              "rankId": 5,
+              "min": 1,
+              "max": 2
+            },
+            {
+              "rankId": 7,
+              "min": 0,
+              "max": 1
+            }
+          ],
+          "combined": []
+        }
+      },
+      "allowedUnits": {},
+      "textRulesZh": [
+        "非正规军属于义军。军队可包含任意数量的隐秘破坏者升级卡。",
+        "友方特工单位获得战地指挥官。友方单位判定恐慌时不能使用其他单位的勇气值。",
+        "未位于友方特工单位距离 1 内的友方单位不能被发出命令，除非是向自己发出命令。",
+        "军队可以各包含 0–1 辆 TX-225 GAVw 占领者坦克、WLO-5 浮空坦克和 LAAT/le 巡逻运输机。这些单位的阵营改为义军。",
+        "散漫无纪：每个激活阶段开始时，可以选择至多 2 个没有正面朝上命令标记、且军阶互不相同的友方单位，分别按其军阶结算效果。",
+        "特种部队或支援：可以进行一次速度 1 移动；若尚未部署，可改为获得 1 个闪避标记。核心：可以获得 1 个闪避标记，并且可以进行一次免费恢复行动。重型或飞行：可以获得 1 个激增和 1 个闪避标记。",
+        "特工：选择距离 ½ 内的 1 个 POI，投掷 5 颗黑色攻击骰。每个命中结果使该 POI 距离 ½ 内的每个单位获得 1 个压制标记；每个暴击结果使范围内每个单位获得 1 个压制并承受 1 点伤害。"
+      ],
+      "textRules": [
+        "An Irregulars Battle Force is part of the Rebel Alliance Faction.",
+        "This army may include any number of the Unseen Saboteur Upgrade cards.",
+        "Allied {@icon.rank-operative} units gain Field Commander.",
+        "Allied units cannot use another unit’s Courage value when determining Panic.",
+        "Allied units that are not within {@icon.range-1} of an allied {@icon.rank-operative} unit cannot be issued Orders, unless they are issuing an Order to themselves.",
+        "You may include 0-1 TX-225 GAVw Occupier Tank, 0-1 WLO-5 Speeder Tank, and 0-1 LAAT/le Patrol Transport units in this army. These units change their Faction to Rebels.",
+        "Undisciplined: At the start of each Activation Phase, choose up to 2 allied units that have different Ranks and that do not have faceup Order tokens. For each chosen unit, resolve the corresponding effect.",
+        "Special Forces or Support: The chosen unit may make a Speed-1 Move or, if it is undeployed, may instead gain 1 Dodge token.",
+        "Corps: The chosen unit may gain 1 Dodge token and may make a Free Recover action.",
+        "Heavy or Flier: The chosen unit may gain 1 Surge token and 1 Dodge token.",
+        "Operative: Choose 1 POI that is within {@icon.range-half} of the chosen unit. Then roll 5 black attack dice. For each {@icon.hit} result in the roll each unit within {@icon.range-half} of the chosen POI gains 1 Suppression token. For each {@icon.critical} result in the roll each unit within {@icon.range-half} of the chosen objective gains 1 Suppression token and suffers 1 Wound."
+      ],
+      "options": [],
+      "machineRules": [],
+      "rulesSource": {
+        "document": "DOC61_BattleForces.pdf",
+        "pages": [
+          12
+        ],
+        "effectiveDate": "2026-12-01",
+        "reviewedAt": "2026-11-19"
+      },
+      "unparsedRules": [
+        "新版战斗部队草案尚未启用：单位许可、飞行军阶及特殊规则待接入。"
+      ],
+      "draftSpec": {
+        "allowedUnits": [
+          {
+            "rankId": 6,
+            "name": "Cassian Andor",
+            "unitIds": [
+              "rebels-cassian"
+            ],
+            "resolution": "matched"
+          },
+          {
+            "rankId": 6,
+            "name": "Jyn Erso",
+            "unitIds": [
+              "rebels-jyn"
+            ],
+            "resolution": "matched"
+          },
+          {
+            "rankId": 6,
+            "name": "K-2SO",
+            "unitIds": [
+              "rebels-k-2so"
+            ],
+            "resolution": "matched"
+          },
+          {
+            "rankId": 6,
+            "name": "Rebel Agent",
+            "unitIds": [
+              "rebels-rebel-agent-defender-democracy"
+            ],
+            "resolution": "matched"
+          },
+          {
+            "rankId": 3,
+            "name": "Rebel Sleeper Cell",
+            "unitIds": [
+              "rebels-sleeper-cell"
+            ],
+            "resolution": "matched"
+          },
+          {
+            "rankId": 3,
+            "name": "Guerilla Troopers",
+            "unitIds": [
+              "rebels-guerilla-troopers"
+            ],
+            "resolution": "matched"
+          },
+          {
+            "rankId": 2,
+            "name": "Rebel Troopers",
+            "unitIds": [
+              "rebels-rebel-troopers"
+            ],
+            "resolution": "matched"
+          },
+          {
+            "rankId": 4,
+            "name": "AT-RT",
+            "unitIds": [
+              "rebels-at-rt-rebel"
+            ],
+            "resolution": "matched"
+          },
+          {
+            "rankId": 5,
+            "name": "A-A5 Speeder Truck",
+            "unitIds": [
+              "rebels-a-a5-speeder-truck-rebel"
+            ],
+            "resolution": "matched"
+          },
+          {
+            "rankId": 5,
+            "name": "LAAT/le Patrol Transport",
+            "unitIds": [],
+            "max": 1,
+            "note": "帝国与共和国有同名卡；须确认引用版本，再构造义军阵营变体。",
+            "resolution": "needs_review"
+          },
+          {
+            "rankId": 5,
+            "name": "TX-225 GAVw Occupier Tank",
+            "unitIds": [
+              "empire-tx-225"
+            ],
+            "max": 1,
+            "note": "仅本战斗部队内转换阵营，不改原卡。",
+            "resolution": "matched"
+          },
+          {
+            "rankId": 5,
+            "name": "WLO-5 Speeder Tank",
+            "unitIds": [
+              "mercenary-raiders-wlo5-speeder-tank"
+            ],
+            "max": 1,
+            "note": "仅本战斗部队内转换阵营，不改原卡。",
+            "resolution": "matched"
+          },
+          {
+            "rankId": 5,
+            "name": "X-34 Landspeeder",
+            "unitIds": [
+              "rebels-x-34-landspeeder"
+            ],
+            "resolution": "matched"
+          },
+          {
+            "rankId": 7,
+            "name": "T-65 X-Wing",
+            "unitIds": [],
+            "resolution": "missing"
+          },
+          {
+            "rankId": 7,
+            "name": "Stolen TIE/ln Fighter",
+            "unitIds": [],
+            "resolution": "missing"
+          }
+        ],
+        "uniqueUpgrades": [
+          {
+            "name": "Cassian Andor",
+            "upgradeIds": [
+              "cassian-andor"
+            ]
+          },
+          {
+            "name": "Jyn Erso",
+            "upgradeIds": [
+              "jyn-erso"
+            ]
+          },
+          {
+            "name": "Improvised Orders",
+            "upgradeIds": [
+              "command-improvised"
+            ]
+          },
+          {
+            "name": "Unseen Saboteur",
+            "upgradeIds": [
+              "unseen-saboteur"
+            ]
+          },
+          {
+            "name": "Reluctant Hero",
+            "upgradeIds": [
+              "reluctant-hero"
+            ]
+          },
+          {
+            "name": "Strike Team Leader",
+            "upgradeIds": [
+              "training-strike-team-leader"
+            ]
+          }
+        ],
+        "implementationGaps": [
+          "隐秘破坏者无限副本须同步放宽独特冲突和全军数量检查，但不取消同单位同名升级限制。",
+          "三个外援载具分别最多 1 个，不是合计三选一；改阵营须参与升级资格及槽位计算。",
+          "特工获得战地指挥官，仅在本部队有效；飞行军阶和两种飞机卡缺失。"
+        ]
+      },
+      "unitLimitsText": [
+        "不包含指挥官；标准至少 1 个、最多 4 个特工，侦察最多 2 个。",
+        "TX-225、WLO-5、LAAT/le：分别最多 1 辆，可同时选择。"
       ]
     }
   },

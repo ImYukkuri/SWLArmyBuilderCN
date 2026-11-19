@@ -1,7 +1,7 @@
 {
   "schema": "swl-upgrades/v1",
   "referenceVersion": "2026.11.04.0",
-  "updatedAt": "2026-11-17T10:25:31.483657+00:00",
+  "updatedAt": "2026-11-18T18:32:28.800264+00:00",
   "cards": [
     {
       "id": "21b-medical-droid",
@@ -2436,7 +2436,7 @@
         "zh": "AT-RT火焰喷射器"
       },
       "actionTypes": [],
-      "points": 15,
+      "points": 13,
       "slotIds": [
         8
       ],
@@ -2535,7 +2535,7 @@
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "atrt-flame",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "5fd25c1a6b536730465a2377ccd740ab875cc5575a5554a89f598588e220ea19"
@@ -2662,7 +2662,7 @@
         "zh": "AT-RT转轮爆能枪"
       },
       "actionTypes": [],
-      "points": 15,
+      "points": 10,
       "slotIds": [
         8
       ],
@@ -2755,7 +2755,7 @@
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "atrt-rotary",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "a07213dd67d06f8d222f6c2fff7584d243614f16bcf5a39069e1eaadadbcb2fa"
@@ -3019,7 +3019,7 @@
         "zh": "E-60R B1战斗机器人"
       },
       "actionTypes": [],
-      "points": 18,
+      "points": 14,
       "slotIds": [
         4
       ],
@@ -3117,7 +3117,7 @@
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "b1-e60r",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "a1a69b66bb7352704c38008996146570208abd10b1d23a282cf8fafdb194e55c"
@@ -3337,7 +3337,7 @@
         "zh": "辐射炮B1战斗机器人"
       },
       "actionTypes": [],
-      "points": 16,
+      "points": 12,
       "slotIds": [
         4
       ],
@@ -3433,7 +3433,7 @@
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "b1-radiation",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "fb5855df381335726d81a812e663c7b17c3079584500b5e2a6cdbc7997fbbd41"
@@ -3552,7 +3552,7 @@
         "zh": "E-5s B1战斗机器人"
       },
       "actionTypes": [],
-      "points": 18,
+      "points": 20,
       "slotIds": [
         4
       ],
@@ -3647,7 +3647,7 @@
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "b1-sniper",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "b571dd029782b95ff90d7e1c870755694729c82657e0eada4d9e3346b7e84533"
@@ -4712,7 +4712,7 @@
         "zh": "BARC离子炮手"
       },
       "actionTypes": [],
-      "points": 21,
+      "points": 8,
       "slotIds": [
         13
       ],
@@ -4834,7 +4834,7 @@
         "zh": "BARC RPS-6炮手"
       },
       "actionTypes": [],
-      "points": 14,
+      "points": 5,
       "slotIds": [
         13
       ],
@@ -4929,7 +4929,7 @@
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "barc-rps6",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "ae0baaddb2ea88ce29c58211972cfc1af61fa97727a50b8d6b673972e66afa42"
@@ -4944,7 +4944,7 @@
         "zh": "BARC双联激光炮手"
       },
       "actionTypes": [],
-      "points": 12,
+      "points": 3,
       "slotIds": [
         13
       ],
@@ -7004,10 +7004,12 @@
           "and Secret Mission."
         ],
         "zh": [
-          "仅限{@icon.faction-rebel}{@icon.rank-corps}单位。加入1个卡西安·安多模型。队长。本单位{@icon.courage}增加1，并获得1个{@icon.slot-heavy}升级图标。本单位有至少1个模型被击败时，你可以翻转此卡。游戏开始时，此面朝上。本单位拥有低姿态及秘密任务。"
+          "加入1个卡西安·安多模型。队长。本单位{@icon.courage}增加1，并获得1个{@icon.slot-heavy}升级图标。本单位有至少1个模型被击败时，你可以翻转此卡。游戏开始时，此面朝上。本单位拥有低姿态及秘密任务。"
         ]
       },
-      "requirementsText": [],
+      "requirementsText": [
+        "义军士兵或义军突击队限定"
+      ],
       "keywords": [
         {
           "id": "leader"
@@ -7115,9 +7117,18 @@
               "value": 1
             },
             {
-              "field": "unit.rankId",
-              "op": "eq",
-              "value": 2
+              "any": [
+                {
+                  "field": "unit.name",
+                  "op": "eq",
+                  "value": "Rebel Troopers 义军士兵"
+                },
+                {
+                  "field": "unit.name",
+                  "op": "eq",
+                  "value": "Rebel Commandos 义军突击队"
+                }
+              ]
             }
           ]
         },
@@ -8421,10 +8432,13 @@
           "and Scout 1."
         ],
         "zh": [
-          "{@icon.rank-corps}克隆人士兵限定。加入1个沸腾模型。队长。本单位获得护卫1及侦察1。"
+          "加入1个沸腾模型。队长。本单位获得护卫1及侦察1。",
+          "该单位防御远程攻击时，如果这次攻击没有造成伤害，在分配压制标记阶段不会获得压制标记。此单位使用护卫词条时不会获得压制标记。"
         ]
       },
-      "requirementsText": [],
+      "requirementsText": [
+        "克隆人士兵或克隆人精确射手限定"
+      ],
       "keywords": [
         {
           "id": "leader"
@@ -8444,9 +8458,7 @@
         "unavailableWith": [
           "Boil"
         ],
-        "requiresTier": [
-          2
-        ],
+        "requiresTier": [],
         "unique": true,
         "limit": 1,
         "chooseOneKey": "leader",
@@ -8455,8 +8467,7 @@
             {
               "property": "keywords",
               "value": [
-                23,
-                37
+                23
               ]
             }
           ]
@@ -8509,16 +8520,16 @@
         ],
         "verification": "visually_checked",
         "condition": {
-          "all": [
+          "any": [
             {
-              "field": "unit.rankId",
+              "field": "unit.nameIdentityId",
               "op": "eq",
-              "value": 2
+              "value": "clone-trooper-infantry"
             },
             {
-              "field": "unit.unitTypeId",
+              "field": "unit.nameIdentityId",
               "op": "eq",
-              "value": 5
+              "value": "clone-trooper-marksmen"
             }
           ]
         },
@@ -8545,7 +8556,7 @@
         "zh": "克隆人上尉"
       },
       "actionTypes": [],
-      "points": 22,
+      "points": 21,
       "slotIds": [
         19
       ],
@@ -8653,7 +8664,7 @@
         "zh": "克隆人指挥官"
       },
       "actionTypes": [],
-      "points": 30,
+      "points": 27,
       "slotIds": [
         19
       ],
@@ -8745,7 +8756,7 @@
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "clone-commander",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "b66ace1fa67d93914e51d1b706115970c10ff91e1f9ffc93bf89846dc4c6c855"
@@ -8883,7 +8894,7 @@
         "zh": "DP-23克隆人士兵"
       },
       "actionTypes": [],
-      "points": 22,
+      "points": 24,
       "slotIds": [
         4
       ],
@@ -8978,7 +8989,7 @@
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "clone-dp23",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "f983d9b98d4bf767d2b5b653abdb8ca006b298ab7b7d59d2f0732cd2c98ea9be"
@@ -8995,7 +9006,7 @@
       "actionTypes": [
         "free-action"
       ],
-      "points": 17,
+      "points": 14,
       "slotIds": [
         1
       ],
@@ -9803,7 +9814,7 @@
         "zh": "克隆人上尉雷克斯"
       },
       "actionTypes": [],
-      "points": 38,
+      "points": 26,
       "slotIds": [
         19
       ],
@@ -9820,10 +9831,12 @@
           "1 free action."
         ],
         "zh": [
-          "仅限{@icon.faction-gar}{@icon.rank-corps}克隆人士兵。加入1个克隆人上尉雷克斯模型。队长。本单位{@icon.courage}增加1，并获得1个{@icon.slot-command}及1个{@icon.slot-training}升级图标。本单位以攻击击败敌方单位时，在该攻击行动结算后，可以执行1次免费行动。"
+          "仅限{@icon.faction-gar}{@icon.rank-corps}克隆人士兵。加入1个克隆人上尉雷克斯模型。队长。本单位{@icon.courage}增加1，并获得1个{@icon.slot-command}及1个{@icon.slot-training}升级图标。本单位击败敌方单位时，在效果结算后，可以执行1次免费行动。"
         ]
       },
-      "requirementsText": [],
+      "requirementsText": [
+        "ARC士兵或克隆人士兵限定"
+      ],
       "keywords": [
         {
           "id": "leader"
@@ -9918,21 +9931,16 @@
         ],
         "verification": "visually_checked",
         "condition": {
-          "all": [
+          "any": [
             {
-              "field": "unit.factionId",
+              "field": "unit.nameIdentityId",
               "op": "eq",
-              "value": 4
+              "value": "arc-troopers"
             },
             {
-              "field": "unit.rankId",
+              "field": "unit.nameIdentityId",
               "op": "eq",
-              "value": 2
-            },
-            {
-              "field": "unit.unitTypeId",
-              "op": "eq",
-              "value": 5
+              "value": "clone-trooper-infantry"
             }
           ]
         },
@@ -9959,7 +9967,7 @@
         "zh": "RPS-6克隆人士兵"
       },
       "actionTypes": [],
-      "points": 23,
+      "points": 16,
       "slotIds": [
         4
       ],
@@ -10069,7 +10077,7 @@
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "clone-rocket",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "a125349ce9d60e561edff34ae7e82bf209f59a9f0e53c23e7a3355a492a84ad7"
@@ -10188,7 +10196,7 @@
       "actionTypes": [
         "free-exhaust"
       ],
-      "points": 17,
+      "points": 14,
       "slotIds": [
         1
       ],
@@ -10535,7 +10543,7 @@
         "zh": "Z-6克隆人士兵"
       },
       "actionTypes": [],
-      "points": 22,
+      "points": 19,
       "slotIds": [
         4
       ],
@@ -10625,7 +10633,7 @@
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "clone-z6",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "e164d58614fadb1849de75908efac870d209852e256fb4870855a5667d5a4fb7"
@@ -10801,7 +10809,7 @@
         "zh": "战斗护甲"
       },
       "actionTypes": [],
-      "points": 15,
+      "points": 11,
       "slotIds": [
         2
       ],
@@ -10887,7 +10895,7 @@
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "combat-armor",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "ec8176dff205eb9b3791b02ecbb11486e5e93339283e5b5aefeb13a00725d78e"
@@ -10902,7 +10910,7 @@
         "zh": "战斗护甲"
       },
       "actionTypes": [],
-      "points": 15,
+      "points": 11,
       "slotIds": [
         2
       ],
@@ -10988,7 +10996,7 @@
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "combat-armor-rebel",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "b0bb5168d10575d430c0589c0807a5dac5bf10aee95168b316a1bc9e55f54a1e"
@@ -11003,7 +11011,7 @@
         "zh": "指挥控制上行链路"
       },
       "actionTypes": [],
-      "points": 8,
+      "points": 13,
       "slotIds": [
         2
       ],
@@ -11108,7 +11116,7 @@
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "command-and-control-uplink",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "1ca25ce78d3b6c3bc943eb5359f30de04d2abeac32ea702f91dc1da5cdfcafb1"
@@ -13624,7 +13632,7 @@
       "actionTypes": [
         "action"
       ],
-      "points": 10,
+      "points": 5,
       "slotIds": [
         24
       ],
@@ -13763,7 +13771,7 @@
       "actionTypes": [
         "free-action"
       ],
-      "points": 35,
+      "points": 28,
       "slotIds": [
         4
       ],
@@ -13776,16 +13784,16 @@
           "{@icon.free-action}Repair 2: Capacity 1."
         ],
         "zh": [
-          "帝国特种部队或{@icon.faction-empire}{@icon.rank-corps} 步兵限定。加入1个德尔·米科模型。{@icon.free-action}修理2： 容量1."
+          "加入1个德尔·米科模型。{@icon.free-action}修理2： 容量1."
         ]
       },
-      "requirementsText": [],
+      "requirementsText": [
+        "帝国特种部队或岸防部队限定"
+      ],
       "keywords": [
         {
-          "id": "repair"
-        },
-        {
-          "id": "capacity"
+          "id": "repair",
+          "value": 2
         }
       ],
       "weapons": [
@@ -13819,21 +13827,6 @@
         "front": "assets/upgrade-cards/del-meeko.webp"
       },
       "rules": {
-        "availableIn": [
-          78,
-          79,
-          {
-            "all": [
-              {
-                "property": "faction",
-                "value": 2
-              },
-              {
-                "tier": 2
-              }
-            ]
-          }
-        ],
         "unavailableWith": [
           "Del Meeko"
         ],
@@ -13888,29 +13881,14 @@
         "condition": {
           "any": [
             {
-              "field": "unit.upstreamId",
-              "op": "in",
-              "value": [
-                "78",
-                "79"
-              ]
+              "field": "unit.nameIdentityId",
+              "op": "eq",
+              "value": "imperial-special-forces"
             },
             {
-              "all": [
-                {
-                  "field": "unit.factionId",
-                  "op": "eq",
-                  "value": 2
-                },
-                {
-                  "field": "unit.rankId",
-                  "op": "eq",
-                  "value": 2
-                },
-                {
-                  "ref": "trooperUnitType"
-                }
-              ]
+              "field": "unit.nameIdentityId",
+              "op": "eq",
+              "value": "shoretroopers"
             }
           ]
         },
@@ -14542,7 +14520,7 @@
         "zh": "双刃光剑"
       },
       "actionTypes": [],
-      "points": 0,
+      "points": 5,
       "slotIds": [
         12
       ],
@@ -15443,9 +15421,9 @@
         "zh": "回声，ARC神射手"
       },
       "actionTypes": [],
-      "points": 46,
+      "points": 36,
       "slotIds": [
-        4
+        19
       ],
       "usage": "unit_upgrade",
       "description": {
@@ -15521,7 +15499,7 @@
           16
         ],
         "slotTypes": [
-          4
+          19
         ],
         "locallyUnique": true,
         "unavailableWithIds": [
@@ -15561,25 +15539,16 @@
         ],
         "verification": "visually_checked",
         "condition": {
-          "all": [
+          "any": [
             {
-              "field": "unit.unitTypeId",
+              "field": "unit.nameIdentityId",
               "op": "eq",
-              "value": 5
+              "value": "arc-troopers"
             },
             {
-              "any": [
-                {
-                  "field": "unit.rankId",
-                  "op": "eq",
-                  "value": 2
-                },
-                {
-                  "field": "unit.rankId",
-                  "op": "eq",
-                  "value": 3
-                }
-              ]
+              "field": "unit.nameIdentityId",
+              "op": "eq",
+              "value": "clone-trooper-marksmen"
             }
           ]
         },
@@ -17795,7 +17764,7 @@
         "zh": "五号"
       },
       "actionTypes": [],
-      "points": 40,
+      "points": 36,
       "slotIds": [
         19
       ],
@@ -17813,7 +17782,7 @@
         ]
       },
       "requirementsText": [
-        "克隆人士兵限定"
+        "克隆人士兵或克隆人神射手限定"
       ],
       "keywords": [
         {
@@ -17915,20 +17884,29 @@
           "references/upgrades-slim.json#requirements"
         ],
         "verification": "text_matched",
-        "condition": {
-          "field": "unit.unitTypeId",
-          "op": "eq",
-          "value": 5
-        },
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "fives",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "1be4cfe91d5de79e7de97da292391ce243cacbc6fd385ce690e5d96a19b0de62"
         },
-        "image": "assets/upgrade-cards/fives.webp"
+        "image": "assets/upgrade-cards/fives.webp",
+        "condition": {
+          "any": [
+            {
+              "field": "unit.nameIdentityId",
+              "op": "eq",
+              "value": "clone-trooper-infantry"
+            },
+            {
+              "field": "unit.nameIdentityId",
+              "op": "eq",
+              "value": "clone-trooper-marksmen"
+            }
+          ]
+        }
       }
     },
     {
@@ -18589,7 +18567,7 @@
       "actionTypes": [
         "action"
       ],
-      "points": 5,
+      "points": 2,
       "slotIds": [
         10
       ],
@@ -20058,10 +20036,10 @@
       "id": "force-terror",
       "name": {
         "en": "Terror",
-        "zh": "恐怖"
+        "zh": "畏惧"
       },
       "actionTypes": [],
-      "points": 6,
+      "points": 3,
       "slotIds": [
         5
       ],
@@ -20150,7 +20128,7 @@
         "zh": "宁静"
       },
       "actionTypes": [],
-      "points": 10,
+      "points": 5,
       "slotIds": [
         5
       ],
@@ -20229,7 +20207,7 @@
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "force-tranquility",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "28cc18dee8dfd4af304f826073971ffa3970b4c22d55f1413e469ab012766926"
@@ -21338,7 +21316,7 @@
         "zh": "RPS-6 ARF士兵"
       },
       "actionTypes": [],
-      "points": 24,
+      "points": 16,
       "slotIds": [
         4
       ],
@@ -21853,7 +21831,7 @@
       "actionTypes": [
         "action"
       ],
-      "points": 8,
+      "points": 3,
       "slotIds": [
         2,
         16,
@@ -22483,7 +22461,7 @@
       "actionTypes": [
         "action"
       ],
-      "points": 6,
+      "points": 3,
       "slotIds": [
         2,
         17,
@@ -23186,7 +23164,7 @@
         "zh": "吉奥诺西斯战士"
       },
       "actionTypes": [],
-      "points": 11,
+      "points": 13,
       "slotIds": [
         1
       ],
@@ -23472,7 +23450,7 @@
         "zh": "声波炮战士"
       },
       "actionTypes": [],
-      "points": 25,
+      "points": 23,
       "slotIds": [
         4
       ],
@@ -23717,7 +23695,7 @@
         "zh": "暗剑"
       },
       "actionTypes": [],
-      "points": 15,
+      "points": 5,
       "slotIds": [
         12
       ],
@@ -23912,7 +23890,7 @@
         "zh": "吉迪恩·哈斯克"
       },
       "actionTypes": [],
-      "points": 29,
+      "points": 18,
       "slotIds": [
         4
       ],
@@ -23927,19 +23905,19 @@
           "Coordinate: {@icon.rank-corps}Trooper."
         ],
         "zh": [
-          "仅限帝国特种部队或{@icon.faction-empire}{@icon.rank-corps}步兵。加入1个吉迪恩·哈斯克模型。队长。本单位{@icon.courage}增加1，并获得协同：{@icon.rank-corps}步兵。"
+          "加入1个吉迪恩·哈斯克模型。队长。本单位{@icon.courage}增加1，并获得协同：{@icon.rank-corps}步兵。"
         ]
       },
-      "requirementsText": [],
+      "requirementsText": [
+        "帝国特种部队或冲锋队限定"
+      ],
       "keywords": [
         {
           "id": "leader"
         },
         {
-          "id": "coordinate"
-        },
-        {
-          "id": "trooper"
+          "id": "coordinate",
+          "parameter": "{@icon.rank-corps}步兵。"
         }
       ],
       "weapons": [
@@ -23964,21 +23942,6 @@
         "front": "assets/upgrade-cards/gideon-hask.webp"
       },
       "rules": {
-        "availableIn": [
-          78,
-          79,
-          {
-            "all": [
-              {
-                "property": "faction",
-                "value": 2
-              },
-              {
-                "tier": 2
-              }
-            ]
-          }
-        ],
         "unavailableWith": [
           "Gideon Hask"
         ],
@@ -24041,7 +24004,20 @@
           "description.en#leading-restriction"
         ],
         "verification": "visually_checked",
-        "condition": null,
+        "condition": {
+          "any": [
+            {
+              "field": "unit.nameIdentityId",
+              "op": "eq",
+              "value": "imperial-special-forces"
+            },
+            {
+              "field": "unit.nameIdentityId",
+              "op": "eq",
+              "value": "stormtroopers"
+            }
+          ]
+        },
         "unmappedReasons": [
           "unresolved_subject: Imperial Special Forcesor Trooper"
         ],
@@ -25645,7 +25621,7 @@
         "zh": "重型爆能手枪"
       },
       "actionTypes": [],
-      "points": 5,
+      "points": 8,
       "slotIds": [
         12
       ],
@@ -25775,7 +25751,7 @@
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "heavy-blaster-pistol",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "d81e9492e7c7a7fcbda04bbe57a25f2597e7b489cded216830cdc2f390c23a02"
@@ -25790,7 +25766,7 @@
         "zh": "重型爆能手枪"
       },
       "actionTypes": [],
-      "points": 8,
+      "points": 12,
       "slotIds": [
         12
       ],
@@ -27982,7 +27958,7 @@
         "zh": "双联导弹舱"
       },
       "actionTypes": [],
-      "points": 25,
+      "points": 20,
       "slotIds": [
         8
       ],
@@ -28088,7 +28064,7 @@
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "isp-rocket",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "cb411421c398500e0c148573586bb0c96942423f7897bbf10d195305b1bb92a0"
@@ -28103,7 +28079,7 @@
         "zh": "双联光束炮"
       },
       "actionTypes": [],
-      "points": 30,
+      "points": 25,
       "slotIds": [
         8
       ],
@@ -28197,7 +28173,7 @@
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "isp-twin",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "d7c90483b32ce22ca0b1636b91e5c6081bb393cdc37046092146e588f9260501"
@@ -28212,7 +28188,7 @@
         "zh": "双联爆能炮"
       },
       "actionTypes": [],
-      "points": 25,
+      "points": 20,
       "slotIds": [
         8
       ],
@@ -28319,7 +28295,7 @@
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "isp-twin-blaster",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "81d3aad71b4b104eb6aa50d575691d4cb207528c71f400aedbacd15b9c4e6f35"
@@ -28334,7 +28310,7 @@
         "zh": "绝地领事"
       },
       "actionTypes": [],
-      "points": 8,
+      "points": 5,
       "slotIds": [
         24
       ],
@@ -28499,7 +28475,7 @@
         "zh": "绝地守护者"
       },
       "actionTypes": [],
-      "points": 10,
+      "points": 8,
       "slotIds": [
         24
       ],
@@ -28646,7 +28622,7 @@
         "zh": "绝地谈判者"
       },
       "actionTypes": [],
-      "points": 5,
+      "points": 0,
       "slotIds": [
         24
       ],
@@ -29108,7 +29084,7 @@
       "actionTypes": [
         "free-exhaust"
       ],
-      "points": 28,
+      "points": 25,
       "slotIds": [
         4
       ],
@@ -29129,7 +29105,7 @@
         ]
       },
       "requirementsText": [
-        "{@icon.faction-empire} {@icon.rank-corps}或{@icon.faction-empire} {@icon.rank-special-forces} 单位限定"
+        "冲锋队或冲锋队镇暴小队限定"
       ],
       "keywords": [
         {
@@ -29235,30 +29211,16 @@
         "condition": {
           "any": [
             {
-              "all": [
+              "any": [
                 {
-                  "field": "unit.factionId",
+                  "field": "unit.nameIdentityId",
                   "op": "eq",
-                  "value": 2
+                  "value": "stormtroopers"
                 },
                 {
-                  "field": "unit.rankId",
+                  "field": "unit.nameIdentityId",
                   "op": "eq",
-                  "value": 2
-                }
-              ]
-            },
-            {
-              "all": [
-                {
-                  "field": "unit.factionId",
-                  "op": "eq",
-                  "value": 2
-                },
-                {
-                  "field": "unit.rankId",
-                  "op": "eq",
-                  "value": 3
+                  "value": "stormtrooper-riot-squad"
                 }
               ]
             }
@@ -29533,7 +29495,7 @@
         "zh": "克拉肯"
       },
       "actionTypes": [],
-      "points": 30,
+      "points": 24,
       "slotIds": [
         4
       ],
@@ -29550,10 +29512,12 @@
           "previously defeated."
         ],
         "zh": [
-          "仅限{@icon.faction-cis}{@icon.rank-corps}机器人步兵。加入1个克拉肯模型。队长。本单位获得1个{@icon.slot-heavy}升级图标，失去AI。本单位攻击时，此前本单位每有1个模型被击败，可以升级1枚攻击骰。"
+          "加入1个克拉肯模型。队长。本单位获得1个{@icon.slot-heavy}升级图标，失去AI。本单位攻击时，此前本单位每有1个模型被击败，可以升级1枚攻击骰。"
         ]
       },
-      "requirementsText": [],
+      "requirementsText": [
+        "B1战斗机器人和B2超级战斗机器人限定"
+      ],
       "keywords": [
         {
           "id": "droid_trooper"
@@ -29658,23 +29622,6 @@
           "description.en#leading-restriction"
         ],
         "verification": "visually_checked",
-        "condition": {
-          "all": [
-            {
-              "field": "unit.factionId",
-              "op": "eq",
-              "value": 5
-            },
-            {
-              "field": "unit.rankId",
-              "op": "eq",
-              "value": 2
-            },
-            {
-              "ref": "droidTrooperUnitType"
-            }
-          ]
-        },
         "visualReview": {
           "checkedAt": "2026-11-07",
           "method": "visual_comparison",
@@ -29688,7 +29635,21 @@
           "iconsVerified": true,
           "imageSha256": "74576d37d83f97f17a3c86e6efe3220001e8b9c7862a1a357dc09d8d6a405f49"
         },
-        "image": "assets/upgrade-cards/kraken.webp"
+        "image": "assets/upgrade-cards/kraken.webp",
+        "condition": {
+          "any": [
+            {
+              "field": "unit.nameIdentityId",
+              "op": "eq",
+              "value": "b1-battle-droids"
+            },
+            {
+              "field": "unit.nameIdentityId",
+              "op": "eq",
+              "value": "b2-super-battle-droids"
+            }
+          ]
+        }
       }
     },
     {
@@ -30070,7 +30031,7 @@
       "actionTypes": [
         "free-exhaust"
       ],
-      "points": 5,
+      "points": 10,
       "slotIds": [
         18
       ],
@@ -30153,7 +30114,7 @@
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "limiter-override",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "77abefafc6e8c475ee2170014e4c7ac881e6900589c0e36c9927b305a3636778"
@@ -31716,7 +31677,7 @@
       "actionTypes": [
         "action"
       ],
-      "points": 8,
+      "points": 5,
       "slotIds": [
         10
       ],
@@ -32919,7 +32880,7 @@
       "actionTypes": [
         "free-exhaust"
       ],
-      "points": 5,
+      "points": 10,
       "slotIds": [
         18
       ],
@@ -33176,7 +33137,7 @@
         "zh": "绝地训练，维和任务"
       },
       "actionTypes": [],
-      "points": 8,
+      "points": 5,
       "slotIds": [
         10
       ],
@@ -34997,123 +34958,6 @@
       }
     },
     {
-      "id": "programming-bounty",
-      "name": {
-        "en": "\"Bounty\" Programming",
-        "zh": "“赏金”程序"
-      },
-      "actionTypes": [],
-      "points": 5,
-      "slotIds": [
-        18
-      ],
-      "usage": "unit_upgrade",
-      "description": {
-        "en": [
-          "This unit gains Bounty and AI: Aim, Attack.",
-          "If this unit chooses a {@icon.rank-commander} as the target of",
-          "Bounty, this unit's weapons gain Pierce 1.",
-          "If this unit chooses an {@icon.rank-operative} as the target",
-          "of Bounty, this unit's weapon gain",
-          "Suppressive."
-        ],
-        "zh": [
-          "本单位获得赏金及AI：瞄准、攻击。若本单位选择{@icon.rank-commander}为赏金目标，本单位的武器获得穿刺1；若选择{@icon.rank-operative}为赏金目标，本单位的武器获得压制。"
-        ]
-      },
-      "requirementsText": [
-        "IG-11限定"
-      ],
-      "keywords": [
-        {
-          "id": "ai"
-        },
-        {
-          "id": "bounty"
-        },
-        {
-          "id": "pierce"
-        },
-        {
-          "id": "suppressive"
-        }
-      ],
-      "weapons": [],
-      "assets": {
-        "front": "assets/upgrade-cards/programming-bounty.webp"
-      },
-      "rules": {
-        "availableIn": [
-          6178
-        ],
-        "unique": false,
-        "addProperties": [
-          [
-            {
-              "property": "keywords",
-              "value": [
-                68,
-                211
-              ]
-            }
-          ]
-        ],
-        "slotTypes": [
-          18
-        ],
-        "locallyUnique": true
-      },
-      "review": {
-        "status": "needs_review",
-        "notes": "",
-        "issues": [
-          "机器限制已导入；执行语义和卡面仍需校对。"
-        ]
-      },
-      "matching": {
-        "status": "matched",
-        "candidates": [
-          "4441"
-        ]
-      },
-      "upstream": {
-        "collection": "upgrades",
-        "id": "4441"
-      },
-      "selectionGroup": "upgrade:4441",
-      "restrictions": {
-        "text": {
-          "en": [
-            "IG-11 Only"
-          ],
-          "zh": [
-            "IG-11限定"
-          ]
-        },
-        "zhReview": "legacy_unverified",
-        "sources": [
-          "references/upgrades-slim.json#requirements"
-        ],
-        "verification": "text_matched",
-        "condition": {
-          "field": "unit.upstreamId",
-          "op": "in",
-          "value": [
-            "6178"
-          ]
-        },
-        "ocrEvidence": {
-          "file": "work/upgrade-restrictions/ocr-v3.json",
-          "key": "programming-bounty",
-          "textSimilarity": 0.875,
-          "containsIcons": false,
-          "iconsVerified": false,
-          "imageSha256": "c9c55fbbf5af04eecf7e1e8ed02282db03f99cacbe6ca0384e31dc386fea9e3d"
-        },
-        "image": "assets/upgrade-cards/programming-bounty.webp"
-      }
-    },
-    {
       "id": "programming-defense",
       "name": {
         "en": "Defense Protocols",
@@ -35339,113 +35183,6 @@
           "imageSha256": "8750cf7880378a526625781d3903801af73eed86c56d7f6f00c63c7e36e16070"
         },
         "image": "assets/upgrade-cards/programming-engagement.webp"
-      }
-    },
-    {
-      "id": "programming-nanny",
-      "name": {
-        "en": "\"Nanny\" Programming",
-        "zh": "“保姆”程序"
-      },
-      "actionTypes": [],
-      "points": 0,
-      "slotIds": [
-        18
-      ],
-      "usage": "unit_upgrade",
-      "description": {
-        "en": [
-          "While building an army, an allied Grogu gains",
-          "Counterpart: IG-11.",
-          "This unit gains AI: Dodge, Move."
-        ],
-        "zh": [
-          "组建军队时，一名友方格罗古获得搭档：IG-11。本单位获得AI：闪避、移动。"
-        ]
-      },
-      "requirementsText": [
-        "IG-11限定"
-      ],
-      "keywords": [
-        {
-          "id": "counterpart"
-        },
-        {
-          "id": "ai"
-        }
-      ],
-      "weapons": [],
-      "assets": {
-        "front": "assets/upgrade-cards/programming-nanny.webp"
-      },
-      "rules": {
-        "availableIn": [
-          6178
-        ],
-        "unique": false,
-        "addProperties": [
-          [
-            {
-              "property": "keywords",
-              "value": [
-                96
-              ]
-            }
-          ]
-        ],
-        "slotTypes": [
-          18
-        ],
-        "locallyUnique": true
-      },
-      "review": {
-        "status": "needs_review",
-        "notes": "",
-        "issues": [
-          "机器限制已导入；执行语义和卡面仍需校对。"
-        ]
-      },
-      "matching": {
-        "status": "matched",
-        "candidates": [
-          "3648"
-        ]
-      },
-      "upstream": {
-        "collection": "upgrades",
-        "id": "3648"
-      },
-      "selectionGroup": "upgrade:3648",
-      "restrictions": {
-        "text": {
-          "en": [
-            "IG-11 Only"
-          ],
-          "zh": [
-            "IG-11限定"
-          ]
-        },
-        "zhReview": "legacy_unverified",
-        "sources": [
-          "references/upgrades-slim.json#requirements"
-        ],
-        "verification": "text_matched",
-        "condition": {
-          "field": "unit.upstreamId",
-          "op": "in",
-          "value": [
-            "6178"
-          ]
-        },
-        "ocrEvidence": {
-          "file": "work/upgrade-restrictions/ocr-v3.json",
-          "key": "programming-nanny",
-          "textSimilarity": 0.875,
-          "containsIcons": false,
-          "iconsVerified": false,
-          "imageSha256": "c47f53439212ff96876c8923a89449cfc7c32811acad92b1957ef10c7e83e5f5"
-        },
-        "image": "assets/upgrade-cards/programming-nanny.webp"
       }
     },
     {
@@ -38607,7 +38344,7 @@
         "zh": "双联激光炮塔"
       },
       "actionTypes": [],
-      "points": 14,
+      "points": 10,
       "slotIds": [
         8
       ],
@@ -38698,7 +38435,7 @@
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "saber-beam",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "200593d3c390022faee8e0c39eb5e337ffcf7f046f7e5a0a6885140ca842b0a5"
@@ -38713,7 +38450,7 @@
         "zh": "光束炮塔"
       },
       "actionTypes": [],
-      "points": 15,
+      "points": 10,
       "slotIds": [
         8
       ],
@@ -38804,7 +38541,7 @@
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "saber-beam-turret",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "c0580178e93dfd4ebf5bdf843625fe0a0a4068ee34beace2bc97d733ada27a9a"
@@ -39734,7 +39471,7 @@
       "actionTypes": [
         "free-action"
       ],
-      "points": 8,
+      "points": 4,
       "slotIds": [
         2
       ],
@@ -39841,7 +39578,7 @@
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "seeker-droid",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "264a6506f06992a370849c40077d68b1b8e2c781d9d042b1c25a4191362ccf45"
@@ -40177,7 +39914,7 @@
         "zh": "海岸士兵小队"
       },
       "actionTypes": [],
-      "points": 52,
+      "points": 48,
       "slotIds": [
         1
       ],
@@ -40284,7 +40021,7 @@
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "shore-squad",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "54d70ef062fe2a7adf9db185e38f2dce82585ba84d7702faf684977726e72de0"
@@ -41002,7 +40739,7 @@
       "actionTypes": [
         "free-exhaust"
       ],
-      "points": 8,
+      "points": 16,
       "slotIds": [
         18
       ],
@@ -41081,7 +40818,7 @@
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "sliced-comms",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "d8fcb6175ced58929f832a3fee5a61c18d613fdfea850c69a7897d9b75abdf3b"
@@ -41442,7 +41179,7 @@
         "zh": "雪地士兵小队"
       },
       "actionTypes": [],
-      "points": 40,
+      "points": 36,
       "slotIds": [
         1
       ],
@@ -41549,7 +41286,7 @@
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "snow-squad",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "000bc0eb3110f34a0cb9ed1a3e1ba2f93b491c470b3ff9da5e2d34fdf602dfbe"
@@ -42128,7 +41865,7 @@
         ]
       },
       "requirementsText": [
-        "克隆人士兵限定"
+        "ARC士兵或克隆人士兵限定"
       ],
       "keywords": [
         {
@@ -42252,7 +41989,7 @@
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "squad-leader-ahsoka",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "b05c2f99610b19536de109e8a25632ff8eafaf1450802156c030aabf20be152c"
@@ -43216,7 +42953,7 @@
         "zh": "冲锋队小队"
       },
       "actionTypes": [],
-      "points": 40,
+      "points": 36,
       "slotIds": [
         1
       ],
@@ -43325,7 +43062,7 @@
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "stormtrooper-squad",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "cd32b5395e5997d31cf9d56ab502adce41715281327f6616dd2bf7907115d6c0"
@@ -43822,7 +43559,7 @@
         "zh": "电击警棍"
       },
       "actionTypes": [],
-      "points": 8,
+      "points": 3,
       "slotIds": [
         12
       ],
@@ -43941,7 +43678,7 @@
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "stun-baton",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "c1f2c3239d603d35b26dcac8c60e9ca374fe81a06c31001455f0935fc3e57523"
@@ -44787,7 +44524,7 @@
       "actionTypes": [
         "action"
       ],
-      "points": 8,
+      "points": 3,
       "slotIds": [
         10
       ],
@@ -45343,7 +45080,7 @@
         "zh": "热熔炸弹"
       },
       "actionTypes": [],
-      "points": 3,
+      "points": 5,
       "slotIds": [
         3
       ],
@@ -45448,7 +45185,7 @@
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "thermal-detonator",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "38db98ee792617837ad828e140d2df77c5f5f05e1399a0ca95d70c7d7a25ff5c"
@@ -50633,7 +50370,7 @@
         "zh": "任务目标"
       },
       "actionTypes": [],
-      "points": 6,
+      "points": 3,
       "slotIds": [
         10
       ],
@@ -50705,7 +50442,7 @@
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "training-mission-objective",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "337a32529b6bf7e8442fba5deec237372b88aaada22c1d81ff1702cf0b1d793a"
@@ -52135,7 +51872,7 @@
         "zh": "枢轴式DLT-19"
       },
       "actionTypes": [],
-      "points": 14,
+      "points": 6,
       "slotIds": [
         8
       ],
@@ -52226,7 +51963,7 @@
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "tx225-dlt19",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "18b6a542f0f2e8c087dee32e641f1a06a6345fd452ac6917c31e14cdfdd91981"
@@ -52241,7 +51978,7 @@
         "zh": "枢轴式RT-97C"
       },
       "actionTypes": [],
-      "points": 10,
+      "points": 4,
       "slotIds": [
         8
       ],
@@ -52342,7 +52079,7 @@
         "zh": "暴虐监工"
       },
       "actionTypes": [],
-      "points": 8,
+      "points": 14,
       "slotIds": [
         24
       ],
@@ -53037,7 +52774,7 @@
         "zh": "振动斧"
       },
       "actionTypes": [],
-      "points": 8,
+      "points": 3,
       "slotIds": [
         12
       ],
@@ -53590,7 +53327,7 @@
         "zh": "蜡匠"
       },
       "actionTypes": [],
-      "points": 20,
+      "points": 22,
       "slotIds": [
         19
       ],
@@ -53604,20 +53341,18 @@
           "and Scout 1."
         ],
         "zh": [
-          "{@icon.rank-corps} 克隆人士兵限定。加入1个打蜡模型。队长。本单位获得纪律1及侦察1。"
+          "加入1个蜡匠模型。队长。本单位获得纪律2。一回合一次，当本单位中有模型被击败，在效果结算后，本单位获得1个激增标记"
         ]
       },
-      "requirementsText": [],
+      "requirementsText": [
+        "克隆人士兵或克隆人神射手限定"
+      ],
       "keywords": [
         {
           "id": "leader"
         },
         {
           "id": "disciplined",
-          "value": 1
-        },
-        {
-          "id": "scout",
           "value": 1
         }
       ],
@@ -53694,16 +53429,16 @@
         ],
         "verification": "visually_checked",
         "condition": {
-          "all": [
+          "any": [
             {
-              "field": "unit.rankId",
+              "field": "unit.nameIdentityId",
               "op": "eq",
-              "value": 2
+              "value": "clone-trooper-infantry"
             },
             {
-              "field": "unit.unitTypeId",
+              "field": "unit.nameIdentityId",
               "op": "eq",
-              "value": 5
+              "value": "clone-trooper-marksmen"
             }
           ]
         },
@@ -54868,7 +54603,7 @@
         "zh": "Z-6防暴警棍"
       },
       "actionTypes": [],
-      "points": 5,
+      "points": 0,
       "slotIds": [
         12
       ],
@@ -57566,7 +57301,8 @@
         "status": "unmatched",
         "candidates": []
       },
-      "restrictions": {}
+      "restrictions": {},
+      "actionTypes": null
     },
     {
       "id": "new-upgrade-mwkes1mz",
@@ -57607,7 +57343,8 @@
         "status": "unmatched",
         "candidates": []
       },
-      "restrictions": {}
+      "restrictions": {},
+      "actionTypes": null
     },
     {
       "id": "new-upgrade-mwkggzem",
@@ -57679,7 +57416,256 @@
         "status": "unmatched",
         "candidates": []
       },
-      "restrictions": {}
+      "restrictions": {},
+      "actionTypes": null
+    },
+    {
+      "id": "training-mechanical-carnage",
+      "name": {
+        "en": "Mechanical Carnage",
+        "zh": "机械化杀戮"
+      },
+      "actionTypes": [
+        "free-action"
+      ],
+      "points": 0,
+      "slotIds": [
+        10
+      ],
+      "usage": "unit_upgrade",
+      "description": {
+        "en": [
+          "This unit gains {@icon.free-action}Self Destruct 4.",
+          "At the start of the first Command Phase, put 1 Advantage token on this card.",
+          "At the start of this unit’s Activation you may spend 1 Advantage token on this card. If you do, this unit may make an additional Attack action this Activation. Until the end of the Turn, this unit cannot make an attack against a unit it has already made an attack against this Turn.",
+          "When this unit defeats an enemy unit that has one or more Bounty tokens, put 1 Advantage token on this card."
+        ],
+        "zh": [
+          "本单位获得{@icon.free-action}自毁4。",
+          "第一个命令阶段开始时，在此卡上放置1个优势标记。",
+          "本单位激活开始时，你可以花费此卡上的1个优势标记。若如此做，本单位在此次激活中可以额外执行一次攻击行动。直到本回合结束，本单位不能攻击它在本回合已经攻击过的单位。",
+          "本单位击败拥有至少1个赏金标记的敌方单位时，在此卡上放置1个优势标记。"
+        ]
+      },
+      "requirementsText": [
+        "IG-11限定。"
+      ],
+      "keywords": [
+        {
+          "id": "self_destruct",
+          "value": 4,
+          "action": "free-action"
+        }
+      ],
+      "weapons": [],
+      "assets": {
+        "front": "assets/upgrade-cards/training-mechanical-carnage.webp"
+      },
+      "rules": {
+        "slotTypes": [
+          10
+        ],
+        "unique": true,
+        "limit": 1,
+        "locallyUnique": true
+      },
+      "review": {
+        "status": "reviewed",
+        "notes": "按用户提供的新版训练升级卡图录入并核对。",
+        "issues": []
+      },
+      "matching": {
+        "status": "local",
+        "candidates": []
+      },
+      "restrictions": {
+        "condition": {
+          "field": "unit.nameIdentityId",
+          "op": "eq",
+          "value": "ig-11"
+        },
+        "verification": "visually_checked"
+      }
+    },
+    {
+      "id": "training-cold-blooded",
+      "name": {
+        "en": "Cold Blooded",
+        "zh": "冷血"
+      },
+      "actionTypes": [],
+      "points": 0,
+      "slotIds": [
+        10
+      ],
+      "usage": "unit_upgrade",
+      "description": {
+        "en": [
+          "When this unit ends a Move Engaged with an enemy unit that it made a Ranged attack against this Activation, this unit may make a free Attack action, even if it has already made an Attack action this Activation.",
+          "At the end of this unit’s Activation, it may remove up to 2 Wound tokens."
+        ],
+        "zh": [
+          "本单位结束一次移动时，若它与一个在此次激活中曾被它进行过远程攻击的敌方单位交战，则本单位可以执行一次免费攻击行动，即使它在此次激活中已经执行过攻击行动。",
+          "本单位激活结束时，可以移除最多2个伤害标记。"
+        ]
+      },
+      "requirementsText": [
+        "博斯克限定。"
+      ],
+      "keywords": [],
+      "weapons": [],
+      "assets": {
+        "front": "assets/upgrade-cards/training-cold-blooded.webp"
+      },
+      "rules": {
+        "slotTypes": [
+          10
+        ],
+        "unique": true,
+        "limit": 1,
+        "locallyUnique": true
+      },
+      "review": {
+        "status": "reviewed",
+        "notes": "按用户提供的新版训练升级卡图录入并核对。",
+        "issues": []
+      },
+      "matching": {
+        "status": "local",
+        "candidates": []
+      },
+      "restrictions": {
+        "condition": {
+          "field": "unit.nameIdentityId",
+          "op": "eq",
+          "value": "bossk"
+        },
+        "verification": "visually_checked"
+      }
+    },
+    {
+      "id": "training-focused-on-the-kill",
+      "name": {
+        "en": "Focused on the Kill",
+        "zh": "专注猎杀"
+      },
+      "actionTypes": [],
+      "points": 0,
+      "slotIds": [
+        10
+      ],
+      "usage": "unit_upgrade",
+      "description": {
+        "en": [
+          "When this unit makes an attack against a unit that has 1 or more Bounty tokens, the defending unit cannot spend Aim tokens, Dodge tokens, or Surge tokens during that attack.",
+          "This unit is not defeated when it is assigned Wound tokens equal to its Wound threshold. At the start of the End Phase, if this unit has a number of Wound tokens equal to or greater than its Wound threshold, it is defeated."
+        ],
+        "zh": [
+          "本单位攻击拥有至少1个赏金标记的单位时，防御单位在此次攻击期间不能花费瞄准、闪避或激增标记。",
+          "本单位被分配的伤害标记达到其伤害阈值时，不会被击败。结束阶段开始时，若本单位的伤害标记数量大于或等于其伤害阈值，则本单位被击败。"
+        ]
+      },
+      "requirementsText": [
+        "IG-88限定。"
+      ],
+      "keywords": [],
+      "weapons": [],
+      "assets": {
+        "front": "assets/upgrade-cards/training-focused-on-the-kill.webp"
+      },
+      "rules": {
+        "slotTypes": [
+          10
+        ],
+        "unique": true,
+        "limit": 1,
+        "locallyUnique": true
+      },
+      "review": {
+        "status": "reviewed",
+        "notes": "按用户提供的新版训练升级卡图录入并核对。",
+        "issues": []
+      },
+      "matching": {
+        "status": "local",
+        "candidates": []
+      },
+      "restrictions": {
+        "condition": {
+          "field": "unit.nameIdentityId",
+          "op": "eq",
+          "value": "ig-88"
+        },
+        "verification": "visually_checked"
+      }
+    },
+    {
+      "id": "training-i-make-the-rules-now",
+      "name": {
+        "en": "I Make the Rules Now",
+        "zh": "现在我说了算"
+      },
+      "actionTypes": [
+        "free-action"
+      ],
+      "points": 0,
+      "slotIds": [
+        10
+      ],
+      "usage": "unit_upgrade",
+      "description": {
+        "en": [
+          "At the start of the first Activation Phase, put one of each Bane token on this unit. At the start of each Activation Phase, this unit may spend 1 Bane token. If it does, resolve the effect that corresponds to the spent Bane token:",
+          "Here I Am: This unit gains Gunslinger until the end of the Round.",
+          "Smoke and Mirrors: This unit makes a Speed-2 Move.",
+          "Kablamo!: This unit immediately makes 1 free Attack Action.",
+          "When this unit defeats an enemy unit that has 1 or more Bounty tokens, after the effect is resolved, this unit regains each Bane token it has spent this game."
+        ],
+        "zh": [
+          "第一个激活阶段开始时，在本单位上放置每种贝恩标记各1个。每个激活阶段开始时，本单位可以花费1个贝恩标记；若如此做，结算所花费标记对应的效果：",
+          "我来了：本单位获得快枪手，直到本轮结束。",
+          "烟雾和镜子：本单位进行一次速度2移动。",
+          "轰隆！：本单位立即执行一次免费攻击行动。",
+          "本单位击败拥有至少1个赏金标记的敌方单位时，在该效果结算后，本单位重新获得它在本局游戏中花费过的每个贝恩标记。"
+        ]
+      },
+      "requirementsText": [
+        "凯德·贝恩限定。"
+      ],
+      "keywords": [
+        {
+          "id": "gunslinger"
+        }
+      ],
+      "weapons": [],
+      "assets": {
+        "front": "assets/upgrade-cards/training-i-make-the-rules-now.webp"
+      },
+      "rules": {
+        "slotTypes": [
+          10
+        ],
+        "unique": true,
+        "limit": 1,
+        "locallyUnique": true
+      },
+      "review": {
+        "status": "reviewed",
+        "notes": "按用户提供的新版训练升级卡图录入并核对。",
+        "issues": []
+      },
+      "matching": {
+        "status": "local",
+        "candidates": []
+      },
+      "restrictions": {
+        "condition": {
+          "field": "unit.nameIdentityId",
+          "op": "eq",
+          "value": "cad-bane"
+        },
+        "verification": "visually_checked"
+      }
     }
   ]
 }

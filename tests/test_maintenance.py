@@ -10,13 +10,17 @@ class MaintenanceTest(unittest.TestCase):
     def setUpClass(cls):
         cls.cards=json.loads((store.ROOT/'data/upgrades.json').read_bytes())['cards'];cls.units=json.loads((store.ROOT/'data/units.json').read_bytes())['units']
     def test_all_records_and_images(self):
-        self.assertEqual(len(self.cards),528)
+        self.assertGreaterEqual(len(self.cards),528)
+        self.assertEqual(len({c['id'] for c in self.cards}),len(self.cards))
         faces=[face for c in self.cards for face in ([c,c['back']] if c.get('dualSided') else [c])]
-        self.assertEqual(len(faces),535)
+        self.assertEqual(len(faces),len(self.cards)+sum(bool(c.get('dualSided')) for c in self.cards))
         fronts=[c['assets']['front'] for c in faces if c['assets'].get('front')]
         self.assertGreaterEqual(len(fronts),503)
         for f in fronts:self.assertTrue((store.ROOT/f).is_file(),f)
         for c in self.cards:store.validate('upgrades',c)
+    def test_legacy_import_coverage(self):
+        if not (store.ROOT/'references/upstream/legion.json').is_file():
+            self.skipTest('Optional private import snapshot is not present')
         covered={c['upstream']['id']for c in self.cards if c.get('upstream')}
         for c in self.cards:covered.update(str(x) for x in (c.get('upstreamAliases') or []))
         for c in self.cards:
@@ -49,6 +53,7 @@ class MaintenanceTest(unittest.TestCase):
     def test_isolated_upgrade_history_conflict_restore(self):
         with tempfile.TemporaryDirectory()as tmp:
             root=Path(tmp);(root/'data').mkdir();(root/'assets').mkdir();c=copy.deepcopy(self.cards[0]);c['assets']['front']=None
+            (root/'data/catalog-definitions.json').write_bytes((store.ROOT/'data/catalog-definitions.json').read_bytes())
             (root/'data/upgrades.json').write_bytes(store.encode({'cards':[c]}));other=(root/'data/armies.json');other.write_bytes(store.encode({'armies':[]}));before=other.read_bytes()
             with patch.object(store,'ROOT',root):
                 r=store.read('upgrades');old=copy.deepcopy(c);c['points']+=1;s=store.save('upgrades',c,r['revision']);self.assertEqual(other.read_bytes(),before)

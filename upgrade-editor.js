@@ -17,7 +17,7 @@ function render(){
  $('#upgrade-face-panel').setAttribute('aria-labelledby','edit-'+face);
  const shared=$('#shared-fields');shared.replaceChildren();
  const dual=el('label'),check=el('input');check.type='checkbox';check.checked=!!draft.dualSided;check.id='dual-sided';
- check.onchange=()=>{draft.dualSided=check.checked;if(check.checked&&!draft.back)draft.back={name:{en:'',zh:''},description:{en:[],zh:[]},keywords:[],weapons:[],assets:{front:null}};face=check.checked?'back':'front';changed();render()};
+ check.onchange=()=>{draft.dualSided=check.checked;if(check.checked&&!draft.back)draft.back={name:{en:'',zh:''},description:{en:[],zh:[]},actionTypes:[],keywords:[],weapons:[],assets:{front:null}};face=check.checked?'back':'front';changed();render()};
  dual.append(check,document.createTextNode('双面升级卡'));shared.append(dual,el('p','两面共用费用、用途、槽位和规则限制；取消双面时保留背面草稿。'));
  shared.append(field('点数',draft.points,v=>{draft.points=v;changed()},'number'));
  const affiliations=el('fieldset');affiliations.className='upgrade-affiliations';affiliations.append(el('legend','升级卡自身组织（与改变母单位组织的效果独立）'));if(draft.affiliationReview?.status==='unresolved')affiliations.append(el('p',draft.affiliationReview.reason));
@@ -27,9 +27,22 @@ function render(){
  const box=$('#fields');box.replaceChildren();const add=(name,v,fn,type)=>box.append(field(name,v,x=>{fn(x);changed()},type));add('英文名',printed.name.en,v=>printed.name.en=v);add('中文名',printed.name.zh,v=>printed.name.zh=v);
  shared.append(selectField('用途',draft.usage,[['unit_upgrade','单位升级'],['counterpart','伙伴升级槽'],['campaign','战役资料']],v=>{draft.usage=v;changed()}));
  shared.append(slotFields());
+ box.append(actionFields(printed));
  add('中文卡文（每行一段）',printed.description.zh.join('\n'),v=>printed.description.zh=v.split('\n'),'textarea');add('英文卡文（每行一段）',printed.description.en.join('\n'),v=>printed.description.en=v.split('\n'),'textarea');add('人工备注',draft.review.notes,v=>draft.review.notes=v,'textarea');box.append(selectField('校对状态',draft.review.status,[['needs_review','待校对'],['reviewed','已校对']],v=>{draft.review.status=v;changed()}));
  const terms=el('details');terms.append(el('summary','词条、武器与显示要求'),EditorCommon.objectFields({keywords:printed.keywords,requirementsText:draft.requirementsText},defs,changed));box.append(terms,EditorForms.weapons(printed.weapons,defs,changed,{variable:true}));
  if(tab==='rules')renderRules();if(tab==='history')history();
+}
+function actionFields(printed){
+ const box=el('fieldset');box.className='upgrade-action-fields';box.disabled=busy;
+ box.append(el('legend','行动类型（可多选）'));
+ const options=el('div');options.className='upgrade-action-options';
+ for(const [value,name] of [['action','行动'],['double-action','双行动'],['free-action','免费行动'],['free-exhaust','免费行动：横置']]){
+  const label=el('label'),input=el('input');input.type='checkbox';input.value=value;
+  input.checked=Array.isArray(printed.actionTypes)&&printed.actionTypes.includes(value);
+  input.onchange=()=>{printed.actionTypes=[...options.querySelectorAll('input:checked')].map(i=>i.value);changed()};
+  label.append(input,document.createTextNode(name));options.append(label);
+ }
+ box.append(options);return box;
 }
 function slotFields(){
  const box=el('fieldset');box.className='upgrade-slot-fields';box.append(el('legend','候选槽位：任一类型均可匹配，不同时占多槽'));
@@ -70,6 +83,7 @@ let creating=false;const unsavedIds=new Set();
 function updateActions(){
  $('#save').disabled=busy||!draft;$('#delete-upgrade').disabled=busy||!draft;$('#delete-upgrade').textContent=creating?'丢弃草稿':'删除升级卡';
  $('#image-upload').disabled=busy||!draft;$('#apply-json').disabled=busy||!draft;$('#raw-json').disabled=busy||!draft;$('#restore-deleted-upgrade').disabled=busy;
+ const actions=$('.upgrade-action-fields');if(actions)actions.disabled=busy||!draft;
 }
 function showDeletedNotice(){
  $('#deleted-upgrade-notice').hidden=!lastDeleted;
@@ -95,7 +109,7 @@ function newUpgradeDraft(){
   const id='new-upgrade-'+Date.now().toString(36);
   return {id,name:{en:'New Upgrade',zh:'新升级'},points:0,slotIds:[1],usage:'unit_upgrade',
     rules:{slotTypes:[1],unique:false,locallyUnique:true},assets:{front:null},
-    description:{en:[],zh:[]},requirementsText:[],keywords:[],weapons:[],
+    description:{en:[],zh:[]},actionTypes:[],requirementsText:[],keywords:[],weapons:[],
     review:{status:'needs_review',notes:'',issues:['新建卡片，待补全字段']},
     matching:{status:'unmatched',candidates:[]},restrictions:{}}
 }

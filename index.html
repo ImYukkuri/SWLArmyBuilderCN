@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>军团 · 军表编辑器</title>
     <link rel="stylesheet" href="builder.css" />
+    <link rel="stylesheet" href="rule-icons.css" />
   </head>
   <body>
     <header class="masthead">
@@ -114,6 +115,7 @@
       <div class="builder-body">
         <section class="army-col" aria-labelledby="roster-heading">
           <h2 id="roster-heading" class="sr-only">当前军表</h2>
+          <nav id="rank-add-bar" aria-label="按军阶添加单位"></nav>
           <div id="roster-heading-tools">
             <button class="text-button" id="view-toggle">全部展开</button>
             <label class="explanation-switch"
@@ -190,6 +192,7 @@
     <script src="builder-transfer.js"></script>
     <script src="builder.js"></script>
     <script src="builder-overlays.js"></script>
+    <script src="rule-icons.js"></script>
     <script src="builder-view.js"></script>
     <script src="builder-sticky.js"></script>
     <script src="builder-transfer-ui.js"></script>

@@ -706,6 +706,7 @@ window.RulesCore = (() => {
     const bf = (pkg.battleForces || {})[String(army.armyId)];
     if (bf) {
       mode = { ...mode, ...((bf.modes || {})[army.mode || "standard"] || {}) };
+      if (bf.status === 'draft') issue('unknown', 'battle_force_draft', '此战斗部队为尚未启用的规则草案，不能据此确认军表合法性。', null);
       if ((bf.unparsedRules || []).length) issue("unknown", "battle_force_rules", "战斗部队仍有未机器化的规则文本：" + bf.unparsedRules.join(" / "), null);
     }
     const pointsLimit = army.pointsLimit || mode.points || 1000;
@@ -982,6 +983,7 @@ window.RulesCore = (() => {
       const cmd = (defs.commands || []).find(x => String(x.id) === String(cid));
       if (!cmd) { issue("invalid", "command_missing", `命令卡引用不存在：${cid}`, null); continue; }
       const name = (cmd.name && cmd.name.en) || cid;
+      if (cmd.hidden) { issue("invalid", "command_hidden", `命令卡「${name}」已停用，请替换`, null); continue; }
       const missingUnits = commandUnitRequirements(cmd, army, units, defs).filter(g => !g.met);
       if (missingUnits.length) issue('invalid', 'command_required_units',
         `命令卡「${name}」还需加入：${missingUnits.map(g => g.label).join('、')}（每组任选一个版本，所有组都须满足）`, null);
@@ -1036,7 +1038,7 @@ window.RulesCore = (() => {
     if (hand && (army.commandIds || []).length) {
       const pips = (army.commandIds || []).map(cid => {
         const c = (defs.commands || []).find(x => String(x.id) === String(cid));
-        if (!c) return null;
+        if (!c || c.hidden) return null;
         const slotPips = c.slotPips != null ? c.slotPips : c.pips;
         return slotPips != null ? slotPips : null;
       }).filter(p => p != null);

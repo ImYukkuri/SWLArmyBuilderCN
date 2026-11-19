@@ -1,6 +1,6 @@
 {
   "schema": "swl-unit-catalog/v2",
-  "updatedAt": "2026-11-17T10:20:24.123061+00:00",
+  "updatedAt": "2026-11-18T18:33:28.546580+00:00",
   "definitions": "catalog-definitions.json",
   "referenceVersion": "2026.11.04.0",
   "units": [
@@ -2507,7 +2507,7 @@
         "en": "Super Tactical Droid",
         "zh": "超级战术机器人"
       },
-      "points": 80,
+      "points": 76,
       "upgradeSlots": [
         9,
         9,
@@ -5750,7 +5750,7 @@
         "en": "",
         "zh": ""
       },
-      "points": 60,
+      "points": 57,
       "upgradeSlots": [
         6,
         11,
@@ -5897,7 +5897,7 @@
         "en": "The Kill Is Mine",
         "zh": "由我猎杀"
       },
-      "points": 97,
+      "points": 82,
       "upgradeSlots": [
         5,
         10,
@@ -6722,7 +6722,7 @@
         "en": "Inferno Squad Leader",
         "zh": "炼狱小队队长"
       },
-      "points": 115,
+      "points": 110,
       "upgradeSlots": [
         9,
         10,
@@ -8577,7 +8577,7 @@
         "en": "Compelled to Inflict Pain",
         "zh": "执着于施加痛苦"
       },
-      "points": 102,
+      "points": 87,
       "upgradeSlots": [
         5,
         10,
@@ -9417,7 +9417,7 @@
         "en": "",
         "zh": ""
       },
-      "points": 125,
+      "points": 105,
       "upgradeSlots": [
         7,
         8,
@@ -9567,7 +9567,7 @@
         "en": "Master Tactician",
         "zh": "战术大师"
       },
-      "points": 75,
+      "points": 66,
       "upgradeSlots": [
         9,
         9,
@@ -10469,7 +10469,7 @@
         "en": "The Chosen One",
         "zh": "天选之子"
       },
-      "points": 170,
+      "points": 162,
       "upgradeSlots": [
         5,
         5,
@@ -11437,7 +11437,7 @@
         "en": "Human Cyborg Relations",
         "zh": "人机关系机器人"
       },
-      "points": 15,
+      "points": 7,
       "upgradeSlots": [],
       "stats": {
         "models": 1,
@@ -11570,7 +11570,7 @@
         "en": "Hero of Kashyyyk",
         "zh": "卡希克的英雄"
       },
-      "points": 90,
+      "points": 75,
       "upgradeSlots": [
         10,
         10,
@@ -11864,7 +11864,7 @@
         "en": "Trained for Leadership",
         "zh": "领袖之才"
       },
-      "points": 60,
+      "points": 53,
       "upgradeSlots": [
         9,
         10,
@@ -11986,7 +11986,7 @@
         "en": "",
         "zh": ""
       },
-      "points": 90,
+      "points": 85,
       "upgradeSlots": [
         10,
         6,
@@ -12265,7 +12265,7 @@
       "id": "republic-clonetrooper-marksmen",
       "name": {
         "en": "Clone Trooper Marksmen",
-        "zh": "克隆人精确射手"
+        "zh": "克隆人神射手"
       },
       "title": {
         "en": "",
@@ -12336,8 +12336,8 @@
       "weapons": [
         {
           "name": {
-            "en": "Unarmen",
-            "zh": ""
+            "en": "unarmed",
+            "zh": "空手"
           },
           "range": {
             "min": 0,
@@ -12559,7 +12559,7 @@
         "en": "Delta Squad",
         "zh": "德尔塔小队"
       },
-      "points": 105,
+      "points": 100,
       "upgradeSlots": [
         10,
         10,
@@ -12829,7 +12829,7 @@
         "en": "Keeper of the Peace",
         "zh": "和平守护者"
       },
-      "points": 85,
+      "points": 72,
       "upgradeSlots": [
         24,
         5,
@@ -12942,7 +12942,7 @@
         "en": "Strong in the Force",
         "zh": "原力强大"
       },
-      "points": 105,
+      "points": 100,
       "upgradeSlots": [
         24,
         5,
@@ -13190,7 +13190,7 @@
         "en": "Civilized Warrior",
         "zh": "文明武士"
       },
-      "points": 150,
+      "points": 135,
       "upgradeSlots": [
         5,
         5,
@@ -13462,7 +13462,7 @@
         "en": "Hero of a Thousand Devices",
         "zh": "千械英雄"
       },
-      "points": 55,
+      "points": 53,
       "upgradeSlots": [
         6,
         15
@@ -19830,7 +19830,7 @@
         "en": "",
         "zh": ""
       },
-      "points": 70,
+      "points": 67,
       "upgradeSlots": [
         6,
         20
@@ -20169,7 +20169,7 @@
         "en": "",
         "zh": ""
       },
-      "points": 100,
+      "points": 117,
       "upgradeSlots": [
         7,
         6,
@@ -21044,13 +21044,13 @@
         "defenseSurge": "none"
       },
       "assets": {
-        "front": "assets/unit-cards/mercenary/rogue/originals/bossk_front.webp",
-        "portrait": "assets/portraits/mercenary-rogue-bossk-b11e67762ac954fabbef.webp",
+        "front": "assets/unit-cards/mercenary-rogue-bossk.webp",
+        "portrait": "assets/portraits/mercenary-rogue-bossk-6a67477264a83599e8d9.webp",
         "portraitCrop": [
           0.6699999999999999,
-          0.12349862258953165,
+          0.12379310344827582,
           0.99,
-          0.6965013774104682
+          0.6962068965517241
         ]
       },
       "review": {
@@ -21100,19 +21100,13 @@
           "id": "bounty"
         },
         {
-          "id": "enrage",
-          "value": 3
+          "id": "relentless",
+          "value": null
         },
         {
-          "id": "independent",
-          "parameter": "Surge 2"
-        },
-        {
-          "id": "pending_regenerate_3",
-          "value": 3
-        },
-        {
-          "id": "scale"
+          "id": "vicious",
+          "parameter": null,
+          "value": 2
         }
       ],
       "weapons": [
@@ -21126,9 +21120,9 @@
             "max": 0
           },
           "dice": {
-            "red": 1,
+            "red": 0,
             "black": 2,
-            "white": 1
+            "white": 3
           },
           "keywords": [
             {
@@ -21140,15 +21134,15 @@
         {
           "name": {
             "en": "Mortar Rifle",
-            "zh": ""
+            "zh": "莫塔尔步枪"
           },
           "range": {
-            "min": 2,
-            "max": 4
+            "min": 1,
+            "max": 3
           },
           "dice": {
-            "red": 1,
-            "black": 0,
+            "red": 0,
+            "black": 2,
             "white": 4
           },
           "keywords": [
@@ -21180,17 +21174,13 @@
       "divisions": [
         "Dark"
       ],
-      "commandIds": [
-        "1903",
-        "1902",
-        "42",
-        "1901",
-        "45",
-        "46"
-      ],
+      "commandIds": [],
       "unitCategoryId": "trooper",
       "unitSubtypeId": null,
-      "nameIdentityId": "bossk"
+      "nameIdentityId": "bossk",
+      "equipUpgradeIds": [
+        "training-cold-blooded"
+      ]
     },
     {
       "id": "mercenary-rogue-cad-bane",
@@ -21206,10 +21196,8 @@
       "upgradeSlots": [
         10,
         10,
-        6,
-        2,
-        12,
-        3
+        10,
+        2
       ],
       "stats": {
         "models": 1,
@@ -21222,13 +21210,13 @@
         "defenseSurge": "block"
       },
       "assets": {
-        "front": "assets/unit-cards/mercenary/rogue/originals/cad-bane_front.webp",
-        "portrait": "assets/portraits/mercenary-rogue-cad-bane-961456b180206fe9bac5.webp",
+        "front": "assets/unit-cards/mercenary-rogue-cad-bane.webp",
+        "portrait": "assets/portraits/mercenary-rogue-cad-bane-efd95ad158364f021049.webp",
         "portraitCrop": [
           0.6699999999999999,
-          0.12349862258953165,
+          0.12379310344827582,
           0.99,
-          0.6965013774104682
+          0.6962068965517241
         ]
       },
       "review": {
@@ -21283,51 +21271,61 @@
           "id": "bounty"
         },
         {
-          "id": "danger_sense",
+          "id": "uncanny_luck",
           "value": 3
         },
         {
-          "id": "independent",
-          "parameter": "Dodge 2"
+          "id": "steady",
+          "value": null
         },
         {
-          "id": "sharpshooter",
-          "value": 1
-        },
-        {
-          "id": "steady"
+          "id": "disengage",
+          "value": null,
+          "parameter": null,
+          "action": "none"
         }
       ],
       "weapons": [
         {
           "name": {
-            "en": "Martial Arts",
-            "zh": "武术"
+            "en": "Electro Gauntlets",
+            "zh": "电击护手"
           },
           "range": {
             "min": 0,
             "max": 0
           },
           "dice": {
-            "red": 0,
-            "black": 3,
+            "red": 4,
+            "black": null,
             "white": 0
           },
-          "keywords": []
+          "keywords": [
+            {
+              "id": "suppressive",
+              "value": null,
+              "parameter": null
+            },
+            {
+              "id": "immobilize",
+              "value": 3,
+              "parameter": null
+            }
+          ]
         },
         {
           "name": {
             "en": "LL-30 Blaster Pistols",
-            "zh": ""
+            "zh": "LL-30 爆能手枪"
           },
           "range": {
             "min": 1,
             "max": 2
           },
           "dice": {
-            "red": 0,
-            "black": 4,
-            "white": 0
+            "red": 2,
+            "black": 1,
+            "white": 1
           },
           "keywords": [
             {
@@ -21365,7 +21363,10 @@
       ],
       "unitCategoryId": "trooper",
       "unitSubtypeId": null,
-      "nameIdentityId": "cad-bane"
+      "nameIdentityId": "cad-bane",
+      "equipUpgradeIds": [
+        "training-i-make-the-rules-now"
+      ]
     },
     {
       "id": "mercenary-rogue-ig-11",
@@ -21377,15 +21378,16 @@
         "en": "Nurse and Protect",
         "zh": "照料与保护"
       },
-      "points": 105,
+      "points": 93,
       "upgradeSlots": [
         {
           "id": 18,
-          "required": true
+          "required": false
         },
         10,
         6,
-        2
+        2,
+        15
       ],
       "stats": {
         "models": 1,
@@ -21398,13 +21400,13 @@
         "defenseSurge": "none"
       },
       "assets": {
-        "front": "assets/unit-cards/mercenary/rogue/originals/ig-11_front.webp",
-        "portrait": "assets/portraits/mercenary-rogue-ig-11-0577e7d678e56be3684e.webp",
+        "front": "assets/unit-cards/mercenary-rogue-ig-11.webp",
+        "portrait": "assets/portraits/mercenary-rogue-ig-11-a5584ed8844300ffccdb.webp",
         "portraitCrop": [
           0.6699999999999999,
-          0.12349862258953165,
+          0.12280276816608993,
           0.99,
-          0.6965013774104682
+          0.69719723183391
         ]
       },
       "review": {
@@ -21445,56 +21447,46 @@
       "keywords": [
         {
           "id": "mercenary",
-          "parameter": "义军，共和"
+          "parameter": "帝国，义军"
         },
         {
           "id": "armor",
           "value": 1
         },
         {
-          "id": "gunslinger"
+          "id": "bounty"
         },
         {
           "id": "impervious"
         },
         {
-          "id": "programmed"
+          "id": "gunslinger"
         },
         {
           "id": "sharpshooter",
           "value": 1
+        },
+        {
+          "id": "steady",
+          "value": null,
+          "parameter": null,
+          "action": "none"
         }
       ],
       "weapons": [
         {
           "name": {
-            "en": "Overwhelm",
-            "zh": "强压"
+            "en": "Modified E-11 Blaster",
+            "zh": "改装E-11爆能枪"
           },
           "range": {
             "min": 0,
-            "max": 0
-          },
-          "dice": {
-            "red": 4,
-            "black": 0,
-            "white": 0
-          },
-          "keywords": []
-        },
-        {
-          "name": {
-            "en": "Modified E-11 Blaster",
-            "zh": ""
-          },
-          "range": {
-            "min": 1,
-            "max": 3
+            "max": 2
           },
           "dice": {
             "red": 0,
-            "black": 1,
-            "white": 2
+            "black": 3,
+            "white": 0
           },
           "keywords": [
             {
@@ -21506,7 +21498,7 @@
         {
           "name": {
             "en": "Modified DLT-20A",
-            "zh": ""
+            "zh": "改装DLT-20A"
           },
           "range": {
             "min": 1,
@@ -21514,22 +21506,23 @@
           },
           "dice": {
             "red": 0,
-            "black": 2,
-            "white": 1
+            "black": 3,
+            "white": 0
           },
-          "keywords": []
+          "keywords": [
+            {
+              "id": "impact",
+              "value": 1,
+              "parameter": null
+            }
+          ]
         }
       ],
       "upstream": {
         "collection": "units",
         "id": "6178"
       },
-      "conditionalUpgradeSlots": [
-        {
-          "id": 15,
-          "upgradeId": "3648"
-        }
-      ],
+      "conditionalUpgradeSlots": [],
       "usage": "army_unit",
       "rules": {
         "unavailableWith": [
@@ -21551,7 +21544,10 @@
       ],
       "unitCategoryId": "trooper",
       "unitSubtypeId": "droid_trooper",
-      "nameIdentityId": "ig-11"
+      "nameIdentityId": "ig-11",
+      "equipUpgradeIds": [
+        "training-mechanical-carnage"
+      ]
     },
     {
       "id": "mercenary-rogue-ig-88",
@@ -21563,7 +21559,7 @@
         "en": "Notorious Assassin Droid",
         "zh": "恶名昭著的刺客机器人"
       },
-      "points": 110,
+      "points": 100,
       "upgradeSlots": [
         10,
         6,
@@ -21580,13 +21576,13 @@
         "defenseSurge": "none"
       },
       "assets": {
-        "front": "assets/unit-cards/mercenary/rogue/originals/ig-88_front.webp",
-        "portrait": "assets/portraits/mercenary-rogue-ig-88-7a402e42e5a700197a3d.webp",
+        "front": "assets/unit-cards/mercenary-rogue-ig-88.webp",
+        "portrait": "assets/portraits/mercenary-rogue-ig-88-43be8ec084802f72262a.webp",
         "portraitCrop": [
           0.6699999999999999,
-          0.12349862258953165,
+          0.12379310344827582,
           0.99,
-          0.6965013774104682
+          0.6962068965517241
         ]
       },
       "review": {
@@ -21624,11 +21620,8 @@
           "value": 1
         },
         {
-          "id": "arsenal",
-          "value": 2
-        },
-        {
-          "id": "bounty"
+          "id": "bounty",
+          "value": null
         },
         {
           "id": "impervious"
@@ -21636,6 +21629,12 @@
         {
           "id": "sharpshooter",
           "value": 1
+        },
+        {
+          "id": "relentless",
+          "value": null,
+          "parameter": null,
+          "action": "none"
         }
       ],
       "weapons": [
@@ -21662,32 +21661,8 @@
         },
         {
           "name": {
-            "en": "Modified E-11 Blaster",
-            "zh": ""
-          },
-          "range": {
-            "min": 1,
-            "max": 3
-          },
-          "dice": {
-            "red": 0,
-            "black": 1,
-            "white": 2
-          },
-          "keywords": [
-            {
-              "id": "pierce",
-              "value": 1
-            },
-            {
-              "id": "versatile"
-            }
-          ]
-        },
-        {
-          "name": {
-            "en": "Modified DLT-20A",
-            "zh": ""
+            "en": "Modified Blaster",
+            "zh": "改装爆能枪"
           },
           "range": {
             "min": 1,
@@ -21695,10 +21670,16 @@
           },
           "dice": {
             "red": 0,
-            "black": 2,
-            "white": 1
+            "black": 3,
+            "white": 3
           },
-          "keywords": []
+          "keywords": [
+            {
+              "id": "pierce",
+              "value": 1,
+              "parameter": null
+            }
+          ]
         }
       ],
       "upstream": {
@@ -21725,7 +21706,10 @@
       ],
       "unitCategoryId": "trooper",
       "unitSubtypeId": "droid_trooper",
-      "nameIdentityId": "ig-88"
+      "nameIdentityId": "ig-88",
+      "equipUpgradeIds": [
+        "training-focused-on-the-kill"
+      ]
     },
     {
       "id": "mercenary-rogue-omega",
@@ -21865,7 +21849,7 @@
         "en": "",
         "zh": ""
       },
-      "points": 65,
+      "points": 59,
       "upgradeSlots": [
         6,
         11,
@@ -22106,7 +22090,7 @@
         "en": "Fulcrum",
         "zh": "支点"
       },
-      "points": 115,
+      "points": 110,
       "upgradeSlots": [
         5,
         5,
@@ -22496,7 +22480,7 @@
         "en": "Capable Intelligence Agent",
         "zh": "可靠的情报特工"
       },
-      "points": 90,
+      "points": 86,
       "upgradeSlots": [
         9,
         10,
@@ -22649,7 +22633,7 @@
         "en": "Walking Carpet",
         "zh": "行走的毛毯"
       },
-      "points": 90,
+      "points": 75,
       "upgradeSlots": [
         10,
         10,
@@ -23176,7 +23160,7 @@
         "en": "Reluctant Hero",
         "zh": "不情愿的英雄"
       },
-      "points": 90,
+      "points": 96,
       "upgradeSlots": [
         9,
         10,
@@ -23612,7 +23596,7 @@
         "en": "Canny General",
         "zh": "精明的将军"
       },
-      "points": 105,
+      "points": 100,
       "upgradeSlots": [
         9,
         10,
@@ -23749,7 +23733,7 @@
         "en": "Fearless and Inventive",
         "zh": "无惧与创新"
       },
-      "points": 75,
+      "points": 68,
       "upgradeSlots": [
         9,
         9,
@@ -24509,7 +24493,7 @@
         "en": "Hero of a Thousand Devices",
         "zh": "千械英雄"
       },
-      "points": 55,
+      "points": 53,
       "upgradeSlots": [
         6,
         15
@@ -25733,7 +25717,7 @@
         "en": "",
         "zh": ""
       },
-      "points": 125,
+      "points": 119,
       "upgradeSlots": [
         7,
         8,
@@ -25871,7 +25855,7 @@
         "en": "",
         "zh": ""
       },
-      "points": 95,
+      "points": 91,
       "upgradeSlots": [
         10,
         6
@@ -26738,6 +26722,129 @@
       "unitCategoryId": "trooper",
       "unitSubtypeId": null,
       "nameIdentityId": "wet-weather-trooper"
+    },
+    {
+      "id": "empire-riot-squad-trench-buster",
+      "name": {
+        "en": "Stormtrooper Riot Squad",
+        "zh": "冲锋队镇暴小队"
+      },
+      "title": {
+        "en": "Trench Buster",
+        "zh": "战壕奇兵"
+      },
+      "points": 46,
+      "upgradeSlots": [
+        4,
+        4,
+        10,
+        2,
+        3
+      ],
+      "stats": {
+        "models": 4,
+        "wounds": 1,
+        "courage": 2,
+        "resilience": null,
+        "speed": 2,
+        "defenseDie": "red",
+        "attackSurge": "none",
+        "defenseSurge": "none"
+      },
+      "assets": {
+        "front": "assets/unit-cards/empire/originals/riot-squad_front.webp",
+        "portrait": "assets/portraits/empire-riot-squad-trench-buster-f0520d5f97afbbe02895.webp",
+        "portraitCrop": [
+          0.6699999999999999,
+          0.12349862258953165,
+          0.99,
+          0.6965013774104682
+        ]
+      },
+      "review": {
+        "status": "needs_review",
+        "notes": "",
+        "issues": [
+          "复制自 empire-riot-squad，待校对"
+        ]
+      },
+      "factionId": 2,
+      "factions": [
+        {
+          "id": 2,
+          "rankId": 3
+        }
+      ],
+      "affiliationIds": [],
+      "rankId": 2,
+      "unitTypeId": 1,
+      "keywords": [
+        {
+          "id": "charge"
+        },
+        {
+          "id": "hold_the_line"
+        }
+      ],
+      "weapons": [
+        {
+          "name": {
+            "en": "Stun Baton",
+            "zh": "眩晕棍"
+          },
+          "range": {
+            "min": 0,
+            "max": 0
+          },
+          "dice": {
+            "red": 0,
+            "black": 1,
+            "white": 0
+          },
+          "keywords": [
+            {
+              "id": "suppressive"
+            }
+          ]
+        },
+        {
+          "name": {
+            "en": "E-11 Blaster Rifle",
+            "zh": "E-11爆能步枪"
+          },
+          "range": {
+            "min": 1,
+            "max": 3
+          },
+          "dice": {
+            "red": 0,
+            "black": 0,
+            "white": 1
+          },
+          "keywords": []
+        }
+      ],
+      "conditionalUpgradeSlots": [
+        {
+          "id": 4,
+          "upgradeId": "21906"
+        },
+        {
+          "id": 4,
+          "upgradeId": "20801"
+        }
+      ],
+      "usage": "army_unit",
+      "rules": {
+        "unlimited": true
+      },
+      "divisions": [
+        "Dark"
+      ],
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": null,
+      "nameIdentityId": "stormtrooper-riot-squad"
     }
   ]
 }

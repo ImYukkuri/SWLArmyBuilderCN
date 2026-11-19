@@ -4,7 +4,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parent
 DEFINITIONS=ROOT/'data/catalog-definitions.json'
 def norm(s):return re.sub('[^a-z0-9]+','',unicodedata.normalize('NFKD',s or'').encode('ascii','ignore').decode().lower())
-RANK_IDS={'commander':1,'operative':6,'corps':2,'special-forces':3,'support':4,'heavy':5}
+RANK_IDS={'commander':1,'operative':6,'corps':2,'special-forces':3,'support':4,'heavy':5,'flier':7}
 FACTION_IDS={'rebels':1,'empire':2,'mercenary':3,'republic':4,'separatists':5,'mandalorian':6}
 AFFILIATION_IDS={'pyke_syndicate':'1','black_sun':'2','raiders':'3','rogue':'6','ewoks':'7','clan_covert':'965','clan_kryze':'1081','clan_wren':'1082','clan_saxon':'1083','creedless':'1084','maul_loyalists':'5'}
 def keyword_ref(k,definitions):

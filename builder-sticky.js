@@ -15,7 +15,8 @@ window.BuilderSticky = (() => {
       button.setAttribute('aria-label', (selected ? '添加' : '定位') + RANK_SHORT[rank] + '单位，当前 ' + button.dataset.count + ' 个');
       const icon = button.querySelector('.rank-icon');
       icon.classList.toggle('rank-plus', selected);
-      icon.textContent = selected ? '+' : RANK_GLYPH[rank];
+      if (selected) icon.textContent = '+';
+      else setRankIcon(icon, rank);
     }
   }
 

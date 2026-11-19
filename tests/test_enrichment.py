@@ -7,6 +7,8 @@ from action_icons import ROOT,detect_lines
 class EnrichmentTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
+        if not (ROOT/'work/weapon-jobs.json').is_file():
+            raise unittest.SkipTest('Optional private import/OCR snapshot is not present')
         cls.units=json.loads((ROOT/'data/units.json').read_bytes())['units']
         cls.jobs=json.loads((ROOT/'work/weapon-jobs.json').read_bytes())
     def test_same_keyword_different_printed_actions(self):

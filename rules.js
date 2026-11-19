@@ -2,6 +2,7 @@
 const {el,api}=EditorCommon,$=s=>document.querySelector(s);
 let rules,defs,revision,definitionsRevision,ttsNames={},dirty=false,tab='slots';
 let bfId=null,bfData=null,bfPreview={unitId:'',cardId:''};
+const rankOptions=()=>[...(defs.ranks||[])].sort((a,b)=>a.order-b.order).map(r=>[String(r.id),r.name.zh||r.name.en]);
 function status(t,error=false){$('#status').textContent=t;$('#status').classList.toggle('error',error)}
 function setDirty(){dirty=true;$('#dirty').textContent='有未保存修改';$('#raw-json').value=JSON.stringify(rules,null,2)}
 function renderSlots(){
@@ -107,7 +108,7 @@ function renderAllowedUnits(box,bf,rerender){
     const names=Object.values(bfData.units).filter(u=>!u.runtimeVariant&&window.RulesCore.armyRank(u,Number(bfId),rules,defs,bfData.units)!=null).map(u=>u.name.zh||u.name.en);
     sec.append(el('p','此部队通过曼达洛独立模块按组织筛选，氏族／自定义规则决定可用单位。'),el('p',names.join('、')));box.append(sec);return;
   }
-  const rankName={1:'指挥官',6:'特工',2:'核心',3:'特种部队',4:'支援',5:'重型'};
+  const rankName=Object.fromEntries(rankOptions());
   const derived={};
   for(const u of Object.values(bfData.units||{})){
     const rank=window.RulesCore?window.RulesCore.armyRank(u,Number(bfId),rules,defs,bfData.units):null;
@@ -125,7 +126,8 @@ function renderAllowedUnits(box,bf,rerender){
     return bf.allowedUnits;
   };
   let total=0;
-  for(const rank of [1,6,2,3,4,5]){
+  for(const [id] of rankOptions()){
+    const rank=Number(id);
     const names=source[rank]||source[String(rank)]||[];
     total+=names.length;
     const fs=el('fieldset');fs.className='restriction-section';
@@ -181,7 +183,7 @@ function renderOverrides(box,bf,rerender){
     const r=rankRules[i];
     rankBox.append(bfRow([
       unitMultiField('单位',r.unitNames||[],v=>{r.unitNames=v;setDirty();rerender()}),
-      bfSelect([['1','指挥官'],['6','特工'],['2','核心'],['3','特种部队'],['4','支援'],['5','重型']],String(r.rankId||''),v=>{r.rankId=Number(v);setDirty();rerender()}),
+      bfSelect(rankOptions(),String(r.rankId||''),v=>{r.rankId=Number(v);setDirty();rerender()}),
       bfDel(rankRules,i,rerender)
     ]));
   }
@@ -306,8 +308,22 @@ function renderBattleForces(){
   const head=el('div');head.className='bf-head';
   const definition=defs.armies.find(a=>String(a.id)===bfId);
   head.append(el('h2',bf.nameZh||definition?.name.zh||bf.name||''));
-  const sub=el('p','所属阵营：'+(bf.parentFaction||'未标注')+' · 规则类型：'+(bf.status==='quotas_only'?'仅军阶配额':'规则 + 配额'));sub.className='hint';head.append(sub);
+  const sub=el('p','所属阵营：'+(bf.parentFaction||'未标注')+' · 规则类型：'+(bf.status==='draft'?'草案 · 尚未启用':bf.status==='quotas_only'?'仅军阶配额':'规则 + 配额'));sub.className='hint';head.append(sub);
   main.append(head);
+  const pending=bf.status==='draft'?bf:bf.pendingRevision;
+  if(pending?.draftSpec){
+    const info=el('details');info.className='bf-section';
+    info.append(el('summary',pending===bf?'新版资料与待接入规则':'待迁移新版：'+pending.nameZh+' / '+pending.name));
+    if(pending!==bf)for(const text of pending.textRulesZh||[])info.append(el('p',text));
+    const list=el('ul');for(const text of pending.draftSpec.implementationGaps||[])list.append(el('li',text));info.append(list);
+    const units=el('table');units.className='reference-table bf-draft-units';
+    const columns=el('tr');for(const label of ['军阶','许可单位','对应卡牌 ID','备注'])columns.append(el('th',label));units.append(columns);
+    for(const item of pending.draftSpec.allowedUnits||[]){
+      const row=el('tr'),rank=defs.ranks.find(r=>r.id===item.rankId);
+      row.append(el('td',rank?.name.zh||String(item.rankId)),el('td',item.name),el('td',item.unitIds?.join(' / ')||'待补全'),el('td',item.note||''));units.append(row);
+    }
+    info.append(units);main.append(info);
+  }
 
   const names=el('section');names.className='bf-section bf-names';
   names.append(el('h3','名称'),
@@ -328,9 +344,10 @@ function renderBattleForces(){
     const fs=el('fieldset');fs.className='restriction-section';
     fs.append(el('legend',mode));
     m.rankQuotas.forEach((q,i)=>{
-      fs.append(bfRow([el('span','rank '+q.rankId),bfNum(q.min,v=>q.min=v),bfNum(q.max,v=>q.max=v),bfDel(m.rankQuotas,i,renderBattleForces)]));
+      fs.append(bfRow([bfSelect(rankOptions().filter(([id])=>Number(id)===q.rankId||!m.rankQuotas.some(other=>other.rankId===Number(id))),q.rankId,v=>{q.rankId=Number(v);renderBattleForces()}),bfNum(q.min,v=>q.min=v),bfNum(q.max,v=>q.max=v),bfDel(m.rankQuotas,i,renderBattleForces)]));
     });
-    fs.append(bfAdd('军阶配额',()=>m.rankQuotas,()=>({rankId:1,min:0,max:2}),renderBattleForces));
+    if(m.rankQuotas.length<rankOptions().length)
+      fs.append(bfAdd('军阶配额',()=>m.rankQuotas,()=>({rankId:Number(rankOptions().find(([id])=>!m.rankQuotas.some(q=>q.rankId===Number(id)))[0]),min:0,max:2}),renderBattleForces));
     m.combined.forEach((c,i)=>{
       fs.append(bfRow([el('span','combined'),bfText((c.tiers||[]).join(','),v=>c.tiers=v.split(',').map(Number).filter(n=>!isNaN(n)),'tiers'),bfNum(c.maximum,v=>c.maximum=v),bfDel(m.combined,i,renderBattleForces)]));
     });

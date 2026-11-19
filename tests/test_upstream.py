@@ -7,6 +7,8 @@ from server import validate
 class UpstreamTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
+        if not (ROOT/'references/upstream/legion.json').is_file():
+            raise unittest.SkipTest('Optional private import/OCR snapshot is not present')
         cls.catalog=json.loads((ROOT/'data/units.json').read_bytes());cls.units={u['id']:u for u in cls.catalog['units']}
         cls.defs=json.loads((ROOT/'data/catalog-definitions.json').read_bytes())
         cls.source=json.loads((ROOT/'references/upstream/legion.json').read_bytes())['data']

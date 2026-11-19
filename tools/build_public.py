@@ -13,6 +13,8 @@ FILES = [
     "index.html",
     "builder.js",
     "builder-view.js",
+    "rule-icons.js",
+    "rule-icons.css",
     "builder-sticky.js",
     "builder-overlays.js",
     "builder-model.js",

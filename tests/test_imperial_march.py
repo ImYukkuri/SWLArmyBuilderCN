@@ -20,11 +20,11 @@ class ImperialMarchTest(unittest.TestCase):
         self.assertNotIn('holders', grant)
         self.assertEqual(grant['condition'], self.card['restrictions']['condition'])
         for unit in self.units.values():
-            if unit.get('factionId') != 2 or unit.get('rankId') != 2:
+            if unit.get('factionId') != 2 or rules.army_rank(unit, 2, self.pkg, self.defs, self.units) != 2:
                 continue
             with self.subTest(unit=unit['id']):
                 candidates = {c['upgradeId']: c for c in rules.query_candidates(
-                    unit['id'], self.pkg, self.units, self.upgrades, unit['factions'][0]['id'])}
+                    unit['id'], self.pkg, self.units, self.upgrades, 2)}
                 self.assertTrue(candidates[self.card['id']]['available'])
 
     def test_training_and_special_slots_candidates_and_saved_validation_agree(self):

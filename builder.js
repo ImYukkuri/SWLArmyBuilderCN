@@ -12,9 +12,9 @@ let data = null,
 const Q = new URLSearchParams(location.search),
   DATA_BASE = Q.get("base") || "";
 
-const RANK_ORDER = [1, 6, 2, 3, 4, 5];
+const RANK_ORDER = [1, 6, 2, 3, 4, 5, 7];
 const RANK_GLYPH = { 1: "5", 6: "b", 2: "6", 3: "7", 4: "8", 5: "9" };
-const RANK_SHORT = { 1: "指挥", 6: "特工", 2: "核心", 3: "特种", 4: "支援", 5: "重型" };
+const RANK_SHORT = { 1: "指挥", 6: "特工", 2: "核心", 3: "特种", 4: "支援", 5: "重型", 7: "飞机" };
 const RANK_LABEL = {
   1: "Commander",
   6: "Operative",
@@ -22,7 +22,20 @@ const RANK_LABEL = {
   3: "Special Forces",
   4: "Support",
   5: "Heavy",
+  7: "Flier",
 };
+
+function setRankIcon(icon, rank) {
+  icon.replaceChildren();
+  if (rank === 7) icon.append(RuleIcons.icon('rank-flier'));
+  else icon.textContent = RANK_GLYPH[rank] || '';
+}
+function rankIcon(rank) {
+  const icon = el('span');
+  icon.className = 'rank-icon';
+  setRankIcon(icon, rank);
+  return icon;
+}
 
 let unitNameIndex = null;
 const TIMING_LABEL = {
@@ -343,7 +356,7 @@ function renderMode() {
 }
 
 function commandOf(id) {
-  return (data.defs.commands || []).find((c) => String(c.id) === String(id)) || null;
+  return (data.defs.commands || []).find((c) => !c.hidden && String(c.id) === String(id)) || null;
 }
 
 function commandName(cmd) {
@@ -372,6 +385,7 @@ function isMercenaryUnit(u) {
 }
 
 function commandAvailable(cmd) {
+  if (!cmd || cmd.hidden) return false;
   if (RulesCore.commandUnitRequirements(cmd, army, data.units, data.defs).some(g => !g.met)) return false;
   const facs = cmd.factions || [];
   const armyId = Number(army.armyId);
