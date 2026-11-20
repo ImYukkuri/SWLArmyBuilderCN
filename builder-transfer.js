@@ -34,6 +34,7 @@ window.BuilderTransfer = (() => {
     return names.filter(Boolean);
   }
   function resolve(kind, name, data, context = {}) {
+    if(context.army) data=RulesCore.resolveArmyData(context.army,data);
     const key = normalizeName(name), all = catalogs(data)[kind];
     const exact = all.filter(c=>normalizeName(reference(kind,c,data,context.host)?.name)===key);
     let hits = exact.length ? exact : all.filter(c=>aliases(kind,c,data).some(n=>normalizeName(n)===key));
@@ -100,6 +101,7 @@ window.BuilderTransfer = (() => {
       factionId:BuilderLibrary.factionOf(army.armyId,data),createdAt:now,updatedAt:now,army},issues:[],warnings:[]};
   }
   function exportTTS(record,data) {
+    data=RulesCore.resolveArmyData(record.army,data);
     const army=record.army, warnings=[],issues=[];
     function name(kind,c,where,host) {
       if(!c){issues.push(where+'：找不到本地卡牌');return '';}
@@ -138,24 +140,31 @@ window.BuilderTransfer = (() => {
       warnings.push('TTS 仅记录实体卡名称；反面／双面显示状态不会写入，重新导入时默认正面。');
     if(army.pointsLimit!==(army.mode==='recon'?600:1000))warnings.push('TTS 不保存自定义分数上限；请用原生 JSON 保留。');
     if(army.options?.length)warnings.push('TTS 名称格式不包含自定义规则选项，也不能区分免费副本；请同时导出原生 JSON 完整保留这些设置。');
+    if(army.battleForceSelection || army.units.some(u=>u.rankId != null))
+      warnings.push('TTS 格式不保存战斗部队规则组选择及单位所选军阶；请同时导出原生 JSON 保留这些设置。');
     return {json:out,warnings:[...new Set(warnings)],issues};
   }
   // Slot assignment is independent of unit order and can wait for upgrades that grant slots.
   // Import an unfinished/illegal army faithfully; regular validation reports legality afterwards.
   function assignSlots(inst,cards,army,data) {
-    const host=data.units[inst.unitId];let visits=0;
+    let visits=0;
+    const slotsFor=current=>{
+      const probe={...army,units:army.units.map(i=>i.instanceId===inst.instanceId?current:i)};
+      const resolved=RulesCore.resolveArmyData(probe,data);
+      return RulesCore.slotListFor(resolved.pkg,RulesCore.unitFor(current,probe,resolved),current,resolved.upgrades,army.armyId);
+    };
     function search(selected,pending) {
       if(!pending.length)return selected;
       if(++visits>5000)return null;
       const current={...inst,upgrades:selected};
-      const slots=RulesCore.slotListFor(data.pkg,host,current,data.upgrades,army.armyId);
+      const slots=slotsFor(current);
       const options=pending.map((card,index)=>({card,index,slots:slots.map((s,i)=>({s,i})).filter(({s,i})=>
         !selected.some(c=>c.slotIndex===i)&&(!s.unlockedBy||selected.some(c=>String(data.upgrades[c.upgradeId]?.upstream?.id)===String(s.unlockedBy)))&&
         RulesCore.accessKeys(card,data.pkg,data.pkg.upgradeRules?.[String(card.upstream?.id)]||{}).includes(s.key))})).filter(x=>x.slots.length)
         .sort((a,b)=>a.slots.length-b.slots.length);
       for(const option of options)for(const {i}of option.slots) {
         const next={...inst,upgrades:[...structuredClone(selected),{upgradeId:option.card.id,slotIndex:i,...(option.card.dualSided?{face:'front'}:{})}]};
-        const after=RulesCore.slotListFor(data.pkg,host,next,data.upgrades,army.armyId);
+        const after=slotsFor(next);
         if(!BuilderModel.rebindSlots(next,slots,after,data).ok)continue;
         const result=search(next.upgrades,pending.filter((_,j)=>j!==option.index));
         if(result)return result;
@@ -187,6 +196,9 @@ window.BuilderTransfer = (() => {
         factionId:faction,candidates:forces.filter(a=>BuilderLibrary.factionOf(a.id,data)===faction).map(a=>a.id),
         message:resolvedForce?'战斗部队与所选势力不匹配':forces.length>1?'战斗部队名称存在多个匹配':'找不到战斗部队，请指定对应项'});
     }
+    data=RulesCore.resolveArmyData(army,data);
+    if(data.pkg._v2 && data.pkg.battleForces[army.armyId].v2.selectionSchemes.length)
+      warnings.push('TTS JSON 不包含特质选择及单位所选军阶；请重新选择特质，并核对 BARC 的加入军阶。完整保留配置请使用原生 JSON。');
     function get(kind,n,key,context={}) {
       if(typeof n!=='string'||!n.trim())throw Error(key+' 必须为非空英文名称。');
       const override=resolutions[key], pool=catalogs(data)[kind];

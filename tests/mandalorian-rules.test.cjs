@@ -35,10 +35,10 @@ test('each clan includes its own units and generic Mandalorians, custom excludes
 });
 test('automatic helmet uses actual equipment; ambiguous Watch helmets remain a choice',()=>{
   for(const [id,helmet] of [[22,'children-of-the-watch'],[23,'clan-kryze'],[24,'clan-wren'],[25,'clan-saxon']]) {
-    const a=add(army(id),warrior);assert.deepEqual(a.units[0].upgrades.map(c=>c.upgradeId),[helmet]);parity.push(a);
+    const a=add(army(id),warrior);assert.deepEqual(a.units[0].upgrades.filter(c=>data.upgrades[c.upgradeId].slotIds.includes(25)).map(c=>c.upgradeId),[helmet]);parity.push(a);
   }
-  assert.equal(add(army(22),leader).units[0].upgrades.length,0);
-  assert.equal(add(army(26),warrior).units[0].upgrades.length,0);
+  for(const [id,host] of [[22,leader],[26,warrior]])
+    assert(!add(army(id),host).units[0].upgrades.some(c=>data.upgrades[c.upgradeId].slotIds.includes(25)));
 });
 test('affiliation errors are non-blocking, identify the unit and rank, and clear with an effective matching leader',()=>{
   let a=add(army(23),warrior);
@@ -54,7 +54,7 @@ test('two Initiates normally, more allowed for Watch within corps quota',()=>{
 });
 test('discounts apply per eligible host and cannot leak to a different faction',()=>{
   let a=add(army(26,['veterans','rapidDeployment']),warrior);
-  const e=equip(a,0,'galaar-15-carbines');assert(e.ok,e.reason);a=e.draft;
+  assert(a.units[0].upgrades.some(c=>c.upgradeId==='galaar-15-carbines'),'the only available free armament is now automatically equipped');
   assert.equal(RulesCore.upgradePoints(data.upgrades['galaar-15-carbines'],data.units[warrior],a,data),0);
   assert.equal(RulesCore.validateArmy(a,data).basePoints-RulesCore.validateArmy(a,data).effectivePoints,5);parity.push(a);
   let b=add(army(22),initiate);const personnel=equip(b,0,'the-armorer');assert(personnel.ok,personnel.reason);b=personnel.draft;
@@ -71,7 +71,8 @@ test('Tools free copies use real slots and allow ordinary Mandalorian troops',()
     assert.equal(RulesCore.validateArmy(a,data).effectivePoints,data.units[warrior].points);parity.push(a);
     a=add(a,warrior);assert(!equip(a,1,special).ok,'free copy unique across army');
     const paid=equip(a,1,id);if(id!=='whipcord-launcher'){assert(paid.ok,paid.reason);parity.push(paid.draft);}
-    a.options=[];assert(RulesCore.cleanupArmy(a,data).length===1);assert.equal(a.units[0].upgrades.length,0);
+    const retained=a.units[0].upgrades.filter(c=>!data.upgrades[c.upgradeId].runtimeVariant);
+    a.options=[];assert(RulesCore.cleanupArmy(a,data).length===1);assert.deepEqual(a.units[0].upgrades,retained);
   }
 });
 test('free and paid versions cannot repeat on one host, and free slots are not invented',()=>{
@@ -80,7 +81,8 @@ test('free and paid versions cannot repeat on one host, and free slots are not i
   const empty=structuredClone(data.units[warrior]);empty.upgradeSlots=[];assert(!RulesCore.slotListFor(data.pkg,empty,{upgrades:[]},data.upgrades,26).some(s=>s.key==='gear'));
   const c=data.upgrades['mc-tools-whipcord-launcher'];
   assert(!RulesCore.upgradeEligibility(c,data.units['rebels-rebel-troopers'],a,data).ok);
-  a.armyId=23;RulesCore.cleanupArmy(a,data);assert.equal(a.units[0].upgrades.length,0);assert.deepEqual(a.options,[]);
+  const retained=a.units[0].upgrades.filter(c=>!data.upgrades[c.upgradeId].runtimeVariant);
+  a.armyId=23;RulesCore.cleanupArmy(a,data);assert.deepEqual(a.units[0].upgrades,retained);assert.deepEqual(a.options,[]);
 });
 test('Guns for Hire has exactly three source-linked vehicles, one total, with added rules',()=>{
   let a=army(26,['gunsForHire','veterans']);const candidates=Object.values(data.units).filter(u=>u.runtimeVariant?.kind==='unit');assert.equal(candidates.length,3);

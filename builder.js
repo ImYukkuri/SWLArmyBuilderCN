@@ -199,6 +199,8 @@ function slotName(key) {
 }
 
 function unitSlotRecords(u, inst) {
+  data = RulesCore.resolveArmyData(army,data);
+  u = RulesCore.unitFor(inst,army,data) || u;
   return RulesCore.slotListFor(data.pkg, u, inst, data.upgrades, army.armyId);
 }
 
@@ -321,9 +323,17 @@ function renderFaction() {
   select.onchange = () => {
     const before = new Map(army.units.filter(i => data.units[i.unitId]).map(i =>
       [i.instanceId, unitSlotRecords(data.units[i.unitId], i)]));
-    army.armyId = Number(select.value);
-    const removed = RulesCore.cleanupArmy(army,data);
-    for (const inst of army.units) if (before.has(inst.instanceId))
+    const priorArmy=army;
+    army = BuilderLibrary.switchBattleForce(army, Number(select.value));
+    const v2Change=window.BattleForceRuntime && (data.pkg._v2 || BattleForceRuntime.active(army,data._source || data));
+    let removed=[];
+    if(v2Change) {
+      const result=BattleForceRuntime.reconfigure(priorArmy,army,data);
+      army=result.draft;removed=result.removed;
+    }
+    data=RulesCore.resolveArmyData(army,data);
+    removed.push(...RulesCore.cleanupArmy(army,data));
+    for (const inst of army.units) if (!v2Change && before.has(inst.instanceId))
       BuilderModel.rebindSlots(inst, before.get(inst.instanceId), unitSlotRecords(data.units[inst.unitId], inst),
         data, {allowOrphans: true});
     browser = null;
@@ -503,6 +513,7 @@ function restore() {
 }
 function render() {
   if (!data || !army || !activeRecord) return;
+  data = RulesCore.resolveArmyData(army,data);
   UpgradeFaces.normalizeArmy(army, data);
   army.mode = BuilderLibrary.modeForPoints(army.pointsLimit);
   const report = RulesCore.validateArmy(army, data);
@@ -568,7 +579,7 @@ function computeItemState(card) {
         reason: "需先加入对应的母单位，且不能超过其数量限制。",
         ok: false,
       };
-    const result = BuilderModel.addUnit(army, data, card.id, uid);
+    const result = BuilderModel.addUnit(army, data, card.id, uid, browser.rank);
     return result.ok
       ? { kind: "available", label: "点击加入军表", ok: true }
       : { kind: "blocked", label: "不可选择", reason: result.reason, ok: false };
@@ -620,7 +631,7 @@ function choose(card) {
   stateCache.clear();
   if (!computeItemState(card).ok) return;
   if (browser.mode === "units") {
-    const result = BuilderModel.addUnit(army, data, card.id, uid);
+    const result = BuilderModel.addUnit(army, data, card.id, uid, browser.rank);
     if (!result.ok) {
       setStatus(result.reason, true);
       return;

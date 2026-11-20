@@ -13,6 +13,8 @@ window.BuilderLibrary = (() => {
   function factionOf(armyId, data) {
     const id = Number(armyId);
     if (FACTIONS.some((f) => f.id === id)) return id;
+    const force = data.pkg.battleForces?.[id];
+    if (force?.engineVersion === 2 && Number.isSafeInteger(force.v2?.parentFactionId)) return force.v2.parentFactionId;
     const mapped = data.ttsNames?.battleForces?.[id]?.factionId;
     if (FACTIONS.some(f => f.id === mapped)) return mapped;
     const definition = data.defs.armies.find((a) => a.id === id);
@@ -38,6 +40,7 @@ window.BuilderLibrary = (() => {
     return data.defs.armies.filter(
       (a) =>
         a.id !== base.id &&
+        (RulesCore.battleForceVersion(data.pkg, a.id) === 1 || window.BattleForceRuntime?.active({armyId:a.id},data)) &&
         data.pkg.battleForces?.[a.id]?.status !== 'draft' &&
         !!data.pkg.battleForces?.[a.id] && factionOf(a.id, data) === base.id,
     );
@@ -47,6 +50,7 @@ window.BuilderLibrary = (() => {
     return points <= 600 ? "recon" : "standard";
   }
   function configuration(army, data) {
+    data = RulesCore.resolveArmyData(army,data);
     const mode = modeForPoints(army.pointsLimit);
     return {
       mode,
@@ -67,8 +71,26 @@ window.BuilderLibrary = (() => {
     value.commandIds ||= [];
     value.options ||= [];
     value.deck = normalizeDeck(value.deck);
-    for (const inst of value.units) inst.upgrades ||= [];
+    if (Object.prototype.hasOwnProperty.call(value, 'battleForceSelection')) {
+      if (!window.BattleForceV2) throw Error('战斗部队规则选择组件未载入。');
+      value.battleForceSelection = BattleForceV2.normalizeSelection(value.battleForceSelection);
+    }
+    for (const inst of value.units) {
+      inst.upgrades ||= [];
+      if (Object.prototype.hasOwnProperty.call(inst, 'rankId') && (!Number.isSafeInteger(inst.rankId) || inst.rankId <= 0))
+        throw Error('单位实例军阶必须为有效的军阶 ID。');
+    }
     return value;
+  }
+  function switchBattleForce(army, armyId) {
+    if (!Number.isSafeInteger(armyId) || armyId <= 0) throw Error('军队 ID 不正确。');
+    const draft = structuredClone(army);
+    if (draft.armyId !== armyId) {
+      draft.armyId = armyId;
+      delete draft.battleForceSelection;
+      for (const instance of draft.units) delete instance.rankId;
+    }
+    return draft;
   }
   const DECK_KINDS = ["primary", "secondary", "advantage"];
   function normalizeDeck(deck = {}) {
@@ -187,6 +209,7 @@ window.BuilderLibrary = (() => {
     modeForPoints,
     configuration,
     normalize,
+    switchBattleForce,
     normalizeDeck,
     setDeckCard,
     create,

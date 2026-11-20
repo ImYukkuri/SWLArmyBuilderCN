@@ -5672,11 +5672,15 @@
       "factionId": 5
     },
     "21": {
-      "name": "Wookiee Defenders",
+      "name": "Wookiee War Grove",
       "hqIds": [
         "wd"
       ],
-      "factionId": 4
+      "factionId": 4,
+      "aliases": [
+        "Wookiee Defenders",
+        "伍基守军"
+      ]
     },
     "22": {
       "name": "Children of the Watch",

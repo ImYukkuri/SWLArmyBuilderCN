@@ -14,6 +14,11 @@ Glyph mapping: commander=5, operative=b, corps=6, special forces=7,
 support=8, heavy=9; hit=h, critical=c, block=s,
 attack surge=a, defense surge=d.
 
+The Flier SVG in rule-icons.js derives from the Heavy glyph (9): the center
+and lower wings are retained, and the lower wings are reflected about y=280
+to add the upper wings. Its proportions retain the font's 1024 units/em and
+1302-unit advance. The same MIT notice applies to this derived symbol.
+
 Upgrade slot glyphs visually checked against local card symbols (2026-11-07):
 personnel=U, gear=G, grenades=N, heavy weapon=W, force=F, comms=O,
 pilot=P, hardpoint=H, command=C, training=M, generator=I, armament=B, crew=A.

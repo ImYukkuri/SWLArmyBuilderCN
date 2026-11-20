@@ -1,6 +1,6 @@
 {
   "schema": "swl-unit-catalog/v2",
-  "updatedAt": "2026-11-18T18:33:28.546580+00:00",
+  "updatedAt": "2026-11-20T02:32:21.379911+00:00",
   "definitions": "catalog-definitions.json",
   "referenceVersion": "2026.11.04.0",
   "units": [
@@ -11729,7 +11729,7 @@
         "en": "Clan Leader",
         "zh": "氏族族长"
       },
-      "points": 100,
+      "points": 85,
       "upgradeSlots": [
         9,
         10,
@@ -11747,28 +11747,22 @@
         "defenseSurge": "block"
       },
       "assets": {
-        "front": "assets/unit-cards/gar/originals/chieftain_front.webp",
-        "portrait": "assets/portraits/republic-chieftain-1571bf5eb365a6db1bb7.webp",
+        "front": "assets/unit-cards/gar/originals/republic-chieftain-nov2026.webp",
         "portraitCrop": [
           0.6699999999999999,
-          0.12349862258953165,
+          0.12379310344827582,
           0.99,
-          0.6965013774104682
-        ]
+          0.6962068965517241
+        ],
+        "portrait": "assets/portraits/republic-chieftain-6865c4576a66a39a2a8f.webp"
       },
       "review": {
         "status": "needs_review",
-        "notes": "",
-        "issues": [
-          "机器提取初稿：请对照原图校对全部数值、图标与词条。"
-        ]
+        "notes": "按用户提供的 11 月更新卡图逐项录入；中文卡文为待校对译文。",
+        "issues": []
       },
       "factionId": 4,
       "factions": [
-        {
-          "id": 4,
-          "rankId": 1
-        },
         {
           "id": 21,
           "rankId": 1
@@ -11793,6 +11787,10 @@
         },
         {
           "id": "scale"
+        },
+        {
+          "id": "special_issue",
+          "parameter": "伍基人林地战团"
         }
       ],
       "weapons": [
@@ -11814,7 +11812,7 @@
         },
         {
           "name": {
-            "en": "Chieftain's Bowcaster",
+            "en": "Chieftain’s Bowcaster",
             "zh": "酋长的弩枪"
           },
           "range": {
@@ -11829,7 +11827,7 @@
           "keywords": [
             {
               "id": "impact",
-              "value": 1
+              "value": 2
             },
             {
               "id": "pierce",
@@ -13689,39 +13687,35 @@
         "en": "Attack Craft",
         "zh": "攻击艇"
       },
-      "points": 57,
+      "points": 62,
       "upgradeSlots": [
-        6,
-        20,
-        13
+        13,
+        6
       ],
       "stats": {
         "models": 1,
         "wounds": 6,
         "courage": null,
         "resilience": 3,
-        "speed": 2,
+        "speed": 3,
         "defenseDie": "white",
         "attackSurge": "hit",
         "defenseSurge": "block"
       },
       "assets": {
-        "front": "assets/unit-cards/gar/originals/raddaugh_front.webp",
-        "portrait": "assets/portraits/republic-raddaugh-8fbea8224bdab2723d0a.webp",
+        "front": "assets/unit-cards/gar/originals/republic-raddaugh-nov2026.webp",
         "portraitCrop": [
           0.6699999999999999,
-          0.12349862258953165,
+          0.12379310344827582,
           0.99,
-          0.6965013774104682
-        ]
+          0.6962068965517241
+        ],
+        "portrait": "assets/portraits/republic-raddaugh-1346f51e65c922334747.webp"
       },
       "review": {
         "status": "needs_review",
-        "notes": "",
-        "issues": [
-          "机器提取初稿：请对照原图校对全部数值、图标与词条。",
-          "词条未匹配：Attack RUN；Immune: Blast, Melee, § Weapons；Special Issue: Wookiee Defenders"
-        ]
+        "notes": "按用户提供的 11 月更新卡图逐项录入；中文卡文为待校对译文。",
+        "issues": []
       },
       "factionId": 4,
       "factions": [
@@ -13735,21 +13729,27 @@
       "unitTypeId": 2,
       "keywords": [
         {
-          "id": "pending_attack_run"
-        },
-        {
           "id": "cover",
           "value": 2
         },
         {
-          "id": "pending_immune_blast_melee_weapons"
+          "id": "equip"
+        },
+        {
+          "id": "immune_blast"
+        },
+        {
+          "id": "immune_melee"
+        },
+        {
+          "id": "immune_range_1_weapons"
         },
         {
           "id": "reposition"
         },
         {
-          "id": "pending_special_issue_wookiee_defenders",
-          "parameter": "WoOKIEE DEFENDERS"
+          "id": "special_issue",
+          "parameter": "伍基人林地战团"
         },
         {
           "id": "speeder",
@@ -13759,7 +13759,7 @@
       "weapons": [
         {
           "name": {
-            "en": "Pilot's Kashyyyk Pistol",
+            "en": "Pilot’s Kashyyyk Pistol",
             "zh": "驾驶员的卡希克手枪"
           },
           "range": {
@@ -13768,8 +13768,8 @@
           },
           "dice": {
             "red": 0,
-            "black": 1,
-            "white": 1
+            "black": 2,
+            "white": 2
           },
           "keywords": []
         }
@@ -13788,7 +13788,11 @@
       "commandIds": [],
       "unitCategoryId": "vehicle",
       "unitSubtypeId": "repulsor_vehicle",
-      "nameIdentityId": "raddaugh-gnasp-fluttercraft"
+      "nameIdentityId": "raddaugh-gnasp-fluttercraft",
+      "equipSlotIds": [
+        "crew"
+      ],
+      "equipUpgradeIds": []
     },
     {
       "id": "republic-rex",
@@ -15615,7 +15619,7 @@
       ],
       "stats": {
         "models": 1,
-        "wounds": 3,
+        "wounds": 5,
         "courage": 2,
         "resilience": null,
         "speed": 3,
@@ -21387,6 +21391,7 @@
         10,
         6,
         2,
+        10,
         15
       ],
       "stats": {
@@ -23116,7 +23121,7 @@
         {
           "name": {
             "en": "Stolen Blasters",
-            "zh": ""
+            "zh": "缴获爆能枪"
           },
           "range": {
             "min": 1,
@@ -23129,7 +23134,7 @@
           },
           "keywords": [
             {
-              "id": "pending_loverwrieen"
+              "id": "overwhelm"
             }
           ]
         }
@@ -26845,6 +26850,229 @@
       "unitCategoryId": "trooper",
       "unitSubtypeId": null,
       "nameIdentityId": "stormtrooper-riot-squad"
+    },
+    {
+      "id": "republic-wookiee-treetop-defenders",
+      "name": {
+        "en": "Wookiee Warriors",
+        "zh": "伍基人战士"
+      },
+      "title": {
+        "en": "Treetop Defenders",
+        "zh": "树梢保卫者"
+      },
+      "points": 69,
+      "upgradeSlots": [
+        4,
+        10,
+        2,
+        3
+      ],
+      "stats": {
+        "models": 3,
+        "wounds": 3,
+        "courage": 2,
+        "resilience": null,
+        "speed": 2,
+        "defenseDie": "white",
+        "attackSurge": "hit",
+        "defenseSurge": "none"
+      },
+      "assets": {
+        "front": "assets/unit-cards/gar/originals/republic-wookiee-treetop-defenders-nov2026.webp",
+        "portraitCrop": [
+          0.6699999999999999,
+          0.12379310344827582,
+          0.99,
+          0.6962068965517241
+        ],
+        "portrait": "assets/portraits/republic-wookiee-treetop-defenders-d18f89023afced2de986.webp"
+      },
+      "review": {
+        "status": "needs_review",
+        "notes": "按用户提供的 11 月更新卡图逐项录入；中文卡文为待校对译文。",
+        "issues": []
+      },
+      "factionId": 4,
+      "factions": [
+        {
+          "id": 21,
+          "rankId": 2
+        }
+      ],
+      "affiliationIds": [],
+      "rankId": 2,
+      "unitTypeId": "local:wookiee_trooper",
+      "keywords": [
+        {
+          "id": "charge"
+        },
+        {
+          "id": "indomitable"
+        },
+        {
+          "id": "scale"
+        },
+        {
+          "id": "special_issue",
+          "parameter": "伍基人林地战团"
+        }
+      ],
+      "weapons": [
+        {
+          "name": {
+            "en": "Ryyk Blade",
+            "zh": "瑞克刃"
+          },
+          "range": {
+            "min": 0,
+            "max": 0
+          },
+          "dice": {
+            "red": 0,
+            "black": 2,
+            "white": 1
+          },
+          "keywords": []
+        },
+        {
+          "name": {
+            "en": "Kashyyyk Pistol",
+            "zh": "卡希克手枪"
+          },
+          "range": {
+            "min": 1,
+            "max": 2
+          },
+          "dice": {
+            "red": 0,
+            "black": 1,
+            "white": 1
+          },
+          "keywords": []
+        }
+      ],
+      "usage": "army_unit",
+      "rules": {
+        "unlimited": true
+      },
+      "divisions": [
+        "Light"
+      ],
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "wookiee_trooper",
+      "nameIdentityId": "wookiee-warriors"
+    },
+    {
+      "id": "republic-wookiee-fearsome-guardians",
+      "name": {
+        "en": "Wookiee Warriors",
+        "zh": "伍基人战士"
+      },
+      "title": {
+        "en": "Fearsome Guardians",
+        "zh": "凶悍守护者"
+      },
+      "points": 72,
+      "upgradeSlots": [
+        4,
+        10,
+        2,
+        3
+      ],
+      "stats": {
+        "models": 3,
+        "wounds": 3,
+        "courage": 2,
+        "resilience": null,
+        "speed": 2,
+        "defenseDie": "white",
+        "attackSurge": "hit",
+        "defenseSurge": "none"
+      },
+      "assets": {
+        "front": "assets/unit-cards/gar/originals/republic-wookiee-fearsome-guardians-nov2026.webp",
+        "portraitCrop": [
+          0.6699999999999999,
+          0.12379310344827582,
+          0.99,
+          0.6962068965517241
+        ],
+        "portrait": "assets/portraits/republic-wookiee-fearsome-guardians-c0ccc3734f8353032b8c.webp"
+      },
+      "review": {
+        "status": "needs_review",
+        "notes": "按用户提供的 11 月更新卡图逐项录入；中文卡文为待校对译文。",
+        "issues": []
+      },
+      "factionId": 4,
+      "factions": [
+        {
+          "id": 21,
+          "rankId": 3
+        }
+      ],
+      "affiliationIds": [],
+      "rankId": 3,
+      "unitTypeId": "local:wookiee_trooper",
+      "keywords": [
+        {
+          "id": "indomitable"
+        },
+        {
+          "id": "scale"
+        },
+        {
+          "id": "special_issue",
+          "parameter": "伍基人林地战团"
+        }
+      ],
+      "weapons": [
+        {
+          "name": {
+            "en": "Combat Training",
+            "zh": "战斗训练"
+          },
+          "range": {
+            "min": 0,
+            "max": 0
+          },
+          "dice": {
+            "red": 1,
+            "black": 0,
+            "white": 0
+          },
+          "keywords": []
+        },
+        {
+          "name": {
+            "en": "X1 Carbine",
+            "zh": "X1卡宾枪"
+          },
+          "range": {
+            "min": 1,
+            "max": 3
+          },
+          "dice": {
+            "red": 0,
+            "black": 1,
+            "white": 2
+          },
+          "keywords": []
+        }
+      ],
+      "usage": "army_unit",
+      "rules": {
+        "unlimited": true
+      },
+      "divisions": [
+        "Light"
+      ],
+      "commandIds": [],
+      "unitCategoryId": "trooper",
+      "unitSubtypeId": "wookiee_trooper",
+      "nameIdentityId": "wookiee-warriors"
     }
   ]
 }

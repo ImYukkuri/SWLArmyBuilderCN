@@ -79,7 +79,7 @@ function ruleInfo(k) {
     return {item, label: named(c.name), ref: {name: c.name, timing: ['action'],
       summary: textParts(named(c.description))}};
   }
-  const ref = keywordRef(item.id);
+  const ref = item._entry || keywordRef(item.id);
   if (!ref)
     return { item, ref: null, label: String(item.label || item.raw || item.id || "") };
   let label = named(ref.name);
@@ -317,7 +317,8 @@ function renderBrowser() {
       " / " +
       (RANK_LABEL[browser.rank] || "");
     $("#browser-category").textContent = "单位资料库";
-    currentCandidates = Object.values(data.units).filter(
+    currentCandidates = Object.values(data.units).filter(u => !data.pkg._v2 || u._v2Ranks?.includes(browser.rank))
+      .map(u => data.pkg._v2 ? BattleForceRuntime.candidate(u,browser.rank) : u).filter(
       (u) =>
         u.usage !== "counterpart" &&
         !u.isCounterpart &&
@@ -325,7 +326,7 @@ function renderBrowser() {
     );
   } else if (browser.mode === "upgrades") {
     const inst = army.units.find((i) => i.instanceId === browser.unitInstanceId),
-      u = inst && data.units[inst.unitId];
+      u = inst && RulesCore.unitFor(inst,army,data);
     if (!u || unitSlotRecords(u, inst)[browser.slotIndex]?.key !== browser.slotKey) {
       browser = null;
       renderBrowser();
@@ -360,7 +361,7 @@ function renderRankBar(report) {
   const rules = BuilderLibrary.configuration(army, data).rules;
   for (const rank of RANK_ORDER) {
     const count = army.units.filter(
-      (i) => data.units[i.unitId] && rankOf(data.units[i.unitId], army.armyId) === rank,
+      (i) => RulesCore.unitFor(i,army,data) && rankOf(RulesCore.unitFor(i,army,data), army.armyId) === rank,
     ).length;
     const quota = (rules.rankQuotas || []).find((q) => q.rankId === rank);
     const b = node("button", "rank-shortcut");
@@ -519,6 +520,36 @@ function upgradeDisplayPoints(card, instance = null) {
 
 function renderArmyOptions() {
   const box = $('#army-options'), bf = data.pkg.battleForces?.[army.armyId];
+  if (data.pkg._v2) {
+    box.hidden=false;box.replaceChildren();
+    const scheme=bf.v2.selectionSchemes.find(s=>s.id===army.battleForceSelection?.schemeId) || bf.v2.selectionSchemes[0];
+    if(!scheme){box.hidden=true;return;}
+    for(const group of scheme.groups) {
+      const section=node('div','v2-trait-group');section.dataset.selectionGroup=group.id;
+      section.append(node('span','v2-trait-label',named(group.name)));
+      const tags=node('div','army-option-tags');
+      for(const id of group.ruleGroupIds) {
+        const rule=bf.v2.ruleGroups.find(g=>g.id===id),selected=army.battleForceSelection?.groups[group.id]?.includes(id);
+        const button=node('button','army-option-tag',named(rule.name));button.type='button';
+        button.dataset.optionId=id;button.setAttribute('aria-pressed',String(!!selected));
+        button.title=(rule.textRulesZh || []).join('\n');
+        button.onclick=()=>{
+          try {
+            const draft=BattleForceV2.choose(army,bf,scheme.id,group.id,selected?[]:[id]);
+            const result=BattleForceRuntime.reconfigure(army,draft,data);army=result.draft;browser=null;
+            setStatus(result.removed.length?'已移除失效槽位中的升级：'+result.removed.join('、'):'');render();
+          }catch(error){setStatus(error.message,true);}
+        };
+        const choice=node('span','army-option-choice'),info=node('button','army-option-info','ⓘ');
+        info.type='button';info.setAttribute('aria-label','查看'+named(rule.name)+'规则');
+        info.setAttribute('aria-haspopup','dialog');info.dataset.ruleGroupId=id;
+        info.onclick=e=>{e.stopPropagation();showBattleForceRuleGroup(rule,info);};
+        choice.append(button,info);tags.append(choice);
+      }
+      section.append(tags);box.append(section);
+    }
+    return;
+  }
   const options = bf?.options || [];
   box.hidden = !bf?.optionCount || !options.length;
   box.replaceChildren();
@@ -532,9 +563,9 @@ function renderArmyOptions() {
     b.onclick = () => {
       if (!selected && count >= bf.optionCount) {setStatus('最多选择两条规则；请先取消其中一条。',true); return;}
       if (selected) army.options = army.options.filter(id => id !== option.id); else army.options.push(option.id);
-      const before = new Map(army.units.map(inst => [inst.instanceId,unitSlotRecords(data.units[inst.unitId],inst)]));
+      const before = new Map(army.units.map(inst => [inst.instanceId,unitSlotRecords(RulesCore.unitFor(inst,army,data),inst)]));
       const removed = RulesCore.cleanupArmy(army,data);
-      for (const inst of army.units) BuilderModel.rebindSlots(inst,before.get(inst.instanceId),unitSlotRecords(data.units[inst.unitId],inst),data,{allowOrphans:true});
+      for (const inst of army.units) BuilderModel.rebindSlots(inst,before.get(inst.instanceId),unitSlotRecords(RulesCore.unitFor(inst,army,data),inst),data,{allowOrphans:true});
       setStatus((selected ? '已取消：' : '已启用：') + (option.nameZh || option.name) + (removed.length ? '；已移除 '+removed.join('、') : ''));
       render();
     };
@@ -544,12 +575,39 @@ function renderArmyOptions() {
 }
 
 let battleForceDialog;
-function showBattleForceRules() {
+function battleForceRulesDialog(title) {
   if (!battleForceDialog) {battleForceDialog = node('dialog','battleforce-dialog');battleForceDialog.setAttribute('aria-label','战斗部队规则');document.body.append(battleForceDialog);}
-  const dialog = battleForceDialog, bf = data.pkg.battleForces?.[army.armyId], config = BuilderLibrary.configuration(army,data).rules;
+  const dialog = battleForceDialog;
   dialog.replaceChildren();
   const head = node('div','dialog-head'), close = node('button',null,'×');close.type='button';close.setAttribute('aria-label','关闭战斗部队规则');close.onclick=()=>dialog.close();
-  head.append(node('h2',null,bf?.nameZh || named(data.defs.armies.find(a => a.id === army.armyId)?.name)),close);dialog.append(head);
+  head.append(node('h2',null,title),close);dialog.append(head);
+  return dialog;
+}
+
+function appendBattleForceScopeRules(dialog,scope,withEntries=false) {
+  const texts=scope?.textRulesZh?.length ? scope.textRulesZh : scope?.textRules || [];
+  for (const text of texts) {const p=node('p');p.append(proseNode(text));dialog.append(p);}
+  const normalize=text=>text.replace(/\s+/g,'');
+  const printed=normalize(texts.join('\n'));
+  for (const entry of texts.length && !withEntries ? [] : scope?.entries || []) {
+    const text=entry.summary || entry.full;
+    if (!text || printed.includes(normalize(text))) continue;
+    const section=node('section','battleforce-entry');
+    section.append(node('h4',null,named(entry.name)),timingMarkers(entry.timing));
+    const p=node('p');p.append(proseNode(text));section.append(p);dialog.append(section);
+  }
+}
+
+function showBattleForceRuleGroup(rule,opener) {
+  const dialog=battleForceRulesDialog(named(rule.name));
+  if (rule.name?.en) dialog.append(node('p','muted',rule.name.en));
+  appendBattleForceScopeRules(dialog,rule);
+  showDialog(dialog,opener);
+}
+
+function showBattleForceRules() {
+  const bf = data.pkg.battleForces?.[army.armyId], config = BuilderLibrary.configuration(army,data).rules;
+  const dialog=battleForceRulesDialog(bf?.nameZh || named(data.defs.armies.find(a => a.id === army.armyId)?.name));
   dialog.append(node('p','muted',army.pointsLimit+' 分 · '+(army.mode === 'recon' ? '侦察' : '标准')));
   const rankLabel = id => {
     const label = node('span','force-rank'), icon = rankIcon(id);
@@ -578,8 +636,14 @@ function showBattleForceRules() {
   }
   dialog.append(node('h3',null,'特殊规则'));
   const paragraph = text => {const p=node('p');p.append(proseNode(text));return p;};
-  for (const text of bf?.textRulesZh?.length ? bf.textRulesZh : bf?.textRules || ['使用当前势力的基础组军规则。']) dialog.append(paragraph(text));
-  for (const o of bf?.options || []) if (o.text) {dialog.append(node('h4',null,o.nameZh || o.name),paragraph(o.text));}
+  const common = bf?.engineVersion === 2 ? bf.v2.common : bf;
+  appendBattleForceScopeRules(dialog,common || {textRulesZh:['使用当前势力的基础组军规则。']},true);
+  if (bf?.engineVersion === 2) {
+    for (const group of bf.v2.ruleGroups) {
+      dialog.append(node('h4',null,named(group.name)));
+      appendBattleForceScopeRules(dialog,group);
+    }
+  } else for (const o of bf?.options || []) if (o.text) {dialog.append(node('h4',null,o.nameZh || o.name),paragraph(o.text));}
   showDialog(dialog,$('#battleforce-info'));
 }
 
@@ -706,7 +770,7 @@ function statMatrix(u, { showModels = false } = {}) {
 
 function perUnitPoints(inst) {
   return (
-    (data.units[inst.unitId]?.points || 0) +
+    (RulesCore.unitFor(inst,army,data)?.points || 0) +
     inst.upgrades.reduce((s, ch) => s + upgradeDisplayPoints(data.upgrades[ch.upgradeId],inst), 0)
   );
 }
@@ -716,6 +780,7 @@ function displayUpgrade(c, inst = null, choice = null) {
     c = {...UpgradeFaces.view(c, choice.face), _unitId: inst.instanceId, _choiceId: choice.instanceId};
   }
   const host = data.units[inst?.unitId || army?.units.find((i) => i.instanceId === browser?.unitInstanceId)?.unitId];
+  if (data.pkg._v2) c = BattleForceRuntime.upgradeFor(c, inst ? RulesCore.unitFor(inst,army,data) : host, data);
   return BuilderModel.upgradePresentation(c, data, host);
 }
 
@@ -1033,7 +1098,7 @@ function keywordKey(k) {
 }
 
 function keywordEntries(inst) {
-  const u = data.units[inst.unitId],
+  const u = RulesCore.unitFor(inst,army,data),
     map = new Map();
   const add = (k, origin) => {
     const item = typeof k === "string" ? { id: k } : k;
@@ -1041,6 +1106,10 @@ function keywordEntries(inst) {
     const key = keywordKey(item);
     if (!map.has(key)) map.set(key, { ...item, origins: [] });
     const current = map.get(key);
+    if (item._battleForceSources?.length) {
+      const sources=new Map([...(current._battleForceSources || []),...item._battleForceSources].map(s=>[s.id,s]));
+      current._battleForceSources=[...sources.values()];
+    }
     if (origin && !current.origins.some((x) => x.id === origin.id && x._face === origin._face))
       current.origins.push(origin);
   };
@@ -1122,12 +1191,13 @@ function tag(k, { forceOpen = false, timing = false, showOrigin = true } = {}) {
     main.append(badge);
   }
   main.append(actionText(info.label));
-  if (showOrigin && k.origins?.length)
+  const origins=[...(showOrigin ? k.origins || [] : []).map(c=>originLabel(c)),...(k._battleForceSources || []).map(s=>s.name)];
+  if (origins.length)
     main.append(
       node(
         "small",
         "rule-origin",
-        k.origins.map((c) => "来自 " + originLabel(c)).join(" / "),
+        [...new Set(origins)].map(name=>"来自 " + name).join(" / "),
       ),
     );
   main.setAttribute("aria-haspopup", "dialog");
@@ -1267,7 +1337,7 @@ function weaponBlock(w, origin, forceOpen = false, timing = false) {
 }
 
 function unitWeapons(inst, forceOpen = false, timing = false) {
-  const u = data.units[inst.unitId],
+  const u = RulesCore.unitFor(inst,army,data),
     list = [
       ...(u?.weapons || []).map((w) => ({ w, origin: null })),
       ...inst.upgrades.flatMap((ch) => {
@@ -1458,6 +1528,7 @@ function openRule(k, anchor) {
       ruleTimings(k).map((t) => TIMING_LABEL[t] || t).join(" / "),
     ),
   );
+  for (const source of k._battleForceSources || []) rulePop.append(node('p','rule-origin','来自 '+source.name));
   const tabs = node("div", "rule-tabs");
   tabs.setAttribute("role", "tablist");
   tabs.setAttribute("aria-label", "词条说明长度");
@@ -1535,7 +1606,7 @@ function selectGroupSlot(group, index, key, trigger) {
 }
 
 function expandedContents(inst, { forceOpen = false, detail = false } = {}) {
-  const u = data.units[inst.unitId],
+  const u = RulesCore.unitFor(inst,army,data),
     out = node("div", "unit-expanded");
   const rules = keywordEntries(inst);
   const phases = phaseRules(rules, forceOpen, { hideArmyBuilding: !detail });
@@ -1835,9 +1906,9 @@ function briefHeader(
         removeOne(group);
       };
       controls.append(
-        plus,
-        node("span", "group-count", "×" + group.instances.length),
         minus,
+        node("span", "group-count", "×" + group.instances.length),
+        plus,
       );
     } else {
       const remove = node("button", "delete-unit");
@@ -2169,7 +2240,7 @@ function renderIssues(report) {
       node(
         "p",
         "issue " + issue.status,
-        (inst ? named(data.units[inst.unitId]?.name) + "：" : "") + issue.message,
+        (inst ? named(RulesCore.unitFor(inst,army,data)?.name) + "：" : "") + issue.message,
       ),
     );
   }

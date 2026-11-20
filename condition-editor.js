@@ -16,6 +16,7 @@ window.ConditionEditor = (() => {
     ["unit.title", "称号（含匹配用 contains）"],
     ["unit.name", "单位名称"],
     ["unit.keywords", "关键词"],
+    ["unit.hasEquip", "具有配备要求（含卡牌／槽位关联）"],
     ["unit.rankId", "军阶"],
     ["unit.upstreamId", "上游单位 ID"],
     ["unit.defenseDie", "防御骰"],
@@ -50,7 +51,8 @@ window.ConditionEditor = (() => {
     return toVal(raw);
   }
 
-  function renderNode(box, node, defs, onChange, rerender, removeSelf) {
+  function renderNode(box, node, defs, onChange, rerender, removeSelf, options = {}) {
+    const fields = options.fields || FIELDS;
     const item = E("div");
     item.className = "rule-item";
     if (node && typeof node === "object" && ("all" in node || "any" in node)) {
@@ -77,26 +79,26 @@ window.ConditionEditor = (() => {
           node[key].splice(i, 1);
           onChange();
           rerender();
-        });
+        }, options);
       });
       const add = E("button", "＋ 条件");
       add.type = "button";
       add.onclick = () => {
-        node[key].push({ field: "unit.unitTypeId", op: "eq", value: 1 });
+        node[key].push({ field: options.fields ? "unit.unitCategoryId" : "unit.unitTypeId", op: "eq", value: options.fields ? "trooper" : 1 });
         onChange();
         rerender();
       };
       const addGroup = E("button", "＋ 分组");
       addGroup.type = "button";
       addGroup.onclick = () => {
-        node[key].push({ all: [{ field: "unit.unitTypeId", op: "eq", value: 1 }] });
+        node[key].push({ all: [{ field: options.fields ? "unit.unitCategoryId" : "unit.unitTypeId", op: "eq", value: options.fields ? "trooper" : 1 }] });
         onChange();
         rerender();
       };
       const addNot = E("button", "＋ NOT");
       addNot.type = "button";
       addNot.onclick = () => {
-        node[key].push({ not: { field: "unit.unitTypeId", op: "eq", value: 1 } });
+        node[key].push({ not: { field: options.fields ? "unit.unitCategoryId" : "unit.unitTypeId", op: "eq", value: options.fields ? "trooper" : 1 } });
         onChange();
         rerender();
       };
@@ -107,7 +109,8 @@ window.ConditionEditor = (() => {
         onChange();
         rerender();
       };
-      item.append(add, addGroup, addNot, addRef);
+      item.append(add, addGroup, addNot);
+      if (options.allowRefs !== false) item.append(addRef);
       if (removeSelf) {
         const del = E("button", "删除");
         del.type = "button";
@@ -125,7 +128,7 @@ window.ConditionEditor = (() => {
         delete node.not;
         onChange();
         rerender();
-      });
+      }, options);
       if (removeSelf) {
         const del = E("button", "删除");
         del.type = "button";
@@ -160,18 +163,20 @@ window.ConditionEditor = (() => {
       return;
     }
     if (node && typeof node === "object" && "field" in node) {
+      item.classList.add('condition-leaf');
       const f = { input: E("select"), dl: null };
       f.input.className = "cond-field";
-      for (const [v, label] of FIELDS) {
+      for (const [v, label] of fields) {
         const op = E("option", v + " · " + label);
         op.value = v;
         f.input.append(op);
       }
-      if (!FIELDS.some(([v]) => v === node.field)) {
+      if (!fields.some(([v]) => v === node.field)) {
         const op = E("option", "待确认：" + node.field);
         op.value = node.field;
         f.input.append(op);
       }
+      f.input.setAttribute("aria-label", "条件字段");
       f.input.value = node.field;
       f.input.onchange = () => {
         node.field = f.input.value;
@@ -180,6 +185,7 @@ window.ConditionEditor = (() => {
       };
       const o = { input: E("select"), dl: null };
       o.input.className = "cond-op";
+      o.input.setAttribute("aria-label", "条件操作");
       for (const [v, label] of OPS) {
         const op = E("option", label + " · " + v);
         op.value = v;
@@ -313,7 +319,7 @@ window.ConditionEditor = (() => {
       "先选择条件字段，再从对应目录选择值；“属于”可逐项添加多个值。需要部分名称匹配时可切换手动输入。",
     );
     hint.className = "hint";
-    field.append(hint);
+    if (options.hint !== false) field.append(hint);
     if (!restrictions[key]) {
       field.append(E("p", options.emptyText || "当前未设置条件。"));
       const add = E("button", "添加条件");
@@ -329,7 +335,7 @@ window.ConditionEditor = (() => {
         delete restrictions[key];
         onChange();
         rerender();
-      });
+      }, options);
     }
     container.append(field);
   }

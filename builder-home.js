@@ -67,7 +67,9 @@ function openRoster(record) {
   closeEditorPanels();
   activeRecord = structuredClone(record);
   army = BuilderLibrary.normalize(record.army);
+  data = data._source || data;
   UpgradeFaces.normalizeArmy(army, data);
+  data = RulesCore.resolveArmyData(army, data);
   BuilderModel.migrateSlots(army, data);
   activeRecord.army = army;
   lastSavedRoster = collection.records.some(
@@ -135,6 +137,7 @@ function showLibrary() {
   closeEditorPanels();
   activeRecord = null;
   army = null;
+  data = data._source || data;
   lastSavedRoster = "";
   $("#editor-page").hidden = true;
   $("#library-page").hidden = false;

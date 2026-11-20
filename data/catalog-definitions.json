@@ -3971,6 +3971,20 @@
         "attack"
       ],
       "status": "reviewed"
+    },
+    {
+      "id": "special_issue",
+      "name": {
+        "en": "SPECIAL ISSUE",
+        "zh": "特供"
+      },
+      "actionTypes": [],
+      "timing": [
+        "army_building"
+      ],
+      "summary": "此单位只能加入指定的战斗部队。",
+      "full": "此单位只能加入特供关键词所指定的战斗部队。",
+      "status": "needs_review"
     }
   ],
   "factions": [
@@ -4116,7 +4130,7 @@
       "id": 14,
       "name": {
         "en": "The Ohnaka Gang",
-        "zh": "奥纳卡帮"
+        "zh": "奥纳卡帮派"
       },
       "parentName": null
     },
@@ -4171,8 +4185,8 @@
     {
       "id": 21,
       "name": {
-        "en": "Wookiee Defenders",
-        "zh": "伍基守军"
+        "en": "Wookiee War Grove",
+        "zh": "伍基人林地战团"
       },
       "parentName": "Galactic Republic"
     },
@@ -4228,7 +4242,7 @@
       "id": 28,
       "name": {
         "en": "Custom Clone Battalion",
-        "zh": "自定义克隆人营"
+        "zh": "自定义克隆人战斗营"
       },
       "parentName": "Galactic Republic"
     },
@@ -13965,7 +13979,7 @@
         "en": "Luke Skywalker",
         "zh": "卢克·天行者"
       },
-      "owner": "Luke Skywalker, Jedi Knight"
+      "owner": "卢克·天行者，绝地武士"
     },
     {
       "id": "30",
@@ -23203,7 +23217,7 @@
         "en": "Luke Skywalker",
         "zh": "卢克·天行者"
       },
-      "owner": "Luke Skywalker, Jedi Knight"
+      "owner": "卢克·天行者，绝地武士"
     },
     {
       "id": "89",
@@ -27254,9 +27268,204 @@
           "value": null
         }
       ]
+    },
+    {
+      "id": "over-the-top",
+      "name": {
+        "en": "Over the Top",
+        "zh": "跃出战壕"
+      },
+      "pips": 1,
+      "slotPips": 1,
+      "factions": [
+        27
+      ],
+      "unlockedBy": [],
+      "campaigns": [],
+      "owner": "224装甲师",
+      "orders": {
+        "en": "No Units",
+        "zh": "无单位"
+      },
+      "description": {
+        "en": "",
+        "zh": "每个友方{@icon.rank-commander}或{@icon.rank-operative}单位获得一个瞄准或闪避标记，然后每个友方{@icon.rank-commander}或{@icon.rank-operative}单位各自选择他们{@icon.range-2}以内的一个友方单位。被选中的单位可以视作指定的指挥官下达了一个命令或进行一个速度-1的移动。"
+      },
+      "keywords": [],
+      "review": {
+        "status": "needs_review",
+        "notes": "224 专属指挥卡占位；牌点与命令对象已按公开资料核对。",
+        "issues": [
+          "中文名称暂译；缺少卡文、词条与卡图。"
+        ],
+        "sources": [
+          "https://legion.takras.net/cards/command/over-the-top/"
+        ]
+      },
+      "image": "assets/command-cards/over-the-top.webp"
+    },
+    {
+      "id": "in-the-trenches",
+      "name": {
+        "en": "In the Trenches",
+        "zh": "战壕之间"
+      },
+      "pips": 2,
+      "slotPips": 2,
+      "factions": [
+        27
+      ],
+      "unlockedBy": [],
+      "campaigns": [],
+      "owner": "224th Armored Division",
+      "orders": {
+        "en": "2 Trooper Units",
+        "zh": "2 个士兵单位"
+      },
+      "description": {
+        "en": "",
+        "zh": "当单位被此卡下达命令时，直到回合结束前，那个单位获得1瞄准标记和 稳步 。在下个结束阶段的移除标记步骤，友方正在争夺任务标记的士兵单位多移除一个压制标记。"
+      },
+      "keywords": [],
+      "review": {
+        "status": "needs_review",
+        "notes": "224 专属指挥卡占位；牌点与命令对象已按公开资料核对。",
+        "issues": [
+          "中文名称暂译；缺少卡文、词条与卡图。"
+        ],
+        "sources": [
+          "https://legion.takras.net/cards/command/in-the-trenches/"
+        ]
+      },
+      "image": "assets/command-cards/in-the-trenches.webp"
+    },
+    {
+      "id": "creeping-barrage",
+      "name": {
+        "en": "Creeping Barrage",
+        "zh": "徐进弹幕"
+      },
+      "pips": 3,
+      "slotPips": 3,
+      "factions": [
+        27
+      ],
+      "unlockedBy": [],
+      "campaigns": [],
+      "owner": "224装甲师",
+      "orders": {
+        "en": "3 Units",
+        "zh": "3 个单位"
+      },
+      "description": {
+        "en": "",
+        "zh": "每个友方{@icon.rank-commander}和{@icon.rank-operative}单位可以在战场上{@icon.range-2}且视线中的位置放置1个烟雾标记。此外，每个友方炮兵士兵和地面载具可以选择{@icon.range-4}且视线中的一个敌方士兵单位，每个选中的单位获得1个压制标记"
+      },
+      "keywords": [],
+      "review": {
+        "status": "needs_review",
+        "notes": "224 专属指挥卡占位；牌点与命令对象已按公开资料核对。",
+        "issues": [
+          "中文名称暂译；缺少卡文、词条与卡图。"
+        ],
+        "sources": [
+          "https://legion.takras.net/cards/command/creeping-barrage/"
+        ]
+      },
+      "image": "assets/command-cards/creeping-barrage.webp"
+    },
+    {
+      "id": "crashing-counterattack",
+      "name": {
+        "en": "Crashing Counterattack",
+        "zh": "猛烈反击"
+      },
+      "pips": 1,
+      "slotPips": 1,
+      "factions": [
+        21
+      ],
+      "unlockedBy": [],
+      "campaigns": [],
+      "owner": "伍基人林地战团",
+      "orders": {
+        "en": "1 Wookiee Trooper Unit",
+        "zh": "1个伍基人士兵单位"
+      },
+      "description": {
+        "en": "When a unit is issued an order with this card, it may make a Move or an Attack using only Melee weapons. If its controlling player has fewer Victory Points than their opponent, it may instead make both a Move and an Attack using only Melee weapons.",
+        "zh": "单位通过此卡获得命令时，可以进行一次移动或一次仅使用近战武器的攻击。如果其控制玩家的胜利点数少于对手，则改为可以同时进行一次移动和一次仅使用近战武器的攻击。"
+      },
+      "keywords": [],
+      "image": "assets/command-cards/crashing-counterattack.webp",
+      "review": {
+        "status": "needs_review",
+        "notes": "按用户提供的 11 月更新卡图逐项录入；中文卡文为待校对译文。",
+        "issues": []
+      }
+    },
+    {
+      "id": "ferocious-leadership",
+      "name": {
+        "en": "Ferocious Leadership",
+        "zh": "凶猛统领"
+      },
+      "pips": 2,
+      "slotPips": 2,
+      "factions": [
+        21
+      ],
+      "unlockedBy": [],
+      "campaigns": [],
+      "owner": "伍基人林地战团",
+      "orders": {
+        "en": "2 {@icon.rank-commander} or {@icon.rank-operative} Units",
+        "zh": "2个{@icon.rank-commander}或{@icon.rank-operative}单位"
+      },
+      "description": {
+        "en": "After issuing orders, each allied Wookiee Trooper unit within {@icon.range-1} of 1 or more units that were issued an order with this card gains 1 Surge or 1 Dodge token. If that unit has 1 or more defeated miniatures or 1 or more Wound tokens, it instead gains 1 Surge and 1 Dodge token.",
+        "zh": "下达命令后，每个与至少1个通过此卡获得命令的单位相距{@icon.range-1}以内的友方伍基人士兵单位获得1个激增或1个闪避标记。如果该伍基人士兵单位已有至少1个模型被击败，或拥有至少1个伤害标记，则改为获得1个激增和1个闪避标记。"
+      },
+      "keywords": [],
+      "image": "assets/command-cards/ferocious-leadership.webp",
+      "review": {
+        "status": "needs_review",
+        "notes": "按用户提供的 11 月更新卡图逐项录入；中文卡文为待校对译文。",
+        "issues": []
+      }
+    },
+    {
+      "id": "relentless-resistance",
+      "name": {
+        "en": "Relentless Resistance",
+        "zh": "不屈抵抗"
+      },
+      "pips": 3,
+      "slotPips": 3,
+      "factions": [
+        21
+      ],
+      "unlockedBy": [],
+      "campaigns": [],
+      "owner": "伍基人林地战团",
+      "orders": {
+        "en": "3 Trooper Units",
+        "zh": "3个士兵单位"
+      },
+      "description": {
+        "en": "Once per Turn, when a unit that was issued an order with this card makes an Attack during its Activation, after the Attack is resolved, the attacking unit gains 2 Surge tokens and the defending unit gains 2 Observation tokens.",
+        "zh": "每回合一次，通过此卡获得命令的单位在其激活期间进行攻击时，在攻击结算后，攻击单位获得2个激增标记，防御单位获得2个观察标记。"
+      },
+      "keywords": [],
+      "image": "assets/command-cards/relentless-resistance.webp",
+      "review": {
+        "status": "needs_review",
+        "notes": "按用户提供的 11 月更新卡图逐项录入；中文卡文为待校对译文。",
+        "issues": []
+      }
     }
   ],
-  "updatedAt": "2026-11-19T08:28:06.624867+00:00",
+  "updatedAt": "2026-11-20T04:13:29.581962+00:00",
   "unitCategories": [
     {
       "id": "trooper",

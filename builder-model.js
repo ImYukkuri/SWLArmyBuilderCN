@@ -22,11 +22,12 @@ window.BuilderModel = (() => {
   }
 
   function groups(army, data) {
+    data = RulesCore.resolveArmyData(army,data);
     const result = new Map();
     for (const instance of army.units) {
       const key = signature(instance);
       if (!result.has(key))
-        result.set(key, { key, unit: data.units[instance.unitId], instances: [] });
+        result.set(key, { key, unit: RulesCore.unitFor(instance,army,data), instances: [] });
       result.get(key).instances.push(instance);
     }
     return [...result.values()];
@@ -64,7 +65,7 @@ window.BuilderModel = (() => {
     const identities = records => {
       const counts = new Map();
       return records.map(r => {
-        const key = JSON.stringify([r.key, r.addedBy || null]);
+        const key = JSON.stringify([r.key, r.addedBy || null, r.effectId || null]);
         const n = counts.get(key) || 0;
         counts.set(key, n + 1);
         return key + ':' + n;
@@ -98,6 +99,7 @@ window.BuilderModel = (() => {
   }
 
   function migrateSlots(army, data) {
+    if (RulesCore.battleForceVersion(data.pkg, army.armyId) !== 1) return army;
     if (army.slotLayoutVersion >= 1) return army;
     for (const inst of army.units || []) {
       const unit = data.units[inst.unitId];
@@ -112,6 +114,12 @@ window.BuilderModel = (() => {
   }
 
   function removeUpgrade(army, data, instanceId, choiceId) {
+    if (window.BattleForceRuntime?.active(army,data._source || data)) {
+      const draft=structuredClone(army),inst=draft.units.find(i=>i.instanceId===instanceId);
+      if(!inst)return;
+      inst.upgrades=inst.upgrades.filter(ch=>ch.instanceId!==choiceId);
+      army.units=BattleForceRuntime.reconfigure(army,draft,data).draft.units;return;
+    }
     const inst = army.units.find(i => i.instanceId === instanceId);
     if (!inst) return;
     const unit = data.units[inst.unitId];
@@ -173,9 +181,9 @@ window.BuilderModel = (() => {
       )
         return "与当前军表的升级处于同一互斥组。";
       if (
-        mine.has(String(other.upstream?.id)) ||
+        mine.has(String(other.upstream?.id || other.id)) ||
         RulesCore.unavailableSets(other, data.nameIndex, data.defs).up.has(
-          String(card.upstream?.id),
+          String(card.upstream?.id || card.id),
         )
       )
         return "与当前军表中已选升级互斥。";
@@ -185,7 +193,7 @@ window.BuilderModel = (() => {
 
   // An unfinished roster may exceed its budget or still need mandatory slots.
   // These stay visible in the report; equipment legality must hold at commit.
-  const transitional = new Set(["points_limit", "required_slot", "required_child_missing"]);
+  const transitional = new Set(["points_limit", "required_slot", "required_child_missing", "battle_force_selection_min", "battle_force_unit_min"]);
   function issueKey(issue, army) {
     let owner = issue.instanceId || null;
     for (const unit of army.units) {
@@ -252,13 +260,17 @@ window.BuilderModel = (() => {
       return "需先加入符合任一条件的母单位，且不能超过其数量限制。";
     return null;
   }
-  function addUnit(army, data, unitId, makeId) {
+  function addUnit(army, data, unitId, makeId, rankId = null) {
+    data = RulesCore.resolveArmyData(army,data);
     const unit = data.units[unitId];
     if (!unit) return { ok: false, reason: "单位资料已不存在。" };
+    if (data.pkg._v2 && !(unit._v2Ranks || []).includes(rankId ?? unit.rankId))
+      return {ok:false,reason:'所选军阶不适用于此单位。'};
     const reason = unitAdditionFailure(unit, army, data);
     if (reason) return { ok: false, reason };
     const draft = structuredClone(army),
       instance = { instanceId: makeId(), unitId, upgrades: [] };
+    if(data.pkg._v2)instance.rankId=rankId ?? unit.rankId;
     draft.units.push(instance);
     const errors = newErrors(army, draft, data);
     if (errors.length)
@@ -268,19 +280,24 @@ window.BuilderModel = (() => {
   }
 
   function equipDefaults(army, data, instanceId, makeId) {
+    data = RulesCore.resolveArmyData(army,data);
     let draft = army;
-    const unit = data.units[draft.units.find(i => i.instanceId === instanceId).unitId];
-    const instance = draft.units.find(i => i.instanceId === instanceId);
-    const wanted = [...new Set([...(unit.equipUpgradeIds || []),...RulesCore.defaultUpgradeIds(unit,instance,army,data)])];
+    const unit = RulesCore.unitFor(draft.units.find(i => i.instanceId === instanceId),draft,data);
+    const children = data.pkg.unitRules?.[String(unit.upstream?.id)]?.requiredChildren ?? unit.rules?.requiredChildren ?? [];
+    const requiredSources = new Set(children.filter(c => c.elementPropertyName === 'upgrades').map(c => String(c.id)));
+    const wanted = [...new Set([...(unit.equipUpgradeIds || []),...Object.values(data.upgrades)
+      .filter(c => requiredSources.has(String(c.upstream?.id))).map(c => c.id)])];
     const failures = new Map(), warnings = [];
     // Refresh after each real selection: a mandatory upgrade may grant additional slots.
     // A complete pass is required even after a match; retry earlier slots if grants changed.
-    let progress;
+    let progress, mandatoryPass = true;
     do {
       progress = false;
       for (let index = 0; ; index++) {
+        data = RulesCore.resolveArmyData(draft,data);
         const inst = draft.units.find(i => i.instanceId === instanceId);
-        const slots = RulesCore.slotListFor(data.pkg, unit, inst, data.upgrades, draft.armyId);
+        const host = RulesCore.unitFor(inst,draft,data);
+        const slots = RulesCore.slotListFor(data.pkg, host, inst, data.upgrades, draft.armyId);
         if (index >= slots.length) break;
         if (inst.upgrades.some(ch => ch.slotIndex === index)) continue;
         for (const id of wanted) {
@@ -296,7 +313,32 @@ window.BuilderModel = (() => {
           warnings.push(...result.warnings);
           break; // Only this occupied slot is finished; continue scanning the remaining slots.
         }
+        if (mandatoryPass || draft.units.find(i => i.instanceId === instanceId).upgrades.some(ch => ch.slotIndex === index)) continue;
+        const requiredSlot = RulesCore.equipSlotKeys(host,data.pkg).includes(slots[index].key);
+        const equipped = inst.upgrades.map(ch => data.upgrades[ch.upgradeId]).filter(Boolean);
+        const candidates = Object.values(data.upgrades).filter(card =>
+          RulesCore.accessKeys(card,data.pkg,data.pkg.upgradeRules?.[String(card.upstream?.id)] || {}).includes(slots[index].key) &&
+          !selectionFailure(card,inst,draft,data) && RulesCore.upgradeEligibility(card,host,draft,data,equipped).ok);
+        // Count all legal choices, including paid ones. A sole free choice among
+        // several candidates is still a player's decision, not a default.
+        if (!requiredSlot && !candidates.some(c => RulesCore.upgradePoints(c,host,draft,data) === 0)) continue;
+        const legal = [];
+        let probeId = 0;
+        const occupied = new Set(draft.units.flatMap(i => [i.instanceId,...i.upgrades.map(c => c.instanceId)]));
+        const probe = () => {let id; do {id = 'auto-equip-probe-' + ++probeId;} while (occupied.has(id)); return id;};
+        for (const card of candidates) {
+          const result = equip(draft,data,{unitInstanceId:instanceId,slotIndex:index,slotKey:slots[index].key},card.id,false,probe);
+          if (result.ok) legal.push(card);
+          if (legal.length > 1) break;
+        }
+        if (legal.length !== 1 || !requiredSlot && RulesCore.upgradePoints(legal[0],host,draft,data) !== 0) continue;
+        const result = equip(draft,data,{unitInstanceId:instanceId,slotIndex:index,slotKey:slots[index].key},legal[0].id,false,makeId);
+        if (result.ok) {draft = result.draft; progress = true; warnings.push(...result.warnings);}
       }
+      // Finish all named Equip selections before filling optional slots. Grants
+      // from either pass may enable earlier slots, so recheck without stopping early.
+      if (mandatoryPass && !progress) {mandatoryPass = false; progress = true;}
+      else if (!mandatoryPass && progress) mandatoryPass = true;
     } while (progress);
     const inst = draft.units.find(i => i.instanceId === instanceId);
     for (const id of wanted) if (!inst.upgrades.some(ch => ch.upgradeId === id)) {
@@ -316,6 +358,7 @@ window.BuilderModel = (() => {
   }
 
   function duplicate(army, data, instanceId, makeId) {
+    data = RulesCore.resolveArmyData(army,data);
     const instance = army.units.find((i) => i.instanceId === instanceId);
     if (!instance || !copyable(instance, data))
       return { ok: false, reason: "独特单位或带有独特升级的单位不能复制。" };
@@ -338,6 +381,7 @@ window.BuilderModel = (() => {
   }
 
   function equip(army, data, context, cardId, applyAll, makeId, face = "front") {
+    data = RulesCore.resolveArmyData(army,data);
     const card = data.upgrades[cardId];
     const first = army.units.find((i) => i.instanceId === context.unitInstanceId);
     if (!first || !card) return { ok: false, reason: "所选单位或升级已不存在。" };
@@ -369,8 +413,9 @@ window.BuilderModel = (() => {
         );
     }
     for (const id of ids) {
+      data = RulesCore.resolveArmyData(draft,data);
       const instance = draft.units.find((i) => i.instanceId === id),
-        unit = data.units[instance.unitId];
+        unit = RulesCore.unitFor(instance,draft,data);
       if (!unit) return { ok: false, reason: "单位资料已不存在。" };
       const records = originalSlots.get(id);
       const record = records[context.slotIndex];
@@ -408,7 +453,8 @@ window.BuilderModel = (() => {
         slotIndex: context.slotIndex,
         ...(card.dualSided ? {face: UpgradeFaces.mode(face)} : {}),
       });
-      const after = RulesCore.slotListFor(data.pkg, unit, instance, data.upgrades, draft.armyId);
+      data = RulesCore.resolveArmyData(draft,data);
+      const after = RulesCore.slotListFor(data.pkg, RulesCore.unitFor(instance,draft,data), instance, data.upgrades, draft.armyId);
       const rebound = rebindSlots(instance, records, after, data);
       if (!rebound.ok) return {ok: false, reason: '槽位变化后无法容纳已选升级，请先移除：' +
         rebound.unresolved.map(id => data.upgrades[id]?.name?.zh || data.upgrades[id]?.name?.en || id).join('、')};

@@ -43,7 +43,9 @@
 
     select.parentNode.insertBefore(wrap, select);
     wrap.append(trigger);
-    document.body.append(panel);
+    // A native modal dialog is above document.body in the top layer. Keep its
+    // dropdown inside that dialog so options remain visible and clickable.
+    (select.closest('dialog') || document.body).append(panel);
     select.style.display = 'none';
 
     let items = [];

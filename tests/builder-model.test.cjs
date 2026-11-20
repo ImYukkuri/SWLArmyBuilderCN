@@ -465,14 +465,16 @@ test('every named Equip loads all required cards through real slots with indepen
   assert(result.ok,result.reason);assert.deepEqual(result.warnings,[],u.id);
   assert.equal(JSON.stringify(army),before);
   const inst=result.draft.units[0];
-  assert.deepEqual(inst.upgrades.map(c=>c.upgradeId).sort(),[...u.equipUpgradeIds].sort(),u.id);
-  assert.equal(new Set(inst.upgrades.map(c=>c.slotIndex)).size,u.equipUpgradeIds.length);
-  assert.equal(new Set(inst.upgrades.map(c=>c.instanceId)).size,u.equipUpgradeIds.length);
+  assert(u.equipUpgradeIds.every(id=>inst.upgrades.some(c=>c.upgradeId===id)),u.id);
+  for(const c of inst.upgrades.filter(c=>!u.equipUpgradeIds.includes(c.upgradeId)))
+    assert.equal(RulesCore.upgradePoints(data.upgrades[c.upgradeId],u,result.draft,data),0,'optional automatic upgrade is free');
+  assert.equal(new Set(inst.upgrades.map(c=>c.slotIndex)).size,inst.upgrades.length);
+  assert.equal(new Set(inst.upgrades.map(c=>c.instanceId)).size,inst.upgrades.length);
   assert(!RulesCore.validateArmy(result.draft,data).issues.some(i=>i.code==='required_child_missing'));
   if(u.id==='rebels-cassian') assert.equal(inst.upgrades[0].face,'front');
   const repeat=BuilderModel.equipDefaults(result.draft,data,inst.instanceId,()=>`repeat-${++seq}`);
   assert.deepEqual(repeat.draft,result.draft);
-  const removed=structuredClone(result.draft);removed.units[0].upgrades.shift();
+  const removed=structuredClone(result.draft);removed.units[0].upgrades=removed.units[0].upgrades.filter(c=>c.upgradeId!==u.equipUpgradeIds[0]);
   assert.equal(RulesCore.validateArmy(removed,data).issues.filter(i=>i.code==='required_child_missing').length,1,u.id);
  }
 });

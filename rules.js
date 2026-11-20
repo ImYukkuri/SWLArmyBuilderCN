@@ -310,6 +310,10 @@ function renderBattleForces(){
   head.append(el('h2',bf.nameZh||definition?.name.zh||bf.name||''));
   const sub=el('p','所属阵营：'+(bf.parentFaction||'未标注')+' · 规则类型：'+(bf.status==='draft'?'草案 · 尚未启用':bf.status==='quotas_only'?'仅军阶配额':'规则 + 配额'));sub.className='hint';head.append(sub);
   main.append(head);
+  if (RulesCore.battleForceVersion(rules, bfId) !== 1) {
+    const link=el('a','打开 V2 战斗部队编辑器');link.href='battleforce-editor.html#'+bfId;main.append(link);
+    layout.append(main);box.append(layout);return;
+  }
   const pending=bf.status==='draft'?bf:bf.pendingRevision;
   if(pending?.draftSpec){
     const info=el('details');info.className='bf-section';

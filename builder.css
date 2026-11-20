@@ -3924,6 +3924,7 @@ dialog, .card-browser, .keyword-popover {
 .rank-shortcut { position: relative; display: grid; place-items: center; flex: 0 0 32px; width: 32px; height: 32px; padding: 0; border: 1px solid #aebfcb; border-radius: 50%; color: var(--accent); background: #f9fbfc; }
 .rank-shortcut .rank-icon { min-width: 0; font-size: 20px; }
 .rank-icon > svg.rule-symbol { display: block; width: 1em; height: 1em; margin: 0; }
+.rank-icon > svg.rule-symbol-flier { width: 1.271484375em; }
 .rank-shortcut .rank-plus { font: 25px/1 var(--body); }
 .rank-shortcut .rank-badge { position: absolute; right: -5px; top: -4px; min-width: 16px; padding: 0 3px; border-radius: 8px; background: #f7fafc; color: inherit; font: 700 12px/16px var(--numeric); }
 .rank-shortcut.empty:not(.invalid) { color: #7d909d; border-color: #c9d3db; }
@@ -4023,3 +4024,15 @@ html.page-overlay-open #army-units > .roster-unit > .unit-brief { visibility: hi
 .army-option-tag[aria-pressed=true]{color:white;background:#476b5c;border-color:#476b5c}
 .variant-label{display:inline-block;font-size:12px;color:#476b5c;font-weight:700}
 @media(max-width:760px){.battleforce-info{height:36px}.battleforce-dialog{padding:16px}.battleforce-dialog .dialog-head{top:-16px}.battleforce-dialog h2{font-size:19px}.army-option-tags{gap:4px}.army-option-tag{min-height:36px;padding-inline:8px}}
+/* V2 trait choices reuse the existing army-option buttons. */
+.v2-trait-group { display:flex; align-items:baseline; gap:8px; margin:5px 0; }
+.v2-trait-label { flex:0 0 7em; font-size:12px; white-space:nowrap; color:var(--muted,#657987); }
+.v2-trait-group .army-option-tags { flex:1; margin:0; }
+.army-option-choice { display:inline-flex; align-items:center; gap:1px; }
+.army-option-info { display:inline-flex; align-items:center; justify-content:center; flex:0 0 28px; width:28px; min-height:32px; padding:0; border:0; border-radius:50%; background:transparent; color:#526d60; font-size:18px; cursor:pointer; }
+.army-option-info:hover { background:#e5ece5; color:#243e30; }
+.army-option-info:focus-visible { outline:2px solid #476b5c; outline-offset:1px; }
+.battleforce-entry h4 { display:inline-block; margin-right:8px; }
+.battleforce-entry .timing-markers { vertical-align:middle; }
+@media(max-width:760px) { .army-option-info { min-height:36px; flex-basis:32px; width:32px; } }
+@media(max-width:600px) { .v2-trait-group { align-items:flex-start; } .v2-trait-label { padding-top:6px; } }

@@ -25,6 +25,8 @@ FILES = [
     "builder-home.js",
     "dice-enums.js",
     "rules-core.js",
+    "battleforce-v2.js",
+    "battleforce-runtime.js",
     "mandalorian-rules.js",
     "builder.css",
     "data/units.json",

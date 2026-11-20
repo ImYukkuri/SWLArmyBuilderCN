@@ -1,0 +1,56 @@
+.bfv-editor {--bfv-ink:#253540;--bfv-muted:#607486;--bfv-line:#ccd7df;--bfv-accent:#285d79;background:#edf1f4;color:var(--bfv-ink);}
+.bfv-editor .bfv-layout {display:grid;grid-template-columns:210px minmax(0,1fr);gap:20px;padding:18px 24px;max-width:1500px;margin:auto;}
+.bfv-editor #force-list {position:sticky;top:calc(var(--editor-tools-height,180px) + 16px);display:grid;gap:4px;align-self:start;max-height:calc(100dvh - var(--editor-tools-height,180px) - 40px);overflow:auto;background:transparent;padding:0;border:0;}
+.bfv-editor #force-list button {text-align:left;padding:10px 12px;border:0;border-left:3px solid transparent;background:transparent;white-space:normal;}
+.bfv-editor #force-list button[aria-pressed=true] {background:#fff;border-color:var(--bfv-accent);color:var(--bfv-accent);font-weight:700;}
+.bfv-editor #force-list small {display:block;font-size:11px;line-height:1.5;font-weight:400;color:var(--bfv-muted);}
+.bfv-editor .bfv-work {min-width:0;background:#fff;padding:20px 24px;border-top:3px solid var(--bfv-accent);}
+.bfv-editor .bfv-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 16px;align-items:start;}
+.bfv-editor .bfv-grid>.bfv-wide {grid-column:1/-1;}
+.bfv-editor .field {min-width:0;margin:0;display:flex;flex-direction:column;align-items:stretch;text-align:left;gap:5px;font-size:12px;color:var(--bfv-muted);}
+.bfv-editor .field>span {font-size:12px;}
+.bfv-editor input:not([type=checkbox]),.bfv-editor textarea,.bfv-editor select {width:100%;min-width:0;max-width:100%;box-sizing:border-box;font:inherit;color:var(--bfv-ink);padding:7px 9px;background:#f8fafb;border:1px solid var(--bfv-line);border-radius:3px;}
+.bfv-editor textarea {min-height:90px;line-height:1.55;resize:vertical;}
+.bfv-editor button {cursor:pointer;}
+.bfv-editor .bfv-actions {display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:8px 0;}
+.bfv-editor .bfv-id {font-size:11px;color:var(--bfv-muted);overflow-wrap:anywhere;}
+.bfv-editor .bfv-fold {border:0;border-top:1px solid var(--bfv-line);padding:13px 0;margin:12px 0 0;}
+.bfv-editor .bfv-fold>summary {font-size:15px;font-weight:700;cursor:pointer;color:var(--bfv-ink);}
+.bfv-editor .bfv-fold[open]>summary {margin-bottom:12px;}
+.bfv-editor .bfv-item {padding:12px 0;border-bottom:1px solid var(--bfv-line);}
+.bfv-editor .bfv-item:last-of-type {border-bottom:0;}
+.bfv-editor .bfv-chips {display:flex;gap:5px;flex-wrap:wrap;margin:8px 0;}
+.bfv-editor .bfv-chip {font-size:12px;padding:3px 7px;border:1px solid var(--bfv-line);background:#f3f6f8;border-radius:3px;white-space:normal;text-align:left;}
+.bfv-editor .bfv-chip[aria-pressed=true] {border-color:var(--bfv-accent);color:var(--bfv-accent);background:#e6eff5;}
+.bfv-editor .bfv-check {display:inline-flex;gap:6px;align-items:center;font-size:12px;}
+.bfv-editor .bfv-check input {width:16px;height:16px;margin:0;}
+.bfv-editor .bfv-group-layout {display:grid;grid-template-columns:165px minmax(0,1fr);gap:20px;}
+.bfv-editor .bfv-group-nav {display:flex;flex-direction:column;gap:4px;}
+.bfv-editor .bfv-group-nav button {text-align:left;border:0;border-radius:3px;background:#f3f6f8;}
+.bfv-editor .bfv-group-nav button[aria-pressed=true] {background:var(--bfv-accent);color:white;}
+.bfv-editor .bfv-message {margin:5px 0;font-size:13px;line-height:1.55;overflow-wrap:anywhere;}
+.bfv-editor .bfv-error {color:#ac3541;}
+.bfv-editor #config-issues:not(:empty) {border-left:3px solid #ac3541;padding:8px 12px;background:#fff5f5;margin-bottom:14px;}
+.bfv-editor .bfv-table {width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed;}
+.bfv-editor .bfv-table th,.bfv-editor .bfv-table td {padding:7px 5px;text-align:left;border-bottom:1px solid var(--bfv-line);vertical-align:top;overflow-wrap:anywhere;}
+.bfv-editor .bfv-table .field>span {display:none;}
+.bfv-editor .bfv-table .rank-name {display:flex;align-items:center;gap:6px;white-space:nowrap;}
+.bfv-editor .bfv-table .rank-name [data-rule-icon] {width:20px;height:20px;flex:none;}
+.bfv-editor .bfv-table .bfv-actions {margin:0;}
+.bfv-editor .bfv-dialog {width:min(760px,calc(100vw - 24px));max-height:85dvh;overflow:auto;padding:20px;background:#fff;color:var(--bfv-ink);border:1px solid var(--bfv-line);border-radius:6px;}
+.bfv-dialog::backdrop {background:#25354066;}
+.bfv-editor .bfv-dialog h2 {font-size:19px;margin:0 0 14px;}
+.bfv-editor .bfv-dialog .bfv-actions {position:sticky;bottom:-20px;background:#fff;padding:10px 0;border-top:1px solid var(--bfv-line);}
+.bfv-editor .restriction-section {margin:10px 0;padding:10px;min-width:0;}
+.bfv-editor .rule-item {min-width:0;flex-wrap:wrap;}
+.bfv-editor .condition-values {min-width:0;flex:1 1 180px;}
+.bfv-editor .condition-leaf {display:grid;grid-template-columns:minmax(0,1.1fr) minmax(85px,.5fr) minmax(0,1.2fr) auto;align-items:center;gap:6px;margin:6px 0;padding:6px 8px;}
+.bfv-editor .condition-leaf>strong {display:none;}
+.bfv-editor .condition-leaf>.combo {min-width:0;}
+.bfv-editor .condition-leaf .combo-trigger {padding:6px 8px;}
+.bfv-editor .condition-leaf .condition-values .option-control {display:flex;gap:4px;}
+.bfv-editor .condition-leaf .condition-values .combo {flex:1;min-width:0;}
+.bfv-editor .option-control {min-width:0;}
+.bfv-editor .bfv-preview-text {white-space:pre-wrap;font-size:13px;line-height:1.6;overflow-wrap:anywhere;}
+@media(max-width:900px){.bfv-editor .bfv-layout{grid-template-columns:160px minmax(0,1fr);padding:12px;gap:12px}.bfv-editor .bfv-work{padding:16px}.bfv-editor .bfv-group-layout{grid-template-columns:1fr}.bfv-editor .bfv-group-nav{flex-direction:row;flex-wrap:wrap}.bfv-editor .bfv-group-nav button{flex:1 1 110px}.bfv-editor .condition-leaf{grid-template-columns:minmax(0,1fr) 90px}.bfv-editor .condition-leaf .condition-values{grid-column:1/-1}.bfv-editor .condition-leaf>button{justify-self:start}}
+@media(max-width:600px){.bfv-editor .bfv-layout{display:block;padding:8px}.bfv-editor #force-list{position:static;display:flex;overflow:auto;margin-bottom:8px;max-height:none}.bfv-editor #force-list button{min-width:145px}.bfv-editor .bfv-work{padding:12px}.bfv-editor .bfv-grid{grid-template-columns:1fr;gap:10px}.bfv-editor .bfv-table{font-size:12px}.bfv-editor .bfv-table th,.bfv-editor .bfv-table td{padding:6px 3px}.bfv-editor .bfv-table .rank-name{white-space:normal}.bfv-editor .bfv-dialog{padding:14px}.bfv-editor .bfv-dialog .bfv-actions{bottom:-14px}}

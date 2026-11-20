@@ -171,6 +171,15 @@ def access_keys(card, package, upgrade_rule=None):
     return list(dict.fromkeys(keys))
 
 
+def has_equip(unit, package):
+    children = package.get('unitRules', {}).get(str(unit.get('upstream', {}).get('id', '')), {}).get('requiredChildren')
+    if children is None:
+        children = (unit.get('rules') or {}).get('requiredChildren', [])
+    return bool(unit.get('equipUpgradeIds') or unit.get('equipSlotIds') or
+                any(k.get('id') == 'equip' for k in unit.get('keywords', []) if isinstance(k, dict)) or
+                any(c.get('elementPropertyName') == 'upgrades' for c in children or []))
+
+
 def _unit_context(unit, package):
     return {
         "unit": {
@@ -185,6 +194,7 @@ def _unit_context(unit, package):
             "rankId": unit.get("rankId"),
             "affiliationIds": [str(a) for a in (unit.get("affiliationIds") or [])],
             "keywords": [k.get("id") for k in unit.get("keywords", []) if isinstance(k, dict)],
+            "hasEquip": has_equip(unit, package),
             "title": (((unit.get("title") or {}).get("en") or "") + " " + ((unit.get("title") or {}).get("zh") or "")).strip(),
             "titleEn": (unit.get("title") or {}).get("en") or "",
             "titleZh": (unit.get("title") or {}).get("zh") or "",
@@ -822,6 +832,12 @@ def upgrade_eligibility(card, unit, army, package, definitions, name_index, equi
 def validate_army(army):
     package = load_package()
     units, upgrades, definitions = load_cards()
+    force = package.get('battleForces', {}).get(str(army.get('armyId')), {})
+    version = force.get('engineVersion', None if 'v2' in force else 1)
+    if 'v2' in force or type(version) not in (int, float) or version != 1:
+        from battleforce_bridge import call_js
+        return call_js('validateArmy', army=army, data={'units': units, 'upgrades': upgrades,
+                       'defs': definitions, 'pkg': package, 'unitIdAliases': _read('data/units.json').get('idAliases', {})})
     data=prepare_data({'units':units,'upgrades':upgrades,'defs':definitions,'pkg':package})
     aliases = _read('data/units.json').get('idAliases', {})
     if aliases:

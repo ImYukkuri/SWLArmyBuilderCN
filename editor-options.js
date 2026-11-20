@@ -56,6 +56,7 @@ window.EditorOptions = (() => {
     ["unit.title", "单位称号"],
     ["unit.name", "单位名称"],
     ["unit.keywords", "词条"],
+    ["unit.hasEquip", "具有配备要求（含卡牌／槽位关联）"],
     ["unit.rankId", "军阶"],
     ["unit.upstreamId", "来源单位 ID"],
     ["unit.defenseDie", "防御骰"],
@@ -76,6 +77,28 @@ window.EditorOptions = (() => {
     function merge(key, rows) {
       tables[key] = unique([...(tables[key] || []), ...(rows || [])]);
     }
+    // V2 rule groups can define local keywords that are not global catalog
+    // records. Expose them to every typed keyword selector and condition
+    // value list, while keeping their IDs scoped to the owning battle force.
+    const localKeywords = [];
+    for (const [forceId, battleForce] of Object.entries(pkg?.battleForces || {})) {
+      const scopes = [battleForce?.v2?.common, ...(battleForce?.v2?.ruleGroups || [])].filter(Boolean);
+      for (const entry of scopes.flatMap(scope => scope.entries || [])) {
+        if (!entry?.id || !entry.name) continue;
+        const id = `bf:${forceId}:${entry.id}`;
+        localKeywords.push({
+          id,
+          name: entry.name,
+          summary: entry.summary || '',
+          full: entry.full || '',
+          timing: entry.timing || [],
+          battleForceId: String(forceId),
+          localEntryId: entry.id,
+        });
+      }
+    }
+    merge('keywords', localKeywords.map(k => option(k.id,
+      `临时词条 · ${labelOf(k)} · ${k.battleForceId}`)));
     merge(
       "sourceUnits",
       units
@@ -192,6 +215,7 @@ window.EditorOptions = (() => {
       );
     }
     function condition(field, op = "eq") {
+      if (field === "unit.hasEquip") return [option(true,"是"),option(false,"否")];
       const t = {
         "unit.unitCategoryId": "unitCategories",
         "unit.unitSubtypeId": "unitSubtypes",

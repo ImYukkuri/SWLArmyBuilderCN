@@ -10,6 +10,7 @@ import maintenance_store
 import rules
 from unit_identity import rename_documents, resolve_id, rewrite_references
 from rule_schema import validate_rules
+from battleforce_bridge import validate_package as validate_battleforce_package
 
 ROOT=Path(__file__).resolve().parent;DATA=ROOT/'data/units.json';HISTORY=ROOT/'history'
 LOCK=threading.Lock()
@@ -249,6 +250,7 @@ def commit_rules(package,revision,definitions_revision=None):
             bf['name']=name;bf['nameZh']=zh
             army['name']={'en':name,'zh':zh}
             renamed=True
+        validate_battleforce_package(package)
         stamp=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S.%fZ');snapshot=stamp+'-'+digest(original)[:12]+'.json'
         (ROOT/'history/slot-rules').mkdir(parents=True,exist_ok=True);atomic(ROOT/'history/slot-rules'/snapshot,original)
         content=encoded(package)
@@ -308,8 +310,12 @@ class Handler(BaseHTTPRequestHandler):
             files['/builder-overlays.js']='builder-overlays.js'
             files['/builder-sticky.js']='builder-sticky.js'
             files['/mandalorian-rules.js']='mandalorian-rules.js'
+            files['/battleforce-v2.js']='battleforce-v2.js'
+            files['/battleforce-runtime.js']='battleforce-runtime.js'
+            files.update({'/battleforces':'battleforce-editor.html', **{'/'+name:name for name in ['battleforce-editor.html','battleforce-editor.js','battleforce-editor.css']}})
             files['/rule-icons.js']='rule-icons.js'
             files['/rule-icons.css']='rule-icons.css'
+            files['/editor-symbols.js']='editor-symbols.js'
             files.update({'/keywords':'keywords.html','/keywords.html':'keywords.html','/keyword-editor.js':'keyword-editor.js','/keyword-editor.css':'keyword-editor.css'})
             if path in files:p=ROOT/files[path]
             elif path.startswith('/assets/'):

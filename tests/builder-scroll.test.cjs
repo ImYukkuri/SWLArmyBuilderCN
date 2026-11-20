@@ -61,6 +61,272 @@ async function samePosition(page, y) {
 }
 const unit = page => page.locator('#army-units > .roster-unit').nth(10);
 
+for(const mobile of [true,false]) test(`${mobile?'mobile':'desktop'} battle force group info preserves choices and keyword sources`,async t=>{
+  const page=await setup(t,mobile);
+  await page.evaluate(()=>openRoster(BuilderLibrary.create(4,'Rule group regression',data,uid,new Date().toISOString())));
+  await page.selectOption('#battleforce','28');
+  const choice=page.locator('.army-option-tag[data-option-id="ccb_decisive"]');
+  const info=page.locator('.army-option-info[data-rule-group-id="ccb_decisive"]');
+  const before=await page.evaluate(()=>JSON.stringify(army));
+  await info.click();
+  const dialog=page.locator('.battleforce-dialog');
+  assert.equal(await dialog.isVisible(),true);
+  assert.equal(await dialog.locator('h2').innerText(),'果决');
+  assert((await dialog.innerText()).includes('绝地武士'));
+  assert.equal(await page.evaluate(()=>JSON.stringify(army)),before,'reading a rule must not choose it');
+  await page.keyboard.press('Escape');await frames(page);
+  assert.equal(await info.evaluate(n=>n===document.activeElement),true);
+  for(const id of ['ccb_assault','ccb_reinforced','ccb_decisive']) await page.locator(`.army-option-tag[data-option-id="${id}"]`).click();
+  assert.equal(await choice.getAttribute('aria-pressed'),'true');
+  await info.click();await dialog.getByRole('button',{name:'关闭战斗部队规则'}).click();
+  assert.equal(await choice.getAttribute('aria-pressed'),'true','info must not deselect a rule');
+  await page.locator('#rank-add-bar [data-rank="6"]').click();
+  const candidate=page.locator('#card-grid [data-id="republic-jedi-knight"]');
+  const local=candidate.locator('[data-rule-id="bf:28:ccb_decisive-rule"]');
+  assert.equal(await local.locator('.rule-origin').innerText(),'来自 自定义克隆人战斗营');
+  await candidate.locator('.bilingual-name').click();
+  const roster=page.locator('#army-units > .roster-unit').first();
+  await roster.locator('.expand-unit').click();
+  await roster.locator('[data-rule-id="bf:28:ccb_decisive-rule"] .rule-tag-main').click();
+  assert.equal(await page.locator('#keyword-popover .rule-origin').innerText(),'来自 自定义克隆人战斗营');
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+});
+
+for(const mobile of [true,false]) test(`${mobile?'mobile':'desktop'} irregular summaries show matching phases, sources and real symbols`,async t=>{
+  const page=await setup(t,mobile);
+  await page.evaluate(()=>openRoster(BuilderLibrary.create(1,'Irregulars regression',data,uid,new Date().toISOString())));
+  await page.selectOption('#battleforce','29');
+  await page.locator('#rank-add-bar [data-rank="6"]').click();
+  const candidate=page.locator('#card-grid [data-id="rebels-cassian"]');
+  assert.equal(await candidate.locator('[data-rule-id^="bf:29:"]').count(),2);
+  assert.equal(await candidate.locator('[data-rule-id="field_commander"] .rule-origin').innerText(),'来自 非正规军');
+  await candidate.locator('.bilingual-name').click();
+  const roster=page.locator('#army-units > .roster-unit').first();
+  await roster.locator('.expand-unit').click();
+  assert.equal(await roster.locator('[data-phase="global"] [data-rule-id="bf:29:irregulars"]').count(),1);
+  const operative=roster.locator('[data-phase="activation_start"] [data-rule-id="bf:29:undisciplined-operative"]');
+  await operative.locator('.rule-tag-toggle').click();
+  assert.equal(await operative.locator('[data-rule-icon="range-half"]').count(),3);
+  assert.equal(await operative.locator('[data-rule-icon="hit"]').count(),1);
+  assert.equal(await operative.locator('[data-rule-icon="critical"]').count(),1);
+  await operative.locator('.rule-tag-main').click();
+  assert.equal(await page.locator('#keyword-popover [role="tab"][aria-selected="true"]').innerText(),'简写');
+  assert((await page.locator('#rule-text-panel').innerText()).includes('扔5颗黑攻击骰'));
+  await page.getByRole('button',{name:'关闭词条',exact:true}).click();
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+});
+
+for(const mobile of [true,false]) test(`${mobile?'mobile':'desktop'} symbol drawer preserves selection, inserts real tokens and copies without changing text`,async t=>{
+  const page=await setup(t,mobile);
+  await page.context().grantPermissions(['clipboard-read','clipboard-write']);
+  await page.goto(base+'keywords.html');await page.locator('#keyword-list button').first().click();
+  const input=page.locator('#summary'),panel=page.locator('#editor-symbols');
+  await input.fill('开头替换结尾');await input.evaluate(n=>{n.focus();n.setSelectionRange(2,4);});
+  const pageY=await page.evaluate(()=>scrollY);
+  await page.locator('#editor-symbols-toggle').click();
+  assert.equal(await panel.getAttribute('aria-modal'),'false');
+  await page.getByRole('searchbox',{name:'查找图标',exact:true}).fill('飞机');
+  assert.equal(await panel.locator('[data-rule-icon="rank-flier"]').count(),1);
+  await panel.locator('[data-symbol="rank-flier"]').click();
+  assert.equal(await input.inputValue(),'开头{@icon.rank-flier}结尾');
+  assert.equal(await page.locator('#preview-text [data-rule-icon="rank-flier"]').count(),1);
+  assert((await page.locator('#dirty').innerText()).includes('未保存'));
+  await page.getByRole('searchbox',{name:'查找图标',exact:true}).fill('range-half');
+  await panel.locator('[data-symbol="range-half"]').click();
+  const inserted='开头{@icon.rank-flier}{@icon.range-half}结尾';
+  assert.equal(await input.inputValue(),inserted);
+  assert.equal(await page.evaluate(()=>scrollY),pageY,'drawer must not scroll the page');
+  await panel.getByRole('button',{name:'复制文本',exact:true}).click();
+  await panel.locator('[data-symbol="range-half"]').click();
+  await page.waitForFunction(()=>document.querySelector('.editor-symbols-feedback').textContent.startsWith('已复制'));
+  assert.equal(await page.evaluate(()=>navigator.clipboard.readText()),'{@icon.range-half}');
+  assert.equal(await input.inputValue(),inserted);
+  await page.keyboard.press('Escape');assert.equal(await panel.isVisible(),false);
+  assert.equal(await input.evaluate(n=>document.activeElement===n),true);
+  // Verify the normal save path receives the inserted text, without writing source files.
+  let saved;
+  await page.route('**/api/keywords/save',route=>{saved=route.request().postDataJSON();return route.fulfill({status:400,
+    contentType:'application/json',body:JSON.stringify({error:'测试已截获保存，不写入源文件'})});});
+  await Promise.all([page.waitForResponse('**/api/keywords/save'),page.locator('#save').click()]);
+  assert.equal(saved.card.summary,inserted);
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+});
+
+test('symbol reference loads in every editor and refuses stale, search and numeric insertion targets',async t=>{
+  const page=await setup(t,false);
+  for(const file of ['units','upgrades','commands','armies','rules','keywords']){
+    await page.goto(base+file+'.html');await page.locator('#editor-symbols-toggle').click();
+    const panel=page.locator('#editor-symbols');
+    await page.getByRole('combobox',{name:'图标类别',exact:true}).selectOption('军阶');
+    assert.equal(await panel.locator('.editor-symbol-option').count(),7,file);
+    assert.equal(await panel.locator('[data-rule-icon="rank-flier"]').count(),1,file);
+    await page.getByRole('button',{name:'关闭图标参考',exact:true}).click();
+  }
+  await page.locator('#keyword-list button').first().click();
+  await page.locator('#summary').focus();
+  await page.locator('#keyword-list button').nth(1).click();
+  const next=await page.locator('#summary').inputValue();
+  await page.context().grantPermissions(['clipboard-read','clipboard-write']);
+  await page.locator('#editor-symbols-toggle').click();
+  await page.getByRole('combobox',{name:'图标类别',exact:true}).selectOption('');
+  await page.locator('#editor-symbols [data-symbol="hit"]').click();
+  await page.waitForFunction(()=>document.querySelector('.editor-symbols-feedback').textContent.startsWith('已复制'));
+  assert.equal(await page.locator('#summary').inputValue(),next,'switching cards must forget the old caret');
+  assert.equal(await page.evaluate(()=>navigator.clipboard.readText()),'{@icon.hit}');
+  await page.getByRole('button',{name:'关闭图标参考',exact:true}).click();
+  await page.goto(base+'upgrades.html');await page.locator('#list button').first().click();
+  const points=page.getByRole('spinbutton',{name:'点数',exact:true}),value=await points.inputValue();
+  await points.focus();await page.locator('#editor-symbols-toggle').click();
+  await page.locator('#editor-symbols [data-symbol="hit"]').click();
+  assert.equal(await points.inputValue(),value);
+  // Clipboard rejection leaves the exact token selected for manual copying.
+  await page.evaluate(()=>{
+    Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async()=>{throw Error('denied');}}});
+    document.execCommand=()=>false;
+  });
+  await page.locator('#editor-symbols [data-symbol="critical"]').click();
+  assert.equal(await page.getByRole('textbox',{name:'手动复制图标标记',exact:true}).inputValue(),'{@icon.critical}');
+  assert((await page.locator('.editor-symbols-feedback').innerText()).includes('复制未完成'));
+});
+
+test('224 placeholder cards load in both maintenance editors without missing metadata',async t=>{
+  const page=await setup(t,false);
+  await page.goto(base+'upgrades.html');await page.locator('#list button').first().waitFor();
+  await page.locator('#search').fill('frontal-assault');
+  await page.locator('#list button[data-id="frontal-assault"]').click();
+  assert.equal(await page.locator('#title').innerText(),'正面突击');
+  assert((await page.locator('#issues').innerText()).includes('缺少卡文'));
+  await page.locator('[data-tab="rules"]').click();
+  assert((await page.locator('#rule-editor').innerText()).includes('帝国军官'));
+  await page.goto(base+'commands.html');await page.locator('#list button').first().waitFor();
+  const commands=await page.evaluate(async()=> (await (await fetch('/data/catalog-definitions.json')).json()).commands);
+  for(const id of ['over-the-top','in-the-trenches','creeping-barrage']) {
+    await page.locator('#search').fill(id);await page.locator('#list button').first().click();
+    assert.equal(await page.locator('#title').innerText(),commands.find(c=>c.id===id).name.zh);
+  }
+});
+
+for(const mobile of [true,false]) test(`${mobile?'mobile':'desktop'} 224 rank entries, extra copies and editable cards`,async t=>{
+  const page=await setup(t,mobile),officer='empire-imperial-officer-ruthless-efficiency';
+  await page.evaluate(()=>openRoster(BuilderLibrary.create(2,'224 browser regression',data,uid,new Date().toISOString())));
+  await page.selectOption('#battleforce','27');
+  assert((await page.locator('#rank-add-bar [data-rank="2"]').innerText()).includes('/7'));
+  await page.selectOption('#points-limit','600');
+  assert((await page.locator('#rank-add-bar [data-rank="2"]').innerText()).includes('/5'));
+  await page.selectOption('#points-limit','1000');
+  const add=async(rank,id)=>{
+    await page.locator(`#rank-add-bar [data-rank="${rank}"]`).click();
+    await page.locator(`#card-grid [data-id="${id}"] .bilingual-name`).click();
+  };
+  await add(3,'empire-riot-squad-trench-buster');
+  assert.equal(await page.evaluate(()=>RulesCore.validateArmy(army,data).rankCounts[3]),1);
+  await add(1,officer);
+  const commanders=()=>page.locator('#army-units > .roster-unit').filter({hasText:'Ruthless Efficiency'});
+  await commanders().first().locator('[data-slot-index="0"] .slot-name').click();
+  await page.locator('#card-grid [data-id="academy-trained"] .identity h3').click();
+  await page.locator('#browser-close').click();
+  await commanders().first().locator('.copy-unit').click();
+  assert.deepEqual(await commanders().first().locator('.instance-controls>*').evaluateAll(ns=>ns.map(n=>n.className)),
+    ['remove-unit','group-count','copy-unit']);
+  assert.equal(await page.evaluate(()=>army.units.flatMap(i=>i.upgrades).filter(c=>c.upgradeId==='academy-trained').length),2);
+  await add(1,officer);
+  await commanders().last().locator('[data-slot-index="0"] .slot-name').click();
+  await page.locator('#show-unavailable').check();
+  assert.equal(await page.locator('#card-grid [data-id="academy-trained"]').getAttribute('data-state'),'blocked');
+  const frontal=page.locator('#card-grid [data-id="frontal-assault"]');
+  assert.equal(await frontal.getAttribute('data-state'),'available');assert((await frontal.innerText()).includes('Frontal Assault'));
+  await frontal.locator('.identity h3').click();await page.locator('#browser-close').click();
+  for(const id of ['over-the-top','in-the-trenches','creeping-barrage']) {
+    const pips=await page.evaluate(id=>data.defs.commands.find(c=>c.id===id).pips,id);
+    await page.locator('#deck-panel .empty-command').filter({hasText:pips+' 牌点指挥卡'}).first().click();
+    await page.locator('#show-unavailable').uncheck();
+    const candidate=page.locator(`#card-grid [data-id="${id}"]`);
+    assert.equal(await candidate.getAttribute('data-state'),'available');
+    assert((await candidate.innerText()).includes('命令对象'));
+    await candidate.locator('.command-overlay').click();
+    if(await page.evaluate(()=>!!browser)) await page.locator('#browser-close').click();
+  }
+  await page.evaluate(()=>saveActiveRoster());await page.reload();
+  await page.waitForFunction(()=>typeof army!=='undefined'&&army?.armyId===27&&army.units.length===4);
+  assert.equal(await page.locator('#deck-panel .command-chosen').count(),3);
+  assert.equal(await page.evaluate(()=>army.units.flatMap(i=>i.upgrades).filter(c=>c.upgradeId==='academy-trained').length),2);
+  await page.selectOption('#battleforce','2');
+  assert.equal(await page.evaluate(()=>!!data.pkg._v2),false);
+  assert(await page.evaluate(()=>RulesCore.validateArmy(army,data).issues.some(i=>i.code==='unique_duplicate')));
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+});
+
+for (const mobile of [true,false]) test(`${mobile?'mobile':'desktop'} V2 choices, ranks, weapon effects and save/reopen work through builder controls`,async t=>{
+  const page=await setup(t,mobile);
+  await page.evaluate(()=>openRoster(BuilderLibrary.create(4,'V2 browser regression',data,uid,new Date().toISOString())));
+  await page.selectOption('#battleforce','28');
+  assert.deepEqual(await page.locator('.v2-trait-group .army-option-tags').evaluateAll(ns=>ns.map(n=>n.children.length)),[3,3,6]);
+  for(const id of ['ccb_assault','ccb_decisive','ccb_reinforced']) await page.locator(`[data-option-id="${id}"]`).click();
+  const add=async(rank,id)=>{
+    await page.locator(`#rank-add-bar [data-rank="${rank}"]`).click();
+    await page.locator(`#card-grid [data-id="${id}"] .bilingual-name`).click();
+    if(mobile)assert.equal(await page.locator('html').evaluate(n=>n.classList.contains('page-overlay-open')),false);
+  };
+  await add(1,'republic-barc');await add(4,'republic-barc');await add(1,'republic-jedi-knight-general');
+  assert.deepEqual(await page.evaluate(()=>army.units.map(i=>i.rankId)),[1,4,1]);
+  const general=page.locator('#army-units .roster-unit').filter({hasText:'绝地武士将军'});
+  await general.locator('[data-slot-index="5"] .slot-name').click();
+  const lightsaber=page.locator('#card-grid [data-id="lightsaber"]');
+  assert((await lightsaber.innerText()).includes('致命1'));
+  await lightsaber.locator('.identity h3').click();
+  await page.locator('#browser-close').click();
+  await general.locator('.expand-unit').click();
+  assert((await general.innerText()).includes('致命1'));
+  await general.locator('[data-rule-id="bf:28:ccb_decisive-rule"] .rule-tag-main').click();
+  assert((await page.locator('#keyword-popover').innerText()).includes('近战武器'));
+  await page.keyboard.press('Escape');
+  // Save uses normal builder storage; reloading keeps all three choices and both BARC ranks.
+  const choices=await page.evaluate(()=>{saveActiveRoster();return army.battleForceSelection;});
+  await page.reload();await page.waitForFunction(()=>typeof army!=='undefined'&&army?.units?.length===3);
+  assert.deepEqual(await page.evaluate(()=>army.battleForceSelection),choices);
+  assert.deepEqual(await page.evaluate(()=>army.units.map(i=>i.rankId)),[1,4,1]);
+  await page.locator('[data-option-id="ccb_wise"]').click();
+  await general.locator('.expand-unit').click();
+  assert(!(await general.innerText()).includes('致命1'));
+  assert((await general.innerText()).includes('援助：克隆人士兵'));
+  await page.selectOption('#battleforce','12');
+  assert.equal(await page.locator('#army-options').isVisible(),false);
+  assert.equal(await page.evaluate(()=>!!data.pkg._v2),false);
+  assert.deepEqual(await page.evaluate(()=>army.units.map(i=>i.rankId??null)),[null,null,null]);
+  assert(!(await general.innerText()).includes('睿智'));
+  await page.locator('#rank-add-bar [data-rank="1"]').click();
+  assert.equal(await page.locator('#card-grid [data-id="republic-barc"]').count(),0);
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+});
+
+test('V2 trait cancellation removes equipped extra slots and irregulars has Imperial LAAT candidates',async t=>{
+  const page=await setup(t,true);
+  await page.evaluate(()=>openRoster(BuilderLibrary.create(4,'V2 slots',data,uid,new Date().toISOString())));
+  await page.selectOption('#battleforce','28');
+  await page.locator('[data-option-id="ccb_reinforced"]').click();
+  await page.locator('#rank-add-bar [data-rank="2"]').click();
+  await page.locator('#card-grid [data-id="republic-clone-trooper"] .bilingual-name').click();
+  const index=await page.evaluate(()=>unitSlotRecords(data.units[army.units[0].unitId],army.units[0]).findIndex(s=>s.effectId==='reinforced-personnel'));
+  assert(index>=0);
+  await page.locator(`.compact-slot[data-slot-index="${index}"] .slot-name`).click();
+  await page.locator('#card-grid [data-id="clone-specialist"] .identity h3').click();
+  await page.locator('#browser-close').click();
+  await page.locator('[data-option-id="ccb_armored_support"]').click();
+  assert.equal(await page.evaluate(()=>army.units[0].upgrades.length),0);
+  assert((await page.locator('#status').innerText()).includes('失效槽位'));
+  await page.evaluate(()=>openRoster(BuilderLibrary.create(1,'Irregulars',data,uid,new Date().toISOString())));
+  await page.selectOption('#battleforce','29');
+  await page.locator('#rank-add-bar [data-rank="5"]').click();
+  assert.equal(await page.locator('#card-grid [data-id="republic-laat-gar"]').count(),0);
+  await page.locator('#card-grid [data-id="empire-laat-empire"] .bilingual-name').click();
+  assert.equal(await page.evaluate(()=>RulesCore.unitFor(army.units[0],army,data).factionId),1);
+  await page.locator('#rank-add-bar [data-rank="5"]').click();
+  assert.equal(await page.locator('#card-grid [data-id="empire-laat-empire"]').count(),0);
+  await page.locator('#browser-close').click();
+  await page.locator('#battleforce-info').click();
+  assert((await page.locator('.battleforce-dialog').innerText()).includes('隐秘破坏者'));
+});
+
 for (const width of [320, 390, 1440]) test(`Flier navigation and empty selection at ${width}px`, async t => {
   const page=await setup(t,width<760);
   await page.setViewportSize({width,height:900});

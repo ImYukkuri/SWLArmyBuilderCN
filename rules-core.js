@@ -3,6 +3,19 @@
 window.RulesCore = (() => {
   const UNKNOWN = Symbol("unknown");
 
+  function battleForceVersion(pkg, armyId) {
+    const bf = pkg?.battleForces?.[armyId];
+    if (!bf) return 1;
+    if (Object.prototype.hasOwnProperty.call(bf, 'v2') && bf.engineVersion !== 2) return null;
+    if (Object.prototype.hasOwnProperty.call(bf, 'engineVersion')) return bf.engineVersion;
+    return 1;
+  }
+  function resolveArmyData(army,data) {return window.BattleForceRuntime ? BattleForceRuntime.resolve(army,data) : data;}
+  function unitFor(instance,army,data) {
+    const resolved=resolveArmyData(army,data);
+    return resolved.pkg._v2?.instances[instance?.instanceId] || resolved.units[instance?.unitId];
+  }
+
   const Dice = window.SWLDice || Object.freeze({
     attackColors: Object.freeze({ RED: "red", BLACK: "black", WHITE: "white" }),
     defenseColors: Object.freeze({ RED: "red", WHITE: "white" }),
@@ -81,7 +94,13 @@ window.RulesCore = (() => {
     }
     return [...new Set(keys)];
   }
-  function unitContext(unit) {
+  function hasEquip(unit, pkg = {}) {
+    const children = pkg.unitRules?.[String(unit.upstream?.id)]?.requiredChildren ?? unit.rules?.requiredChildren ?? [];
+    return !!(unit.equipUpgradeIds?.length || unit.equipSlotIds?.length ||
+      unit.keywords?.some(k => k?.id === 'equip') ||
+      children.some(c => c.elementPropertyName === 'upgrades'));
+  }
+  function unitContext(unit, pkg = {}) {
     return { unit: {
       id: unit.id,
       upstreamId: String(unit.upstream && unit.upstream.id || ""),
@@ -94,6 +113,7 @@ window.RulesCore = (() => {
       rankId: unit.rankId,
       affiliationIds: (unit.affiliationIds || []).map(String),
       keywords: (unit.keywords || []).map(k => k && k.id),
+      hasEquip: hasEquip(unit,pkg),
       title: (((unit.title || {}).en || "") + " " + ((unit.title || {}).zh || "")).trim(),
       titleEn: ((unit.title || {}).en) || "",
       titleZh: ((unit.title || {}).zh) || "",
@@ -103,7 +123,7 @@ window.RulesCore = (() => {
     } };
   }
   function slotGrantsFor(pkg, unit, inst, upgrades) {
-    const ctx = unitContext(unit);
+    const ctx = unitContext(unit, pkg);
     const predicates = pkg.predicates || {};
     const equipped = [];
     for (const sel of (inst && inst.upgrades) || []) {
@@ -163,6 +183,8 @@ window.RulesCore = (() => {
     return [...keys];
   }
   function slotListFor(pkg, unit, inst, upgrades, armyId, { legacyShared = false } = {}) {
+    if (battleForceVersion(pkg, armyId) !== 1 && !pkg._v2) return [];
+    unit = pkg._v2?.instances[inst?.instanceId] || unit;
     const { byId } = slotRegistry(pkg);
     const count = flexibleResponseCount(unit);
     const out = [];
@@ -170,7 +192,7 @@ window.RulesCore = (() => {
       const sid = (typeof s === "object") ? s.id : s;
       const key = slotKey(pkg, sid);
       if (byId[key] && byId[key].kind === "dedicated") continue; // derive per-card slots from current qualifying rules
-      out.push({ key, required: !!(typeof s === "object" && s.required) });
+      out.push({ key, required: !!(typeof s === "object" && s.required), ...(s?.effectId ? {effectId:s.effectId} : {}) });
     }
     // Reserve the minimum before grants to keep stored base-slot indices stable.
     // Printed extra slots and subsequent modifiers still apply normally.
@@ -200,7 +222,7 @@ window.RulesCore = (() => {
         .filter(k => byId[k] && byId[k].kind !== 'dedicated');
       if (out.some(r => !r.virtual && [...normal, ...(g.ifAbsentAny || [])].includes(r.key))) continue;
       if (card.deprecated || restrictionConditionOk(card, unit, pkg) === false) continue;
-      if (armyId != null && card.rules?.factions && !card.rules.factions.map(Number).includes(Number(armyId))) continue;
+      if (armyId != null && card.rules?.factions && !card._v2ArmyGrant && !card.rules.factions.map(Number).some(id => [Number(armyId),pkg._v2?.parentFactionId].includes(id))) continue;
       if (armyId != null && card.rules?.requiresTier?.length) {
         const rank = armyRank(unit, armyId, pkg, {}, {});
         if (rank != null && !card.rules.requiresTier.map(Number).includes(rank)) continue;
@@ -259,6 +281,7 @@ window.RulesCore = (() => {
     return true;
   }
   function armyOverridesFor(pkg, armyId) {
+    if (battleForceVersion(pkg, armyId) !== 1) return null;
     return ((pkg && pkg.armyOverrides) || {})[String(armyId)] || null;
   }
   function effectiveKeywords(unit, equipped, defs, pkg, armyId) {
@@ -317,7 +340,7 @@ window.RulesCore = (() => {
     if (explicit || (!legacy.length && resolved.some(k => k.targets.length))) {
       const targets = resolved.flatMap(k => k.targets);
       const cap = armyUnits.filter(i => i.unitId !== unit.id &&
-        targets.some(t => matchesKeywordTarget(units[i.unitId], t, context))).length;
+        targets.some(t => matchesKeywordTarget(context.pkg?._v2?.instances[i.instanceId] || units[i.unitId], t, context))).length;
       return {caps: [cap], unresolved: !targets.length};
     }
     if (legacy.length) return {caps: legacy.map(q => (q.ratio || 1) * armyUnits.filter(i =>
@@ -327,7 +350,7 @@ window.RulesCore = (() => {
   function entourageExemptions(armyUnits, units, context = {}) {
     const budgets = [];
     for (const [source, inst] of armyUnits.entries()) {
-      const u = units[inst.unitId] || {};
+      const u = context.pkg?._v2?.instances[inst.instanceId] || units[inst.unitId] || {};
       for (const kw of u.keywords || []) {
         if (!kw || kw.id !== "entourage") continue;
         budgets.push({source, targets: keywordTargets(kw, units)});
@@ -339,7 +362,7 @@ window.RulesCore = (() => {
     function assign(budgetIndex, seen) {
       const b = budgets[budgetIndex];
       for (const [i, inst] of armyUnits.entries()) {
-        if (i === b.source || seen.has(i) || !b.targets.some(t => matchesKeywordTarget(units[inst.unitId], t, context))) continue;
+        if (i === b.source || seen.has(i) || !b.targets.some(t => matchesKeywordTarget(context.pkg?._v2?.instances[inst.instanceId] || units[inst.unitId], t, context))) continue;
         seen.add(i);
         if (!assignments.has(i) || assign(assignments.get(i), seen)) {
           assignments.set(i, budgetIndex);
@@ -354,6 +377,7 @@ window.RulesCore = (() => {
       const id = armyUnits[i].unitId;
       exempt[id] = (exempt[id] || 0) + 1;
     }
+    Object.defineProperty(exempt,'instances',{value:new Set([...assignments.keys()].map(i=>armyUnits[i].instanceId))});
     return exempt;
   }
   function buildNameIndex(upgrades, defs) {
@@ -365,7 +389,7 @@ window.RulesCore = (() => {
       (idx[k] ||= new Set()).add(String(uid));
     };
     for (const card of Object.values(upgrades || {})) {
-      const uid = String((card.upstream && card.upstream.id) || "");
+      const uid = String((card.upstream && card.upstream.id) || card.id || "");
       if (!uid) continue;
       add(card.id, uid);
       add((card.name && card.name.en) || "", uid);
@@ -378,7 +402,7 @@ window.RulesCore = (() => {
   }
   function unavailableSets(card, idx, defs) {
     const up = new Set(), fac = new Set();
-    const own = String((card.upstream && card.upstream.id) || "");
+    const own = String((card.upstream && card.upstream.id) || card.id || "");
     const ownAliases = new Set([normalizeKey(card.id), normalizeKey((card.name && card.name.en) || "")]);
     const du = (defs && defs.upgrades || []).find(x => String(x.id) === own);
     if (du && du.name) ownAliases.add(normalizeKey(du.name.en));
@@ -402,7 +426,7 @@ window.RulesCore = (() => {
   function restrictionConditionOk(card, unit, pkg) {
     const cond = (card.restrictions || {}).condition;
     if (!cond) return null;
-    return evaluate(cond, unitContext(unit), pkg.predicates || {});
+    return evaluate(cond, unitContext(unit, pkg), pkg.predicates || {});
   }
   function requiredPropertiesOk(unit, rp, defs) {
     const groups = normRp(rp);
@@ -483,7 +507,7 @@ window.RulesCore = (() => {
     const aliases = (ov && ov.slotHosts) || [];
     if (!aliases.length) return false;
     const access = accessKeys(card, data.pkg, rule);
-    const ctx = unitContext(unit);
+    const ctx = unitContext(unit, data.pkg);
     const predicates = data.pkg.predicates || {};
     const cardHosts = (hosts(rule, card) || []).map(String);
     let allowed = false;
@@ -504,6 +528,8 @@ window.RulesCore = (() => {
     return a ? a.id : null;
   }
   function armyRank(unit, armyId, pkg, defs, units) {
+    if (pkg?._v2 && pkg._v2.armyId === Number(armyId)) return unit?._v2Allowed ? unit.rankId : null;
+    if (battleForceVersion(pkg, armyId) !== 1) return null;
     for (const ext of extensions(armyId,pkg)) {
       const rank = ext.rank?.(unit,armyId,pkg);
       if (rank !== undefined) return rank;
@@ -550,6 +576,8 @@ window.RulesCore = (() => {
     return hostOnly;
   }
   function upgradeEligibility(card, unit, army, data, equipped) {
+    if (battleForceVersion(data.pkg, army.armyId) !== 1 && !data.pkg._v2) return {ok: false, issues: [
+      {status: 'invalid', code: 'battle_force_unavailable', message: '当前战斗部队规则尚未启用。'}]};
     const { defs, pkg, nameIndex } = data;
     if (card.deprecated) return { ok: false, issues: [{ status: "invalid", code: "deprecated_card", message: "该卡为废案，不参与组军" }] };
     if (equipped && equipped.length) unit = applyPropertyEffects(unit, equipped, defs);
@@ -559,6 +587,8 @@ window.RulesCore = (() => {
     const hostRank = armyRank(unit, army.armyId, pkg, defs, data.units);
     const issues = [];
     const add = (status, code, message) => issues.push({ status, code, message });
+    if (pkg._v2?.uniqueUpgradeIds && (card.rules?.unique || rule.armyUnique) && !pkg._v2.uniqueUpgradeIds.includes(card.id))
+      add('invalid','battle_force_unique_upgrade','此战斗部队不允许独特升级「'+name+'」');
     if (!runtimeAvailable(card,army,pkg)) add('invalid','extension_card_unavailable','此卡需要启用对应的战斗部队规则');
     for (const ext of extensions(army.armyId,pkg)) issues.push(...(ext.eligibility?.(card,unit,army,data,api) || []));
     const h = hosts(rule, card);
@@ -572,11 +602,11 @@ window.RulesCore = (() => {
       add("invalid", "host_restriction", "此升级仅限特定角色/版本");
     }
     const facs = (card.rules || {}).factions;
-    const armyIds = [army.armyId,...extensions(army.armyId,pkg).flatMap(e => e.inheritedArmyIds?.(army,pkg) || [])];
-    if (facs && !facs.map(Number).some(id => armyIds.includes(id))) {
+    const armyIds = [army.armyId,...(pkg._v2 ? [pkg._v2.parentFactionId] : []),...extensions(army.armyId,pkg).flatMap(e => e.inheritedArmyIds?.(army,pkg) || [])];
+    if (facs && !card._v2ArmyGrant && !facs.map(Number).some(id => armyIds.includes(id))) {
       add("invalid", "upgrade_faction", `升级「${name}」不属于当前军队/战斗部队`);
     }
-    if (armyIds.some(id => unavailableSets(card, idx, defs).fac.has(id))) {
+    if (!card._v2ArmyGrant && armyIds.some(id => unavailableSets(card, idx, defs).fac.has(id))) {
       add("invalid", "unavailable_faction", `升级「${name}」无法加入当前军队/战斗部队`);
     }
     const rp = (card.rules || {}).requiredProperties;
@@ -693,9 +723,22 @@ window.RulesCore = (() => {
   }
 
   function validateArmy(army, data) {
+    const source = data._source || data;
+    if (battleForceVersion(source.pkg, army.armyId) === 2 && window.UpgradeFaces)
+      army = UpgradeFaces.normalizeArmy(structuredClone(army), source);
+    data = resolveArmyData(army,data);
+    const version = battleForceVersion(data.pkg, army.armyId);
+    if (version !== 1 && !data.pkg._v2) {
+      if (version === 2 && window.BattleForceV2) return BattleForceV2.pendingReport(army, data);
+      const basePoints = (army.units || []).reduce((sum, inst) => sum + (data.units[inst.unitId]?.points || 0) +
+        (inst.upgrades || []).reduce((points, choice) => points + (data.upgrades[choice.upgradeId]?.points || 0), 0), 0);
+      return {status: 'invalid', basePoints, effectivePoints: basePoints, rankCounts: {}, issues: [
+        {status: 'invalid', code: 'battle_force_version', instanceId: null,
+          message: '此战斗部队需要尚未载入或不支持的规则版本，当前仅显示原始费用。'}]};
+    }
     const { units, upgrades, defs, pkg } = data;
     if (window.UpgradeFaces) army = UpgradeFaces.normalizeArmy(structuredClone(army), {...data, upgrades: UpgradeFaces.index(Object.values(upgrades))});
-    const issues = [];
+    const issues = [...(data.pkg._v2?.issues || [])];
     const issue = (status, code, message, instanceId, extra) => issues.push({ status, code, message, instanceId, ...(extra || {}) });
     const nameIndex = buildNameIndex(upgrades, defs);
 
@@ -713,7 +756,7 @@ window.RulesCore = (() => {
 
     for (const inst of army.units || []) {
       const key = inst.instanceId;
-      const unit = units[inst.unitId];
+      const unit = unitFor(inst,army,data);
       if (!unit) { issue("invalid", "missing_unit", "单位引用不存在", key); continue; }
       if (unit.usage === "counterpart" || unit.isCounterpart) {
         issue("invalid", "counterpart_as_unit", "伙伴卡需通过宿主单位的伙伴槽加入，不能作为独立单位", key);
@@ -724,7 +767,7 @@ window.RulesCore = (() => {
       if (memberRank == null) { issue("invalid", "army_membership", "此单位未列入当前军队", key); continue; }
       const urc = (unit.restrictions || {}).condition;
       if (urc !== undefined && urc !== null) {
-        const urcOk = evaluate(urc, unitContext(unit), pkg.predicates || {});
+        const urcOk = evaluate(urc, unitContext(unit, pkg), pkg.predicates || {});
         if (urcOk === false) issue("invalid", "unit_restriction_condition", `单位「${(unit.name && unit.name.en) || unit.id}」不满足卡面限制条件`, key);
         else if (urcOk === null) issue("unknown", "unit_restriction_condition_unknown", `单位「${(unit.name && unit.name.en) || unit.id}」的卡面限制条件存在未覆盖语义`, key);
       }
@@ -843,7 +886,7 @@ window.RulesCore = (() => {
         if (ra.conflictGroup && rb.conflictGroup && ra.conflictGroup === rb.conflictGroup) continue; // already reported
         const ca = conflictSets.get(ac) || { up: new Set() };
         const cb = conflictSets.get(bc) || { up: new Set() };
-        if (ca.up.has(bu) || cb.up.has(au)) issue("invalid", "upgrade_conflict", "选择了互斥的升级", akey);
+        if (ca.up.has(bu || bc) || cb.up.has(au || ac)) issue("invalid", "upgrade_conflict", "选择了互斥的升级", akey);
       }
     }
 
@@ -931,7 +974,7 @@ window.RulesCore = (() => {
       }
     }
     const entourageExempt = entourageExemptions(army.units || [], units, {pkg, defs, units, armyId: army.armyId});
-    for (const [unitId, copies] of Object.entries(unitIdCounts)) {
+    for (const [unitId, copies] of Object.entries(pkg._v2 ? {} : unitIdCounts)) {
       const unit = units[unitId];
       let rank = armyRank(unit, army.armyId, pkg, defs, units);
       if (rank == null) continue;
@@ -960,6 +1003,24 @@ window.RulesCore = (() => {
       if (!ignoreMin) minCounts[rank] = (minCounts[rank] || 0) + copies;
       const entExempt = entourageExempt[unitId] || 0;
       maxCounts[rank] = (maxCounts[rank] || 0) + (ignoreMax ? 0 : Math.max(0, copies - exempt - entExempt));
+    }
+    if (pkg._v2) {
+      for (const inst of army.units || []) {
+        const unit=unitFor(inst,army,data);if(!unit)continue;
+        let rank=armyRank(unit,army.armyId,pkg,defs,units);if(rank==null)continue;
+        for(const choice of inst.upgrades || []) if(upgrades[choice.upgradeId]?.rules?.replaceTier!=null)rank=upgrades[choice.upgradeId].rules.replaceTier;
+        const tc=unit.rules?.tierCounting || {};
+        if(!tc.ignoreMinimum)minCounts[rank]=(minCounts[rank]||0)+1;
+        const exempt=entourageExempt.instances.has(inst.instanceId);
+        maxCounts[rank]=(maxCounts[rank]||0)+(!tc.ignoreMaximum&&!exempt?1:0);
+      }
+      for(const limit of pkg._v2.unitLimits) {
+        const unit=units[limit.unitId],count=unitIdCounts[limit.unitId]||0;
+        const title=unit?.title?.zh || unit?.title?.en;
+        const name=(unit?.name?.zh || unit?.name?.en || limit.unitId)+(title?'（'+title+'）':'');
+        if(count<(limit.min||0))issue('invalid','battle_force_unit_min',name+'至少需要 '+limit.min+' 个',null,{rank:unit?.rankId});
+        if(count>limit.max)issue('invalid','battle_force_unit_max',name+'最多 '+limit.max+' 个',null,{rank:unit?.rankId});
+      }
     }
     const quotas = {};
     for (const q of mode.rankQuotas || []) quotas[q.rankId] = q;
@@ -1004,7 +1065,7 @@ window.RulesCore = (() => {
         const bf = (pkg.battleForces || {})[String(armyId)] || {};
         const parentName = bf.parentFaction;
         const parentArmy = parentName ? (defs.armies || []).find(a => (a.name && (a.name.en === parentName || a.name.zh === parentName))) : null;
-        if (!parentArmy || !facs.includes(parentArmy.id)) issue("invalid", "command_faction", `命令卡「${name}」不属于当前军队`, null);
+        if (!facs.includes(pkg._v2?.parentFactionId ?? parentArmy?.id)) issue("invalid", "command_faction", `命令卡「${name}」不属于当前军队`, null);
       }
       if ((cmd.campaigns || []).length) issue("unknown", "command_campaign", `命令卡「${name}」为战役卡，标准模式资格待核验`, null);
       const armyUnits = (army.units || []).map(i => units[i.unitId]).filter(Boolean);
@@ -1014,7 +1075,7 @@ window.RulesCore = (() => {
       }
       if (cmd.condition) {
         const preds = pkg.predicates || {};
-        if (!armyUnits.some(u => evaluate(cmd.condition, unitContext(u), preds) === true)) issue("invalid", "command_condition", `命令卡「${name}」需要满足单位条件`, null);
+        if (!armyUnits.some(u => evaluate(cmd.condition, unitContext(u, pkg), preds) === true)) issue("invalid", "command_condition", `命令卡「${name}」需要满足单位条件`, null);
       }
       const unitUnlocks = (cmd.unlockedBy || []).filter(x => x && x.propertyName === 'units');
       if (unitUnlocks.length) {
@@ -1116,7 +1177,7 @@ window.RulesCore = (() => {
       const copies = (army.units || []).filter(x => x.unitId === inst.unitId).length;
       if (copies > cap) issue("invalid", "unit_limit_exceeded", `「${(u.name && u.name.en) || u.id}」最多 ${cap} 个（当前 ${copies}）`, null);
     }
-    if (bf) battleForceChecks(army, bf, units, upgrades, defs, issue);
+    if (bf && version === 1) battleForceChecks(army, bf, units, upgrades, defs, issue);
     for (const ext of extensions(army.armyId,pkg)) ext.validate?.(army,data,api,issue);
     if (effectivePoints > pointsLimit) issue("invalid", "points_limit", `有效费用 ${effectivePoints} 超过上限 ${pointsLimit}`, null);
 
@@ -1144,11 +1205,18 @@ window.RulesCore = (() => {
   // Optional faction modules share this narrow contract; the base engine knows
   // nothing about clan IDs, special cards, or faction-specific option names.
   const allExtensions = () => window.ArmyRuleExtensions || [];
-  const extensions = (armyId,pkg) => allExtensions().filter(e => e.applies(armyId,pkg));
+  const extensions = (armyId,pkg) => battleForceVersion(pkg,armyId) === 1 ? allExtensions().filter(e => e.applies(armyId,pkg)) : [];
   function prepareData(data) { for (const ext of allExtensions()) ext.prepareData?.(data); return data; }
-  function runtimeAvailable(card,army,pkg) { return allExtensions().every(e => !e.available || e.available(card,army,pkg)); }
+  function runtimeAvailable(card,army,pkg) {
+    if(pkg._v2)return card?._v2Allowed !== false && !card?.runtimeVariant;
+    return battleForceVersion(pkg,army.armyId) === 1 && allExtensions().every(e => !e.available || e.available(card,army,pkg));
+  }
   function upgradePoints(card,unit,army,data) {
+    data = resolveArmyData(army,data);
+    if (data.pkg._v2) card = data.upgrades[card.id] || card;
     let points = card.points || 0;
+    if (data.pkg._v2 && globalThis.BattleForceRuntime) points = BattleForceRuntime.upgradePoints(card,unit,data);
+    if (battleForceVersion(data.pkg,army.armyId) !== 1 && !data.pkg._v2) return points;
     const unitIds = new Set((army.units || []).map(i => String(data.units[i.unitId]?.upstream?.id)));
     for (const m of card.rules?.modifiedPointsWith || []) {
       if (allExtensions().some(e => e.ownsPointModifier?.(m))) continue;
@@ -1164,6 +1232,6 @@ window.RulesCore = (() => {
   function cleanupArmy(army,data) { return allExtensions().flatMap(e => e.cleanup?.(army,data) || []); }
   function isTransitionalIssue(code,army,pkg) { return extensions(army.armyId,pkg).some(e => e.transitionalCodes?.includes(code)); }
   const api = { Dice, evaluate, validateArmy, unitContext, upgradeEligibility, keywordTargets, matchesKeywordTarget, detachmentLimits, entourageExemptions, armyRank, slotKey, accessKeys, slotGrantsFor, dedicatedSlotKeys, equipSlotKeys, slotListFor, restrictionConditionOk, requiredPropertiesOk, normRp, buildNameIndex, unavailableSets, unitCapFor, commandUnitRequirements,
-    applyPropertyEffects,prepareData,runtimeAvailable,upgradePoints,defaultUpgradeIds,cleanupArmy,isTransitionalIssue };
+    applyPropertyEffects,prepareData,runtimeAvailable,upgradePoints,defaultUpgradeIds,cleanupArmy,isTransitionalIssue,battleForceVersion,resolveArmyData,unitFor };
   return api;
 })();

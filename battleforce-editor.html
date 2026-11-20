@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>V2 战斗部队 · 数据维护</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="editor.css"><link rel="stylesheet" href="rule-icons.css"><link rel="stylesheet" href="battleforce-editor.css"></head>
+<body class="bfv-editor">
+<header><div><h1>V2 战斗部队</h1><nav class="module-nav"><a href="index.html">写表器</a><a href="maintenance.html">数据维护</a><a href="rules.html">旧版规则库</a></nav></div>
+<button id="reload" type="button">重新载入</button><button id="refresh-catalogs" type="button">刷新卡牌选项</button><button id="export" type="button">导出草稿</button><button id="save" type="button" class="primary" disabled>保存规则</button></header>
+<div class="editbar"><h2 id="title">载入中…</h2><span id="dirty"></span></div><p id="status" role="status"></p>
+<div class="tabs" aria-label="战斗部队编辑内容"><button data-section="base" aria-pressed="true">基础</button><button data-section="common">共通规则</button><button data-section="groups">规则组</button><button data-section="schemes">选择方案</button><button data-section="preview">预览</button></div>
+<main class="bfv-layout"><aside id="force-list" aria-label="V2 战斗部队列表"></aside><section class="bfv-work"><div id="config-issues" role="status"></div><div id="content"></div></section></main>
+<script src="dice-enums.js"></script><script src="combo.js"></script><script src="editor-shell.js"></script><script src="upgrade-faces.js"></script><script src="battleforce-v2.js"></script><script src="battleforce-runtime.js"></script><script src="rules-core.js"></script><script src="builder-model.js"></script><script src="editor-common.js"></script><script src="editor-options.js"></script><script src="condition-editor.js"></script><script src="rule-icons.js"></script><script src="battleforce-editor.js"></script><script src="editor-symbols.js"></script>
+</body></html>

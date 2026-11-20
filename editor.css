@@ -1,4 +1,43 @@
 /* Maintenance forms use the roster's readable slate palette and card symbols. */
+.maintenance-editor .editor-symbols {
+  position:fixed;inset:calc(var(--editor-tools-height,170px) + 8px) 12px 12px auto;
+  z-index:70;width:min(350px,calc(100vw - 24px));display:flex;flex-direction:column;
+  padding:12px;background:#fff;border:1px solid #b9cad7;border-top:3px solid #285d79;
+  border-radius:5px;box-shadow:-4px 6px 18px #25354018;color:#253540;
+}
+.maintenance-editor .editor-symbols[hidden] {display:none;}
+.editor-symbols-head {display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.maintenance-editor .editor-symbols-head h2 {margin:0;font-size:16px;line-height:1.4;}
+.maintenance-editor .editor-symbols-head button {width:32px;height:32px;padding:0;border:0;background:transparent;font-size:24px;line-height:1;}
+.editor-symbols-filters {display:flex;gap:6px;margin:8px 0;}
+.maintenance-editor .editor-symbols-filters input {width:100%;flex:1;min-width:0;padding:6px 8px;font-size:13px;}
+.maintenance-editor .editor-symbols-filters select {width:92px;padding:5px;font-size:12px;flex:none;}
+.editor-symbols-modes {display:flex;gap:4px;}
+.maintenance-editor .editor-symbols-modes button {flex:1;padding:5px 8px;font-size:12px;}
+.maintenance-editor .editor-symbols-modes button[aria-pressed=true] {background:#285d79;color:white;border-color:#285d79;}
+.maintenance-editor .editor-symbols-target {font-size:11px;color:#607486;margin:7px 0;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.editor-symbols-list {overflow:auto;overscroll-behavior:contain;min-height:0;flex:1;scrollbar-width:thin;}
+.maintenance-editor .editor-symbols-group {padding:0;margin:0 0 10px;}
+.maintenance-editor .editor-symbols-group h3 {font-size:12px;line-height:1.4;margin:0;padding:7px 4px;background:#eef3f7;color:#526c80;position:sticky;top:0;}
+.maintenance-editor button.editor-symbol-option {
+  display:flex;align-items:center;gap:10px;width:100%;min-height:52px;padding:6px 8px;
+  border:0;border-bottom:1px solid #e8eef2;border-radius:0;background:#fff;text-align:left;line-height:1.4;
+}
+.maintenance-editor button.editor-symbol-option:hover {background:#edf4f9;}
+.editor-symbol-preview {width:38px;flex:none;display:flex;justify-content:center;align-items:center;font-size:24px;color:#285d79;}
+.editor-symbol-text {font-size:13px;border:1px solid #b9cad7;border-radius:3px;padding:1px 6px;color:#607486;}
+.editor-symbol-description {min-width:0;flex:1;font-size:13px;}
+.editor-symbol-description>span {display:block;}
+.editor-symbol-description small {margin-left:7px;font-size:10px;color:#607486;white-space:nowrap;}
+.editor-symbol-description code {display:block;background:transparent;padding:0;color:#607486;font:11px/1.4 Consolas,monospace;overflow-wrap:anywhere;}
+.maintenance-editor .editor-symbols-feedback {font-size:12px;line-height:1.4;margin:8px 0 0;overflow-wrap:anywhere;}
+.editor-symbols-feedback:empty {display:none;}
+.editor-symbols-empty {padding:8px;font-size:13px;color:#607486;}
+.maintenance-editor .editor-symbols>input {margin-top:6px;font-size:12px;width:100%;}
+@media(max-width:600px) {
+  .maintenance-editor .editor-symbols {right:6px;bottom:6px;width:min(330px,calc(100vw - 12px));padding:10px;}
+  .maintenance-editor .editor-symbols-filters input {font-size:16px;}
+}
 .portrait-editor { min-width:0; margin-bottom:14px; }
 .crop-toolbar { display:flex; gap:8px; align-items:center; margin-bottom:8px; font-size:12px; }
 .crop-toolbar > span { color:var(--muted); }

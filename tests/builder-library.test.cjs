@@ -70,7 +70,7 @@ test("battleforces are restricted to the selected parent faction", () => {
   );
   assert.deepEqual(
     library.battleforces(4, data).map((a) => a.id),
-    [12, 16, 21],
+    [12, 16], // V2 War Grove requires the runtime (covered by its own tests).
   );
   assert.deepEqual(
     library.battleforces(5, data).map((a) => a.id),

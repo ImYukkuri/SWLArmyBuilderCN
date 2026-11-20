@@ -1,7 +1,7 @@
 {
   "schema": "swl-upgrades/v1",
   "referenceVersion": "2026.11.04.0",
-  "updatedAt": "2026-11-18T18:32:28.800264+00:00",
+  "updatedAt": "2026-11-20T02:32:21.379911+00:00",
   "cards": [
     {
       "id": "21b-medical-droid",
@@ -14535,7 +14535,7 @@
         ]
       },
       "requirementsText": [
-        "绝地骑士或绝地骑士将军限定"
+        "绝地武士或绝地武士将军限定"
       ],
       "keywords": [
         {
@@ -14622,7 +14622,7 @@
             "Jedi Knight or Jedi Knight General Only"
           ],
           "zh": [
-            "绝地骑士或绝地骑士将军限定"
+            "绝地武士或绝地武士将军限定"
           ]
         },
         "zhReview": "legacy_unverified",
@@ -18583,7 +18583,7 @@
         ]
       },
       "requirementsText": [
-        "绝地骑士或绝地骑士将军限定"
+        "绝地武士或绝地武士将军限定"
       ],
       "keywords": [
         {
@@ -18641,7 +18641,7 @@
             "Jedi Knight or Jedi Knight General Only"
           ],
           "zh": [
-            "绝地骑士或绝地骑士将军限定"
+            "绝地武士或绝地武士将军限定"
           ]
         },
         "zhReview": "legacy_unverified",
@@ -22746,7 +22746,7 @@
         ]
       },
       "requirementsText": [
-        "绝地骑士将军限定"
+        "绝地武士将军限定"
       ],
       "keywords": [
         {
@@ -22831,7 +22831,7 @@
             "Jedi Knight General Only"
           ],
           "zh": [
-            "绝地骑士将军限定"
+            "绝地武士将军限定"
           ]
         },
         "zhReview": "legacy_unverified",
@@ -24041,7 +24041,7 @@
       "id": "gnasp-bomber",
       "name": {
         "en": "Gnasp Bombardier",
-        "zh": "格纳斯普轰炸手"
+        "zh": "咬牙蜂投弹手"
       },
       "actionTypes": [],
       "points": 20,
@@ -24054,7 +24054,7 @@
         "zh": []
       },
       "requirementsText": [
-        "拉道格·格纳斯普扑翼机限定"
+        "拉道夫“咬牙蜂”扑翼机限定。"
       ],
       "keywords": [],
       "weapons": [
@@ -24084,13 +24084,9 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/gnasp-bomber.webp"
+        "front": "assets/upgrade-cards/gnasp-bomber-nov2026.webp"
       },
       "rules": {
-        "availableIn": [
-          1984,
-          19078
-        ],
         "unique": false,
         "slotTypes": [
           13
@@ -24099,10 +24095,8 @@
       },
       "review": {
         "status": "needs_review",
-        "notes": "",
-        "issues": [
-          "机器限制已导入；执行语义和卡面仍需校对。"
-        ]
+        "notes": "按用户提供的 11 月更新卡图逐项录入；中文卡文为待校对译文。",
+        "issues": []
       },
       "matching": {
         "status": "matched",
@@ -24118,41 +24112,25 @@
       "restrictions": {
         "text": {
           "en": [
-            "Raddaugh Gnasp Fluttercraft Only"
+            "Raddaugh Gnasp Fluttercraft Only."
           ],
           "zh": [
-            "拉道格·格纳斯普扑翼机限定"
+            "拉道夫“咬牙蜂”扑翼机限定。"
           ]
         },
-        "zhReview": "legacy_unverified",
-        "sources": [
-          "references/upgrades-slim.json#requirements"
-        ],
-        "verification": "text_matched",
         "condition": {
-          "field": "unit.upstreamId",
-          "op": "in",
-          "value": [
-            "19078",
-            "1984"
-          ]
+          "field": "unit.nameIdentityId",
+          "op": "eq",
+          "value": "raddaugh-gnasp-fluttercraft"
         },
-        "ocrEvidence": {
-          "file": "work/upgrade-restrictions/ocr-v3.json",
-          "key": "gnasp-bomber",
-          "textSimilarity": 0.9831,
-          "containsIcons": false,
-          "iconsVerified": false,
-          "imageSha256": "90f6705b4b4862490cd3c0388bf4bcc9e892ebab2a5262e5109d21da64b24533"
-        },
-        "image": "assets/upgrade-cards/gnasp-bomber.webp"
+        "zhReview": "needs_review"
       }
     },
     {
       "id": "gnasp-gunner",
       "name": {
         "en": "Gnasp Gunner",
-        "zh": "格纳斯普炮手"
+        "zh": "咬牙蜂炮手"
       },
       "actionTypes": [],
       "points": 15,
@@ -24165,7 +24143,7 @@
         "zh": []
       },
       "requirementsText": [
-        "拉道格·格纳斯普扑翼机限定"
+        "拉道夫“咬牙蜂”扑翼机限定。"
       ],
       "keywords": [],
       "weapons": [
@@ -24186,7 +24164,7 @@
           "keywords": [
             {
               "id": "fixed_front",
-              "value": "Rear"
+              "parameter": "后方"
             },
             {
               "id": "impact",
@@ -24200,13 +24178,9 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/gnasp-gunner.webp"
+        "front": "assets/upgrade-cards/gnasp-gunner-nov2026.webp"
       },
       "rules": {
-        "availableIn": [
-          1984,
-          19078
-        ],
         "unique": false,
         "slotTypes": [
           13
@@ -24215,10 +24189,8 @@
       },
       "review": {
         "status": "needs_review",
-        "notes": "",
-        "issues": [
-          "机器限制已导入；执行语义和卡面仍需校对。"
-        ]
+        "notes": "按用户提供的 11 月更新卡图逐项录入；中文卡文为待校对译文。",
+        "issues": []
       },
       "matching": {
         "status": "matched",
@@ -24234,34 +24206,18 @@
       "restrictions": {
         "text": {
           "en": [
-            "Raddaugh Gnasp Fluttercraft Only"
+            "Raddaugh Gnasp Fluttercraft Only."
           ],
           "zh": [
-            "拉道格·格纳斯普扑翼机限定"
+            "拉道夫“咬牙蜂”扑翼机限定。"
           ]
         },
-        "zhReview": "legacy_unverified",
-        "sources": [
-          "references/upgrades-slim.json#requirements"
-        ],
-        "verification": "text_matched",
         "condition": {
-          "field": "unit.upstreamId",
-          "op": "in",
-          "value": [
-            "19078",
-            "1984"
-          ]
+          "field": "unit.nameIdentityId",
+          "op": "eq",
+          "value": "raddaugh-gnasp-fluttercraft"
         },
-        "ocrEvidence": {
-          "file": "work/upgrade-restrictions/ocr-v3.json",
-          "key": "gnasp-gunner",
-          "textSimilarity": 0.9831,
-          "containsIcons": false,
-          "iconsVerified": false,
-          "imageSha256": "b359640ec81d56f867152d9e43db6ff5d9fc7eb7e052ccdf757c1f98ef5baa8e"
-        },
-        "image": "assets/upgrade-cards/gnasp-gunner.webp"
+        "zhReview": "needs_review"
       }
     },
     {
@@ -26123,14 +26079,16 @@
       "usage": "unit_upgrade",
       "description": {
         "en": [
-          "Add 1 Mag-Det Enforcer miniature."
+          "Add 1 Mag-Det Enforcer miniature.",
+          "When this weapon is added to an Attack Pool, other Ranged weapons in the Attack Pool gain Assault 1."
         ],
         "zh": [
-          "加入1个磁爆执法者模型。"
+          "加入1个磁爆执法者模型。",
+          "将此武器加入攻击池时，该攻击池内的其他远程武器获得突击1。"
         ]
       },
       "requirementsText": [
-        "黑日执法者限定"
+        "黑日执法者限定。"
       ],
       "keywords": [],
       "weapons": [
@@ -26160,12 +26118,9 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/heavy-mag-det.webp"
+        "front": "assets/upgrade-cards/heavy-mag-det-nov2026.webp"
       },
       "rules": {
-        "availableIn": [
-          4417
-        ],
         "unique": false,
         "slotTypes": [
           4
@@ -26174,10 +26129,8 @@
       },
       "review": {
         "status": "needs_review",
-        "notes": "",
-        "issues": [
-          "机器限制已导入；执行语义和卡面仍需校对。"
-        ]
+        "notes": "按用户提供的 11 月更新卡图逐项录入；中文卡文为待校对译文。",
+        "issues": []
       },
       "matching": {
         "status": "matched",
@@ -26193,33 +26146,18 @@
       "restrictions": {
         "text": {
           "en": [
-            "Black Sun Enforcers Only"
+            "Black Sun Enforcers Only."
           ],
           "zh": [
-            "黑日执法者限定"
+            "黑日执法者限定。"
           ]
         },
-        "zhReview": "legacy_unverified",
-        "sources": [
-          "references/upgrades-slim.json#requirements"
-        ],
-        "verification": "text_matched",
         "condition": {
-          "field": "unit.upstreamId",
-          "op": "in",
-          "value": [
-            "4417"
-          ]
+          "field": "unit.nameIdentityId",
+          "op": "eq",
+          "value": "black-sun-enforcers"
         },
-        "ocrEvidence": {
-          "file": "work/upgrade-restrictions/ocr-v3.json",
-          "key": "heavy-mag-det",
-          "textSimilarity": 1.0,
-          "containsIcons": false,
-          "iconsVerified": false,
-          "imageSha256": "55267e9905a495c25bf2d2dc7ceddf7ae698a5ef8d7399f4fb3d8793b7486d36"
-        },
-        "image": "assets/upgrade-cards/heavy-mag-det.webp"
+        "zhReview": "needs_review"
       }
     },
     {
@@ -28324,7 +28262,7 @@
         ]
       },
       "requirementsText": [
-        "绝地骑士或绝地骑士将军限定"
+        "绝地武士或绝地武士将军限定"
       ],
       "keywords": [
         {
@@ -28426,7 +28364,7 @@
             "Jedi Knight or Jedi Knight General Only"
           ],
           "zh": [
-            "绝地骑士或绝地骑士将军限定"
+            "绝地武士或绝地武士将军限定"
           ]
         },
         "zhReview": "legacy_unverified",
@@ -28490,7 +28428,7 @@
         ]
       },
       "requirementsText": [
-        "绝地骑士或绝地骑士将军限定"
+        "绝地武士或绝地武士将军限定"
       ],
       "keywords": [
         {
@@ -28573,7 +28511,7 @@
             "Jedi Knight or Jedi Knight General Only"
           ],
           "zh": [
-            "绝地骑士或绝地骑士将军限定"
+            "绝地武士或绝地武士将军限定"
           ]
         },
         "zhReview": "legacy_unverified",
@@ -28636,7 +28574,7 @@
         ]
       },
       "requirementsText": [
-        "绝地骑士或绝地骑士将军限定"
+        "绝地武士或绝地武士将军限定"
       ],
       "keywords": [],
       "weapons": [
@@ -28726,7 +28664,7 @@
             "Jedi Knight or Jedi Knight General Only"
           ],
           "zh": [
-            "绝地骑士或绝地骑士将军限定"
+            "绝地武士或绝地武士将军限定"
           ]
         },
         "zhReview": "legacy_unverified",
@@ -29896,7 +29834,7 @@
         ]
       },
       "requirementsText": [
-        "绝地骑士或绝地骑士将军限定"
+        "绝地武士或绝地武士将军限定"
       ],
       "keywords": [
         {
@@ -29980,7 +29918,7 @@
             "Jedi Knight or Jedi Knight General Only"
           ],
           "zh": [
-            "绝地骑士或绝地骑士将军限定"
+            "绝地武士或绝地武士将军限定"
           ]
         },
         "zhReview": "legacy_unverified",
@@ -31695,7 +31633,7 @@
         ]
       },
       "requirementsText": [
-        "绝地骑士或绝地骑士将军限定"
+        "绝地武士或绝地武士将军限定"
       ],
       "keywords": [
         {
@@ -31756,7 +31694,7 @@
             "Jedi Knight or Jedi Knight General Only"
           ],
           "zh": [
-            "绝地骑士或绝地骑士将军限定"
+            "绝地武士或绝地武士将军限定"
           ]
         },
         "zhReview": "legacy_unverified",
@@ -33152,7 +33090,7 @@
         ]
       },
       "requirementsText": [
-        "绝地骑士或绝地骑士将军限定"
+        "绝地武士或绝地武士将军限定"
       ],
       "keywords": [
         {
@@ -33212,7 +33150,7 @@
             "Jedi Knight or Jedi Knight General Only"
           ],
           "zh": [
-            "绝地骑士或绝地骑士将军限定"
+            "绝地武士或绝地武士将军限定"
           ]
         },
         "zhReview": "legacy_unverified",
@@ -44538,7 +44476,7 @@
         ]
       },
       "requirementsText": [
-        "绝地骑士或绝地骑士将军限定"
+        "绝地武士或绝地武士将军限定"
       ],
       "keywords": [
         {
@@ -44593,7 +44531,7 @@
             "Jedi Knight or Jedi Knight General Only"
           ],
           "zh": [
-            "绝地骑士或绝地骑士将军限定"
+            "绝地武士或绝地武士将军限定"
           ]
         },
         "zhReview": "legacy_unverified",
@@ -51753,7 +51691,7 @@
         "zh": []
       },
       "requirementsText": [
-        "绝地骑士或绝地骑士将军限定"
+        "绝地武士或绝地武士将军限定"
       ],
       "keywords": [],
       "weapons": [
@@ -51823,7 +51761,7 @@
             "Jedi Knight or Jedi Knight General Only"
           ],
           "zh": [
-            "绝地骑士或绝地骑士将军限定"
+            "绝地武士或绝地武士将军限定"
           ]
         },
         "zhReview": "legacy_unverified",
@@ -56698,7 +56636,7 @@
       "id": "upstream-23948",
       "name": {
         "en": "Stolen DLT-19",
-        "zh": ""
+        "zh": "缴获DLT-19"
       },
       "actionTypes": null,
       "points": 20,
@@ -56708,13 +56646,38 @@
       "usage": "unit_upgrade",
       "description": {
         "en": [],
-        "zh": []
+        "zh": [
+          "添加1个 DLT-19 游击队士兵模型"
+        ]
       },
       "requirementsText": [],
       "keywords": [],
-      "weapons": [],
+      "weapons": [
+        {
+          "name": {
+            "en": "Stolen DLT-19",
+            "zh": "缴获DLT-19"
+          },
+          "range": {
+            "min": 1,
+            "max": 4
+          },
+          "dice": {
+            "red": 2,
+            "black": 0,
+            "white": 0
+          },
+          "keywords": [
+            {
+              "id": "impact",
+              "value": 1,
+              "parameter": null
+            }
+          ]
+        }
+      ],
       "assets": {
-        "front": null
+        "front": "assets/upgrade-cards/upstream-23948-front-605e124db460.webp"
       },
       "rules": {
         "availableIn": [
@@ -56756,7 +56719,7 @@
       "id": "upstream-23947",
       "name": {
         "en": "Stolen HH-12",
-        "zh": ""
+        "zh": "缴获HH-12"
       },
       "actionTypes": null,
       "points": 20,
@@ -56766,13 +56729,45 @@
       "usage": "unit_upgrade",
       "description": {
         "en": [],
-        "zh": []
+        "zh": [
+          "添加1个 HH-12 游击队士兵模型"
+        ]
       },
-      "requirementsText": [],
+      "requirementsText": [
+        "游击队士兵限定"
+      ],
       "keywords": [],
-      "weapons": [],
+      "weapons": [
+        {
+          "name": {
+            "en": "Stolen HH-12",
+            "zh": "缴获HH-12"
+          },
+          "range": {
+            "min": 2,
+            "max": 4
+          },
+          "dice": {
+            "red": 0,
+            "black": 3,
+            "white": 0
+          },
+          "keywords": [
+            {
+              "id": "impact",
+              "value": 3,
+              "parameter": null
+            },
+            {
+              "id": "cumbersome",
+              "value": null,
+              "parameter": null
+            }
+          ]
+        }
+      ],
       "assets": {
-        "front": null
+        "front": "assets/upgrade-cards/upstream-23947-front-9d4c3610459e.webp"
       },
       "rules": {
         "availableIn": [
@@ -56814,7 +56809,7 @@
       "id": "upstream-23949",
       "name": {
         "en": "Stolen RT-97C",
-        "zh": ""
+        "zh": "缴获RT-97C"
       },
       "actionTypes": null,
       "points": 24,
@@ -56824,13 +56819,34 @@
       "usage": "unit_upgrade",
       "description": {
         "en": [],
-        "zh": []
+        "zh": [
+          "添加一个 RT-97C 游击队士兵模型"
+        ]
       },
-      "requirementsText": [],
+      "requirementsText": [
+        "游击队士兵限定"
+      ],
       "keywords": [],
-      "weapons": [],
+      "weapons": [
+        {
+          "name": {
+            "en": "Stolen RT-97C",
+            "zh": "缴获RT-97C"
+          },
+          "range": {
+            "min": 1,
+            "max": 4
+          },
+          "dice": {
+            "red": 1,
+            "black": 0,
+            "white": 3
+          },
+          "keywords": []
+        }
+      ],
       "assets": {
-        "front": null
+        "front": "assets/upgrade-cards/upstream-23949-front-5f94b48ceddb.webp"
       },
       "rules": {
         "availableIn": [
@@ -57362,13 +57378,7 @@
           3
         ],
         "unique": false,
-        "locallyUnique": true,
-        "availableIn": [
-          {
-            "kind": "unit",
-            "id": "empire-wet-weather-troopers"
-          }
-        ]
+        "locallyUnique": true
       },
       "assets": {
         "front": "assets/upgrade-cards/new-upgrade-mwkggzem-front-69c0edcf0a93.webp"
@@ -57378,7 +57388,7 @@
         "zh": []
       },
       "requirementsText": [
-        "战壕奇兵&潮湿气候装备冲锋队专属"
+        "战壕奇兵（称号）或潮湿气候装备冲锋队限定。"
       ],
       "keywords": [],
       "weapons": [
@@ -57416,7 +57426,27 @@
         "status": "unmatched",
         "candidates": []
       },
-      "restrictions": {},
+      "restrictions": {
+        "condition": {
+          "any": [
+            {
+              "field": "unit.id",
+              "op": "eq",
+              "value": "empire-wet-weather-troopers"
+            },
+            {
+              "field": "unit.title",
+              "op": "contains",
+              "value": "Trench Buster"
+            },
+            {
+              "field": "unit.title",
+              "op": "contains",
+              "value": "战壕奇兵"
+            }
+          ]
+        }
+      },
       "actionTypes": null
     },
     {
@@ -57665,6 +57695,925 @@
           "value": "cad-bane"
         },
         "verification": "visually_checked"
+      }
+    },
+    {
+      "id": "frontal-assault",
+      "name": {
+        "en": "Frontal Assault",
+        "zh": "正面突击"
+      },
+      "actionTypes": null,
+      "points": 5,
+      "slotIds": [
+        24
+      ],
+      "usage": "unit_upgrade",
+      "description": {
+        "en": [],
+        "zh": [
+          "本单位获得 强迫 和 典范",
+          "本单位{@icon.range-2}以内的友方士兵单位获得 鞭策"
+        ]
+      },
+      "requirementsText": [
+        "帝国军官限定；224 装甲师限定"
+      ],
+      "keywords": [
+        {
+          "id": "compel",
+          "value": null,
+          "parameter": null
+        },
+        {
+          "id": "exemplar",
+          "value": null,
+          "parameter": null
+        },
+        {
+          "id": "spur",
+          "value": null,
+          "parameter": null
+        }
+      ],
+      "weapons": [],
+      "assets": {
+        "front": "assets/upgrade-cards/frontal-assault-front-f5dbc7aa1494.webp"
+      },
+      "rules": {
+        "availableIn": [
+          {
+            "kind": "unit",
+            "id": "empire-imperial-officer-ruthless-efficiency"
+          }
+        ],
+        "factions": [
+          27
+        ],
+        "slotTypes": [
+          24
+        ],
+        "unique": false,
+        "limit": 2,
+        "locallyUnique": true
+      },
+      "review": {
+        "status": "needs_review",
+        "notes": "224 占位。双点限制用 limit=2 表示，非单份 unique；5 分、战略槽及宿主限制已按公开卡牌资料核对，卡文、词条与卡图留待补充。",
+        "issues": [
+          "中文名称暂译；缺少卡文、词条与卡图。"
+        ],
+        "sources": [
+          "https://legion.takras.net/cards/upgrades/frontal-assault/"
+        ]
+      },
+      "matching": {
+        "status": "unmatched",
+        "candidates": []
+      },
+      "restrictions": {}
+    },
+    {
+      "id": "new-upgrade-mwoblqyu",
+      "name": {
+        "en": "Thirst For Power",
+        "zh": "渴望力量"
+      },
+      "points": 5,
+      "slotIds": [
+        5
+      ],
+      "usage": "unit_upgrade",
+      "rules": {
+        "slotTypes": [
+          5
+        ],
+        "unique": false,
+        "locallyUnique": true,
+        "requiredDivisions": [
+          "Dark"
+        ]
+      },
+      "assets": {
+        "front": null
+      },
+      "description": {
+        "en": [],
+        "zh": [
+          "该单位获得 恶毒2"
+        ]
+      },
+      "actionTypes": [],
+      "requirementsText": [
+        "黑暗面限定"
+      ],
+      "keywords": [
+        {
+          "id": "vicious",
+          "value": 2,
+          "parameter": null
+        }
+      ],
+      "weapons": [],
+      "review": {
+        "status": "needs_review",
+        "notes": "",
+        "issues": [
+          "新建卡片，待补全字段"
+        ]
+      },
+      "matching": {
+        "status": "unmatched",
+        "candidates": []
+      },
+      "restrictions": {}
+    },
+    {
+      "id": "eyes-and-ears",
+      "matching": {
+        "status": "unmatched",
+        "candidates": []
+      },
+      "name": {
+        "en": "Eyes and Ears",
+        "zh": "耳目"
+      },
+      "points": 8,
+      "actionTypes": [],
+      "slotIds": [
+        10
+      ],
+      "usage": "unit_upgrade",
+      "description": {
+        "en": [
+          "When this unit attacks an enemy unit within {@icon.range-3} that is Contesting or Holding 1 or more Objective tokens, after the effect is resolved, the defending unit gains 2 Observation tokens."
+        ],
+        "zh": [
+          "本单位攻击{@icon.range-3}内正在争夺或持有至少1个目标标记的敌方单位时，在该效果结算后，防御单位获得2个观察标记。"
+        ]
+      },
+      "requirementsText": [
+        "ARF士兵限定。"
+      ],
+      "keywords": [],
+      "weapons": [],
+      "rules": {
+        "unique": false,
+        "slotTypes": [
+          10
+        ],
+        "locallyUnique": true,
+        "limit": 2
+      },
+      "review": {
+        "status": "needs_review",
+        "notes": "按用户提供的 11 月更新卡图逐项录入；中文卡文为待校对译文。",
+        "issues": []
+      },
+      "restrictions": {
+        "text": {
+          "en": [
+            "ARF Troopers Only."
+          ],
+          "zh": [
+            "ARF士兵限定。"
+          ]
+        },
+        "condition": {
+          "field": "unit.nameIdentityId",
+          "op": "eq",
+          "value": "arf-troopers"
+        },
+        "zhReview": "needs_review"
+      },
+      "assets": {
+        "front": "assets/upgrade-cards/eyes-and-ears-nov2026.webp"
+      }
+    },
+    {
+      "id": "veteran-operators",
+      "matching": {
+        "status": "unmatched",
+        "candidates": []
+      },
+      "name": {
+        "en": "Veteran Operators",
+        "zh": "老练特战队员"
+      },
+      "points": 8,
+      "actionTypes": [],
+      "slotIds": [
+        10
+      ],
+      "usage": "unit_upgrade",
+      "description": {
+        "en": [
+          "This upgrade cannot be equipped by a unit with the Equip keyword.",
+          "At the start of the first Activation Phase, put 2 Aim tokens on this card.",
+          "When an enemy unit leader within {@icon.range-2} of this unit is defeated, before removing that miniature from the battlefield, add 1 Aim token to this card.",
+          "When this unit uses Marksman, it may spend tokens from this card as if it had those tokens."
+        ],
+        "zh": [
+          "具有配备要求的单位不能装备此升级。",
+          "第一个激活阶段开始时，在此卡上放置2个瞄准标记。",
+          "本单位{@icon.range-2}内的敌方单位队长被击败时，在将该模型移出战场前，在此卡上放置1个瞄准标记。",
+          "本单位使用神枪手时，可以花费此卡上的标记，如同本单位拥有这些标记。"
+        ]
+      },
+      "requirementsText": [
+        "帝国特种部队限定；具有配备要求的单位不能装备此卡。"
+      ],
+      "keywords": [
+        {
+          "id": "marksman"
+        }
+      ],
+      "weapons": [],
+      "rules": {
+        "unique": false,
+        "slotTypes": [
+          10
+        ],
+        "locallyUnique": true,
+        "limit": 2
+      },
+      "review": {
+        "status": "needs_review",
+        "notes": "按用户提供的 11 月更新卡图逐项录入；中文卡文为待校对译文。",
+        "issues": []
+      },
+      "restrictions": {
+        "text": {
+          "en": [
+            "Imperial Special Forces Only. This upgrade cannot be equipped by a unit with the Equip keyword."
+          ],
+          "zh": [
+            "帝国特种部队限定；具有配备要求的单位不能装备此卡。"
+          ]
+        },
+        "condition": {
+          "all": [
+            {
+              "field": "unit.nameIdentityId",
+              "op": "eq",
+              "value": "imperial-special-forces"
+            },
+            {
+              "field": "unit.hasEquip",
+              "op": "eq",
+              "value": false
+            }
+          ]
+        },
+        "zhReview": "needs_review"
+      },
+      "assets": {
+        "front": "assets/upgrade-cards/veteran-operators-nov2026.webp"
+      }
+    },
+    {
+      "id": "wookiee-battle-cries",
+      "matching": {
+        "status": "unmatched",
+        "candidates": []
+      },
+      "name": {
+        "en": "Wookiee Battle Cries",
+        "zh": "伍基战吼"
+      },
+      "points": 5,
+      "actionTypes": [],
+      "slotIds": [
+        9
+      ],
+      "usage": "unit_upgrade",
+      "description": {
+        "en": [
+          "At the start of this unit’s Activation, choose one of the following:",
+          "Rallying Cry: This unit gains Inspire 2 until the end of the Round.",
+          "Terrible Howl: This unit gains Demoralize 2 until the end of the Round.",
+          "Call to Battle: Another allied Wookiee Trooper unit within {@icon.range-1} may make a Speed-1 Move."
+        ],
+        "zh": [
+          "本单位激活开始时，选择以下一项：",
+          "振奋战吼：本单位获得提振2，直到本轮结束。",
+          "恐怖嚎叫：本单位获得震慑2，直到本轮结束。",
+          "战斗召唤：{@icon.range-1}内另一个友方伍基人士兵单位可以进行一次速度1移动。"
+        ]
+      },
+      "requirementsText": [
+        "伍基人酋长限定；伍基人林地战团限定。"
+      ],
+      "keywords": [
+        {
+          "id": "inspire",
+          "value": 2
+        },
+        {
+          "id": "demoralize",
+          "value": 2
+        }
+      ],
+      "weapons": [],
+      "rules": {
+        "unique": false,
+        "slotTypes": [
+          9
+        ],
+        "locallyUnique": true,
+        "factions": [
+          21
+        ]
+      },
+      "review": {
+        "status": "needs_review",
+        "notes": "按用户提供的 11 月更新卡图逐项录入；中文卡文为待校对译文。",
+        "issues": []
+      },
+      "restrictions": {
+        "text": {
+          "en": [
+            "Wookiee Chieftain Only. Wookiee War Grove Only."
+          ],
+          "zh": [
+            "伍基人酋长限定；伍基人林地战团限定。"
+          ]
+        },
+        "condition": {
+          "field": "unit.nameIdentityId",
+          "op": "eq",
+          "value": "wookiee-chieftain"
+        },
+        "zhReview": "needs_review"
+      },
+      "assets": {
+        "front": "assets/upgrade-cards/wookiee-battle-cries-nov2026.webp"
+      }
+    },
+    {
+      "id": "war-grove-battle-shield-wookiee",
+      "matching": {
+        "status": "unmatched",
+        "candidates": []
+      },
+      "name": {
+        "en": "War Grove Battle Shield Wookiee",
+        "zh": "伍基人林地战团持盾伍基人"
+      },
+      "points": 32,
+      "actionTypes": [],
+      "slotIds": [
+        4
+      ],
+      "usage": "unit_upgrade",
+      "description": {
+        "en": [
+          "Add 1 Battle Shield Wookiee miniature.",
+          "This unit gains Agile 1 and Block."
+        ],
+        "zh": [
+          "加入1个持盾伍基人模型。",
+          "本单位获得敏捷1和格挡。"
+        ]
+      },
+      "requirementsText": [
+        "伍基人战士限定；伍基人林地战团限定。"
+      ],
+      "keywords": [
+        {
+          "id": "agile",
+          "value": 1
+        },
+        {
+          "id": "block"
+        }
+      ],
+      "weapons": [
+        {
+          "name": {
+            "en": "Battle Shield",
+            "zh": "战盾"
+          },
+          "range": {
+            "min": 0,
+            "max": 0
+          },
+          "dice": {
+            "red": 0,
+            "black": 3,
+            "white": 0
+          },
+          "keywords": []
+        }
+      ],
+      "rules": {
+        "unique": false,
+        "slotTypes": [
+          4
+        ],
+        "locallyUnique": true,
+        "factions": [
+          21
+        ]
+      },
+      "review": {
+        "status": "needs_review",
+        "notes": "按用户提供的 11 月更新卡图逐项录入；中文卡文为待校对译文。",
+        "issues": []
+      },
+      "restrictions": {
+        "text": {
+          "en": [
+            "Wookiee Warriors Only. Wookiee War Grove Only."
+          ],
+          "zh": [
+            "伍基人战士限定；伍基人林地战团限定。"
+          ]
+        },
+        "condition": {
+          "field": "unit.nameIdentityId",
+          "op": "eq",
+          "value": "wookiee-warriors"
+        },
+        "zhReview": "needs_review"
+      },
+      "assets": {
+        "front": "assets/upgrade-cards/war-grove-battle-shield-wookiee-nov2026.webp"
+      }
+    },
+    {
+      "id": "war-grove-bowcaster-wookiee",
+      "matching": {
+        "status": "unmatched",
+        "candidates": []
+      },
+      "name": {
+        "en": "War Grove Bowcaster Wookiee",
+        "zh": "伍基人林地战团弩枪伍基人"
+      },
+      "points": 31,
+      "actionTypes": [],
+      "slotIds": [
+        4
+      ],
+      "usage": "unit_upgrade",
+      "description": {
+        "en": [
+          "Add 1 Bowcaster Wookiee miniature."
+        ],
+        "zh": [
+          "加入1个弩枪伍基人模型。"
+        ]
+      },
+      "requirementsText": [
+        "伍基人战士限定；伍基人林地战团限定。"
+      ],
+      "keywords": [],
+      "weapons": [
+        {
+          "name": {
+            "en": "Bowcaster",
+            "zh": "弩枪"
+          },
+          "range": {
+            "min": 1,
+            "max": 3
+          },
+          "dice": {
+            "red": 1,
+            "black": 0,
+            "white": 1
+          },
+          "keywords": [
+            {
+              "id": "impact",
+              "value": 2
+            },
+            {
+              "id": "pierce",
+              "value": 1
+            }
+          ]
+        }
+      ],
+      "rules": {
+        "unique": false,
+        "slotTypes": [
+          4
+        ],
+        "locallyUnique": true,
+        "factions": [
+          21
+        ]
+      },
+      "review": {
+        "status": "needs_review",
+        "notes": "按用户提供的 11 月更新卡图逐项录入；中文卡文为待校对译文。",
+        "issues": []
+      },
+      "restrictions": {
+        "text": {
+          "en": [
+            "Wookiee Warriors Only. Wookiee War Grove Only."
+          ],
+          "zh": [
+            "伍基人战士限定；伍基人林地战团限定。"
+          ]
+        },
+        "condition": {
+          "field": "unit.nameIdentityId",
+          "op": "eq",
+          "value": "wookiee-warriors"
+        },
+        "zhReview": "needs_review"
+      },
+      "assets": {
+        "front": "assets/upgrade-cards/war-grove-bowcaster-wookiee-nov2026.webp"
+      }
+    },
+    {
+      "id": "war-grove-long-gun-wookiee",
+      "matching": {
+        "status": "unmatched",
+        "candidates": []
+      },
+      "name": {
+        "en": "War Grove Long Gun Wookiee",
+        "zh": "伍基人林地战团长枪伍基人"
+      },
+      "points": 28,
+      "actionTypes": [],
+      "slotIds": [
+        4
+      ],
+      "usage": "unit_upgrade",
+      "description": {
+        "en": [
+          "Add 1 Long Gun Wookiee miniature.",
+          "This unit gains Death From Above."
+        ],
+        "zh": [
+          "加入1个长枪伍基人模型。",
+          "本单位获得死亡天降。"
+        ]
+      },
+      "requirementsText": [
+        "伍基人战士限定；伍基人林地战团限定。"
+      ],
+      "keywords": [
+        {
+          "id": "death_from_above"
+        }
+      ],
+      "weapons": [
+        {
+          "name": {
+            "en": "Long Gun",
+            "zh": "长枪"
+          },
+          "range": {
+            "min": 1,
+            "max": 4
+          },
+          "dice": {
+            "red": 0,
+            "black": 3,
+            "white": 0
+          },
+          "keywords": [
+            {
+              "id": "critical",
+              "value": 1
+            },
+            {
+              "id": "cumbersome"
+            },
+            {
+              "id": "suppressive"
+            }
+          ]
+        }
+      ],
+      "rules": {
+        "unique": false,
+        "slotTypes": [
+          4
+        ],
+        "locallyUnique": true,
+        "factions": [
+          21
+        ]
+      },
+      "review": {
+        "status": "needs_review",
+        "notes": "按用户提供的 11 月更新卡图逐项录入；中文卡文为待校对译文。",
+        "issues": []
+      },
+      "restrictions": {
+        "text": {
+          "en": [
+            "Wookiee Warriors Only. Wookiee War Grove Only."
+          ],
+          "zh": [
+            "伍基人战士限定；伍基人林地战团限定。"
+          ]
+        },
+        "condition": {
+          "field": "unit.nameIdentityId",
+          "op": "eq",
+          "value": "wookiee-warriors"
+        },
+        "zhReview": "needs_review"
+      },
+      "assets": {
+        "front": "assets/upgrade-cards/war-grove-long-gun-wookiee-nov2026.webp"
+      }
+    },
+    {
+      "id": "war-grove-gnasp-bombardier",
+      "matching": {
+        "status": "unmatched",
+        "candidates": []
+      },
+      "name": {
+        "en": "War Grove Gnasp Bombardier",
+        "zh": "伍基人林地战团咬牙蜂投弹手"
+      },
+      "points": 20,
+      "actionTypes": [],
+      "slotIds": [
+        13
+      ],
+      "usage": "unit_upgrade",
+      "description": {
+        "en": [],
+        "zh": []
+      },
+      "requirementsText": [
+        "拉道夫“咬牙蜂”扑翼机限定。伍基人林地战团限定。"
+      ],
+      "keywords": [],
+      "weapons": [
+        {
+          "name": {
+            "en": "Thermal Detonators",
+            "zh": "热能榴弹"
+          },
+          "range": {
+            "min": -1,
+            "max": 0
+          },
+          "dice": {
+            "red": 2,
+            "black": 0,
+            "white": 2
+          },
+          "keywords": [
+            {
+              "id": "overrun",
+              "value": 2
+            },
+            {
+              "id": "suppressive"
+            }
+          ]
+        }
+      ],
+      "rules": {
+        "unique": false,
+        "slotTypes": [
+          13
+        ],
+        "locallyUnique": true,
+        "factions": [
+          21
+        ]
+      },
+      "review": {
+        "status": "needs_review",
+        "notes": "按用户提供的 11 月更新卡图逐项录入；中文卡文为待校对译文。",
+        "issues": []
+      },
+      "restrictions": {
+        "text": {
+          "en": [
+            "Raddaugh Gnasp Fluttercraft Only. Wookiee War Grove Only."
+          ],
+          "zh": [
+            "拉道夫“咬牙蜂”扑翼机限定。伍基人林地战团限定。"
+          ]
+        },
+        "condition": {
+          "field": "unit.nameIdentityId",
+          "op": "eq",
+          "value": "raddaugh-gnasp-fluttercraft"
+        },
+        "zhReview": "needs_review"
+      },
+      "assets": {
+        "front": "assets/upgrade-cards/war-grove-gnasp-bombardier-nov2026.webp"
+      }
+    },
+    {
+      "id": "war-grove-gnasp-gunner",
+      "matching": {
+        "status": "unmatched",
+        "candidates": []
+      },
+      "name": {
+        "en": "War Grove Gnasp Gunner",
+        "zh": "伍基人林地战团咬牙蜂炮手"
+      },
+      "points": 15,
+      "actionTypes": [],
+      "slotIds": [
+        13
+      ],
+      "usage": "unit_upgrade",
+      "description": {
+        "en": [
+          "This unit gains Arsenal 2."
+        ],
+        "zh": [
+          "本单位获得军火库2。"
+        ]
+      },
+      "requirementsText": [
+        "拉道夫“咬牙蜂”扑翼机限定。伍基人林地战团限定。"
+      ],
+      "keywords": [
+        {
+          "id": "arsenal",
+          "value": 2
+        }
+      ],
+      "weapons": [
+        {
+          "name": {
+            "en": "Heavy Bowcaster",
+            "zh": "重型弩枪"
+          },
+          "range": {
+            "min": 1,
+            "max": 3
+          },
+          "dice": {
+            "red": 2,
+            "black": 2,
+            "white": 0
+          },
+          "keywords": [
+            {
+              "id": "fixed_front",
+              "parameter": "后方"
+            },
+            {
+              "id": "impact",
+              "value": 2
+            },
+            {
+              "id": "pierce",
+              "value": 1
+            }
+          ]
+        }
+      ],
+      "rules": {
+        "unique": false,
+        "slotTypes": [
+          13
+        ],
+        "locallyUnique": true,
+        "factions": [
+          21
+        ]
+      },
+      "review": {
+        "status": "needs_review",
+        "notes": "按用户提供的 11 月更新卡图逐项录入；中文卡文为待校对译文。",
+        "issues": []
+      },
+      "restrictions": {
+        "text": {
+          "en": [
+            "Raddaugh Gnasp Fluttercraft Only. Wookiee War Grove Only."
+          ],
+          "zh": [
+            "拉道夫“咬牙蜂”扑翼机限定。伍基人林地战团限定。"
+          ]
+        },
+        "condition": {
+          "field": "unit.nameIdentityId",
+          "op": "eq",
+          "value": "raddaugh-gnasp-fluttercraft"
+        },
+        "zhReview": "needs_review"
+      },
+      "assets": {
+        "front": "assets/upgrade-cards/war-grove-gnasp-gunner-nov2026.webp"
+      }
+    },
+    {
+      "id": "yoda-heavy",
+      "name": {
+        "en": "Yoda",
+        "zh": "尤达"
+      },
+      "points": 20,
+      "actionTypes": [],
+      "slotIds": [
+        4
+      ],
+      "usage": "unit_upgrade",
+      "description": {
+        "en": [
+          "Add 1 Yoda miniature.",
+          "This unit gains 1 {@icon.slot-heavy} upgrade icon.",
+          "When this unit defends against a Ranged attack, during the Modify Attack Dice step, you may {@icon.exhaust} this card. If you do, cancel either 1 {@icon.critical} result or up to 2 {@icon.hit} results.",
+          "When this unit attacks, during the Form Attack Pool step, you may choose 1 of this unit's Attack Pools and {@icon.exhaust} this card. If you do, upgrade 4 attack dice in the chosen Attack Pool.",
+          "When a miniature in this unit is defeated, after the effect is resolved, you may ready this card.",
+          "Noncombatant."
+        ],
+        "zh": [
+          "加入1个尤达模型（生命值1）。",
+          "本单位获得1个{@icon.slot-heavy}升级槽。",
+          "本单位防御远程攻击时，在修正攻击骰步骤，你可以{@icon.exhaust}此卡。若如此做，取消1个{@icon.critical}结果，或最多2个{@icon.hit}结果。",
+          "本单位攻击时，在组成攻击池步骤，你可以选择本单位的1个攻击池并{@icon.exhaust}此卡。若如此做，升级所选攻击池中的4枚攻击骰。",
+          "本单位中的模型被击败时，在该效果结算后，你可以重置此卡。",
+          "非战斗人员。"
+        ]
+      },
+      "requirementsText": [
+        "克隆人士兵部队，或共和国伍基人士兵限定。"
+      ],
+      "keywords": [
+        {
+          "id": "noncombatant"
+        }
+      ],
+      "weapons": [],
+      "assets": {
+        "front": "assets/upgrade-cards/yoda-heavy-nov2026.png"
+      },
+      "rules": {
+        "unique": true,
+        "limit": 1,
+        "locallyUnique": true,
+        "slotTypes": [
+          4
+        ],
+        "factions": [
+          4
+        ],
+        "slotGrants": [
+          {
+            "trigger": "equipped",
+            "slot": "heavy_weapon"
+          }
+        ]
+      },
+      "restrictions": {
+        "text": {
+          "en": [
+            "Clone Trooper Infantry or {@icon.faction-gar} Wookiee Trooper Only."
+          ],
+          "zh": [
+            "克隆人士兵部队，或共和国伍基人士兵限定。"
+          ]
+        },
+        "condition": {
+          "any": [
+            {
+              "field": "unit.nameIdentityId",
+              "op": "eq",
+              "value": "clone-trooper-infantry"
+            },
+            {
+              "all": [
+                {
+                  "field": "unit.factionId",
+                  "op": "eq",
+                  "value": 4
+                },
+                {
+                  "field": "unit.unitSubtypeId",
+                  "op": "eq",
+                  "value": "wookiee_trooper"
+                }
+              ]
+            }
+          ]
+        },
+        "zhReview": "needs_review"
+      },
+      "review": {
+        "status": "needs_review",
+        "notes": "按用户提供的尤达卡图建立模板；20分、重武器槽、宿主条件及新增重武器槽已录入。中文卡文待人工校对。",
+        "issues": []
+      },
+      "matching": {
+        "status": "unmatched",
+        "candidates": []
       }
     }
   ]

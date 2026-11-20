@@ -1350,7 +1350,9 @@
       },
       "unitLimitsText": [
         "WLO-5 浮空坦克数量不能超过威奎海盗单位数量。"
-      ]
+      ],
+      "nameZh": "奥纳卡帮派",
+      "nameAliases": []
     },
     "15": {
       "name": "Rapid Interdiction Force",
@@ -2036,14 +2038,22 @@
       ]
     },
     "21": {
-      "name": "Wookiee Defenders",
+      "name": "Wookiee War Grove",
+      "nameZh": "伍基人林地战团",
       "parentFaction": "Galactic Republic",
+      "alignment": "Light",
+      "status": "preview",
       "modes": {
         "standard": {
           "rankQuotas": [
             {
               "rankId": 1,
               "min": 1,
+              "max": 2
+            },
+            {
+              "rankId": 6,
+              "min": 0,
               "max": 2
             },
             {
@@ -2054,7 +2064,7 @@
             {
               "rankId": 3,
               "min": 0,
-              "max": 4
+              "max": 3
             },
             {
               "rankId": 4,
@@ -2064,12 +2074,7 @@
             {
               "rankId": 5,
               "min": 0,
-              "max": 1
-            },
-            {
-              "rankId": 6,
-              "min": 0,
-              "max": 1
+              "max": 2
             },
             {
               "rankId": 7,
@@ -2077,15 +2082,7 @@
               "max": 2
             }
           ],
-          "combined": [
-            {
-              "tiers": [
-                1,
-                6
-              ],
-              "maximum": 2
-            }
-          ]
+          "combined": []
         },
         "recon": {
           "rankQuotas": [
@@ -2095,14 +2092,19 @@
               "max": 2
             },
             {
+              "rankId": 6,
+              "min": 0,
+              "max": 1
+            },
+            {
               "rankId": 2,
               "min": 2,
-              "max": 5
+              "max": 4
             },
             {
               "rankId": 3,
               "min": 0,
-              "max": 3
+              "max": 2
             },
             {
               "rankId": 4,
@@ -2115,314 +2117,305 @@
               "max": 1
             },
             {
-              "rankId": 6,
-              "min": 0,
-              "max": 1
-            },
-            {
               "rankId": 7,
               "min": 0,
               "max": 1
             }
           ],
-          "combined": [
-            {
-              "tiers": [
-                1,
-                6
-              ],
-              "maximum": 2
-            }
-          ]
+          "combined": []
         }
       },
-      "textRules": [],
-      "machineRules": [],
-      "options": [],
-      "status": "quotas_only",
-      "alignment": "Light",
+      "allowedUnits": {},
       "textRulesZh": [
-        "伍基守军属于银河共和国。",
-        "伍基战士（高贵战士）在组军及战场卡方面视为核心单位。",
-        "至少包含 3 个伍基人士兵单位。",
-        "每轮每个伍基人士兵单位首次有一个或更多模型被击败时，该单位可进行一次速度 1 移动，无论其本身速度如何。"
+        "伍基人林地战团属于银河共和国。",
+        "伍基人战士（树梢保卫者）装备顽强（Tenacity）升级卡时，该卡费用改为0分。",
+        "友方拉道夫“咬牙蜂”扑翼机获得运输。"
       ],
+      "textRules": [
+        "A Wookiee War Grove Battle Force is part of the Galactic Republic Faction.",
+        "Reduce the cost of the Tenacity Upgrade Card to 0 points for Wookiee Warriors (Treetop Defenders).",
+        "Allied Raddaugh Gnasp Fluttercraft gain Transport."
+      ],
+      "options": [],
+      "machineRules": [],
       "rulesSource": {
-        "document": "DOC56_BattleForces-3.pdf",
+        "document": "DOC61_BattleForces.pdf",
         "pages": [
-          17
+          21
         ],
-        "reviewedAt": "2026-11-17"
+        "effectiveDate": "2026-12-01",
+        "reviewedAt": "2026-11-19"
+      },
+      "unparsedRules": [
+        "V-Wing单位卡尚未录入，补卡后可通过本地ID加入许可清单。"
+      ],
+      "draftSpec": {
+        "allowedUnits": [
+          {
+            "rankId": 1,
+            "name": "Yoda",
+            "unitIds": [
+              "republic-yoda"
+            ],
+            "resolution": "matched"
+          },
+          {
+            "rankId": 1,
+            "name": "Chewbacca",
+            "unitIds": [
+              "republic-chewbacca-gar"
+            ],
+            "resolution": "matched"
+          },
+          {
+            "rankId": 1,
+            "name": "Wookiee Chieftain",
+            "unitIds": [
+              "republic-chieftain"
+            ],
+            "resolution": "matched"
+          },
+          {
+            "rankId": 6,
+            "name": "绝地武士",
+            "unitIds": [
+              "republic-jedi-knight"
+            ],
+            "resolution": "matched"
+          },
+          {
+            "rankId": 3,
+            "name": "Wookiee Warriors (Fearsome Guardians)",
+            "unitIds": [
+              "republic-wookiee-fearsome-guardians"
+            ],
+            "resolution": "matched"
+          },
+          {
+            "rankId": 2,
+            "name": "Wookiee Warriors (Treetop Defenders)",
+            "unitIds": [
+              "republic-wookiee-treetop-defenders"
+            ],
+            "min": 2,
+            "resolution": "matched"
+          },
+          {
+            "rankId": 2,
+            "name": "Clone Trooper Infantry",
+            "unitIds": [
+              "republic-clone-trooper"
+            ],
+            "max": 2,
+            "resolution": "matched"
+          },
+          {
+            "rankId": 4,
+            "name": "Raddaugh Gnasp Fluttercraft",
+            "unitIds": [
+              "republic-raddaugh-gnasp",
+              "republic-raddaugh"
+            ],
+            "resolution": "matched"
+          },
+          {
+            "rankId": 4,
+            "name": "BARC Speeder",
+            "unitIds": [
+              "republic-barc"
+            ],
+            "max": 1,
+            "resolution": "matched"
+          },
+          {
+            "rankId": 5,
+            "name": "Infantry Support Platform",
+            "unitIds": [
+              "republic-isp"
+            ],
+            "max": 1,
+            "resolution": "matched"
+          },
+          {
+            "rankId": 5,
+            "name": "Saber-class Tank",
+            "unitIds": [
+              "republic-saber-class"
+            ],
+            "max": 1,
+            "resolution": "matched"
+          },
+          {
+            "rankId": 7,
+            "name": "V-Wing",
+            "unitIds": [],
+            "resolution": "missing"
+          }
+        ],
+        "uniqueUpgrades": [
+          {
+            "name": "Chewbacca",
+            "upgradeIds": [
+              "chewbacca-heavy"
+            ]
+          },
+          {
+            "name": "Improvised Orders",
+            "upgradeIds": [
+              "command-improvised"
+            ]
+          },
+          {
+            "name": "Jedi Consular",
+            "upgradeIds": [
+              "jedi-consular"
+            ]
+          },
+          {
+            "name": "Jedi Guardian",
+            "upgradeIds": [
+              "gar-jedi-guardian",
+              "jedi-guardian"
+            ]
+          },
+          {
+            "name": "Jedi Negotiator",
+            "upgradeIds": [
+              "jedi-negotiator"
+            ]
+          },
+          {
+            "name": "Strike Team Leader",
+            "upgradeIds": [
+              "training-strike-team-leader"
+            ]
+          },
+          {
+            "name": "Yoda",
+            "upgradeIds": [
+              "yoda-heavy"
+            ]
+          }
+        ],
+        "implementationGaps": [
+          "V-Wing单位卡尚未录入。"
+        ]
       },
       "unitLimitsText": [
-        "至少 3 个伍基人士兵单位。",
-        "ARC 士兵、BARC 飞行机车、步兵支援平台、军刀级坦克：各 0–1 个；克隆人士兵步兵：0–2 个。"
+        "至少2个伍基人战士（树梢保卫者）；克隆人士兵步兵最多2个。",
+        "BARC飞行机车、步兵支援平台、军刀级坦克各最多1个。"
       ],
-      "pendingRevision": {
-        "name": "Wookiee War Grove",
-        "nameZh": "伍基战争林地",
-        "parentFaction": "Galactic Republic",
-        "alignment": "Light",
-        "status": "draft",
-        "modes": {
-          "standard": {
-            "rankQuotas": [
-              {
-                "rankId": 1,
-                "min": 1,
-                "max": 2
-              },
-              {
-                "rankId": 6,
-                "min": 0,
-                "max": 2
-              },
-              {
-                "rankId": 2,
-                "min": 3,
-                "max": 6
-              },
-              {
-                "rankId": 3,
-                "min": 0,
-                "max": 3
-              },
-              {
-                "rankId": 4,
-                "min": 0,
-                "max": 3
-              },
-              {
-                "rankId": 5,
-                "min": 0,
-                "max": 2
-              },
-              {
-                "rankId": 7,
-                "min": 0,
-                "max": 2
-              }
-            ],
-            "combined": []
-          },
-          "recon": {
-            "rankQuotas": [
-              {
-                "rankId": 1,
-                "min": 1,
-                "max": 2
-              },
-              {
-                "rankId": 6,
-                "min": 0,
-                "max": 1
-              },
-              {
-                "rankId": 2,
-                "min": 2,
-                "max": 4
-              },
-              {
-                "rankId": 3,
-                "min": 0,
-                "max": 2
-              },
-              {
-                "rankId": 4,
-                "min": 0,
-                "max": 2
-              },
-              {
-                "rankId": 5,
-                "min": 0,
-                "max": 1
-              },
-              {
-                "rankId": 7,
-                "min": 0,
-                "max": 1
-              }
-            ],
-            "combined": []
-          }
-        },
-        "allowedUnits": {},
-        "textRulesZh": [
-          "伍基战争林地属于银河共和国。",
-          "伍基战士（树冠守卫者）装备顽强（Tenacity）升级卡时，该卡费用改为 0 分。",
-          "友方拉达赫蚋扑翼机获得运输。"
-        ],
-        "textRules": [
-          "A Wookiee War Grove Battle Force is part of the Galactic Republic Faction.",
-          "Reduce the cost of the Tenacity Upgrade Card to 0 points for Wookiee Warriors (Treetop Defenders).",
-          "Allied Raddaugh Gnasp Fluttercraft gain Transport."
-        ],
-        "options": [],
-        "machineRules": [],
-        "rulesSource": {
-          "document": "DOC61_BattleForces.pdf",
-          "pages": [
-            21
+      "engineVersion": 2,
+      "v2": {
+        "parentFactionId": 4,
+        "common": {
+          "unitGrants": [
+            {
+              "unitId": "republic-yoda"
+            },
+            {
+              "unitId": "republic-chewbacca-gar"
+            },
+            {
+              "unitId": "republic-chieftain"
+            },
+            {
+              "unitId": "republic-jedi-knight"
+            },
+            {
+              "unitId": "republic-wookiee-fearsome-guardians"
+            },
+            {
+              "unitId": "republic-wookiee-treetop-defenders"
+            },
+            {
+              "unitId": "republic-clone-trooper"
+            },
+            {
+              "unitId": "republic-raddaugh-gnasp"
+            },
+            {
+              "unitId": "republic-raddaugh"
+            },
+            {
+              "unitId": "republic-barc"
+            },
+            {
+              "unitId": "republic-isp"
+            },
+            {
+              "unitId": "republic-saber-class"
+            }
           ],
-          "effectiveDate": "2026-12-01",
-          "reviewedAt": "2026-11-19"
-        },
-        "unparsedRules": [
-          "新版战斗部队草案尚未启用：单位许可、飞行军阶及特殊规则待接入。"
-        ],
-        "draftSpec": {
-          "allowedUnits": [
+          "uniqueUpgradeIds": [
+            "chewbacca-heavy",
+            "command-improvised",
+            "jedi-consular",
+            "gar-jedi-guardian",
+            "jedi-guardian",
+            "jedi-negotiator",
+            "training-strike-team-leader",
+            "yoda-heavy"
+          ],
+          "unitLimits": [
             {
-              "rankId": 1,
-              "name": "Yoda",
-              "unitIds": [
-                "republic-yoda"
-              ],
-              "resolution": "matched"
-            },
-            {
-              "rankId": 1,
-              "name": "Chewbacca",
-              "unitIds": [
-                "republic-chewbacca-gar"
-              ],
-              "resolution": "matched"
-            },
-            {
-              "rankId": 1,
-              "name": "Wookiee Chieftain",
-              "unitIds": [
-                "republic-chieftain"
-              ],
-              "resolution": "matched"
-            },
-            {
-              "rankId": 6,
-              "name": "Jedi Knight",
-              "unitIds": [
-                "republic-jedi-knight"
-              ],
-              "resolution": "matched"
-            },
-            {
-              "rankId": 3,
-              "name": "Wookiee Warriors (Fearsome Guardians)",
-              "unitIds": [],
-              "resolution": "missing"
-            },
-            {
-              "rankId": 2,
-              "name": "Wookiee Warriors (Treetop Defenders)",
-              "unitIds": [],
+              "unitId": "republic-wookiee-treetop-defenders",
               "min": 2,
-              "resolution": "missing"
+              "max": 6
             },
             {
-              "rankId": 2,
-              "name": "Clone Trooper Infantry",
-              "unitIds": [
-                "republic-clone-trooper"
-              ],
-              "max": 2,
-              "resolution": "matched"
+              "unitId": "republic-clone-trooper",
+              "min": 0,
+              "max": 2
             },
             {
-              "rankId": 4,
-              "name": "Raddaugh Gnasp Fluttercraft",
-              "unitIds": [
-                "republic-raddaugh-gnasp",
-                "republic-raddaugh"
-              ],
-              "resolution": "matched"
+              "unitId": "republic-barc",
+              "min": 0,
+              "max": 1
             },
             {
-              "rankId": 4,
-              "name": "BARC Speeder",
-              "unitIds": [
-                "republic-barc"
-              ],
-              "max": 1,
-              "resolution": "matched"
+              "unitId": "republic-isp",
+              "min": 0,
+              "max": 1
             },
             {
-              "rankId": 5,
-              "name": "Infantry Support Platform",
-              "unitIds": [
-                "republic-isp"
-              ],
-              "max": 1,
-              "resolution": "matched"
-            },
-            {
-              "rankId": 5,
-              "name": "Saber-class Tank",
-              "unitIds": [
-                "republic-saber-class"
-              ],
-              "max": 1,
-              "resolution": "matched"
-            },
-            {
-              "rankId": 7,
-              "name": "V-Wing",
-              "unitIds": [],
-              "resolution": "missing"
+              "unitId": "republic-saber-class",
+              "min": 0,
+              "max": 1
             }
           ],
-          "uniqueUpgrades": [
+          "modifiers": [
             {
-              "name": "Chewbacca",
-              "upgradeIds": [
-                "chewbacca-heavy"
-              ]
+              "id": "treetop-free-tenacity",
+              "card": "upgrade",
+              "upgradeId": "training-tenacity",
+              "target": {
+                "field": "unit.id",
+                "op": "eq",
+                "value": "republic-wookiee-treetop-defenders"
+              },
+              "field": "points",
+              "op": "set",
+              "value": 0
             },
             {
-              "name": "Improvised Orders",
-              "upgradeIds": [
-                "command-improvised"
-              ]
-            },
-            {
-              "name": "Jedi Consular",
-              "upgradeIds": [
-                "jedi-consular"
-              ]
-            },
-            {
-              "name": "Jedi Guardian",
-              "upgradeIds": [
-                "gar-jedi-guardian",
-                "jedi-guardian"
-              ]
-            },
-            {
-              "name": "Jedi Negotiator",
-              "upgradeIds": [
-                "jedi-negotiator"
-              ]
-            },
-            {
-              "name": "Strike Team Leader",
-              "upgradeIds": [
-                "training-strike-team-leader"
-              ]
-            },
-            {
-              "name": "Yoda",
-              "upgradeIds": []
+              "id": "fluttercraft-transport",
+              "card": "unit",
+              "target": {
+                "field": "unit.nameIdentityId",
+                "op": "eq",
+                "value": "raddaugh-gnasp-fluttercraft"
+              },
+              "field": "keywords",
+              "op": "set",
+              "value": {
+                "id": "transport"
+              }
             }
-          ],
-          "implementationGaps": [
-            "本草案是现有 ID 21 的待迁移版本，保留旧军表引用，不另建第二个伍基战斗部队 ID。",
-            "缺少 Treetop Defenders／Fearsome Guardians 两个新形态，不把 Noble Fighters／Kashyyyk Defenders 自动当成新卡。",
-            "需要新增单位最低 2 个校验，以及按宿主形态的 Tenacity 归零费用规则。",
-            "飞行军阶及 V-Wing 卡牌尚未接入。"
           ]
         },
-        "unitLimitsText": [
-          "至少 2 个伍基战士（Treetop Defenders）；克隆人士兵步兵最多 2 个。",
-          "BARC 飞行摩托、步兵支援平台、军刀级坦克各最多 1 个。"
-        ]
+        "ruleGroups": [],
+        "selectionSchemes": []
       }
     },
     "22": {
@@ -3097,7 +3090,7 @@
       "nameZh": "224装甲师",
       "parentFaction": "Empire",
       "alignment": "Dark",
-      "status": "draft",
+      "status": "preview",
       "modes": {
         "standard": {
           "rankQuotas": [
@@ -3218,7 +3211,7 @@
         "reviewedAt": "2026-11-19"
       },
       "unparsedRules": [
-        "新版战斗部队草案尚未启用：单位许可、飞行军阶及特殊规则待接入。"
+        "TIE/ln Fighter 单位卡尚未录入，飞机候选暂为空。"
       ],
       "draftSpec": {
         "allowedUnits": [
@@ -3314,7 +3307,9 @@
           },
           {
             "name": "Frontal Assault",
-            "upgradeIds": []
+            "upgradeIds": [
+              "frontal-assault"
+            ]
           },
           {
             "name": "Tip of the Spear",
@@ -3360,22 +3355,159 @@
           }
         ],
         "implementationGaps": [
-          "四张指定升级额外 1 份：须统一放宽数量校验、候选过滤及命名空间冲突，不是免费副本。",
-          "按单位 ID 和形态维护许可，防止同名普通镇暴小队／Heavy Response Unit 被误放行。",
-          "飞行军阶候选入口及 TIE/ln Fighter 数据尚未接入。"
+          "TIE/ln Fighter 单位卡待补充。",
+          "Frontal Assault、Over the Top、In the Trenches、Creeping Barrage 已建可编辑占位；卡文、词条、卡图及中文名待校对。"
         ]
       },
       "unitLimitsText": [
         "指挥官与特工合计：标准 1–5 个；侦察 1–4 个；至少 1 个指挥官。",
         "冲锋队最多 2 个；潮湿气候装备冲锋队最多 4 个。"
-      ]
+      ],
+      "engineVersion": 2,
+      "v2": {
+        "parentFactionId": 2,
+        "common": {
+          "unitGrants": [
+            {
+              "unitId": "empire-imperial-officer-ruthless-efficiency"
+            },
+            {
+              "unitId": "empire-imperial-agent-order-to-galaxy"
+            },
+            {
+              "unitId": "empire-mudtroopers"
+            },
+            {
+              "unitId": "empire-stormtroopers"
+            },
+            {
+              "unitId": "empire-riot-squad-trench-buster"
+            },
+            {
+              "unitId": "empire-e-web"
+            },
+            {
+              "unitId": "empire-wet-weather-troopers"
+            },
+            {
+              "unitId": "empire-at-st"
+            },
+            {
+              "unitId": "empire-tx-225"
+            }
+          ],
+          "uniqueUpgradeIds": [
+            "academy-trained",
+            "frontal-assault",
+            "tip-of-the-spear",
+            "platoon-commander",
+            "defend-in-depth",
+            "command-and-control-uplink",
+            "fire-control",
+            "training-strike-team-leader",
+            "command-trusted-agent"
+          ],
+          "modifiers": [
+            {
+              "id": "trench-busters-rank",
+              "card": "unit",
+              "target": {
+                "field": "unit.id",
+                "op": "eq",
+                "value": "empire-riot-squad-trench-buster"
+              },
+              "field": "rankId",
+              "op": "set",
+              "value": 3
+            },
+            {
+              "id": "academy-trained-extra-copy",
+              "card": "upgrade",
+              "upgradeId": "academy-trained",
+              "field": "rules.unique",
+              "op": "set",
+              "value": false
+            },
+            {
+              "id": "academy-trained-limit",
+              "card": "upgrade",
+              "upgradeId": "academy-trained",
+              "field": "rules.limit",
+              "op": "add",
+              "value": 1
+            },
+            {
+              "id": "defend-in-depth-extra-copy",
+              "card": "upgrade",
+              "upgradeId": "defend-in-depth",
+              "field": "rules.unique",
+              "op": "set",
+              "value": false
+            },
+            {
+              "id": "defend-in-depth-limit",
+              "card": "upgrade",
+              "upgradeId": "defend-in-depth",
+              "field": "rules.limit",
+              "op": "add",
+              "value": 1
+            },
+            {
+              "id": "platoon-commander-extra-copy",
+              "card": "upgrade",
+              "upgradeId": "platoon-commander",
+              "field": "rules.unique",
+              "op": "set",
+              "value": false
+            },
+            {
+              "id": "platoon-commander-limit",
+              "card": "upgrade",
+              "upgradeId": "platoon-commander",
+              "field": "rules.limit",
+              "op": "add",
+              "value": 1
+            },
+            {
+              "id": "tip-of-the-spear-extra-copy",
+              "card": "upgrade",
+              "upgradeId": "tip-of-the-spear",
+              "field": "rules.unique",
+              "op": "set",
+              "value": false
+            },
+            {
+              "id": "tip-of-the-spear-limit",
+              "card": "upgrade",
+              "upgradeId": "tip-of-the-spear",
+              "field": "rules.limit",
+              "op": "add",
+              "value": 1
+            }
+          ],
+          "unitLimits": [
+            {
+              "unitId": "empire-stormtroopers",
+              "min": 0,
+              "max": 2
+            },
+            {
+              "unitId": "empire-wet-weather-troopers",
+              "min": 0,
+              "max": 4
+            }
+          ]
+        },
+        "ruleGroups": [],
+        "selectionSchemes": []
+      }
     },
     "28": {
       "name": "Custom Clone Battalion",
-      "nameZh": "自定义克隆人营",
+      "nameZh": "自定义克隆人战斗营",
       "parentFaction": "Galactic Republic",
       "alignment": "Light",
-      "status": "draft",
+      "status": "preview",
       "modes": {
         "standard": {
           "rankQuotas": [
@@ -3642,13 +3774,13 @@
         "reviewedAt": "2026-11-19"
       },
       "unparsedRules": [
-        "新版战斗部队草案尚未启用：单位许可、飞行军阶及特殊规则待接入。"
+        "飞机卡牌资料尚未录入；对应军阶暂时没有候选单位。"
       ],
       "draftSpec": {
         "allowedUnits": [
           {
             "rankId": 1,
-            "name": "Jedi Knight General",
+            "name": "绝地武士将军",
             "unitIds": [
               "republic-jedi-knight-general"
             ],
@@ -3659,9 +3791,11 @@
           {
             "rankId": 1,
             "name": "BARC Speeder",
-            "unitIds": [],
-            "note": "PDF 明确列在指挥官栏；现有普通 BARC 为支援，骑乘绝地将军名为 Jedi Knight。尚未确认对应卡，禁止按同名自动改阶。",
-            "resolution": "needs_review"
+            "unitIds": [
+              "republic-barc"
+            ],
+            "note": "按选择入口计入指挥官或支援，每辆只计入一个军阶。",
+            "resolution": "matched"
           },
           {
             "rankId": 1,
@@ -3673,7 +3807,7 @@
           },
           {
             "rankId": 6,
-            "name": "Jedi Knight",
+            "name": "绝地武士",
             "unitIds": [
               "republic-jedi-knight"
             ],
@@ -3739,12 +3873,7 @@
           }
         ],
         "implementationGaps": [
-          "三组特质分别恰选 1 项；不能复用曼达洛的任意 N 选 2 校验。",
-          "特质引起的单位许可取并集，去重；取消特质后仅撤销其贡献。",
-          "Reinforced：有效核心士兵增加 1 个人员槽，指挥官／特工上限各 +1。",
-          "恰好 1 个 Jedi Knight General 的必选条件须新增最小数量校验。",
-          "基础许可中指挥官 BARC Speeder 的确切卡牌尚待确认。",
-          "飞行军阶／V-Wing 卡牌缺失；动态词条和武器效果需接入有效展示层。"
+          "飞机卡牌资料尚未录入。"
         ],
         "optionGroups": [
           {
@@ -3768,17 +3897,815 @@
         ]
       },
       "unitLimitsText": [
-        "必须且只能包含 1 个 Jedi Knight General。",
+        "必须且只能包含 1 个 绝地武士将军。",
         "基础特种部队许可为空；须由特质解锁相应单位。",
         "Reinforced 可将指挥官和特工数量上限各增加 1。"
-      ]
+      ],
+      "engineVersion": 2,
+      "v2": {
+        "parentFactionId": 4,
+        "common": {
+          "textRules": [
+            "A Custom Clone Battalion Battle Force is part of the Galactic Republic Faction.",
+            "During the Command Phase, if your revealed Command Card is Ambush, Push, or Assault, your army is At the Ready until the end of the Round.",
+            "When creating a Custom Clone Battalion, choose one of each of the listed Jedi Knight, Battalion, and Veteran Traits. Your Battalion gains all of the special rules for each of the selected Traits."
+          ],
+          "textRulesZh": [
+            "自定义克隆人营属于银河共和国。",
+            "在命令阶段，如果揭示的命令卡是 Ambush、Push 或 Assault，军队获得“严阵以待”（At the Ready）状态，持续至本回合结束。",
+            "创建军队时，分别选择 1 项绝地武士特质、1 项营特质和 1 项老兵特质。军队获得这三项特质的全部特殊规则。"
+          ],
+          "unitGrants": [
+            {
+              "unitId": "republic-jedi-knight-general"
+            },
+            {
+              "unitId": "republic-barc"
+            },
+            {
+              "unitId": "republic-clone-commander-leadership"
+            },
+            {
+              "unitId": "republic-jedi-knight"
+            },
+            {
+              "unitId": "republic-clone-trooper"
+            },
+            {
+              "unitId": "republic-clonetrooper-marksmen"
+            },
+            {
+              "unitId": "republic-at-rt-gar"
+            },
+            {
+              "unitId": "republic-isp"
+            }
+          ],
+          "upgradeGrants": [
+            {
+              "upgradeId": "command-improvised"
+            },
+            {
+              "upgradeId": "fire-control"
+            },
+            {
+              "upgradeId": "training-strike-team-leader"
+            }
+          ],
+          "modifiers": [
+            {
+              "id": "rank-republic-barc",
+              "card": "unit",
+              "target": {
+                "field": "unit.id",
+                "op": "in",
+                "value": [
+                  "republic-barc"
+                ]
+              },
+              "field": "rankId",
+              "op": "add",
+              "value": 1
+            }
+          ],
+          "unitLimits": [
+            {
+              "unitId": "republic-jedi-knight-general",
+              "min": 1,
+              "max": 1
+            }
+          ],
+          "entries": [],
+          "uniqueUpgradeIds": [
+            "command-improvised",
+            "fire-control",
+            "training-strike-team-leader"
+          ]
+        },
+        "ruleGroups": [
+          {
+            "id": "ccb_assault",
+            "name": {
+              "en": "Assault",
+              "zh": "突击"
+            },
+            "textRulesZh": [
+              "每个友方士兵单位激活结束时，若处于近战，获得 1 个激增标记。激活阶段开始时，若军队严阵以待，友方核心单位获得冲锋，持续至回合结束。允许加入 ARC 士兵及 ARC 士兵突击小队。"
+            ],
+            "unitGrants": [
+              {
+                "unitId": "republic-arc-troopers"
+              },
+              {
+                "unitId": "republic-arc-troopers-strike"
+              }
+            ],
+            "modifiers": [],
+            "entries": [
+              {
+                "id": "ccb_assault-rule",
+                "name": {
+                  "en": "Assault",
+                  "zh": "突击"
+                },
+                "summary": "每个友方士兵单位激活结束时，若处于近战，获得 1 个激增标记。激活阶段开始时，若军队严阵以待，友方核心单位获得冲锋，持续至回合结束。允许加入 ARC 士兵及 ARC 士兵突击小队。",
+                "full": "每个友方士兵单位激活结束时，若处于近战，获得 1 个激增标记。激活阶段开始时，若军队严阵以待，友方核心单位获得冲锋，持续至回合结束。允许加入 ARC 士兵及 ARC 士兵突击小队。",
+                "timing": [
+                  "global"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "ccb_garrison",
+            "name": {
+              "en": "Garrison",
+              "zh": "卫戍"
+            },
+            "textRulesZh": [
+              "每个激活阶段开始时，选择 1 个友方非核心士兵单位；若军队严阵以待，改为可选任意友方单位。所选单位获得 1 个待命标记。友方单位防御远程攻击时，若在己方领土内或正在争夺 POI，且本次攻击未使其受到伤害，则在向防御者分配压制标记步骤不获得压制标记。允许加入 ARF 士兵。"
+            ],
+            "unitGrants": [
+              {
+                "unitId": "republic-arf-troopers"
+              }
+            ],
+            "modifiers": [],
+            "entries": [
+              {
+                "id": "ccb_garrison-rule",
+                "name": {
+                  "en": "Garrison",
+                  "zh": "驻防"
+                },
+                "summary": "每个激活阶段开始时，选择 1 个友方非核心士兵单位；若军队严阵以待，改为可选任意友方单位。所选单位获得 1 个待命标记。友方单位防御远程攻击时，若在己方领土内或正在争夺 POI，且本次攻击未使其受到伤害，则在向防御者分配压制标记步骤不获得压制标记。允许加入 ARF 士兵。",
+                "full": "每个激活阶段开始时，选择 1 个友方非核心士兵单位；若军队严阵以待，改为可选任意友方单位。所选单位获得 1 个待命标记。友方单位防御远程攻击时，若在己方领土内或正在争夺 POI，且本次攻击未使其受到伤害，则在向防御者分配压制标记步骤不获得压制标记。允许加入 ARF 士兵。",
+                "timing": [
+                  "global"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "ccb_scout",
+            "name": {
+              "en": "Scout",
+              "zh": "侦察"
+            },
+            "textRulesZh": [
+              "友方单位攻击拥有观测标记的敌军时，可在宣告防御者步骤花费该敌军的 1 个观测标记；若如此做，攻击者获得 1 个瞄准标记。友方指挥官和特工激活结束时，可进行免费行动“观测 1”；若军队严阵以待，友方载具激活结束时也可如此做。允许加入 LAAT/le 巡逻运输机和 BARC 飞行摩托。"
+            ],
+            "unitGrants": [
+              {
+                "unitId": "republic-laat-gar"
+              },
+              {
+                "unitId": "republic-barc"
+              }
+            ],
+            "modifiers": [],
+            "entries": [
+              {
+                "id": "ccb_scout-rule",
+                "name": {
+                  "en": "Scout",
+                  "zh": "侦察"
+                },
+                "summary": "友方单位攻击拥有观测标记的敌军时，可在宣告防御者步骤花费该敌军的 1 个观测标记；若如此做，攻击者获得 1 个瞄准标记。友方指挥官和特工激活结束时，可进行免费行动“观测 1”；若军队严阵以待，友方载具激活结束时也可如此做。允许加入 LAAT/le 巡逻运输机和 BARC 飞行摩托。",
+                "full": "友方单位攻击拥有观测标记的敌军时，可在宣告防御者步骤花费该敌军的 1 个观测标记；若如此做，攻击者获得 1 个瞄准标记。友方指挥官和特工激活结束时，可进行免费行动“观测 1”；若军队严阵以待，友方载具激活结束时也可如此做。允许加入 LAAT/le 巡逻运输机和 BARC 飞行摩托。",
+                "timing": [
+                  "global"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "ccb_decisive",
+            "name": {
+              "en": "Decisive",
+              "zh": "果决"
+            },
+            "textRulesZh": [
+              "友方绝地武士将军和绝地武士的近战武器获得致命 1；若武器已有致命 1，则失去它并改为获得穿刺 1。友方绝地武士将军获得玛卡希精通。"
+            ],
+            "unitGrants": [],
+            "modifiers": [
+              {
+                "id": "decisive-makashi",
+                "card": "unit",
+                "target": {
+                  "field": "unit.id",
+                  "op": "in",
+                  "value": [
+                    "republic-jedi-knight-general"
+                  ]
+                },
+                "field": "keywords",
+                "op": "add",
+                "value": {
+                  "id": "makashi_mastery"
+                }
+              },
+              {
+                "id": "decisive-melee-lethal",
+                "card": "unit",
+                "target": {
+                  "field": "unit.id",
+                  "op": "in",
+                  "value": [
+                    "republic-jedi-knight",
+                    "republic-jedi-knight-general"
+                  ]
+                },
+                "field": "weapons.keywords",
+                "op": "add",
+                "value": {
+                  "id": "lethal",
+                  "value": 1
+                },
+                "weaponFilter": {
+                  "range": "melee",
+                  "notKeyword": {
+                    "id": "lethal"
+                  }
+                }
+              },
+              {
+                "id": "decisive-melee-pierce",
+                "card": "unit",
+                "target": {
+                  "field": "unit.id",
+                  "op": "in",
+                  "value": [
+                    "republic-jedi-knight",
+                    "republic-jedi-knight-general"
+                  ]
+                },
+                "field": "weapons.keywords",
+                "op": "remove",
+                "value": {
+                  "id": "lethal",
+                  "value": 1
+                },
+                "weaponFilter": {
+                  "range": "melee",
+                  "hasKeyword": {
+                    "id": "lethal",
+                    "value": 1
+                  }
+                }
+              },
+              {
+                "id": "decisive-melee-pierce-add",
+                "card": "unit",
+                "target": {
+                  "field": "unit.id",
+                  "op": "in",
+                  "value": [
+                    "republic-jedi-knight",
+                    "republic-jedi-knight-general"
+                  ]
+                },
+                "field": "weapons.keywords",
+                "op": "add",
+                "value": {
+                  "id": "pierce",
+                  "value": 1
+                },
+                "weaponFilter": {
+                  "range": "melee",
+                  "hasKeyword": {
+                    "id": "lethal",
+                    "value": 1
+                  }
+                }
+              }
+            ],
+            "entries": [
+              {
+                "id": "ccb_decisive-rule",
+                "name": {
+                  "en": "Decisive",
+                  "zh": "果决"
+                },
+                "summary": "近战武器获得致命 1；若武器已有致命 1，改为穿刺 1。绝地武士将军获得玛卡希精通。",
+                "full": "近战武器获得致命 1；若武器已有致命 1，改为穿刺 1。绝地武士将军获得玛卡希精通。",
+                "timing": [
+                  "attack"
+                ],
+                "target": {
+                  "field": "unit.id",
+                  "op": "in",
+                  "value": [
+                    "republic-jedi-knight",
+                    "republic-jedi-knight-general"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "id": "ccb_patient",
+            "name": {
+              "en": "Patient",
+              "zh": "沉稳"
+            },
+            "textRulesZh": [
+              "每个敌方单位激活结束时，没有背面朝上命令标记的友方绝地武士将军获得 1 个耐心标记，上限 3 个。该将军激活开始时，可花费 3 个耐心标记；若如此做，本次激活可额外进行 1 个行动，且距离 2 内每个友方绝地武士获得 1 个瞄准或闪避标记。移除标记步骤移除所有耐心标记。"
+            ],
+            "unitGrants": [],
+            "modifiers": [],
+            "entries": [
+              {
+                "id": "ccb_patient-rule",
+                "name": {
+                  "en": "Patient",
+                  "zh": "耐心"
+                },
+                "summary": "每个敌方单位激活结束时，没有背面朝上命令标记的友方绝地武士将军获得 1 个耐心标记，上限 3 个。该将军激活开始时，可花费 3 个耐心标记；若如此做，本次激活可额外进行 1 个行动，且距离 2 内每个友方绝地武士获得 1 个瞄准或闪避标记。移除标记步骤移除所有耐心标记。",
+                "full": "每个敌方单位激活结束时，没有背面朝上命令标记的友方绝地武士将军获得 1 个耐心标记，上限 3 个。该将军激活开始时，可花费 3 个耐心标记；若如此做，本次激活可额外进行 1 个行动，且距离 2 内每个友方绝地武士获得 1 个瞄准或闪避标记。移除标记步骤移除所有耐心标记。",
+                "timing": [
+                  "global"
+                ],
+                "target": {
+                  "field": "unit.id",
+                  "op": "in",
+                  "value": [
+                    "republic-jedi-knight",
+                    "republic-jedi-knight-general"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "id": "ccb_wise",
+            "name": {
+              "en": "Wise",
+              "zh": "睿智"
+            },
+            "textRulesZh": [
+              "友方绝地武士将军和绝地武士获得援助：克隆人士兵。每个友方绝地武士将军激活开始时，距离 1 内每有一个其他友方单位，选择瞄准、闪避或激增之一；将军获得每种已选类型的标记各 1 个，每类最多 1 个。"
+            ],
+            "unitGrants": [],
+            "modifiers": [
+              {
+                "id": "wise-aid",
+                "card": "unit",
+                "target": {
+                  "field": "unit.id",
+                  "op": "in",
+                  "value": [
+                    "republic-jedi-knight",
+                    "republic-jedi-knight-general"
+                  ]
+                },
+                "field": "keywords",
+                "op": "add",
+                "value": {
+                  "id": "aid",
+                  "parameterRefs": [
+                    {
+                      "kind": "unitSubtype",
+                      "id": "clone_trooper"
+                    }
+                  ]
+                }
+              }
+            ],
+            "entries": [
+              {
+                "id": "ccb_wise-rule",
+                "name": {
+                  "en": "Wise",
+                  "zh": "睿智"
+                },
+                "summary": "友方绝地武士将军和绝地武士获得援助：克隆人士兵。每个友方绝地武士将军激活开始时，距离 1 内每有一个其他友方单位，选择瞄准、闪避或激增之一；将军获得每种已选类型的标记各 1 个，每类最多 1 个。",
+                "full": "友方绝地武士将军和绝地武士获得援助：克隆人士兵。每个友方绝地武士将军激活开始时，距离 1 内每有一个其他友方单位，选择瞄准、闪避或激增之一；将军获得每种已选类型的标记各 1 个，每类最多 1 个。",
+                "timing": [
+                  "global"
+                ],
+                "target": {
+                  "field": "unit.id",
+                  "op": "in",
+                  "value": [
+                    "republic-jedi-knight",
+                    "republic-jedi-knight-general"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "id": "ccb_armored_support",
+            "name": {
+              "en": "Armored Support",
+              "zh": "装甲支援"
+            },
+            "textRulesZh": [
+              "装备至少 1 张人员升级的友方核心士兵获得机械化步兵。允许加入军刀级坦克。"
+            ],
+            "unitGrants": [
+              {
+                "unitId": "republic-saber-class"
+              }
+            ],
+            "modifiers": [
+              {
+                "id": "armored-mechanized",
+                "card": "unit",
+                "target": {
+                  "all": [
+                    {
+                      "field": "unit.rankId",
+                      "op": "eq",
+                      "value": 2
+                    },
+                    {
+                      "field": "unit.unitCategoryId",
+                      "op": "eq",
+                      "value": "trooper"
+                    }
+                  ]
+                },
+                "field": "keywords",
+                "op": "add",
+                "value": {
+                  "id": "mechanized_infantry"
+                },
+                "when": {
+                  "equippedSlot": "personnel"
+                }
+              }
+            ],
+            "entries": [
+              {
+                "id": "ccb_armored_support-rule",
+                "name": {
+                  "en": "Armored Support",
+                  "zh": "装甲支援"
+                },
+                "summary": "装备至少 1 张人员升级的友方核心士兵获得机械化步兵。允许加入军刀级坦克。",
+                "full": "装备至少 1 张人员升级的友方核心士兵获得机械化步兵。允许加入军刀级坦克。",
+                "timing": [
+                  "global"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "ccb_elite_repulsor_crews",
+            "name": {
+              "en": "Elite Repulsor Crews",
+              "zh": "精锐飞车车组"
+            },
+            "textRulesZh": [
+              "友方反重力载具的远程武器获得突击 2。允许加入 LAAT/le 巡逻运输机和 BARC 飞行摩托。"
+            ],
+            "unitGrants": [
+              {
+                "unitId": "republic-laat-gar"
+              },
+              {
+                "unitId": "republic-barc"
+              }
+            ],
+            "modifiers": [
+              {
+                "id": "elite-assault",
+                "card": "unit",
+                "target": {
+                  "field": "unit.unitSubtypeId",
+                  "op": "eq",
+                  "value": "repulsor_vehicle"
+                },
+                "field": "weapons.keywords",
+                "op": "add",
+                "value": {
+                  "id": "assault",
+                  "value": 2
+                },
+                "weaponFilter": {
+                  "range": "ranged"
+                }
+              }
+            ],
+            "entries": [
+              {
+                "id": "ccb_elite_repulsor_crews-rule",
+                "name": {
+                  "en": "Elite Repulsor Crews",
+                  "zh": "精锐反重力乘员"
+                },
+                "summary": "友方反重力载具的远程武器获得突击 2。允许加入 LAAT/le 巡逻运输机和 BARC 飞行摩托。",
+                "full": "友方反重力载具的远程武器获得突击 2。允许加入 LAAT/le 巡逻运输机和 BARC 飞行摩托。",
+                "timing": [
+                  "global"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "ccb_forward_observers",
+            "name": {
+              "en": "Forward Observers",
+              "zh": "前沿观测员"
+            },
+            "textRulesZh": [
+              "友方 ARF 士兵获得侦察 1 和行动“观测 1”。允许加入 ARF 士兵。"
+            ],
+            "unitGrants": [
+              {
+                "unitId": "republic-arf-troopers"
+              }
+            ],
+            "modifiers": [
+              {
+                "id": "forward-scout",
+                "card": "unit",
+                "target": {
+                  "field": "unit.id",
+                  "op": "in",
+                  "value": [
+                    "republic-arf-troopers"
+                  ]
+                },
+                "field": "keywords",
+                "op": "add",
+                "value": {
+                  "id": "scout",
+                  "value": 1
+                }
+              },
+              {
+                "id": "forward-observe",
+                "card": "unit",
+                "target": {
+                  "field": "unit.id",
+                  "op": "in",
+                  "value": [
+                    "republic-arf-troopers"
+                  ]
+                },
+                "field": "keywords",
+                "op": "add",
+                "value": {
+                  "id": "observe",
+                  "value": 1,
+                  "action": "action"
+                }
+              }
+            ],
+            "entries": [
+              {
+                "id": "ccb_forward_observers-rule",
+                "name": {
+                  "en": "Forward Observers",
+                  "zh": "前进观测员"
+                },
+                "summary": "友方 ARF 士兵获得侦察 1 和行动“观测 1”。允许加入 ARF 士兵。",
+                "full": "友方 ARF 士兵获得侦察 1 和行动“观测 1”。允许加入 ARF 士兵。",
+                "timing": [
+                  "global"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "ccb_hand_picked",
+            "name": {
+              "en": "Hand Picked",
+              "zh": "严选精锐"
+            },
+            "textRulesZh": [
+              "友方克隆人突击队获得随从：指挥官。允许加入克隆人突击队。"
+            ],
+            "unitGrants": [
+              {
+                "unitId": "republic-clone-commandos"
+              },
+              {
+                "unitId": "republic-delta-squad"
+              }
+            ],
+            "modifiers": [
+              {
+                "id": "hand-picked-entourage",
+                "card": "unit",
+                "target": {
+                  "field": "unit.id",
+                  "op": "in",
+                  "value": [
+                    "republic-clone-commandos",
+                    "republic-delta-squad"
+                  ]
+                },
+                "field": "keywords",
+                "op": "add",
+                "value": {
+                  "id": "entourage",
+                  "parameterRefs": [
+                    {
+                      "kind": "rank",
+                      "id": 1
+                    }
+                  ]
+                }
+              }
+            ],
+            "entries": [
+              {
+                "id": "ccb_hand_picked-rule",
+                "name": {
+                  "en": "Hand Picked",
+                  "zh": "精挑细选"
+                },
+                "summary": "友方克隆人突击队获得扈从：指挥官。允许加入克隆人突击队。",
+                "full": "友方克隆人突击队获得扈从：指挥官。允许加入克隆人突击队。",
+                "timing": [
+                  "global"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "ccb_reinforced",
+            "name": {
+              "en": "Reinforced",
+              "zh": "加强编制"
+            },
+            "textRulesZh": [
+              "友方核心士兵增加 1 个人员升级图标。军队可以额外加入至多 1 个指挥官及至多 1 个特工。"
+            ],
+            "unitGrants": [],
+            "modifiers": [
+              {
+                "id": "reinforced-personnel",
+                "card": "unit",
+                "target": {
+                  "all": [
+                    {
+                      "field": "unit.rankId",
+                      "op": "eq",
+                      "value": 2
+                    },
+                    {
+                      "field": "unit.unitCategoryId",
+                      "op": "eq",
+                      "value": "trooper"
+                    }
+                  ]
+                },
+                "field": "upgradeSlots",
+                "op": "add",
+                "value": 1
+              }
+            ],
+            "entries": [
+              {
+                "id": "ccb_reinforced-rule",
+                "name": {
+                  "en": "Reinforced",
+                  "zh": "增援"
+                },
+                "summary": "友方核心士兵增加 1 个人员升级图标。军队可以额外加入至多 1 个指挥官及至多 1 个特工。",
+                "full": "友方核心士兵增加 1 个人员升级图标。军队可以额外加入至多 1 个指挥官及至多 1 个特工。",
+                "timing": [
+                  "global"
+                ]
+              }
+            ],
+            "rankModifiers": [
+              {
+                "rankId": 1,
+                "op": "add",
+                "max": 1
+              },
+              {
+                "rankId": 6,
+                "op": "add",
+                "max": 1
+              }
+            ]
+          },
+          {
+            "id": "ccb_superior_arc_training",
+            "name": {
+              "en": "Superior ARC Training",
+              "zh": "卓越 ARC 训练"
+            },
+            "textRulesZh": [
+              "友方 ARC 士兵及 ARC 士兵打击小队获得精准 1。允许加入这两种单位。"
+            ],
+            "unitGrants": [
+              {
+                "unitId": "republic-arc-troopers"
+              },
+              {
+                "unitId": "republic-arc-troopers-strike"
+              }
+            ],
+            "modifiers": [
+              {
+                "id": "superior-precise",
+                "card": "unit",
+                "target": {
+                  "field": "unit.id",
+                  "op": "in",
+                  "value": [
+                    "republic-arc-troopers",
+                    "republic-arc-troopers-strike"
+                  ]
+                },
+                "field": "keywords",
+                "op": "add",
+                "value": {
+                  "id": "precise",
+                  "value": 1
+                }
+              }
+            ],
+            "entries": [
+              {
+                "id": "ccb_superior_arc_training-rule",
+                "name": {
+                  "en": "Superior ARC Training",
+                  "zh": "精锐 ARC 训练"
+                },
+                "summary": "友方 ARC 士兵及 ARC 士兵突击小队获得精准 1。允许加入这两种单位。",
+                "full": "友方 ARC 士兵及 ARC 士兵突击小队获得精准 1。允许加入这两种单位。",
+                "timing": [
+                  "global"
+                ]
+              }
+            ]
+          }
+        ],
+        "selectionSchemes": [
+          {
+            "id": "clone-traits",
+            "name": {
+              "en": "Clone traits",
+              "zh": "克隆人营特质"
+            },
+            "groups": [
+              {
+                "id": "ccb_battalion",
+                "name": {
+                  "en": "ccb_battalion",
+                  "zh": "营特质"
+                },
+                "min": 1,
+                "max": 1,
+                "ruleGroupIds": [
+                  "ccb_assault",
+                  "ccb_garrison",
+                  "ccb_scout"
+                ]
+              },
+              {
+                "id": "ccb_jedi",
+                "name": {
+                  "en": "ccb_jedi",
+                  "zh": "绝地武士特质"
+                },
+                "min": 1,
+                "max": 1,
+                "ruleGroupIds": [
+                  "ccb_decisive",
+                  "ccb_patient",
+                  "ccb_wise"
+                ]
+              },
+              {
+                "id": "ccb_veteran",
+                "name": {
+                  "en": "ccb_veteran",
+                  "zh": "老兵特质"
+                },
+                "min": 1,
+                "max": 1,
+                "ruleGroupIds": [
+                  "ccb_armored_support",
+                  "ccb_elite_repulsor_crews",
+                  "ccb_forward_observers",
+                  "ccb_hand_picked",
+                  "ccb_reinforced",
+                  "ccb_superior_arc_training"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "nameAliases": []
     },
     "29": {
       "name": "Irregulars",
       "nameZh": "非正规军",
       "parentFaction": "Rebels",
       "alignment": "Light",
-      "status": "draft",
+      "status": "preview",
       "modes": {
         "standard": {
           "rankQuotas": [
@@ -3867,7 +4794,7 @@
         "友方特工单位获得战地指挥官。友方单位判定恐慌时不能使用其他单位的勇气值。",
         "未位于友方特工单位距离 1 内的友方单位不能被发出命令，除非是向自己发出命令。",
         "军队可以各包含 0–1 辆 TX-225 GAVw 占领者坦克、WLO-5 浮空坦克和 LAAT/le 巡逻运输机。这些单位的阵营改为义军。",
-        "散漫无纪：每个激活阶段开始时，可以选择至多 2 个没有正面朝上命令标记、且军阶互不相同的友方单位，分别按其军阶结算效果。",
+        "散兵游勇：每个激活阶段开始时，可以选择至多 2 个没有正面朝上命令标记、且军阶互不相同的友方单位，分别按其军阶结算效果。",
         "特种部队或支援：可以进行一次速度 1 移动；若尚未部署，可改为获得 1 个闪避标记。核心：可以获得 1 个闪避标记，并且可以进行一次免费恢复行动。重型或飞行：可以获得 1 个激增和 1 个闪避标记。",
         "特工：选择距离 ½ 内的 1 个 POI，投掷 5 颗黑色攻击骰。每个命中结果使该 POI 距离 ½ 内的每个单位获得 1 个压制标记；每个暴击结果使范围内每个单位获得 1 个压制并承受 1 点伤害。"
       ],
@@ -3895,7 +4822,7 @@
         "reviewedAt": "2026-11-19"
       },
       "unparsedRules": [
-        "新版战斗部队草案尚未启用：单位许可、飞行军阶及特殊规则待接入。"
+        "飞机卡牌资料尚未录入；对应军阶暂时没有候选单位。"
       ],
       "draftSpec": {
         "allowedUnits": [
@@ -3974,10 +4901,12 @@
           {
             "rankId": 5,
             "name": "LAAT/le Patrol Transport",
-            "unitIds": [],
+            "unitIds": [
+              "empire-laat-empire"
+            ],
             "max": 1,
-            "note": "帝国与共和国有同名卡；须确认引用版本，再构造义军阵营变体。",
-            "resolution": "needs_review"
+            "note": "使用帝国版本；仅在本战斗部队修改阵营。",
+            "resolution": "matched"
           },
           {
             "rankId": 5,
@@ -4059,15 +4988,274 @@
           }
         ],
         "implementationGaps": [
-          "隐秘破坏者无限副本须同步放宽独特冲突和全军数量检查，但不取消同单位同名升级限制。",
-          "三个外援载具分别最多 1 个，不是合计三选一；改阵营须参与升级资格及槽位计算。",
-          "特工获得战地指挥官，仅在本部队有效；飞行军阶和两种飞机卡缺失。"
+          "飞机卡牌资料尚未录入。"
         ]
       },
       "unitLimitsText": [
         "不包含指挥官；标准至少 1 个、最多 4 个特工，侦察最多 2 个。",
         "TX-225、WLO-5、LAAT/le：分别最多 1 辆，可同时选择。"
-      ]
+      ],
+      "engineVersion": 2,
+      "v2": {
+        "parentFactionId": 1,
+        "common": {
+          "textRules": [
+            "An Irregulars Battle Force is part of the Rebel Alliance Faction.",
+            "This army may include any number of the Unseen Saboteur Upgrade cards.",
+            "Allied {@icon.rank-operative} units gain Field Commander.",
+            "You may include 0-1 TX-225 GAVw Occupier Tank, 0-1 WLO-5 Speeder Tank, and 0-1 LAAT/le Patrol Transport units in this army. These units change their Faction to Rebels."
+          ],
+          "textRulesZh": [
+            "非正规军属于义军。军队可包含任意数量的隐秘破坏者升级卡。",
+            "友方特工单位获得战地指挥官。",
+            "军队可以各包含 0–1 辆 TX-225 GAVw 占领者坦克、WLO-5 浮空坦克和 LAAT/le 巡逻运输机。这些单位的阵营改为义军。"
+          ],
+          "unitGrants": [
+            {
+              "unitId": "rebels-cassian"
+            },
+            {
+              "unitId": "rebels-jyn"
+            },
+            {
+              "unitId": "rebels-k-2so"
+            },
+            {
+              "unitId": "rebels-rebel-agent-defender-democracy"
+            },
+            {
+              "unitId": "rebels-sleeper-cell"
+            },
+            {
+              "unitId": "rebels-guerilla-troopers"
+            },
+            {
+              "unitId": "rebels-rebel-troopers"
+            },
+            {
+              "unitId": "rebels-at-rt-rebel"
+            },
+            {
+              "unitId": "rebels-a-a5-speeder-truck-rebel"
+            },
+            {
+              "unitId": "empire-laat-empire"
+            },
+            {
+              "unitId": "empire-tx-225"
+            },
+            {
+              "unitId": "mercenary-raiders-wlo5-speeder-tank"
+            },
+            {
+              "unitId": "rebels-x-34-landspeeder"
+            }
+          ],
+          "upgradeGrants": [
+            {
+              "upgradeId": "cassian-andor"
+            },
+            {
+              "upgradeId": "jyn-erso"
+            },
+            {
+              "upgradeId": "command-improvised"
+            },
+            {
+              "upgradeId": "unseen-saboteur"
+            },
+            {
+              "upgradeId": "reluctant-hero"
+            },
+            {
+              "upgradeId": "training-strike-team-leader"
+            }
+          ],
+          "modifiers": [
+            {
+              "id": "rebel-vehicles",
+              "card": "unit",
+              "target": {
+                "field": "unit.id",
+                "op": "in",
+                "value": [
+                  "empire-tx-225",
+                  "mercenary-raiders-wlo5-speeder-tank",
+                  "empire-laat-empire"
+                ]
+              },
+              "field": "factionId",
+              "op": "set",
+              "value": 1
+            },
+            {
+              "id": "operative-field-commander",
+              "card": "unit",
+              "target": {
+                "field": "unit.rankId",
+                "op": "eq",
+                "value": 6
+              },
+              "field": "keywords",
+              "op": "add",
+              "value": {
+                "id": "field_commander"
+              }
+            },
+            {
+              "id": "saboteur-unique",
+              "card": "upgrade",
+              "upgradeId": "unseen-saboteur",
+              "field": "rules.unique",
+              "op": "set",
+              "value": false
+            },
+            {
+              "id": "saboteur-limit",
+              "card": "upgrade",
+              "upgradeId": "unseen-saboteur",
+              "field": "rules.limit",
+              "op": "set",
+              "value": null
+            },
+            {
+              "id": "saboteur-unavailablewith",
+              "card": "upgrade",
+              "upgradeId": "unseen-saboteur",
+              "field": "rules.unavailableWith",
+              "op": "set",
+              "value": []
+            },
+            {
+              "id": "saboteur-unavailablewithids",
+              "card": "upgrade",
+              "upgradeId": "unseen-saboteur",
+              "field": "rules.unavailableWithIds",
+              "op": "set",
+              "value": []
+            }
+          ],
+          "unitLimits": [
+            {
+              "unitId": "empire-laat-empire",
+              "min": 0,
+              "max": 1
+            },
+            {
+              "unitId": "empire-tx-225",
+              "min": 0,
+              "max": 1
+            },
+            {
+              "unitId": "mercenary-raiders-wlo5-speeder-tank",
+              "min": 0,
+              "max": 1
+            }
+          ],
+          "entries": [
+            {
+              "id": "irregulars",
+              "name": {
+                "en": "Undisciplined (Global)",
+                "zh": "散兵游勇（全局）"
+              },
+              "summary": "检测恐慌时不能使用指挥官的士气值。不在友方特工{@icon.range-1}内的单位无法被下令，除非他们下令给自己。",
+              "full": "",
+              "timing": [
+                "global"
+              ]
+            },
+            {
+              "id": "undisciplined-special-support",
+              "name": {
+                "en": "Undisciplined (Special Forces / Support)",
+                "zh": "散兵游勇（特种/支援）"
+              },
+              "summary": "激活阶段开始时，选择两支不同军阶且没有正面朝上命令标记的单位，如果选中的是此单位，则获得：执行一个1-速移动，如果还未部署，改为获得1个闪避。",
+              "full": "",
+              "timing": [
+                "activation_start"
+              ],
+              "target": {
+                "field": "unit.rankId",
+                "op": "in",
+                "value": [
+                  3,
+                  4
+                ]
+              }
+            },
+            {
+              "id": "undisciplined-corps",
+              "name": {
+                "en": "Undisciplined (Corps)",
+                "zh": "散兵游勇（核心）"
+              },
+              "summary": "激活阶段开始时，选择两支不同军阶且没有正面朝上命令标记的单位，如果选中的是此单位，则获得1个闪避，并可以执行一个免费恢复行动。",
+              "full": "",
+              "timing": [
+                "activation_start"
+              ],
+              "target": {
+                "field": "unit.rankId",
+                "op": "in",
+                "value": [
+                  2
+                ]
+              }
+            },
+            {
+              "id": "undisciplined-heavy-flier",
+              "name": {
+                "en": "Undisciplined (Heavy / Flier)",
+                "zh": "散兵游勇（重型/飞行）"
+              },
+              "summary": "激活阶段开始时，选择两支不同军阶且没有正面朝上命令标记的单位，如果选中的是此单位，则获得：1个闪避和1个激增。",
+              "full": "",
+              "timing": [
+                "activation_start"
+              ],
+              "target": {
+                "field": "unit.rankId",
+                "op": "in",
+                "value": [
+                  5,
+                  7
+                ]
+              }
+            },
+            {
+              "id": "undisciplined-operative",
+              "name": {
+                "en": "Undisciplined (Operative)",
+                "zh": "散兵游勇（特工）"
+              },
+              "summary": "激活阶段开始时，选择两支不同军阶且没有正面朝上命令标记的单位，如果选中的是此单位，则执行：选择此单位{@icon.range-half}内的一个POI，然后扔5颗黑攻击骰，每有1个{@icon.hit}，所选POI周围{@icon.range-half}内的单位获得1个压制，每有1个{@icon.critical}，所选POI周围{@icon.range-half}内的单位获得1个压制，受到1点伤害。",
+              "full": "",
+              "timing": [
+                "activation_start"
+              ],
+              "target": {
+                "field": "unit.rankId",
+                "op": "in",
+                "value": [
+                  6
+                ]
+              }
+            }
+          ],
+          "uniqueUpgradeIds": [
+            "cassian-andor",
+            "jyn-erso",
+            "command-improvised",
+            "unseen-saboteur",
+            "reluctant-hero",
+            "training-strike-team-leader"
+          ]
+        },
+        "ruleGroups": [],
+        "selectionSchemes": []
+      }
     }
   },
   "predicates": {
@@ -4166,6 +5354,13 @@
           "note": "IR 规则：侦察兵与帝国死亡士兵按核心（rank 2）计算，优先于卡面军阶推导"
         }
       ]
+    },
+    "14": {
+      "rankOverrides": [],
+      "unitCaps": [],
+      "slotHosts": [],
+      "slots": [],
+      "keywords": []
     },
     "17": {
       "unitCaps": [

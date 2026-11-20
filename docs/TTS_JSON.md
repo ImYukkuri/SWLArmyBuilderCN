@@ -54,7 +54,7 @@ TTS 没有分数上限。导入 standard 默认 1000，recon 默认 600，均可
 
 规则库 → 战斗部队可修改中英文显示名称；保存同步 `slot-rules.json` 与 `catalog-definitions.json`，旧英文名保留在 `nameAliases`。改名不会改变固定 ID、规则关联和标准 TTS 引用。遇到未知、重复或势力不符的战斗部队名称时，导入暂停并提供当前势力内的搜索选择器，不自动猜测。
 
-HQ 中的 224th Armored Division、Children of the Watch、Clan Kryze、Clan Saxon、Clan Wren、Custom Clan 尚无本地战斗部队规则，不能直接导入为这些部队；需明确选择本地已有部队。名称映射不代表补齐了缺失规则。
+224th Armored Division 已接入本地部队 27，可按英文部队名导入导出；四张指定升级的第二份也按同一个卡牌名称重复记录。TIE/ln Fighter 尚未录入，相关引用仍会提示缺项。新增卡牌占位的英文名可用于本地往返，但尚未与 TTS 客户端逐卡实测。
 
 ## 双面卡与伙伴
 
