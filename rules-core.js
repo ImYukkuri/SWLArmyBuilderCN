@@ -722,6 +722,58 @@ window.RulesCore = (() => {
     return conflicts;
   }
 
+  // A manually named exclusion is independent of printed names and unique flags.
+  // The broader scope wins symmetrically, so selection order cannot bypass it.
+  function exclusionOf(card) {
+    const value = card?.rules?.exclusion;
+    const name = typeof value?.name === 'string' ? value.name.trim() : '';
+    return name && ['unit', 'army'].includes(value.scope) ? {name, scope: value.scope} : null;
+  }
+  function exclusionEntries(army, data) {
+    data = resolveArmyData(army, data);
+    const entries = [];
+    const add = (card, unitInstanceId, instanceId) => {
+      const rule = exclusionOf(card);
+      if (rule) entries.push({...rule, unitInstanceId, instanceId,
+        label: card.name?.zh || card.name?.en || card.id});
+    };
+    for (const inst of army.units || []) {
+      add(data.pkg._v2?.instances[inst.instanceId] || data.units[inst.unitId], inst.instanceId, inst.instanceId);
+      for (const choice of inst.upgrades || [])
+        add(data.upgrades[choice.upgradeId], inst.instanceId, choice.instanceId);
+    }
+    return entries;
+  }
+  function exclusionsMatch(a, b) {
+    return a.name === b.name && (a.scope === 'army' || b.scope === 'army' ||
+      (a.unitInstanceId != null && a.unitInstanceId === b.unitInstanceId));
+  }
+  function exclusionMessage(a, b) {
+    const scope = a.scope === 'army' || b.scope === 'army' ? '同军表' : '同单位卡';
+    return `互斥命名依据「${a.name}」在${scope}内只能选择一张卡，与「${b.label}」互斥。`;
+  }
+  function exclusionFailure(card, unitInstanceId, army, data) {
+    const rule = exclusionOf(card);
+    if (!rule) return null;
+    const entry = {...rule, unitInstanceId};
+    const other = exclusionEntries(army, data).find(item => exclusionsMatch(entry, item));
+    return other ? exclusionMessage(entry, other) : null;
+  }
+  function exclusionConflicts(army, data) {
+    const groups = new Map(), conflicts = new Map();
+    for (const entry of exclusionEntries(army, data)) {
+      const previous = groups.get(entry.name) || [];
+      for (const other of previous) if (exclusionsMatch(entry, other)) {
+        for (const [a, b] of [[entry, other], [other, entry]])
+          if (!conflicts.has(a)) conflicts.set(a, {instanceId: a.instanceId,
+            unitInstanceId: a.unitInstanceId, message: exclusionMessage(a, b)});
+      }
+      previous.push(entry);
+      groups.set(entry.name, previous);
+    }
+    return [...conflicts.values()];
+  }
+
   function validateArmy(army, data) {
     const source = data._source || data;
     if (battleForceVersion(source.pkg, army.armyId) === 2 && window.UpgradeFaces)
@@ -847,6 +899,10 @@ window.RulesCore = (() => {
         }
       }
     }
+
+    for (const conflict of exclusionConflicts(army, data))
+      issue('invalid', 'named_exclusion', conflict.message, conflict.instanceId,
+        {unitInstanceId: conflict.unitInstanceId});
 
     // conflicts / uniqueness
     const byName = {}, conflictGroups = {}, selectedUpstream = new Set();
@@ -1232,6 +1288,6 @@ window.RulesCore = (() => {
   function cleanupArmy(army,data) { return allExtensions().flatMap(e => e.cleanup?.(army,data) || []); }
   function isTransitionalIssue(code,army,pkg) { return extensions(army.armyId,pkg).some(e => e.transitionalCodes?.includes(code)); }
   const api = { Dice, evaluate, validateArmy, unitContext, upgradeEligibility, keywordTargets, matchesKeywordTarget, detachmentLimits, entourageExemptions, armyRank, slotKey, accessKeys, slotGrantsFor, dedicatedSlotKeys, equipSlotKeys, slotListFor, restrictionConditionOk, requiredPropertiesOk, normRp, buildNameIndex, unavailableSets, unitCapFor, commandUnitRequirements,
-    applyPropertyEffects,prepareData,runtimeAvailable,upgradePoints,defaultUpgradeIds,cleanupArmy,isTransitionalIssue,battleForceVersion,resolveArmyData,unitFor };
+    applyPropertyEffects,prepareData,runtimeAvailable,upgradePoints,defaultUpgradeIds,cleanupArmy,isTransitionalIssue,battleForceVersion,resolveArmyData,unitFor,exclusionFailure,exclusionConflicts };
   return api;
 })();

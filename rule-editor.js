@@ -24,6 +24,7 @@ window.RuleEditor = (() => {
     requiredChildren: "强制附带卡",
     quantityLimitedBy: "数量受母单位限制",
     chooseOneKey: "互斥选择组",
+    exclusion: "互斥命名依据",
     poolBonuses: "雇佣兵池奖励",
     property: "比较属性",
     value: "目标值",
@@ -71,7 +72,7 @@ window.RuleEditor = (() => {
     ],
     [
       "唯一性与互斥",
-      ["unique", "unlimited", "limit", "locallyUnique", "chooseOneKey", "unavailableWithIds"],
+      ["unique", "unlimited", "limit", "locallyUnique", "exclusion", "chooseOneKey", "unavailableWithIds"],
     ],
     ["依赖与数量", ["requiredChildren", "quantityLimitedBy"]],
     ["效果与费用", ["addProperties", "replaceProperties", "modifiedPointsWith"]],
@@ -94,6 +95,7 @@ window.RuleEditor = (() => {
     unlimited: true,
     limit: 1,
     chooseOneKey: "leader",
+    exclusion: { name: "", scope: "unit" },
     addProperties: [],
     replaceProperties: [],
     modifiedPointsWith: [],
@@ -157,7 +159,9 @@ window.RuleEditor = (() => {
         row = E("div");
       row.className = "field";
       row.title = path.join(".");
-      row.append(E("span", labels[key] || "项目 " + (Number(key) + 1)));
+      row.append(E("span", path[0] === 'exclusion'
+        ? ({name: '互斥命名依据', scope: '作用域'}[key] || key)
+        : labels[key] || "项目 " + (Number(key) + 1)));
       const ancestors = [];
       let cursor = rules;
       for (const part of path.slice(0, -1)) {
@@ -180,6 +184,7 @@ window.RuleEditor = (() => {
         row.append(
           EditorOptions.control(value, choices, update, {
             label: "规则 " + path.join("."),
+            nullable: path[0] !== 'exclusion',
             custom:
               [
                 "chooseOneKey",
@@ -216,6 +221,7 @@ window.RuleEditor = (() => {
       else {
         const input = E("input");
         input.value = value ?? "";
+        if (path[0] === 'exclusion' && key === 'name') input.placeholder = '手动填写；留空不限制';
         input.setAttribute("aria-label", "规则 " + path.join("."));
         if (
           typeof value === "number" ||

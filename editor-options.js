@@ -254,6 +254,8 @@ window.EditorOptions = (() => {
       const key = String(path.at(-1)),
         root = path[0],
         strings = path.map(String);
+      if (root === 'exclusion') return key === 'scope'
+        ? [option('unit', '同单位卡'), option('army', '同军表')] : [];
       if (root === 'availableIn' && path.length <= 2) return table('unitHosts');
       if (root === 'slotGrants' && strings.includes('holders')) return table('unitHosts');
       const atom = [parent, ...ancestors.toReversed()].find(

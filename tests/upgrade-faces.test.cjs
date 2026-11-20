@@ -13,9 +13,9 @@ let seq=0;const uid=()=>`face-test-${++seq}`;
 const roster=()=>({armyId:2,mode:'standard',pointsLimit:1000,commandIds:[],options:[],units:[{unitId:'empire-death-troopers',instanceId:'u',upgrades:[]}]});
 const context=army=>{const inst=army.units[0];const slots=RulesCore.slotListFor(data.pkg,data.units[inst.unitId],inst,data.upgrades,army.armyId);const i=slots.findIndex(s=>RulesCore.accessKeys(data.upgrades['e-11d-focused-fire'],data.pkg,{}).includes(s.key));return{unitInstanceId:'u',groupIds:army.units.map(i=>i.instanceId),slotIndex:i,slotKey:slots[i].key}};
 
-test('seven current physical cards expose two independent faces with one identity/cost; stances remain independent',()=>{
+test('eight current physical cards expose two independent faces with one identity/cost',()=>{
  const before=JSON.stringify(cards),duals=cards.filter(UpgradeFaces.isDual);
- assert.equal(duals.length,7);
+ assert.equal(duals.length,8);
  for(const card of duals){
   const [front,back]=UpgradeFaces.variants(card);
   assert.equal(front.id,back.id);assert.equal(front.points,back.points);
@@ -24,7 +24,9 @@ test('seven current physical cards expose two independent faces with one identit
   assert(!cards.some(c=>c.id===card.back.legacyId));
   assert.equal(data.upgrades[card.back.legacyId].id,card.id);
  }
- for(const id of ['training-stance-a','training-stance-b'])assert(!UpgradeFaces.isDual(data.upgrades[id]));
+ const stance=data.upgrades['training-stance-b'];
+ assert.equal(stance.name.en,'Offensive Stance');assert.equal(stance.back.name.en,'Defensive Stance');
+ assert.equal(stance.back.legacyId,'training-stance-a');
  assert.equal(Object.values(data.upgrades).length,cards.length);
  assert.equal(JSON.stringify(cards),before);
 });
@@ -63,7 +65,9 @@ test('both mode exposes each printed weapon and keyword without losing instance 
   assert.equal(front._choiceId,'choice');assert.equal(back._unitId,'host');
   assert.equal(front.weapons,c.weapons);assert.equal(back.weapons,c.back.weapons);
   assert.equal(front.keywords,c.keywords);assert.equal(back.keywords,c.back.keywords);
-  assert(front.weapons.length>0,c.id);assert(back.weapons.length>0,c.id);
+  if(c.id==='training-stance-b') {
+   assert.deepEqual(front.weapons,[]);assert.deepEqual(back.weapons,[]);
+  } else {assert(front.weapons.length>0,c.id);assert(back.weapons.length>0,c.id);}
   assert.equal(UpgradeFaces.visible(UpgradeFaces.view(card,'back')).length,1);
  }
 });
@@ -100,4 +104,26 @@ test('old back IDs migrate without data loss; DC-17m gets a free Configuration s
  const ch=army.units[0].upgrades[0];assert.equal(ch.instanceId,'old');assert.equal(ch.upgradeId,'commandos-sniper-a');assert.equal(ch.face,'back');assert.equal(ch.slotIndex,3);
  assert.equal(army.units[0].upgrades[1].upgradeId,'unknown');
  const again=JSON.stringify(army);UpgradeFaces.normalizeArmy(army,data);assert.equal(JSON.stringify(army),again);
+});
+
+test('stance faces share one training slot and cost; saved Defensive Stance migrates without losing its slot or identity',()=>{
+ const card=data.upgrades['training-stance-b'],army={armyId:4,mode:'standard',pointsLimit:1000,commandIds:[],options:[],
+  units:[{unitId:'republic-anakin',instanceId:'anakin',upgrades:[]}]};
+ const slots=RulesCore.slotListFor(data.pkg,data.units['republic-anakin'],army.units[0],data.upgrades,4);
+ const training=slots.map((s,i)=>s.key==='training'?i:-1).filter(i=>i>=0);assert.equal(training.length,2);
+ const ctx={unitInstanceId:'anakin',slotIndex:training[0],slotKey:'training'};
+ const baseline=RulesCore.validateArmy(army,data).effectivePoints;
+ for(const face of ['front','back','both']) {
+  const selected=BuilderModel.equip(army,data,ctx,card.id,false,uid,face);assert(selected.ok,selected.reason);
+  assert.equal(selected.draft.units[0].upgrades.length,1);
+  assert.equal(selected.draft.units[0].upgrades[0].face,face);
+  assert.equal(RulesCore.validateArmy(selected.draft,data).effectivePoints,baseline+5);
+  assert(!BuilderModel.equip(selected.draft,data,{...ctx,slotIndex:training[1]},card.id,false,uid,'back').ok);
+ }
+ const old=structuredClone(army);old.units[0].upgrades=[{upgradeId:'training-stance-a',instanceId:'saved-defense',slotIndex:training[1]}];
+ UpgradeFaces.normalizeArmy(old,data);
+ assert.deepEqual(old.units[0].upgrades,[{upgradeId:card.id,instanceId:'saved-defense',slotIndex:training[1],face:'back'}]);
+ assert.equal(RulesCore.validateArmy(old,data).effectivePoints,baseline+5);
+ assert(UpgradeFaces.view(card,'front').description.zh.join('').includes('获得2个瞄准'));
+ assert(UpgradeFaces.view(card,'back').description.zh.join('').includes('获得2个闪避'));
 });

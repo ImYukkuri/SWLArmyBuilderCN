@@ -858,7 +858,7 @@ function faceControl(c, {tabs = false, onChange = null} = {}) {
   return wrap;
 }
 
-// Local preview uses no-store responses. Retain these fourteen small face images
+// Local preview uses no-store responses. Retain these small face images
 // for this page session instead of fetching them again on every face change.
 const faceImageCache = new Map();
 function cachedFaceImage(path) {

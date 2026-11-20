@@ -14,6 +14,13 @@ const pkg = read("slot-rules"),
   fields = read("rule-fields");
 const options = EditorOptions.create(defs, units.units, upgrades.cards, pkg, fields);
 
+test('named exclusion keeps a free text name and two explicit scopes', () => {
+  const rule = {name:'自定分组',scope:'unit'};
+  assert.deepEqual(options.rule(['exclusion','name'],rule,rule.name),[]);
+  assert.deepEqual(options.rule(['exclusion','scope'],rule,rule.scope).map(o=>[o.value,o.label]),
+    [['unit','同单位卡'],['army','同军表']]);
+});
+
 test('manual parameter edits clear stale targets but preserve keyword identity, value and action', () => {
   for (const id of ['mercenary', 'aid', 'independent', 'retinue', 'entourage']) {
     const keyword = {id, value: 2, action: 'free-action', parameter: 'Old target',

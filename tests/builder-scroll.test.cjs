@@ -189,6 +189,77 @@ test('symbol reference loads in every editor and refuses stale, search and numer
   assert((await page.locator('.editor-symbols-feedback').innerText()).includes('复制未完成'));
 });
 
+for(const mobile of [false,true]) test(`${mobile?'mobile':'desktop'} named exclusion form adds, saves and removes an optional restriction`,async t=>{
+  const page=await setup(t,mobile);
+  const catalog=JSON.parse(await readFile(path.join(root,'data/upgrades.json'),'utf8'));
+  const card=catalog.cards.find(c=>c.id==='training-tenacity');delete card.rules.exclusion;
+  await page.route('**/api/upgrades',route=>route.fulfill({json:{catalog,revision:'test-revision'}}));
+  let saved;
+  await page.route('**/api/upgrades/save',route=>{
+    saved=route.request().postDataJSON().card;
+    catalog.cards[catalog.cards.findIndex(c=>c.id===saved.id)]=structuredClone(saved);
+    return route.fulfill({json:{card:saved,revision:'test-saved',snapshot:'test-only.json'}});
+  });
+  await page.goto(base+'upgrades.html');await page.locator('#list button').first().waitFor();
+  await page.locator('#search').fill(card.id);await page.locator('#list button').click();
+  await page.locator('[data-tab="rules"]').click();
+  await page.waitForFunction(()=>!document.querySelector('#refresh-upgrade-options').disabled);
+  const section=page.locator('#rule-editor .restriction-section').filter({has:page.locator('summary').filter({hasText:'唯一性与互斥'})});
+  const field=section.locator('[data-rule-field="exclusion"]');
+  assert.equal(await field.count(),0);
+  await section.getByRole('button',{name:'唯一性与互斥添加字段',exact:true}).click();
+  await page.locator('.combo-panel:not([hidden])').getByRole('option',{name:'互斥命名依据',exact:true}).click();
+  await section.getByRole('button',{name:'添加限制',exact:true}).click();
+  const input=field.getByRole('textbox',{name:'规则 exclusion.name',exact:true});
+  await input.fill('姿态·手动分组');
+  await field.getByRole('button',{name:'规则 exclusion.scope',exact:true}).click();
+  await page.locator('.combo-panel:not([hidden])').getByRole('option',{name:'同军表',exact:true}).click();
+  await page.locator('#save').click();await page.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('已保存'));
+  assert.deepEqual(saved.rules.exclusion,{name:'姿态·手动分组',scope:'army'});
+  await page.locator('#reload').click();await page.waitForFunction(()=>document.querySelector('#status').textContent==='');
+  assert.equal(await input.inputValue(),'姿态·手动分组');
+  assert((await field.getByRole('button',{name:'规则 exclusion.scope',exact:true}).innerText()).startsWith('同军表'));
+  await field.getByRole('button',{name:'移除此限制项',exact:true}).click();
+  assert.equal(await field.count(),0);
+  await page.locator('#save').click();await page.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('已保存'));
+  assert(!('exclusion' in saved.rules));
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+});
+
+for(const mobile of [false,true]) test(`${mobile?'mobile':'desktop'} named exclusions block actual picker choices and allow slot replacement`,async t=>{
+  const page=await setup(t,mobile);
+  await page.evaluate(()=>{
+    const host=data.units['empire-stormtroopers'];host.upgradeSlots=[10,10];
+    for(const id of ['training-tenacity','training-endurance'])
+      data.upgrades[id].rules.exclusion={name:'训练互斥',scope:'unit'};
+    const record=BuilderLibrary.create(2,'Named exclusions',data,uid,new Date().toISOString());
+    record.army.units=[0,1].map(()=>({unitId:host.id,instanceId:uid(),upgrades:[]}));
+    openRoster(record);
+  });
+  const first=()=>page.locator('#army-units > .roster-unit').first();
+  await first().locator('[data-slot-index="0"] .slot-name').click();
+  await page.locator('#card-grid [data-id="training-tenacity"] h3').click();
+  await page.locator('#browser-close').click();
+  await first().locator('[data-slot-index="1"] .slot-name').click();
+  assert.equal(await page.locator('#card-grid [data-id="training-endurance"]').count(),0,'unavailable choices are hidden by default');
+  await page.locator('#show-unavailable').check();
+  const candidate=page.locator('#card-grid [data-id="training-endurance"]');
+  assert.equal(await candidate.getAttribute('data-state'),'blocked');
+  assert((await candidate.innerText()).includes('互斥命名依据'));
+  await candidate.locator('h3').click();assert.equal(await page.evaluate(()=>army.units[0].upgrades.length),1);
+  await page.locator('#browser-close').click();
+  await first().locator('[data-slot-index="0"] .slot-name').click();
+  assert.equal(await candidate.getAttribute('data-state'),'available','current slot can replace its conflicting choice');
+  await candidate.locator('h3').click();await page.locator('#browser-close').click();
+  await page.locator('#army-units > .roster-unit').last().locator('[data-slot-index="0"] .slot-name').click();
+  const other=page.locator('#card-grid [data-id="training-tenacity"]');
+  assert.equal(await other.getAttribute('data-state'),'available','local exclusion does not block a different unit');
+  await page.locator('#show-unavailable').check();
+  await page.evaluate(()=>{data.upgrades['training-endurance'].rules.exclusion.scope='army';renderBrowser();});
+  assert.equal(await other.getAttribute('data-state'),'blocked');
+  assert((await other.innerText()).includes('同军表'));
+});
+
 test('224 placeholder cards load in both maintenance editors without missing metadata',async t=>{
   const page=await setup(t,false);
   await page.goto(base+'upgrades.html');await page.locator('#list button').first().waitFor();
@@ -536,6 +607,42 @@ test('compact slots omit face tabs while image and expanded upgrade controls sti
   await page.locator('#army-units .selected-upgrades .face-control [data-face="back"]').click();
   assert.equal(await slots.locator('.slot-back-line').count(), 0);
   assert.equal(await page.locator('#army-units .selected-upgrades .face-control [data-face="back"]').getAttribute('aria-pressed'), 'true');
+});
+
+for(const mobile of [true,false]) test(`${mobile?'mobile':'desktop'} stance faces share one upgrade and survive image switching and reload`,async t=>{
+  const page=await setup(t,mobile);
+  await page.evaluate(()=>{
+    const record=BuilderLibrary.create(4,'Stance regression',data,uid,new Date().toISOString());
+    record.army=BuilderModel.addUnit(record.army,data,'republic-anakin',uid).draft;
+    openRoster(record);
+  });
+  await page.locator('#army-units .compact-slot[data-slot-index="2"] .slot-name').click();
+  await page.locator('#candidate-search').fill('Stance');
+  const choices=page.locator('#card-grid .upgrade-candidate[data-id="training-stance-b"]');
+  assert.equal(await choices.count(),1,'the picker lists the physical card once, using its front face');
+  assert.equal(await page.locator('#card-grid [data-id="training-stance-a"]').count(),0);
+  assert.equal(await choices.locator('.weapon-card').count(),0,'stances have effects without weapons');
+  assert((await choices.innerText()).includes('获得2个瞄准'));
+  await choices.filter({has:page.locator('[alt="进攻架势卡图"]')}).locator('h3').click();
+  if(await page.locator('#card-browser').evaluate(n=>n.classList.contains('is-open')))
+    await page.locator('#browser-close').click();
+  assert.deepEqual(await page.evaluate(()=>army.units[0].upgrades.map(c=>[c.upgradeId,c.face])),[['training-stance-b','front']]);
+  const points=await page.locator('#points b').innerText();
+  const slot=page.locator('#army-units .compact-slot[data-slot-index="2"]');
+  await slot.locator('.slot-art').click();
+  await page.locator('#image-dialog .face-tab[data-face="back"]').click();
+  const back=page.locator('#image-dialog .image-face:not([hidden])');
+  assert((await back.locator('.upgrade-effect').innerText()).includes('获得2个闪避'));
+  assert.equal(await back.locator('.full-card-image').getAttribute('alt'),'反面 · 防御架势完整卡图');
+  assert.equal(await page.evaluate(()=>army.units[0].upgrades[0].face),'back');
+  await page.getByRole('button',{name:'关闭卡图',exact:true}).click();
+  await frames(page);
+  assert((await slot.innerText()).includes('防御架势'));
+  assert.equal(await page.locator('#points b').innerText(),points);
+  await page.evaluate(()=>saveActiveRoster());await page.reload();
+  await page.waitForFunction(()=>typeof army!=='undefined'&&army?.units?.[0]?.upgrades?.length===1);
+  assert.equal(await page.evaluate(()=>army.units[0].upgrades[0].face),'back');
+  assert((await slot.innerText()).includes('防御架势'));
 });
 
 test('mobile picker hides background sticky rows and keeps weapon data directly visible and interactive', async t => {

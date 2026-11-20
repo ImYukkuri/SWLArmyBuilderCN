@@ -1,7 +1,7 @@
 {
   "schema": "swl-upgrades/v1",
   "referenceVersion": "2026.11.04.0",
-  "updatedAt": "2026-11-20T08:15:51.372148+00:00",
+  "updatedAt": "2026-11-20T16:57:51.654270+00:00",
   "cards": [
     {
       "id": "21b-medical-droid",
@@ -18612,7 +18612,11 @@
             "trigger": "equipped",
             "slot": "force"
           }
-        ]
+        ],
+        "exclusion": {
+          "name": "绝地训练",
+          "scope": "unit"
+        }
       },
       "review": {
         "status": "needs_review",
@@ -28245,7 +28249,7 @@
         "zh": "绝地领事"
       },
       "actionTypes": [],
-      "points": 5,
+      "points": 3,
       "slotIds": [
         24
       ],
@@ -28476,11 +28480,7 @@
         ],
         "locallyUnique": true,
         "unavailableWithIds": [
-          "Jedi Guardian",
-          {
-            "id": "18478",
-            "propertyName": "upgrades"
-          }
+          "Jedi Guardian"
         ]
       },
       "review": {
@@ -31665,7 +31665,11 @@
         "slotTypes": [
           10
         ],
-        "locallyUnique": true
+        "locallyUnique": true,
+        "exclusion": {
+          "name": "绝地训练",
+          "scope": "unit"
+        }
       },
       "review": {
         "status": "needs_review",
@@ -33121,7 +33125,11 @@
         "slotTypes": [
           10
         ],
-        "locallyUnique": true
+        "locallyUnique": true,
+        "exclusion": {
+          "name": "绝地训练",
+          "scope": "unit"
+        }
       },
       "review": {
         "status": "needs_review",
@@ -44502,7 +44510,11 @@
         "slotTypes": [
           10
         ],
-        "locallyUnique": true
+        "locallyUnique": true,
+        "exclusion": {
+          "name": "绝地训练",
+          "scope": "unit"
+        }
       },
       "review": {
         "status": "needs_review",
@@ -50824,124 +50836,6 @@
       }
     },
     {
-      "id": "training-stance-a",
-      "name": {
-        "en": "Defensive Stance",
-        "zh": "防御架势"
-      },
-      "actionTypes": [],
-      "points": 5,
-      "slotIds": [
-        10
-      ],
-      "usage": "unit_upgrade",
-      "description": {
-        "en": [
-          "This card may only be equipped by a unit",
-          "that has 1 or more {@icon.slot-force} upgrade icons.",
-          "At the start of this unit's Activation,",
-          "it may flip this card.",
-          "When this unit makes a Dodge action, it gains",
-          "2 Dodge tokens instead of the normal 1.",
-          "This unit cannot spend Aim tokens.."
-        ],
-        "zh": [
-          "此卡仅能装备于拥有至少1个{@icon.slot-force}升级图标的单位。本单位激活开始时，可以翻转此卡。本单位执行闪避行动时，获得2个闪避标记，而非通常的1个。本单位不能花费瞄准标记。"
-        ]
-      },
-      "requirementsText": [],
-      "keywords": [],
-      "weapons": [],
-      "assets": {
-        "front": "assets/upgrade-cards/training-stance-a.webp"
-      },
-      "rules": {
-        "availableIn": [
-          "3",
-          "4",
-          "20",
-          "41",
-          "46",
-          "47",
-          "49",
-          "73",
-          "74",
-          "764",
-          "4551",
-          "13582",
-          "15014",
-          "19108",
-          "19109",
-          "29671",
-          "31842",
-          "31843",
-          "32593",
-          "33575",
-          "33769",
-          "33776",
-          "33777",
-          "33791",
-          "33792",
-          "33793",
-          "33794",
-          "36283"
-        ],
-        "unique": false,
-        "slotTypes": [
-          10
-        ],
-        "locallyUnique": true
-      },
-      "review": {
-        "status": "needs_review",
-        "notes": "",
-        "issues": [
-          "机器限制已导入；执行语义和卡面仍需校对。"
-        ]
-      },
-      "matching": {
-        "status": "matched",
-        "candidates": []
-      },
-      "upstream": {
-        "collection": "upgrades",
-        "id": "179"
-      },
-      "selectionGroup": "upgrade:179",
-      "restrictions": {
-        "text": {
-          "en": [
-            "This card may only be equipped by a unit that has 1 or more {@icon.slot-force} upgrade icons."
-          ],
-          "zh": []
-        },
-        "zhReview": "legacy_unverified",
-        "sources": [
-          "description.en#equipment-restriction"
-        ],
-        "verification": "visually_checked",
-        "condition": null,
-        "unmappedReasons": [
-          "unresolved_subject: This card may only be equipped by a unit that has 1",
-          "context_field_missing_for_icon"
-        ],
-        "visualReview": {
-          "checkedAt": "2026-11-07",
-          "method": "visual_comparison",
-          "iconsVerified": true
-        },
-        "ocrEvidence": {
-          "file": "work/upgrade-restrictions/ocr-v3.json",
-          "key": "training-stance-a",
-          "textSimilarity": 1.0,
-          "containsIcons": true,
-          "iconsVerified": true,
-          "imageSha256": "1139116523798e57b5abce289da830baaa1b18c4f68f8dbe6da3d02b64a614e6"
-        },
-        "image": "assets/upgrade-cards/training-stance-a.webp"
-      }
-    },
-    {
       "id": "training-stance-b",
       "name": {
         "en": "Offensive Stance",
@@ -51057,6 +50951,51 @@
           "imageSha256": "f4bf27ed34bda4676d0a6f7a7b4e97015e0ff30596ff30c4ef003c17ff7ba033"
         },
         "image": "assets/upgrade-cards/training-stance-b.webp"
+      },
+      "dualSided": true,
+      "back": {
+        "name": {
+          "en": "Defensive Stance",
+          "zh": "防御架势"
+        },
+        "actionTypes": [],
+        "description": {
+          "en": [
+            "This card may only be equipped by a unit",
+            "that has 1 or more {@icon.slot-force} upgrade icons.",
+            "At the start of this unit's Activation,",
+            "it may flip this card.",
+            "When this unit makes a Dodge action, it gains",
+            "2 Dodge tokens instead of the normal 1.",
+            "This unit cannot spend Aim tokens.."
+          ],
+          "zh": [
+            "此卡仅能装备于拥有至少1个{@icon.slot-force}升级图标的单位。本单位激活开始时，可以翻转此卡。本单位执行闪避行动时，获得2个闪避标记，而非通常的1个。本单位不能花费瞄准标记。"
+          ]
+        },
+        "keywords": [],
+        "weapons": [],
+        "assets": {
+          "front": "assets/upgrade-cards/training-stance-a.webp"
+        },
+        "legacyId": "training-stance-a",
+        "source": {
+          "upstream": {
+            "collection": "upgrades",
+            "id": "179"
+          },
+          "matching": {
+            "status": "matched",
+            "candidates": []
+          },
+          "review": {
+            "status": "needs_review",
+            "notes": "",
+            "issues": [
+              "机器限制已导入；执行语义和卡面仍需校对。"
+            ]
+          }
+        }
       }
     },
     {

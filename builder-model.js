@@ -149,6 +149,8 @@ window.BuilderModel = (() => {
   // whose report message may be identical before and after the operation.
   function selectionFailure(card, instance, army, data) {
     if (!card) return "升级资料已不存在。";
+    const exclusion = RulesCore.exclusionFailure(card, instance.instanceId, army, data);
+    if (exclusion) return exclusion;
     const name = (c) => String(c.name?.en || c.id).toLowerCase();
     const rule = (c) => data.pkg.upgradeRules?.[String(c.upstream?.id)] || {};
     const selected = army.units.flatMap((i) =>
@@ -252,6 +254,8 @@ window.BuilderModel = (() => {
 
   function unitAdditionFailure(unit, army, data) {
     if (!RulesCore.runtimeAvailable(unit,army,data.pkg)) return '此单位需要启用对应的战斗部队规则。';
+    const exclusion = RulesCore.exclusionFailure(unit, null, army, data);
+    if (exclusion) return exclusion;
     const count = army.units.filter((i) => i.unitId === unit.id).length;
     const cap = RulesCore.unitCapFor(unit, data.pkg, army.armyId);
     if (cap != null && count >= cap) return "已达到此单位的数量上限（" + cap + "）。";

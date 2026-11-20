@@ -14,6 +14,21 @@ data.nameIndex = RulesCore.buildNameIndex(data.upgrades,data.defs);
 let serial=0;
 const uid=()=> 'test-'+ ++serial;
 const blank=(armyId=28)=>({armyId,mode:'standard',pointsLimit:1000,units:[],commandIds:[],options:[]});
+test('named exclusions remain enforced on V2 runtime unit instances',()=>{
+  for(const scope of ['unit','army']) {
+    const input=structuredClone(data);
+    input.units['republic-barc'].rules.exclusion={name:'测试编队',scope};
+    const first=BuilderModel.addUnit(blank(),input,'republic-barc',uid,4);
+    assert(first.ok,first.reason);
+    const second=BuilderModel.addUnit(first.draft,input,'republic-barc',uid,4);
+    assert.equal(second.ok,scope==='unit');
+    if(scope==='army') assert.match(second.reason,/互斥命名依据/);
+    const invalid=structuredClone(first.draft);
+    invalid.units.push({...invalid.units[0],instanceId:uid()});
+    assert.equal(RulesCore.validateArmy(invalid,input).issues.filter(i=>i.code==='named_exclusion').length,
+      scope==='army'?2:0);
+  }
+});
 const choose=(army,group,choice,input=data)=>BattleForceV2.choose(army,input.pkg.battleForces[28],'clone-traits',group,choice?[choice]:[]);
 function selected(veteran='ccb_reinforced',jedi='ccb_decisive',battalion='ccb_assault') {
   let army=blank();

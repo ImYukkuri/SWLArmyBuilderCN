@@ -1,6 +1,6 @@
 {
   "schema": "swl-unit-catalog/v2",
-  "updatedAt": "2026-11-20T10:01:26.015863+00:00",
+  "updatedAt": "2026-11-20T16:52:57.560864+00:00",
   "definitions": "catalog-definitions.json",
   "referenceVersion": "2026.11.04.0",
   "units": [
@@ -15455,7 +15455,7 @@
       "id": "mercenary-clan-covert-the-armorer",
       "name": {
         "en": "The Armorer",
-        "zh": "军械师"
+        "zh": "铁匠"
       },
       "title": {
         "en": "Forging the Future",
@@ -15516,8 +15516,8 @@
           "action": "action"
         },
         {
-          "id": "pending_ap_yx",
-          "parameter": "YX"
+          "id": "aid",
+          "parameter": "守望之子单位"
         },
         {
           "id": "charge"

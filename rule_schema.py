@@ -2,7 +2,7 @@
 import math
 ARRAY_FIELDS={'availableIn','unavailableWith','requiresTier','requiredDivisions','poolBonuses','requiredChildren','quantityLimitedBy','factions','slotTypes','modifiedPointsWith','addProperties','replaceProperties','slotGrants'}
 BOOL_FIELDS={'unique','unlimited','locallyUnique'}
-KNOWN=ARRAY_FIELDS|BOOL_FIELDS|{'requiredProperties','limit','chooseOneKey','tierCounting','replaceTier','unlockedBy'}
+KNOWN=ARRAY_FIELDS|BOOL_FIELDS|{'requiredProperties','limit','chooseOneKey','exclusion','tierCounting','replaceTier','unlockedBy'}
 def validate_rules(rules):
     if not isinstance(rules,dict):raise ValueError('限制规则必须为对象')
     for key,value in rules.items():
@@ -10,6 +10,11 @@ def validate_rules(rules):
         if key in ARRAY_FIELDS and not isinstance(value,list):raise ValueError(key+' 必须为数组')
         if key in BOOL_FIELDS and type(value)is not bool:raise ValueError(key+' 必须为布尔值或 null')
         if key=='limit'and(type(value)is not int or value<0):raise ValueError('limit 必须为非负整数或 null')
+        if key=='exclusion':
+            if not isinstance(value,dict) or not isinstance(value.get('name'),str):
+                raise ValueError('互斥命名依据必须为文本')
+            if value.get('scope') not in ('unit','army'):
+                raise ValueError('互斥作用域必须为同单位卡（unit）或同军表（army）')
         if key=='tierCounting'and not isinstance(value,dict):raise ValueError('tierCounting 必须为对象')
         if key=='requiredProperties':
             if not isinstance(value,list)or any(not isinstance(group,list)for group in value):raise ValueError('requiredProperties 必须为 OR 包含 AND 分组')

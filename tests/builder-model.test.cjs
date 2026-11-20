@@ -660,6 +660,62 @@ const slotContext = (army, key) => ({
   groupIds: army.units.map((i) => i.instanceId),
 });
 
+test('named exclusions enforce scopes, replacement and atomic batch equipment without changing existing cards', () => {
+  const host = {...structuredClone(data.units['empire-stormtroopers']), upgradeSlots:[10,10]};
+  const a = {id:'named-a',name:{en:'Named A',zh:'卡甲'},points:5,slotIds:[10],rules:{exclusion:{name:'姿态',scope:'unit'}}};
+  const b = {...structuredClone(a),id:'named-b',name:{en:'Named B',zh:'卡乙'}};
+  const d = {...data,units:{...data.units,[host.id]:host},upgrades:{...data.upgrades,[a.id]:a,[b.id]:b}};
+  const empty = armyOf(unit(host.id),unit(host.id));
+  const context = (roster, index, slot=0) => ({unitInstanceId:roster.units[index].instanceId,slotIndex:slot,
+    slotKey:'training',groupIds:roster.units.map(i=>i.instanceId)});
+  const equip = (roster,index,slot,id,all=false) => BuilderModel.equip(roster,d,context(roster,index,slot),id,all,uid);
+  const first=equip(empty,0,0,a.id);assert(first.ok,first.reason);
+  assert.match(equip(first.draft,0,1,b.id).reason,/互斥命名依据.*同单位卡/);
+  assert(equip(first.draft,1,0,b.id).ok,'local exclusions permit another unit to take a different member');
+  assert(equip(first.draft,0,0,b.id).ok,'replacement releases the old choice before testing');
+  assert(BuilderModel.duplicate(first.draft,d,first.draft.units[0].instanceId,uid).ok);
+  const batch=equip(empty,0,0,a.id,true);assert(batch.ok,batch.reason);
+  assert(equip(batch.draft,0,0,b.id,true).ok,'replacing every local copy is allowed');
+  a.rules.exclusion.scope='army';
+  const snapshot=JSON.stringify(empty);
+  const denied=equip(empty,0,0,a.id,true);assert.equal(denied.ok,false);
+  assert.equal(JSON.stringify(empty),snapshot,'failed batch must not equip even one target');
+  assert.match(equip(first.draft,1,0,b.id).reason,/同军表/,'broader existing scope blocks narrower candidate');
+  const other=equip(empty,1,0,b.id);assert(other.ok,other.reason);
+  assert.match(equip(other.draft,0,0,a.id).reason,/同军表/,'broader candidate scope also blocks');
+  assert.equal(BuilderModel.duplicate(first.draft,d,first.draft.units[0].instanceId,uid).ok,false);
+  for(const value of [undefined,null,{name:'   ',scope:'army'}]) {
+    a.rules.exclusion=value;
+    assert(equip(other.draft,0,0,a.id).ok,'no configured name means no named restriction');
+  }
+  a.rules.exclusion={name:'另一个名称',scope:'army'};
+  assert(equip(other.draft,0,0,a.id).ok);
+  a.rules.exclusion={name:' 姿态 ',scope:'army'};
+  assert.equal(equip(other.draft,0,0,a.id).ok,false,'trim surrounding whitespace');
+});
+
+test('named exclusions cover unit cards, upgrades, saved invalid lists and both faces only once', () => {
+  const host={...structuredClone(data.units['empire-stormtroopers']),upgradeSlots:[10,10]};
+  const upgrade={id:'named-face',name:{en:'Face',zh:'双面卡'},points:5,slotIds:[10],
+    dualSided:true,back:{name:{en:'Other face',zh:'背面'}},rules:{exclusion:{name:'军团标识',scope:'unit'}}};
+  const d={...data,units:{...data.units,[host.id]:host},upgrades:{...data.upgrades,[upgrade.id]:upgrade}};
+  const empty=armyOf(unit(host.id)), inst=empty.units[0];
+  const equipped={...empty,units:[{...inst,upgrades:[{upgradeId:upgrade.id,instanceId:'face',slotIndex:0,face:'both'}]}]};
+  assert.deepEqual(RulesCore.exclusionConflicts(equipped,d),[],'one two-sided card is one selection');
+  host.rules.exclusion={name:'军团标识',scope:'unit'};
+  const conflict=RulesCore.validateArmy(equipped,d).issues.filter(i=>i.code==='named_exclusion');
+  assert.equal(conflict.length,2);assert(conflict.every(i=>i.unitInstanceId===inst.instanceId));
+  assert.equal(BuilderModel.equip(empty,d,{unitInstanceId:inst.instanceId,slotIndex:0,slotKey:'training'},upgrade.id,false,uid).ok,false);
+  assert(BuilderModel.addUnit(equipped,d,host.id,uid).ok,'unit scope does not block another host');
+  host.rules.exclusion.scope='army';
+  assert.equal(BuilderModel.addUnit(empty,d,host.id,uid).ok,false);
+  const invalid=structuredClone(equipped);invalid.units.push(unit(host.id));
+  assert.equal(RulesCore.exclusionConflicts(invalid,d).length,3);
+  assert.equal(BuilderModel.addUnit(invalid,d,host.id,uid).ok,false,'already-invalid lists cannot evade the limit');
+  delete host.rules.exclusion;
+  assert.deepEqual(RulesCore.exclusionConflicts(equipped,d),[]);
+});
+
 test("groups ignore instance IDs and selection order but preserve configuration and unit version", () => {
   const a = unit(),
     b = unit();

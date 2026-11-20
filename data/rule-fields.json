@@ -99,6 +99,10 @@
       "zh": "互斥选择组",
       "kind": "string"
     },
+    "exclusion": {
+      "zh": "互斥命名依据",
+      "kind": "object"
+    },
     "poolBonuses": {
       "zh": "雇佣兵池奖励",
       "kind": "array"

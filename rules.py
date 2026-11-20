@@ -829,6 +829,36 @@ def upgrade_eligibility(card, unit, army, package, definitions, name_index, equi
     return out
 
 
+def exclusion_conflicts(army, units, upgrades):
+    """Named exclusions include the host card and its equipped upgrades once each."""
+    entries = []
+    def add(card, owner, instance):
+        value = (card or {}).get('rules', {}).get('exclusion') or {}
+        name = value.get('name')
+        scope = value.get('scope')
+        if not isinstance(name, str) or not name.strip() or scope not in ('unit', 'army'):
+            return
+        entries.append({'name': name.strip(), 'scope': scope, 'owner': owner, 'instance': instance,
+                        'label': card.get('name', {}).get('zh') or card.get('name', {}).get('en') or card['id']})
+    for inst in army.get('units', []):
+        add(units.get(inst.get('unitId')), inst.get('instanceId'), inst.get('instanceId'))
+        for choice in inst.get('upgrades', []):
+            add(upgrades.get(choice.get('upgradeId')), inst.get('instanceId'), choice.get('instanceId'))
+    groups, conflicts = {}, {}
+    for index, entry in enumerate(entries):
+        for other_index in groups.get(entry['name'], []):
+            other = entries[other_index]
+            army_scope = entry['scope'] == 'army' or other['scope'] == 'army'
+            if not army_scope and (entry['owner'] is None or entry['owner'] != other['owner']):
+                continue
+            scope = '同军表' if army_scope else '同单位卡'
+            for i, a, b in ((index, entry, other), (other_index, other, entry)):
+                conflicts.setdefault(i, {'instanceId': a['instance'], 'unitInstanceId': a['owner'],
+                    'message': f"互斥命名依据「{a['name']}」在{scope}内只能选择一张卡，与「{b['label']}」互斥。"})
+        groups.setdefault(entry['name'], []).append(index)
+    return list(conflicts.values())
+
+
 def validate_army(army):
     package = load_package()
     units, upgrades, definitions = load_cards()
@@ -1016,6 +1046,10 @@ def validate_army(army):
                     continue
                 if str(child.get("id")) not in have:
                     issue("invalid", "required_child_missing", f"缺少必带升级（上游 ID {child.get('id')}）", key)
+
+    for conflict in exclusion_conflicts(army, units, upgrades):
+        issue('invalid', 'named_exclusion', conflict['message'], conflict['instanceId'],
+              {'unitInstanceId': conflict['unitInstanceId']})
 
     # army-wide uniqueness / conflicts
     by_name = {}

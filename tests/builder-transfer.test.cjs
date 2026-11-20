@@ -149,6 +149,24 @@ test('dual modes export one canonical TTS name and native format keeps exact mod
  const tts=BuilderTransfer.importTTS(out.json,data,uid,now);assert.deepEqual(tts.issues,[]);
  assert(tts.record.army.units.flatMap(u=>u.upgrades).filter(c=>data.upgrades[c.upgradeId].dualSided).every(c=>c.face==='front'));
 });
+
+test('stance native imports retain the defensive face while TTS uses one Offensive Stance identity',()=>{
+ const source={armyId:4,mode:'standard',pointsLimit:1000,slotLayoutVersion:1,commandIds:[],options:[],units:[
+  {unitId:'republic-anakin',instanceId:'legacy-anakin',upgrades:[
+   {upgradeId:'training-stance-a',instanceId:'legacy-defense',slotIndex:3}]}]};
+ const record=BuilderTransfer.readNative(source,data,uid,now).record;
+ const choice=record.army.units[0].upgrades[0];
+ assert.deepEqual(choice,{upgradeId:'training-stance-b',instanceId:'legacy-defense',slotIndex:3,face:'back'});
+ assert.equal(source.units[0].upgrades[0].upgradeId,'training-stance-a','import must not mutate its source');
+ const out=BuilderTransfer.exportTTS(record,data);assert.deepEqual(out.issues,[]);
+ assert.deepEqual(out.json.units[0].upgrades,['Offensive Stance']);
+ for(const name of ['Offensive Stance','Defensive Stance']) {
+  const input={...out.json,units:[{...out.json.units[0],upgrades:[name]}]};
+  const imported=BuilderTransfer.importTTS(input,data,uid,now);assert.deepEqual(imported.issues,[]);
+  assert.equal(imported.record.army.units[0].upgrades[0].upgradeId,'training-stance-b');
+  assert.equal(imported.record.army.units[0].upgrades[0].face,'front','names-only TTS defaults to the front face');
+ }
+});
 test('unknown names are never silently dropped and explicit resolution fixes them',()=>{
  const obj=structuredClone(examples[0]);obj.units[0].name='Unrecognized General';
  const unresolved=BuilderTransfer.importTTS(obj,data,uid,now);assert.equal(unresolved.issues[0].key,'units.0');
