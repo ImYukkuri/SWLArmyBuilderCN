@@ -1,7 +1,7 @@
 {
   "schema": "swl-upgrades/v1",
   "referenceVersion": "2026.11.04.0",
-  "updatedAt": "2026-11-20T02:32:21.379911+00:00",
+  "updatedAt": "2026-11-20T06:44:17.560521+00:00",
   "cards": [
     {
       "id": "21b-medical-droid",
@@ -57306,48 +57306,6 @@
           "keywords": []
         }
       ],
-      "review": {
-        "status": "needs_review",
-        "notes": "",
-        "issues": [
-          "新建卡片，待补全字段"
-        ]
-      },
-      "matching": {
-        "status": "unmatched",
-        "candidates": []
-      },
-      "restrictions": {},
-      "actionTypes": null
-    },
-    {
-      "id": "new-upgrade-mwkes1mz",
-      "name": {
-        "en": "Z-6 Mudtrooper",
-        "zh": "新升级"
-      },
-      "points": 0,
-      "slotIds": [
-        1
-      ],
-      "usage": "unit_upgrade",
-      "rules": {
-        "slotTypes": [
-          1
-        ],
-        "unique": false,
-        "locallyUnique": true
-      },
-      "assets": {
-        "front": null
-      },
-      "description": {
-        "en": [],
-        "zh": []
-      },
-      "requirementsText": [],
-      "keywords": [],
-      "weapons": [],
       "review": {
         "status": "needs_review",
         "notes": "",
