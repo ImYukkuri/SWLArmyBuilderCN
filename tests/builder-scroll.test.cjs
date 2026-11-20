@@ -189,6 +189,33 @@ test('symbol reference loads in every editor and refuses stale, search and numer
   assert((await page.locator('.editor-symbols-feedback').innerText()).includes('复制未完成'));
 });
 
+for(const mobile of [false,true]) test(`${mobile?'mobile':'desktop'} upgrade click performs one fresh formal simulation and rejects stale availability`,async t=>{
+  const page=await setup(t,mobile);
+  await page.evaluate(()=>{
+    const record=BuilderLibrary.create(4,'Equipment confirmation',data,uid,new Date().toISOString());
+    record.army.units=[{unitId:'republic-anakin',instanceId:uid(),upgrades:[]}];openRoster(record);
+    const equip=BuilderModel.equip;window.formalEquipCalls=0;
+    BuilderModel.equip=(...args)=>{if(!args[7])window.formalEquipCalls++;return equip(...args)};
+  });
+  await page.locator('#army-units [data-slot-index="2"] .slot-name').click();
+  await page.evaluate(()=>window.formalEquipCalls=0);
+  await page.locator('#card-grid [data-id="training-endurance"] h3').click();
+  assert.equal(await page.evaluate(()=>window.formalEquipCalls),1);
+  assert.equal(await page.evaluate(()=>army.units[0].upgrades[0].upgradeId),'training-endurance');
+  const card=page.locator('#card-grid [data-id="training-tenacity"]');
+  assert.equal(await card.getAttribute('data-state'),'available');
+  const before=await page.evaluate(()=>{
+    // The displayed candidate was legal, but current rules now forbid it.
+    data.upgrades['training-tenacity'].rules.exclusion={name:'changed',scope:'unit'};
+    data.upgrades['training-endurance'].rules.exclusion={name:'changed',scope:'unit'};
+    window.formalEquipCalls=0;return JSON.stringify(army);
+  });
+  await card.locator('h3').click();
+  assert.equal(await page.evaluate(()=>window.formalEquipCalls),1);
+  assert.equal(await page.evaluate(()=>JSON.stringify(army)),before);
+  assert((await page.locator('#status').innerText()).includes('互斥'));
+});
+
 for(const mobile of [false,true]) test(`${mobile?'mobile':'desktop'} named exclusion form adds, saves and removes an optional restriction`,async t=>{
   const page=await setup(t,mobile);
   const catalog=JSON.parse(await readFile(path.join(root,'data/upgrades.json'),'utf8'));
@@ -333,7 +360,7 @@ for (const mobile of [true,false]) test(`${mobile?'mobile':'desktop'} V2 choices
   await page.evaluate(()=>openRoster(BuilderLibrary.create(4,'V2 browser regression',data,uid,new Date().toISOString())));
   await page.selectOption('#battleforce','28');
   assert.deepEqual(await page.locator('.v2-trait-group .army-option-tags').evaluateAll(ns=>ns.map(n=>n.children.length)),[3,3,6]);
-  for(const id of ['ccb_assault','ccb_decisive','ccb_reinforced']) await page.locator(`[data-option-id="${id}"]`).click();
+  for(const id of ['ccb_scout','ccb_decisive','ccb_reinforced']) await page.locator(`[data-option-id="${id}"]`).click();
   const add=async(rank,id)=>{
     await page.locator(`#rank-add-bar [data-rank="${rank}"]`).click();
     await page.locator(`#card-grid [data-id="${id}"] .bilingual-name`).click();
@@ -377,6 +404,29 @@ for (const mobile of [true,false]) test(`${mobile?'mobile':'desktop'} V2 choices
   await page.locator('#rank-add-bar [data-rank="1"]').click();
   assert.equal(await page.locator('#card-grid [data-id="republic-barc"]').count(),0);
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+});
+
+for(const mobile of [true,false])test(`${mobile?'mobile':'desktop'} ARC trait gives precise only to ARC candidates and roster cards without repeating the trait summary`,async t=>{
+  const page=await setup(t,mobile);
+  await page.evaluate(()=>openRoster(BuilderLibrary.create(4,'局部词条范围验证',data,uid,new Date().toISOString())));
+  await page.selectOption('#battleforce','28');
+  for(const id of ['ccb_assault','ccb_decisive','ccb_superior_arc_training'])await page.locator(`[data-option-id="${id}"]`).click();
+  await page.locator('#rank-add-bar [data-rank="3"]').click();
+  const arc=page.locator('#card-grid [data-id="republic-arc-troopers"]');
+  assert.equal(await arc.locator('[data-rule-id="precise"] .rule-origin').innerText(),'来自 自定义克隆人战斗营');
+  assert.equal(await arc.locator('[data-rule-id="bf:28:ccb_superior_arc_training-rule"]').count(),0);
+  await arc.locator('.bilingual-name').click();
+  await page.locator('#rank-add-bar [data-rank="2"]').click();
+  const core=page.locator('#card-grid [data-id="republic-clone-trooper"]');
+  assert.equal(await core.locator('[data-rule-id="precise"], [data-rule-id="bf:28:ccb_superior_arc_training-rule"]').count(),0);
+  await core.locator('.bilingual-name').click();
+  for(const unit of await page.locator('#army-units > .roster-unit').all())await unit.locator('.expand-unit').click();
+  assert.equal(await page.locator('#army-units [data-rule-id="precise"] .rule-origin').count(),1);
+  assert.equal(await page.locator('#army-units [data-rule-id="bf:28:ccb_superior_arc_training-rule"]').count(),0);
+  if(process.env.BUILDER_QA_SCREENSHOTS){
+    await page.locator('#army-units > .roster-unit').last().scrollIntoViewIfNeeded();
+    await page.screenshot({path:path.join(process.env.BUILDER_QA_SCREENSHOTS,`local-entry-${mobile?'mobile':'desktop'}-roster.png`)});
+  }
 });
 
 for(const mobile of [true,false]) test(`${mobile?'mobile':'desktop'} switching base, legacy and V2 forces clears every unit and upgrade`,async t=>{

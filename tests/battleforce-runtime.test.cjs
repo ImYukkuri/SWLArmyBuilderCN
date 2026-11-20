@@ -18,7 +18,7 @@ test('named exclusions remain enforced on V2 runtime unit instances',()=>{
   for(const scope of ['unit','army']) {
     const input=structuredClone(data);
     input.units['republic-barc'].rules.exclusion={name:'测试编队',scope};
-    const first=BuilderModel.addUnit(blank(),input,'republic-barc',uid,4);
+    const first=BuilderModel.addUnit(choose(blank(),'ccb_battalion','ccb_scout'),input,'republic-barc',uid,4);
     assert(first.ok,first.reason);
     const second=BuilderModel.addUnit(first.draft,input,'republic-barc',uid,4);
     assert.equal(second.ok,scope==='unit');
@@ -91,7 +91,7 @@ test('configured alternate ranks still count separately and survive native round
   const fixture=structuredClone(data);
   fixture.pkg.battleForces[28].v2.common.modifiers.push({id:'test-alternate-rank',card:'unit',
     target:{field:'unit.id',op:'eq',value:'republic-barc'},field:'rankId',op:'add',value:1});
-  let army=add(selected(),'republic-barc',1,fixture);
+  let army=add(selected('ccb_reinforced','ccb_decisive','ccb_scout'),'republic-barc',1,fixture);
   army=add(army,'republic-barc',4,fixture);
   assert.deepEqual(RulesCore.validateArmy(army,fixture).rankCounts,{1:1,4:1});
   assert.deepEqual(BuilderModel.groups(army,fixture).map(g=>g.unit.rankId),[1,4]);
@@ -106,7 +106,7 @@ test('configured alternate ranks still count separately and survive native round
 });
 
 test('live clone force permits BARC only as support and flags old commander instances',()=>{
-  const army=selected(),d=BattleForceRuntime.resolve(army,data);
+  const army=selected('ccb_reinforced','ccb_decisive','ccb_scout'),d=BattleForceRuntime.resolve(army,data);
   assert.deepEqual(d.units['republic-barc']._v2Ranks,[4]);
   assert.equal(BuilderModel.addUnit(army,data,'republic-barc',uid,1).ok,false);
   const legal=add(army,'republic-barc',4);
@@ -211,8 +211,56 @@ test('local V2 keyword candidates are scoped and target constraints apply to bot
   assert(changed.units['republic-jedi-knight'].keywords.some(k=>k.id===localId&&k._entry));
 });
 
+test('ARC training and other implemented veteran traits do not attach duplicate summaries to the army',()=>{
+  for(const veteran of ['ccb_superior_arc_training','ccb_armored_support','ccb_elite_repulsor_crews','ccb_forward_observers','ccb_hand_picked']){
+    const derived=BattleForceRuntime.resolve(selected(veteran),data);
+    for(const unit of Object.values(derived.units))assert(!keyword(unit,'bf:28:'+veteran+'-rule'),veteran+' / '+unit.id);
+  }
+  const derived=BattleForceRuntime.resolve(selected('ccb_superior_arc_training'),data),arc=new Set(['republic-arc-troopers','republic-arc-troopers-strike']);
+  for(const unit of Object.values(derived.units)){
+    const before=keyword(data.units[unit.id],'precise')?.value||0,after=keyword(unit,'precise')?.value||0;
+    assert.equal(after-before,arc.has(unit.id)?1:0,unit.id);
+    if(arc.has(unit.id))assert.deepEqual(keyword(unit,'precise')._battleForceSources,[{id:28,name:'自定义克隆人战斗营'}]);
+  }
+});
+
+test('automatic local summaries follow explicit troop/Jedi/core scopes while army-wide rules remain available',()=>{
+  for(const battalion of ['ccb_assault','ccb_garrison','ccb_scout']){
+    const d=BattleForceRuntime.resolve(selected('ccb_reinforced','ccb_decisive',battalion),data);
+    for(const unit of Object.values(d.units).filter(u=>u._v2Allowed)){
+      assert.equal(!!keyword(unit,'bf:28:'+battalion+'-rule'),battalion!=='ccb_assault'||unit.unitCategoryId==='trooper',unit.id);
+      assert.equal(!!keyword(unit,'bf:28:ccb_reinforced-rule'),unit.rankId===2&&unit.unitCategoryId==='trooper',unit.id);
+    }
+  }
+  for(const jedi of ['ccb_decisive','ccb_patient','ccb_wise']){
+    const d=BattleForceRuntime.resolve(selected('ccb_reinforced',jedi),data);
+    for(const unit of Object.values(d.units).filter(u=>u._v2Allowed))
+      assert.equal(!!keyword(unit,'bf:28:'+jedi+'-rule'),['republic-jedi-knight','republic-jedi-knight-general'].includes(unit.id),jedi+'/'+unit.id);
+  }
+  const irregulars=BattleForceRuntime.resolve(blank(29),data);
+  for(const unit of Object.values(irregulars.units).filter(u=>u._v2Allowed)){
+    assert(keyword(unit,'bf:29:irregulars'),unit.id);
+    assert.equal(!!keyword(unit,'field_commander'),unit.rankId===6,unit.id);
+  }
+});
+
+test('a non-distributed local entry can be assigned once by a targeted modifier and removed without global fallback',()=>{
+  const fixture=structuredClone(data),scope=fixture.pkg.battleForces[28].v2.ruleGroups.find(g=>g.id==='ccb_superior_arc_training');
+  const localId='bf:28:ccb_superior_arc_training-rule';
+  assert.deepEqual(scope.entries[0].target,{any:[]});
+  scope.modifiers.push({id:'explicit-local-entry',card:'unit',target:{field:'unit.id',op:'eq',value:'republic-arc-troopers'},
+    field:'keywords',op:'add',value:{id:localId}});
+  const army=selected('ccb_superior_arc_training'),d=BattleForceRuntime.resolve(army,fixture);
+  for(const unit of Object.values(d.units))assert.equal((unit.keywords||[]).filter(k=>k.id===localId).length,unit.id==='republic-arc-troopers'?1:0,unit.id);
+  const entry=keyword(d.units['republic-arc-troopers'],localId);
+  assert.equal(entry._entry.summary,scope.entries[0].summary);assert.equal(entry._battleForceSources[0].id,28);
+  assert(!keyword(BattleForceRuntime.resolve(choose(army,'ccb_veteran','ccb_reinforced'),fixture).units['republic-arc-troopers'],localId));
+  const removed=structuredClone(fixture);removed.pkg.battleForces[28].v2.ruleGroups.find(g=>g.id===scope.id).modifiers.pop();
+  assert(!keyword(BattleForceRuntime.resolve(army,removed).units['republic-arc-troopers'],localId));
+});
+
 test('hand picked exemption targets individual commander instances and excludes support BARC',()=>{
-  let army=add(selected('ccb_hand_picked'),'republic-clone-commandos',4);
+  let army=add(selected('ccb_hand_picked','ccb_decisive','ccb_scout'),'republic-clone-commandos',4);
   army=add(army,'republic-barc',4);
   army=add(add(add(army,'republic-clone-commander-leadership',1),'republic-clone-commander-leadership',1),'republic-clone-commander-leadership',1);
   assert(!RulesCore.validateArmy(army,data).issues.some(i=>i.code==='rank_max'&&i.rank===1));
@@ -331,7 +379,7 @@ test('legacy calculation stays identical when the runtime module is removed',()=
 });
 
 test('Python bridge and browser runtime share effective quotas, choices and points',()=>{
-  const army=add(add(selected(),'republic-barc',4),'republic-clone-trooper',2);
+  const army=add(add(selected('ccb_reinforced','ccb_decisive','ccb_scout'),'republic-barc',4),'republic-clone-trooper',2);
   const expected=RulesCore.validateArmy(army,data);
   const call=spawnSync(process.execPath,[path.join(__dirname,'../tools/battleforce-node.cjs')],
     {input:JSON.stringify({action:'validateArmy',army,data}),encoding:'utf8',maxBuffer:20*1024*1024});

@@ -3,6 +3,7 @@ window.UpgradeFaces = (() => {
   const fields = ['name', 'description', 'keywords', 'weapons', 'assets', 'actionTypes'];
   const isDual = card => card?.dualSided === true && !!card.back;
   const mode = face => ['front', 'back', 'both'].includes(face) ? face : 'front';
+  const indexedCatalogs = new WeakSet();
   function view(card, face = card?._face || 'front') {
     if (!isDual(card)) return card;
     const base = card._base || card;
@@ -20,8 +21,13 @@ window.UpgradeFaces = (() => {
     for (const card of cards) if (isDual(card) && card.back.legacyId && !result[card.back.legacyId]) {
       Object.defineProperty(result, card.back.legacyId, {value: view(card, 'back'), enumerable: false});
     }
+    indexedCatalogs.add(result);
     return result;
   }
+  // Mutable/editor catalogs must be indexed afresh: a face or legacy ID may
+  // have changed. Only our own completed, frozen runtime catalogs are reusable.
+  const forCatalog = cards => Object.isFrozen(cards) && indexedCatalogs.has(cards)
+    ? cards : index(Object.values(cards));
   // Migrate only recognized old back IDs. Never drop unknown selections.
   function normalizeArmy(army, data) {
     for (const inst of army.units || []) {
@@ -51,5 +57,5 @@ window.UpgradeFaces = (() => {
     }
     return army;
   }
-  return {fields, isDual, mode, view, variants, visible, index, normalizeArmy};
+  return {fields, isDual, mode, view, variants, visible, index, forCatalog, normalizeArmy};
 })();

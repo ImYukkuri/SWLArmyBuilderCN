@@ -2,6 +2,7 @@
  * Upstream-free: all rules read from our own data files. Pure functions. */
 window.RulesCore = (() => {
   const UNKNOWN = Symbol("unknown");
+  const nameIndexSources = new WeakMap();
 
   function battleForceVersion(pkg, armyId) {
     const bf = pkg?.battleForces?.[armyId];
@@ -398,7 +399,14 @@ window.RulesCore = (() => {
       add(u.id, u.name && u.name.en);
       add((u.name && u.name.en) || "", u.id);
     }
+    nameIndexSources.set(idx, {upgrades,defs,definitions:defs?.upgrades});
     return idx;
+  }
+  function nameIndexFor(data) {
+    const source = data.nameIndex && nameIndexSources.get(data.nameIndex);
+    return Object.isFrozen(data.upgrades) && source?.upgrades === data.upgrades &&
+      source.defs === data.defs && source.definitions === data.defs?.upgrades
+      ? data.nameIndex : buildNameIndex(data.upgrades,data.defs);
   }
   function unavailableSets(card, idx, defs) {
     const up = new Set(), fac = new Set();
@@ -789,10 +797,10 @@ window.RulesCore = (() => {
           message: '此战斗部队需要尚未载入或不支持的规则版本，当前仅显示原始费用。'}]};
     }
     const { units, upgrades, defs, pkg } = data;
-    if (window.UpgradeFaces) army = UpgradeFaces.normalizeArmy(structuredClone(army), {...data, upgrades: UpgradeFaces.index(Object.values(upgrades))});
+    if (window.UpgradeFaces) army = UpgradeFaces.normalizeArmy(structuredClone(army), {...data, upgrades: UpgradeFaces.forCatalog(upgrades)});
     const issues = [...(data.pkg._v2?.issues || [])];
     const issue = (status, code, message, instanceId, extra) => issues.push({ status, code, message, instanceId, ...(extra || {}) });
-    const nameIndex = buildNameIndex(upgrades, defs);
+    const nameIndex = nameIndexFor(data);
 
     let basePoints = 0;
     const seen = [], sel = [];
@@ -808,7 +816,7 @@ window.RulesCore = (() => {
 
     for (const inst of army.units || []) {
       const key = inst.instanceId;
-      const unit = unitFor(inst,army,data);
+      const unit = pkg._v2?.instances[inst.instanceId] || units[inst.unitId];
       if (!unit) { issue("invalid", "missing_unit", "单位引用不存在", key); continue; }
       if (unit.usage === "counterpart" || unit.isCounterpart) {
         issue("invalid", "counterpart_as_unit", "伙伴卡需通过宿主单位的伙伴槽加入，不能作为独立单位", key);
@@ -1062,7 +1070,7 @@ window.RulesCore = (() => {
     }
     if (pkg._v2) {
       for (const inst of army.units || []) {
-        const unit=unitFor(inst,army,data);if(!unit)continue;
+        const unit=pkg._v2?.instances[inst.instanceId] || units[inst.unitId];if(!unit)continue;
         let rank=armyRank(unit,army.armyId,pkg,defs,units);if(rank==null)continue;
         for(const choice of inst.upgrades || []) if(upgrades[choice.upgradeId]?.rules?.replaceTier!=null)rank=upgrades[choice.upgradeId].rules.replaceTier;
         const tc=unit.rules?.tierCounting || {};

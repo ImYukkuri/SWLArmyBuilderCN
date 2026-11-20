@@ -207,9 +207,42 @@ window.BuilderModel = (() => {
     }
     return JSON.stringify([issue.code, issue.message, owner]);
   }
-  function newErrors(before, after, data) {
+  // A preview token belongs to one synchronous candidate pass. Catalogs are
+  // read-only during that pass; the next task (including any reload/edit) must
+  // create another token. Final clicks never pass a preview token.
+  const equipPreviews = new WeakMap();
+  const previewRefs = (source, armyId) => [source.pkg, source.defs, source.units, source.upgrades,
+    source.unitIdAliases, source.pkg.battleForces, source.pkg.battleForces?.[armyId],
+    source.pkg.battleForces?.[armyId]?.v2];
+  function samePreviewValue(a, b) {
+    if (Object.is(a, b)) return true;
+    if (!a || !b || typeof a !== 'object' || typeof b !== 'object' || Array.isArray(a) !== Array.isArray(b)) return false;
+    const keys = Object.keys(a);
+    return keys.length === Object.keys(b).length && keys.every(k => Object.hasOwn(b,k) && samePreviewValue(a[k],b[k]));
+  }
+  function createEquipPreviewContext(army, data) {
+    const source = data._source || data, token = {};
+    equipPreviews.set(token, {army, snapshot:structuredClone(army), source,
+      refs:previewRefs(source, army.armyId),
+      report:RulesCore.validateArmy(army,data)});
+    queueMicrotask(() => equipPreviews.delete(token));
+    return token;
+  }
+  function disposeEquipPreviewContext(token) { if (token) equipPreviews.delete(token); }
+  function equipPreviewReport(token, army, data) {
+    const entry = token && equipPreviews.get(token), source = data._source || data;
+    if (!entry) return null;
+    const refs = previewRefs(source, army.armyId);
+    if (entry.army !== army || entry.source !== source || refs.some((ref,i)=>ref!==entry.refs[i]) ||
+        !samePreviewValue(army,entry.snapshot)) {
+      equipPreviews.delete(token);
+      return null;
+    }
+    return entry.report;
+  }
+  function newErrors(before, after, data, baselineReport = null) {
     const counts = new Map();
-    const beforeReport = RulesCore.validateArmy(before, data),
+    const beforeReport = baselineReport || RulesCore.validateArmy(before, data),
       afterReport = RulesCore.validateArmy(after, data);
     const blocking = (i) =>
       i.status === "invalid" && !transitional.has(i.code) && !RulesCore.isTransitionalIssue(i.code,after,data.pkg) && !/^rank_/.test(i.code);
@@ -384,7 +417,8 @@ window.BuilderModel = (() => {
     return { ok: true, draft, instanceId: copy.instanceId };
   }
 
-  function equip(army, data, context, cardId, applyAll, makeId, face = "front") {
+  function equip(army, data, context, cardId, applyAll, makeId, face = "front", previewContext = null) {
+    const baselineReport = equipPreviewReport(previewContext, army, data);
     data = RulesCore.resolveArmyData(army,data);
     const card = data.upgrades[cardId];
     const first = army.units.find((i) => i.instanceId === context.unitInstanceId);
@@ -463,7 +497,7 @@ window.BuilderModel = (() => {
       if (!rebound.ok) return {ok: false, reason: '槽位变化后无法容纳已选升级，请先移除：' +
         rebound.unresolved.map(id => data.upgrades[id]?.name?.zh || data.upgrades[id]?.name?.en || id).join('、')};
     }
-    const errors = newErrors(army, draft, data);
+    const errors = newErrors(army, draft, data, baselineReport);
     if (errors.length)
       return { ok: false, reason: [...new Set(errors.map((i) => i.message))].join("；") };
     return { ok: true, draft, count: ids.length, ids, chosenIds, warnings: [...new Set(warnings)] };
@@ -494,5 +528,5 @@ window.BuilderModel = (() => {
       counterpart: unit,
     };
   }
-  return { signature, groups, slotOrder, rebindSlots, migrateSlots, removeUpgrade, uniqueUpgrade, copyable, addUnit, duplicate, equip, equipDefaults, keywordActionTypes, upgradePresentation };
+  return { signature, groups, slotOrder, rebindSlots, migrateSlots, removeUpgrade, uniqueUpgrade, copyable, addUnit, duplicate, equip, equipDefaults, keywordActionTypes, upgradePresentation, createEquipPreviewContext, disposeEquipPreviewContext };
 })();

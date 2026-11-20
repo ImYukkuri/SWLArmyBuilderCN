@@ -212,8 +212,32 @@
     }
     fs.append(row(button('复制修改',()=>{const c=copy(m);c.id=uniqueId('effect');scope.modifiers.splice(index+1,0,c);changed();}),button('删除修改',()=>remove(scope.modifiers,index))));box.append(fs);
   }
+  function entryAssignment(box,entry,onChange){
+    const emptyGroup=(target,key)=>target && Object.keys(target).length===1 && Array.isArray(target[key]) && target[key].length===0;
+    const draw=()=>{
+      box.replaceChildren();
+      // Keep the existing expression format: empty OR matches nothing; empty
+      // AND explicitly matches everyone. Absent targets retain legacy behavior.
+      const mode=emptyGroup(entry.target,'any')?'manual':!entry.target||emptyGroup(entry.target,'all')?'all':'condition';
+      const field=el('div');field.className='field';field.append(el('span','分配给单位'),EditorOptions.control(mode,
+        [option('manual','不自动分配'),option('all','所有单位'),option('condition','按条件分配')],value=>{
+          entry.target=value==='manual'?{any:[]}:value==='all'?{all:[]}:
+            {all:[{field:'unit.unitCategoryId',op:'eq',value:'trooper'}]};
+          onChange();draw();
+        },{label:'分配给单位',nullable:false,preserveType:false}));box.append(field);
+      if(mode==='condition'){
+        const host=el('div');box.append(host);
+        ConditionEditor.render(host,entry,defs,()=>{
+          // Deleting the condition must not silently broaden it to all units.
+          if(!entry.target||emptyGroup(entry.target,'all'))entry.target={any:[]};
+          onChange();
+        },draw,{key:'target',title:'分配条件',fields:targetFields,allowRefs:false,hint:false});
+      }
+    };
+    draw();
+  }
   function entryDialog(scope,current){
-    const entry=current?copy(current):{id:uniqueId('entry'),name:{zh:'新词条',en:'New Entry'},summary:'',full:'',fullEn:'',timing:['global']};
+    const entry=current?copy(current):{id:uniqueId('entry'),name:{zh:'新词条',en:'New Entry'},summary:'',full:'',fullEn:'',timing:['global'],target:{any:[]}};
     const dialog=el('dialog');dialog.className='bfv-dialog';dialog.setAttribute('aria-label','局部词条编辑');
     const markDialog=()=>{dialogDirty=true;};
     const fieldLocal=(name,val,set,type='text')=>EditorCommon.field(name,val,v=>{set(v);markDialog();},type);
@@ -224,7 +248,8 @@
       const b=button(name,()=>{entry.timing=entry.timing.includes(id)?entry.timing.filter(t=>t!==id):[...entry.timing,id];b.setAttribute('aria-pressed',String(entry.timing.includes(id)));markDialog();},'bfv-chip');
       b.setAttribute('aria-pressed',String(entry.timing.includes(id)));timing.append(b);
     }
-    dialog.append(timing);condition(dialog,entry,'target','分配给单位',markDialog);const error=el('p');error.className='bfv-error';dialog.append(error);
+    dialog.append(timing);const assignment=el('div');dialog.append(assignment);entryAssignment(assignment,entry,markDialog);
+    const error=el('p');error.className='bfv-error';dialog.append(error);
     dialog.append(row(button('应用词条',()=>{const test=copy(force());const s=scope===force().v2.common?test.v2.common:test.v2.ruleGroups.find(g=>g.id===scope.id);
       s.entries=(s.entries||[]).filter(e=>e.id!==entry.id);s.entries.push(entry);
       const issues=BattleForceV2.validateDefinition(test).filter(i=>i.path.includes('.entries.'));if(issues.length){error.textContent=issues.map(i=>i.message).join('；');return;}

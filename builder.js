@@ -549,8 +549,8 @@ function removeOne(group) {
   setStatus("已移除 1 个" + (named(group.unit?.name) || "单位") + "。");
   render();
 }
-function prepareUpgrade(card) {
-  return BuilderModel.equip(army, data, browser, card.id, cardView.applyAll, uid, card._face);
+function prepareUpgrade(card, previewContext = null) {
+  return BuilderModel.equip(army, data, browser, card.id, cardView.applyAll, uid, card._face, previewContext);
 }
 function itemState(card) {
   const key = card.id + ":" + (card._face || "front");
@@ -581,7 +581,7 @@ function computeItemState(card) {
       first?.upgrades.some((ch) => ch.slotIndex === browser.slotIndex && ch.upgradeId === card.id)
     )
       return { kind: "chosen", label: "已选入当前槽位", ok: false };
-    const result = prepareUpgrade(card);
+    const result = prepareUpgrade(card, equipPreviewContext);
     return result.ok
       ? {
           kind: "available",
@@ -620,7 +620,7 @@ function computeItemState(card) {
 function choose(card) {
   // Re-check current state, rather than trusting a previously rendered button.
   stateCache.clear();
-  if (!computeItemState(card).ok) return;
+  if (browser.mode !== 'upgrades' && !computeItemState(card).ok) return;
   if (browser.mode === "units") {
     const result = BuilderModel.addUnit(army, data, card.id, uid, browser.rank);
     if (!result.ok) {

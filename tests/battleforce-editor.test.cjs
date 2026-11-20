@@ -102,7 +102,7 @@ test('local entry dialog handles searchable conditions, cancel, and target delet
   await dialog.getByRole('button',{name:'应用词条',exact:true}).click();
   await page.locator('#save').click();await page.waitForFunction(()=>document.querySelector('#dirty').textContent==='已保存');
   const entry=state.rules.battleForces['28'].v2.ruleGroups.find(g=>g.id==='ccb_wise').entries[0];
-  assert.equal(entry.summary,'已校对简写');assert.equal(Object.hasOwn(entry,'target'),false);
+  assert.equal(entry.summary,'已校对简写');assert.deepEqual(entry.target,{any:[]});
 });
 
 test('V2 keyword modifiers offer scoped temporary entries and preserve the local keyword ID',async t=>{
@@ -115,6 +115,31 @@ test('V2 keyword modifiers offer scoped temporary entries and preserve the local
   await page.locator('#save').click();await page.waitForFunction(()=>document.querySelector('#dirty').textContent==='已保存');
   const effect=state.rules.battleForces['28'].v2.ruleGroups.find(g=>g.id==='ccb_decisive').modifiers.at(-1);
   assert.equal(effect.field,'keywords');assert.equal(effect.value.id,'bf:28:ccb_decisive-rule');
+});
+
+for(const mobile of [false,true])test(`${mobile?'mobile':'desktop'} local entries default to no automatic assignment and can clear all-unit or conditional distribution`,async t=>{
+  const {page,state}=await setup(t,mobile);await tab(page,'groups');await page.locator('[data-group-id=ccb_superior_arc_training]').click();
+  await page.getByRole('button',{name:'＋ 局部词条',exact:true}).click();
+  let dialog=page.getByRole('dialog');
+  assert.equal(await dialog.getByRole('button',{name:'分配给单位',exact:true}).locator('.combo-label').innerText(),'不自动分配');
+  await dialog.getByLabel('词条中文名称',{exact:true}).fill('测试局部词条');
+  await dialog.getByRole('button',{name:'应用词条',exact:true}).click();
+  await page.locator('#save').click();await page.waitForFunction(()=>document.querySelector('#dirty').textContent==='已保存');
+  const group=()=>state.rules.battleForces[28].v2.ruleGroups.find(g=>g.id==='ccb_superior_arc_training');
+  const entryId=group().entries.at(-1).id;assert.deepEqual(group().entries.at(-1).target,{any:[]});
+  const edit=async()=>{await page.getByRole('button',{name:'编辑词条',exact:true}).last().click();return page.getByRole('dialog');};
+  const applySave=async()=>{await dialog.getByRole('button',{name:'应用词条',exact:true}).click();await page.locator('#save').click();await page.waitForFunction(()=>document.querySelector('#dirty').textContent==='已保存');};
+  dialog=await edit();await pick(page,'分配给单位','所有单位',dialog);await applySave();assert.deepEqual(group().entries.at(-1).target,{all:[]});
+  dialog=await edit();await pick(page,'分配给单位','不自动分配',dialog);await applySave();assert.deepEqual(group().entries.at(-1).target,{any:[]});
+  dialog=await edit();await pick(page,'分配给单位','按条件分配',dialog);
+  await pick(page,'条件字段','unit.id',dialog);await pick(page,'条件值 1',/republic-arc-troopers$/,dialog);
+  await applySave();assert.equal(group().entries.at(-1).target.all[0].value,'republic-arc-troopers');
+  dialog=await edit();await dialog.locator('.condition-leaf > button').filter({hasText:/^删除$/}).click();
+  assert.equal(await dialog.getByRole('button',{name:'分配给单位',exact:true}).locator('.combo-label').innerText(),'不自动分配');
+  if(process.env.BUILDER_QA_SCREENSHOTS)await page.screenshot({path:path.join(process.env.BUILDER_QA_SCREENSHOTS,`local-entry-${mobile?'mobile':'desktop'}-editor.png`)});
+  await applySave();assert.deepEqual(group().entries.at(-1).target,{any:[]});
+  assert.equal(group().entries.at(-1).id,entryId);assert.deepEqual(group().modifiers,original.battleForces[28].v2.ruleGroups.find(g=>g.id===group().id).modifiers);
+  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
 });
 
 test('keyword picker excludes temporary entries owned by another V2 force',async t=>{

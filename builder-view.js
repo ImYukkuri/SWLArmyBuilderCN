@@ -39,6 +39,7 @@ const cardView = {
   battleText: (() => { try { return localStorage.getItem("swl-battle-text") === "true"; } catch { return false; } })(),
 };
 const stateCache = new Map();
+let equipPreviewContext = null;
 const modalStack = [];
 const watchedDialogs = new WeakSet();
 let browserReturn = null,
@@ -260,6 +261,8 @@ function filterCandidates() {
 }
 
 function renderBrowser() {
+  BuilderModel.disposeEquipPreviewContext(equipPreviewContext);
+  equipPreviewContext = null;
   const aside = $("#card-browser"),
     mobile = matchMedia("(max-width:760px)").matches;
   aside.classList.toggle("is-open", !!browser);
@@ -351,6 +354,7 @@ function renderBrowser() {
   }
   stateCache.clear();
   updateBatchControl();
+  if (browser.mode === 'upgrades') equipPreviewContext = BuilderModel.createEquipPreviewContext(army, data);
   filterCandidates();
 }
 
@@ -2290,6 +2294,8 @@ function wireEditor() {
     cardView.applyAll = $("#apply-all-units").checked;
     updateBatchControl();
     stateCache.clear();
+    BuilderModel.disposeEquipPreviewContext(equipPreviewContext);
+    equipPreviewContext = browser?.mode === 'upgrades' ? BuilderModel.createEquipPreviewContext(army, data) : null;
     filterCandidates();
   };
   $("#open-explanations").onchange = () => {

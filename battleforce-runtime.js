@@ -2,6 +2,8 @@
  * edits, generated card identities, or per-battle-force executable branches. */
 (function (root) {
   const cache = new WeakMap();
+  const compiledCache = new WeakMap();
+  const sourceRefs = new WeakMap();
   const clone = value => structuredClone(value);
   const keyOf = k => JSON.stringify([k.id, k.parameterRefs || k.parameterRef || k.parameter || null, k.action || null]);
   const match = (unit, target, data) => !target || RulesCore.evaluate(target, RulesCore.unitContext(unit,data.pkg), data.pkg.predicates || {}) === true;
@@ -68,32 +70,55 @@
     return card;
   }
 
-  function resolve(army, input) {
+  function freezeCatalog(value, seen = new WeakSet()) {
+    if (!value || typeof value !== 'object' || seen.has(value)) return value;
+    seen.add(value);
+    for (const key of Reflect.ownKeys(value)) freezeCatalog(value[key], seen);
+    return Object.freeze(value);
+  }
+  function invalidate(input) {
     const source = input._source || input;
-    if (!active(army, source)) return source;
-    // Catalog objects are reloaded after maintenance. Cache bounded roster snapshots;
-    // different candidate simulations get separate keys and never contaminate the UI.
-    const key = JSON.stringify(army), previous = cache.get(source);
-    if (previous?.has(key)) return previous.get(key);
-    const bf = source.pkg.battleForces[army.armyId], state = BattleForceV2.selectionState(army, bf);
-    // Malformed definitions stay on the diagnostic path; never partially execute them.
-    if (BattleForceV2.validateDefinition(bf).length) return source;
+    cache.delete(source);compiledCache.delete(source);sourceRefs.delete(source);
+  }
+  function checkSource(source, armyId) {
+    // Runtime inputs are read-only during use. Reloading a catalog replaces its
+    // identity; callers that edit one in place must invalidate before resolving.
+    const refs = [source.pkg,source.defs,source.units,source.upgrades,source.unitIdAliases,source.pkg.battleForces];
+    const previous = sourceRefs.get(source);
+    const bf = source.pkg.battleForces[armyId], definition = [bf,bf.v2,bf.modes];
+    const priorDefinition = previous?.definitions.get(armyId);
+    if (previous && (refs.some((ref,i)=>ref!==previous.refs[i]) ||
+        priorDefinition && definition.some((ref,i)=>ref!==priorDefinition[i]))) invalidate(source);
+    const current = sourceRefs.get(source) || {refs,definitions:new Map()};
+    current.definitions.set(armyId,definition);
+    sourceRefs.set(source,current);
+  }
+  function compileRules(source, armyId, state) {
+    const bf = source.pkg.battleForces[armyId];
+    const key = JSON.stringify([armyId,state.activeRuleGroupIds]);
+    let bucket = compiledCache.get(source);
+    if (!bucket || bucket.forces !== source.pkg.battleForces) {
+      bucket = {forces:source.pkg.battleForces,entries:new Map()};compiledCache.set(source,bucket);
+    }
+    const prior = bucket.entries.get(key);
+    const compiled = prior?.definition === bf ? prior : null;
+    if (compiled) return compiled;
     const scopes = [bf.v2.common, ...bf.v2.ruleGroups.filter(g => state.activeRuleGroupIds.includes(g.id))];
-    const issues = [...state.issues];
-    const battleForceSource = {id:army.armyId, name:bf.nameZh || bf.name};
-    const modifiers = scopes.flatMap(g => g.modifiers || []).map(m =>
+    const issues = [];
+    const battleForceSource = {id:armyId, name:bf.nameZh || bf.name};
+    const modifiers = clone(scopes.flatMap(g => g.modifiers || [])).map(m =>
       ['keywords','weapons.keywords'].includes(m.field) && m.op !== 'remove'
         ? {...m, _battleForceSource:battleForceSource} : m);
-    const entries = scopes.flatMap(g => g.entries || []);
+    const entries = clone(scopes.flatMap(g => g.entries || []));
     const localEntries = new Map(entries.filter(e => e?.id).map(e =>
-      [`bf:${army.armyId}:${e.id}`, e]));
+      [`bf:${armyId}:${e.id}`, e]));
     const unitIds = new Set(scopes.flatMap(g => (g.unitGrants || []).map(r => r.unitId)));
     const upgradeIds = new Set(scopes.flatMap(g => (g.upgradeGrants || []).map(r => r.upgradeId)));
-    const pkg = {...source.pkg, battleForces:{...source.pkg.battleForces, [army.armyId]:clone(bf)}};
-    const context = {armyId:army.armyId, parentFactionId:bf.v2.parentFactionId, issues, instances:{},
-      modifiers, entries, unitLimits:scopes.flatMap(g => g.unitLimits || []),
+    const pkg = {...source.pkg, battleForces:{...source.pkg.battleForces, [armyId]:clone(bf)}};
+    const context = {armyId, parentFactionId:bf.v2.parentFactionId,
+      modifiers, entries, unitLimits:clone(scopes.flatMap(g => g.unitLimits || [])),
       uniqueUpgradeIds:scopes.some(g => g.uniqueUpgradeIds) ? scopes.flatMap(g => g.uniqueUpgradeIds || []) : null};
-    pkg._v2 = context;
+    pkg._v2 = {...context,issues,instances:{}};
     const data = {...source, pkg, units:{}, upgrades:{}};
     Object.defineProperty(data, '_source', {value:source});
     const checkRef = (id, table, what) => {
@@ -109,22 +134,33 @@
       data.upgrades[id] = card;
     }
     if (root.UpgradeFaces) data.upgrades = UpgradeFaces.index(Object.values(data.upgrades));
-    function makeUnit(raw, inst) {
+    const identities = new Map();
+    function identityUnit(raw) {
       const card = clone(raw);
       card._v2Allowed = unitIds.has(raw.id);
       const effects = modifiers.filter(m => m.card === 'unit' && !m.when && match(raw,m.target,data));
       // Identity/rank modifiers are applied before rank-dependent restrictions.
       const identity = effects.filter(m => ['rankId','factionId','affiliationIds'].includes(m.field));
-      apply(card,identity,issues);
+      const diagnostics = [];
+      apply(card,identity,diagnostics);
       card._v2Ranks ||= [card.rankId];
+      return {card,diagnostics};
+    }
+    function makeUnit(raw, inst, targetData = data, targetIssues = issues) {
+      const identity = identities.get(raw.id);
+      const card = clone(identity.card);
+      targetIssues.push(...clone(identity.diagnostics));
       if (inst?.rankId != null) card.rankId = inst.rankId;
-      if (inst && !card._v2Ranks.includes(card.rankId)) issues.push({status:'invalid',code:'battle_force_rank',
+      if (inst && !card._v2Ranks.includes(card.rankId)) targetIssues.push({status:'invalid',code:'battle_force_rank',
         instanceId:inst.instanceId,rank:inst.rankId,message:'此单位不能使用所选军阶，请移除后从有效军阶重新加入。'});
-      const remaining = modifiers.filter(m => m.card === 'unit' && !identity.includes(m) &&
-        !['rankId','factionId','affiliationIds'].includes(m.field) && match(card,m.target,data) &&
+      // Re-evaluate all non-identity effects together after the instance rank is
+      // known. Static and equippedSlot effects can conflict or stack; applying
+      // conditional effects on an already-completed base unit would change that.
+      const remaining = modifiers.filter(m => m.card === 'unit' &&
+        !['rankId','factionId','affiliationIds'].includes(m.field) && match(card,m.target,targetData) &&
         (!m.when || (inst?.upgrades || []).some(ch => {
-          const upgrade = data.upgrades[ch.upgradeId];
-          return upgrade && RulesCore.accessKeys(upgrade,pkg,{}).includes(m.when.equippedSlot);
+          const upgrade = targetData.upgrades[ch.upgradeId];
+          return upgrade && RulesCore.accessKeys(upgrade,targetData.pkg,{}).includes(m.when.equippedSlot);
         })));
       const effectiveRemaining = remaining.map(effect => {
         if (effect.field !== 'keywords') return effect;
@@ -136,10 +172,10 @@
         return {...effect, value:Array.isArray(effect.value)
           ? effect.value.map(convert) : convert(effect.value)};
       });
-      apply(card,effectiveRemaining,issues);
+      apply(card,effectiveRemaining,targetIssues);
       card._v2WeaponEffects = effectiveRemaining.filter(m => m.field === 'weapons.keywords');
-      for (const entry of entries) if (match(card,entry.target,data)) {
-        const id='bf:'+army.armyId+':'+entry.id;
+      for (const entry of entries) if (match(card,entry.target,targetData)) {
+        const id='bf:'+armyId+':'+entry.id;
         const current=(card.keywords ||= []).find(k => k.id===id);
         if (current) {
           current._entry ||= clone(entry);
@@ -150,9 +186,10 @@
       if (inst) card._v2InstanceId = inst.instanceId;
       return card;
     }
-    for (const [id, raw] of Object.entries(source.units)) data.units[id] = makeUnit(raw);
-    for (const inst of army.units || []) if (source.units[inst.unitId]) context.instances[inst.instanceId] = makeUnit(source.units[inst.unitId],inst);
-    for (const mode of Object.values(pkg.battleForces[army.armyId].modes || {})) {
+    for (const [id, raw] of Object.entries(source.units)) {
+      identities.set(id,identityUnit(raw));data.units[id] = makeUnit(raw);
+    }
+    for (const mode of Object.values(pkg.battleForces[armyId].modes || {})) {
       for (const effect of scopes.flatMap(s => s.rankModifiers || [])) {
         const quota = mode.rankQuotas?.find(q => q.rankId === effect.rankId);
         if (quota) for (const field of ['min','max']) if (effect[field] != null)
@@ -160,6 +197,38 @@
       }
     }
     data.nameIndex = RulesCore.buildNameIndex(data.upgrades,data.defs);
+    freezeCatalog(data.units);freezeCatalog(data.upgrades);
+    // Only owned objects are frozen; pkg/defs also contain source references.
+    freezeCatalog(context);freezeCatalog(issues);freezeCatalog(pkg.battleForces[armyId]);
+    for (const identity of identities.values()) freezeCatalog(identity);
+    const result = {definition:bf,data,context,issues,makeUnit};
+    bucket.entries.set(key,result);
+    if (bucket.entries.size > 8) bucket.entries.delete(bucket.entries.keys().next().value);
+    return result;
+  }
+
+  function resolveInstances(army, source, compiled, state) {
+    const issues = [...clone(state.issues),...clone(compiled.issues)];
+    const context = {...compiled.context,issues,instances:{}};
+    const data = {...compiled.data,pkg:{...compiled.data.pkg,_v2:context}};
+    Object.defineProperty(data,'_source',{value:source});
+    for (const inst of army.units || []) if (source.units[inst.unitId])
+      context.instances[inst.instanceId] = compiled.makeUnit(source.units[inst.unitId],inst,data,issues);
+    return data;
+  }
+
+  function resolve(army, input) {
+    const source = input._source || input;
+    if (!active(army, source)) return source;
+    checkSource(source,army.armyId);
+    // Eight lightweight instance snapshots; static catalogs have their own
+    // bounded cache and are not rebuilt/evicted by candidate equipment IDs.
+    const key = JSON.stringify(army), previous = cache.get(source);
+    if (previous?.has(key)) return previous.get(key);
+    const bf = source.pkg.battleForces[army.armyId], state = BattleForceV2.selectionState(army, bf);
+    if (BattleForceV2.validateDefinition(bf).length) return source;
+    const compiled = compileRules(source,army.armyId,state);
+    const data = resolveInstances(army,source,compiled,state);
     const results = previous || new Map(); results.set(key,data);
     if (results.size > 8) results.delete(results.keys().next().value);
     cache.set(source,results);
@@ -218,6 +287,6 @@
     }
     return {draft,removed};
   }
-  root.BattleForceRuntime = {active,resolve,unitFor,candidate,upgradeFor,upgradePoints,reconfigure,apply,match};
+  root.BattleForceRuntime = {active,resolve,unitFor,candidate,upgradeFor,upgradePoints,reconfigure,apply,match,invalidate};
   if (typeof module === 'object' && module.exports) module.exports = root.BattleForceRuntime;
 })(globalThis);
