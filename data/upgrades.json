@@ -1,7 +1,7 @@
 {
   "schema": "swl-upgrades/v1",
   "referenceVersion": "2026.11.04.0",
-  "updatedAt": "2026-11-20T06:44:17.560521+00:00",
+  "updatedAt": "2026-11-20T08:15:51.372148+00:00",
   "cards": [
     {
       "id": "21b-medical-droid",
@@ -666,21 +666,18 @@
         ],
         "verification": "text_matched",
         "condition": {
-          "all": [
+          "any": [
             {
-              "ref": "droidTrooperUnitType"
-            },
-            {
-              "field": "unit.unitTypeId",
-              "op": "eq",
-              "value": 6
+              "field": "unit.unitSubtypeId",
+              "op": "contains",
+              "value": "droid_trooper"
             }
           ]
         },
         "ocrEvidence": {
           "file": "work/upgrade-restrictions/ocr-v3.json",
           "key": "adaptive-combat-network",
-          "textSimilarity": 1.0,
+          "textSimilarity": 1,
           "containsIcons": false,
           "iconsVerified": false,
           "imageSha256": "ba4c8e0606983e80e83fd893a868894e4651200f449c22c7ebb44e3ae57c71d2"
