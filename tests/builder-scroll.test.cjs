@@ -548,12 +548,73 @@ test('mobile picker hides background sticky rows and keeps weapon data directly 
   await card.scrollIntoViewIfNeeded();
   assert.equal(await card.locator('.range-pill').first().isVisible(), true);
   assert.equal(await card.locator('.attack-pool').first().isVisible(), true);
-  await card.locator('.weapon-inspect').tap();
-  await page.getByRole('button',{name:'关闭武器属性',exact:true}).tap();
+  assert.equal(await card.locator('.candidate-footer, .candidate-weapon-link').count(), 0);
+  await card.locator('.candidate-art').tap();
+  assert.equal(await page.locator('#image-dialog .weapon-card').first().isVisible(), true);
+  await page.getByRole('button',{name:'关闭卡图',exact:true}).tap();
   assert.equal(await page.locator('#card-browser').isVisible(), true);
   assert.equal(await page.locator('#roster-info').isVisible(), false);
   await page.locator('#browser-close').tap();await samePosition(page, y);
   assert.equal(await page.locator('#roster-info').isVisible(), true);
+});
+
+for (const [width,height] of [[320,640],[390,844],[1440,1000]]) test(`upgrade requirements, image effects and weapon rules remain accessible at ${width}px`, async t => {
+  const page = await setup(t, width < 760);
+  await page.setViewportSize({width,height});
+  const slotIndex = await page.evaluate(() => {
+    const record = BuilderLibrary.create(2,'Upgrade detail regression',data,uid,new Date().toISOString());
+    record.army.units = [0,1].map(() => ({unitId:'empire-shoretroopers',instanceId:uid(),upgrades:[]}));
+    openRoster(record);
+    return unitSlotRecords(data.units['empire-shoretroopers'],army.units[0]).findIndex(s => s.key === 'heavy_weapon');
+  });
+  await page.locator(`#army-units .compact-slot[data-slot-index="${slotIndex}"] .slot-name`).click();
+  const candidate = page.locator('#card-grid [data-id="del-meeko"]');
+  assert.equal(await candidate.getAttribute('data-state'),'available');
+  assert.equal(await candidate.locator('.identity-main .requirements').count(),1);
+  assert.equal(await candidate.locator('.candidate-footer, .weapon-inspect').count(),0);
+  assert(!(await candidate.innerText()).includes('仅应用到'));
+  await candidate.locator('.candidate-art').click();
+  const dialog = page.locator('#image-dialog');
+  await dialog.locator('.full-card-image').evaluate(n => n.decode());
+  const expectVisibleEffect = async () => {
+    const visible = await dialog.evaluate(n => {
+      const effect = [...n.querySelectorAll('.upgrade-effect')].find(e => e.getClientRects().length);
+      const rect = effect.getBoundingClientRect(), box = n.getBoundingClientRect();
+      return rect.top >= box.top && rect.top + 24 < box.bottom && n.scrollWidth <= n.clientWidth;
+    });
+    assert(visible,'the first effect line must be visible without scrolling');
+  };
+  await expectVisibleEffect();
+  assert.equal(await dialog.locator('.weapon-card').count(),1);
+  assert((await dialog.locator('.weapon-tags .rule-tag').count()) > 0);
+  await dialog.locator('.weapon-tags .rule-tag-main').first().click();
+  assert.equal(await dialog.locator('#keyword-popover [role="tab"][aria-selected="true"]').innerText(),'简写');
+  await page.getByRole('tab',{name:'完整规则',exact:true}).click();
+  await page.getByRole('button',{name:'关闭词条',exact:true}).click();
+  await page.getByRole('button',{name:'关闭卡图',exact:true}).click();
+  assert(await page.evaluate(() => army.units.every(i => !i.upgrades.length)),'preview actions must not equip');
+  await page.locator('#show-unavailable').check();
+  await page.locator('#apply-all-units').check();
+  assert.equal(await candidate.getAttribute('data-state'),'blocked','unique upgrade cannot apply to both units');
+  assert((await candidate.locator('.identity-main .eligibility-note').innerText()).length > 0);
+  await candidate.locator('h3').click();
+  assert(await page.evaluate(() => army.units.every(i => !i.upgrades.length)));
+  await page.locator('#apply-all-units').uncheck();
+  await candidate.locator('h3').click();
+  assert.equal(await page.evaluate(() => army.units.flatMap(i => i.upgrades).filter(c => c.upgradeId === 'del-meeko').length),1);
+  // Dual cards use the same constrained art and keep both faces' weapons.
+  await page.evaluate(() => {
+    closeBrowser();
+    const card = Object.values(data.upgrades).find(c => UpgradeFaces.isDual(c) && /DC-17m/i.test(c.name.en));
+    showImage(UpgradeFaces.view(card));
+  });
+  await dialog.locator('.image-face:not([hidden]) .full-card-image').evaluate(n => n.decode());
+  await expectVisibleEffect();
+  await dialog.locator('.face-tab[data-face="back"]').click();
+  assert.equal(await dialog.locator('.image-face:not([hidden])').getAttribute('data-face'),'back');
+  assert((await dialog.locator('.image-face:not([hidden]) .weapon-tags .rule-tag').count()) > 0);
+  await dialog.locator('.face-tab[data-face="both"]').click();
+  assert.equal(await dialog.locator('.image-face:not([hidden])').count(),2);
 });
 
 test('mobile upgrade selector survives repeated close button, backdrop and Escape without jumping', async t => {
@@ -581,12 +642,12 @@ test('mobile unit picker preserves its bottom-of-roster opener when adding a uni
   assert.equal(await page.locator('#summary-activations').innerText(), '19');
 });
 
-test('nested upgrade weapons, automatic slot advance and final selection retain the original page position', async t => {
+test('nested upgrade images, automatic slot advance and final selection retain the original page position', async t => {
   const page = await setup(t);
   const slot = page.locator('#army-units > .roster-unit').nth(9).locator('.slot-name').last();
   const y = await positionAt(page, slot);await slot.tap();
-  await page.locator('#card-grid .weapon-inspect').first().tap();
-  await page.getByRole('button',{name:'关闭武器属性',exact:true}).tap();await frames(page);
+  await page.locator('#card-grid .upgrade-candidate').filter({has:page.locator('.weapon-card')}).first().locator('.candidate-art').tap();
+  await page.getByRole('button',{name:'关闭卡图',exact:true}).tap();await frames(page);
   assert.equal(await page.locator('html').evaluate(n => n.classList.contains('page-overlay-open')), true);
   await page.locator('#card-grid .candidate[data-state="available"] .identity h3').first().tap();
   assert.equal(await page.locator('#card-browser').evaluate(n => n.classList.contains('is-open')), true);

@@ -1668,8 +1668,10 @@ dialog, .card-browser, .keyword-popover {
 
 .full-card-image {
   display: block;
+  width: auto;
+  height: auto;
   max-width: 100%;
-  max-height: calc(90dvh - 80px);
+  max-height: min(64dvh, 640px);
   object-fit: contain;
   margin: auto;
 }
@@ -1810,13 +1812,6 @@ dialog, .card-browser, .keyword-popover {
 
 .upgrade-candidate .upgrade-tags {
   margin-top: 10px;
-}
-
-.candidate-weapon-link {
-  display: block;
-  margin-top: 10px;
-  font-size: 12px;
-  padding: 5px 0;
 }
 
 .upgrade-candidate .identity .en-name {
@@ -3726,9 +3721,10 @@ dialog, .card-browser, .keyword-popover {
 .slot-art span { display: block; font-size: 8px; line-height: 1.15; }
 .compact-slot.filled .slot-name { flex: 1; }
 .image-dialog { width: min(760px, calc(100vw - 24px)); }
-.image-card-effect { margin-top: 16px; border-top: 1px solid var(--line); padding-top: 12px; font-size: 14px; line-height: 1.8; white-space: pre-line; }
-.image-card-effect h3 { font-size: 15px; margin-bottom: 6px; }
-.image-dialog > .candidate-tags { margin-top: 12px; }
+.image-dialog > .dialog-head { position: sticky; top: -16px; z-index: 2; background: var(--paper); padding-block: 4px; }
+.image-card-effect { margin-top: 10px; border-top: 1px solid var(--line); padding-top: 8px; font-size: 14px; line-height: 1.65; white-space: pre-line; }
+.image-card-effect h3 { font-size: 15px; margin-bottom: 4px; }
+.image-dialog > .candidate-tags, .image-dialog > .weapon-groups { margin-top: 8px; }
 .counterpart-heading { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; color: var(--accent); font-weight: 600; margin: 5px 0; }
 .counterpart-heading span { font-weight: 400; font-size: 12px; color: var(--muted); }
 .counterpart-effect-rule { margin-top: 5px; }
@@ -3747,6 +3743,9 @@ dialog, .card-browser, .keyword-popover {
   .deck-picker-dialog > .dialog-head { padding: 12px; }
   .deck-pick-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 10px; gap: 10px; }
   .image-card-effect { font-size: 14px; }
+  .image-dialog { width: 100vw; max-width: 100vw; height: 100dvh; max-height: 100dvh; margin: 0; padding: 10px 12px max(12px, env(safe-area-inset-bottom)); border-radius: 0; }
+  .image-dialog > .dialog-head { top: -10px; margin-bottom: 8px; }
+  .image-dialog .full-card-image { max-width: 92%; max-height: calc(80dvh - 110px); }
 }
 
 /* Rank totals remain the primary readout at desktop and touch widths. */
@@ -3851,10 +3850,11 @@ dialog, .card-browser, .keyword-popover {
 .upgrade-face-part + .upgrade-face-part { border-top:1px dashed #c8d6df; margin-top:4px; padding-top:4px; }
 .image-face + .image-face { margin-top:16px; }
 .image-face-title { margin:8px 0; color:#285d79; font-size:14px; }
-.image-face .full-card-image { display:block; width:100%; height:auto; }
+.image-face .full-card-image { display:block; width:auto; height:auto; max-height:min(56dvh, calc(80dvh - 160px), 560px); }
 .image-face .candidate-tags,.image-face .weapon-groups { margin-top:8px; }
 .action-mark[data-action="double-action"] { border-style:double; border-width:3px; padding-block:0; }
 @media(max-width:600px) {
+  .image-dialog .image-face .full-card-image { max-height: max(100px, calc(80dvh - 250px)); }
   .face-tabs .face-indicator { flex-basis:100%; white-space:nowrap; }
   .face-tabs .face-tab { flex:1; }
   .compact-slot.both-faces { display:grid; grid-template-columns:26px minmax(0,1fr) 24px; gap:2px 3px; }
@@ -3963,17 +3963,18 @@ html.page-overlay-open #army-units > .roster-unit > .unit-brief { visibility: hi
 .upgrade-browser .result-controls { padding: 6px 0; }
 .upgrade-browser .batch-apply { margin-block: 0; padding-block: 5px; }
 .upgrade-browser .browser-foot { padding-block: 7px; }
-.candidate.upgrade-candidate { padding: 12px 14px; }
+.candidate.upgrade-candidate { padding: 8px 14px; }
 .upgrade-candidate .identity { gap: 8px; }
 .upgrade-candidate .candidate-art { width: 34px; height: 46px; margin: 0; }
-.upgrade-candidate .requirements { margin-top: 6px; padding: 6px 9px; line-height: 1.55; }
-.upgrade-candidate > .upgrade-effect { margin-top: 6px; font-size: 13px; line-height: 1.65; }
-.upgrade-candidate .upgrade-tags { margin-top: 5px; gap: 3px; }
-.upgrade-candidate > .weapon-groups { margin-block: 6px 3px; gap: 5px; }
+.upgrade-candidate .identity .requirements { margin: 2px 0 0; padding: 0; border: 0; background: none; line-height: 1.45; }
+.upgrade-candidate .identity .candidate-state { margin-top: 3px; color: var(--accent); }
+.upgrade-candidate .identity .eligibility-note { margin-top: 3px; color: var(--warning); font-size: 12px; line-height: 1.5; }
+.upgrade-candidate.blocked .identity .candidate-state { color: var(--warning); }
+.upgrade-candidate > .upgrade-effect { margin-top: 4px; font-size: 13px; line-height: 1.65; }
+.upgrade-candidate .upgrade-tags { margin-top: 4px; gap: 3px; }
+.upgrade-candidate > .weapon-groups { margin-block: 4px 0; gap: 4px; }
 .upgrade-candidate .weapon-card-head { padding: 5px 8px; gap: 5px 8px; }
 .upgrade-candidate .weapon-tags { padding: 3px 7px; }
-.upgrade-candidate .candidate-weapon-link { display: inline-block; margin: 0 0 0 auto; padding: 3px 0; min-height: 30px; }
-.upgrade-candidate .candidate-footer { margin-top: 5px; gap: 4px; }
 @media (max-width: 760px) {
   .roster-info { column-gap: 10px; padding: 3px 7px 5px; }
   .roster-info #points { flex-direction: column; align-items: flex-start; gap: 1px; }
@@ -3995,7 +3996,7 @@ html.page-overlay-open #army-units > .roster-unit > .unit-brief { visibility: hi
   .roster-unit > .compact-slots { padding-inline: 6px; }
   .army-header .army-summary { justify-content: flex-start; gap: 20px; padding-top: 12px; }
   .upgrade-browser .browser-top { padding-inline: 12px; }
-  .candidate.upgrade-candidate { padding: 10px 12px; }
+  .candidate.upgrade-candidate { padding: 8px 12px; }
   .upgrade-candidate .weapon-title { flex-basis: 100%; }
 }
 .battleforce-dialog h3{margin:20px 0 8px;font-size:17px}.battleforce-dialog h4{margin:16px 0 5px}

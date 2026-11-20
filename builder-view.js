@@ -1006,6 +1006,7 @@ function showImage(c, opener) {
   }
   if (cardKeywords(c).length) imageDialog.append(ruleTags(cardKeywords(c).map((k) =>
     ({ ...(typeof k === "string" ? { id: k } : k), origins: c.counterpart ? [c] : [] }))));
+  if (c.weapons?.length) imageDialog.append(weaponRows(c.weapons));
   showDialog(imageDialog, opener);
 }
 
@@ -1028,7 +1029,11 @@ function showDualImage(c, opener) {
       im.alt = faceLabel(side) + ' · ' + named(side.name) + '完整卡图';
       setCardImage(im, side.assets?.front, side);section.append(im);
       const effect = upgradeEffect(side);
-      if (effect.childNodes.length) section.append(effect);
+      if (effect.childNodes.length) {
+        const details = node('section', 'image-card-effect');
+        details.append(node('h3', null, '卡牌效果'), effect);
+        section.append(details);
+      }
       if (cardKeywords(side).length) section.append(ruleTags(cardKeywords(side)));
       if (side.weapons?.length) section.append(weaponRows(side.weapons));
       imageDialog.append(section);
@@ -1786,37 +1791,30 @@ function upgradeCandidate(c) {
   item.dataset.face = c._face || "front";
   const host = army.units.find(i => i.instanceId === browser?.unitInstanceId);
   const head = identity(c, {points: upgradeDisplayPoints(c,host)});
+  const main = head.querySelector(".identity-main");
   head.prepend(artButton(c, "upgrade-art candidate-art"));
-  head.querySelector(".identity-main").append(usageBadges(c));
-  if (c.variantLabel) head.querySelector('.identity-main').append(node('span','variant-label',c.variantLabel));
-  if (UpgradeFaces.isDual(c)) head.querySelector(".identity-main").append(node("span", "face-badge", "双面卡 · " + faceLabel(c)));
-  item.append(head);
+  main.append(usageBadges(c));
+  if (c.variantLabel) main.append(node('span','variant-label',c.variantLabel));
+  if (UpgradeFaces.isDual(c)) main.append(node("span", "face-badge", "双面卡 · " + faceLabel(c)));
   const req = textParts(
     c.restrictions?.text?.zh || c.requirementsText || c.restrictions?.text?.en,
   );
   if (req) {
     const p = node("div", "requirements");
-    p.append(node("b", null, "使用要求"), proseNode(req));
-    item.append(p);
+    p.setAttribute('aria-label', '使用要求');
+    p.append(proseNode(req));
+    main.append(p);
   }
+  if (!state.ok) main.append(node('span', 'candidate-state', state.label));
+  if (state.reason) main.append(node('div', 'eligibility-note', state.reason));
+  item.append(head);
   const effect = upgradeEffect(c);
   if (effect.childNodes.length) item.append(effect);
   const tags = node("div", "upgrade-tags");
   for (const k of uniqueRules(cardKeywords(c)))
     tags.append(tag({ ...(typeof k === "string" ? { id: k } : k), origins: [c] }, { showOrigin: false }));
   if (tags.children.length) item.append(tags);
-  const footer = candidateStatus(state);
-  if (c.weapons?.length) {
-    item.append(weaponRows(c.weapons));
-    const b = node(
-      "button",
-      "weapon-inspect candidate-weapon-link",
-      "展开武器释义",
-    );
-    b.onclick = () => showWeapons(c, b);
-    footer.append(b);
-  }
-  item.append(footer);
+  if (c.weapons?.length) item.append(weaponRows(c.weapons));
   return selectableCandidate(item, c, state);
 }
 
