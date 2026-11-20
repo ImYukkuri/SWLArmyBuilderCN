@@ -3463,12 +3463,12 @@
     {
       "id": "pending_my_moob_is_basep_on_profit",
       "name": {
-        "en": "My Moob Is Basep ON Profit",
-        "zh": ""
+        "en": "My Mood Is Based On My Profit",
+        "zh": "我的心情取决于利润"
       },
       "actionTypes": null,
-      "summary": "",
-      "full": "",
+      "summary": "此单位单位卡上的X取决于本回合打出指挥卡的点数。",
+      "full": "此单位卡上的数值为X的词条和数值的X值等于此单位控制者最近展示并打出的指挥卡的点数。最小为1，如果一个玩家本局游戏还未展示或打出指挥卡，X视为1",
       "timing": [],
       "status": "unresolved"
     },
@@ -27465,7 +27465,7 @@
       }
     }
   ],
-  "updatedAt": "2026-11-20T07:50:18.648022+00:00",
+  "updatedAt": "2026-11-20T09:59:20.796103+00:00",
   "unitCategories": [
     {
       "id": "trooper",

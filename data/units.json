@@ -1,6 +1,6 @@
 {
   "schema": "swl-unit-catalog/v2",
-  "updatedAt": "2026-11-20T02:32:21.379911+00:00",
+  "updatedAt": "2026-11-20T10:01:26.015863+00:00",
   "definitions": "catalog-definitions.json",
   "referenceVersion": "2026.11.04.0",
   "units": [
@@ -5088,7 +5088,7 @@
           "id": "immune_pierce"
         },
         {
-          "id": "pending_jep1_hunter"
+          "id": "pending_jedi_hunter"
         },
         {
           "id": "master_of_the_force",
@@ -5250,7 +5250,7 @@
       "keywords": [
         {
           "id": "compel",
-          "parameter": "Atrooper"
+          "parameter": "核心士兵单位"
         },
         {
           "id": "deflect"
@@ -6387,7 +6387,7 @@
         },
         {
           "id": "direct",
-          "parameter": "Unit"
+          "parameter": "帝国单位"
         },
         {
           "id": "duelist"
@@ -6518,7 +6518,7 @@
       "keywords": [
         {
           "id": "pulling_the_strings",
-          "parameter": "Trooper",
+          "parameter": "帝国士兵",
           "action": "action"
         },
         {
@@ -6970,7 +6970,7 @@
         {
           "name": {
             "en": "Comsar Traine",
-            "zh": ""
+            "zh": "战斗训练"
           },
           "range": {
             "min": 0,
@@ -6990,7 +6990,7 @@
         {
           "name": {
             "en": "Busterpistor",
-            "zh": ""
+            "zh": "爆能手枪"
           },
           "range": {
             "min": 1,
@@ -7109,8 +7109,8 @@
       "weapons": [
         {
           "name": {
-            "en": "Comeaatr Training",
-            "zh": ""
+            "en": "Combat Training",
+            "zh": "战斗训练"
           },
           "range": {
             "min": 0,
@@ -7125,8 +7125,8 @@
         },
         {
           "name": {
-            "en": "Buster Pisol",
-            "zh": ""
+            "en": "Blaster Pistol",
+            "zh": "爆能手枪"
           },
           "range": {
             "min": 1,
@@ -7137,11 +7137,7 @@
             "black": 1,
             "white": 2
           },
-          "keywords": [
-            {
-              "id": "pending_he_tr"
-            }
-          ]
+          "keywords": []
         }
       ],
       "upstream": {
@@ -9617,7 +9613,7 @@
       "keywords": [
         {
           "id": "guidance",
-          "parameter": "Ground Vehicle",
+          "parameter": "地面载具",
           "action": "action"
         },
         {
@@ -15705,7 +15701,7 @@
         {
           "name": {
             "en": "Vibroknife & Pistol",
-            "zh": ""
+            "zh": "振动刀&手枪"
           },
           "range": {
             "min": 0,
@@ -19739,26 +19735,30 @@
           "parameter": "帝国，义军，共和，分离"
         },
         {
-          "id": "arsenal"
+          "id": "arsenal",
+          "parameter": "X"
         },
         {
           "id": "disengage"
         },
         {
           "id": "independent",
-          "parameter": "Dodge X"
+          "parameter": "闪避 X"
         },
         {
           "id": "pending_my_moob_is_basep_on_profit"
         },
         {
-          "id": "nimble"
+          "id": "nimble",
+          "parameter": null
         },
         {
-          "id": "reliable"
+          "id": "reliable",
+          "parameter": "X"
         },
         {
-          "id": "uncanny_luck"
+          "id": "uncanny_luck",
+          "parameter": "X"
         }
       ],
       "weapons": [
@@ -20433,7 +20433,7 @@
         },
         {
           "id": "eyes_on_the_prize",
-          "parameter": "Steady"
+          "parameter": "稳步"
         },
         {
           "id": "self_preservation"
@@ -20578,7 +20578,7 @@
         {
           "name": {
             "en": "Advanced Training",
-            "zh": ""
+            "zh": "进阶训练"
           },
           "range": {
             "min": 0,
@@ -20594,7 +20594,7 @@
         {
           "name": {
             "en": "DC-17 Blaster Pistols",
-            "zh": ""
+            "zh": "DC-17手持爆能枪"
           },
           "range": {
             "min": 1,
@@ -24814,7 +24814,7 @@
         {
           "name": {
             "en": "Comsat Training",
-            "zh": ""
+            "zh": "战斗训练"
           },
           "range": {
             "min": 0,
@@ -25208,7 +25208,7 @@
       "keywords": [
         {
           "id": "coordinate",
-          "parameter": "Emplacement Trooper"
+          "parameter": "炮兵士兵"
         },
         {
           "id": "low_profile"
