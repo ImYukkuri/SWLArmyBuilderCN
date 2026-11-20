@@ -1116,7 +1116,7 @@ function keywordEntries(inst) {
     if (!map.has(key)) map.set(key, { ...item, origins: [] });
     const current = map.get(key);
     if (item._battleForceSources?.length) {
-      const sources=new Map([...(current._battleForceSources || []),...item._battleForceSources].map(s=>[s.id,s]));
+      const sources=new Map([...(current._battleForceSources || []),...item._battleForceSources].map(s=>[JSON.stringify([s.id,s.ruleGroupId]),s]));
       current._battleForceSources=[...sources.values()];
     }
     if (origin && !current.origins.some((x) => x.id === origin.id && x._face === origin._face))
@@ -1179,6 +1179,10 @@ function uniqueRules(ks) {
   });
 }
 
+function battleForceSourceLabel(source) {
+  return source.ruleGroupName || source.name;
+}
+
 function tag(k, { forceOpen = false, timing = false, showOrigin = true } = {}) {
   const info = ruleInfo(k);
   const key = JSON.stringify([keywordKey(info.item), (k.origins || []).map((c) => c.id)]);
@@ -1200,7 +1204,7 @@ function tag(k, { forceOpen = false, timing = false, showOrigin = true } = {}) {
     main.append(badge);
   }
   main.append(actionText(info.label));
-  const origins=[...(showOrigin ? k.origins || [] : []).map(c=>originLabel(c)),...(k._battleForceSources || []).map(s=>s.name)];
+  const origins=[...(showOrigin ? k.origins || [] : []).map(c=>originLabel(c)),...(k._battleForceSources || []).map(battleForceSourceLabel)];
   if (origins.length)
     main.append(
       node(
@@ -1537,7 +1541,7 @@ function openRule(k, anchor) {
       ruleTimings(k).map((t) => TIMING_LABEL[t] || t).join(" / "),
     ),
   );
-  for (const source of k._battleForceSources || []) rulePop.append(node('p','rule-origin','来自 '+source.name));
+  for (const source of k._battleForceSources || []) rulePop.append(node('p','rule-origin','来自 '+battleForceSourceLabel(source)));
   const tabs = node("div", "rule-tabs");
   tabs.setAttribute("role", "tablist");
   tabs.setAttribute("aria-label", "词条说明长度");

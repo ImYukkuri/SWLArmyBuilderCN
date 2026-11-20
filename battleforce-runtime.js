@@ -10,6 +10,11 @@
   const active = (army, data) => data.pkg.battleForces?.[army.armyId]?.engineVersion === 2 &&
     ['active', 'preview'].includes(data.pkg.battleForces[army.armyId].status);
 
+  function addKeywordSource(keyword, source) {
+    const sources = keyword._battleForceSources ||= [];
+    if (!sources.some(s => s.id === source.id && s.ruleGroupId === source.ruleGroupId)) sources.push(clone(source));
+  }
+
   function keywords(list, effect) {
     const values = Array.isArray(effect.value) ? effect.value : [effect.value];
     for (const value of values) {
@@ -20,8 +25,7 @@
       else if (typeof value.value === 'number') list[index].value = (list[index].value || 0) + value.value;
       if (effect._battleForceSource) {
         const current = index < 0 ? list.at(-1) : list[index];
-        const sources = current._battleForceSources ||= [];
-        if (!sources.some(s => s.id === effect._battleForceSource.id)) sources.push(clone(effect._battleForceSource));
+        addKeywordSource(current, effect._battleForceSource);
       }
     }
   }
@@ -106,10 +110,14 @@
     const scopes = [bf.v2.common, ...bf.v2.ruleGroups.filter(g => state.activeRuleGroupIds.includes(g.id))];
     const issues = [];
     const battleForceSource = {id:armyId, name:bf.nameZh || bf.name};
-    const modifiers = clone(scopes.flatMap(g => g.modifiers || [])).map(m =>
+    const scopeSources = new Map(scopes.map(g => [g, g === bf.v2.common ? battleForceSource : {
+      ...battleForceSource, ruleGroupId:g.id, ruleGroupName:g.name?.zh || g.name?.en || battleForceSource.name,
+    }]));
+    const modifiers = scopes.flatMap(g => clone(g.modifiers || []).map(m =>
       ['keywords','weapons.keywords'].includes(m.field) && m.op !== 'remove'
-        ? {...m, _battleForceSource:battleForceSource} : m);
+        ? {...m, _battleForceSource:scopeSources.get(g)} : m));
     const entries = clone(scopes.flatMap(g => g.entries || []));
+    const entrySources = new Map(scopes.flatMap(g => (g.entries || []).map(e => [e.id, scopeSources.get(g)])));
     const localEntries = new Map(entries.filter(e => e?.id).map(e =>
       [`bf:${armyId}:${e.id}`, e]));
     const unitIds = new Set(scopes.flatMap(g => (g.unitGrants || []).map(r => r.unitId)));
@@ -179,9 +187,9 @@
         const current=(card.keywords ||= []).find(k => k.id===id);
         if (current) {
           current._entry ||= clone(entry);
-          current._battleForceSources ||= [clone(battleForceSource)];
+          addKeywordSource(current, entrySources.get(entry.id));
         }
-        else card.keywords.push({id,_entry:clone(entry),_battleForceSources:[clone(battleForceSource)]});
+        else card.keywords.push({id,_entry:clone(entry),_battleForceSources:[clone(entrySources.get(entry.id))]});
       }
       if (inst) card._v2InstanceId = inst.instanceId;
       return card;

@@ -11,8 +11,16 @@ const selected=(veteran='ccb_reinforced',jedi='ccb_decisive',battalion='ccb_assa
 };
 const snapshot=d=>plain({units:d.units,upgrades:d.upgrades,pkg:d.pkg,
   nameIndex:Object.fromEntries(Object.entries(d.nameIndex||{}).map(([key,set])=>[key,[...set]]))});
+// The baseline predates rule-group attribution. Compare every gameplay field,
+// projecting only display-source metadata back to its former force-only form.
+// Current provenance and stacking are checked in battleforce-runtime.test.cjs.
+const legacySources=value=>JSON.parse(JSON.stringify(value,(key,item)=>{
+  if(key==='_battleForceSource')return {id:item.id,name:item.name};
+  if(key==='_battleForceSources')return [...new Map(item.map(s=>[s.id,{id:s.id,name:s.name}])).values()];
+  return item;
+}));
 function compareRuntime(army,data,label){
-  assert.deepEqual(snapshot(current.RulesCore.resolveArmyData(army,data)),snapshot(old.RulesCore.resolveArmyData(army,data)),label);
+  assert.deepEqual(legacySources(snapshot(current.RulesCore.resolveArmyData(army,data))),snapshot(old.RulesCore.resolveArmyData(army,data)),label);
   assert.deepEqual(plain(current.RulesCore.validateArmy(army,data)),plain(old.RulesCore.validateArmy(army,data)),label+' report');
 }
 function compareEquip(army,data,ctx,cardId,all=false,face='front'){

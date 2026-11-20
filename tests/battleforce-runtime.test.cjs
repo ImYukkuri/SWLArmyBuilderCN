@@ -220,7 +220,8 @@ test('ARC training and other implemented veteran traits do not attach duplicate 
   for(const unit of Object.values(derived.units)){
     const before=keyword(data.units[unit.id],'precise')?.value||0,after=keyword(unit,'precise')?.value||0;
     assert.equal(after-before,arc.has(unit.id)?1:0,unit.id);
-    if(arc.has(unit.id))assert.deepEqual(keyword(unit,'precise')._battleForceSources,[{id:28,name:'自定义克隆人战斗营'}]);
+    if(arc.has(unit.id))assert.deepEqual(keyword(unit,'precise')._battleForceSources,[{id:28,name:'自定义克隆人战斗营',
+      ruleGroupId:'ccb_superior_arc_training',ruleGroupName:'卓越 ARC 训练'}]);
   }
 });
 
@@ -318,14 +319,36 @@ test('irregulars assigns only the global and matching rank summary, using the ef
 test('battle force sources survive additive unit and weapon modifiers without touching source cards',()=>{
   const source={id:28,name:'自定义克隆人战斗营'},d=BattleForceRuntime.resolve(selected('ccb_forward_observers','ccb_wise'),data);
   const scout=keyword(d.units['republic-arf-troopers'],'scout');
-  assert.deepEqual(scout._battleForceSources,[source]);
+  assert.deepEqual(scout._battleForceSources,[{...source,ruleGroupId:'ccb_forward_observers',ruleGroupName:'前沿观测员'}]);
   assert.equal(keyword(data.units['republic-arf-troopers'],'scout')._battleForceSources,undefined);
   const decisive=BattleForceRuntime.resolve(selected(),data),host=decisive.units['republic-jedi-knight-general'];
   const weapon=BattleForceRuntime.upgradeFor(decisive.upgrades.lightsaber,host,decisive).weapons[0];
-  assert.deepEqual(keyword(weapon,'lethal')._battleForceSources,[source]);
-  assert.deepEqual(keyword(host,'bf:28:ccb_decisive-rule')._battleForceSources,[source]);
+  const decisiveSource={...source,ruleGroupId:'ccb_decisive',ruleGroupName:'果决'};
+  assert.deepEqual(keyword(weapon,'lethal')._battleForceSources,[decisiveSource]);
+  assert.deepEqual(keyword(host,'bf:28:ccb_decisive-rule')._battleForceSources,[decisiveSource]);
   assert.deepEqual(keyword(BattleForceRuntime.resolve(blank(29),data).units['rebels-cassian'],'field_commander')._battleForceSources,
     [{id:29,name:'非正规军'}]);
+});
+
+test('common and distinct rule-group sources survive stacking and disappear with the deselected group',()=>{
+  const fixture=structuredClone(data),bf=fixture.pkg.battleForces[28],group=bf.v2.ruleGroups.find(g=>g.id==='ccb_scout');
+  const target={field:'unit.id',op:'eq',value:'republic-jedi-knight-general'};
+  const effect={card:'unit',target,field:'keywords',op:'add',value:{id:'precise',value:1}};
+  bf.v2.common.modifiers.push({...effect,id:'common-precision'});
+  group.modifiers.push({...effect,id:'group-precision'}, {...effect,id:'group-precision-again'},
+    {...effect,id:'local-from-another-group',value:{id:'bf:28:ccb_decisive-rule'}});
+  const army=selected('ccb_reinforced','ccb_decisive','ccb_scout');
+  const derived=BattleForceRuntime.resolve(army,fixture),host=derived.units[target.value];
+  const common={id:28,name:'自定义克隆人战斗营'},scout={...common,ruleGroupId:'ccb_scout',ruleGroupName:'侦察营'};
+  assert.equal(keyword(host,'precise').value,(keyword(fixture.units[target.value],'precise')?.value||0)+3);
+  assert.deepEqual(keyword(host,'precise')._battleForceSources,[common,scout]);
+  assert.deepEqual(keyword(host,'bf:28:ccb_decisive-rule')._battleForceSources,[scout,
+    {...common,ruleGroupId:'ccb_decisive',ruleGroupName:'果决'}]);
+  const changed=choose(army,'ccb_battalion','ccb_assault',fixture);
+  const next=BattleForceRuntime.resolve(changed,fixture).units[target.value];
+  assert.deepEqual(keyword(next,'precise')._battleForceSources,[common]);
+  assert.equal(keyword(next,'precise').value,(keyword(fixture.units[target.value],'precise')?.value||0)+1);
+  assert.equal(keyword(fixture.units[target.value],'precise')?._battleForceSources,undefined);
 });
 
 test('set then add is deterministic; conflicting replacements report an error and neither wins',()=>{

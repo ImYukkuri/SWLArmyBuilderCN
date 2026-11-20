@@ -76,19 +76,20 @@ for(const mobile of [true,false]) test(`${mobile?'mobile':'desktop'} battle forc
   assert.equal(await page.evaluate(()=>JSON.stringify(army)),before,'reading a rule must not choose it');
   await page.keyboard.press('Escape');await frames(page);
   assert.equal(await info.evaluate(n=>n===document.activeElement),true);
-  for(const id of ['ccb_assault','ccb_reinforced','ccb_decisive']) await page.locator(`.army-option-tag[data-option-id="${id}"]`).click();
+  for(const id of ['ccb_scout','ccb_reinforced','ccb_decisive']) await page.locator(`.army-option-tag[data-option-id="${id}"]`).click();
   assert.equal(await choice.getAttribute('aria-pressed'),'true');
   await info.click();await dialog.getByRole('button',{name:'关闭战斗部队规则'}).click();
   assert.equal(await choice.getAttribute('aria-pressed'),'true','info must not deselect a rule');
   await page.locator('#rank-add-bar [data-rank="6"]').click();
   const candidate=page.locator('#card-grid [data-id="republic-jedi-knight"]');
   const local=candidate.locator('[data-rule-id="bf:28:ccb_decisive-rule"]');
-  assert.equal(await local.locator('.rule-origin').innerText(),'来自 自定义克隆人战斗营');
+  assert.equal(await local.locator('.rule-origin').innerText(),'来自 果决');
+  assert.equal(await candidate.locator('[data-rule-id="bf:28:ccb_scout-rule"] .rule-origin').innerText(),'来自 侦察营');
   await candidate.locator('.bilingual-name').click();
   const roster=page.locator('#army-units > .roster-unit').first();
   await roster.locator('.expand-unit').click();
   await roster.locator('[data-rule-id="bf:28:ccb_decisive-rule"] .rule-tag-main').click();
-  assert.equal(await page.locator('#keyword-popover .rule-origin').innerText(),'来自 自定义克隆人战斗营');
+  assert.equal(await page.locator('#keyword-popover .rule-origin').innerText(),'来自 果决');
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
 });
 
@@ -413,7 +414,7 @@ for(const mobile of [true,false])test(`${mobile?'mobile':'desktop'} ARC trait gi
   for(const id of ['ccb_assault','ccb_decisive','ccb_superior_arc_training'])await page.locator(`[data-option-id="${id}"]`).click();
   await page.locator('#rank-add-bar [data-rank="3"]').click();
   const arc=page.locator('#card-grid [data-id="republic-arc-troopers"]');
-  assert.equal(await arc.locator('[data-rule-id="precise"] .rule-origin').innerText(),'来自 自定义克隆人战斗营');
+  assert.equal(await arc.locator('[data-rule-id="precise"] .rule-origin').innerText(),'来自 卓越 ARC 训练');
   assert.equal(await arc.locator('[data-rule-id="bf:28:ccb_superior_arc_training-rule"]').count(),0);
   await arc.locator('.bilingual-name').click();
   await page.locator('#rank-add-bar [data-rank="2"]').click();
@@ -422,7 +423,11 @@ for(const mobile of [true,false])test(`${mobile?'mobile':'desktop'} ARC trait gi
   await core.locator('.bilingual-name').click();
   for(const unit of await page.locator('#army-units > .roster-unit').all())await unit.locator('.expand-unit').click();
   assert.equal(await page.locator('#army-units [data-rule-id="precise"] .rule-origin').count(),1);
+  assert.equal(await page.locator('#army-units [data-rule-id="precise"] .rule-origin').innerText(),'来自 卓越 ARC 训练');
   assert.equal(await page.locator('#army-units [data-rule-id="bf:28:ccb_superior_arc_training-rule"]').count(),0);
+  await page.locator('#army-units [data-rule-id="precise"] .rule-tag-main').click();
+  assert.equal(await page.locator('#keyword-popover .rule-origin').innerText(),'来自 卓越 ARC 训练');
+  await page.getByRole('button',{name:'关闭词条',exact:true}).click();
   if(process.env.BUILDER_QA_SCREENSHOTS){
     await page.locator('#army-units > .roster-unit').last().scrollIntoViewIfNeeded();
     await page.screenshot({path:path.join(process.env.BUILDER_QA_SCREENSHOTS,`local-entry-${mobile?'mobile':'desktop'}-roster.png`)});
