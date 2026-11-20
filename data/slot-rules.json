@@ -3593,7 +3593,7 @@
       "allowedUnits": {},
       "textRulesZh": [
         "自定义克隆人营属于银河共和国。",
-        "在命令阶段，如果揭示的命令卡是 Ambush、Push 或 Assault，军队获得“严阵以待”（At the Ready）状态，持续至本回合结束。",
+        "在命令阶段，如果揭示的命令卡是 伏击、推进 或 突击，军队获得“严阵以待”（At the Ready）状态，持续至本回合结束。",
         "创建军队时，分别选择 1 项绝地武士特质、1 项营特质和 1 项老兵特质。军队获得这三项特质的全部特殊规则。"
       ],
       "textRules": [
@@ -3912,7 +3912,7 @@
           ],
           "textRulesZh": [
             "自定义克隆人营属于银河共和国。",
-            "在命令阶段，如果揭示的命令卡是 Ambush、Push 或 Assault，军队获得“严阵以待”（At the Ready）状态，持续至本回合结束。",
+            "在命令阶段，如果揭示的命令卡是 伏击、推进 或 突击，军队获得“严阵以待”（At the Ready）状态，持续至本回合结束。",
             "创建军队时，分别选择 1 项绝地武士特质、1 项营特质和 1 项老兵特质。军队获得这三项特质的全部特殊规则。"
           ],
           "unitGrants": [
@@ -3972,7 +3972,8 @@
             "jedi-negotiator",
             "master-duelist",
             "peacekeeping-mission",
-            "tactical-acument"
+            "tactical-acument",
+            "general-of-the-republic"
           ]
         },
         "ruleGroups": [
@@ -4330,13 +4331,6 @@
                 "when": {
                   "equippedSlot": "personnel"
                 }
-              },
-              {
-                "id": "effect-8e174766-c30",
-                "card": "unit",
-                "field": "points",
-                "op": "add",
-                "value": 0
               }
             ],
             "entries": [
@@ -4358,7 +4352,7 @@
             "id": "ccb_elite_repulsor_crews",
             "name": {
               "en": "Elite Repulsor Crews",
-              "zh": "精锐飞车车组"
+              "zh": "精英飞车车组"
             },
             "textRulesZh": [
               "友方反重力载具的远程武器获得突击 2。允许加入 LAAT/le 巡逻运输机和 BARC 飞行摩托。"
@@ -4396,7 +4390,7 @@
                 "id": "ccb_elite_repulsor_crews-rule",
                 "name": {
                   "en": "Elite Repulsor Crews",
-                  "zh": "精锐反重力乘员"
+                  "zh": "精英飞车车组"
                 },
                 "summary": "反重力载具的远程武器获得突击 2。允许加入 LAAT/le 巡逻运输机和 BARC 飞行摩托。",
                 "full": "友方反重力载具的远程武器获得突击 2。允许加入 LAAT/le 巡逻运输机和 BARC 飞行摩托。",
@@ -4462,7 +4456,7 @@
                 "id": "ccb_forward_observers-rule",
                 "name": {
                   "en": "Forward Observers",
-                  "zh": "前进观测员"
+                  "zh": "前沿观察员"
                 },
                 "summary": "友方 ARF 士兵获得侦察 1 和行动“观测 1”。允许加入 ARF 士兵。",
                 "full": "友方 ARF 士兵获得侦察 1 和行动“观测 1”。允许加入 ARF 士兵。",
@@ -4519,7 +4513,7 @@
                 "id": "ccb_hand_picked-rule",
                 "name": {
                   "en": "Hand Picked",
-                  "zh": "精挑细选"
+                  "zh": "严选精锐"
                 },
                 "summary": "友方克隆人突击队获得随从：指挥官。允许加入克隆人突击队。",
                 "full": "友方克隆人突击队获得随从：指挥官。允许加入克隆人突击队。",
@@ -4567,12 +4561,12 @@
                 "id": "ccb_reinforced-rule",
                 "name": {
                   "en": "Reinforced",
-                  "zh": "增援"
+                  "zh": "加强编制"
                 },
-                "summary": "友方核心士兵增加 1 个人员升级图标。军队可以额外加入至多 1 个指挥官及至多 1 个特工。",
+                "summary": "核心士兵增加 1 个人员升级。可以额外加入1 个指挥官及1 个特工。",
                 "full": "友方核心士兵增加 1 个人员升级图标。军队可以额外加入至多 1 个指挥官及至多 1 个特工。",
                 "timing": [
-                  "global"
+                  "army_building"
                 ]
               }
             ],
@@ -4631,7 +4625,7 @@
                 "id": "ccb_superior_arc_training-rule",
                 "name": {
                   "en": "Superior ARC Training",
-                  "zh": "精锐 ARC 训练"
+                  "zh": "卓越 ARC 训练"
                 },
                 "summary": "友方 ARC 士兵及 ARC 士兵突击小队获得精准 1。允许加入这两种单位。",
                 "full": "友方 ARC 士兵及 ARC 士兵突击小队获得精准 1。允许加入这两种单位。",

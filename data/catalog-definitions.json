@@ -2863,7 +2863,7 @@
       "id": "pending_jedi_hunter",
       "name": {
         "en": "Jedi Hunter",
-        "zh": "绝地猎手"
+        "zh": "绝地猎人"
       },
       "actionTypes": [],
       "summary": "攻击升级栏带有{@icon.slot-force}的单位时获得{@icon.surge} → {@icon.critical}。",
@@ -27465,7 +27465,7 @@
       }
     }
   ],
-  "updatedAt": "2026-11-20T04:13:29.581962+00:00",
+  "updatedAt": "2026-11-20T07:50:18.648022+00:00",
   "unitCategories": [
     {
       "id": "trooper",
