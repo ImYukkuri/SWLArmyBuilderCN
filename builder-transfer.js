@@ -198,7 +198,7 @@ window.BuilderTransfer = (() => {
     }
     data=RulesCore.resolveArmyData(army,data);
     if(data.pkg._v2 && data.pkg.battleForces[army.armyId].v2.selectionSchemes.length)
-      warnings.push('TTS JSON 不包含特质选择及单位所选军阶；请重新选择特质，并核对 BARC 的加入军阶。完整保留配置请使用原生 JSON。');
+      warnings.push('TTS JSON 不包含特质选择及单位所选军阶；请重新选择特质，并核对单位军阶。完整保留配置请使用原生 JSON。');
     function get(kind,n,key,context={}) {
       if(typeof n!=='string'||!n.trim())throw Error(key+' 必须为非空英文名称。');
       const override=resolutions[key], pool=catalogs(data)[kind];

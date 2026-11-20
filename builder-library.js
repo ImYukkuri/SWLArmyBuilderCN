@@ -88,7 +88,7 @@ window.BuilderLibrary = (() => {
     if (draft.armyId !== armyId) {
       draft.armyId = armyId;
       delete draft.battleForceSelection;
-      for (const instance of draft.units) delete instance.rankId;
+      draft.units = [];
     }
     return draft;
   }

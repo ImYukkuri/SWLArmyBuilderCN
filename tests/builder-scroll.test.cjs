@@ -252,7 +252,8 @@ for(const mobile of [true,false]) test(`${mobile?'mobile':'desktop'} 224 rank en
   assert.equal(await page.evaluate(()=>army.units.flatMap(i=>i.upgrades).filter(c=>c.upgradeId==='academy-trained').length),2);
   await page.selectOption('#battleforce','2');
   assert.equal(await page.evaluate(()=>!!data.pkg._v2),false);
-  assert(await page.evaluate(()=>RulesCore.validateArmy(army,data).issues.some(i=>i.code==='unique_duplicate')));
+  assert.equal(await page.evaluate(()=>army.units.length),0);
+  assert.equal(await page.locator('#army-units > .roster-unit').count(),0);
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
 });
 
@@ -267,7 +268,10 @@ for (const mobile of [true,false]) test(`${mobile?'mobile':'desktop'} V2 choices
     await page.locator(`#card-grid [data-id="${id}"] .bilingual-name`).click();
     if(mobile)assert.equal(await page.locator('html').evaluate(n=>n.classList.contains('page-overlay-open')),false);
   };
-  await add(1,'republic-barc');await add(4,'republic-barc');await add(1,'republic-jedi-knight-general');
+  await page.locator('#rank-add-bar [data-rank="1"]').click();
+  assert.equal(await page.locator('#card-grid [data-id="republic-barc"]').count(),0);
+  await page.locator('#browser-close').click();
+  await add(1,'republic-clone-commander-leadership');await add(4,'republic-barc');await add(1,'republic-jedi-knight-general');
   assert.deepEqual(await page.evaluate(()=>army.units.map(i=>i.rankId)),[1,4,1]);
   const general=page.locator('#army-units .roster-unit').filter({hasText:'绝地武士将军'});
   await general.locator('[data-slot-index="5"] .slot-name').click();
@@ -280,7 +284,7 @@ for (const mobile of [true,false]) test(`${mobile?'mobile':'desktop'} V2 choices
   await general.locator('[data-rule-id="bf:28:ccb_decisive-rule"] .rule-tag-main').click();
   assert((await page.locator('#keyword-popover').innerText()).includes('近战武器'));
   await page.keyboard.press('Escape');
-  // Save uses normal builder storage; reloading keeps all three choices and both BARC ranks.
+  // Save uses normal builder storage; reloading keeps all three choices and the unit ranks.
   const choices=await page.evaluate(()=>{saveActiveRoster();return army.battleForceSelection;});
   await page.reload();await page.waitForFunction(()=>typeof army!=='undefined'&&army?.units?.length===3);
   assert.deepEqual(await page.evaluate(()=>army.battleForceSelection),choices);
@@ -292,11 +296,37 @@ for (const mobile of [true,false]) test(`${mobile?'mobile':'desktop'} V2 choices
   await page.selectOption('#battleforce','12');
   assert.equal(await page.locator('#army-options').isVisible(),false);
   assert.equal(await page.evaluate(()=>!!data.pkg._v2),false);
-  assert.deepEqual(await page.evaluate(()=>army.units.map(i=>i.rankId??null)),[null,null,null]);
-  assert(!(await general.innerText()).includes('睿智'));
+  assert.deepEqual(await page.evaluate(()=>army.units),[]);
+  assert.equal(await page.locator('#army-units > .roster-unit').count(),0);
+  assert.equal(await page.locator('#points b').innerText(),'0');
+  assert.equal(await page.locator('#summary-activations').innerText(),'0');
+  await page.evaluate(()=>saveActiveRoster());await page.reload();
+  await page.waitForFunction(()=>typeof army!=='undefined'&&army?.armyId===12);
+  assert.deepEqual(await page.evaluate(()=>army.units),[]);
   await page.locator('#rank-add-bar [data-rank="1"]').click();
   assert.equal(await page.locator('#card-grid [data-id="republic-barc"]').count(),0);
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+});
+
+for(const mobile of [true,false]) test(`${mobile?'mobile':'desktop'} switching base, legacy and V2 forces clears every unit and upgrade`,async t=>{
+  const page=await setup(t,mobile);
+  for(const [from,to] of [[4,28],[28,4],[28,21],[12,16],[16,28]]) {
+    await page.evaluate(({from})=>{
+      const record=BuilderLibrary.create(4,'切换部队验证',data,uid,new Date().toISOString());
+      record.army.armyId=from;
+      record.army.units=[{instanceId:uid(),unitId:'republic-clone-commander-leadership',upgrades:[
+        {instanceId:uid(),upgradeId:'command-improvised',slotIndex:0}]}];
+      openRoster(record);
+    },{from});
+    const commands=await page.evaluate(()=>army.commandIds);
+    await page.selectOption('#battleforce',String(to));
+    assert.equal(await page.evaluate(()=>army.armyId),to);
+    assert.deepEqual(await page.evaluate(()=>army.units),[]);
+    assert.deepEqual(await page.evaluate(()=>army.commandIds),commands);
+    assert.equal(await page.locator('#army-units > .roster-unit').count(),0);
+    assert.equal(await page.locator('#points b').innerText(),'0');
+    assert.equal(await page.locator('#summary-activations').innerText(),'0');
+  }
 });
 
 test('V2 trait cancellation removes equipped extra slots and irregulars has Imperial LAAT candidates',async t=>{

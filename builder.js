@@ -321,24 +321,15 @@ function renderFaction() {
     );
   select.value = army.armyId;
   select.onchange = () => {
-    const before = new Map(army.units.filter(i => data.units[i.unitId]).map(i =>
-      [i.instanceId, unitSlotRecords(data.units[i.unitId], i)]));
-    const priorArmy=army;
+    if (Number(select.value) === army.armyId) return;
     army = BuilderLibrary.switchBattleForce(army, Number(select.value));
-    const v2Change=window.BattleForceRuntime && (data.pkg._v2 || BattleForceRuntime.active(army,data._source || data));
-    let removed=[];
-    if(v2Change) {
-      const result=BattleForceRuntime.reconfigure(priorArmy,army,data);
-      army=result.draft;removed=result.removed;
-    }
     data=RulesCore.resolveArmyData(army,data);
-    removed.push(...RulesCore.cleanupArmy(army,data));
-    for (const inst of army.units) if (!v2Change && before.has(inst.instanceId))
-      BuilderModel.rebindSlots(inst, before.get(inst.instanceId), unitSlotRecords(data.units[inst.unitId], inst),
-        data, {allowOrphans: true});
+    RulesCore.cleanupArmy(army,data);
+    hideRule(false);
     browser = null;
     cardView.applyAll = false;
-    setStatus("已更新战斗部队限制。" + (removed.length ? "已移除失效的规则赠送卡／单位：" + removed.join('、') : ''));
+    cardView.expanded.clear();
+    setStatus("已切换战斗部队，已清空单位及其升级。");
     render();
   };
   $("#battleforce-info").onclick = () => showBattleForceRules();

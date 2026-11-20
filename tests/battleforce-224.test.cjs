@@ -100,7 +100,7 @@ test('224 allows exactly two paid copies of '+id+', including copying and apply-
   army=add(army,host);assert(!equip(army,2,id).ok,'third copy must fail');
   const forged=structuredClone(army);forged.units[2].upgrades=[{...forged.units[0].upgrades[0],instanceId:uid()}];
   assert(report(forged).issues.some(i=>i.code==='limit_exceeded'));
-  const ordinary=BuilderLibrary.switchBattleForce(army,2);
+  const ordinary={...army,armyId:2}; // Validate an imported list; the UI now clears units on switching.
   assert(report(ordinary).issues.some(i=>i.code==='unique_duplicate'));
   assert.equal(data.upgrades[id].rules.unique,true);assert.equal(data.upgrades[id].rules.limit,1);
   assert.equal(BattleForceRuntime.resolve(blank(),data).upgrades[id].rules.limit,2,'not accumulated across renders');
@@ -119,7 +119,7 @@ test('224 frontal assault occupies doctrine, costs five, caps at two and is excl
   assert.equal(report(army).effectivePoints,2*(data.units[officer].points+5));
   army=add(army,officer);assert(!equip(army,2,'frontal-assault').ok);
   assert(!equip(add(blank(),agent),0,'frontal-assault').ok);
-  assert(report(BuilderLibrary.switchBattleForce(army,2)).issues.some(i=>i.code==='upgrade_faction'));
+  assert(report({...army,armyId:2}).issues.some(i=>i.code==='upgrade_faction'));
   const c=data.upgrades['frontal-assault'];assert(c.description.zh.join('').length>0);
   assert.equal(c.review.status,'needs_review');assert.equal(c.upstream,undefined);
   // Other unique cards remain limited to one.

@@ -71,19 +71,35 @@ test('live definitions validate; selection grants are unioned and revoked withou
   assert.equal(JSON.stringify(data),before);
 });
 
-test('BARC chosen ranks count separately, never merge, and survive copy and native roundtrip',()=>{
-  let army=add(selected(),'republic-barc',1);
-  army=add(army,'republic-barc',4);
-  assert.deepEqual(RulesCore.validateArmy(army,data).rankCounts,{1:1,4:1});
-  assert.deepEqual(BuilderModel.groups(army,data).map(g=>g.unit.rankId),[1,4]);
-  const copy=BuilderModel.duplicate(army,data,army.units[0].instanceId,uid);
+test('configured alternate ranks still count separately and survive native roundtrip',()=>{
+  // Generic engine coverage uses a fixture; the live clone force no longer grants this rank.
+  const fixture=structuredClone(data);
+  fixture.pkg.battleForces[28].v2.common.modifiers.push({id:'test-alternate-rank',card:'unit',
+    target:{field:'unit.id',op:'eq',value:'republic-barc'},field:'rankId',op:'add',value:1});
+  let army=add(selected(),'republic-barc',1,fixture);
+  army=add(army,'republic-barc',4,fixture);
+  assert.deepEqual(RulesCore.validateArmy(army,fixture).rankCounts,{1:1,4:1});
+  assert.deepEqual(BuilderModel.groups(army,fixture).map(g=>g.unit.rankId),[1,4]);
+  const copy=BuilderModel.duplicate(army,fixture,army.units[0].instanceId,uid);
   assert(copy.ok,copy.reason);
   assert.equal(copy.draft.units.at(-1).rankId,1);
   const record={id:'example',name:'example',factionId:4,army:copy.draft};
-  const imported=BuilderTransfer.readNative(JSON.parse(JSON.stringify(record)),data,uid,'2026-11-20');
+  const imported=BuilderTransfer.readNative(JSON.parse(JSON.stringify(record)),fixture,uid,'2026-11-20');
   assert.deepEqual(imported.record.army.units.map(i=>i.rankId),[1,4,1]);
-  assert.deepEqual(RulesCore.validateArmy(imported.record.army,data).rankCounts,{1:2,4:1});
-  assert(!BuilderModel.addUnit(army,data,'republic-barc',uid,2).ok);
+  assert.deepEqual(RulesCore.validateArmy(imported.record.army,fixture).rankCounts,{1:2,4:1});
+  assert(!BuilderModel.addUnit(army,fixture,'republic-barc',uid,2).ok);
+});
+
+test('live clone force permits BARC only as support and flags old commander instances',()=>{
+  const army=selected(),d=BattleForceRuntime.resolve(army,data);
+  assert.deepEqual(d.units['republic-barc']._v2Ranks,[4]);
+  assert.equal(BuilderModel.addUnit(army,data,'republic-barc',uid,1).ok,false);
+  const legal=add(army,'republic-barc',4);
+  assert.equal(RulesCore.validateArmy(legal,data).rankCounts[4],1);
+  const old=structuredClone(legal);old.units[0].rankId=1;
+  const report=RulesCore.validateArmy(old,data);
+  assert(report.issues.some(i=>i.code==='battle_force_rank'&&i.instanceId===old.units[0].instanceId));
+  assert.equal(old.units.length,1,'old records are diagnosed, never silently deleted on load');
 });
 
 test('general exactly one, reinforced rank caps and ordinary rank limits are enforced',()=>{
@@ -92,8 +108,8 @@ test('general exactly one, reinforced rank caps and ordinary rank limits are enf
   army=add(army,'republic-jedi-knight-general',1);
   assert(!RulesCore.validateArmy(army,data).issues.some(i=>i.code==='battle_force_unit_min'));
   assert(!BuilderModel.addUnit(army,data,'republic-jedi-knight-general',uid,1).ok);
-  army=add(add(army,'republic-barc',1),'republic-barc',1);
-  assert(!BuilderModel.addUnit(army,data,'republic-barc',uid,1).ok);
+  army=add(add(army,'republic-clone-commander-leadership',1),'republic-clone-commander-leadership',1);
+  assert(!BuilderModel.addUnit(army,data,'republic-clone-commander-leadership',uid,1).ok);
   const changed=choose(army,'ccb_veteran','ccb_forward_observers');
   assert(RulesCore.validateArmy(changed,data).issues.some(i=>i.code==='rank_max'&&i.rank===1));
 });
@@ -180,12 +196,12 @@ test('local V2 keyword candidates are scoped and target constraints apply to bot
   assert(changed.units['republic-jedi-knight'].keywords.some(k=>k.id===localId&&k._entry));
 });
 
-test('hand picked exemption targets individual commander instances, including BARC',()=>{
+test('hand picked exemption targets individual commander instances and excludes support BARC',()=>{
   let army=add(selected('ccb_hand_picked'),'republic-clone-commandos',4);
   army=add(army,'republic-barc',4);
-  army=add(add(add(army,'republic-barc',1),'republic-barc',1),'republic-barc',1);
+  army=add(add(add(army,'republic-clone-commander-leadership',1),'republic-clone-commander-leadership',1),'republic-clone-commander-leadership',1);
   assert(!RulesCore.validateArmy(army,data).issues.some(i=>i.code==='rank_max'&&i.rank===1));
-  assert(!BuilderModel.addUnit(army,data,'republic-barc',uid,1).ok);
+  assert(!BuilderModel.addUnit(army,data,'republic-clone-commander-leadership',uid,1).ok);
 });
 
 test('irregulars converts only its selected Imperial vehicles and limits each to one',()=>{
@@ -300,7 +316,7 @@ test('legacy calculation stays identical when the runtime module is removed',()=
 });
 
 test('Python bridge and browser runtime share effective quotas, choices and points',()=>{
-  const army=add(add(selected(),'republic-barc',1),'republic-clone-trooper',2);
+  const army=add(add(selected(),'republic-barc',4),'republic-clone-trooper',2);
   const expected=RulesCore.validateArmy(army,data);
   const call=spawnSync(process.execPath,[path.join(__dirname,'../tools/battleforce-node.cjs')],
     {input:JSON.stringify({action:'validateArmy',army,data}),encoding:'utf8',maxBuffer:20*1024*1024});

@@ -129,7 +129,7 @@ test('local save, copy and native JSON retain rule choices and two BARC instance
   assert(tts.json.units.every(u => !('rankId' in u)));
 });
 
-test('switching armies clears only V2 selection and instance ranks, leaving original records untouched', () => {
+test('switching armies clears units and V2 selection, leaving original records untouched', () => {
   const army = chosen();
   army.units.push({unitId: 'republic-barc', instanceId: 'one', rankId: 1, upgrades: []});
   army.options = ['legacy-option'];
@@ -137,7 +137,7 @@ test('switching armies clears only V2 selection and instance ranks, leaving orig
   const switched = BuilderLibrary.switchBattleForce(army, 4);
   assert.equal(switched.armyId, 4);
   assert(!('battleForceSelection' in switched));
-  assert(!('rankId' in switched.units[0]));
+  assert.deepEqual(switched.units, []);
   assert.deepEqual(switched.options, ['legacy-option']);
   assert(army.battleForceSelection);
   assert.equal(army.units[0].rankId, 1);

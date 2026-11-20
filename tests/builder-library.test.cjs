@@ -92,6 +92,17 @@ test("600 boundary selects recon; larger custom budgets select standard", () => 
   for (const invalid of [0, -1, NaN, Infinity, 600.5, "600"])
     assert.throws(() => library.modeForPoints(invalid));
 });
+test("switching base, legacy and V2 forces clears equipment with units, but keeps other roster settings", () => {
+  for (const [from,to] of [[4,28],[28,12],[12,4],[28,21],[8,26],[26,22]]) {
+    const army={armyId:from,pointsLimit:800,mode:'standard',commandIds:['standing-orders'],
+      deck:{primary:['primary-one']},units:[{instanceId:'host',unitId:'republic-barc',rankId:4,
+        upgrades:[{instanceId:'upgrade',upgradeId:'gear-binoculars',slotIndex:0}]}]};
+    const before=structuredClone(army),switched=library.switchBattleForce(army,to);
+    assert.deepEqual(switched,{...before,armyId:to,units:[]});
+    assert.deepEqual(army,before);
+    assert.deepEqual(library.switchBattleForce(army,from),army,'unchanged selection must keep units');
+  }
+});
 test("points and battleforce quotas agree with the existing rule engine", () => {
   const army = library.create(2, "", data, uid, now).army;
   const supportId = 4;

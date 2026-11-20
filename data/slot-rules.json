@@ -3789,12 +3789,12 @@
             "resolution": "matched"
           },
           {
-            "rankId": 1,
+            "rankId": 4,
             "name": "BARC Speeder",
             "unitIds": [
               "republic-barc"
             ],
-            "note": "按选择入口计入指挥官或支援，每辆只计入一个军阶。",
+            "note": "仅按支援军阶加入。",
             "resolution": "matched"
           },
           {
@@ -3952,22 +3952,7 @@
               "upgradeId": "training-strike-team-leader"
             }
           ],
-          "modifiers": [
-            {
-              "id": "rank-republic-barc",
-              "card": "unit",
-              "target": {
-                "field": "unit.id",
-                "op": "in",
-                "value": [
-                  "republic-barc"
-                ]
-              },
-              "field": "rankId",
-              "op": "add",
-              "value": 1
-            }
-          ],
+          "modifiers": [],
           "unitLimits": [
             {
               "unitId": "republic-jedi-knight-general",
