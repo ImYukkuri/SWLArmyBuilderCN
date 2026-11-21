@@ -35,6 +35,8 @@ test('224 enables exact local variants and all standard/recon rank quotas withou
     RulesCore.armyRank(u,27,d.pkg,d.defs,d.units)===Number(rank)).map(u=>u.id).sort(),ids.sort());
   assert.equal(data.units['empire-riot-squad-trench-buster'].rankId,2);
   assert.equal(d.units['empire-riot-squad-trench-buster'].rankId,3);
+  assert(!BuilderModel.addUnit({...blank(),armyId:2},data,'empire-riot-squad-trench-buster',uid).ok,
+    'the 224-exclusive Trench Buster cannot enter an ordinary Imperial army');
   for(const [mode,expectedQuotas,combined] of [
     ['standard',[[1,1,5],[6,0,4],[2,4,7],[3,0,3],[4,0,5],[5,0,2],[7,0,2]],5],
     ['recon',[[1,1,4],[6,0,3],[2,3,5],[3,0,2],[4,0,4],[5,0,1],[7,0,1]],4]]) {
@@ -70,7 +72,8 @@ test('224 per-unit caps and unique whitelist remain effective with existing upgr
 test('Gas Grenades matches the Trench Buster title across armies and future unit IDs',()=>{
   const id='new-upgrade-mwkggzem';
   for(const armyId of [2,27]) {
-    for(const hostId of ['empire-riot-squad-trench-buster','empire-wet-weather-troopers']) {
+    const hosts=armyId===27 ? ['empire-riot-squad-trench-buster','empire-wet-weather-troopers'] : ['empire-wet-weather-troopers'];
+    for(const hostId of hosts) {
       const army=add({...blank(),armyId},hostId),result=equip(army,0,id,'grenades');
       assert(result.ok,result.reason);
       const py=spawnSync('python',['-c','import json,sys,rules; print(json.dumps(rules.validate_army(json.load(sys.stdin)),ensure_ascii=True))'],

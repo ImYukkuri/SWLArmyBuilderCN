@@ -1,6 +1,6 @@
 {
   "schema": "swl-unit-catalog/v2",
-  "updatedAt": "2026-11-20T16:52:57.560864+00:00",
+  "updatedAt": "2026-11-21T03:49:25.497307+00:00",
   "definitions": "catalog-definitions.json",
   "referenceVersion": "2026.11.04.0",
   "units": [
@@ -26757,13 +26757,13 @@
         "defenseSurge": "none"
       },
       "assets": {
-        "front": "assets/unit-cards/empire/originals/riot-squad_front.webp",
-        "portrait": "assets/portraits/empire-riot-squad-trench-buster-f0520d5f97afbbe02895.webp",
+        "front": "assets/unit-cards/empire-riot-squad-trench-buster.webp",
+        "portrait": "assets/portraits/empire-riot-squad-trench-buster-ba127439fe6155760210.webp",
         "portraitCrop": [
           0.6699999999999999,
-          0.12349862258953165,
+          0.12379310344827582,
           0.99,
-          0.6965013774104682
+          0.6962068965517241
         ]
       },
       "review": {
@@ -26776,7 +26776,7 @@
       "factionId": 2,
       "factions": [
         {
-          "id": 2,
+          "id": 27,
           "rankId": 3
         }
       ],
@@ -26789,6 +26789,12 @@
         },
         {
           "id": "hold_the_line"
+        },
+        {
+          "id": "special_issue",
+          "value": null,
+          "parameter": "224装甲师",
+          "action": "none"
         }
       ],
       "weapons": [
