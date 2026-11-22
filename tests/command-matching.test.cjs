@@ -6,6 +6,17 @@ const card=(...all)=>({requirements:{any:[{all}]}});
 const evaluate=(c,a,d=data)=>R.commandEligibility(c,a,d);
 const command=id=>data.defs.commands.find(c=>c.id===id);
 
+test('Ace remains eligible with full one-pip slots, while both cards count toward their hand pips',()=>{
+  const a={...roster(['rebels-lando'],1),commandIds:['7','16618','100','3','9','16624','8']};
+  const ace=command('100');assert.equal(ace.pips,1);assert.equal(R.commandSlotPips(ace),2);
+  assert(evaluate(ace,a).ok);
+  assert(!R.validateArmy(a,data).issues.some(i=>['command_min','command_max'].includes(i.code)));
+  const over={...a,commandIds:[...a.commandIds,'100']};
+  const caps=R.validateArmy(over,data).issues.filter(i=>i.code==='command_max');
+  assert.equal(caps.length,1);assert(caps[0].message.startsWith('2 点'));
+  assert(!evaluate(ace,{...a,units:[]}).ok,'hand pips must not bypass the Lando requirement');
+});
+
 test('all 235 active commands have valid local conditions; 18 hidden cards remain unchanged',()=>{
   assert.equal(data.defs.commands.filter(c=>!c.hidden).length,235);
   for(const c of data.defs.commands){

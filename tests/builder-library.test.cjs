@@ -45,6 +45,33 @@ function storage() {
   return { getItem: (k) => values.get(k) ?? null, setItem: (k, v) => values.set(k, String(v)) };
 }
 
+test('legacy command slots recover Ace after full one-pip slots without displacing correctly placed cards', () => {
+  for (const before of [
+    ['7','16618','3',null,'9','16624','8','100'],
+    ['100','16618','3',null,'9','16624','8'],
+  ]) {
+    const army = {...library.create(1,'Lando',data,uid,now).army,commandIds:[...before]};
+    library.normalizeCommandSlots(army,data);
+    assert.deepEqual(army.commandIds, [before[0] === '100' ? null : '7','16618','3','100','9','16624','8']);
+    assert.deepEqual(army.commandIds.filter(Boolean).sort(),before.filter(Boolean).sort());
+    const stable = army.commandIds;
+    library.normalizeCommandSlots(army,data);
+    assert.equal(army.commandIds,stable,'subsequent renders do not move cards or recreate their slots');
+  }
+});
+
+test('command slot recovery preserves actual overflow, duplicate cards and missing references', () => {
+  const army = {...library.create(1,'Overflow',data,uid,now).army,
+    commandIds:['7','16618','3','3','9','16624','8','100','missing-command']};
+  const before = structuredClone(army.commandIds);
+  library.normalizeCommandSlots(army,data);
+  assert.deepEqual(army.commandIds,before);
+  assert(RulesCore.validateArmy(army,data).issues.some(i=>i.code==='command_max'&&i.message.startsWith('2 点')));
+  army.commandIds[2]=null;
+  library.normalizeCommandSlots(army,data);
+  assert.deepEqual(army.commandIds,['7','16618','100','3','9','16624','8','missing-command']);
+});
+
 test("all six requested factions create base rosters at 1000 points", () => {
   assert.deepEqual(
     library.FACTIONS.map((f) => f.name),

@@ -97,6 +97,7 @@ window.BuilderTransfer = (() => {
     if(!Array.isArray(army.commandIds)||!Array.isArray(army.options))throw Error('指挥卡或选项必须为数组。');
     UpgradeFaces.normalizeArmy(army,data);
     BuilderModel.migrateSlots(army,data);
+    BuilderLibrary.normalizeCommandSlots(army,data);
     return {record:{...structuredClone(obj.army?obj:{}),id:makeId(),name:obj.name||'导入军表',
       factionId:BuilderLibrary.factionOf(army.armyId,data),createdAt:now,updatedAt:now,army},issues:[],warnings:[]};
   }
@@ -225,11 +226,10 @@ window.BuilderTransfer = (() => {
       }
       if(row.loadout?.length){inst.ttsLoadout=strings(row.loadout,'loadout');warnings.push(row.name+' 的备用装备已保留，当前不模拟备用装备切换。');}
     }
-    const hand=BuilderLibrary.configuration(army,data).rules.commandHand||[];
-    const pips=hand.flatMap(h=>Array(h.min||0).fill(h.pips));army.commandIds=pips.map(()=>null);
+    const pips=BuilderLibrary.commandSlots(army,data);army.commandIds=pips.map(()=>null);
     for(const [i,n]of strings(obj.commandCards,'commandCards').entries()) {
       const card=get('commands',n,'commands.'+i);if(!card)continue;
-      const index=pips.findIndex((p,j)=>p===card.pips&&army.commandIds[j]==null);
+      const index=pips.findIndex((p,j)=>p===RulesCore.commandSlotPips(card)&&army.commandIds[j]==null);
       if(index>=0)army.commandIds[index]=String(card.id);else army.commandIds.push(String(card.id));
     }
     const standing=data.defs.commands.find(c=>c.name.en==='Standing Orders');

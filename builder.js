@@ -360,9 +360,7 @@ function commandResult(cmd) {
 function commandAvailable(cmd) { return !!cmd && commandResult(cmd).ok; }
 
 function commandSlotPips() {
-  const hand = BuilderLibrary.configuration(army, data).rules.commandHand || [];
-  const out = hand.flatMap((rule) => Array(rule.min || 0).fill(rule.pips));
-  return out.length ? out : [1, 1, 2, 2, 3, 3, 4];
+  return BuilderLibrary.commandSlots(army, data);
 }
 
 function commandSlots() {
@@ -370,7 +368,7 @@ function commandSlots() {
 }
 
 function slotPipOf(cmd) {
-  return cmd ? (cmd.slotPips != null ? cmd.slotPips : cmd.pips) : null;
+  return RulesCore.commandSlotPips(cmd);
 }
 
 function ownerLabel(cmd) {
@@ -448,6 +446,7 @@ function render() {
   data = RulesCore.resolveArmyData(army,data);
   UpgradeFaces.normalizeArmy(army, data);
   army.mode = BuilderLibrary.modeForPoints(army.pointsLimit);
+  BuilderLibrary.normalizeCommandSlots(army, data);
   commandQuery = RulesCore.commandContext(army,data);
   const report = RulesCore.validateArmy(army, data);
   invalidUnitIds = invalidMarks(report).units;

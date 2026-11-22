@@ -125,6 +125,32 @@ const examples=[{
 }];
 const input=n=>BuilderTransfer.importTTS(structuredClone(examples[n]),data,uid,now);
 const normalizedUnits=rows=>rows.map(r=>({name:r.name,upgrades:[...r.upgrades].sort()}));
+
+test('TTS places every changed-pip command by hand pips, including Ace after two one-pip cards',()=>{
+ for(const card of data.defs.commands.filter(c=>!c.hidden&&c.slotPips!=null&&c.slotPips!==c.pips)) {
+  const result=BuilderTransfer.importTTS({armyFaction:'rebel',units:[],commandCards:[card.name.en]},data,uid,now);
+  assert.deepEqual(result.issues,[],card.name.en);
+  const {army}=result.record,index=army.commandIds.indexOf(card.id);
+  assert.equal(BuilderLibrary.commandSlots(army,data)[index],card.slotPips,card.name.en);
+ }
+ const source={armyFaction:'rebel',units:[unit('Lando Calrissian Canny General')],
+  commandCards:['Ambush','Corellian Spike','Ace Up His Sleeve','Push','Assault',"Idiot's Array",'Standing Orders']};
+ for(const names of [source.commandCards,[...source.commandCards].reverse()]) {
+  const result=BuilderTransfer.importTTS({...source,commandCards:names},data,uid,now),army=result.record.army;
+  assert.deepEqual(result.issues,[]);assert.equal(army.commandIds.length,7);
+  assert.equal(BuilderLibrary.commandSlots(army,data)[army.commandIds.indexOf('100')],2);
+  assert(!RulesCore.validateArmy(army,data).issues.some(i=>['command_min','command_max'].includes(i.code)));
+  assert.deepEqual(BuilderTransfer.exportTTS(result.record,data).json.commandCards.sort(),[...names].sort());
+ }
+});
+
+test('native import repairs old hidden command overflow without mutating the saved source',()=>{
+ const army={mode:'standard',armyId:1,pointsLimit:1000,units:[],options:[],slotLayoutVersion:1,
+  commandIds:['7','16618','3',null,'9','16624','8','100']};
+ const before=structuredClone(army),result=BuilderTransfer.readNative({name:'Old Lando',army},data,uid,now);
+ assert.deepEqual(result.record.army.commandIds,['7','16618','3','100','9','16624','8']);
+ assert.deepEqual(army,before);
+});
 test('both supplied TTS examples resolve all names, preserve duplicates and every slot',()=>{
  for(let i=0;i<examples.length;i++){
   const before=JSON.stringify(examples[i]),result=input(i);assert.deepEqual(result.issues,[],JSON.stringify(result.issues));

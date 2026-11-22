@@ -27,8 +27,8 @@ jobs:
           node-version: "22"
       - name: Check reviewed release notes
         run: python tools/release.py check
-      - name: Check aircraft quotas, draft battle forces and sharing
-        run: node --test tests/flier-rank.test.cjs tests/battleforce-drafts.test.cjs tests/builder-share.test.cjs
+      - name: Check aircraft quotas, draft battle forces, sharing and command hands
+        run: node --test tests/flier-rank.test.cjs tests/battleforce-drafts.test.cjs tests/builder-share.test.cjs tests/builder-library.test.cjs tests/builder-transfer.test.cjs tests/command-matching.test.cjs
       - name: Assemble public site
         run: python tools/build_public.py
       - uses: actions/configure-pages@v4

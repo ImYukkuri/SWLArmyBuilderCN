@@ -171,6 +171,45 @@ test('share dispatcher cancels an in-flight import when the user navigates elsew
   assert.equal(await page.evaluate(()=>collection.records.length),before);
 });
 
+for(const mobile of [true,false])test(`${mobile?'mobile':'desktop'} Ace uses a two-pip slot with full one-pip cards and recovers from old invisible overflow`,async t=>{
+  const page=await setup(t,mobile);
+  await page.evaluate(()=>{
+    const record=BuilderLibrary.create(1,'Lando hand regression',data,uid,new Date().toISOString());
+    record.army.units=[{unitId:'rebels-lando',instanceId:uid(),upgrades:[]}];
+    record.army.commandIds=['7','16618','3',null,'9','16624','8'];openRoster(record);
+  });
+  await page.locator('#deck-panel .empty-command').filter({hasText:'2 牌点指挥卡'}).click();
+  const ace=page.locator('#card-grid [data-id="100"]');
+  assert.equal(await ace.getAttribute('data-state'),'available');
+  assert.equal(await ace.locator('.card-pips small').textContent(),'1 牌点');
+  assert((await ace.innerText()).includes('组军占用 2 牌点槽位'));
+  await ace.locator('.command-overlay').click();
+  assert.deepEqual(await page.evaluate(()=>army.commandIds),['7','16618','3','100','9','16624','8']);
+  assert.equal(await page.locator('#deck-panel .command-chosen[data-id="100"]').getAttribute('data-slot-index'),'3');
+  assert.equal(await page.evaluate(()=>RulesCore.validateArmy(army,data).issues.filter(i=>['command_min','command_max'].includes(i.code)).length),0);
+  await page.evaluate(()=>{army.commandIds=['7','16618','3',null,'9','16624','8','100'];saveActiveRoster();});
+  await page.reload();await page.waitForFunction(()=>typeof army!=='undefined'&&army?.units[0]?.unitId==='rebels-lando');
+  assert.deepEqual(await page.evaluate(()=>army.commandIds),['7','16618','3','100','9','16624','8']);
+  assert.equal(await page.locator('#deck-panel .command-chosen[data-id="100"]').count(),1);
+  assert.equal(await page.locator('#deck-panel .command-chosen').count(),6);
+  await page.evaluate(()=>{
+    army.commandIds[3]=data.defs.commands.find(c=>!c.hidden&&slotPipOf(c)===2&&!['100','3'].includes(c.id)).id;
+    army.commandIds.push('100','missing-command');render();
+  });
+  const extra=page.locator('#deck-panel .command-chosen[data-id="100"]');
+  assert.equal(await extra.getAttribute('data-slot-index'),'7');
+  assert((await extra.innerText()).includes('超出手牌数量'));
+  await page.getByRole('button',{name:'删除未知指挥卡 missing-command',exact:true}).click();
+  assert.equal(await page.evaluate(()=>army.commandIds.includes('missing-command')),false);
+  await extra.getByRole('button',{name:'移除袖中王牌',exact:true}).click();
+  assert.equal(await page.evaluate(()=>army.commandIds.includes('100')),false);
+  await page.locator('#deck-panel .command-chosen[data-slot-index="2"] .command-overlay').click();
+  assert.equal(await ace.getAttribute('data-state'),'available');
+  await ace.locator('.command-overlay').click();
+  assert.equal(await page.evaluate(()=>army.commandIds[2]),'100');
+  assert.equal(await page.evaluate(()=>army.commandIds.length),7);
+});
+
 for (const mobile of [true, false]) test(`${mobile ? 'mobile' : 'desktop'} card thumbnails defer originals until opening full artwork`, async t => {
   const page = await setup(t, mobile), requests = [];
   page.on('request', request => requests.push(decodeURIComponent(new URL(request.url()).pathname)));

@@ -346,7 +346,7 @@ function renderBrowser() {
       accessOf(c).includes(browser.slotKey) && RulesCore.runtimeAvailable(c,army,data.pkg),
     );
   } else {
-    const p = commandSlotPips()[browser.slotIndex];
+    const p = commandSlotPips()[browser.slotIndex] ?? slotPipOf(commandOf(army.commandIds[browser.slotIndex]));
     $("#browser-title").textContent = "选择战术卡";
     $("#browser-context").textContent =
       p + " 牌点 / 第 " + (browser.slotIndex + 1) + " 个战术卡槽位";
@@ -428,9 +428,11 @@ function renderDeck() {
   );
   deck.append(head);
   const list = node("div", "deck-list");
-  commandSlotPips().forEach((p, index) => {
+  const slots = commandSlotPips();
+  Array.from({length: Math.max(slots.length, army.commandIds.length)}, (_, i) => i).forEach(index => {
+    const p = slots[index], overflow = index >= slots.length;
     const c = commandOf(army.commandIds[index]);
-    if (c && String(c.id) === "8") {
+    if (c && String(c.id) === "8" && !overflow && p === 4) {
       const standing = node("button", "standing-order-tag", named(c.name));
       standing.title = c.name.en;
       standing.setAttribute("aria-label", "查看" + named(c.name) + "原图");
@@ -439,17 +441,25 @@ function renderDeck() {
       return;
     }
     if (c) {
-      const valid = commandAvailable(c) && slotPipOf(c) === p;
+      const valid = !overflow && commandAvailable(c) && slotPipOf(c) === p;
       list.append(
         commandCard(c, {
           slotIndex: index,
           state: {
             kind: valid ? "chosen" : "blocked",
-            reason: valid ? "" : "当前军表不满足此卡条件",
+            reason: valid ? "" : overflow ? "超出手牌数量" : "当前军表不满足此卡条件",
           },
         }),
       );
-    } else {
+    } else if (army.commandIds[index] != null) {
+      const missing = node('div', 'empty-command missing-command');
+      missing.append(node('span', null, '找不到指挥卡：' + army.commandIds[index]));
+      const remove = node('button', 'card-remove');
+      remove.setAttribute('aria-label', '删除未知指挥卡 ' + army.commandIds[index]);
+      remove.append(uiIcon('trash', '删除'));
+      remove.onclick = () => {army.commandIds[index] = null; render();};
+      missing.append(remove);list.append(missing);
+    } else if (!overflow) {
       const b = node("button", "empty-command");
       b.append(
         node("span", "pip", "◆".repeat(p)),

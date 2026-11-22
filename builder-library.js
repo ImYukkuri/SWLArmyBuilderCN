@@ -82,6 +82,33 @@ window.BuilderLibrary = (() => {
     }
     return value;
   }
+  function commandSlots(army, data) {
+    const hand = configuration(army, data).rules.commandHand || [];
+    const slots = hand.flatMap(rule => Array(rule.min || 0).fill(rule.pips));
+    return slots.length ? slots : [1, 1, 2, 2, 3, 3, 4];
+  }
+  function normalizeCommandSlots(army, data) {
+    const selected = army.commandIds || [], slots = commandSlots(army, data);
+    const cards = new Map(data.defs.commands.map(c => [String(c.id), c]));
+    const result = slots.map(() => null), pending = [];
+    // Reserve correctly placed cards before recovering legacy imports that used
+    // printed pips. Never discard overflow, duplicates or unknown references.
+    selected.forEach((id, index) => {
+      if (id == null) return;
+      const card = cards.get(String(id));
+      if (index < slots.length && (!card || RulesCore.commandSlotPips(card) === slots[index])) result[index] = id;
+      else pending.push(id);
+    });
+    if (!pending.length && selected.length <= slots.length) return army;
+    for (const id of pending) {
+      const pips = RulesCore.commandSlotPips(cards.get(String(id)));
+      const index = slots.findIndex((p, i) => p === pips && result[i] == null);
+      if (index >= 0) result[index] = id;
+      else result.push(id);
+    }
+    if (result.length !== selected.length || result.some((id, i) => id !== selected[i])) army.commandIds = result;
+    return army;
+  }
   function switchBattleForce(army, armyId) {
     if (!Number.isSafeInteger(armyId) || armyId <= 0) throw Error('军队 ID 不正确。');
     const draft = structuredClone(army);
@@ -209,6 +236,8 @@ window.BuilderLibrary = (() => {
     modeForPoints,
     configuration,
     normalize,
+    commandSlots,
+    normalizeCommandSlots,
     switchBattleForce,
     normalizeDeck,
     setDeckCard,

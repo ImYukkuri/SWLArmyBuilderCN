@@ -11,6 +11,16 @@ import command_requirements as matching
 
 
 class CommandRequirementsTest(unittest.TestCase):
+    def test_ace_counts_as_two_pips_even_when_one_pip_slots_are_full(self):
+        army = {'armyId': 1, 'mode': 'standard', 'pointsLimit': 1000, 'options': [],
+                'units': [{'unitId': 'rebels-lando', 'instanceId': 'lando', 'upgrades': []}],
+                'commandIds': ['7', '16618', '100', '3', '9', '16624', '8']}
+        self.assertFalse(any(i['code'] in ('command_min', 'command_max') for i in rules.validate_army(army)['issues']))
+        army['commandIds'].append('100')
+        caps = [i for i in rules.validate_army(army)['issues'] if i['code'] == 'command_max']
+        self.assertEqual(len(caps), 1)
+        self.assertTrue(caps[0]['message'].startswith('2 点'))
+
     def test_hidden_command_does_not_count_toward_hand(self):
         army = {'armyId': 2, 'mode': 'standard', 'pointsLimit': 1000,
                 'units': [], 'options': [], 'commandIds': ['3086', '3086', '8']}

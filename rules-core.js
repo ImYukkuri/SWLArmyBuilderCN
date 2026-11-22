@@ -1131,8 +1131,7 @@ window.RulesCore = (() => {
       const pips = (army.commandIds || []).map(cid => {
         const c = (defs.commands || []).find(x => String(x.id) === String(cid));
         if (!c || c.hidden) return null;
-        const slotPips = c.slotPips != null ? c.slotPips : c.pips;
-        return slotPips != null ? slotPips : null;
+        return commandSlotPips(c);
       }).filter(p => p != null);
       for (const rule of hand) {
         const n = pips.filter(p => p === rule.pips).length;
@@ -1248,6 +1247,8 @@ window.RulesCore = (() => {
     });
   }
 
+  // Printed pips determine play priority; hand construction may override them.
+  const commandSlotPips = card => card?.slotPips ?? card?.pips ?? null;
   const commandFields = ['id','name','title','nameIdentityId','factionId','affiliationIds','rankId','unitTypeId','keywords'];
   const commandText = value => String(value ?? '').normalize('NFKC').trim().replace(/\s+/g,' ').toLowerCase();
   function commandRequirementErrors(requirements) {
@@ -1403,7 +1404,7 @@ window.RulesCore = (() => {
   function cleanupArmy(army,data) { return allExtensions().flatMap(e => e.cleanup?.(army,data) || []); }
   function isTransitionalIssue(code,army,pkg) { return extensions(army.armyId,pkg).some(e => e.transitionalCodes?.includes(code)); }
   const api = { Dice, evaluate, validateArmy, unitContext, upgradeEligibility, keywordTargets, matchesKeywordTarget, detachmentLimits, entourageExemptions, armyRank, slotKey, accessKeys, slotGrantsFor, dedicatedSlotKeys, equipSlotKeys, slotListFor, restrictionConditionOk, requiredPropertiesOk, normRp, buildNameIndex, unavailableSets, unitCapFor, commandUnitRequirements,
-    commandRequirementErrors,commandArmyFaction,commandContext,commandEligibility,
+    commandSlotPips,commandRequirementErrors,commandArmyFaction,commandContext,commandEligibility,
     applyPropertyEffects,prepareData,runtimeAvailable,upgradePoints,defaultUpgradeIds,cleanupArmy,isTransitionalIssue,battleForceVersion,resolveArmyData,unitFor,exclusionFailure,exclusionConflicts };
   return api;
 })();

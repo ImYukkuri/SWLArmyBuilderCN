@@ -34,6 +34,8 @@
 
 `RulesCore.commandContext` 每次查询建立一次索引，全部候选复用；`commandEligibility` 同时供选择器和军表校验使用。每次查询重新读取军表，点击选择时再次检查。V1 的 Python 预览使用 `command_requirements.py`；V2 通过现有 JS bridge 执行同一套运行时。
 
+卡面点数 `pips` 保留游戏中的优先级；手牌分配和数量校验统一读取 `slotPips ?? pips`（`RulesCore.commandSlotPips`）。例如袖中王牌印刷 1 点、组军占 2 点。TTS 导入使用组军点数定位；原生导入和打开旧军表时，`BuilderLibrary.normalizeCommandSlots` 保留已正确放置的卡，将错位或原先追加在末尾的卡移入对应空槽。真正超额、重复和引用缺失的卡均保留并在主界面显示，可手动删除，不再因超出固定七个位置而隐藏。
+
 编辑器的使用条件组件复用 `EditorOptions.control` 与可搜索下拉，打开页面时从当前 JSON 提取名称、称号、名称标识、单位、阵营、组织和战斗部队选项。“刷新候选项”重新加载词典并保留当前草稿。旧历史快照仍可按原有字段校验；编辑旧记录时需要配置新的使用条件。
 
 编辑入口：本地 `commands.html` → 选择指挥卡 → 字段编辑 → 使用条件。

@@ -3591,6 +3591,7 @@ dialog, .card-browser, .keyword-popover {
 .deck-list {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-items:start;overflow:visible;background:transparent;}
 .deck-list .empty-command {min-height:104px;border:1px dashed #b8cbd6;border-radius:4px;padding:12px;gap:8px;flex-wrap:wrap;align-content:center;}
 .deck-list .empty-command .pip {flex-basis:100%;}
+.deck-list .missing-command {position:relative;padding-right:44px;}
 .command-card-tile {container-type:inline-size;min-width:0;}
 .command-card-tile.command-chosen,.candidate.command-candidate {padding:0;border:1px solid #cbd6df;border-radius:5px;overflow:hidden;background:#d9e1e7;cursor:pointer;}
 .command-card-tile:focus-visible {outline:2px solid var(--accent);outline-offset:3px;}
