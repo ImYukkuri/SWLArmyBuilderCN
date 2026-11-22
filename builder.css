@@ -3876,6 +3876,8 @@ dialog, .card-browser, .keyword-popover {
 .transfer-controls input { width:110px; }
 .transfer-note { color:#60798a; font-size:12px; line-height:1.6; margin:10px 0; }
 .transfer-json { display:block; width:100%; min-height:220px; resize:vertical; padding:10px; border:1px solid #c3d2dc; border-radius:4px; background:#f5f8fa; color:#264457; font:12px/1.6 Consolas,monospace; }
+.share-dialog { width:min(560px,calc(100vw - 24px)); }
+.share-link { display:block; box-sizing:border-box; width:100%; resize:vertical; padding:10px; border:1px solid #c3d2dc; border-radius:4px; font:14px/1.5 monospace; overflow-wrap:anywhere; }
 .transfer-actions { display:flex; justify-content:flex-end; flex-wrap:wrap; gap:8px; margin-top:14px; }
 .transfer-actions button { padding:8px 12px; min-height:38px; }
 .transfer-summary { font-size:14px; font-weight:650; }
@@ -3965,7 +3967,21 @@ html.page-overlay-open #army-units > .roster-unit > .unit-brief { visibility: hi
 .upgrade-browser .browser-foot { padding-block: 7px; }
 .candidate.upgrade-candidate { padding: 8px 14px; }
 .upgrade-candidate .identity { gap: 8px; }
-.upgrade-candidate .candidate-art { width: 34px; height: 46px; margin: 0; }
+.upgrade-candidate .candidate-art {
+  position: relative;
+  width: 88px;
+  height: auto;
+  aspect-ratio: var(--upgrade-preview-ratio, 725 / 520);
+  margin: 0;
+}
+.upgrade-candidate .candidate-art img {
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 200%;
+  max-height: none;
+  object-fit: fill;
+}
 .upgrade-candidate .identity .requirements { margin: 2px 0 0; padding: 0; border: 0; background: none; line-height: 1.45; }
 .upgrade-candidate .identity .candidate-state { margin-top: 3px; color: var(--accent); }
 .upgrade-candidate .identity .eligibility-note { margin-top: 3px; color: var(--warning); font-size: 12px; line-height: 1.5; }
@@ -3997,7 +4013,11 @@ html.page-overlay-open #army-units > .roster-unit > .unit-brief { visibility: hi
   .army-header .army-summary { justify-content: flex-start; gap: 20px; padding-top: 12px; }
   .upgrade-browser .browser-top { padding-inline: 12px; }
   .candidate.upgrade-candidate { padding: 8px 12px; }
+  .upgrade-candidate .candidate-art { width: 80px; }
   .upgrade-candidate .weapon-title { flex-basis: 100%; }
+}
+@media (max-width: 360px) {
+  .upgrade-candidate .candidate-art { width: 72px; }
 }
 .battleforce-dialog h3{margin:20px 0 8px;font-size:17px}.battleforce-dialog h4{margin:16px 0 5px}
 .battleforce-dialog p,.battleforce-dialog .prose{line-height:1.65;margin:8px 0}

@@ -41,12 +41,17 @@ class UpgradeFacesTest(unittest.TestCase):
         first=store.save_image('upgrades',self.card['id'],buf.getvalue(),store.read('upgrades')['revision'],'back')
         self.assertIsNone(first['card']['assets']['front'])
         self.assertEqual(first['card']['back']['assets']['front'],first['front'])
+        preview=first['card']['back']['assets']['thumbnail']
+        self.assertTrue((self.root/preview).is_file())
+        self.assertNotIn('thumbnail',first['card']['assets'])
         old=(self.root/first['front']).read_bytes()
         buf=io.BytesIO();Image.new('RGB',(10,16),'blue').save(buf,format='PNG')
         second=store.save_image('upgrades',self.card['id'],buf.getvalue(),first['revision'],'back')
         self.assertNotEqual(first['front'],second['front']);self.assertEqual((self.root/first['front']).read_bytes(),old)
+        self.assertNotEqual(second['card']['back']['assets']['thumbnail'],preview)
         restored=store.restore('upgrades',second['snapshot'],self.card['id'],second['revision'])
         self.assertEqual(restored['card']['back']['assets']['front'],first['front'])
+        self.assertEqual(restored['card']['back']['assets']['thumbnail'],preview)
 
     def test_disabled_back_can_keep_an_unfinished_draft(self):
         card=copy.deepcopy(self.card);card['dualSided']=False;card['back']['name']={'en':'','zh':''}

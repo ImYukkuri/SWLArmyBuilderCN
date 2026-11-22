@@ -535,6 +535,20 @@ window.RulesCore = (() => {
     const a = ((defs && defs.armies) || []).find(x => (x.name && x.name.en) === name);
     return a ? a.id : null;
   }
+  // An explicit battle-force membership overrides its parent, even when it
+  // has no pool flags (for example, native mercenaries in Bright Tree Village).
+  function armyMembership(unit, armyId, pkg, defs) {
+    let id = Number(armyId);const seen = new Set();
+    while (!seen.has(id)) {
+      seen.add(id);
+      const membership = (unit.factions || []).find(f => f.id === id);
+      if (membership) return membership;
+      const parent = pkg.battleForces?.[id]?.v2?.parentFactionId ?? parentFactionId(id,pkg,defs);
+      if (parent == null) break;
+      id = Number(parent);
+    }
+    return null;
+  }
   function armyRank(unit, armyId, pkg, defs, units) {
     if (pkg?._v2 && pkg._v2.armyId === Number(armyId)) return unit?._v2Allowed ? unit.rankId : null;
     if (battleForceVersion(pkg, armyId) !== 1) return null;
@@ -1046,13 +1060,9 @@ window.RulesCore = (() => {
       const tc = (unit.rules || {}).tierCounting || {};
       let ignoreMin = tc.ignoreMinimum === true;
       let ignoreMax = tc.ignoreMaximum === true;
-      for (const f of unit.factions || []) {
-        if (f.id === army.armyId) {
-          const ftc = f.tierCounting || {};
-          if (ftc.ignoreMinimum === true) ignoreMin = true;
-          if (ftc.ignoreMaximum === true) ignoreMax = true;
-        }
-      }
+      const ftc = armyMembership(unit,army.armyId,pkg,defs)?.tierCounting || {};
+      if (ftc.ignoreMinimum === true) ignoreMin = true;
+      if (ftc.ignoreMaximum === true) ignoreMax = true;
       if (extensions(army.armyId,pkg).some(e => e.countMercenaries)) ignoreMin = false;
       let exempt = 0;
       const ex = tc.exempt || tc.ignoreMaximumWhenArmyIncludes;
@@ -1074,9 +1084,10 @@ window.RulesCore = (() => {
         let rank=armyRank(unit,army.armyId,pkg,defs,units);if(rank==null)continue;
         for(const choice of inst.upgrades || []) if(upgrades[choice.upgradeId]?.rules?.replaceTier!=null)rank=upgrades[choice.upgradeId].rules.replaceTier;
         const tc=unit.rules?.tierCounting || {};
-        if(!tc.ignoreMinimum)minCounts[rank]=(minCounts[rank]||0)+1;
+        const ftc=armyMembership(unit,army.armyId,pkg,defs)?.tierCounting || {};
+        if(!tc.ignoreMinimum&&!ftc.ignoreMinimum)minCounts[rank]=(minCounts[rank]||0)+1;
         const exempt=entourageExempt.instances.has(inst.instanceId);
-        maxCounts[rank]=(maxCounts[rank]||0)+(!tc.ignoreMaximum&&!exempt?1:0);
+        maxCounts[rank]=(maxCounts[rank]||0)+(!tc.ignoreMaximum&&!ftc.ignoreMaximum&&!exempt?1:0);
       }
       for(const limit of pkg._v2.unitLimits) {
         const unit=units[limit.unitId],count=unitIdCounts[limit.unitId]||0;
@@ -1103,61 +1114,17 @@ window.RulesCore = (() => {
     }
 
     // command cards
-    const selectedUpgradeUpstream = new Set(sel.map(x => x.upstreamId));
+    const commandChecks = (army.commandIds || []).some(Boolean) ? commandContext(army,data) : null;
     for (const cid of army.commandIds || []) {
       const cmd = (defs.commands || []).find(x => String(x.id) === String(cid));
       if (!cmd) { issue("invalid", "command_missing", `命令卡引用不存在：${cid}`, null); continue; }
       const name = (cmd.name && cmd.name.en) || cid;
       if (cmd.hidden) { issue("invalid", "command_hidden", `命令卡「${name}」已停用，请替换`, null); continue; }
-      const missingUnits = commandUnitRequirements(cmd, army, units, defs).filter(g => !g.met);
-      if (missingUnits.length) issue('invalid', 'command_required_units',
-        `命令卡「${name}」还需加入：${missingUnits.map(g => g.label).join('、')}（每组任选一个版本，所有组都须满足）`, null);
-      const title = String(cmd.titleMatch || '').trim();
-      if (title) {
-        const key = normalizeKey(title);
-        const hit = (army.units || []).some(inst => {
-          const u = units[inst.unitId]; if (!u) return false;
-          const t = normalizeKey((u.title && u.title.en) || '');
-          const n = normalizeKey((u.name && u.name.en) || '');
-          return (t && (t.includes(key) || key.includes(t))) || (n && n.includes(key));
-        });
-        if (!hit) issue('invalid', 'command_title_match', '命令卡 ' + name + ' 需要称号包含 ' + cmd.titleMatch + ' 的单位', null);
-      }
-      const facs = cmd.factions || [];
-      const armyId = Number(army.armyId);
-      if (facs.length && !facs.includes(armyId)) {
-        const bf = (pkg.battleForces || {})[String(armyId)] || {};
-        const parentName = bf.parentFaction;
-        const parentArmy = parentName ? (defs.armies || []).find(a => (a.name && (a.name.en === parentName || a.name.zh === parentName))) : null;
-        if (!facs.includes(pkg._v2?.parentFactionId ?? parentArmy?.id)) issue("invalid", "command_faction", `命令卡「${name}」不属于当前军队`, null);
-      }
-      if ((cmd.campaigns || []).length) issue("unknown", "command_campaign", `命令卡「${name}」为战役卡，标准模式资格待核验`, null);
-      const armyUnits = (army.units || []).map(i => units[i.unitId]).filter(Boolean);
-      if (cmd.mercenary) {
-        const merc = armyUnits.some(u => (u.keywords || []).some(k => k && k.id === 'mercenary') || (u.factions || []).some(f => f && (f.tierPools || []).includes('mercenary')));
-        if (!merc) issue("invalid", "command_mercenary", `命令卡「${name}」需要军表中有雇佣兵单位`, null);
-      }
-      if (cmd.condition) {
-        const preds = pkg.predicates || {};
-        if (!armyUnits.some(u => evaluate(cmd.condition, unitContext(u, pkg), preds) === true)) issue("invalid", "command_condition", `命令卡「${name}」需要满足单位条件`, null);
-      }
-      const unitUnlocks = (cmd.unlockedBy || []).filter(x => x && x.propertyName === 'units');
-      if (unitUnlocks.length) {
-        const hit = unitUnlocks.some(un => armyUnits.some(u => {
-          if (un.id != null) { const up = (u.upstream || {}).id; return up != null && String(un.id) === String(up); }
-          const prop = un.property, val = un.value;
-          if (prop === 'faction') return Number(u.factionId) === Number(val);
-          if (prop === 'affiliation') return (u.affiliationIds || []).map(String).includes(String(val));
-          if (prop === 'unitType') return Number(u.unitTypeId) === Number(val);
-          if (prop === 'rank') return Number(u.rankId) === Number(val);
-          if (prop === 'keywords') return (u.keywords || []).some(k => k && String(k.id) === String(val));
-          return false;
-        }));
-        if (!hit) issue("invalid", "command_unlock", `命令卡「${name}」需要匹配的解锁单位`, null);
-      }
-      for (const un of cmd.unlockedBy || []) {
-        if (un.propertyName === "upgrades" && !selectedUpgradeUpstream.has(String(un.id))) issue("invalid", "command_unlock", `命令卡「${name}」需要包含解锁升级（上游 ${un.id}）`, null);
-      }
+      const result = commandEligibility(cmd,army,data,commandChecks);
+      if (!result.ok) for (const check of result.requirements.filter(c=>!c.met))
+        issue('invalid', check.code || 'command_unlock', `命令卡「${name}」${result.reason}`, null);
+      if (!result.ok && !result.requirements.length) issue('invalid','command_unlock',`命令卡「${name}」${result.reason}`,null);
+      if ((cmd.campaigns || []).length) issue('unknown','command_campaign',`命令卡「${name}」为战役卡，标准模式资格待核验`,null);
     }
     const hand = mode.commandHand;
     if (hand && (army.commandIds || []).length) {
@@ -1174,24 +1141,38 @@ window.RulesCore = (() => {
       }
     }
 
-    // mercenary pool (local)
+    // Each rank has its own allowance. Allies of Convenience supplies one
+    // shared overflow across all ranks, regardless of how many sources grant it.
     const pool = (mode.pools || {}).mercenary;
     if (pool && !extensions(army.armyId,pkg).some(e => e.countMercenaries)) {
-      let bonus = 0;
-      for (const x of sel) {
-        const card = upgrades[x.cardId] || {};
-        if (((card.rules || {}).poolBonuses || []).includes("extraMercenary")) bonus += 1;
-      }
-      let merc = 0;
+      const counts = new Map();
+      let hasBonus = false;
+      const grantsBonus = card => (card.keywords || []).some(k => k.id === 'allies_of_convenience') ||
+        (card.rules?.poolBonuses || []).includes(pool.bonus?.when || 'extraMercenary');
       for (const inst of army.units || []) {
-        const unit = units[inst.unitId]; if (!unit) continue;
-        for (const f of unit.factions || []) {
-          if ((f.tierPools || []).includes("mercenary") && f.id === army.armyId) { merc += 1; break; }
-        }
+        const unit = pkg._v2?.instances[inst.instanceId] || units[inst.unitId];
+        if (!unit || unit.isCounterpart || unit.usage === 'counterpart') continue;
+        let rank = armyRank(unit,army.armyId,pkg,defs,units);
+        if (rank == null) continue;
+        const cards = (inst.upgrades || []).map(ch => upgrades[ch.upgradeId]).filter(Boolean);
+        hasBonus ||= grantsBonus(applyPropertyEffects(unit,cards,defs)) || cards.some(grantsBonus);
+        for (const card of cards) if (card.rules?.replaceTier != null) rank = Number(card.rules.replaceTier);
+        const membership = armyMembership(unit,army.armyId,pkg,defs);
+        if (membership?.tierPools?.includes('mercenary')) counts.set(rank,(counts.get(rank) || 0) + 1);
       }
-      const limit = (pool.max || 1) + bonus;
-      if (merc > limit) issue("invalid", "mercenary_pool", `雇佣兵数量 ${merc} 超过上限 ${limit}`, null);
-      if (bonus) issue("unknown", "mercenary_pool_semantics", "雇佣兵池额外名额叠加语义仍需核验", null);
+      const exceeded = [...counts].sort(([a],[b]) => a-b).map(([rank,count]) =>
+        ({rank,count,limit:pool.perTierMax?.[rank] ?? pool.max ?? 1})).filter(r => r.count > r.limit);
+      const overflow = exceeded.reduce((sum,r) => sum + r.count - r.limit,0);
+      const bonus = hasBonus ? (pool.bonus?.overflow ?? 1) : 0;
+      if (overflow > bonus) {
+        const ranks = exceeded.map(r => r.rank);
+        const detail = exceeded.map(r => {
+          const def = (defs.ranks || []).find(d => d.id === r.rank);
+          return `${def?.name?.zh || def?.name?.en || '军阶 '+r.rank}雇佣兵 ${r.count} 个（通常上限 ${r.limit}）`;
+        }).join('；');
+        issue('invalid','mercenary_pool',`${detail}；超出名额共 ${overflow} 个，全军可用额外名额 ${bonus} 个`,null,
+          ranks.length === 1 ? {rank:ranks[0]} : {ranks});
+      }
     }
 
     // effects (local)
@@ -1254,6 +1235,7 @@ window.RulesCore = (() => {
   // Groups are ANDed; alternate unit versions inside a group are ORed.
   // Counterpart upgrades are a separate namespace and cannot satisfy a unit ID.
   function commandUnitRequirements(command, army, units, defs) {
+    if (command.requirements) return commandEligibility(command,army,{units,defs,pkg:{},upgrades:{}}).requirements;
     const present = new Set((army.units || []).map(i => units[i.unitId]).filter(u =>
       u && u.upstream?.collection === 'units').map(u => String(u.upstream.id)));
     return (command.requiredUnitGroups || []).map(unitIds => {
@@ -1264,6 +1246,131 @@ window.RulesCore = (() => {
       });
       return { unitIds, label: [...new Set(names)].join(' / '), met: unitIds.some(id => present.has(String(id))) };
     });
+  }
+
+  const commandFields = ['id','name','title','nameIdentityId','factionId','affiliationIds','rankId','unitTypeId','keywords'];
+  const commandText = value => String(value ?? '').normalize('NFKC').trim().replace(/\s+/g,' ').toLowerCase();
+  function commandRequirementErrors(requirements) {
+    const errors = [], object = v => v && typeof v === 'object' && !Array.isArray(v);
+    const keys = (v,allowed) => object(v) && Object.keys(v).every(k => allowed.includes(k));
+    const values = (v,numeric=false) => Array.isArray(v) && v.length > 0 && v.length <= 256 &&
+      v.every(x => numeric ? Number.isSafeInteger(x) && x > 0 : typeof x === 'string' && !!x.trim()) && new Set(v).size === v.length;
+    if (!keys(requirements,['any']) || !Array.isArray(requirements.any) || requirements.any.length > 32) return ['使用条件需要 any 条件组数组'];
+    for (const group of requirements.any) {
+      if (!keys(group,['all']) || !Array.isArray(group.all) || !group.all.length || group.all.length > 32) {errors.push('条件组至少需要一个条件');continue;}
+      for (const atom of group.all) {
+        if (atom?.type === 'unit') {
+          if (!keys(atom,['type','all']) || !Array.isArray(atom.all) || !atom.all.length || atom.all.length > 16) {errors.push('单位匹配至少需要一个筛选条件');continue;}
+          for (const filter of atom.all) if (!keys(filter,['field','values']) || !commandFields.includes(filter.field) ||
+            !values(filter.values,['factionId','rankId','unitTypeId'].includes(filter.field))) errors.push('单位匹配方式或取值无效');
+        } else if (!keys(atom,['type','values']) || !['unitNames','armyFaction','battleForce','upgrade'].includes(atom.type) ||
+          !values(atom.values,['armyFaction','battleForce'].includes(atom.type)) || atom.type === 'unitNames' && atom.values.length < 2)
+          errors.push('匹配方式或取值无效；名称组合至少选择两个名称');
+      }
+    }
+    return errors;
+  }
+  function commandArmyFaction(armyId,pkg,defs) {
+    let id = Number(armyId);const seen = new Set();
+    while (!seen.has(id)) {
+      seen.add(id);
+      const bf = pkg.battleForces?.[id];
+      const parent = bf?.v2?.parentFactionId ?? (defs.armies || []).find(a => bf?.parentFaction &&
+        [a.name?.en,a.name?.zh].includes(bf.parentFaction))?.id;
+      if (parent == null) break;
+      id = Number(parent);
+    }
+    return id;
+  }
+  function commandContext(army,input) {
+    const data = resolveArmyData(army,input), indexes = Object.fromEntries(commandFields.map(f => [f,new Map()]));
+    const upgrades = new Set(), legacyUnits = new Set(), legacyUpgrades = new Set(), effective = [];
+    const add = (field,value,index) => {
+      if (value == null || value === '') return;
+      const key = ['name','title'].includes(field) ? commandText(value) : String(value);
+      const map = indexes[field];if (!map.has(key)) map.set(key,new Set());map.get(key).add(index);
+    };
+    for (const [index,inst] of (army.units || []).entries()) {
+      const unit = data.pkg._v2?.instances[inst.instanceId] || data.units[inst.unitId];if (!unit) continue;
+      const cards = (inst.upgrades || []).map(ch => {
+        const card = data.upgrades?.[ch.upgradeId];
+        if (card) {upgrades.add(card.id);if (card.upstream?.id) legacyUpgrades.add(String(card.upstream.id));}
+        return card;
+      }).filter(Boolean);
+      const value = applyPropertyEffects(unit,cards,data.defs);effective.push(value);
+      if (unit.upstream?.collection === 'units') legacyUnits.add(String(unit.upstream.id));
+      for (const field of commandFields) {
+        const vals = ['name','title'].includes(field) ? [value[field]?.en,value[field]?.zh] :
+          field === 'keywords' ? (value.keywords || []).map(k=>k.id) : field === 'affiliationIds' ? value[field] || [] : [value[field]];
+        for (const v of vals) add(field,v,index);
+      }
+    }
+    const labels=Object.fromEntries(commandFields.map(f=>[f,new Map()]));
+    const named=row=>row?.name?.zh||row?.name?.en||'';
+    for(const unit of Object.values(data.units)) {
+      labels.id.set(unit.id,[named(unit),unit.title?.zh||unit.title?.en].filter(Boolean).join(' · '));
+      if(unit.nameIdentityId&&!labels.nameIdentityId.has(unit.nameIdentityId))labels.nameIdentityId.set(unit.nameIdentityId,named(unit));
+      for(const field of ['name','title'])for(const value of [unit[field]?.en,unit[field]?.zh])if(value)
+        labels[field].set(commandText(value),unit[field]?.zh||unit[field]?.en);
+    }
+    for(const [field,table] of Object.entries({factionId:'factions',affiliationIds:'affiliations',rankId:'ranks',unitTypeId:'unitTypes',keywords:'keywords'}))
+      for(const row of data.defs[table]||[])labels[field].set(String(row.id),named(row));
+    return {data,army,indexes,labels,upgrades,legacyUnits,legacyUpgrades,effective,
+      faction:commandArmyFaction(army.armyId,data.pkg,data.defs),results:new WeakMap()};
+  }
+  function commandEligibility(command,army,data,context) {
+    const ctx = context || commandContext(army,data);
+    if (ctx.results.has(command)) return ctx.results.get(command);
+    const {defs,pkg} = ctx.data;
+    const named = row => row?.name?.zh || row?.name?.en || '';
+    const label = (field,value) => ctx.labels[field].get(['name','title'].includes(field)?commandText(value):String(value)) || String(value);
+    const fieldName = {id:'单位',name:'单位名称',title:'称号',nameIdentityId:'名称标识',factionId:'单位阵营',affiliationIds:'组织',rankId:'军阶',unitTypeId:'单位类型',keywords:'词条'};
+    const hits = filter => {
+      const ids=new Set();for(const v of filter.values) for(const id of ctx.indexes[filter.field].get(['name','title'].includes(filter.field)?commandText(v):String(v)) || []) ids.add(id);
+      return ids;
+    };
+    const check = atom => {
+      if (atom.type === 'unit') {
+        const sets=atom.all.map(hits),met=[...sets[0]].some(id=>sets.every(s=>s.has(id)));
+        return {met,label:atom.all.map(f=>fieldName[f.field]+'：'+f.values.map(v=>label(f.field,v)).join(' / ')).join(' ＋ ')};
+      }
+      if (atom.type === 'unitNames') {
+        const sets=atom.values.map(v=>hits({field:'name',values:[v]})),owners=new Map();
+        const assign=(index,seen)=>{for(const id of sets[index]) if(!seen.has(id)) {seen.add(id);if(!owners.has(id)||assign(owners.get(id),seen)){owners.set(id,index);return true;}}return false;};
+        return {code:'command_required_units',met:sets.every((_,i)=>assign(i,new Set())),label:'同时编入：'+atom.values.map(v=>label('name',v)).join(' ＋ ')};
+      }
+      if (atom.type === 'upgrade') return {met:atom.values.some(id=>ctx.upgrades.has(id)),label:'携带升级：'+atom.values.map(id=>named(ctx.data.upgrades[id])||id).join(' / ')};
+      const force = atom.type === 'battleForce';
+      return {code:'command_faction',met:atom.values.includes(force?Number(army.armyId):ctx.faction),label:(force?'战斗部队：':'军表阵营：')+atom.values.map(id=>{
+        const bf=pkg.battleForces?.[id];return force ? bf?.nameZh || bf?.name || String(id) : named((defs.armies||[]).find(x=>x.id===id)) || String(id);
+      }).join(' / ')};
+    };
+    let checks=[],ok=true,reason='';
+    if (command.hidden) {ok=false;reason='此指挥卡已停用';}
+    else if (Object.prototype.hasOwnProperty.call(command,'requirements')) {
+      const errors=commandRequirementErrors(command.requirements);
+      if(errors.length){ok=false;reason=errors.join('；');}
+      else {
+        const groups=command.requirements.any.map(g=>g.all.map(check));
+        ok=!groups.length || groups.some(g=>g.every(c=>c.met));
+        checks=groups.find(g=>g.every(c=>c.met)) || groups.sort((a,b)=>a.filter(c=>!c.met).length-b.filter(c=>!c.met).length)[0] || [];
+        if(!ok)reason=(groups.length>1?'需满足任一条件组；尚缺：':'尚缺：')+checks.filter(c=>!c.met).map(c=>c.label).join('；');
+      }
+    } else {
+      // Old histories remain readable; current cards use requirements exclusively.
+      const facs=command.factions || [];
+      if(facs.length)checks.push({met:facs.includes(Number(army.armyId))||facs.includes(ctx.faction),label:'适用军队'});
+      const unlocks=(command.unlockedBy||[]).filter(x=>x.propertyName==='units');
+      if(unlocks.length)checks.push({label:'解锁单位',met:unlocks.some(x=>x.id!=null?ctx.legacyUnits.has(String(x.id)):
+        ctx.effective.some(u=>({faction:[u.factionId],affiliation:u.affiliationIds,rank:[u.rankId],unitType:[u.unitTypeId],keywords:(u.keywords||[]).map(k=>k.id)}[x.property]||[]).map(String).includes(String(x.value))))});
+      for(const group of command.requiredUnitGroups||[])checks.push({label:'同时编入的角色',met:group.some(id=>ctx.legacyUnits.has(String(id)))});
+      for(const x of command.unlockedBy||[])if(x.propertyName==='upgrades')checks.push({label:'解锁升级',met:ctx.legacyUpgrades.has(String(x.id))});
+      if(command.titleMatch)checks.push({label:'称号：'+command.titleMatch,met:ctx.effective.some(u=>commandText(u.title?.en).includes(commandText(command.titleMatch)))});
+      if(command.condition)checks.push({label:'单位条件',met:ctx.effective.some(u=>evaluate(command.condition,unitContext(u,pkg),pkg.predicates||{})===true)});
+      if(command.mercenary)checks.push({label:'雇佣兵单位',met:ctx.effective.some(u=>(u.keywords||[]).some(k=>k.id==='mercenary')||(u.factions||[]).some(f=>f.tierPools?.includes('mercenary')))});
+      ok=checks.every(c=>c.met);if(!ok)reason='尚缺：'+checks.filter(c=>!c.met).map(c=>c.label).join('；');
+    }
+    const result={ok,requirements:checks,reason};ctx.results.set(command,result);return result;
   }
 
   // Optional faction modules share this narrow contract; the base engine knows
@@ -1296,6 +1403,7 @@ window.RulesCore = (() => {
   function cleanupArmy(army,data) { return allExtensions().flatMap(e => e.cleanup?.(army,data) || []); }
   function isTransitionalIssue(code,army,pkg) { return extensions(army.armyId,pkg).some(e => e.transitionalCodes?.includes(code)); }
   const api = { Dice, evaluate, validateArmy, unitContext, upgradeEligibility, keywordTargets, matchesKeywordTarget, detachmentLimits, entourageExemptions, armyRank, slotKey, accessKeys, slotGrantsFor, dedicatedSlotKeys, equipSlotKeys, slotListFor, restrictionConditionOk, requiredPropertiesOk, normRp, buildNameIndex, unavailableSets, unitCapFor, commandUnitRequirements,
+    commandRequirementErrors,commandArmyFaction,commandContext,commandEligibility,
     applyPropertyEffects,prepareData,runtimeAvailable,upgradePoints,defaultUpgradeIds,cleanupArmy,isTransitionalIssue,battleForceVersion,resolveArmyData,unitFor,exclusionFailure,exclusionConflicts };
   return api;
 })();

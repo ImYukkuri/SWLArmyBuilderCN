@@ -30,7 +30,7 @@ function renderList(){
   $('#counts').textContent=items.length+' / '+rows().length+' 张';
   for(const c of items){
     const b=mk('button');b.type='button';b.className='card-row'+(c.id===selected?' active':'')+(c.image?'':' no-art');
-    if(c.image){const img=mk('img');img.className='card-row-art';img.src=c.image;img.alt='';img.loading='lazy';b.append(img)}
+    if(c.image){const img=mk('img');img.className='card-row-art';img.src=c.thumbnail||c.image;img.onerror=()=>{img.onerror=null;img.src=c.image};img.alt='';img.loading='lazy';b.append(img)}
     else{const ph=mk('span');ph.className='card-row-art placeholder';ph.textContent='无图';b.append(ph)}
     const body=mk('span');body.className='card-row-body';
     const name=mk('strong',(c.name&&(c.name.zh||c.name.en))||c.id);
@@ -52,48 +52,10 @@ function renderImage(){
   const img=$('#card-image');
   if(draft&&draft.image){img.src=draft.image;img.hidden=false}else{img.removeAttribute('src');img.hidden=true}
 }
-function unitChipFor(unlock){
-  const upId=String(unlock&&unlock.id||'');
-  const unit=unitsById[upId];
-  const chip=mk('span');chip.className='unit-chip';
-  if(unit&&unit.assets&&unit.assets.portrait){const img=mk('img');img.src=unit.assets.portrait;img.alt='';chip.append(img)}
-  else{const ph=mk('span');ph.className='unit-chip-ph';ph.textContent='?';chip.append(ph)}
-  const source=defs?.sourceUnits?.find(u=>String(u.id)===upId);
-  const name=unit?((unit.name&&(unit.name.zh||unit.name.en))||unit.id):(source?.name?.zh||source?.name?.en||'上游 '+upId);
-  const body=mk('span');body.append(mk('b',name),mk('small',unit?.title?.zh||unit?.title?.en||source?.name?.en||'units:'+upId));
-  chip.append(body);
-  chip.title=name+' · units:'+upId;
-  return chip;
-}
 function field(label,control){const row=mk('label');row.className='field';row.append(mk('span',label),control);return row}
-function unitChoices(){
-  return (defs?.sourceUnits||[]).map(source=>{
-    const unit=unitsById[String(source.id)];
-    if(!unit)return {id:source.id,name:source.name};
-    const faction=defs.factions?.find(f=>f.id===unit.factionId), rank=defs.ranks?.find(r=>r.id===unit.rankId);
-    return {...unit,id:source.id,context:[faction?.name.zh,rank?.name.zh].filter(Boolean).join(' / ')};
-  });
-}
-function requiredUnitGroupsEditor(){
-  const section=mk('fieldset');section.className='command-requirement-editor';
-  section.append(mk('legend','必须同时存在的单位'));
-  const hint=mk('p','所有条件组都要满足；每组选择的是可互相替代的单位版本。例如：汉索罗一组，卢克一组。');hint.className='hint';section.append(hint);
-  const groups=draft.requiredUnitGroups||[];
-  const edit=index=>UnitPicker.openMulti(unitChoices(),groups[index]||[],ids=>{
-    if(!ids.length){status('每组至少选择一个单位版本；不再需要的条件可直接移除。',true);return;}
-    const next=groups.map(g=>[...g]);next[index]=ids.map(Number);draft.requiredUnitGroups=next;
-    setDirty();renderForm();
-  },{title:'选择第 '+(index+1)+' 组的单位版本',hint:'本组任意一个版本编入军表即可满足；不同条件组必须同时满足。'});
-  groups.forEach((ids,index)=>{
-    const row=mk('div');row.className='command-requirement-group';
-    const header=mk('div');header.className='requirement-group-head';header.append(mk('b','条件 '+(index+1)),mk('span','以下版本任选其一'));
-    const change=mk('button','选择 / 修改版本');change.type='button';change.onclick=()=>edit(index);
-    const remove=mk('button','移除此组');remove.type='button';remove.onclick=()=>{draft.requiredUnitGroups=groups.filter((_,i)=>i!==index);setDirty();renderForm();};header.append(change,remove);
-    const chips=mk('div');chips.className='unit-chips';for(const id of ids)chips.append(unitChipFor({id}));
-    row.append(header,chips);section.append(row);
-  });
-  const add=mk('button','＋ 添加必需单位组');add.type='button';add.onclick=()=>edit(groups.length);section.append(add);
-  return section;
+async function refreshCommandOptions(){
+  try{const loaded=await EditorOptions.load(true);defs=loaded.defs;renderForm();status('候选项已刷新');}
+  catch(e){status(e.message,true)}
 }
 function renderForm(){
   const box=$('#form');box.replaceChildren();
@@ -138,45 +100,7 @@ function renderForm(){
   const owner=mk('input');owner.value=draft.owner||'';
   owner.oninput=()=>{draft.owner=owner.value;setDirty()};
   box.append(field('卡面归属（owner 文本）',owner));
-  const title=mk('input');title.value=draft.titleMatch||'';title.placeholder='例如 Jedi Council / Imperial High Command';
-  title.oninput=()=>{draft.titleMatch=title.value;setDirty()};
-  box.append(field('称号包含匹配（titleMatch，留空不使用）',title));
-
-  const facBox=mk('div');facBox.className='chips';
-  const facs=new Set(draft.factions||[]);
-  const facHint=mk('p','留空 = 不限制军队，只跟随解锁单位；点击标签开关。');facHint.className='hint';facBox.append(facHint);
-  const clearBtn=mk('button','清空军队');clearBtn.type='button';clearBtn.className='minor';
-  clearBtn.onclick=()=>{draft.factions=[];setDirty();renderForm()};
-  facBox.append(clearBtn);
-  const facRow=mk('div');facRow.className='chips-grid';facBox.append(facRow);
-  for(const army of (defs&&defs.armies)||[]){
-    const b=mk('button',army.name.zh||army.name.en);b.type='button';
-    b.className='chip'+(facs.has(army.id)?' on':'');
-    b.setAttribute('aria-pressed',String(facs.has(army.id)));
-    b.onclick=()=>{if(facs.has(army.id))facs.delete(army.id);else facs.add(army.id);draft.factions=[...facs];setDirty();renderForm()};
-    facRow.append(b);
-  }
-  box.append(field('可用军队/战斗部队（factions）',facBox));
-
-  const unBox=mk('div');unBox.className='unit-chips';
-  const unRow=mk('div');unRow.className='row-actions';
-  const unBtn=mk('button','选择解锁单位（'+((draft.unlockedBy||[]).filter(u=>u.propertyName==='units').length)+'）');unBtn.type='button';
-  unBtn.onclick=()=>{
-    if(!window.UnitPicker){status('单位选择器未载入',true);return}
-    const units=unitChoices();
-    const selectedIds=(draft.unlockedBy||[]).filter(u=>u.propertyName==='units').map(u=>String(u.id));
-    window.UnitPicker.openMulti(units,selectedIds,ids=>{
-      draft.unlockedBy=[...(draft.unlockedBy||[]).filter(x=>x.propertyName!=='units'||x.id==null),...ids.map(id=>({id:Number(id),propertyName:'units'}))];
-      setDirty();renderForm();
-    });
-  };
-  const unClear=mk('button','清空单位');unClear.type='button';unClear.className='minor';
-  unClear.onclick=()=>{draft.unlockedBy=(draft.unlockedBy||[]).filter(x=>x.propertyName!=='units'||x.id==null);setDirty();renderForm()};
-  unRow.append(unBtn,unClear);
-  unBox.append(unRow);
-  for(const un of (draft.unlockedBy||[]).filter(u=>u.propertyName==='units'))unBox.append(unitChipFor(un));
-  const unHint=mk('p','此列表满足任意一项即可。要求多个角色同时编入时，请在下方分别添加必需单位组。');unHint.className='hint';unBox.append(unHint);
-  box.append(field('解锁单位 · 满足其一',unBox),requiredUnitGroupsEditor());
+  box.append(CommandRequirementsEditor.render(draft,defs,setDirty,refreshCommandOptions));
 
   for(const [key,label] of [['orders','指令文本'],['description','效果文本']]){
     for(const lang of ['en','zh']){
@@ -218,33 +142,29 @@ async function loadHistory(){
 function newCard(){
   if(dirty&&!confirm('有未保存修改，确定新建？'))return;
   const id='cmd-'+Date.now().toString(36);
-  draft={id,name:{en:'New Command',zh:'新战术卡'},pips:1,slotPips:null,owner:'',factions:[],unlockedBy:[],orders:{en:'',zh:''},description:{en:'',zh:''},image:''};
+  draft={id,name:{en:'New Command',zh:'新战术卡'},pips:1,slotPips:null,owner:'',requirements:{any:[]},orders:{en:'',zh:''},description:{en:'',zh:''},image:''};
   selected=id;creating=true;dirty=true;
   rows().push(JSON.parse(JSON.stringify(draft)));
   renderForm();renderList();renderImage();$('#dirty').textContent='新建（未保存）';
   status('已创建草稿：填写后点击保存');
 }
-let unitsById={};
 async function reload(){
   if(dirty&&!confirm('放弃未保存修改并重新载入？'))return;
   try{
-    const [res,unitsRes]=await Promise.all([call('/api/commands'),fetch('data/units.json').then(r=>r.json())]);
-    catalog=res.catalog;revision=res.revision;
-    defs=await fetch('data/catalog-definitions.json').then(r=>r.json());
-    unitsById=Object.fromEntries((unitsRes.units||[]).filter(u=>u.upstream?.collection==='units').map(u=>[String(u.upstream.id),u]));
+    const loaded=await EditorOptions.load(true);defs=loaded.defs;
+    try{const result=await call('/api/commands');catalog=result.catalog;revision=result.revision;}
+    catch(e){catalog=defs;revision=null;status(e.message,true);}
     dirty=false;$('#dirty').textContent='';
-    const first=rows().find(c=>!c.hidden);
+    const first=rows().find(c=>!c.hidden&&c.id===selected)||rows().find(c=>!c.hidden);
     renderList();
     if(first)select(first.id);
     else{draft=null;selected=null;$('#title').textContent='暂无指挥卡';$('#subtitle').textContent='';$('#raw-json').value='';renderForm();renderImage();}
-    status('');
-  }catch(e){
-    status(e.message,true);
-    try{catalog=await fetch('data/catalog-definitions.json').then(r=>r.json());defs=catalog;unitsById={};renderList();}catch(err){}
-  }
+  }catch(e){status(e.message,true)}
 }
 $('#save').onclick=async()=>{
   if(busy||!draft)return;
+  const errors=draft.requirements?RulesCore.commandRequirementErrors(draft.requirements):['请配置使用条件'];
+  if(errors.length){status(errors.join('；'),true);return;}
   busy=true;$('#save').disabled=true;
   try{
     const res=await call('/api/commands/save',{card:draft,revision,create:creating});
@@ -275,7 +195,8 @@ $('#image-file').onchange=async()=>{
     const rel=result.front||result.image||null;
     if(!rel)throw Error('服务端未返回卡图路径');
     draft.image=rel;
-    const row=rows().find(c=>c.id===selected);if(row)row.image=draft.image;
+    draft.thumbnail=result.card.thumbnail;
+    const row=rows().find(c=>c.id===selected);if(row){row.image=draft.image;row.thumbnail=draft.thumbnail;}
     dirty=false;$('#dirty').textContent='';renderForm();renderImage();renderList();
     status('卡图已更新：'+rel);
   }catch(e){if(window.SaveUI)SaveUI.fail(e,reload);else status(e.message,true)}

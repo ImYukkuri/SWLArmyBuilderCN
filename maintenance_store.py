@@ -4,6 +4,8 @@ from datetime import datetime,timezone
 from pathlib import Path
 from rule_schema import validate_rules,KNOWN
 from catalog_schema import validate_keyword_targets
+from card_images import update_card_thumbnails
+from command_requirements import validate as validate_command_requirements
 ROOT=Path(__file__).resolve().parent;LOCK=threading.Lock()
 CONFIG={'upgrades':('data/upgrades.json','cards'),'armies':('data/armies.json','armies'),'commands':('data/catalog-definitions.json','commands'),'keywords':('data/catalog-definitions.json','keywords')}
 KEYWORD_TIMINGS={'global','army_building','setup','deployment','command','activation_start','activation','activation_end','movement','attack','defense','end_round'}
@@ -43,6 +45,7 @@ def validate(kind,card):
         if not isinstance(card,dict):raise ValueError('战术卡必须是 JSON 对象')
         if not isinstance(card.get('id'),str)or not re.fullmatch(r'[a-z0-9][a-z0-9_-]{0,150}',card['id']):raise ValueError('战术卡 ID 无效')
         name=card.get('name')
+        if 'requirements' in card:validate_command_requirements(card['requirements'])
         if not isinstance(name,dict)or not isinstance(name.get('en'),str)or not name['en'].strip():raise ValueError('战术卡需要英文名称')
         if name.get('zh')is not None and not isinstance(name.get('zh'),str):raise ValueError('中文名称必须是字符串')
         pips=card.get('pips')
@@ -134,6 +137,14 @@ def save(kind,card,revision,create=False):
         catalog=json.loads(old);index=next((i for i,c in enumerate(catalog[key])if c['id']==card['id']),None)
         if index is None and not(create and kind in ('armies','upgrades','commands','keywords')):raise ValueError('没有此记录；不能修改固定 ID')
         if index is not None and create:raise ValueError('ID 已存在')
+        if kind in ('upgrades','commands'):
+            previous=catalog[key][index] if index is not None else {}
+            def image_references(value):
+                if kind=='commands':return (value.get('image'),value.get('thumbnail'))
+                return tuple((face.get('assets',{}).get('front'),face.get('assets',{}).get('thumbnail'))
+                             for face in (value,value.get('back')or{}))
+            if image_references(card)!=image_references(previous):
+                card=copy.deepcopy(card);update_card_thumbnails(ROOT,card,kind)
         stamp=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S.%fZ');snapshot=stamp+'-'+hashof(old)[:12]+'.json';write(ROOT/'history'/kind/snapshot,old)
         if index is None:catalog[key].append(copy.deepcopy(card))
         else:catalog[key][index]=copy.deepcopy(card)
@@ -225,6 +236,7 @@ def save_image(kind, record_id, image_bytes, revision, face="front"):
             printed = card["back"] if face == "back" else card
             printed.setdefault("assets", {})["front"] = rel
             printed["assets"].pop("portrait", None)
+        update_card_thumbnails(ROOT, card, kind)
         stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S.%fZ")
         snapshot = stamp + "-" + hashof(old)[:12] + ".json"
         write(ROOT / "history" / kind / snapshot, old)

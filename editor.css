@@ -355,3 +355,15 @@ body.maintenance-editor { --bg:#eef1f4;--panel:#fff;--line:#d2dde5;--ink:#253540
 .upgrade-action-options input[type=checkbox]{margin:0;width:16px;height:16px;flex:none;accent-color:var(--accent)}
 .upgrade-affiliations p{margin:6px 0;line-height:1.5;color:#805c24}
 .bf-draft-units th:first-child,.bf-draft-units td:first-child{white-space:nowrap;width:5em}
+/* Command requirements use the same searchable selects as other editors. */
+.command-matching { min-width:0; margin:12px 0; padding:12px; border:1px solid #cbd7df; }
+.command-match-toolbar { display:flex; align-items:center; gap:8px; justify-content:space-between; margin-bottom:6px; flex-wrap:wrap; }
+.command-match-toolbar > .option-control { flex:1; min-width:180px; }
+.command-match-group { margin:10px 0; padding:10px; background:#f2f6f8; border-left:3px solid #456d83; }
+.command-match-atom { margin:8px 0; padding:8px; background:white; }
+.command-match-filter { margin-block:6px; }
+.command-match-value { display:flex; align-items:center; gap:6px; margin-block:4px; }
+.command-match-value > .option-control { flex:1; min-width:0; }
+.command-match-values select { width:100%; min-width:0; }
+.command-matching small { color:#506774; }
+@media(max-width:600px) { .command-matching { padding:8px; } .command-match-group { padding:6px; } .command-match-atom { padding:6px; } }

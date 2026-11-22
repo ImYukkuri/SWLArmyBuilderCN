@@ -5,6 +5,23 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 import server
 
 class StorageTest(unittest.TestCase):
+    def test_mercenary_membership_flags_survive_save_and_do_not_change_card_identity(self):
+        original_faction = self.card['factionId']
+        original_keywords = copy.deepcopy(self.card['keywords'])
+        membership = self.card['factions'][0]
+        membership['tierPools'] = ['mercenary']
+        membership['tierCounting'] = {'ignoreMinimum': True}
+        result = server.commit_card(self.card, server.digest(self.path.read_bytes()))
+        stored = next(u for u in json.loads(self.path.read_bytes())['units'] if u['id'] == self.card['id'])
+        self.assertEqual(stored['factions'], self.card['factions'])
+        self.assertEqual(stored['factionId'], original_faction)
+        self.assertEqual(stored['keywords'], original_keywords)
+        del membership['tierPools']
+        del membership['tierCounting']
+        result = server.commit_card(self.card, result['revision'])
+        self.assertNotIn('tierPools', result['card']['factions'][0])
+        self.assertNotIn('tierCounting', result['card']['factions'][0])
+
     def test_flier_rank_saves_on_card_and_faction_membership(self):
         self.card['rankId'] = 7
         for membership in self.card['factions']:

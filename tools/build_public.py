@@ -21,6 +21,7 @@ FILES = [
     "upgrade-faces.js",
     "builder-library.js",
     "builder-transfer.js",
+    "builder-share.js",
     "builder-transfer-ui.js",
     "builder-home.js",
     "dice-enums.js",

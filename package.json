@@ -1,13 +1,13 @@
 {
   "name": "swlarmybuildercn",
-  "version": "0.18.3",
+  "version": "0.19.0",
   "description": "Local Chinese Star Wars Legion unit card data editor",
   "main": "index.js",
   "scripts": {
     "start": "python server.py --port 8770",
     "test:scroll": "node --test tests/builder-scroll.test.cjs",
     "test:battleforce-editor": "node --test tests/battleforce-editor.test.cjs",
-    "test": "python -m unittest discover -s tests -v && node --test tests/builder-model.test.cjs tests/builder-library.test.cjs tests/builder-transfer.test.cjs tests/editor-options.test.cjs tests/portrait-crop.test.cjs tests/upgrade-faces.test.cjs tests/unit-targets.test.cjs tests/mandalorian-rules.test.cjs tests/battleforce-drafts.test.cjs tests/battleforce-v2.test.cjs tests/battleforce-runtime.test.cjs tests/battleforce-224.test.cjs tests/flier-rank.test.cjs tests/wookiee-war-grove.test.cjs tests/equip-preview.test.cjs tests/candidate-parity.test.cjs",
+    "test": "python -m unittest discover -s tests -v && node --test tests/builder-model.test.cjs tests/builder-library.test.cjs tests/builder-transfer.test.cjs tests/editor-options.test.cjs tests/portrait-crop.test.cjs tests/upgrade-faces.test.cjs tests/unit-targets.test.cjs tests/mandalorian-rules.test.cjs tests/battleforce-drafts.test.cjs tests/battleforce-v2.test.cjs tests/battleforce-runtime.test.cjs tests/battleforce-224.test.cjs tests/flier-rank.test.cjs tests/wookiee-war-grove.test.cjs tests/equip-preview.test.cjs tests/candidate-parity.test.cjs tests/command-matching.test.cjs tests/mercenary-pools.test.cjs tests/builder-share.test.cjs",
     "build": "python tools/build_public.py",
     "extract": "python prepare.py && node ocr.cjs && python prepare_weapons.py && node ocr_weapons.cjs && python image_fields.py && node ocr_digits.cjs && node ocr_numbers.cjs && python materialize.py"
   },

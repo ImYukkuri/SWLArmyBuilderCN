@@ -9,9 +9,11 @@ import unittest
 from unittest.mock import patch
 from urllib.error import HTTPError
 from urllib.request import Request, urlopen
+from PIL import Image
 
 import maintenance_store as store
 import server
+from card_images import update_card_thumbnails
 
 
 class UpgradeDeletionTest(unittest.TestCase):
@@ -21,7 +23,8 @@ class UpgradeDeletionTest(unittest.TestCase):
         self.root = Path(self.temp.name)
         (self.root / 'data').mkdir()
         (self.root / 'assets').mkdir()
-        (self.root / 'assets/card.webp').write_bytes(b'preserved artwork')
+        Image.new('RGB', (64, 96), '#345678').save(self.root / 'assets/card.webp')
+        self.artwork = (self.root / 'assets/card.webp').read_bytes()
         self.card = {
             'id': 'test-upgrade', 'name': {'en': 'Test Upgrade', 'zh': '测试升级'},
             'points': 5, 'slotIds': [1, 10], 'usage': 'unit_upgrade',
@@ -31,6 +34,7 @@ class UpgradeDeletionTest(unittest.TestCase):
             'back': {'name': {'en': 'Back', 'zh': '反面'}, 'assets': {'front': 'assets/card.webp'},
                      'description': {'en': ['Back effect'], 'zh': ['反面效果']}, 'keywords': [], 'weapons': []},
         }
+        update_card_thumbnails(self.root, self.card, 'upgrades')
         self.other = {'id': 'other-upgrade', 'sentinel': 'unchanged'}
         self.path = self.root / 'data/upgrades.json'
         self.path.write_bytes(store.encode({'cards': [self.card, self.other]}))
@@ -49,7 +53,7 @@ class UpgradeDeletionTest(unittest.TestCase):
         result = store.delete('upgrades', self.card['id'], store.read('upgrades')['revision'])
         self.assertEqual(store.read('upgrades')['catalog']['cards'], [self.other])
         self.assertEqual((self.root / 'history/upgrades' / result['snapshot']).read_bytes(), before)
-        self.assertEqual((self.root / 'assets/card.webp').read_bytes(), b'preserved artwork')
+        self.assertEqual((self.root / 'assets/card.webp').read_bytes(), self.artwork)
         for name, value in self.related.items():
             self.assertEqual((self.root / name).read_bytes(), store.encode(value))
         restored = store.restore('upgrades', result['snapshot'], self.card['id'], result['revision'])

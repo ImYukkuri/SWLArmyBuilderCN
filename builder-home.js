@@ -3,7 +3,9 @@ let collection = { version: 1, records: [] },
   activeRecord = null,
   lastSavedRoster = "",
   deletedRecord = null;
+let navigationRevision = 0;
 const rosterFingerprint = (record) => JSON.stringify([record.name, record.factionId, record.army]);
+const replaceRoute = hash => history.replaceState(null, '', BuilderShare.route(location.href, hash));
 
 function initializeLibrary() {
   try {
@@ -16,7 +18,6 @@ function initializeLibrary() {
     } catch (_) {}
   }
   renderFactionChoices();
-  navigateLibrary();
 }
 
 function renderFactionChoices() {
@@ -64,6 +65,7 @@ function createRoster(factionId) {
 }
 
 function openRoster(record) {
+  navigationRevision++;
   closeEditorPanels();
   activeRecord = structuredClone(record);
   army = BuilderLibrary.normalize(record.army);
@@ -88,7 +90,8 @@ function openRoster(record) {
   $("#editor-page").hidden = false;
   $("#save-state").textContent = "已保存";
   $("#save-state").classList.remove("error");
-  history.replaceState(null, "", "#army/" + encodeURIComponent(record.id));
+  replaceRoute(BuilderShare.rosterRoute(activeRecord));
+  $('#roster-share-status').textContent = '';
   setStatus("");
   render();
   window.scrollTo(0, 0);
@@ -129,9 +132,10 @@ function closeEditorPanels() {
 }
 
 function showLibrary() {
+  navigationRevision++;
   if (activeRecord && !$("#points-limit").reportValidity()) return;
   if (activeRecord && !saveActiveRoster()) {
-    history.replaceState(null, "", "#army/" + encodeURIComponent(activeRecord.id));
+    replaceRoute(BuilderShare.rosterRoute(activeRecord));
     return;
   }
   closeEditorPanels();
@@ -141,7 +145,7 @@ function showLibrary() {
   lastSavedRoster = "";
   $("#editor-page").hidden = true;
   $("#library-page").hidden = false;
-  history.replaceState(null, "", "#home");
+  replaceRoute('#home');
   document.documentElement.style.removeProperty("--faction");
   try {
     collection = BuilderLibrary.read(localStorage);
@@ -152,17 +156,45 @@ function showLibrary() {
   window.scrollTo(0, 0);
 }
 
-function navigateLibrary() {
+async function navigateLibrary() {
   if (!data) return;
-  const id = location.hash.startsWith("#army/") ? decodeURIComponent(location.hash.slice(6)) : null;
-  if (id) {
-    const record = collection.records.find((r) => r.id === id);
-    if (record) {
+  const revision = ++navigationRevision, href = location.href;
+  try {
+    const shared = BuilderShare.request(href);
+    if (shared) {
+      setStatus('正在读取分享军表…');
+      const value = await BuilderShare.readRequest(shared);
+      if (revision !== navigationRevision || location.href !== href) return;
+      const source = data._source || data;
+      const {record} = BuilderTransfer.readNative(value, source, uid, new Date().toISOString());
+      // Validate before saving, but retain all cards even if the composition is illegal.
+      RulesCore.validateArmy(record.army, source);
+      if (activeRecord && !saveActiveRoster()) return;
+      collection = BuilderLibrary.writeRecord(localStorage, record);
       openRoster(record);
+      setStatus('已从分享链接导入：' + record.name);
       return;
     }
+    const {id, factionId} = BuilderShare.navigation(location.hash);
+    if (id) {
+      const record = collection.records.find(r => r.id === id);
+      if (record) {openRoster(record); return;}
+      showLibrary();
+      setStatus('此地址对应的军表未保存在当前浏览器，请使用“分享链接”跨设备打开。', true);
+      return;
+    }
+    if (factionId != null) {createRoster(factionId); return;}
+    showLibrary();
+  } catch (error) {
+    if (revision !== navigationRevision || location.href !== href) return;
+    // Leave a failed share code in the address for retry; do not create a partial roster.
+    if (!activeRecord) {
+      $('#editor-page').hidden = true;
+      $('#library-page').hidden = false;
+      renderSavedRosters();
+    }
+    setStatus('军表链接读取失败：' + error.message, true);
   }
-  showLibrary();
 }
 
 function renderSavedRosters() {

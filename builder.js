@@ -107,7 +107,7 @@ async function load() {
     data.nameIndex = RulesCore.buildNameIndex(data.upgrades, data.defs);
     initializeLibrary();
     wireRosterActions();
-    loadSharedRoster().then(()=>render());
+    await navigateLibrary();
   } catch (error) {
     setStatus("数据载入失败：" + error.message, true);
   }
@@ -240,6 +240,7 @@ function invalidMarks(report) {
   for (const i of (report && report.issues) || []) {
     if (i.status !== "invalid") continue;
     if (i.rank != null) ranks.add(Number(i.rank));
+    for (const rank of i.ranks || []) ranks.add(Number(rank));
     const key = i.instanceId;
     if (!key) continue;
     if (army.units.some((u) => u.instanceId === key)) {
@@ -261,45 +262,12 @@ function keywordRef(id) {
 }
 
 function wireRosterActions(){
-  const ex=$('#roster-export'),im=$('#roster-import'),sh=$('#roster-share'),st=$('#roster-share-status');
+  const ex=$('#roster-export'),im=$('#roster-import'),sh=$('#roster-share');
   if(!ex||!im||!sh)return;
   ex.onclick=()=>openTransferDialog('export');
   im.onclick=()=>openTransferDialog('import');
   $('#library-import').onclick=()=>openTransferDialog('import');
-  sh.onclick=async()=>{
-    try{
-      const payload=JSON.stringify(activeRecord);
-      let enc;
-      try{
-        const cs=new CompressionStream('deflate-raw');
-        const stream=new Blob([payload]).stream().pipeThrough(cs);
-        const buf=await new Response(stream).arrayBuffer();
-        enc='z:'+btoa(String.fromCharCode(...new Uint8Array(buf)));
-      }catch(e){enc='j:'+encodeURIComponent(payload);}
-      const url=location.origin+location.pathname+'?roster='+enc;
-      try{await navigator.clipboard.writeText(url);st.textContent='链接已复制';}
-      catch(e){st.textContent=url;}
-    }catch(e){st.textContent='生成失败：'+e.message;}
-  };
-}
-async function loadSharedRoster(){
-  const m=location.search.match(/(?:^|&)roster=([^&]+)/);
-  if(!m)return;
-  try{
-    let obj;
-    if(m[1].startsWith('z:')){
-      const bin=atob(m[1].slice(2));
-      const bytes=Uint8Array.from(bin,c=>c.charCodeAt(0));
-      const ds=new DecompressionStream('deflate-raw');
-      const out=await new Response(new Blob([bytes]).stream().pipeThrough(ds)).text();
-      obj=JSON.parse(out);
-    }else{
-      obj=JSON.parse(decodeURIComponent(m[1].replace(/^j:/,'')));
-    }
-    Object.assign(activeRecord,obj);
-    save();setStatus('已从分享链接载入军表');
-    history.replaceState(null,'',location.pathname);
-  }catch(e){setStatus('分享链接解析失败：'+e.message,true)}
+  sh.onclick=()=>openShareDialog();
 }
 function renderFaction() {
   const base = BuilderLibrary.faction(activeRecord.factionId, data);
@@ -385,38 +353,11 @@ function isMercenaryUnit(u) {
   return (u.factions || []).some((f) => f && (f.tierPools || []).includes("mercenary"));
 }
 
-function commandAvailable(cmd) {
-  if (!cmd || cmd.hidden) return false;
-  if (RulesCore.commandUnitRequirements(cmd, army, data.units, data.defs).some(g => !g.met)) return false;
-  const facs = cmd.factions || [];
-  const armyId = Number(army.armyId);
-  const parent = (data.defs.armies || []).find((a) => a.id === armyId) ? null : null;
-  if (facs.length && !facs.includes(armyId)) {
-    const bf = (data.pkg.battleForces || {})[String(armyId)];
-    const parentName = bf && bf.parentFaction;
-    const parentArmy = parentName
-      ? (data.defs.armies || []).find(
-          (a) => a.name && (a.name.en === parentName || a.name.zh === parentName),
-        )
-      : null;
-    if (!(parentArmy && facs.includes(parentArmy.id))) return false;
-  }
-  const units = (army.units || []).map((i) => data.units[i.unitId]).filter(Boolean);
-  if (cmd.mercenary && !units.some(isMercenaryUnit)) return false;
-  if (cmd.condition) {
-    const preds = data.pkg.predicates || {};
-    const ok = units.some(
-      (u) => RulesCore.evaluate(cmd.condition, RulesCore.unitContext(u), preds) === true,
-    );
-    if (!ok) return false;
-  }
-  const unlocks = (cmd.unlockedBy || []).filter((x) => x && x.propertyName === "units");
-  if (unlocks.length) {
-    const hit = unlocks.some((x) => units.some((u) => unitMatchesUnlock(x, u)));
-    if (!hit) return false;
-  }
-  return true;
+let commandQuery = null;
+function commandResult(cmd) {
+  return RulesCore.commandEligibility(cmd,army,data,commandQuery || undefined);
 }
+function commandAvailable(cmd) { return !!cmd && commandResult(cmd).ok; }
 
 function commandSlotPips() {
   const hand = BuilderLibrary.configuration(army, data).rules.commandHand || [];
@@ -436,7 +377,7 @@ function ownerLabel(cmd) {
   if (cmd.owner && String(cmd.owner).toLowerCase() === "generic") return "通用";
   if (cmd.owner) return cmd.owner;
   const armies = (data.defs.armies || []).map((a) => a.id);
-  const facs = cmd.factions || [];
+  const facs = cmd.requirements ? [...new Set(cmd.requirements.any.flatMap(g=>g.all.filter(c=>["armyFaction","battleForce"].includes(c.type)).flatMap(c=>c.values)))] : cmd.factions || [];
   if (armies.length && armies.every((id) => facs.includes(id))) return "通用";
   const names = facs.map((id) => {
     const a = (data.defs.armies || []).find((x) => x.id === id);
@@ -507,6 +448,7 @@ function render() {
   data = RulesCore.resolveArmyData(army,data);
   UpgradeFaces.normalizeArmy(army, data);
   army.mode = BuilderLibrary.modeForPoints(army.pointsLimit);
+  commandQuery = RulesCore.commandContext(army,data);
   const report = RulesCore.validateArmy(army, data);
   invalidUnitIds = invalidMarks(report).units;
   renderFaction();
@@ -601,9 +543,7 @@ function computeItemState(card) {
       ? {
           kind: "blocked",
           label: "不满足要求",
-          reason: RulesCore.commandUnitRequirements(card, army, data.units, data.defs).some(g => !g.met)
-            ? "还需加入：" + RulesCore.commandUnitRequirements(card, army, data.units, data.defs).filter(g => !g.met).map(g => g.label).join("、")
-            : "当前军队或在场单位不满足此卡的使用条件。",
+          reason: commandResult(card).reason,
           ok: false,
         }
       : chosen
@@ -620,6 +560,7 @@ function computeItemState(card) {
 function choose(card) {
   // Re-check current state, rather than trusting a previously rendered button.
   stateCache.clear();
+  commandQuery = null;
   if (browser.mode !== 'upgrades' && !computeItemState(card).ok) return;
   if (browser.mode === "units") {
     const result = BuilderModel.addUnit(army, data, card.id, uid, browser.rank);

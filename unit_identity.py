@@ -27,6 +27,10 @@ def rewrite_references(value, old_id, new_id):
             result['value'] = new_id
         elif isinstance(target, list):
             result['value'] = [new_id if v == old_id else v for v in target]
+    if value.get('type') == 'unit' and isinstance(value.get('all'), list):
+        for item in result['all']:
+            if item.get('field') == 'id':
+                item['values'] = [new_id if v == old_id else v for v in item.get('values', [])]
     return result
 
 

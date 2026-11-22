@@ -138,7 +138,7 @@ test('224 commands, native/TTS roundtrips and Python validation use the same ide
   army.commandIds=['over-the-top','in-the-trenches','creeping-barrage'];
   for(const [index,id] of army.commandIds.entries()) {
     const c=data.defs.commands.find(c=>c.id===id);
-    assert.equal(c.pips,index+1);assert.deepEqual(c.factions,[27]);assert(!c.hidden);
+    assert.equal(c.pips,index+1);assert.deepEqual(c.requirements,{any:[{all:[{type:'battleForce',values:[27]}]}]});assert(!c.hidden);
     assert(c.description.zh.length>0);
   }
   assert(!report(army).issues.some(i=>i.code==='command_faction'));

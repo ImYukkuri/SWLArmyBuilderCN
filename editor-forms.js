@@ -363,5 +363,37 @@ window.EditorForms = (() => {
     draw();
     return root;
   }
-  return { stats, weapons, icon };
+  function membershipCounting(membership, change) {
+    const box = el('div', null, 'membership-counting');
+    const flags = el('div', null, 'rowtools');
+    const checkbox = (label, checked, update) => {
+      const row = el('label', null, 'checkbox-chip'), control = el('input');
+      control.type = 'checkbox'; control.checked = checked;
+      control.onchange = () => update(control.checked);
+      row.append(control, el('span', label)); return row;
+    };
+    const setCounting = (key, enabled) => {
+      const counting = {...membership.tierCounting};
+      if (enabled) counting[key] = true; else delete counting[key];
+      if (Object.keys(counting).length) membership.tierCounting = counting;
+      else delete membership.tierCounting;
+    };
+    function draw() {
+      flags.replaceChildren();
+      flags.append(checkbox('按雇佣兵编入', (membership.tierPools || []).includes('mercenary'), enabled => {
+        const pools = (membership.tierPools || []).filter(p => p !== 'mercenary');
+        if (enabled) pools.push('mercenary');
+        if (pools.length) membership.tierPools = pools; else delete membership.tierPools;
+        setCounting('ignoreMinimum', enabled);
+        change(); draw();
+      }), checkbox('不计军阶最低数量', membership.tierCounting?.ignoreMinimum === true, enabled => {
+        setCounting('ignoreMinimum', enabled); change();
+      }), checkbox('不计军阶上限', membership.tierCounting?.ignoreMaximum === true, enabled => {
+        setCounting('ignoreMaximum', enabled); change();
+      }));
+    }
+    box.append(flags, el('small', '仅作用于本条军队；勾选雇佣兵时同时设为不计军阶最低数量。', 'hint'));
+    draw(); return box;
+  }
+  return { stats, weapons, icon, membershipCounting };
 })();

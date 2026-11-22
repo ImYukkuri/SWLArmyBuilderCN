@@ -75,7 +75,9 @@ function referenceTable(key,path){
 function lookup(table,id){return mappings?.definitions?.[table]?.find(x=>x.id===id)}
 function arrayDefault(key){if(key==='weapons')return {name:{en:'New Weapon',zh:''},range:{min:null,max:null},dice:{red:null,black:null,white:null},keywords:[]};if(key==='keywords')return {id:'jump',value:null,parameter:null,action:'none'};if(key==='factions')return {id:1,rankId:2};if(key==='affiliationIds')return '1';if(key==='upgradeSlots')return 1;if(key==='conditionalUpgradeSlots')return {id:1,upgradeId:mappings.definitions.upgrades[0]?.id||null};return ''}
 function objectForm(object,path=[],container){
+ const membership=path[0]==='factions'&&path.length===2;
  for(const [key,value]of Object.entries(object)){
+  if(membership&&['tierPools','tierCounting'].includes(key))continue;
   if(['equipUpgradeIds','equipSlotIds'].includes(key)&&path.length===0)continue;
   if(['parameterRef','parameterRefs'].includes(key)&&path.includes('keywords'))continue;
   if(path.length===0&&['unitCategoryId','unitSubtypeId','nameIdentityId'].includes(key))continue;
@@ -117,6 +119,7 @@ function objectForm(object,path=[],container){
    const box=el('details');box.open=['name','title','stats','review'].includes(key)||path[0]==='weapons';box.append(el('summary',labels[key]||key));objectForm(value,p,box);container.append(box);
   }else container.append(formField(key,value,p));
  }
+ if(membership)container.append(EditorForms.membershipCounting(object,setDirty));
 }
 function renderRules(){ConditionEditor.render(document.querySelector('#condition-editor'),draft.restrictions||(draft.restrictions={}),mappings.definitions,()=>setDirty(),renderRules);RuleEditor.render(document.querySelector('#unit-rules'),draft.rules||(draft.rules={}),mappings.definitions,()=>{setDirty()},{kind:'units',usage:draft.usage||'army_unit'});}
 function renderEquip(){

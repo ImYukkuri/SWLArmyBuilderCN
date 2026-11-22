@@ -1,7 +1,7 @@
 {
   "schema": "swl-upgrades/v1",
   "referenceVersion": "2026.11.04.0",
-  "updatedAt": "2026-11-20T16:57:51.654270+00:00",
+  "updatedAt": "2026-11-22T10:39:22.306611+00:00",
   "cards": [
     {
       "id": "21b-medical-droid",
@@ -43,7 +43,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/21b-medical-droid.webp"
+        "front": "assets/upgrade-cards/21b-medical-droid.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/21b-medical-droid-bb0599dadc76.webp"
       },
       "rules": {
         "requiresTier": [
@@ -165,7 +166,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/aa5-heavy-laser.webp"
+        "front": "assets/upgrade-cards/aa5-heavy-laser.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/aa5-heavy-laser-5337cecc6f8f.webp"
       },
       "rules": {
         "availableIn": [
@@ -273,7 +275,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/aa5-quad.webp"
+        "front": "assets/upgrade-cards/aa5-quad.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/aa5-quad-fd634a956f21.webp"
       },
       "rules": {
         "availableIn": [
@@ -371,7 +374,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/aayla.webp"
+        "front": "assets/upgrade-cards/aayla.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/aayla-f954df9893f4.webp"
       },
       "rules": {
         "availableIn": [
@@ -504,7 +508,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/academy-trained.webp"
+        "front": "assets/upgrade-cards/academy-trained.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/academy-trained-c3e1233a58cd.webp"
       },
       "rules": {
         "availableIn": [
@@ -625,7 +630,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/adaptive-combat-network.webp"
+        "front": "assets/upgrade-cards/adaptive-combat-network.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/adaptive-combat-network-9850a9bf00f8.webp"
       },
       "rules": {
         "slotTypes": [
@@ -717,7 +723,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/agile-climber.webp"
+        "front": "assets/upgrade-cards/agile-climber.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/agile-climber-14ee0594b161.webp"
       },
       "rules": {
         "slotTypes": [
@@ -838,7 +845,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/airspeeder-buzzer.webp"
+        "front": "assets/upgrade-cards/airspeeder-buzzer.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/airspeeder-buzzer-e929ce300a4d.webp"
       },
       "rules": {
         "availableIn": [
@@ -951,7 +959,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/airspeeder-harpoon.webp"
+        "front": "assets/upgrade-cards/airspeeder-harpoon.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/airspeeder-harpoon-cf958e0dd2a4.webp"
       },
       "rules": {
         "availableIn": [
@@ -1043,7 +1052,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/annul.webp"
+        "front": "assets/upgrade-cards/annul.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/annul-33319c8fddba.webp"
       },
       "rules": {
         "slotTypes": [
@@ -1136,7 +1146,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/arc-dc15.webp"
+        "front": "assets/upgrade-cards/arc-dc15.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/arc-dc15-970fd8d84817.webp"
       },
       "rules": {
         "availableIn": [
@@ -1268,7 +1279,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/armament-din-djarin-rifle.webp"
+        "front": "assets/upgrade-cards/armament-din-djarin-rifle.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/armament-din-djarin-rifle-b612f84dfe87.webp"
       },
       "rules": {
         "availableIn": [
@@ -1395,7 +1407,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/armament-din-djarin-spear.webp"
+        "front": "assets/upgrade-cards/armament-din-djarin-spear.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/armament-din-djarin-spear-f81436ca6b5e.webp"
       },
       "rules": {
         "availableIn": [
@@ -1538,7 +1551,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/armament-electrogauntlets.webp"
+        "front": "assets/upgrade-cards/armament-electrogauntlets.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/armament-electrogauntlets-9ae487460b7a.webp"
       },
       "rules": {
         "availableIn": [
@@ -1665,7 +1679,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/armament-maul-darksaber.webp"
+        "front": "assets/upgrade-cards/armament-maul-darksaber.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/armament-maul-darksaber-15733e4b8e10.webp"
       },
       "rules": {
         "availableIn": [
@@ -1817,7 +1832,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/armament-saxon-jetpack-rocket.webp"
+        "front": "assets/upgrade-cards/armament-saxon-jetpack-rocket.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/armament-saxon-jetpack-rocket-66627401208c.webp"
       },
       "rules": {
         "availableIn": [
@@ -1943,7 +1959,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/armament-saxon-rifle.webp"
+        "front": "assets/upgrade-cards/armament-saxon-rifle.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/armament-saxon-rifle-e18b5f75abb7.webp"
       },
       "rules": {
         "availableIn": [
@@ -2099,7 +2116,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/asajj-heavy.webp"
+        "front": "assets/upgrade-cards/asajj-heavy.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/asajj-heavy-346ff60bc571.webp"
       },
       "rules": {
         "availableIn": [
@@ -2255,7 +2273,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/at-st-mortar.webp"
+        "front": "assets/upgrade-cards/at-st-mortar.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/at-st-mortar-c7e7f32d8d1c.webp"
       },
       "rules": {
         "availableIn": [
@@ -2364,7 +2383,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/at-st-twin-light.webp"
+        "front": "assets/upgrade-cards/at-st-twin-light.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/at-st-twin-light-47dc869d36dc.webp"
       },
       "rules": {
         "availableIn": [
@@ -2476,7 +2496,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/atrt-flame.webp"
+        "front": "assets/upgrade-cards/atrt-flame.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/atrt-flame-ff25760afd79.webp"
       },
       "rules": {
         "availableIn": [
@@ -2588,7 +2609,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/atrt-laser-cannon.webp"
+        "front": "assets/upgrade-cards/atrt-laser-cannon.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/atrt-laser-cannon-b7fc4f52fa4c.webp"
       },
       "rules": {
         "availableIn": [
@@ -2696,7 +2718,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/atrt-rotary.webp"
+        "front": "assets/upgrade-cards/atrt-rotary.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/atrt-rotary-d67070b706f5.webp"
       },
       "rules": {
         "availableIn": [
@@ -2798,7 +2821,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/axe-woves.webp"
+        "front": "assets/upgrade-cards/axe-woves.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/axe-woves-2e560f63ccbf.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -2947,7 +2971,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/b1-e5c.webp"
+        "front": "assets/upgrade-cards/b1-e5c.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/b1-e5c-71b636dc1f06.webp"
       },
       "rules": {
         "availableIn": [
@@ -3060,7 +3085,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/b1-e60r.webp"
+        "front": "assets/upgrade-cards/b1-e60r.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/b1-e60r-c28242343852.webp"
       },
       "rules": {
         "availableIn": [
@@ -3148,7 +3174,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/b1-miniature.webp"
+        "front": "assets/upgrade-cards/b1-miniature.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/b1-miniature-08290c4056fa.webp"
       },
       "rules": {
         "availableIn": [
@@ -3256,7 +3283,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/b1-oom.webp"
+        "front": "assets/upgrade-cards/b1-oom.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/b1-oom-da95036c0050.webp"
       },
       "rules": {
         "availableIn": [
@@ -3376,7 +3404,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/b1-radiation.webp"
+        "front": "assets/upgrade-cards/b1-radiation.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/b1-radiation-0dbbc07359d7.webp"
       },
       "rules": {
         "availableIn": [
@@ -3471,7 +3500,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/b1-security.webp"
+        "front": "assets/upgrade-cards/b1-security.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/b1-security-aa79cb46eaee.webp"
       },
       "rules": {
         "availableIn": [
@@ -3590,7 +3620,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/b1-sniper.webp"
+        "front": "assets/upgrade-cards/b1-sniper.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/b1-sniper-3d15e7ca32c8.webp"
       },
       "rules": {
         "availableIn": [
@@ -3694,7 +3725,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/b1-squad.webp"
+        "front": "assets/upgrade-cards/b1-squad.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/b1-squad-c02aaf6e5ccf.webp"
       },
       "rules": {
         "availableIn": [
@@ -3818,7 +3850,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/b2-acm.webp"
+        "front": "assets/upgrade-cards/b2-acm.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/b2-acm-93455ae44609.webp"
       },
       "rules": {
         "availableIn": [
@@ -3932,7 +3965,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/b2-anti-infantry-missile.webp"
+        "front": "assets/upgrade-cards/b2-anti-infantry-missile.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/b2-anti-infantry-missile-3ad88ae51a2f.webp"
       },
       "rules": {
         "availableIn": [
@@ -4035,7 +4069,8 @@
           }
         ],
         "assets": {
-          "front": "assets/upgrade-cards/b2-anti-infantry-missile-flipside.webp"
+          "front": "assets/upgrade-cards/b2-anti-infantry-missile-flipside.webp",
+          "thumbnail": "assets/thumbnails/upgrade-cards/b2-anti-infantry-missile-flipside-3449539f91d4.webp"
         },
         "legacyId": "b2-anti-infantry-missile-flipside",
         "source": {
@@ -4111,7 +4146,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/b2-ha.webp"
+        "front": "assets/upgrade-cards/b2-ha.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/b2-ha-3e47bebfca43.webp"
       },
       "rules": {
         "availableIn": [
@@ -4226,7 +4262,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/b2-ha-rocket.webp"
+        "front": "assets/upgrade-cards/b2-ha-rocket.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/b2-ha-rocket-2be0b87dfe53.webp"
       },
       "rules": {
         "availableIn": [
@@ -4313,7 +4350,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/b2-miniature.webp"
+        "front": "assets/upgrade-cards/b2-miniature.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/b2-miniature-7a9dbff91c75.webp"
       },
       "rules": {
         "availableIn": [
@@ -4411,7 +4449,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/b2-rocket-mini.webp"
+        "front": "assets/upgrade-cards/b2-rocket-mini.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/b2-rocket-mini-3f89c59867a6.webp"
       },
       "rules": {
         "availableIn": [
@@ -4523,7 +4562,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/b2-squad.webp"
+        "front": "assets/upgrade-cards/b2-squad.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/b2-squad-929fd17d8d7f.webp"
       },
       "rules": {
         "availableIn": [
@@ -4638,7 +4678,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/backworld-medic.webp"
+        "front": "assets/upgrade-cards/backworld-medic.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/backworld-medic-8f8c259521f5.webp"
       },
       "rules": {
         "availableIn": [
@@ -4762,7 +4803,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/barc-ion.webp"
+        "front": "assets/upgrade-cards/barc-ion.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/barc-ion-180ba88a0359.webp"
       },
       "rules": {
         "availableIn": [
@@ -4872,7 +4914,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/barc-rps6.webp"
+        "front": "assets/upgrade-cards/barc-rps6.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/barc-rps6-03ab4548d1f9.webp"
       },
       "rules": {
         "availableIn": [
@@ -4982,7 +5025,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/barc-twinlaser.webp"
+        "front": "assets/upgrade-cards/barc-twinlaser.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/barc-twinlaser-a450b86edafa.webp"
       },
       "rules": {
         "availableIn": [
@@ -5075,7 +5119,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/baron-rudor.webp"
+        "front": "assets/upgrade-cards/baron-rudor.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/baron-rudor-c83dfc5e395d.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -5192,7 +5237,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/battlemaster.webp"
+        "front": "assets/upgrade-cards/battlemaster.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/battlemaster-8bbd300aabdd.webp"
       },
       "rules": {
         "availableIn": [
@@ -5313,7 +5359,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/battlemind.webp"
+        "front": "assets/upgrade-cards/battlemind.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/battlemind-9433f0d7a1a6.webp"
       },
       "rules": {
         "slotTypes": [
@@ -5410,7 +5457,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/battleshield-1.webp"
+        "front": "assets/upgrade-cards/battleshield-1.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/battleshield-1-0b6175f05435.webp"
       },
       "rules": {
         "availableIn": [
@@ -5513,7 +5561,8 @@
           }
         ],
         "assets": {
-          "front": "assets/upgrade-cards/battleshield-2.webp"
+          "front": "assets/upgrade-cards/battleshield-2.webp",
+          "thumbnail": "assets/thumbnails/upgrade-cards/battleshield-2-deb3b8dd7e1d.webp"
         },
         "legacyId": "battleshield-2",
         "source": {
@@ -5571,7 +5620,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/battletank-oom-droid.webp"
+        "front": "assets/upgrade-cards/battletank-oom-droid.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/battletank-oom-droid-fa5bcc4d5cc2.webp"
       },
       "rules": {
         "availableIn": [
@@ -5698,7 +5748,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/beskad-duelist-clan.webp"
+        "front": "assets/upgrade-cards/beskad-duelist-clan.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/beskad-duelist-clan-5043aa2aab2b.webp"
       },
       "rules": {
         "availableIn": [
@@ -5791,7 +5842,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/black-sun-crew.webp"
+        "front": "assets/upgrade-cards/black-sun-crew.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/black-sun-crew-ef86f2251f9f.webp"
       },
       "rules": {
         "availableIn": [
@@ -5917,7 +5969,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/bo-katan-darksaber.webp"
+        "front": "assets/upgrade-cards/bo-katan-darksaber.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/bo-katan-darksaber-285248131ee8.webp"
       },
       "rules": {
         "availableIn": [
@@ -6076,7 +6129,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/bo-katan-kryze.webp"
+        "front": "assets/upgrade-cards/bo-katan-kryze.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/bo-katan-kryze-ad81fbc2eb15.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -6223,7 +6277,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/bowcaster.webp"
+        "front": "assets/upgrade-cards/bowcaster.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/bowcaster-8f842fb2ce9a.webp"
       },
       "rules": {
         "availableIn": [
@@ -6349,7 +6404,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/bx-gas.webp"
+        "front": "assets/upgrade-cards/bx-gas.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/bx-gas-3f9d8244d7b7.webp"
       },
       "rules": {
         "availableIn": [
@@ -6452,7 +6508,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/bx-shield.webp"
+        "front": "assets/upgrade-cards/bx-shield.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/bx-shield-5cc375f75d7e.webp"
       },
       "rules": {
         "availableIn": [
@@ -6587,7 +6644,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/bx-sniper.webp"
+        "front": "assets/upgrade-cards/bx-sniper.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/bx-sniper-eff903d9be2e.webp"
       },
       "rules": {
         "availableIn": [
@@ -6701,7 +6759,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/bx-vibro.webp"
+        "front": "assets/upgrade-cards/bx-vibro.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/bx-vibro-3c36254d07f8.webp"
       },
       "rules": {
         "availableIn": [
@@ -6836,7 +6895,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/cassian-a280-pistol.webp"
+        "front": "assets/upgrade-cards/cassian-a280-pistol.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/cassian-a280-pistol-bd3649bc58a1.webp"
       },
       "rules": {
         "availableIn": [
@@ -6951,7 +7011,8 @@
           }
         ],
         "assets": {
-          "front": "assets/upgrade-cards/cassian-a280-sniper.webp"
+          "front": "assets/upgrade-cards/cassian-a280-sniper.webp",
+          "thumbnail": "assets/thumbnails/upgrade-cards/cassian-a280-sniper-c06830a3740c.webp"
         },
         "legacyId": "cassian-a280-sniper",
         "source": {
@@ -7042,14 +7103,12 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/cassian-andor.webp"
+        "front": "assets/upgrade-cards/cassian-andor.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/cassian-andor-b5d422d8e7d7.webp"
       },
       "rules": {
         "unavailableWith": [
           "Cassian Andor"
-        ],
-        "requiresTier": [
-          2
         ],
         "unique": true,
         "limit": 1,
@@ -7195,7 +7254,8 @@
           }
         ],
         "assets": {
-          "front": "assets/upgrade-cards/cassian-andor-2.webp"
+          "front": "assets/upgrade-cards/cassian-andor-2.webp",
+          "thumbnail": "assets/thumbnails/upgrade-cards/cassian-andor-2-11ed5b9d23ce.webp"
         },
         "legacyId": "cassian-andor-2",
         "source": {
@@ -7265,7 +7325,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/caught-in-a-web.webp"
+        "front": "assets/upgrade-cards/caught-in-a-web.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/caught-in-a-web-350cfb962b4e.webp"
       },
       "rules": {
         "availableIn": [
@@ -7374,7 +7435,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/champion-of-the-watch.webp"
+        "front": "assets/upgrade-cards/champion-of-the-watch.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/champion-of-the-watch-19cbf48f083e.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -7554,7 +7616,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/chewbacca-heavy.webp"
+        "front": "assets/upgrade-cards/chewbacca-heavy.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/chewbacca-heavy-2cb10b977a47.webp"
       },
       "rules": {
         "availableIn": [
@@ -7672,7 +7735,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/children-of-the-watch.webp"
+        "front": "assets/upgrade-cards/children-of-the-watch.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/children-of-the-watch-ec73882e64b2.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -7794,7 +7858,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/cis-aqua-miniature.webp"
+        "front": "assets/upgrade-cards/cis-aqua-miniature.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/cis-aqua-miniature-13a109b80957.webp"
       },
       "rules": {
         "availableIn": [
@@ -7904,7 +7969,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/cis-crab-laser.webp"
+        "front": "assets/upgrade-cards/cis-crab-laser.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/cis-crab-laser-d80ee9b32917.webp"
       },
       "rules": {
         "availableIn": [
@@ -8009,7 +8075,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/cis-crab-twin.webp"
+        "front": "assets/upgrade-cards/cis-crab-twin.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/cis-crab-twin-85732b7330f0.webp"
       },
       "rules": {
         "availableIn": [
@@ -8104,7 +8171,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/clan-kryze.webp"
+        "front": "assets/upgrade-cards/clan-kryze.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/clan-kryze-2821856374ae.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -8209,7 +8277,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/clan-saxon.webp"
+        "front": "assets/upgrade-cards/clan-saxon.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/clan-saxon-f1d7f6c633da.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -8324,7 +8393,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/clan-wren.webp"
+        "front": "assets/upgrade-cards/clan-wren.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/clan-wren-30c1b5e097c0.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -8449,7 +8519,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/clone-boil.webp"
+        "front": "assets/upgrade-cards/clone-boil.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/clone-boil-eac073d2fa46.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -8585,7 +8656,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/clone-captain.webp"
+        "front": "assets/upgrade-cards/clone-captain.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/clone-captain-b99bf00aa133.webp"
       },
       "rules": {
         "unique": false,
@@ -8692,7 +8764,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/clone-commander.webp"
+        "front": "assets/upgrade-cards/clone-commander.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/clone-commander-0935fbc6d018.webp"
       },
       "rules": {
         "unique": false,
@@ -8791,7 +8864,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/clone-comms.webp"
+        "front": "assets/upgrade-cards/clone-comms.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/clone-comms-23a267998d01.webp"
       },
       "rules": {
         "requiresTier": [
@@ -8932,7 +9006,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/clone-dp23.webp"
+        "front": "assets/upgrade-cards/clone-dp23.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/clone-dp23-776855c504d6.webp"
       },
       "rules": {
         "availableIn": [
@@ -9029,7 +9104,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/clone-engineer.webp"
+        "front": "assets/upgrade-cards/clone-engineer.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/clone-engineer-d968b09b1acb.webp"
       },
       "rules": {
         "requiresTier": [
@@ -9157,7 +9233,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/clone-fox.webp"
+        "front": "assets/upgrade-cards/clone-fox.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/clone-fox-9491ac7c9633.webp"
       },
       "rules": {
         "availableIn": [
@@ -9290,7 +9367,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/clone-marksmen-miniature.webp"
+        "front": "assets/upgrade-cards/clone-marksmen-miniature.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/clone-marksmen-miniature-15694afa2f62.webp"
       },
       "rules": {
         "availableIn": [
@@ -9402,7 +9480,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/clone-marksmen-squad.webp"
+        "front": "assets/upgrade-cards/clone-marksmen-squad.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/clone-marksmen-squad-5e2cf74e7311.webp"
       },
       "rules": {
         "availableIn": [
@@ -9518,7 +9597,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/clone-medic.webp"
+        "front": "assets/upgrade-cards/clone-medic.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/clone-medic-03fb88ffd97f.webp"
       },
       "rules": {
         "unique": false,
@@ -9601,7 +9681,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/clone-miniature.webp"
+        "front": "assets/upgrade-cards/clone-miniature.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/clone-miniature-b08441e0afa3.webp"
       },
       "rules": {
         "availableIn": [
@@ -9730,7 +9811,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/clone-mortar.webp"
+        "front": "assets/upgrade-cards/clone-mortar.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/clone-mortar-555a5976e325.webp"
       },
       "rules": {
         "availableIn": [
@@ -9858,7 +9940,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/clone-rex.webp"
+        "front": "assets/upgrade-cards/clone-rex.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/clone-rex-eaa3e747558d.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -10008,7 +10091,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/clone-rocket.webp"
+        "front": "assets/upgrade-cards/clone-rocket.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/clone-rocket-a994da0864bb.webp"
       },
       "rules": {
         "availableIn": [
@@ -10110,7 +10194,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/clone-shock-pilot.webp"
+        "front": "assets/upgrade-cards/clone-shock-pilot.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/clone-shock-pilot-414daadcce05.webp"
       },
       "rules": {
         "requiresTier": [
@@ -10214,7 +10299,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/clone-specialist.webp"
+        "front": "assets/upgrade-cards/clone-specialist.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/clone-specialist-6df3a3e42de6.webp"
       },
       "rules": {
         "availableIn": [
@@ -10346,7 +10432,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/clone-squad.webp"
+        "front": "assets/upgrade-cards/clone-squad.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/clone-squad-b5a0da0afa3c.webp"
       },
       "rules": {
         "availableIn": [
@@ -10459,7 +10546,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/clone-veteran-pilot.webp"
+        "front": "assets/upgrade-cards/clone-veteran-pilot.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/clone-veteran-pilot-1351eec5aa3c.webp"
       },
       "rules": {
         "requiresTier": [
@@ -10576,7 +10664,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/clone-z6.webp"
+        "front": "assets/upgrade-cards/clone-z6.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/clone-z6-da11d4ac6964.webp"
       },
       "rules": {
         "availableIn": [
@@ -10699,7 +10788,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/cody-squad.webp"
+        "front": "assets/upgrade-cards/cody-squad.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/cody-squad-3efc4c2da951.webp"
       },
       "rules": {
         "availableIn": [
@@ -10826,7 +10916,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/combat-armor.webp"
+        "front": "assets/upgrade-cards/combat-armor.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/combat-armor-7868a5b88d53.webp"
       },
       "rules": {
         "availableIn": [
@@ -10927,7 +11018,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/combat-armor-rebel.webp"
+        "front": "assets/upgrade-cards/combat-armor-rebel.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/combat-armor-rebel-8e30aba282bf.webp"
       },
       "rules": {
         "availableIn": [
@@ -11031,7 +11123,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/command-and-control-uplink.webp"
+        "front": "assets/upgrade-cards/command-and-control-uplink.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/command-and-control-uplink-a0187b2b4e49.webp"
       },
       "rules": {
         "availableIn": [
@@ -11151,7 +11244,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/command-improvised.webp"
+        "front": "assets/upgrade-cards/command-improvised.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/command-improvised-c509d2559ee1.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -11252,7 +11346,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/command-inspiring.webp"
+        "front": "assets/upgrade-cards/command-inspiring.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/command-inspiring-1e95556c8c5b.webp"
       },
       "rules": {
         "unique": false,
@@ -11327,7 +11422,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/command-lead.webp"
+        "front": "assets/upgrade-cards/command-lead.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/command-lead-8dbdfbbf2ed4.webp"
       },
       "rules": {
         "unique": false,
@@ -11411,7 +11507,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/command-strict.webp"
+        "front": "assets/upgrade-cards/command-strict.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/command-strict-01cfca9fbc4c.webp"
       },
       "rules": {
         "unique": false,
@@ -11486,7 +11583,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/command-trusted-agent.webp"
+        "front": "assets/upgrade-cards/command-trusted-agent.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/command-trusted-agent-9ec7a0fa09b8.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -11578,7 +11676,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/command-underworld.webp"
+        "front": "assets/upgrade-cards/command-underworld.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/command-underworld-968af23a2758.webp"
       },
       "rules": {
         "addProperties": [
@@ -11665,7 +11764,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/command-vigilance.webp"
+        "front": "assets/upgrade-cards/command-vigilance.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/command-vigilance-d561f37dace5.webp"
       },
       "rules": {
         "unique": false,
@@ -11770,7 +11870,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/commandos-saboteur.webp"
+        "front": "assets/upgrade-cards/commandos-saboteur.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/commandos-saboteur-7e1761cc843f.webp"
       },
       "rules": {
         "availableIn": [
@@ -11894,7 +11995,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/commandos-sniper.webp"
+        "front": "assets/upgrade-cards/commandos-sniper.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/commandos-sniper-dde3c2aedbba.webp"
       },
       "rules": {
         "availableIn": [
@@ -12020,7 +12122,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/commandos-sniper-a.webp"
+        "front": "assets/upgrade-cards/commandos-sniper-a.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/commandos-sniper-a-b9769232ed1d.webp"
       },
       "rules": {
         "availableIn": [
@@ -12134,7 +12237,8 @@
           }
         ],
         "assets": {
-          "front": "assets/upgrade-cards/commandos-sniper-b.webp"
+          "front": "assets/upgrade-cards/commandos-sniper-b.webp",
+          "thumbnail": "assets/thumbnails/upgrade-cards/commandos-sniper-b-9243211dcdb6.webp"
         },
         "legacyId": "commandos-sniper-b",
         "source": {
@@ -12188,7 +12292,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/comms-control-array.webp"
+        "front": "assets/upgrade-cards/comms-control-array.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/comms-control-array-be74afd74cdd.webp"
       },
       "rules": {
         "unique": false,
@@ -12289,7 +12394,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/comms-emergency.webp"
+        "front": "assets/upgrade-cards/comms-emergency.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/comms-emergency-2a74ece25b84.webp"
       },
       "rules": {
         "unique": false,
@@ -12363,7 +12469,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/comms-hacked.webp"
+        "front": "assets/upgrade-cards/comms-hacked.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/comms-hacked-c6c1b76081f3.webp"
       },
       "rules": {
         "unique": false,
@@ -12437,7 +12544,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/comms-hq.webp"
+        "front": "assets/upgrade-cards/comms-hq.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/comms-hq-83f50b8a24bf.webp"
       },
       "rules": {
         "unique": false,
@@ -12511,7 +12619,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/comms-jammer.webp"
+        "front": "assets/upgrade-cards/comms-jammer.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/comms-jammer-2ecb9dfa73af.webp"
       },
       "rules": {
         "unique": false,
@@ -12588,7 +12697,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/comms-linked-targeting.webp"
+        "front": "assets/upgrade-cards/comms-linked-targeting.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/comms-linked-targeting-f0d365f041b1.webp"
       },
       "rules": {
         "unique": false,
@@ -12712,7 +12822,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/comms-onboard.webp"
+        "front": "assets/upgrade-cards/comms-onboard.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/comms-onboard-472a447181c6.webp"
       },
       "rules": {
         "unique": false,
@@ -12826,7 +12937,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/comms-spotter-uplink.webp"
+        "front": "assets/upgrade-cards/comms-spotter-uplink.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/comms-spotter-uplink-47580d1ee02c.webp"
       },
       "rules": {
         "unique": false,
@@ -12919,7 +13031,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/cr-24-flame.webp"
+        "front": "assets/upgrade-cards/cr-24-flame.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/cr-24-flame-07a7fed2bdac.webp"
       },
       "rules": {
         "availableIn": [
@@ -13037,7 +13150,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/crew-door-gunner.webp"
+        "front": "assets/upgrade-cards/crew-door-gunner.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/crew-door-gunner-ea6c06f17db8.webp"
       },
       "rules": {
         "unique": false,
@@ -13174,7 +13288,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/crosshair.webp"
+        "front": "assets/upgrade-cards/crosshair.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/crosshair-666cccc23a96.webp"
       },
       "rules": {
         "availableIn": [
@@ -13295,7 +13410,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/dark-trooper-miniature.webp"
+        "front": "assets/upgrade-cards/dark-trooper-miniature.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/dark-trooper-miniature-407e53c70b9a.webp"
       },
       "rules": {
         "availableIn": [
@@ -13420,7 +13536,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/dc-15x-sniper.webp"
+        "front": "assets/upgrade-cards/dc-15x-sniper.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/dc-15x-sniper-6499ca8f0228.webp"
       },
       "rules": {
         "availableIn": [
@@ -13521,7 +13638,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/deadeye.webp"
+        "front": "assets/upgrade-cards/deadeye.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/deadeye-c65d4058ab7b.webp"
       },
       "rules": {
         "availableIn": [
@@ -13657,7 +13775,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/defend-in-depth.webp"
+        "front": "assets/upgrade-cards/defend-in-depth.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/defend-in-depth-d27ba9f398ba.webp"
       },
       "rules": {
         "availableIn": [
@@ -13821,7 +13940,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/del-meeko.webp"
+        "front": "assets/upgrade-cards/del-meeko.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/del-meeko-4922bd75b968.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -13963,7 +14083,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/din-djarin.webp"
+        "front": "assets/upgrade-cards/din-djarin.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/din-djarin-3030c39f7039.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -14112,7 +14233,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/din-djarin-darksaber.webp"
+        "front": "assets/upgrade-cards/din-djarin-darksaber.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/din-djarin-darksaber-bb85d654cdc9.webp"
       },
       "rules": {
         "availableIn": [
@@ -14275,7 +14397,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/dlt-19d.webp"
+        "front": "assets/upgrade-cards/dlt-19d.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/dlt-19d-e6c29231730d.webp"
       },
       "rules": {
         "availableIn": [
@@ -14444,7 +14567,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/dlt19x-scout.webp"
+        "front": "assets/upgrade-cards/dlt19x-scout.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/dlt19x-scout-a94a6491d3d2.webp"
       },
       "rules": {
         "availableIn": [
@@ -14573,7 +14697,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/double-bladed-lightsaber.webp"
+        "front": "assets/upgrade-cards/double-bladed-lightsaber.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/double-bladed-lightsaber-e98433d2c38a.webp"
       },
       "rules": {
         "availableIn": [
@@ -14713,7 +14838,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/dt-f16.webp"
+        "front": "assets/upgrade-cards/dt-f16.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/dt-f16-ca40b6359833.webp"
       },
       "rules": {
         "availableIn": [
@@ -14909,7 +15035,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/dual-armaments.webp"
+        "front": "assets/upgrade-cards/dual-armaments.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/dual-armaments-2165ea8e12b1.webp"
       },
       "rules": {
         "availableIn": [
@@ -15039,7 +15166,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/dw-3-grenade-launcher.webp"
+        "front": "assets/upgrade-cards/dw-3-grenade-launcher.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/dw-3-grenade-launcher-5885ed21530b.webp"
       },
       "rules": {
         "availableIn": [
@@ -15152,7 +15280,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/e-11d-focused-fire.webp"
+        "front": "assets/upgrade-cards/e-11d-focused-fire.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/e-11d-focused-fire-9dc808f9d6db.webp"
       },
       "rules": {
         "availableIn": [
@@ -15256,7 +15385,8 @@
           }
         ],
         "assets": {
-          "front": "assets/upgrade-cards/e-11d-grenade-launcher.webp"
+          "front": "assets/upgrade-cards/e-11d-grenade-launcher.webp",
+          "thumbnail": "assets/thumbnails/upgrade-cards/e-11d-grenade-launcher-cc425dae2a8b.webp"
         },
         "legacyId": "e-11d-grenade-launcher",
         "source": {
@@ -15314,7 +15444,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/e4-medical.webp"
+        "front": "assets/upgrade-cards/e4-medical.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/e4-medical-900b46ff36cf.webp"
       },
       "rules": {
         "unique": false,
@@ -15475,7 +15606,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/echo-arc.webp"
+        "front": "assets/upgrade-cards/echo-arc.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/echo-arc-a1bf8b48702a.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -15596,7 +15728,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/echo-bb.webp"
+        "front": "assets/upgrade-cards/echo-bb.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/echo-bb-5c901db92c65.webp"
       },
       "rules": {
         "availableIn": [
@@ -15716,7 +15849,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/ee-3-carbine.webp"
+        "front": "assets/upgrade-cards/ee-3-carbine.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/ee-3-carbine-06ee7a313504.webp"
       },
       "rules": {
         "availableIn": [
@@ -15848,7 +15982,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/electrostaff.webp"
+        "front": "assets/upgrade-cards/electrostaff.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/electrostaff-7dd9c368eeaa.webp"
       },
       "rules": {
         "availableIn": [
@@ -15970,7 +16105,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/electrostaff-pirate.webp"
+        "front": "assets/upgrade-cards/electrostaff-pirate.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/electrostaff-pirate-d5f3ea52a8e2.webp"
       },
       "rules": {
         "availableIn": [
@@ -16075,7 +16211,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/enhanced-combat-subroutines.webp"
+        "front": "assets/upgrade-cards/enhanced-combat-subroutines.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/enhanced-combat-subroutines-483b95638f4d.webp"
       },
       "rules": {
         "availableIn": [
@@ -16179,7 +16316,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/ewok-medicine.webp"
+        "front": "assets/upgrade-cards/ewok-medicine.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/ewok-medicine-3be5be47b23a.webp"
       },
       "rules": {
         "availableIn": [
@@ -16291,7 +16429,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/ewok-secret.webp"
+        "front": "assets/upgrade-cards/ewok-secret.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/ewok-secret-121854dc24aa.webp"
       },
       "rules": {
         "availableIn": [
@@ -16419,7 +16558,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/ewoks-axe.webp"
+        "front": "assets/upgrade-cards/ewoks-axe.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/ewoks-axe-f7d1c9b19c5e.webp"
       },
       "rules": {
         "availableIn": [
@@ -16525,7 +16665,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/ewoks-call-to-arms.webp"
+        "front": "assets/upgrade-cards/ewoks-call-to-arms.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/ewoks-call-to-arms-ad2b3a2c7bb3.webp"
       },
       "rules": {
         "unique": false,
@@ -16637,7 +16778,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/ewoks-curiosity.webp"
+        "front": "assets/upgrade-cards/ewoks-curiosity.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/ewoks-curiosity-c86c3a0cbe16.webp"
       },
       "rules": {
         "availableIn": [
@@ -16741,7 +16883,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/ewoks-dwellers.webp"
+        "front": "assets/upgrade-cards/ewoks-dwellers.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/ewoks-dwellers-2142c3e46aac.webp"
       },
       "rules": {
         "addProperties": [
@@ -16855,7 +16998,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/ewoks-onward.webp"
+        "front": "assets/upgrade-cards/ewoks-onward.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/ewoks-onward-20cc334fc1bd.webp"
       },
       "rules": {
         "availableIn": [
@@ -16973,7 +17117,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/ewoks-skirmish-squad.webp"
+        "front": "assets/upgrade-cards/ewoks-skirmish-squad.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/ewoks-skirmish-squad-6435a735170e.webp"
       },
       "rules": {
         "availableIn": [
@@ -17096,7 +17241,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/ewoks-slinger-squad.webp"
+        "front": "assets/upgrade-cards/ewoks-slinger-squad.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/ewoks-slinger-squad-e56682f55a8e.webp"
       },
       "rules": {
         "availableIn": [
@@ -17204,7 +17350,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/ewoks-trapper.webp"
+        "front": "assets/upgrade-cards/ewoks-trapper.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/ewoks-trapper-f8fb3f4a6c50.webp"
       },
       "rules": {
         "availableIn": [
@@ -17318,7 +17465,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/expanded-databanks.webp"
+        "front": "assets/upgrade-cards/expanded-databanks.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/expanded-databanks-a207bda9cd19.webp"
       },
       "rules": {
         "availableIn": [
@@ -17454,7 +17602,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/fifth-brother.webp"
+        "front": "assets/upgrade-cards/fifth-brother.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/fifth-brother-8b5848eea38c.webp"
       },
       "rules": {
         "availableIn": [
@@ -17560,7 +17709,7 @@
           "unitʼs attack dice."
         ],
         "zh": [
-          "另一支距离本单位{@icon.range-1}内的友方单位对本单位视线内的敌方单位进行远程攻击时，升级攻击单位的2枚攻击骰。"
+          "距离本单位{@icon.range-1}内的其他友方单位对本单位视线内的敌方单位进行远程攻击时，升级攻击单位的2枚攻击骰。"
         ]
       },
       "requirementsText": [],
@@ -17571,7 +17720,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/fire-control.webp"
+        "front": "assets/upgrade-cards/fire-control.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/fire-control-d1f9dd32a8a8.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -17660,7 +17810,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/first-sergeant-arbmab.webp"
+        "front": "assets/upgrade-cards/first-sergeant-arbmab.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/first-sergeant-arbmab-8db2537cf034.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -17814,7 +17965,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/fives.webp"
+        "front": "assets/upgrade-cards/fives.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/fives-5a71bbbbc46e.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -17960,7 +18112,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/flame-projector.webp"
+        "front": "assets/upgrade-cards/flame-projector.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/flame-projector-cf4b822593de.webp"
       },
       "rules": {
         "limit": 2,
@@ -18073,7 +18226,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/fleet-barrage.webp"
+        "front": "assets/upgrade-cards/fleet-barrage.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/fleet-barrage-688f39c11f81.webp"
       },
       "rules": {
         "availableIn": [
@@ -18183,7 +18337,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/fleet-scatter.webp"
+        "front": "assets/upgrade-cards/fleet-scatter.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/fleet-scatter-8c08d1044225.webp"
       },
       "rules": {
         "availableIn": [
@@ -18287,7 +18442,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/fleet-squad.webp"
+        "front": "assets/upgrade-cards/fleet-squad.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/fleet-squad-a51da09002f7.webp"
       },
       "rules": {
         "availableIn": [
@@ -18394,7 +18550,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/fleet-trooper.webp"
+        "front": "assets/upgrade-cards/fleet-trooper.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/fleet-trooper-8528a8a5aaaf.webp"
       },
       "rules": {
         "availableIn": [
@@ -18497,7 +18654,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/force-absorb.webp"
+        "front": "assets/upgrade-cards/force-absorb.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/force-absorb-e481e1e088b0.webp"
       },
       "rules": {
         "requiredDivisions": [
@@ -18589,7 +18747,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/force-adept.webp"
+        "front": "assets/upgrade-cards/force-adept.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/force-adept-60e439744574.webp"
       },
       "rules": {
         "limit": 2,
@@ -18705,7 +18864,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/force-agility.webp"
+        "front": "assets/upgrade-cards/force-agility.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/force-agility-50910cadf380.webp"
       },
       "rules": {
         "slotTypes": [
@@ -18778,7 +18938,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/force-anger.webp"
+        "front": "assets/upgrade-cards/force-anger.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/force-anger-31d70ee8e00e.webp"
       },
       "rules": {
         "requiredDivisions": [
@@ -18865,7 +19026,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/force-barrier.webp"
+        "front": "assets/upgrade-cards/force-barrier.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/force-barrier-e45b5b3168e0.webp"
       },
       "rules": {
         "unique": false,
@@ -18940,7 +19102,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/force-burst.webp"
+        "front": "assets/upgrade-cards/force-burst.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/force-burst-7cd0a7f644e7.webp"
       },
       "rules": {
         "unique": false,
@@ -19017,7 +19180,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/force-choke.webp"
+        "front": "assets/upgrade-cards/force-choke.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/force-choke-d81e390b7ea8.webp"
       },
       "rules": {
         "requiredDivisions": [
@@ -19109,7 +19273,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/force-clairvoyance.webp"
+        "front": "assets/upgrade-cards/force-clairvoyance.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/force-clairvoyance-a5837ff3ff9c.webp"
       },
       "rules": {
         "unique": false,
@@ -19191,7 +19356,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/force-despair.webp"
+        "front": "assets/upgrade-cards/force-despair.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/force-despair-326888b5d072.webp"
       },
       "rules": {
         "requiredDivisions": [
@@ -19284,7 +19450,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/force-drain.webp"
+        "front": "assets/upgrade-cards/force-drain.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/force-drain-e570e7896805.webp"
       },
       "rules": {
         "requiredDivisions": [
@@ -19372,7 +19539,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/force-enhanced-defense.webp"
+        "front": "assets/upgrade-cards/force-enhanced-defense.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/force-enhanced-defense-1da7b4a2b97e.webp"
       },
       "rules": {
         "addProperties": [
@@ -19458,7 +19626,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/force-fear.webp"
+        "front": "assets/upgrade-cards/force-fear.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/force-fear-449f645b7038.webp"
       },
       "rules": {
         "requiredDivisions": [
@@ -19555,7 +19724,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/force-guidance.webp"
+        "front": "assets/upgrade-cards/force-guidance.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/force-guidance-3a86d2c98b4f.webp"
       },
       "rules": {
         "unique": false,
@@ -19632,7 +19802,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/force-hope.webp"
+        "front": "assets/upgrade-cards/force-hope.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/force-hope-83e1b0f719e0.webp"
       },
       "rules": {
         "requiredDivisions": [
@@ -19731,7 +19902,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/force-mind.webp"
+        "front": "assets/upgrade-cards/force-mind.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/force-mind-e586e652ec96.webp"
       },
       "rules": {
         "requiredDivisions": [
@@ -19819,7 +19991,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/force-push.webp"
+        "front": "assets/upgrade-cards/force-push.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/force-push-cfe1df6dfead.webp"
       },
       "rules": {
         "unique": false,
@@ -19892,7 +20065,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/force-reflexes.webp"
+        "front": "assets/upgrade-cards/force-reflexes.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/force-reflexes-226d05267495.webp"
       },
       "rules": {
         "unique": false,
@@ -19986,7 +20160,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/force-saber.webp"
+        "front": "assets/upgrade-cards/force-saber.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/force-saber-96549b8612d1.webp"
       },
       "rules": {
         "unique": false,
@@ -20063,7 +20238,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/force-terror.webp"
+        "front": "assets/upgrade-cards/force-terror.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/force-terror-044e03ab7e52.webp"
       },
       "rules": {
         "requiredDivisions": [
@@ -20157,7 +20333,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/force-tranquility.webp"
+        "front": "assets/upgrade-cards/force-tranquility.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/force-tranquility-e97cc3299d26.webp"
       },
       "rules": {
         "requiredDivisions": [
@@ -20264,7 +20441,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/frontline-commander.webp"
+        "front": "assets/upgrade-cards/frontline-commander.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/frontline-commander-9193bcad5df5.webp"
       },
       "rules": {
         "availableIn": [
@@ -20379,7 +20557,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/full-beskar-armor.webp"
+        "front": "assets/upgrade-cards/full-beskar-armor.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/full-beskar-armor-488d137c52ba.webp"
       },
       "rules": {
         "availableIn": [
@@ -20494,7 +20673,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/fx-9-medical.webp"
+        "front": "assets/upgrade-cards/fx-9-medical.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/fx-9-medical-65e508dc18dc.webp"
       },
       "rules": {
         "unique": false,
@@ -20611,7 +20791,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/galaar-15-carbines.webp"
+        "front": "assets/upgrade-cards/galaar-15-carbines.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/galaar-15-carbines-f78b57299b5f.webp"
       },
       "rules": {
         "availableIn": [
@@ -20744,7 +20925,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/galaar-15-leader.webp"
+        "front": "assets/upgrade-cards/galaar-15-leader.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/galaar-15-leader-40e78e833f74.webp"
       },
       "rules": {
         "availableIn": [
@@ -20851,7 +21033,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/galaar-90-sniper.webp"
+        "front": "assets/upgrade-cards/galaar-90-sniper.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/galaar-90-sniper-17c64ccc7f21.webp"
       },
       "rules": {
         "availableIn": [
@@ -20994,7 +21177,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/galaar-90-sniper-leader.webp"
+        "front": "assets/upgrade-cards/galaar-90-sniper-leader.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/galaar-90-sniper-leader-d22436237536.webp"
       },
       "rules": {
         "availableIn": [
@@ -21109,7 +21293,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/gangster-boss.webp"
+        "front": "assets/upgrade-cards/gangster-boss.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/gangster-boss-80dad2d2bbc2.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -21239,7 +21424,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/gar-arf-miniatures.webp"
+        "front": "assets/upgrade-cards/gar-arf-miniatures.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/gar-arf-miniatures-5a620c6bfb7d.webp"
       },
       "rules": {
         "availableIn": [
@@ -21361,7 +21547,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/gar-arf-rps.webp"
+        "front": "assets/upgrade-cards/gar-arf-rps.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/gar-arf-rps-75a44ecb19aa.webp"
       },
       "rules": {
         "availableIn": [
@@ -21484,7 +21671,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/gar-jedi-guardian.webp"
+        "front": "assets/upgrade-cards/gar-jedi-guardian.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/gar-jedi-guardian-450e475fd8ec.webp"
       },
       "rules": {
         "requiresTier": [
@@ -21630,7 +21818,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/gar-saxon.webp"
+        "front": "assets/upgrade-cards/gar-saxon.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/gar-saxon-30b38f447cb5.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -21766,7 +21955,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/gear-ascension.webp"
+        "front": "assets/upgrade-cards/gear-ascension.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/gear-ascension-1ab8f4e11ab1.webp"
       },
       "rules": {
         "unique": false,
@@ -21857,7 +22047,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/gear-binoculars.webp"
+        "front": "assets/upgrade-cards/gear-binoculars.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/gear-binoculars-482f62c34f65.webp"
       },
       "rules": {
         "unique": false,
@@ -21950,7 +22141,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/gear-datapad.webp"
+        "front": "assets/upgrade-cards/gear-datapad.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/gear-datapad-d94a7ce03086.webp"
       },
       "rules": {
         "unique": false,
@@ -22040,7 +22232,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/gear-din-jetpack.webp"
+        "front": "assets/upgrade-cards/gear-din-jetpack.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/gear-din-jetpack-a87da8b6a131.webp"
       },
       "rules": {
         "availableIn": [
@@ -22163,7 +22356,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/gear-emergency.webp"
+        "front": "assets/upgrade-cards/gear-emergency.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/gear-emergency-251f659adc46.webp"
       },
       "rules": {
         "unique": false,
@@ -22238,7 +22432,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/gear-environment.webp"
+        "front": "assets/upgrade-cards/gear-environment.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/gear-environment-1458364ec371.webp"
       },
       "rules": {
         "unique": false,
@@ -22321,7 +22516,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/gear-extra-supplies.webp"
+        "front": "assets/upgrade-cards/gear-extra-supplies.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/gear-extra-supplies-a86f55440134.webp"
       },
       "rules": {
         "unique": false,
@@ -22396,7 +22592,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/gear-grappling.webp"
+        "front": "assets/upgrade-cards/gear-grappling.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/gear-grappling-d8b7d7b400dc.webp"
       },
       "rules": {
         "unique": false,
@@ -22487,7 +22684,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/gear-portable.webp"
+        "front": "assets/upgrade-cards/gear-portable.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/gear-portable-678f5669014b.webp"
       },
       "rules": {
         "unique": false,
@@ -22590,7 +22788,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/gear-scopes.webp"
+        "front": "assets/upgrade-cards/gear-scopes.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/gear-scopes-82a194eac521.webp"
       },
       "rules": {
         "unique": false,
@@ -22675,7 +22874,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/gear-supplies.webp"
+        "front": "assets/upgrade-cards/gear-supplies.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/gear-supplies-488195659d55.webp"
       },
       "rules": {
         "unique": false,
@@ -22765,7 +22965,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/general-of-the-republic.webp"
+        "front": "assets/upgrade-cards/general-of-the-republic.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/general-of-the-republic-5c863229b5aa.webp"
       },
       "rules": {
         "availableIn": [
@@ -22891,7 +23092,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/general-weiss.webp"
+        "front": "assets/upgrade-cards/general-weiss.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/general-weiss-89cdf48dda1c.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -23029,7 +23231,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/generator-barrage.webp"
+        "front": "assets/upgrade-cards/generator-barrage.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/generator-barrage-dd725416f234.webp"
       },
       "rules": {
         "unique": false,
@@ -23111,7 +23314,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/generator-overcharged.webp"
+        "front": "assets/upgrade-cards/generator-overcharged.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/generator-overcharged-c4bcdf1d4bce.webp"
       },
       "rules": {
         "unique": false,
@@ -23184,7 +23388,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/geonosian-miniature.webp"
+        "front": "assets/upgrade-cards/geonosian-miniature.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/geonosian-miniature-966aec4e5a9a.webp"
       },
       "rules": {
         "availableIn": [
@@ -23309,7 +23514,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/geonosian-pike-1.webp"
+        "front": "assets/upgrade-cards/geonosian-pike-1.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/geonosian-pike-1-9dff08b34d21.webp"
       },
       "rules": {
         "availableIn": [
@@ -23420,7 +23626,8 @@
           }
         ],
         "assets": {
-          "front": "assets/upgrade-cards/geonosian-pike-2.webp"
+          "front": "assets/upgrade-cards/geonosian-pike-2.webp",
+          "thumbnail": "assets/thumbnails/upgrade-cards/geonosian-pike-2-cd5b096bef66.webp"
         },
         "legacyId": "geonosian-pike-2",
         "source": {
@@ -23495,7 +23702,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/geonosian-sonic.webp"
+        "front": "assets/upgrade-cards/geonosian-sonic.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/geonosian-sonic-33fd6c87fa1e.webp"
       },
       "rules": {
         "availableIn": [
@@ -23603,7 +23811,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/geonosian-squad.webp"
+        "front": "assets/upgrade-cards/geonosian-squad.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/geonosian-squad-3731f6e49f58.webp"
       },
       "rules": {
         "availableIn": [
@@ -23755,7 +23964,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/gideon-darksaber.webp"
+        "front": "assets/upgrade-cards/gideon-darksaber.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/gideon-darksaber-b54d258656fc.webp"
       },
       "rules": {
         "availableIn": [
@@ -23940,7 +24150,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/gideon-hask.webp"
+        "front": "assets/upgrade-cards/gideon-hask.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/gideon-hask-7609b39353f9.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -24085,7 +24296,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/gnasp-bomber-nov2026.webp"
+        "front": "assets/upgrade-cards/gnasp-bomber-nov2026.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/gnasp-bomber-nov2026-5ce8f8726e7c.webp"
       },
       "rules": {
         "unique": false,
@@ -24179,7 +24391,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/gnasp-gunner-nov2026.webp"
+        "front": "assets/upgrade-cards/gnasp-gunner-nov2026.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/gnasp-gunner-nov2026-76e5f9a2c6cb.webp"
       },
       "rules": {
         "unique": false,
@@ -24252,7 +24465,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/go-for-broke.webp"
+        "front": "assets/upgrade-cards/go-for-broke.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/go-for-broke-914a0ad0f7f1.webp"
       },
       "rules": {
         "slotTypes": [
@@ -24341,7 +24555,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/governor-pryce.webp"
+        "front": "assets/upgrade-cards/governor-pryce.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/governor-pryce-9cfd48d415f6.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -24485,7 +24700,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/grenade-concussion.webp"
+        "front": "assets/upgrade-cards/grenade-concussion.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/grenade-concussion-a44ece59db84.webp"
       },
       "rules": {
         "unique": false,
@@ -24573,7 +24789,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/grenade-emp.webp"
+        "front": "assets/upgrade-cards/grenade-emp.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/grenade-emp-3f9a63e5f2d9.webp"
       },
       "rules": {
         "unique": false,
@@ -24661,7 +24878,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/grenade-fragmentation.webp"
+        "front": "assets/upgrade-cards/grenade-fragmentation.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/grenade-fragmentation-43a5f9de8f01.webp"
       },
       "rules": {
         "unique": false,
@@ -24750,7 +24968,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/grenade-impact.webp"
+        "front": "assets/upgrade-cards/grenade-impact.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/grenade-impact-66e0cf4c46e7.webp"
       },
       "rules": {
         "unique": false,
@@ -24829,7 +25048,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/grenade-smoke.webp"
+        "front": "assets/upgrade-cards/grenade-smoke.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/grenade-smoke-0905c7bafd3e.webp"
       },
       "rules": {
         "unique": false,
@@ -24916,7 +25136,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/grenade-sonic.webp"
+        "front": "assets/upgrade-cards/grenade-sonic.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/grenade-sonic-37ae712e4c72.webp"
       },
       "rules": {
         "slotTypes": [
@@ -25034,7 +25255,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/grievous-heavy.webp"
+        "front": "assets/upgrade-cards/grievous-heavy.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/grievous-heavy-c766b463dac2.webp"
       },
       "rules": {
         "availableIn": [
@@ -25176,7 +25398,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/guild-member.webp"
+        "front": "assets/upgrade-cards/guild-member.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/guild-member-ca4b30e9ee5b.webp"
       },
       "rules": {
         "availableIn": [
@@ -25297,7 +25520,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/hatred.webp"
+        "front": "assets/upgrade-cards/hatred.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/hatred-53621500d4c6.webp"
       },
       "rules": {
         "requiredDivisions": [
@@ -25398,7 +25622,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/heavy-arm-cannon.webp"
+        "front": "assets/upgrade-cards/heavy-arm-cannon.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/heavy-arm-cannon-6dbe564932a5.webp"
       },
       "rules": {
         "availableIn": [
@@ -25509,7 +25734,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/heavy-blacksun-enforcer.webp"
+        "front": "assets/upgrade-cards/heavy-blacksun-enforcer.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/heavy-blacksun-enforcer-2c24c770c628.webp"
       },
       "rules": {
         "availableIn": [
@@ -25631,7 +25857,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/heavy-blaster-pistol.webp"
+        "front": "assets/upgrade-cards/heavy-blaster-pistol.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/heavy-blaster-pistol-2ad7c84df287.webp"
       },
       "rules": {
         "availableIn": [
@@ -25768,7 +25995,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/heavy-blaster-pistol-rebel.webp"
+        "front": "assets/upgrade-cards/heavy-blaster-pistol-rebel.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/heavy-blaster-pistol-rebel-52ecd26976bc.webp"
       },
       "rules": {
         "availableIn": [
@@ -25886,7 +26114,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/heavy-commando-miniature.webp"
+        "front": "assets/upgrade-cards/heavy-commando-miniature.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/heavy-commando-miniature-2ace7773306c.webp"
       },
       "rules": {
         "availableIn": [
@@ -26005,7 +26234,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/heavy-electro-whip.webp"
+        "front": "assets/upgrade-cards/heavy-electro-whip.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/heavy-electro-whip-dc2dd03c6684.webp"
       },
       "rules": {
         "availableIn": [
@@ -26119,7 +26349,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/heavy-mag-det-nov2026.webp"
+        "front": "assets/upgrade-cards/heavy-mag-det-nov2026.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/heavy-mag-det-nov2026-7f66eb487245.webp"
       },
       "rules": {
         "unique": false,
@@ -26209,7 +26440,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/heavy-pyke-p13.webp"
+        "front": "assets/upgrade-cards/heavy-pyke-p13.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/heavy-pyke-p13-472627dd36c8.webp"
       },
       "rules": {
         "availableIn": [
@@ -26322,7 +26554,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/heavy-rook-kast.webp"
+        "front": "assets/upgrade-cards/heavy-rook-kast.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/heavy-rook-kast-074662feb3e3.webp"
       },
       "rules": {
         "availableIn": [
@@ -26454,7 +26687,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/helping-hand.webp"
+        "front": "assets/upgrade-cards/helping-hand.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/helping-hand-63248c4260ca.webp"
       },
       "rules": {
         "requiredDivisions": [
@@ -26542,7 +26776,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/high-speed-tracking.webp"
+        "front": "assets/upgrade-cards/high-speed-tracking.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/high-speed-tracking-4dc20e8026d0.webp"
       },
       "rules": {
         "slotTypes": [
@@ -26623,7 +26858,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/hit-the-dirt.webp"
+        "front": "assets/upgrade-cards/hit-the-dirt.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/hit-the-dirt-ae99ddfe41e3.webp"
       },
       "rules": {
         "slotTypes": [
@@ -26780,7 +27016,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/hound-grizzer.webp"
+        "front": "assets/upgrade-cards/hound-grizzer.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/hound-grizzer-80202bb6d3ca.webp"
       },
       "rules": {
         "availableIn": [
@@ -26917,7 +27154,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/hunter.webp"
+        "front": "assets/upgrade-cards/hunter.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/hunter-40b1f3b8e49f.webp"
       },
       "rules": {
         "availableIn": [
@@ -27029,7 +27267,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/ig100-magnaguard-pilot.webp"
+        "front": "assets/upgrade-cards/ig100-magnaguard-pilot.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/ig100-magnaguard-pilot-d201603e9b22.webp"
       },
       "rules": {
         "availableIn": [
@@ -27127,7 +27366,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/imperial-comms.webp"
+        "front": "assets/upgrade-cards/imperial-comms.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/imperial-comms-c18edf4197df.webp"
       },
       "rules": {
         "unique": false,
@@ -27233,7 +27473,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/imperial-hammers.webp"
+        "front": "assets/upgrade-cards/imperial-hammers.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/imperial-hammers-35da99d255c9.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -27351,7 +27592,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/imperial-officer.webp"
+        "front": "assets/upgrade-cards/imperial-officer.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/imperial-officer-ad9e039ce54a.webp"
       },
       "rules": {
         "unique": false,
@@ -27486,7 +27728,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/imperial-probe-droid.webp"
+        "front": "assets/upgrade-cards/imperial-probe-droid.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/imperial-probe-droid-3dd733bfd770.webp"
       },
       "rules": {
         "slotTypes": [
@@ -27611,7 +27854,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/infantry-support.webp"
+        "front": "assets/upgrade-cards/infantry-support.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/infantry-support-716a9193d096.webp"
       },
       "rules": {
         "slotTypes": [
@@ -27717,7 +27961,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/inquisitorus-training.webp"
+        "front": "assets/upgrade-cards/inquisitorus-training.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/inquisitorus-training-a87c0234b9e8.webp"
       },
       "rules": {
         "availableIn": [
@@ -27828,7 +28073,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/isp-327.webp"
+        "front": "assets/upgrade-cards/isp-327.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/isp-327-11d749b24c09.webp"
       },
       "rules": {
         "availableIn": [
@@ -27949,7 +28195,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/isp-rocket.webp"
+        "front": "assets/upgrade-cards/isp-rocket.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/isp-rocket-6a7eb58f1d6a.webp"
       },
       "rules": {
         "availableIn": [
@@ -28058,7 +28305,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/isp-twin.webp"
+        "front": "assets/upgrade-cards/isp-twin.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/isp-twin-99ac73757dcf.webp"
       },
       "rules": {
         "availableIn": [
@@ -28179,7 +28427,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/isp-twin-blaster.webp"
+        "front": "assets/upgrade-cards/isp-twin-blaster.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/isp-twin-blaster-6661cabbf749.webp"
       },
       "rules": {
         "availableIn": [
@@ -28297,7 +28546,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/jedi-consular.webp"
+        "front": "assets/upgrade-cards/jedi-consular.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/jedi-consular-6d61fece4d50.webp"
       },
       "rules": {
         "availableIn": [
@@ -28441,7 +28691,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/jedi-guardian.webp"
+        "front": "assets/upgrade-cards/jedi-guardian.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/jedi-guardian-d490bdf61806.webp"
       },
       "rules": {
         "availableIn": [
@@ -28603,7 +28854,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/jedi-negotiator.webp"
+        "front": "assets/upgrade-cards/jedi-negotiator.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/jedi-negotiator-f3a6b80b4d44.webp"
       },
       "rules": {
         "availableIn": [
@@ -28767,7 +29019,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/jyn-erso.webp"
+        "front": "assets/upgrade-cards/jyn-erso.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/jyn-erso-7f820ad168ec.webp"
       },
       "rules": {
         "availableIn": [
@@ -28916,7 +29169,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/k2s0-blaster.webp"
+        "front": "assets/upgrade-cards/k2s0-blaster.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/k2s0-blaster-4a43ded095cd.webp"
       },
       "rules": {
         "availableIn": [
@@ -29077,7 +29331,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/kallus.webp"
+        "front": "assets/upgrade-cards/kallus.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/kallus-9ff5ba430d88.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -29206,7 +29461,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/katarn-armor.webp"
+        "front": "assets/upgrade-cards/katarn-armor.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/katarn-armor-f0bafa9bb5b8.webp"
       },
       "rules": {
         "availableIn": [
@@ -29342,7 +29598,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/ki-adi-mundi-leader.webp"
+        "front": "assets/upgrade-cards/ki-adi-mundi-leader.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/ki-adi-mundi-leader-774a80e0ee34.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -29483,7 +29740,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/kraken.webp"
+        "front": "assets/upgrade-cards/kraken.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/kraken-2ce79a494798.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -29642,7 +29900,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/landspeeder-ion.webp"
+        "front": "assets/upgrade-cards/landspeeder-ion.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/landspeeder-ion-602b7baafc01.webp"
       },
       "rules": {
         "availableIn": [
@@ -29748,7 +30007,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/landspeeder-medium.webp"
+        "front": "assets/upgrade-cards/landspeeder-medium.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/landspeeder-medium-c00ad60653a3.webp"
       },
       "rules": {
         "availableIn": [
@@ -29869,7 +30129,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/lightsaber.webp"
+        "front": "assets/upgrade-cards/lightsaber.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/lightsaber-b006157db50f.webp"
       },
       "rules": {
         "availableIn": [
@@ -29993,7 +30254,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/limiter-override.webp"
+        "front": "assets/upgrade-cards/limiter-override.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/limiter-override-02cc116c2724.webp"
       },
       "rules": {
         "availableIn": [
@@ -30098,7 +30360,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/logistical-prowess.webp"
+        "front": "assets/upgrade-cards/logistical-prowess.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/logistical-prowess-a216763a49f7.webp"
       },
       "rules": {
         "availableIn": [
@@ -30193,7 +30456,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/lok-duk.webp"
+        "front": "assets/upgrade-cards/lok-duk.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/lok-duk-b8df8f2add1c.webp"
       },
       "rules": {
         "availableIn": [
@@ -30316,7 +30580,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/long-rifle-pirate.webp"
+        "front": "assets/upgrade-cards/long-rifle-pirate.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/long-rifle-pirate-f00549f52115.webp"
       },
       "rules": {
         "availableIn": [
@@ -30424,7 +30689,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/longgun.webp"
+        "front": "assets/upgrade-cards/longgun.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/longgun-83dc73e65da8.webp"
       },
       "rules": {
         "availableIn": [
@@ -30560,7 +30826,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/luke-skywalker.webp"
+        "front": "assets/upgrade-cards/luke-skywalker.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/luke-skywalker-fc8fe226323f.webp"
       },
       "rules": {
         "availableIn": [
@@ -30691,7 +30958,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/lying-in-wait.webp"
+        "front": "assets/upgrade-cards/lying-in-wait.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/lying-in-wait-fae1cbc69b87.webp"
       },
       "rules": {
         "slotTypes": [
@@ -30844,7 +31112,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/mace-windu-leader.webp"
+        "front": "assets/upgrade-cards/mace-windu-leader.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/mace-windu-leader-a042f22fd5c4.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -30952,7 +31221,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/magna-miniature.webp"
+        "front": "assets/upgrade-cards/magna-miniature.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/magna-miniature-ecc0e7fc29c9.webp"
       },
       "rules": {
         "availableIn": [
@@ -31072,7 +31342,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/magna-rps.webp"
+        "front": "assets/upgrade-cards/magna-rps.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/magna-rps-329e3af99b35.webp"
       },
       "rules": {
         "availableIn": [
@@ -31191,7 +31462,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/magna-whip.webp"
+        "front": "assets/upgrade-cards/magna-whip.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/magna-whip-2963c1bfe7c5.webp"
       },
       "rules": {
         "availableIn": [
@@ -31294,7 +31566,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/mandalorian-initiate-squad.webp"
+        "front": "assets/upgrade-cards/mandalorian-initiate-squad.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/mandalorian-initiate-squad-9bbf943eb393.webp"
       },
       "rules": {
         "availableIn": [
@@ -31422,7 +31695,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/mandalorian-rockets-clan.webp"
+        "front": "assets/upgrade-cards/mandalorian-rockets-clan.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/mandalorian-rockets-clan-8cffcdaea20a.webp"
       },
       "rules": {
         "limit": 2,
@@ -31514,7 +31788,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/mandalorian-shields-clan.webp"
+        "front": "assets/upgrade-cards/mandalorian-shields-clan.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/mandalorian-shields-clan-7a93ae6e8552.webp"
       },
       "rules": {
         "addProperties": [
@@ -31648,7 +31923,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/master-duelist.webp"
+        "front": "assets/upgrade-cards/master-duelist.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/master-duelist-db725b66a0b9.webp"
       },
       "rules": {
         "limit": 2,
@@ -31775,7 +32051,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/mertalizer.webp"
+        "front": "assets/upgrade-cards/mertalizer.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/mertalizer-daad9eb7670d.webp"
       },
       "rules": {
         "availableIn": [
@@ -31889,7 +32166,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/micro-grenade-launcher.webp"
+        "front": "assets/upgrade-cards/micro-grenade-launcher.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/micro-grenade-launcher-c6e82c1d8cc1.webp"
       },
       "rules": {
         "slotTypes": [
@@ -31978,7 +32256,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/mobility-upgrade.webp"
+        "front": "assets/upgrade-cards/mobility-upgrade.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/mobility-upgrade-1d9713acc812.webp"
       },
       "rules": {
         "availableIn": [
@@ -32123,7 +32402,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/obiwan-heavy.webp"
+        "front": "assets/upgrade-cards/obiwan-heavy.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/obiwan-heavy-5b9e061eb7f6.webp"
       },
       "rules": {
         "availableIn": [
@@ -32240,7 +32520,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/optimized-task-flow.webp"
+        "front": "assets/upgrade-cards/optimized-task-flow.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/optimized-task-flow-cb01be7fde6a.webp"
       },
       "rules": {
         "availableIn": [
@@ -32366,7 +32647,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/ordnance-ap.webp"
+        "front": "assets/upgrade-cards/ordnance-ap.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/ordnance-ap-98e4c5f730d0.webp"
       },
       "rules": {
         "unique": false,
@@ -32468,7 +32750,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/ordnance-bunker.webp"
+        "front": "assets/upgrade-cards/ordnance-bunker.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/ordnance-bunker-6ea88ec46b9f.webp"
       },
       "rules": {
         "unique": false,
@@ -32573,7 +32856,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/ordnance-energy.webp"
+        "front": "assets/upgrade-cards/ordnance-energy.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/ordnance-energy-95469c59290f.webp"
       },
       "rules": {
         "unique": false,
@@ -32649,7 +32933,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/outer-rim-jockey.webp"
+        "front": "assets/upgrade-cards/outer-rim-jockey.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/outer-rim-jockey-9f0beb5ad0ae.webp"
       },
       "rules": {
         "unique": false,
@@ -32764,7 +33049,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/overcharged-blaster-packs.webp"
+        "front": "assets/upgrade-cards/overcharged-blaster-packs.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/overcharged-blaster-packs-67316b234521.webp"
       },
       "rules": {
         "slotTypes": [
@@ -32845,7 +33131,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/overclock.webp"
+        "front": "assets/upgrade-cards/overclock.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/overclock-9a0aee8a95a7.webp"
       },
       "rules": {
         "availableIn": [
@@ -32964,7 +33251,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/paz-vizzla.webp"
+        "front": "assets/upgrade-cards/paz-vizzla.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/paz-vizzla-7fa2016dcb2d.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -33106,7 +33394,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/peacekeeping-mission.webp"
+        "front": "assets/upgrade-cards/peacekeeping-mission.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/peacekeeping-mission-d1a0499ce58d.webp"
       },
       "rules": {
         "limit": 2,
@@ -33225,7 +33514,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/personal-combat-shield.webp"
+        "front": "assets/upgrade-cards/personal-combat-shield.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/personal-combat-shield-3958bf279e88.webp"
       },
       "rules": {
         "requiresTier": [
@@ -33358,7 +33648,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/personnel-blacksun-miniature.webp"
+        "front": "assets/upgrade-cards/personnel-blacksun-miniature.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/personnel-blacksun-miniature-6b9a0c0b69de.webp"
       },
       "rules": {
         "availableIn": [
@@ -33475,7 +33766,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/personnel-blacksun-vigo.webp"
+        "front": "assets/upgrade-cards/personnel-blacksun-vigo.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/personnel-blacksun-vigo-cb4d970a866d.webp"
       },
       "rules": {
         "availableIn": [
@@ -33585,7 +33877,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/personnel-pyke-capo.webp"
+        "front": "assets/upgrade-cards/personnel-pyke-capo.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/personnel-pyke-capo-a10cc0083b7c.webp"
       },
       "rules": {
         "availableIn": [
@@ -33694,7 +33987,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/personnel-pyke-miniature.webp"
+        "front": "assets/upgrade-cards/personnel-pyke-miniature.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/personnel-pyke-miniature-c4223b511282.webp"
       },
       "rules": {
         "availableIn": [
@@ -33804,7 +34098,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/pilot-frenzied.webp"
+        "front": "assets/upgrade-cards/pilot-frenzied.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/pilot-frenzied-028bdc3ffe23.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -33926,7 +34221,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/pilot-raid-leader.webp"
+        "front": "assets/upgrade-cards/pilot-raid-leader.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/pilot-raid-leader-8a89dcba1225.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -34067,7 +34363,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/pirate-captain.webp"
+        "front": "assets/upgrade-cards/pirate-captain.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/pirate-captain-a92bbe082345.webp"
       },
       "rules": {
         "availableIn": [
@@ -34176,7 +34473,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/pk-worker.webp"
+        "front": "assets/upgrade-cards/pk-worker.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/pk-worker-1b859e73d7c6.webp"
       },
       "rules": {
         "unique": false,
@@ -34312,7 +34610,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/platoon-commander.webp"
+        "front": "assets/upgrade-cards/platoon-commander.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/platoon-commander-10ffdbe3784b.webp"
       },
       "rules": {
         "availableIn": [
@@ -34433,7 +34732,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/plo-koon.webp"
+        "front": "assets/upgrade-cards/plo-koon.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/plo-koon-8ec5ca6f3294.webp"
       },
       "rules": {
         "availableIn": [
@@ -34594,7 +34894,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/plo-koon-leader.webp"
+        "front": "assets/upgrade-cards/plo-koon-leader.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/plo-koon-leader-0452fea7bedf.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -34715,7 +35016,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/programmed-loyalty.webp"
+        "front": "assets/upgrade-cards/programmed-loyalty.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/programmed-loyalty-8ab09e5ad1ea.webp"
       },
       "rules": {
         "availableIn": [
@@ -34816,7 +35118,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/programming-attack.webp"
+        "front": "assets/upgrade-cards/programming-attack.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/programming-attack-b558677b8f2f.webp"
       },
       "rules": {
         "unique": false,
@@ -34934,7 +35237,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/programming-defense.webp"
+        "front": "assets/upgrade-cards/programming-defense.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/programming-defense-8ee7739962c3.webp"
       },
       "rules": {
         "unique": false,
@@ -35045,7 +35349,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/programming-engagement.webp"
+        "front": "assets/upgrade-cards/programming-engagement.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/programming-engagement-db6f62bbce1b.webp"
       },
       "rules": {
         "unique": false,
@@ -35170,7 +35475,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/proven-tactician.webp"
+        "front": "assets/upgrade-cards/proven-tactician.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/proven-tactician-dac2dfbd7b5a.webp"
       },
       "rules": {
         "availableIn": [
@@ -35288,7 +35594,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/pyke-syndicate-crew.webp"
+        "front": "assets/upgrade-cards/pyke-syndicate-crew.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/pyke-syndicate-crew-f0c6e7c5eb06.webp"
       },
       "rules": {
         "availableIn": [
@@ -35382,7 +35689,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/pyke-syndicate-squad.webp"
+        "front": "assets/upgrade-cards/pyke-syndicate-squad.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/pyke-syndicate-squad-4abc304855ee.webp"
       },
       "rules": {
         "availableIn": [
@@ -35504,7 +35812,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/r4-astromech.webp"
+        "front": "assets/upgrade-cards/r4-astromech.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/r4-astromech-1a9824e5b9ce.webp"
       },
       "rules": {
         "unique": false,
@@ -35637,7 +35946,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/range-trooper-dlt20a.webp"
+        "front": "assets/upgrade-cards/range-trooper-dlt20a.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/range-trooper-dlt20a-afc74c26264e.webp"
       },
       "rules": {
         "availableIn": [
@@ -35724,7 +36034,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/range-trooper-miniature.webp"
+        "front": "assets/upgrade-cards/range-trooper-miniature.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/range-trooper-miniature-eb185c14550c.webp"
       },
       "rules": {
         "availableIn": [
@@ -35841,7 +36152,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/range-trooper-t21a.webp"
+        "front": "assets/upgrade-cards/range-trooper-t21a.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/range-trooper-t21a-110a30a2ded7.webp"
       },
       "rules": {
         "availableIn": [
@@ -35938,7 +36250,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/rebel-astromech.webp"
+        "front": "assets/upgrade-cards/rebel-astromech.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/rebel-astromech-2ba763f64dd8.webp"
       },
       "rules": {
         "requiresTier": [
@@ -36052,7 +36365,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/rebel-captain.webp"
+        "front": "assets/upgrade-cards/rebel-captain.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/rebel-captain-bbe40b4c3b93.webp"
       },
       "rules": {
         "availableIn": [
@@ -36177,7 +36491,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/rebel-cm093.webp"
+        "front": "assets/upgrade-cards/rebel-cm093.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/rebel-cm093-62e0a614d84b.webp"
       },
       "rules": {
         "availableIn": [
@@ -36266,7 +36581,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/rebel-comms.webp"
+        "front": "assets/upgrade-cards/rebel-comms.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/rebel-comms-08a48e38fa2e.webp"
       },
       "rules": {
         "requiresTier": [
@@ -36398,7 +36714,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/rebel-dlt-20.webp"
+        "front": "assets/upgrade-cards/rebel-dlt-20.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/rebel-dlt-20-9ae7c8c76ef6.webp"
       },
       "rules": {
         "availableIn": [
@@ -36489,7 +36806,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/rebel-hotshot-pilot.webp"
+        "front": "assets/upgrade-cards/rebel-hotshot-pilot.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/rebel-hotshot-pilot-87af7546240b.webp"
       },
       "rules": {
         "addProperties": [
@@ -36625,7 +36943,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/rebel-mpl57.webp"
+        "front": "assets/upgrade-cards/rebel-mpl57.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/rebel-mpl57-1b279dabec9f.webp"
       },
       "rules": {
         "availableIn": [
@@ -36722,7 +37041,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/rebel-officer.webp"
+        "front": "assets/upgrade-cards/rebel-officer.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/rebel-officer-4c1ebc0333e3.webp"
       },
       "rules": {
         "requiresTier": [
@@ -36835,7 +37155,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/rebel-specialist.webp"
+        "front": "assets/upgrade-cards/rebel-specialist.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/rebel-specialist-fee9e7601b32.webp"
       },
       "rules": {
         "availableIn": [
@@ -36954,7 +37275,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/rebel-squad.webp"
+        "front": "assets/upgrade-cards/rebel-squad.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/rebel-squad-58d5dd0d3f42.webp"
       },
       "rules": {
         "availableIn": [
@@ -37083,7 +37405,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/rebel-sx21-trooper.webp"
+        "front": "assets/upgrade-cards/rebel-sx21-trooper.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/rebel-sx21-trooper-871deb9c95d6.webp"
       },
       "rules": {
         "availableIn": [
@@ -37171,7 +37494,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/rebel-trooper-miniature.webp"
+        "front": "assets/upgrade-cards/rebel-trooper-miniature.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/rebel-trooper-miniature-8562211b955a.webp"
       },
       "rules": {
         "availableIn": [
@@ -37268,7 +37592,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/rebel-veteran.webp"
+        "front": "assets/upgrade-cards/rebel-veteran.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/rebel-veteran-1ef00207d1d0.webp"
       },
       "rules": {
         "availableIn": [
@@ -37382,7 +37707,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/rebel-z6.webp"
+        "front": "assets/upgrade-cards/rebel-z6.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/rebel-z6-e23584515bd1.webp"
       },
       "rules": {
         "availableIn": [
@@ -37485,7 +37811,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/reluctant-hero.webp"
+        "front": "assets/upgrade-cards/reluctant-hero.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/reluctant-hero-a7f3a23d9811.webp"
       },
       "rules": {
         "availableIn": [
@@ -37633,7 +37960,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/repeating-blaster.webp"
+        "front": "assets/upgrade-cards/repeating-blaster.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/repeating-blaster-d3bc669214eb.webp"
       },
       "rules": {
         "availableIn": [
@@ -37764,7 +38092,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/riot-squad-kx.webp"
+        "front": "assets/upgrade-cards/riot-squad-kx.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/riot-squad-kx-671194773377.webp"
       },
       "rules": {
         "availableIn": [
@@ -37859,7 +38188,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/riot-squad-marksman.webp"
+        "front": "assets/upgrade-cards/riot-squad-marksman.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/riot-squad-marksman-337aa1987d2c.webp"
       },
       "rules": {
         "availableIn": [
@@ -37955,7 +38285,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/rook-kast-clan.webp"
+        "front": "assets/upgrade-cards/rook-kast-clan.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/rook-kast-clan-c69d73084ed7.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -38107,7 +38438,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/rt-97c-blaster.webp"
+        "front": "assets/upgrade-cards/rt-97c-blaster.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/rt-97c-blaster-f575385a8fe2.webp"
       },
       "rules": {
         "availableIn": [
@@ -38196,7 +38528,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/ryder-azadi.webp"
+        "front": "assets/upgrade-cards/ryder-azadi.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/ryder-azadi-dc26298bc69e.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -38324,7 +38657,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/saber-beam.webp"
+        "front": "assets/upgrade-cards/saber-beam.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/saber-beam-56e091f27dbb.webp"
       },
       "rules": {
         "availableIn": [
@@ -38430,7 +38764,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/saber-beam-turret.webp"
+        "front": "assets/upgrade-cards/saber-beam-turret.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/saber-beam-turret-e6daec30f7b1.webp"
       },
       "rules": {
         "availableIn": [
@@ -38555,7 +38890,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/sabine-darksaber.webp"
+        "front": "assets/upgrade-cards/sabine-darksaber.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/sabine-darksaber-6d6ba001c400.webp"
       },
       "rules": {
         "availableIn": [
@@ -38716,7 +39052,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/sabine-wren.webp"
+        "front": "assets/upgrade-cards/sabine-wren.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/sabine-wren-ab9561653726.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -38876,7 +39213,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/saxon-darksaber.webp"
+        "front": "assets/upgrade-cards/saxon-darksaber.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/saxon-darksaber-4b7989ee60b9.webp"
       },
       "rules": {
         "availableIn": [
@@ -39062,7 +39400,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/scout-saboteur.webp"
+        "front": "assets/upgrade-cards/scout-saboteur.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/scout-saboteur-64f3016d3efc.webp"
       },
       "rules": {
         "availableIn": [
@@ -39213,7 +39552,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/security-detail.webp"
+        "front": "assets/upgrade-cards/security-detail.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/security-detail-fc27412c8a1e.webp"
       },
       "rules": {
         "availableIn": [
@@ -39323,7 +39663,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/seek-and-destroy.webp"
+        "front": "assets/upgrade-cards/seek-and-destroy.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/seek-and-destroy-f9c34d5e4ba2.webp"
       },
       "rules": {
         "availableIn": [
@@ -39444,7 +39785,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/seeker-droid.webp"
+        "front": "assets/upgrade-cards/seeker-droid.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/seeker-droid-cf4e6a9aaa38.webp"
       },
       "rules": {
         "availableIn": [
@@ -39593,7 +39935,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/seventh-sister.webp"
+        "front": "assets/upgrade-cards/seventh-sister.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/seventh-sister-f805855853bc.webp"
       },
       "rules": {
         "availableIn": [
@@ -39755,7 +40098,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/shaak-ti.webp"
+        "front": "assets/upgrade-cards/shaak-ti.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/shaak-ti-c219e9a7000e.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -39892,7 +40236,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/shore-squad.webp"
+        "front": "assets/upgrade-cards/shore-squad.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/shore-squad-8755e3b5f6ef.webp"
       },
       "rules": {
         "availableIn": [
@@ -40021,7 +40366,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/shore-t21b.webp"
+        "front": "assets/upgrade-cards/shore-t21b.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/shore-t21b-5ab995604b9f.webp"
       },
       "rules": {
         "availableIn": [
@@ -40161,7 +40507,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/shore-trooper.webp"
+        "front": "assets/upgrade-cards/shore-trooper.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/shore-trooper-7593ee5bf970.webp"
       },
       "rules": {
         "availableIn": [
@@ -40267,7 +40614,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/shriv.webp"
+        "front": "assets/upgrade-cards/shriv.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/shriv-40822e2cac70.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -40418,7 +40766,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/shukur-05-repeater.webp"
+        "front": "assets/upgrade-cards/shukur-05-repeater.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/shukur-05-repeater-af53545ff1c8.webp"
       },
       "rules": {
         "slotTypes": [
@@ -40507,7 +40856,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/sleeper-astromech.webp"
+        "front": "assets/upgrade-cards/sleeper-astromech.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/sleeper-astromech-8c72393aeed5.webp"
       },
       "rules": {
         "availableIn": [
@@ -40611,7 +40961,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/sleeper-marksman.webp"
+        "front": "assets/upgrade-cards/sleeper-marksman.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/sleeper-marksman-7092bfea8a74.webp"
       },
       "rules": {
         "availableIn": [
@@ -40705,7 +41056,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/sliced-comms.webp"
+        "front": "assets/upgrade-cards/sliced-comms.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/sliced-comms-64e737177209.webp"
       },
       "rules": {
         "availableIn": [
@@ -40824,7 +41176,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/sm-9-frag.webp"
+        "front": "assets/upgrade-cards/sm-9-frag.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/sm-9-frag-908a5a67b9f9.webp"
       },
       "rules": {
         "availableIn": [
@@ -40935,7 +41288,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/snow-flame.webp"
+        "front": "assets/upgrade-cards/snow-flame.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/snow-flame-f07dd850d1cf.webp"
       },
       "rules": {
         "availableIn": [
@@ -41053,7 +41407,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/snow-ion.webp"
+        "front": "assets/upgrade-cards/snow-ion.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/snow-ion-31a78023f189.webp"
       },
       "rules": {
         "availableIn": [
@@ -41157,7 +41512,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/snow-squad.webp"
+        "front": "assets/upgrade-cards/snow-squad.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/snow-squad-35749bbb0460.webp"
       },
       "rules": {
         "availableIn": [
@@ -41264,7 +41620,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/snowtrooper.webp"
+        "front": "assets/upgrade-cards/snowtrooper.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/snowtrooper-03d99ec447cb.webp"
       },
       "rules": {
         "availableIn": [
@@ -41383,7 +41740,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/special-t21.webp"
+        "front": "assets/upgrade-cards/special-t21.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/special-t21-4e18c2986f21.webp"
       },
       "rules": {
         "availableIn": [
@@ -41496,7 +41854,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/spider-flame.webp"
+        "front": "assets/upgrade-cards/spider-flame.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/spider-flame-8b5214288ea8.webp"
       },
       "rules": {
         "availableIn": [
@@ -41613,7 +41972,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/spider-ion.webp"
+        "front": "assets/upgrade-cards/spider-ion.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/spider-ion-7e1dba91569e.webp"
       },
       "rules": {
         "availableIn": [
@@ -41722,7 +42082,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/spider-laser.webp"
+        "front": "assets/upgrade-cards/spider-laser.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/spider-laser-a76bf46927d7.webp"
       },
       "rules": {
         "availableIn": [
@@ -41856,7 +42217,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/squad-leader-ahsoka.webp"
+        "front": "assets/upgrade-cards/squad-leader-ahsoka.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/squad-leader-ahsoka-2060f449e028.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -41972,7 +42334,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/squadron-leader.webp"
+        "front": "assets/upgrade-cards/squadron-leader.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/squadron-leader-937ffd7aa636.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -42090,7 +42453,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/stormtrooper.webp"
+        "front": "assets/upgrade-cards/stormtrooper.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/stormtrooper-f3289965c5b6.webp"
       },
       "rules": {
         "availableIn": [
@@ -42199,7 +42563,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/stormtrooper-captain.webp"
+        "front": "assets/upgrade-cards/stormtrooper-captain.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/stormtrooper-captain-59746c8c944b.webp"
       },
       "rules": {
         "availableIn": [
@@ -42327,7 +42692,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/stormtrooper-dlt19.webp"
+        "front": "assets/upgrade-cards/stormtrooper-dlt19.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/stormtrooper-dlt19-d2a3c9a4470d.webp"
       },
       "rules": {
         "availableIn": [
@@ -42499,7 +42865,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/stormtrooper-hh12.webp"
+        "front": "assets/upgrade-cards/stormtrooper-hh12.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/stormtrooper-hh12-a12c43c2bb65.webp"
       },
       "rules": {
         "availableIn": [
@@ -42658,7 +43025,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/stormtrooper-rt97c.webp"
+        "front": "assets/upgrade-cards/stormtrooper-rt97c.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/stormtrooper-rt97c-b701219d6a06.webp"
       },
       "rules": {
         "availableIn": [
@@ -42810,7 +43178,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/stormtrooper-specialist.webp"
+        "front": "assets/upgrade-cards/stormtrooper-specialist.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/stormtrooper-specialist-8885c48b928a.webp"
       },
       "rules": {
         "availableIn": [
@@ -42931,7 +43300,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/stormtrooper-squad.webp"
+        "front": "assets/upgrade-cards/stormtrooper-squad.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/stormtrooper-squad-0765b9cc7754.webp"
       },
       "rules": {
         "availableIn": [
@@ -43062,7 +43432,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/stormtrooper-t21.webp"
+        "front": "assets/upgrade-cards/stormtrooper-t21.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/stormtrooper-t21-c9982c08c68f.webp"
       },
       "rules": {
         "availableIn": [
@@ -43210,7 +43581,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/strategic-programming.webp"
+        "front": "assets/upgrade-cards/strategic-programming.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/strategic-programming-650e4d723653.webp"
       },
       "rules": {
         "availableIn": [
@@ -43314,7 +43686,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/strong-in-the-force.webp"
+        "front": "assets/upgrade-cards/strong-in-the-force.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/strong-in-the-force-b981014af511.webp"
       },
       "rules": {
         "availableIn": [
@@ -43441,7 +43814,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/stuck-in.webp"
+        "front": "assets/upgrade-cards/stuck-in.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/stuck-in-b628fcf2a0b4.webp"
       },
       "rules": {
         "slotTypes": [
@@ -43546,7 +43920,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/stun-baton.webp"
+        "front": "assets/upgrade-cards/stun-baton.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/stun-baton-afbdcdc0eb75.webp"
       },
       "rules": {
         "availableIn": [
@@ -43677,7 +44052,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/super-commando-gunslinger.webp"
+        "front": "assets/upgrade-cards/super-commando-gunslinger.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/super-commando-gunslinger-8dcd4d7251d0.webp"
       },
       "rules": {
         "availableIn": [
@@ -43801,7 +44177,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/super-commando-marksman.webp"
+        "front": "assets/upgrade-cards/super-commando-marksman.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/super-commando-marksman-505b8862b6cf.webp"
       },
       "rules": {
         "availableIn": [
@@ -43912,7 +44289,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/super-commando-marksman-super.webp"
+        "front": "assets/upgrade-cards/super-commando-marksman-super.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/super-commando-marksman-super-aa953abb8064.webp"
       },
       "rules": {
         "availableIn": [
@@ -44000,7 +44378,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/superior-equipment.webp"
+        "front": "assets/upgrade-cards/superior-equipment.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/superior-equipment-b07edab257e3.webp"
       },
       "rules": {
         "requiresTier": [
@@ -44125,7 +44504,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/t-21-blaster.webp"
+        "front": "assets/upgrade-cards/t-21-blaster.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/t-21-blaster-9ce97b3d3cdf.webp"
       },
       "rules": {
         "availableIn": [
@@ -44221,7 +44601,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/t-series-pilot.webp"
+        "front": "assets/upgrade-cards/t-series-pilot.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/t-series-pilot-54c1266fb5fa.webp"
       },
       "rules": {
         "availableIn": [
@@ -44355,7 +44736,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/t-series-tactical.webp"
+        "front": "assets/upgrade-cards/t-series-tactical.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/t-series-tactical-9642ac4a54b6.webp"
       },
       "rules": {
         "unique": false,
@@ -44493,7 +44875,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tactical-acument.webp"
+        "front": "assets/upgrade-cards/tactical-acument.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tactical-acument-930d42f46223.webp"
       },
       "rules": {
         "limit": 2,
@@ -44607,7 +44990,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tank-hunting-munitions.webp"
+        "front": "assets/upgrade-cards/tank-hunting-munitions.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tank-hunting-munitions-b990f72272e2.webp"
       },
       "rules": {
         "slotTypes": [
@@ -44682,7 +45066,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/targeting-relay.webp"
+        "front": "assets/upgrade-cards/targeting-relay.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/targeting-relay-47d8bd8cc97c.webp"
       },
       "rules": {
         "availableIn": [
@@ -44781,7 +45166,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tech.webp"
+        "front": "assets/upgrade-cards/tech.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tech-59e8a7bd6e7b.webp"
       },
       "rules": {
         "availableIn": [
@@ -44925,7 +45311,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/the-armorer.webp"
+        "front": "assets/upgrade-cards/the-armorer.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/the-armorer-c2dcc6ca4f1b.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -45067,7 +45454,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/thermal-detonator.webp"
+        "front": "assets/upgrade-cards/thermal-detonator.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/thermal-detonator-f82ae70d337f.webp"
       },
       "rules": {
         "availableIn": [
@@ -45165,7 +45553,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tie-pilot.webp"
+        "front": "assets/upgrade-cards/tie-pilot.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tie-pilot-2c60977c7eee.webp"
       },
       "rules": {
         "unique": false,
@@ -45276,7 +45665,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tip-of-the-spear.webp"
+        "front": "assets/upgrade-cards/tip-of-the-spear.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tip-of-the-spear-a4bebaed4381.webp"
       },
       "rules": {
         "availableIn": [
@@ -45401,7 +45791,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-advanced-drill.webp"
+        "front": "assets/upgrade-cards/tod-advanced-drill.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-advanced-drill-407d2ca25b5a.webp"
       },
       "rules": {
         "slotGrants": [
@@ -45479,7 +45870,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-assault-badge.webp"
+        "front": "assets/upgrade-cards/tod-assault-badge.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-assault-badge-40e229e334cd.webp"
       },
       "rules": {},
       "review": {
@@ -45551,7 +45943,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-battle-shaken.webp"
+        "front": "assets/upgrade-cards/tod-battle-shaken.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-battle-shaken-f1bfc7f35e11.webp"
       },
       "rules": {},
       "review": {
@@ -45615,7 +46008,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-behind-schedule.webp"
+        "front": "assets/upgrade-cards/tod-behind-schedule.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-behind-schedule-2abdc9f78fa5.webp"
       },
       "rules": {},
       "review": {
@@ -45687,7 +46081,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-born-to-lead.webp"
+        "front": "assets/upgrade-cards/tod-born-to-lead.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-born-to-lead-c178b8d524a1.webp"
       },
       "rules": {},
       "review": {
@@ -45756,7 +46151,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-captious.webp"
+        "front": "assets/upgrade-cards/tod-captious.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-captious-1fe63030ad78.webp"
       },
       "rules": {},
       "review": {
@@ -45826,7 +46222,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-compromised.webp"
+        "front": "assets/upgrade-cards/tod-compromised.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-compromised-561a193ee98e.webp"
       },
       "rules": {},
       "review": {
@@ -45906,7 +46303,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-conspicuous.webp"
+        "front": "assets/upgrade-cards/tod-conspicuous.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-conspicuous-e8d989a46652.webp"
       },
       "rules": {},
       "review": {
@@ -45976,7 +46374,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-dedicated-to-the-cause.webp"
+        "front": "assets/upgrade-cards/tod-dedicated-to-the-cause.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-dedicated-to-the-cause-c9f6d26142f3.webp"
       },
       "rules": {},
       "review": {
@@ -46049,7 +46448,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-disillusioned.webp"
+        "front": "assets/upgrade-cards/tod-disillusioned.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-disillusioned-fbc077ac7337.webp"
       },
       "rules": {},
       "review": {
@@ -46118,7 +46518,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-downtrodden1.webp"
+        "front": "assets/upgrade-cards/tod-downtrodden1.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-downtrodden1-7d35a48205bd.webp"
       },
       "rules": {},
       "review": {
@@ -46178,7 +46579,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-downtrodden2.webp"
+        "front": "assets/upgrade-cards/tod-downtrodden2.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-downtrodden2-ee5de5a14edd.webp"
       },
       "rules": {},
       "review": {
@@ -46238,7 +46640,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-downtrodden3.webp"
+        "front": "assets/upgrade-cards/tod-downtrodden3.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-downtrodden3-78b94be05b31.webp"
       },
       "rules": {},
       "review": {
@@ -46298,7 +46701,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-downtrodden4.webp"
+        "front": "assets/upgrade-cards/tod-downtrodden4.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-downtrodden4-553527b3621a.webp"
       },
       "rules": {},
       "review": {
@@ -46358,7 +46762,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-downtrodden5.webp"
+        "front": "assets/upgrade-cards/tod-downtrodden5.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-downtrodden5-879d91c7ed93.webp"
       },
       "rules": {},
       "review": {
@@ -46423,7 +46828,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-embittered.webp"
+        "front": "assets/upgrade-cards/tod-embittered.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-embittered-46e44d7d1532.webp"
       },
       "rules": {},
       "review": {
@@ -46498,7 +46904,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-expert-pilot.webp"
+        "front": "assets/upgrade-cards/tod-expert-pilot.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-expert-pilot-271b610e437f.webp"
       },
       "rules": {},
       "review": {
@@ -46567,7 +46974,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-extra-equipment.webp"
+        "front": "assets/upgrade-cards/tod-extra-equipment.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-extra-equipment-3593b6446260.webp"
       },
       "rules": {
         "slotGrants": [
@@ -46650,7 +47058,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-failure-not-an-option.webp"
+        "front": "assets/upgrade-cards/tod-failure-not-an-option.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-failure-not-an-option-16021a04a6f6.webp"
       },
       "rules": {},
       "review": {
@@ -46729,7 +47138,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-fatigue1.webp"
+        "front": "assets/upgrade-cards/tod-fatigue1.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-fatigue1-0ab7a479f813.webp"
       },
       "rules": {},
       "review": {
@@ -46791,7 +47201,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-fatigue2.webp"
+        "front": "assets/upgrade-cards/tod-fatigue2.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-fatigue2-1cd71ca20f2b.webp"
       },
       "rules": {},
       "review": {
@@ -46853,7 +47264,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-fatigue3.webp"
+        "front": "assets/upgrade-cards/tod-fatigue3.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-fatigue3-8f639a8a2364.webp"
       },
       "rules": {},
       "review": {
@@ -46915,7 +47327,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-fatigue4.webp"
+        "front": "assets/upgrade-cards/tod-fatigue4.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-fatigue4-5cba7dc63588.webp"
       },
       "rules": {},
       "review": {
@@ -46977,7 +47390,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-fatigue5.webp"
+        "front": "assets/upgrade-cards/tod-fatigue5.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-fatigue5-7bb4890f8c36.webp"
       },
       "rules": {},
       "review": {
@@ -47040,7 +47454,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-fearsome.webp"
+        "front": "assets/upgrade-cards/tod-fearsome.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-fearsome-50f3a4e37999.webp"
       },
       "rules": {},
       "review": {
@@ -47109,7 +47524,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-feats-of-valor.webp"
+        "front": "assets/upgrade-cards/tod-feats-of-valor.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-feats-of-valor-97ef309394e4.webp"
       },
       "rules": {},
       "review": {
@@ -47183,7 +47599,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-field-modifications.webp"
+        "front": "assets/upgrade-cards/tod-field-modifications.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-field-modifications-92e42f6475cd.webp"
       },
       "rules": {},
       "review": {
@@ -47262,7 +47679,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-flat-footed.webp"
+        "front": "assets/upgrade-cards/tod-flat-footed.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-flat-footed-8dc535fb0cd6.webp"
       },
       "rules": {},
       "review": {
@@ -47335,7 +47753,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-flexible-response.webp"
+        "front": "assets/upgrade-cards/tod-flexible-response.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-flexible-response-15665876a0bb.webp"
       },
       "rules": {
         "slotGrants": [
@@ -47416,7 +47835,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-forward-patrol.webp"
+        "front": "assets/upgrade-cards/tod-forward-patrol.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-forward-patrol-e819f2ee45ae.webp"
       },
       "rules": {},
       "review": {
@@ -47485,7 +47905,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-go-where-the-money-is.webp"
+        "front": "assets/upgrade-cards/tod-go-where-the-money-is.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-go-where-the-money-is-c8ca070c3a7c.webp"
       },
       "rules": {},
       "review": {
@@ -47557,7 +47978,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-greedy.webp"
+        "front": "assets/upgrade-cards/tod-greedy.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-greedy-f25969d1c492.webp"
       },
       "rules": {},
       "review": {
@@ -47627,7 +48049,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-harsh-environemts-gear.webp"
+        "front": "assets/upgrade-cards/tod-harsh-environemts-gear.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-harsh-environemts-gear-7a68b724ee59.webp"
       },
       "rules": {},
       "review": {
@@ -47689,7 +48112,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-headhunters.webp"
+        "front": "assets/upgrade-cards/tod-headhunters.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-headhunters-5d77cdb8c3e4.webp"
       },
       "rules": {},
       "review": {
@@ -47766,7 +48190,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-hopeful.webp"
+        "front": "assets/upgrade-cards/tod-hopeful.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-hopeful-65a65861c530.webp"
       },
       "rules": {},
       "review": {
@@ -47836,7 +48261,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-implacable.webp"
+        "front": "assets/upgrade-cards/tod-implacable.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-implacable-17fd396e502d.webp"
       },
       "rules": {},
       "review": {
@@ -47909,7 +48335,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-legendary.webp"
+        "front": "assets/upgrade-cards/tod-legendary.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-legendary-bb367de4c236.webp"
       },
       "rules": {},
       "review": {
@@ -47983,7 +48410,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-losing-faith.webp"
+        "front": "assets/upgrade-cards/tod-losing-faith.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-losing-faith-2e5fd2b505f7.webp"
       },
       "rules": {},
       "review": {
@@ -48053,7 +48481,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-lucky-shot.webp"
+        "front": "assets/upgrade-cards/tod-lucky-shot.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-lucky-shot-fc1e7715d80e.webp"
       },
       "rules": {},
       "review": {
@@ -48124,7 +48553,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-marksmanship-badge.webp"
+        "front": "assets/upgrade-cards/tod-marksmanship-badge.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-marksmanship-badge-9db067ef8f7f.webp"
       },
       "rules": {},
       "review": {
@@ -48186,7 +48616,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-on-the-backfoot.webp"
+        "front": "assets/upgrade-cards/tod-on-the-backfoot.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-on-the-backfoot-a5182991f412.webp"
       },
       "rules": {},
       "review": {
@@ -48255,7 +48686,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-one-in-a-million.webp"
+        "front": "assets/upgrade-cards/tod-one-in-a-million.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-one-in-a-million-bc1cb5c1a319.webp"
       },
       "rules": {},
       "review": {
@@ -48321,7 +48753,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-personal-shields.webp"
+        "front": "assets/upgrade-cards/tod-personal-shields.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-personal-shields-1747bdacdfad.webp"
       },
       "rules": {},
       "review": {
@@ -48391,7 +48824,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-rapid-response.webp"
+        "front": "assets/upgrade-cards/tod-rapid-response.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-rapid-response-dae3a1cc1ace.webp"
       },
       "rules": {},
       "review": {
@@ -48463,7 +48897,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-recon-badge.webp"
+        "front": "assets/upgrade-cards/tod-recon-badge.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-recon-badge-2e89a1667796.webp"
       },
       "rules": {},
       "review": {
@@ -48533,7 +48968,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-resilient.webp"
+        "front": "assets/upgrade-cards/tod-resilient.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-resilient-bab41c6860a4.webp"
       },
       "rules": {},
       "review": {
@@ -48601,7 +49037,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-scrambled.webp"
+        "front": "assets/upgrade-cards/tod-scrambled.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-scrambled-7b8c7c1f2c20.webp"
       },
       "rules": {},
       "review": {
@@ -48670,7 +49107,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-self-serving.webp"
+        "front": "assets/upgrade-cards/tod-self-serving.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-self-serving-863b75c99f6e.webp"
       },
       "rules": {},
       "review": {
@@ -48741,7 +49179,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-self-sufficient.webp"
+        "front": "assets/upgrade-cards/tod-self-sufficient.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-self-sufficient-2331507eb019.webp"
       },
       "rules": {},
       "review": {
@@ -48819,7 +49258,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-selfless-warden.webp"
+        "front": "assets/upgrade-cards/tod-selfless-warden.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-selfless-warden-b12139b0dbd6.webp"
       },
       "rules": {},
       "review": {
@@ -48892,7 +49332,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-special-munitions.webp"
+        "front": "assets/upgrade-cards/tod-special-munitions.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-special-munitions-caf79f2ae7c6.webp"
       },
       "rules": {},
       "review": {
@@ -48955,7 +49396,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-sterner-stuff.webp"
+        "front": "assets/upgrade-cards/tod-sterner-stuff.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-sterner-stuff-d928d8541021.webp"
       },
       "rules": {},
       "review": {
@@ -49029,7 +49471,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-strongpoint-expertise.webp"
+        "front": "assets/upgrade-cards/tod-strongpoint-expertise.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-strongpoint-expertise-68e5af5999a6.webp"
       },
       "rules": {},
       "review": {
@@ -49091,7 +49534,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-tunnel-vision.webp"
+        "front": "assets/upgrade-cards/tod-tunnel-vision.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-tunnel-vision-79ea24999946.webp"
       },
       "rules": {},
       "review": {
@@ -49153,7 +49597,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-unity.webp"
+        "front": "assets/upgrade-cards/tod-unity.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-unity-d3a12babce5c.webp"
       },
       "rules": {},
       "review": {
@@ -49228,7 +49673,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-unsure.webp"
+        "front": "assets/upgrade-cards/tod-unsure.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-unsure-a8973d7477bf.webp"
       },
       "rules": {},
       "review": {
@@ -49293,7 +49739,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-urban-assault-expert.webp"
+        "front": "assets/upgrade-cards/tod-urban-assault-expert.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-urban-assault-expert-2b3abf1f8c7e.webp"
       },
       "rules": {},
       "review": {
@@ -49366,7 +49813,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-veteran-gunners.webp"
+        "front": "assets/upgrade-cards/tod-veteran-gunners.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-veteran-gunners-e1604b194366.webp"
       },
       "rules": {},
       "review": {
@@ -49437,7 +49885,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-veteran-leader.webp"
+        "front": "assets/upgrade-cards/tod-veteran-leader.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-veteran-leader-5afe94bfc3ba.webp"
       },
       "rules": {},
       "review": {
@@ -49499,7 +49948,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-war-weary.webp"
+        "front": "assets/upgrade-cards/tod-war-weary.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-war-weary-364ee73ae33a.webp"
       },
       "rules": {},
       "review": {
@@ -49573,7 +50023,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-weight-of-responsibility.webp"
+        "front": "assets/upgrade-cards/tod-weight-of-responsibility.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-weight-of-responsibility-bdafb4430005.webp"
       },
       "rules": {},
       "review": {
@@ -49643,7 +50094,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-well-stocked.webp"
+        "front": "assets/upgrade-cards/tod-well-stocked.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-well-stocked-eef4089f8396.webp"
       },
       "rules": {},
       "review": {
@@ -49717,7 +50169,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tod-well-supplied.webp"
+        "front": "assets/upgrade-cards/tod-well-supplied.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tod-well-supplied-0cb76c4a5d35.webp"
       },
       "rules": {},
       "review": {
@@ -49791,7 +50244,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/training-duck.webp"
+        "front": "assets/upgrade-cards/training-duck.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/training-duck-2c539b8892cd.webp"
       },
       "rules": {
         "unique": false,
@@ -49872,7 +50326,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/training-dug-in.webp"
+        "front": "assets/upgrade-cards/training-dug-in.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/training-dug-in-ce54f0abe748.webp"
       },
       "rules": {
         "unique": false,
@@ -49977,7 +50432,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/training-endurance.webp"
+        "front": "assets/upgrade-cards/training-endurance.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/training-endurance-6b3f41d7387d.webp"
       },
       "rules": {
         "unique": false,
@@ -50050,7 +50506,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/training-fray.webp"
+        "front": "assets/upgrade-cards/training-fray.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/training-fray-8034bc2adb4a.webp"
       },
       "rules": {
         "unique": false,
@@ -50124,7 +50581,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/training-hunt.webp"
+        "front": "assets/upgrade-cards/training-hunt.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/training-hunt-66de636c5597.webp"
       },
       "rules": {
         "unique": false,
@@ -50210,7 +50668,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/training-imperial-march.webp"
+        "front": "assets/upgrade-cards/training-imperial-march.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/training-imperial-march-03155461a0b5.webp"
       },
       "rules": {
         "requiresTier": [
@@ -50342,7 +50801,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/training-mission-objective.webp"
+        "front": "assets/upgrade-cards/training-mission-objective.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/training-mission-objective-5b655d9e5389.webp"
       },
       "rules": {
         "unique": false,
@@ -50428,7 +50888,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/training-offensive.webp"
+        "front": "assets/upgrade-cards/training-offensive.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/training-offensive-514b9f02f533.webp"
       },
       "rules": {
         "unique": false,
@@ -50513,7 +50974,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/training-overwatch.webp"
+        "front": "assets/upgrade-cards/training-overwatch.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/training-overwatch-f59ce4927f11.webp"
       },
       "rules": {
         "unique": false,
@@ -50601,7 +51063,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/training-protector.webp"
+        "front": "assets/upgrade-cards/training-protector.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/training-protector-6625e3575437.webp"
       },
       "rules": {
         "unique": false,
@@ -50675,7 +51138,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/training-seize.webp"
+        "front": "assets/upgrade-cards/training-seize.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/training-seize-bf0064c5ab46.webp"
       },
       "rules": {
         "requiresTier": [
@@ -50778,7 +51242,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/training-situational.webp"
+        "front": "assets/upgrade-cards/training-situational.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/training-situational-4332be60c3a6.webp"
       },
       "rules": {
         "unique": false,
@@ -50865,7 +51330,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/training-stance-b.webp"
+        "front": "assets/upgrade-cards/training-stance-b.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/training-stance-b-34ef358fb1e0.webp"
       },
       "rules": {
         "availableIn": [
@@ -50976,7 +51442,8 @@
         "keywords": [],
         "weapons": [],
         "assets": {
-          "front": "assets/upgrade-cards/training-stance-a.webp"
+          "front": "assets/upgrade-cards/training-stance-a.webp",
+          "thumbnail": "assets/thumbnails/upgrade-cards/training-stance-a-8ae668350648.webp"
         },
         "legacyId": "training-stance-a",
         "source": {
@@ -51030,7 +51497,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/training-strike-and-fade.webp"
+        "front": "assets/upgrade-cards/training-strike-and-fade.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/training-strike-and-fade-059c56a82a93.webp"
       },
       "rules": {
         "unique": false,
@@ -51141,7 +51609,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/training-strike-team-leader.webp"
+        "front": "assets/upgrade-cards/training-strike-team-leader.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/training-strike-team-leader-c8f1718b15d9.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -51251,7 +51720,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/training-tenacity.webp"
+        "front": "assets/upgrade-cards/training-tenacity.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/training-tenacity-6aacce56260d.webp"
       },
       "rules": {
         "unique": false,
@@ -51324,7 +51794,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/training-upclose.webp"
+        "front": "assets/upgrade-cards/training-upclose.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/training-upclose-4d529762b457.webp"
       },
       "rules": {
         "unique": false,
@@ -51407,7 +51878,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tristan-wren-clan.webp"
+        "front": "assets/upgrade-cards/tristan-wren-clan.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tristan-wren-clan-f1a41a3e308e.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -51551,7 +52023,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/turbo-charge.webp"
+        "front": "assets/upgrade-cards/turbo-charge.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/turbo-charge-f15a28062469.webp"
       },
       "rules": {
         "availableIn": [
@@ -51661,7 +52134,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/twin-lightsabers.webp"
+        "front": "assets/upgrade-cards/twin-lightsabers.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/twin-lightsabers-148849701f33.webp"
       },
       "rules": {
         "availableIn": [
@@ -51783,7 +52257,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/tx225-dlt19.webp"
+        "front": "assets/upgrade-cards/tx225-dlt19.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tx225-dlt19-6e3d8221045a.webp"
       },
       "rules": {
         "availableIn": [
@@ -51884,7 +52359,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/tx225-rt97c.webp"
+        "front": "assets/upgrade-cards/tx225-rt97c.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tx225-rt97c-e1be63fba9c9.webp"
       },
       "rules": {
         "availableIn": [
@@ -51974,7 +52450,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/tyrannical-taskmaster.webp"
+        "front": "assets/upgrade-cards/tyrannical-taskmaster.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/tyrannical-taskmaster-4c3c5cbe0f13.webp"
       },
       "rules": {
         "availableIn": [
@@ -52073,7 +52550,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/unorthodox.webp"
+        "front": "assets/upgrade-cards/unorthodox.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/unorthodox-cef0ffc0f41e.webp"
       },
       "rules": {
         "availableIn": [
@@ -52174,7 +52652,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/unseen-saboteur.webp"
+        "front": "assets/upgrade-cards/unseen-saboteur.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/unseen-saboteur-a955048a47be.webp"
       },
       "rules": {
         "availableIn": [
@@ -52304,7 +52783,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/unstable-a5-astromech.webp"
+        "front": "assets/upgrade-cards/unstable-a5-astromech.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/unstable-a5-astromech-4e407e98b93d.webp"
       },
       "rules": {
         "availableIn": [
@@ -52414,7 +52894,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/ursa-wren-clan.webp"
+        "front": "assets/upgrade-cards/ursa-wren-clan.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/ursa-wren-clan-e7079e03123a.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -52560,7 +53041,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/veteran-squad.webp"
+        "front": "assets/upgrade-cards/veteran-squad.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/veteran-squad-71e00f9d40c2.webp"
       },
       "rules": {
         "availableIn": [
@@ -52696,7 +53178,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/vibro-axe.webp"
+        "front": "assets/upgrade-cards/vibro-axe.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/vibro-axe-0bebe92aa5b9.webp"
       },
       "rules": {
         "availableIn": [
@@ -52838,7 +53321,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/vibrosword.webp"
+        "front": "assets/upgrade-cards/vibrosword.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/vibrosword-f5d5c21428c3.webp"
       },
       "rules": {
         "availableIn": [
@@ -52975,7 +53459,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/viper-droid.webp"
+        "front": "assets/upgrade-cards/viper-droid.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/viper-droid-a72e2b2f9971.webp"
       },
       "rules": {
         "unique": false,
@@ -53107,7 +53592,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/war-party-leader.webp"
+        "front": "assets/upgrade-cards/war-party-leader.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/war-party-leader-3e81bf51b296.webp"
       },
       "rules": {
         "availableIn": [
@@ -53232,7 +53718,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/waxer.webp"
+        "front": "assets/upgrade-cards/waxer.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/waxer-6f06e391eb18.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -53364,7 +53851,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/wedge-antilles.webp"
+        "front": "assets/upgrade-cards/wedge-antilles.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/wedge-antilles-f775ab9d95e5.webp"
       },
       "rules": {
         "unavailableWith": [
@@ -53518,7 +54006,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/weequay-captain.webp"
+        "front": "assets/upgrade-cards/weequay-captain.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/weequay-captain-e4f99c0c10c7.webp"
       },
       "rules": {
         "availableIn": [
@@ -53618,7 +54107,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/weequay-crew.webp"
+        "front": "assets/upgrade-cards/weequay-crew.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/weequay-crew-766700b6e4a9.webp"
       },
       "rules": {
         "availableIn": [
@@ -53723,7 +54213,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/weequay-squad.webp"
+        "front": "assets/upgrade-cards/weequay-squad.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/weequay-squad-9ea7e06aa2a6.webp"
       },
       "rules": {
         "availableIn": [
@@ -53835,7 +54326,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/whipcord-launcher.webp"
+        "front": "assets/upgrade-cards/whipcord-launcher.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/whipcord-launcher-7996bf9493d7.webp"
       },
       "rules": {
         "slotTypes": [
@@ -53969,7 +54461,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/wrecker.webp"
+        "front": "assets/upgrade-cards/wrecker.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/wrecker-62cf23f0318a.webp"
       },
       "rules": {
         "availableIn": [
@@ -54085,7 +54578,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/x34-a300.webp"
+        "front": "assets/upgrade-cards/x34-a300.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/x34-a300-7138662f149b.webp"
       },
       "rules": {
         "availableIn": [
@@ -54191,7 +54685,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/x34-rocket.webp"
+        "front": "assets/upgrade-cards/x34-rocket.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/x34-rocket-5e0c94f73578.webp"
       },
       "rules": {
         "availableIn": [
@@ -54302,7 +54797,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/xs-iv.webp"
+        "front": "assets/upgrade-cards/xs-iv.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/xs-iv-aa90823b5bdd.webp"
       },
       "rules": {
         "availableIn": [
@@ -54395,7 +54891,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/youre-not-all-the-same-to-me.webp"
+        "front": "assets/upgrade-cards/youre-not-all-the-same-to-me.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/youre-not-all-the-same-to-me-90e526595f2e.webp"
       },
       "rules": {
         "availableIn": [
@@ -54523,7 +55020,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/z6-riot-baton.webp"
+        "front": "assets/upgrade-cards/z6-riot-baton.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/z6-riot-baton-8de83b26ed2d.webp"
       },
       "rules": {
         "availableIn": [
@@ -54745,7 +55243,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/upstream-175.webp"
+        "front": "assets/upgrade-cards/upstream-175.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/upstream-175-5043aa2aab2b.webp"
       },
       "rules": {
         "availableIn": [
@@ -54918,7 +55417,8 @@
           0.2,
           0.333,
           0.915
-        ]
+        ],
+        "thumbnail": "assets/thumbnails/unit-cards/gar/originals/c3po_front-62faafa54d1d.webp"
       },
       "rules": {
         "availableIn": [
@@ -55045,7 +55545,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/upstream-23419-front-90b4879a0173.webp"
+        "front": "assets/upgrade-cards/upstream-23419-front-90b4879a0173.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/upstream-23419-front-90b4879a0173-47b808357948.webp"
       },
       "rules": {
         "availableIn": [
@@ -55145,7 +55646,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/upstream-23968.webp"
+        "front": "assets/upgrade-cards/upstream-23968.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/upstream-23968-d2a3c9a4470d.webp"
       },
       "rules": {
         "availableIn": [
@@ -55347,7 +55849,8 @@
           0.2,
           0.333,
           0.915
-        ]
+        ],
+        "thumbnail": "assets/thumbnails/unit-cards/mercenary/clan_covert/originals/grogu-covert_front-630632134a7d.webp"
       },
       "rules": {
         "availableIn": [
@@ -55451,7 +55954,8 @@
           0.2,
           0.333,
           0.915
-        ]
+        ],
+        "thumbnail": "assets/thumbnails/unit-cards/mercenary/clan_covert/originals/grogu-covert_front-630632134a7d.webp"
       },
       "rules": {
         "availableIn": [
@@ -55579,7 +56083,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/upstream-23420-front-b02e6459d829.webp"
+        "front": "assets/upgrade-cards/upstream-23420-front-b02e6459d829.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/upstream-23420-front-b02e6459d829-e278c4191089.webp"
       },
       "rules": {
         "availableIn": [
@@ -55789,7 +56294,8 @@
           0.2,
           0.333,
           0.915
-        ]
+        ],
+        "thumbnail": "assets/thumbnails/unit-cards/empire/originals/id10-seeker_front-2852c0259ff0.webp"
       },
       "rules": {
         "availableIn": [
@@ -55931,7 +56437,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/upstream-19896.webp"
+        "front": "assets/upgrade-cards/upstream-19896.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/upstream-19896-03155461a0b5.webp"
       },
       "rules": {
         "availableIn": [
@@ -56067,7 +56574,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/upstream-20841.webp"
+        "front": "assets/upgrade-cards/upstream-20841.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/upstream-20841-2ce79a494798.webp"
       },
       "rules": {
         "availableIn": [
@@ -56278,7 +56786,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/upstream-23984-front-62aa424559fc.webp"
+        "front": "assets/upgrade-cards/upstream-23984-front-62aa424559fc.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/upstream-23984-front-62aa424559fc-46d172d2aafe.webp"
       },
       "rules": {
         "availableIn": [
@@ -56388,7 +56897,8 @@
           0.2,
           0.333,
           0.915
-        ]
+        ],
+        "thumbnail": "assets/thumbnails/upgrade-cards/upstream-15628-2755456654e6.webp"
       },
       "rules": {
         "availableIn": [
@@ -56530,7 +57040,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/upstream-23967.webp"
+        "front": "assets/upgrade-cards/upstream-23967.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/upstream-23967-b701219d6a06.webp"
       },
       "rules": {
         "availableIn": [
@@ -56613,7 +57124,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/upstream-23948-front-605e124db460.webp"
+        "front": "assets/upgrade-cards/upstream-23948-front-605e124db460.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/upstream-23948-front-605e124db460-688f2a6662fd.webp"
       },
       "rules": {
         "availableIn": [
@@ -56703,7 +57215,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/upstream-23947-front-9d4c3610459e.webp"
+        "front": "assets/upgrade-cards/upstream-23947-front-9d4c3610459e.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/upstream-23947-front-9d4c3610459e-ea2aad439ea1.webp"
       },
       "rules": {
         "availableIn": [
@@ -56782,7 +57295,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/upstream-23949-front-5f94b48ceddb.webp"
+        "front": "assets/upgrade-cards/upstream-23949-front-5f94b48ceddb.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/upstream-23949-front-5f94b48ceddb-0a49fc3a2be4.webp"
       },
       "rules": {
         "availableIn": [
@@ -56840,7 +57354,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/upstream-2719.webp"
+        "front": "assets/upgrade-cards/upstream-2719.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/upstream-2719-8dcd4d7251d0.webp"
       },
       "rules": {
         "availableIn": [
@@ -56957,7 +57472,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/upstream-177.webp"
+        "front": "assets/upgrade-cards/upstream-177.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/upstream-177-f1a41a3e308e.webp"
       },
       "rules": {
         "availableIn": [
@@ -57039,7 +57555,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/upstream-178.webp"
+        "front": "assets/upgrade-cards/upstream-178.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/upstream-178-e7079e03123a.webp"
       },
       "rules": {
         "availableIn": [
@@ -57146,7 +57663,8 @@
         }
       ],
       "assets": {
-        "front": "assets/upgrade-cards/upstream-23982-front-30926429574f.webp"
+        "front": "assets/upgrade-cards/upstream-23982-front-30926429574f.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/upstream-23982-front-30926429574f-2f51f6149ed6.webp"
       },
       "rules": {
         "availableIn": [
@@ -57212,7 +57730,8 @@
         ]
       },
       "assets": {
-        "front": "assets/upgrade-cards/new-upgrade-mwkely2o-front-18b7927e8f4e.webp"
+        "front": "assets/upgrade-cards/new-upgrade-mwkely2o-front-18b7927e8f4e.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/new-upgrade-mwkely2o-front-18b7927e8f4e-0fcc449d354b.webp"
       },
       "description": {
         "en": [
@@ -57275,7 +57794,8 @@
         "locallyUnique": true
       },
       "assets": {
-        "front": "assets/upgrade-cards/new-upgrade-mwkggzem-front-69c0edcf0a93.webp"
+        "front": "assets/upgrade-cards/new-upgrade-mwkggzem-front-69c0edcf0a93.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/new-upgrade-mwkggzem-front-69c0edcf0a93-9cf29d6891e7.webp"
       },
       "description": {
         "en": [],
@@ -57383,7 +57903,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/training-mechanical-carnage.webp"
+        "front": "assets/upgrade-cards/training-mechanical-carnage.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/training-mechanical-carnage-7df550fd2116.webp"
       },
       "rules": {
         "slotTypes": [
@@ -57439,7 +57960,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/training-cold-blooded.webp"
+        "front": "assets/upgrade-cards/training-cold-blooded.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/training-cold-blooded-f9ddd2897e83.webp"
       },
       "rules": {
         "slotTypes": [
@@ -57495,7 +58017,8 @@
       "keywords": [],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/training-focused-on-the-kill.webp"
+        "front": "assets/upgrade-cards/training-focused-on-the-kill.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/training-focused-on-the-kill-e409a5a6f9b1.webp"
       },
       "rules": {
         "slotTypes": [
@@ -57563,7 +58086,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/training-i-make-the-rules-now.webp"
+        "front": "assets/upgrade-cards/training-i-make-the-rules-now.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/training-i-make-the-rules-now-0bdfcf218ad2.webp"
       },
       "rules": {
         "slotTypes": [
@@ -57632,7 +58156,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/frontal-assault-front-f5dbc7aa1494.webp"
+        "front": "assets/upgrade-cards/frontal-assault-front-f5dbc7aa1494.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/frontal-assault-front-f5dbc7aa1494-557e79948e20.webp"
       },
       "rules": {
         "availableIn": [
@@ -57781,7 +58306,8 @@
         "zhReview": "needs_review"
       },
       "assets": {
-        "front": "assets/upgrade-cards/eyes-and-ears-nov2026.webp"
+        "front": "assets/upgrade-cards/eyes-and-ears-nov2026.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/eyes-and-ears-nov2026-695a9dfe5d3e.webp"
       }
     },
     {
@@ -57862,7 +58388,8 @@
         "zhReview": "needs_review"
       },
       "assets": {
-        "front": "assets/upgrade-cards/veteran-operators-nov2026.webp"
+        "front": "assets/upgrade-cards/veteran-operators-nov2026.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/veteran-operators-nov2026-6228eb55963c.webp"
       }
     },
     {
@@ -57941,7 +58468,8 @@
         "zhReview": "needs_review"
       },
       "assets": {
-        "front": "assets/upgrade-cards/wookiee-battle-cries-nov2026.webp"
+        "front": "assets/upgrade-cards/wookiee-battle-cries-nov2026.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/wookiee-battle-cries-nov2026-fa2d7e551c40.webp"
       }
     },
     {
@@ -58032,7 +58560,8 @@
         "zhReview": "needs_review"
       },
       "assets": {
-        "front": "assets/upgrade-cards/war-grove-battle-shield-wookiee-nov2026.webp"
+        "front": "assets/upgrade-cards/war-grove-battle-shield-wookiee-nov2026.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/war-grove-battle-shield-wookiee-nov2026-15c880c0cf23.webp"
       }
     },
     {
@@ -58122,7 +58651,8 @@
         "zhReview": "needs_review"
       },
       "assets": {
-        "front": "assets/upgrade-cards/war-grove-bowcaster-wookiee-nov2026.webp"
+        "front": "assets/upgrade-cards/war-grove-bowcaster-wookiee-nov2026.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/war-grove-bowcaster-wookiee-nov2026-cd3d56284e89.webp"
       }
     },
     {
@@ -58220,7 +58750,8 @@
         "zhReview": "needs_review"
       },
       "assets": {
-        "front": "assets/upgrade-cards/war-grove-long-gun-wookiee-nov2026.webp"
+        "front": "assets/upgrade-cards/war-grove-long-gun-wookiee-nov2026.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/war-grove-long-gun-wookiee-nov2026-ac09538b6922.webp"
       }
     },
     {
@@ -58305,7 +58836,8 @@
         "zhReview": "needs_review"
       },
       "assets": {
-        "front": "assets/upgrade-cards/war-grove-gnasp-bombardier-nov2026.webp"
+        "front": "assets/upgrade-cards/war-grove-gnasp-bombardier-nov2026.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/war-grove-gnasp-bombardier-nov2026-47f67ce73e5d.webp"
       }
     },
     {
@@ -58404,7 +58936,8 @@
         "zhReview": "needs_review"
       },
       "assets": {
-        "front": "assets/upgrade-cards/war-grove-gnasp-gunner-nov2026.webp"
+        "front": "assets/upgrade-cards/war-grove-gnasp-gunner-nov2026.webp",
+        "thumbnail": "assets/thumbnails/upgrade-cards/war-grove-gnasp-gunner-nov2026-20d654af44c2.webp"
       }
     },
     {
@@ -58447,7 +58980,8 @@
       ],
       "weapons": [],
       "assets": {
-        "front": "assets/upgrade-cards/yoda-heavy-nov2026.png"
+        "front": "assets/upgrade-cards/yoda-heavy-nov2026.png",
+        "thumbnail": "assets/thumbnails/upgrade-cards/yoda-heavy-nov2026-ce88ec3b323b.webp"
       },
       "rules": {
         "unique": true,

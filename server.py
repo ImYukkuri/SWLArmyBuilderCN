@@ -305,7 +305,9 @@ class Handler(BaseHTTPRequestHandler):
             if path=='/api/history':return self.reply(200,[{'file':p.name,'size':p.stat().st_size}for p in sorted(HISTORY.glob('*.json'),reverse=True)])
             files={'/':'index.html','/maintenance':'maintenance.html','/units':'units.html','/upgrades':'upgrades.html','/commands':'commands.html','/armies':'armies.html','/rules':'rules.html',**{'/'+name:name for name in ['index.html','maintenance.html','units.html','upgrades.html','commands.html','armies.html','rules.html','dice-enums.js','combo.js','command-editor.js','app.js','builder.js','builder-model.js','builder-library.js','builder-view.js','builder-home.js','builder.css','rules-core.js','rules.js','rule-editor.js','condition-editor.js','upgrade-editor.js','army-editor.js','editor-common.js','editor-options.js','editor-forms.js','portrait-crop.js','editor-shell.js','editor.css','style.css']}}
             files['/upgrade-faces.js']='upgrade-faces.js'
+            files['/command-requirements-editor.js']='command-requirements-editor.js'
             files['/builder-transfer.js']='builder-transfer.js'
+            files['/builder-share.js']='builder-share.js'
             files['/builder-transfer-ui.js']='builder-transfer-ui.js'
             files['/builder-overlays.js']='builder-overlays.js'
             files['/builder-sticky.js']='builder-sticky.js'

@@ -13,6 +13,7 @@ from unit_identity import resolve_id
 from upgrade_schema import normalize_army_faces
 import re
 import sys
+import command_requirements
 from pathlib import Path
 
 # Optional faction extensions can be detached without changing base calculations.
@@ -717,6 +718,23 @@ def unit_rank_in_army(unit, army_id, package, definitions):
     return next((f.get("rankId") for f in unit.get("factions") or [] if f.get("id") == pid), None)
 
 
+def army_membership(unit, army_id, package, definitions):
+    """Prefer explicit force flags; inherit only when that membership is absent."""
+    seen = set()
+    while army_id not in seen:
+        seen.add(army_id)
+        membership = next((f for f in unit.get('factions', []) if f.get('id') == army_id), None)
+        if membership is not None:
+            return membership
+        parent = package.get('battleForces', {}).get(str(army_id), {}).get('v2', {}).get('parentFactionId')
+        if parent is None:
+            parent = parent_faction_id(package, definitions, army_id)
+        if parent is None:
+            break
+        army_id = parent
+    return {}
+
+
 def army_rank(unit, army_id, package, definitions, units):
     for ext in extensions(army_id,package):
         rank=ext.rank(unit,army_id,package)
@@ -1191,13 +1209,11 @@ def validate_army(army):
         tc = (unit.get("rules") or {}).get("tierCounting") or {}
         ignore_min = tc.get("ignoreMinimum") is True
         ignore_max = tc.get("ignoreMaximum") is True
-        for f in unit.get("factions", []):
-            if f.get("id") == army.get("armyId"):
-                ftc = f.get("tierCounting") or {}
-                if ftc.get("ignoreMinimum") is True:
-                    ignore_min = True
-                if ftc.get("ignoreMaximum") is True:
-                    ignore_max = True
+        ftc = army_membership(unit, army['armyId'], package, definitions).get('tierCounting') or {}
+        if ftc.get('ignoreMinimum') is True:
+            ignore_min = True
+        if ftc.get('ignoreMaximum') is True:
+            ignore_max = True
         if any(e.count_mercenaries for e in extensions(army['armyId'],package)):
             ignore_min=False
         exempt_copies = 0
@@ -1236,6 +1252,7 @@ def validate_army(army):
 
     # command cards: faction / unlock / campaign
     selected_upgrade_upstream = {x["upstream_id"] for x in sel}
+    command_context = command_requirements.context(army, units, upgrades, definitions, package, apply_property_effects)
     for cid in army.get("commandIds", []):
         cmd = next((c for c in definitions.get("commands", []) if str(c.get("id")) == str(cid)), None)
         if not cmd:
@@ -1244,6 +1261,16 @@ def validate_army(army):
         name = (cmd.get("name") or {}).get("en") or cid
         if cmd.get("hidden"):
             issue("invalid", "command_hidden", f"命令卡「{name}」已停用，请替换", None)
+            continue
+        if 'requirements' in cmd:
+            try:
+                for condition in command_requirements.failures(cmd['requirements'], command_context):
+                    code = 'command_required_units' if condition['type'] == 'unitNames' else 'command_faction' if condition['type'] in ('armyFaction', 'battleForce') else 'command_unlock'
+                    issue('invalid', code, f'命令卡「{name}」不满足使用条件', None)
+            except ValueError as error:
+                issue('invalid', 'command_unlock', f'命令卡「{name}」使用条件无效：{error}', None)
+            if cmd.get('campaigns'):
+                issue('unknown', 'command_campaign', f'命令卡「{name}」为战役卡，标准模式资格待核验', None)
             continue
         title_match = str(cmd.get("titleMatch") or "").strip()
         if title_match:
@@ -1337,28 +1364,41 @@ def validate_army(army):
             if pips.count(rule["pips"]) > rule.get("max", 99):
                 issue("invalid", "command_max", f"{rule['pips']} 点命令卡超过 {rule['max']} 张", None)
 
-    # mercenary pool (membership + bonus from local data)
+    # Per-rank allowances, with a single shared Allies of Convenience overflow.
     pool = (mode.get("pools") or {}).get("mercenary")
     if pool and not any(e.count_mercenaries for e in extensions(army['armyId'],package)):
-        bonus = 0
-        for x in sel:
-            card = upgrades.get(x["card_id"]) or {}
-            if "extraMercenary" in ((card.get("rules") or {}).get("poolBonuses") or []):
-                bonus += 1
-        merc_count = 0
-        for inst in army.get("units", []):
-            unit = units.get(inst.get("unitId"))
-            if not unit:
+        counts, has_bonus = {}, False
+        def grants_bonus(card):
+            return any(k.get('id') == 'allies_of_convenience' for k in card.get('keywords', [])) or \
+                (pool.get('bonus', {}).get('when') or 'extraMercenary') in (card.get('rules', {}).get('poolBonuses') or [])
+        for inst in army.get('units', []):
+            unit = units.get(inst.get('unitId'))
+            if not unit or unit.get('isCounterpart') or unit.get('usage') == 'counterpart':
                 continue
-            for f in unit.get("factions", []):
-                if "mercenary" in (f.get("tierPools") or []) and f.get("id") == army.get("armyId"):
-                    merc_count += 1
-                    break
-        limit = pool.get("max", 1) + bonus
-        if merc_count > limit:
-            issue("invalid", "mercenary_pool", f"雇佣兵数量 {merc_count} 超过上限 {limit}", None)
-        if bonus:
-            issue("unknown", "mercenary_pool_semantics", "雇佣兵池额外名额叠加语义仍需核验", None)
+            rank = army_rank(unit, army['armyId'], package, definitions, units)
+            if rank is None:
+                continue
+            cards = [upgrades[ch['upgradeId']] for ch in inst.get('upgrades', []) if ch.get('upgradeId') in upgrades]
+            has_bonus = has_bonus or grants_bonus(apply_property_effects(unit, cards, definitions)) or any(map(grants_bonus, cards))
+            for card in cards:
+                if card.get('rules', {}).get('replaceTier') is not None:
+                    rank = int(card['rules']['replaceTier'])
+            membership = army_membership(unit, army['armyId'], package, definitions)
+            if 'mercenary' in membership.get('tierPools', []):
+                counts[rank] = counts.get(rank, 0) + 1
+        exceeded = [(rank, count, pool.get('perTierMax', {}).get(str(rank), pool.get('max', 1)))
+                    for rank, count in sorted(counts.items())]
+        exceeded = [(rank, count, limit) for rank, count, limit in exceeded if count > limit]
+        overflow = sum(count - limit for _, count, limit in exceeded)
+        bonus = pool.get('bonus', {}).get('overflow', 1) if has_bonus else 0
+        if overflow > bonus:
+            ranks = [rank for rank, _, _ in exceeded]
+            def rank_name(rank):
+                value = next((r.get('name', {}) for r in definitions.get('ranks', []) if r['id'] == rank), {})
+                return value.get('zh') or value.get('en') or '军阶 ' + str(rank)
+            detail = '；'.join(f'{rank_name(rank)}雇佣兵 {count} 个（通常上限 {limit}）' for rank, count, limit in exceeded)
+            issue('invalid', 'mercenary_pool', f'{detail}；超出名额共 {overflow} 个，全军可用额外名额 {bonus} 个', None,
+                  {'rank': ranks[0]} if len(ranks) == 1 else {'ranks': ranks})
 
     # effects: effective points / chooseOneKey / quantityLimitedBy (local)
     effective_points = base_points

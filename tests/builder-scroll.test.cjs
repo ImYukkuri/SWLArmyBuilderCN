@@ -59,7 +59,421 @@ async function samePosition(page, y) {
   assert(Math.abs(await page.evaluate(() => scrollY) - y) <= 2, `page should stay at ${y}`);
   assert.equal(await page.locator('html').evaluate(n => n.classList.contains('page-overlay-open')), false);
 }
+
+for (const mobile of [true,false]) test(`${mobile?'mobile':'desktop'} share link restores V2 native state in another browser and keeps editing URLs short`,async t=>{
+  const page=await setup(t,mobile);
+  await page.evaluate(()=>{
+    Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async()=>{throw Error('denied');}}});
+    openRoster(BuilderLibrary.create(4,'分享：克隆人营 🛡',data,uid,new Date().toISOString()));
+  });
+  await page.selectOption('#battleforce','28');
+  for(const id of ['ccb_scout','ccb_decisive','ccb_reinforced']) await page.locator(`[data-option-id="${id}"]`).click();
+  await page.evaluate(()=>{
+    army=BuilderModel.addUnit(army,data,'republic-jedi-knight-general',uid,1).draft;
+    data=RulesCore.resolveArmyData(army,data);
+    const inst=army.units[0],u=RulesCore.unitFor(inst,army,data);
+    const slot=RulesCore.slotListFor(data.pkg,u,inst,data.upgrades,army.armyId).findIndex(s=>s.key==='training');
+    if(slot<0)throw Error('test requires a training slot');
+    inst.upgrades.push({instanceId:uid(),upgradeId:'training-stance-b',slotIndex:slot,face:'both'});
+    const other=structuredClone(inst);other.instanceId=uid();other.upgrades.forEach(c=>{c.instanceId=uid();c.face='back';});
+    army.units.push(other);
+    army.deck=Object.fromEntries(['primary','secondary','advantage'].map(kind=>[kind,deckCatalog(kind).slice(0,3).map(c=>String(c.id))]));
+    army.options=['preserved-native-option'];army.contingencies=['1','2'];army.notes='保留未识别原生字段';
+    render();
+  });
+  const initialUrl=page.url(), snapshot=await page.evaluate(()=>structuredClone({...activeRecord,army}));
+  assert.match(new URL(initialUrl).hash,/^#faction\/4\/army\//);
+  assert(initialUrl.length<150);
+  await page.locator('#roster-share').click();
+  await page.waitForFunction(()=>document.querySelector('#share-link')?.value.includes('#share/1.'));
+  const link=await page.locator('#share-link').inputValue();
+  assert.equal(page.url(),initialUrl,'generating a share never changes the editing URL');
+  assert.deepEqual(await page.evaluate(link=>BuilderShare.readRequest(BuilderShare.request(link)),link),snapshot);
+  await page.getByRole('button',{name:'复制链接',exact:true}).click();
+  assert((await page.locator('#share-dialog').innerText()).includes('请复制已选中的链接'));
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+  if(process.env.BUILDER_QA_SCREENSHOTS)
+    await page.screenshot({path:path.join(process.env.BUILDER_QA_SCREENSHOTS,`${mobile?'mobile':'desktop'}-share-dialog.png`)});
+  await page.getByRole('button',{name:'关闭分享链接',exact:true}).click();
+  await page.selectOption('#points-limit','800');
+  assert.equal(page.url(),initialUrl);
+
+  const receiving=await browser.newContext({viewport:mobile?{width:390,height:844}:{width:1440,height:1000},isMobile:mobile,hasTouch:mobile});
+  t.after(()=>receiving.close());
+  // A colliding sender ID must never overwrite an existing receiver record.
+  await receiving.addInitScript(snapshot=>{
+    if(!localStorage.getItem('swl-army-library'))localStorage.setItem('swl-army-library',
+      JSON.stringify({version:1,migratedLegacy:true,records:[snapshot]}));
+  },snapshot);
+  const target=await receiving.newPage(),errors=[];
+  target.on('pageerror',e=>errors.push(e.message));
+  await target.goto(link);
+  await target.waitForFunction(()=>typeof army!=='undefined'&&army?.units.length===2);
+  assert.deepEqual(await target.evaluate(()=>army),snapshot.army);
+  assert.equal(await target.locator('#roster-name').inputValue(),snapshot.name);
+  assert.equal(await target.locator('#battleforce').inputValue(),'28');
+  assert.equal(await target.locator('#summary-activations').innerText(),'2');
+  const stored=await target.evaluate(()=>({records:BuilderLibrary.read(localStorage).records,id:activeRecord.id}));
+  assert.notEqual(stored.id,snapshot.id);assert.equal(stored.records.length,2);
+  assert.deepEqual(stored.records.find(r=>r.id===snapshot.id),snapshot);
+  assert.match(new URL(target.url()).hash,/^#faction\/4\/army\//);
+  assert.equal(new URL(target.url()).search,'');
+  await target.reload();
+  await target.waitForFunction(()=>typeof army!=='undefined'&&army?.units.length===2);
+  assert.deepEqual(await target.evaluate(()=>army),snapshot.army);
+  assert.equal(await target.evaluate(()=>BuilderLibrary.read(localStorage).records.length),2);
+  await target.locator('#back-library').click();
+  assert.equal(new URL(target.url()).hash,'#home');
+  await target.locator(`.saved-roster[data-id="${stored.id}"] .saved-roster-main`).click();
+  assert.deepEqual(await target.evaluate(()=>army),snapshot.army);
+  assert.deepEqual(errors,[]);
+  t.diagnostic(`Native JSON ${Buffer.byteLength(JSON.stringify(snapshot))} bytes; share code ${new URL(link).hash.length-7} characters`);
+});
+
+test('share dispatcher reads legacy query payloads and gives malformed links a recoverable error',async t=>{
+  const page=await setup(t),snapshot=await page.evaluate(()=>structuredClone({...activeRecord,army}));
+  const count=await page.evaluate(()=>collection.records.length);
+  await page.goto(base+'?roster=j:'+encodeURIComponent(JSON.stringify(snapshot)));
+  await page.waitForFunction(()=>typeof army!=='undefined'&&army?.units.length===18);
+  assert.deepEqual(await page.evaluate(()=>army),snapshot.army);
+  assert.equal(new URL(page.url()).search,'');
+  assert.equal(await page.evaluate(()=>collection.records.length),count+1);
+  await page.goto(base+'#share/1.broken');
+  await page.waitForFunction(()=>document.querySelector('#status').classList.contains('error'));
+  assert.deepEqual(await page.evaluate(()=>army),snapshot.army,'a failed hash navigation leaves the open roster intact');
+  await page.goto(new URL('index.html#share/1.broken',base).href);
+  await page.waitForFunction(()=>document.querySelector('#status').classList.contains('error'));
+  assert.equal(await page.locator('#library-page').isVisible(),true);
+  assert.equal(await page.evaluate(()=>collection.records.length),count+1);
+  await page.locator('.faction-choice[data-faction="1"]').click();
+  assert.equal(await page.locator('#editor-page').isVisible(),true);
+  assert.equal(await page.evaluate(()=>army.units.length),0);
+  await page.goto(base+'#faction/8');
+  await page.waitForFunction(()=>typeof army!=='undefined'&&army?.armyId===8);
+  const id=await page.evaluate(()=>activeRecord.id);
+  await page.reload();await page.waitForFunction(()=>typeof army!=='undefined'&&army?.armyId===8);
+  assert.equal(await page.evaluate(()=>activeRecord.id),id);
+});
+
+test('share dispatcher cancels an in-flight import when the user navigates elsewhere',async t=>{
+  const page=await setup(t),before=await page.evaluate(()=>collection.records.length);
+  await page.evaluate(async()=>{
+    const code=await BuilderShare.encode({...activeRecord,army});
+    const decode=BuilderShare.readRequest;
+    BuilderShare.readRequest=async value=>{await new Promise(resolve=>window.finishShare=resolve);return decode(value);};
+    location.hash='share/'+code;
+  });
+  await page.waitForFunction(()=>typeof window.finishShare==='function');
+  await page.evaluate(()=>{showLibrary();window.finishShare();});
+  await page.waitForTimeout(150);
+  assert.equal(new URL(page.url()).hash,'#home');
+  assert.equal(await page.locator('#library-page').isVisible(),true);
+  assert.equal(await page.evaluate(()=>collection.records.length),before);
+});
+
+for (const mobile of [true, false]) test(`${mobile ? 'mobile' : 'desktop'} card thumbnails defer originals until opening full artwork`, async t => {
+  const page = await setup(t, mobile), requests = [];
+  page.on('request', request => requests.push(decodeURIComponent(new URL(request.url()).pathname)));
+  const screenshot = async name => {
+    if (process.env.BUILDER_QA_SCREENSHOTS) {
+      await page.screenshot({path:path.join(process.env.BUILDER_QA_SCREENSHOTS, `${mobile?'mobile':'desktop'}-images-${name}.png`)});
+    }
+  };
+  await page.evaluate(() => {
+    const record = BuilderLibrary.create(4, 'Image regression', data, uid, new Date().toISOString());
+    record.army = BuilderModel.addUnit(record.army, data, 'republic-anakin', uid).draft;
+    openRoster(record);
+  });
+  await page.locator('#army-units .compact-slot[data-slot-index="2"] .slot-name').click();
+  await page.locator('#candidate-search').fill('Stance');
+  const stance = page.locator('#card-grid [data-id="training-stance-b"]');
+  const thumbnail = stance.locator('.candidate-art img');
+  // On mobile the lazy-image observer can run after the search redraw.
+  await thumbnail.scrollIntoViewIfNeeded();
+  await page.waitForFunction(() => {
+    const image = document.querySelector('#card-grid [data-id="training-stance-b"] .candidate-art img');
+    return image?.complete && image.naturalWidth > 0;
+  });
+  await thumbnail.evaluate(n => n.decode());
+  assert((await thumbnail.getAttribute('data-source')).includes('assets/thumbnails/'));
+  const sources = await page.evaluate(() => UpgradeFaces.variants(data.upgrades['training-stance-b']).map(c => c.assets.front));
+  assert(!requests.some(url => url.includes('/assets/upgrade-cards/')), 'opening a picker must not preload upgrade originals');
+  await screenshot('upgrade-picker');
+  await stance.locator('.candidate-art').click();
+  await page.locator('#image-dialog .image-face:not([hidden]) img').evaluate(n => n.decode());
+  for (const source of sources) assert(requests.some(url => url.endsWith('/' + source)), 'full faces load on opening the image dialog');
+  await page.locator('#image-dialog .face-tab[data-face="back"]').click();
+  await page.locator('#image-dialog .image-face:not([hidden]) img').evaluate(n => n.decode());
+  assert.equal(await page.locator('#image-dialog .image-face:not([hidden]) img').getAttribute('data-source'),sources[1]);
+  await screenshot('upgrade-full');
+  await page.getByRole('button', {name:'关闭卡图',exact:true}).click();
+  await stance.locator('h3').click();
+  await page.evaluate(() => closeBrowser());
+  const slot = page.locator('#army-units .compact-slot[data-slot-index="2"] .slot-art img');
+  await slot.evaluate(n => n.decode());
+  assert((await slot.getAttribute('data-source')).includes('assets/thumbnails/'));
+
+  await page.locator('.empty-command').first().click();
+  const command = page.locator('#card-grid .command-candidate:has(img)').first();
+  await command.scrollIntoViewIfNeeded();
+  const art = command.locator('.command-face-image');
+  await art.evaluate(n => n.decode());
+  assert((await art.getAttribute('src')).includes('assets/thumbnails/'));
+  assert(!requests.some(url => url.includes('/assets/command-cards/')));
+  await screenshot('command-picker');
+  const fullCommand = await command.getAttribute('data-id');
+  const fullCommandSource = await page.evaluate(id => data.defs.commands.find(c => c.id === id).image, fullCommand);
+  await art.click({position:{x:20,y:30}});
+  await page.locator('#image-dialog .full-card-image').evaluate(n => n.decode());
+  assert.equal(await page.locator('#image-dialog .full-card-image').getAttribute('src'),fullCommandSource);
+  await page.getByRole('button', {name:'关闭卡图',exact:true}).click();
+  await command.locator('.command-overlay').click();
+  await page.evaluate(() => closeBrowser());
+  assert((await page.locator('.command-chosen .command-face-image').first().getAttribute('src')).includes('assets/thumbnails/'));
+
+  const payload = await page.evaluate(() => deckCatalog('primary').find(c => c.name.en === 'Payload'));
+  await page.locator('.mission-section[data-kind="primary"] .mission-card').first().click();
+  const mission = page.locator(`#deck-picker [data-id="${payload.id}"]`);
+  await mission.scrollIntoViewIfNeeded();
+  await mission.locator('img').evaluate(n => n.decode());
+  assert.equal(await mission.locator('img').getAttribute('src'),payload.thumbnail);
+  assert(!requests.some(url => url.includes('/assets/battle-deck/')));
+  await screenshot('mission-picker');
+  await mission.click();
+  const chosen = page.locator('.mission-section[data-kind="primary"] .mission-slot.filled').first();
+  assert.equal(await chosen.locator('img').getAttribute('src'),payload.thumbnail);
+  await chosen.getByRole('button', {name:'查看' + payload.name.zh + '大图',exact:true}).click();
+  await page.locator('#image-dialog .battle-card-art img').evaluate(n => n.decode());
+  assert.equal(await page.locator('#image-dialog .battle-card-art img').getAttribute('src'),payload.image);
+  await screenshot('mission-full');
+  await page.getByRole('button', {name:'关闭卡图',exact:true}).click();
+  await page.locator('.mission-tools .battle-text-toggle input').check();
+  assert.equal(await page.locator('.mission-sections').evaluate(n => n.classList.contains('text-mode')),true);
+  assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth),false);
+});
 const unit = page => page.locator('#army-units > .roster-unit').nth(10);
+
+for(const mobile of [true,false])test(`${mobile?'mobile':'desktop'} mercenary picker shares one Allies bonus and flags its removal`,async t=>{
+  const page=await setup(t,mobile);
+  const context=await page.evaluate(()=>{
+    const record=BuilderLibrary.create(2,'Mercenary limits',data,uid,new Date().toISOString());
+    for(const id of ['empire-veers','mercenary-pyke-syndicate-pyke-syndicate-footsoldier',
+      'mercenary-black-sun-black-sun-enforcers','mercenary-rogue-bossk']) {
+      const added=BuilderModel.addUnit(record.army,data,id,uid);
+      if(!added.ok)throw Error(added.reason);record.army=added.draft;
+    }
+    openRoster(record);
+    const host=army.units[0];
+    const index=RulesCore.slotListFor(data.pkg,data.units[host.unitId],host,data.upgrades,army.armyId).findIndex(s=>s.key==='command');
+    return {id:host.instanceId,index};
+  });
+  await page.locator('#rank-add-bar [data-rank="6"]').click();
+  const cad=page.locator('#card-grid [data-id="mercenary-rogue-cad-bane"]');
+  assert.equal(await cad.count(),0);
+  await page.locator('#show-unavailable').check();
+  assert.equal(await cad.getAttribute('data-state'),'blocked');
+  assert((await cad.innerText()).includes('通常上限 1'));
+  await page.locator('#browser-close').click();
+  const host=page.locator(`#army-units .roster-unit[data-instance="${context.id}"]`);
+  const commandSlot=host.locator(`[data-slot-index="${context.index}"]`);
+  await commandSlot.locator('.slot-name').click();
+  await page.locator('#candidate-search').fill('Underworld Connections');
+  await page.locator('#card-grid [data-id="command-underworld"] h3').click();
+  await page.evaluate(()=>closeBrowser());
+  await page.locator('#rank-add-bar [data-rank="6"]').click();
+  assert.equal(await cad.getAttribute('data-state'),'available');
+  await cad.locator('.bilingual-name').click();
+  assert.equal(await page.evaluate(()=>army.units.some(i=>i.unitId==='mercenary-rogue-cad-bane')),true);
+  assert.equal(await page.locator('#rank-add-bar [data-rank="6"]').evaluate(n=>n.classList.contains('invalid')),false);
+  await page.locator('#rank-add-bar [data-rank="2"]').click();
+  const pyke=page.locator('#card-grid [data-id="mercenary-pyke-syndicate-pyke-syndicate-footsoldier"]');
+  await page.locator('#show-unavailable').check();
+  assert.equal(await pyke.getAttribute('data-state'),'blocked','Operatives have already used the only extra allowance');
+  await page.locator('#browser-close').click();
+  await commandSlot.locator('.slot-remove').click();
+  assert.equal(await page.locator('#rank-add-bar [data-rank="6"]').evaluate(n=>n.classList.contains('invalid')),true);
+  assert.equal(await page.locator('#rank-bar [data-rank="6"]').evaluate(n=>n.classList.contains('invalid')),true);
+  assert.equal(await page.evaluate(()=>RulesCore.validateArmy(army,data).issues.filter(i=>i.code==='mercenary_pool').length),1);
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+});
+
+for(const mobile of [true,false])test(`${mobile?'mobile':'desktop'} unit memberships can add mercenary counting without existing pool fields`,async t=>{
+  const page=await setup(t,mobile);
+  const catalog=JSON.parse(await readFile(path.join(root,'data/units.json'),'utf8'));
+  const card=catalog.units.find(u=>u.id==='mercenary-rogue-cad-bane');
+  card.factions=[{id:2,rankId:6,tierPools:['mercenary'],tierCounting:{ignoreMinimum:true}},
+    {id:4,rankId:6}];
+  const initial=structuredClone(card);let saved;
+  await page.route('**/data/units.json',r=>r.fulfill({json:catalog}));
+  await page.route('**/api/catalog',r=>r.fulfill({json:{revision:'membership-qa'}}));
+  await page.route('**/api/save',r=>{
+    saved=r.request().postDataJSON().card;
+    return r.fulfill({json:{card:saved,revision:'membership-saved',snapshot:'test-only'}});
+  });
+  await page.goto(base+'units.html');await page.locator('#list button').first().waitFor();
+  await page.locator('#search').fill(card.id);await page.locator('#list button').click();
+  assert.deepEqual(await page.evaluate(()=>draft.factions),initial.factions,'rendering does not change membership data');
+  const memberships=page.locator('#fields > fieldset').filter({has:page.locator('legend').filter({hasText:'可加入军队及军阶'})});
+  const republic=memberships.locator(':scope > .array-item').nth(1);
+  assert.equal(await republic.getByRole('checkbox',{name:'按雇佣兵编入',exact:true}).isChecked(),false);
+  await republic.getByRole('checkbox',{name:'按雇佣兵编入',exact:true}).check();
+  assert.equal(await republic.getByRole('checkbox',{name:'不计军阶最低数量',exact:true}).isChecked(),true);
+  assert.equal(await republic.getByRole('checkbox',{name:'不计军阶上限',exact:true}).isChecked(),false);
+  await memberships.getByRole('button',{name:'＋ 添加可加入军队及军阶',exact:true}).click();
+  const added=memberships.locator(':scope > .array-item').last();
+  await added.getByRole('checkbox',{name:'按雇佣兵编入',exact:true}).check();
+  await added.getByRole('checkbox',{name:'不计军阶上限',exact:true}).check();
+  await added.getByRole('checkbox',{name:'按雇佣兵编入',exact:true}).uncheck();
+  const value=await page.evaluate(()=>draft.factions.at(-1));
+  assert(!value.tierPools);assert.deepEqual(value.tierCounting,{ignoreMaximum:true});
+  await added.getByRole('checkbox',{name:'不计军阶上限',exact:true}).uncheck();
+  await added.getByRole('checkbox',{name:'按雇佣兵编入',exact:true}).check();
+  const before=await page.evaluate(()=>structuredClone(draft.factions));
+  await page.locator('#save').click();await page.waitForFunction(()=>revision==='membership-saved');
+  assert.deepEqual(saved.factions,before);
+  assert.deepEqual(saved.factions[1],{id:4,rankId:6,tierPools:['mercenary'],tierCounting:{ignoreMinimum:true}});
+  assert.deepEqual(saved.keywords,initial.keywords);assert.equal(saved.factionId,initial.factionId);
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+});
+
+for(const mobile of [true,false])test(`${mobile?'mobile':'desktop'} command rules editor searches local options, saves groups and refreshes new units`,async t=>{
+  const page=await setup(t,mobile);
+  const definitions=JSON.parse(await readFile(path.join(root,'data/catalog-definitions.json'),'utf8'));
+  const source=definitions.commands.find(c=>c.id==='20052');
+  let stored=structuredClone(source),saved;
+  const respond=(route,body)=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(body)});
+  await page.route('**/api/commands',route=>respond(route,{catalog:{...definitions,commands:[stored]},revision:'qa'}));
+  await page.route('**/api/commands/save',route=>{
+    saved=route.request().postDataJSON().card;stored=structuredClone(saved);
+    return respond(route,{card:stored,revision:'saved',snapshot:'qa'});
+  });
+  await page.goto(base+'commands.html');
+  const form=page.locator('#command-matching');await form.waitFor();
+  assert((await form.innerText()).includes('绝地飞车将军'));
+  assert((await form.innerText()).includes('欧比-旺'));
+  assert(!(await form.innerText()).includes('36283'));
+  async function pick(label,text){
+    await page.getByRole('button',{name:label,exact:true}).click();
+    const search=page.getByRole('textbox',{name:'搜索'+label,exact:true});await search.fill(text);
+    await page.locator('.combo-panel:not([hidden]) [role="option"]').filter({hasText:text}).first().click();
+  }
+  await pick('匹配方式 1-1','按单位名称组合');
+  await pick('添加匹配值 1-1','Han Solo');
+  await pick('添加匹配值 1-1','Luke Skywalker');
+  await form.getByRole('button',{name:'＋ 添加备选条件组',exact:true}).click();
+  await pick('匹配方式 2-1','按具体单位');
+  await pick('添加匹配值 2-1-1','Mounted Jedi General');
+  await page.locator('#save').click();await page.waitForFunction(()=>revision==='saved');
+  assert.equal(saved.requirements.any.length,2);
+  assert.deepEqual(saved.requirements.any[0].all[0],{type:'unitNames',values:['Han Solo','Luke Skywalker']});
+  assert(!saved.unlockedBy&&!saved.factions);
+  const beforeReload=await form.elementHandle();
+  await page.locator('#reload').click();
+  await page.waitForFunction(previous=>!previous.isConnected,beforeReload);await form.waitFor();
+  assert.equal(await form.locator('.command-match-group').count(),2);
+  // Newly saved units must enter the selector without discarding this draft.
+  const units=JSON.parse(await readFile(path.join(root,'data/units.json'),'utf8'));
+  units.units.push({...units.units[0],id:'qa-new-local-unit',name:{en:'QA Newly Added',zh:'刚新增测试单位'},title:{en:'',zh:''}});
+  await page.route('**/data/units.json',route=>respond(route,units));
+  await page.getByLabel('卡面归属（owner 文本）',{exact:true}).fill('未保存的归属');
+  await form.getByRole('button',{name:'刷新候选项',exact:true}).click();
+  await page.waitForFunction(()=>document.querySelector('#status').textContent==='候选项已刷新');
+  assert.equal(await page.getByLabel('卡面归属（owner 文本）',{exact:true}).inputValue(),'未保存的归属');
+  assert.equal(await page.evaluate(()=>dirty),true);
+  await pick('添加匹配值 2-1-1','QA Newly Added');
+  assert.equal(await page.evaluate(()=>draft.requirements.any[1].all[0].all[0].values.includes('qa-new-local-unit')),true);
+  const types=await form.locator('select[aria-label="匹配方式 2-1"] option').allTextContents();
+  for(const value of ['按称号','按单位名称','按名称标识','按单位名称组合（全部在场）','按军表阵营','按战斗部队','按组织'])assert(types.includes(value),value);
+  await pick('匹配方式 2-1','按战斗部队');
+  await pick('添加匹配值 2-1','224');
+  await form.getByRole('button',{name:'＋ 添加条件',exact:true}).last().click();
+  await pick('匹配方式 2-2','按组织');
+  await pick('添加匹配值 2-2-1','965');
+  if(process.env.BUILDER_QA_SCREENSHOTS){
+    await form.scrollIntoViewIfNeeded();await page.screenshot({path:path.join(process.env.BUILDER_QA_SCREENSHOTS,`${mobile?'mobile':'desktop'}-command-rules-editor.png`)});
+  }
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+  await page.locator('#save').click();await page.waitForFunction(()=>!busy&&!dirty);
+  assert.deepEqual(saved.requirements.any[1].all,[{type:'battleForce',values:[27]},
+    {type:'unit',all:[{field:'affiliationIds',values:['965']}]}]);
+  // An empty row must block saving; deleting all groups explicitly permits a generic card.
+  await form.getByRole('button',{name:'＋ 添加条件',exact:true}).last().click();
+  const previous=JSON.stringify(saved);
+  await page.locator('#save').click();
+  assert((await page.locator('#status').innerText()).includes('取值无效'));
+  assert.equal(JSON.stringify(saved),previous);
+  await form.getByRole('button',{name:'删除条件组',exact:true}).last().click();
+  await form.getByRole('button',{name:'删除条件组',exact:true}).last().click();
+  await page.locator('#save').click();await page.waitForFunction(()=>!busy&&!dirty);
+  assert.deepEqual(saved.requirements,{any:[]});
+});
+
+for(const mobile of [true,false])test(`${mobile?'mobile':'desktop'} command picker and validation agree on mounted Obi-Wan and required pairs`,async t=>{
+  const page=await setup(t,mobile);
+  for(const unitId of ['new-unit-mw9obgc9','republic-obiwan']){
+    await page.evaluate(id=>{
+      closeBrowser();const record=BuilderLibrary.create(4,'Obi-Wan command checks',data,uid,new Date().toISOString());
+      record.army.units=[{unitId:id,instanceId:uid(),upgrades:[]}];openRoster(record);
+    },unitId);
+    await page.locator('.empty-command').first().click();
+    assert.equal(await page.locator('#card-grid [data-id="51"]').count(),1);
+    assert.equal(await page.locator('#card-grid [data-id="20052"]').count(),unitId==='new-unit-mw9obgc9'?1:0);
+    if(unitId==='new-unit-mw9obgc9'){
+      await page.locator('#card-grid [data-id="20052"] .command-overlay').click();
+      assert.equal(await page.evaluate(()=>army.commandIds[0]),'20052');
+      assert.equal(await page.evaluate(()=>RulesCore.validateArmy(army,data).issues.some(i=>i.code==='command_unlock')),false);
+    }else{
+      await page.locator('#show-unavailable').check();
+      const blocked=page.locator('#card-grid [data-id="20052"]');
+      assert.equal(await blocked.getAttribute('data-state'),'blocked');
+      assert((await blocked.innerText()).includes('绝地飞车将军'));
+    }
+  }
+  await page.evaluate(()=>{
+    closeBrowser();const record=BuilderLibrary.create(1,'Pair checks',data,uid,new Date().toISOString());
+    record.army.units=[{unitId:'rebels-solo',instanceId:uid(),upgrades:[]}];openRoster(record);
+    selectContext({mode:'commands',slotIndex:0});
+  });
+  assert.equal(await page.evaluate(()=>commandAvailable(commandOf('18903'))),false);
+  await page.evaluate(()=>{army.units.push({unitId:'rebels-luke-skywalker-jedi',instanceId:uid(),upgrades:[]});render();});
+  assert.equal(await page.evaluate(()=>commandAvailable(commandOf('18903'))),true);
+});
+
+test('image uploads update editor previews and subsequent saves without stale thumbnails', async t => {
+  const page = await setup(t, false);
+  page.on('dialog', dialog => dialog.accept());
+  for (const [kind,file,key] of [['upgrades','upgrades','cards'],['commands','catalog-definitions','commands']]) {
+    const catalog = JSON.parse(await readFile(path.join(root, 'data', file + '.json'), 'utf8'));
+    const records = catalog[key];
+    const first = records.find(c => kind === 'upgrades' ? c.assets?.thumbnail : c.thumbnail);
+    const alternate = records.find(c => c.id !== first.id && (kind === 'upgrades' ? c.assets?.thumbnail : c.thumbnail));
+    catalog[key] = [first];
+    const preview = kind === 'upgrades' ? alternate.assets.thumbnail : alternate.thumbnail;
+    let saved;
+    const response = (route, payload) => route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(payload)});
+    await page.route(`**/api/${kind}`, route => response(route, {catalog,revision:'test'}));
+    await page.route(`**/api/${kind}/image`, route => {
+      const card = structuredClone(first);
+      if (kind === 'upgrades') card.assets.thumbnail = preview;
+      else card.thumbnail = preview;
+      return response(route, {card,revision:'uploaded',front:kind === 'upgrades' ? card.assets.front : card.image,snapshot:'test'});
+    });
+    await page.route(`**/api/${kind}/save`, route => {
+      saved = route.request().postDataJSON().card;
+      return response(route, {card:saved,revision:'saved',snapshot:'test'});
+    });
+    await page.goto(base + kind + '.html');
+    await page.locator('#list button').first().click();
+    const initial = kind === 'upgrades' ? first.assets.thumbnail : first.thumbnail;
+    assert.equal(await page.locator('#list img').first().getAttribute('src'),initial);
+    await page.locator('#image-file').setInputFiles({name:'test.png',mimeType:'image/png',
+      buffer:Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aD1sAAAAASUVORK5CYII=','base64')});
+    await page.waitForFunction(expected => document.querySelector('#list img')?.getAttribute('src') === expected, preview);
+    await page.locator('#save').click();
+    await page.waitForFunction(() => revision === 'saved');
+    assert.equal(kind === 'upgrades' ? saved.assets.thumbnail : saved.thumbnail,preview);
+  }
+});
 
 for(const mobile of [true,false]) test(`${mobile?'mobile':'desktop'} battle force group info preserves choices and keyword sources`,async t=>{
   const page=await setup(t,mobile);

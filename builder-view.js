@@ -216,6 +216,7 @@ function closeBrowser() {
 }
 
 function filterCandidates() {
+  if (browser?.mode === "commands") commandQuery = RulesCore.commandContext(army,data);
   const grid = $("#card-grid");
   grid.replaceChildren();
   grid.classList.toggle("command-grid", browser?.mode === "commands");
@@ -873,21 +874,29 @@ function cachedFaceImage(path) {
   }).then(blob => URL.createObjectURL(blob)).catch(() => {faceImageCache.delete(src); return src;}));
   return faceImageCache.get(src);
 }
-function setCardImage(image, path, card) {
+function setCardImage(image, path, card, {preview = false} = {}) {
   if (!path) return;
   image.dataset.source = assetPath(path);
   if (!UpgradeFaces.isDual(card)) {image.src = assetPath(path); return;}
-  for (const side of UpgradeFaces.variants(card))
-    if (side.assets?.front) cachedFaceImage(side.assets.front);
+  for (const side of UpgradeFaces.variants(card)) {
+    const other = preview ? side.assets?.thumbnail : side.assets?.front;
+    if (other) cachedFaceImage(other);
+  }
   cachedFaceImage(path).then(src => {image.src = src;});
 }
 
-function battleCardArt(card) {
+function battleCardArt(card, {full = false} = {}) {
   const frame = node("span", "battle-card-art");
+  const src = full ? card.image : card.thumbnail || card.image;
+  function artImage(alt) {
+    const im = node('img');im.src = assetPath(src);im.alt = alt;im.loading = 'lazy';
+    im.onerror = () => {im.onerror = null;if (src !== card.image) im.src = assetPath(card.image);};
+    return im;
+  }
   const rules = textParts(named(card.rules)).trim();
   if (!rules) {
     if (card.image) {
-      const im = node("img"); im.src = assetPath(card.image); im.alt = named(card.name) + "卡图"; im.loading = "lazy";
+      const im = artImage(named(card.name) + "卡图");
       frame.append(im);
     } else frame.append(node("span", "missing-card-art", named(card.name) + " · 暂无卡图或规则文本"));
     return frame;
@@ -905,7 +914,7 @@ function battleCardArt(card) {
       "Coordinated Strike": 84, "Command Override": 84};
     const art = node("span", "battle-illustration");
     art.style.setProperty("--art-height", (shortArt[card.name.en] || 107) - 11 + "cqw");
-    const im = node("img");im.src = assetPath(card.image);im.alt = named(card.name) + "卡图";im.loading = "lazy";
+    const im = artImage(named(card.name) + "卡图");
     art.append(im);face.append(art);
   }
   const paper = node("span", "battle-card-paper");
@@ -919,7 +928,7 @@ function battleCardArt(card) {
   face.append(paper);
   if (kind === "primary" && card.image) {
     const map = node("span", "battle-card-map");
-    const im = node("img"); im.src = assetPath(card.image); im.alt = named(card.name) + "部署地图";im.loading = "lazy";
+    const im = artImage(named(card.name) + "部署地图");
     map.append(im);face.append(map);
   }
   frame.append(face);
@@ -946,15 +955,16 @@ function artButton(c, cls = "unit-art") {
   b.setAttribute("aria-label", "查看" + named(c.name) + "完整卡图");
   b.title = "查看完整卡图";
   const slotCrop = cls.split(' ').includes('slot-art');
-  const src = slotCrop ? c.assets?.front || c.assets?.portrait || c.image
-    : c.assets?.portrait || c.assets?.front || c.image;
+  const topHalf = cls.split(' ').includes('candidate-art');
+  const full = c.assets?.front || c.image;
+  const preview = c.assets?.thumbnail || c.thumbnail || full;
+  const src = slotCrop || topHalf ? preview || c.assets?.portrait : c.assets?.portrait || preview;
   if (!src) {
     b.append(node("span", null, "暂无卡图"));
     b.disabled = true;
     return b;
   }
   const im = node("img");
-  setCardImage(im, src, c);
   im.alt = named(c.name) + "卡图";
   im.loading = "lazy";
   if (slotCrop) {
@@ -966,11 +976,20 @@ function artButton(c, cls = "unit-art") {
       im.style.height = im.naturalHeight / size * 100 + '%';
       im.style.left = -(im.naturalWidth - size) / 2 / size * 100 + '%';
     };
+  } else if (topHalf) {
+    // Match the window to half this face's actual height, without stretching
+    // landscape cards or using a counterpart's already-cropped unit portrait.
+    im.onload = () => b.style.setProperty('--upgrade-preview-ratio', `${im.naturalWidth} / ${im.naturalHeight / 2}`);
   }
   im.onerror = () => {
+    if (full && im.dataset.source !== assetPath(full)) {
+      setCardImage(im, full, c, {preview: true});
+      return;
+    }
     im.remove();
     b.append(node("span", null, "卡图暂不可用"));
   };
+  setCardImage(im, src, c, {preview: true});
   b.append(im);
   b.onclick = (e) => {
     e.stopPropagation();
@@ -991,7 +1010,7 @@ function showImage(c, opener) {
   close.onclick = () => imageDialog.close();
   h.append(close);
   const battle = c.image?.startsWith("assets/battle-deck/");
-  const im = battle ? battleCardArt(c) : node("img", "full-card-image");
+  const im = battle ? battleCardArt(c, {full: true}) : node("img", "full-card-image");
   if (!battle) {
     im.src = assetPath(c.assets?.front || c.image);
     im.alt = named(c.name) + "完整卡图";
@@ -2081,10 +2100,12 @@ function commandCard(card, { state, slotIndex = null }) {
   const src = card.assets?.front || card.image;
   if (src) {
     const image = node("img", "command-face-image");
-    image.src = assetPath(src);
+    const preview = card.assets?.thumbnail || card.thumbnail || src;
+    image.src = assetPath(preview);
     image.alt = named(card.name) + "卡图";
     image.loading = "lazy";
     image.onerror = () => {
+      if (image.getAttribute('src') !== assetPath(src)) {image.src = assetPath(src);return;}
       image.hidden = true;
       face.classList.add("missing-art");
     };
@@ -2125,10 +2146,10 @@ function commandCard(card, { state, slotIndex = null }) {
   expand.onclick = () => fold(false, true);
   const overlay = node("div", "command-overlay");
   overlay.append(commandBody(card, { keywords: false, collapse }));
-  const requirements = RulesCore.commandUnitRequirements(card, army, data.units, data.defs);
+  const requirements = commandResult(card).requirements;
   if (requirements.length) {
     const line = node("div", "command-unit-requirements");
-    line.append(node("span", null, "同时编入"));
+    line.append(node("span", null, "使用要求"));
     for (const group of requirements) {
       const item = node("span", group.met ? "met" : "missing", (group.met ? "✓ " : "○ ") + group.label);
       item.title = group.met ? "已满足" : "尚未编入：本组任选一个版本";

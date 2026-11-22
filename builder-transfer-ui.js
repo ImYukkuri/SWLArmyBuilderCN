@@ -1,4 +1,34 @@
 /* A reviewable import/export boundary; importing never mutates the open draft. */
+async function openShareDialog() {
+  if (!activeRecord || document.getElementById('share-dialog')) return;
+  const snapshot = structuredClone({...activeRecord, army}), href = location.href;
+  const dialog = node('dialog', 'transfer-dialog share-dialog');dialog.id = 'share-dialog';
+  dialog.setAttribute('aria-label', '分享军表');
+  const head = node('div', 'dialog-head'), close = node('button', null, '×');
+  close.setAttribute('aria-label', '关闭分享链接');close.onclick = () => dialog.close();
+  head.append(node('h2', null, '分享军表'), close);
+  const status = node('p', 'transfer-note', '正在生成链接…');status.setAttribute('role', 'status');
+  const text = node('textarea', 'share-link');text.id = 'share-link';text.rows = 3;
+  text.readOnly = true;text.spellcheck = false;text.setAttribute('aria-label', '军表分享链接');
+  const actions = node('div', 'transfer-actions'), copy = node('button', 'choose-button', '复制链接');
+  copy.disabled = true;actions.append(copy);
+  copy.onclick = async () => {
+    try {await navigator.clipboard.writeText(text.value);status.textContent = '链接已复制';}
+    catch {text.focus();text.select();status.textContent = '请复制已选中的链接';}
+  };
+  dialog.append(head, status, text, actions);
+  dialog.addEventListener('close', () => dialog.remove(), {once:true});
+  document.body.append(dialog);showDialog(dialog);
+  try {
+    const code = await BuilderShare.encode(snapshot);
+    if (!dialog.open) return;
+    text.value = BuilderShare.link(href, code);copy.disabled = false;
+    status.textContent = '链接保存生成时的军表；后续修改请重新分享。';
+    try {await navigator.clipboard.writeText(text.value);status.textContent = '链接已复制；后续修改请重新分享。';}
+    catch { /* The copy button provides a fresh user gesture on mobile browsers. */ }
+  } catch (error) {status.textContent = '生成失败：' + error.message;}
+}
+
 function openTransferDialog(operation) {
   const importing=operation==='import';
   if(!importing&&!activeRecord)return;

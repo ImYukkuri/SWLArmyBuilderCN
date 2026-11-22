@@ -1,6 +1,6 @@
 {
   "schema": "swl-unit-catalog/v2",
-  "updatedAt": "2026-11-21T03:49:25.497307+00:00",
+  "updatedAt": "2026-11-22T18:56:40.521487+00:00",
   "definitions": "catalog-definitions.json",
   "referenceVersion": "2026.11.04.0",
   "units": [
@@ -11913,7 +11913,7 @@
         },
         {
           "id": "direct",
-          "parameter": "Aclone Trooper Unit"
+          "parameter": "核心克隆人士兵"
         },
         {
           "id": "sharpshooter",
@@ -21255,6 +21255,26 @@
         {
           "id": 9,
           "rankId": 6
+        },
+        {
+          "id": 4,
+          "rankId": 6,
+          "tierPools": [
+            "mercenary"
+          ],
+          "tierCounting": {
+            "ignoreMinimum": true
+          }
+        },
+        {
+          "id": 1,
+          "rankId": 6,
+          "tierPools": [
+            "mercenary"
+          ],
+          "tierCounting": {
+            "ignoreMinimum": true
+          }
         }
       ],
       "affiliationIds": [],
@@ -21268,7 +21288,7 @@
         },
         {
           "id": "mercenary",
-          "parameter": "帝国，分离",
+          "parameter": "帝国，义军，共和，分离",
           "value": null
         },
         {
@@ -26421,7 +26441,7 @@
         {
           "name": {
             "en": "OBi1-WAN's Lightsaber",
-            "zh": ""
+            "zh": "欧比旺的光剑"
           },
           "range": {
             "min": 0,
@@ -26444,6 +26464,38 @@
             {
               "id": "pierce",
               "value": 2
+            },
+            {
+              "id": "scatter",
+              "value": null,
+              "parameter": null
+            },
+            {
+              "id": "overrun",
+              "value": 1,
+              "parameter": null
+            }
+          ]
+        },
+        {
+          "name": {
+            "en": "New Weapon",
+            "zh": "双联爆能炮"
+          },
+          "range": {
+            "min": 1,
+            "max": 3
+          },
+          "dice": {
+            "red": 0,
+            "black": 4,
+            "white": 2
+          },
+          "keywords": [
+            {
+              "id": "fixed_front",
+              "value": null,
+              "parameter": "前向"
             }
           ]
         }
@@ -26465,7 +26517,8 @@
       "commandIds": [],
       "unitCategoryId": "vehicle",
       "unitSubtypeId": "repulsor_vehicle",
-      "nameIdentityId": "obi-wan-kenobi"
+      "nameIdentityId": "obi-wan-kenobi",
+      "restrictions": {}
     },
     {
       "id": "empire-mudtroopers",

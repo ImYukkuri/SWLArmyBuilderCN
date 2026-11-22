@@ -7,6 +7,7 @@ from unittest.mock import patch
 
 import maintenance_store as store
 import rules
+import command_requirements as matching
 
 
 class CommandRequirementsTest(unittest.TestCase):
@@ -48,6 +49,40 @@ class CommandRequirementsTest(unittest.TestCase):
                 self.assertEqual(store.read('commands')['catalog']['commands'][0]['requiredUnitGroups'],card['requiredUnitGroups'])
                 with self.assertRaises(FileExistsError):store.save('commands',card,before['revision'])
                 self.assertTrue(saved['snapshot'])
+
+    def test_new_conditions_save_restore_and_reject_incomplete_rows(self):
+        defs=json.loads((store.ROOT/'data/catalog-definitions.json').read_bytes())
+        card=copy.deepcopy(next(c for c in defs['commands'] if c['id']=='20052'))
+        for requirements in [None, {}, {'any':[{'all':[]}]}, {'any':[{'all':[{'type':'unitNames','values':['Han Solo']}]}]},
+                             {'any':[{'all':[{'type':'unit','all':[{'field':[], 'values':['x']}]}]}]}]:
+            with self.subTest(requirements=requirements), self.assertRaises(ValueError):
+                store.validate('commands',{**card,'requirements':requirements})
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp);(root/'data').mkdir()
+            (root/'data/catalog-definitions.json').write_bytes(store.encode({'commands':[card]}))
+            with patch.object(store,'ROOT',root):
+                changed=copy.deepcopy(card);changed['requirements']={'any':[{'all':[{'type':'battleForce','values':[28]}]}]}
+                result=store.save('commands',changed,store.read('commands')['revision'])
+                self.assertEqual(store.read('commands')['catalog']['commands'][0]['requirements'],changed['requirements'])
+                restored=store.restore('commands',result['snapshot'],card['id'],result['revision'])
+                self.assertEqual(restored['card']['requirements'],card['requirements'])
+
+    def test_python_effective_matching_and_mounted_form(self):
+        units,upgrades,defs=rules.load_cards();pkg=rules.load_package()
+        def check(requirements,ids,army_id=4,equipped=None):
+            army={'armyId':army_id,'units':[{'unitId':id,'upgrades':equipped or []}for id in ids]}
+            return not matching.failures(requirements,matching.context(army,units,upgrades,defs,pkg,rules.apply_property_effects))
+        common=next(c for c in defs['commands'] if c['id']=='51')['requirements']
+        mounted=next(c for c in defs['commands'] if c['id']=='20052')['requirements']
+        self.assertTrue(check(common,['new-unit-mw9obgc9']))
+        self.assertTrue(check(mounted,['new-unit-mw9obgc9']))
+        self.assertFalse(check(mounted,['republic-obiwan','republic-anakin-barc']))
+        self.assertTrue(check({'any':[{'all':[{'type':'armyFaction','values':[8]}]}]},[],22))
+        upgrade={'id':'qa-org','rules':{'replaceProperties':[[{'property':'affiliation','value':[965]}]]}}
+        upgrades['qa-org']=upgrade
+        req={'any':[{'all':[{'type':'unit','all':[{'field':'affiliationIds','values':['965']}]}]}]}
+        self.assertFalse(check(req,['republic-obiwan']))
+        self.assertTrue(check(req,['republic-obiwan'],equipped=[{'upgradeId':'qa-org'}]))
 
 
 if __name__=='__main__':unittest.main()

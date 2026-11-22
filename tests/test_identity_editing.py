@@ -25,7 +25,8 @@ class IdentityEditingTest(unittest.TestCase):
             'upgrades.json': {'cards': [{'id': 'old-unit', 'description': {'zh': 'old-unit'},
                 'back': {'keywords': [{'id': 'entourage', 'parameterRef': {'kind': 'unit', 'id': 'old-unit'}}]}}]},
             'catalog-definitions.json': {'armies': [{'id': 12, 'name': {'en': '212th Attack Battalion', 'zh': '212攻击营'}}],
-                                         'commands': [{'id': '42', 'description': {'zh': '保留校订'}}]},
+                                         'commands': [{'id': '42', 'description': {'zh': '保留校订'}, 'requirements': {'any': [{'all': [
+                                             {'type': 'unit', 'all': [{'field': 'id', 'values': ['old-unit']}, {'field': 'nameIdentityId', 'values': ['old-unit']}]}]}]}}]},
             'slot-rules.json': {'schema': 'swl-rules/v1', 'slots': [{'id': 'gear', 'sourceId': 2, 'kind': 'category'}],
                 'predicates': {'custom': {'field': 'unit.id', 'op': 'in', 'value': ['old-unit', 'other']}},
                 'battleForces': {'12': {'name': '212th Attack Battalion', 'modes': {'standard': {'rankQuotas': []}}}}},
@@ -59,6 +60,9 @@ class IdentityEditingTest(unittest.TestCase):
         self.assertEqual(self.read('tts-names.json')['units']['new-unit']['name'], 'Original HQ Name')
         self.assertEqual(self.read('tts-names.json')['upgrades'], before['tts-names.json']['upgrades'])
         self.assertEqual(self.read('armies.json')['armies'][0]['units'][0]['unitId'], 'new-unit')
+        filters = self.read('catalog-definitions.json')['commands'][0]['requirements']['any'][0]['all'][0]['all']
+        self.assertEqual(filters[0]['values'], ['new-unit'])
+        self.assertEqual(filters[1]['values'], ['old-unit'])
         self.assertEqual(self.read('slot-rules.json')['predicates']['custom']['value'], ['new-unit', 'other'])
         self.assertEqual(json.loads((self.root/'history'/result['snapshot']).read_bytes()), before['units.json'])
         server.rename_unit('new-unit', 'final-unit', self.revision('units.json'))
