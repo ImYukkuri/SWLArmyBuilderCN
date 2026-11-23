@@ -120,6 +120,7 @@ window.BuilderLibrary = (() => {
     return draft;
   }
   const DECK_KINDS = ["primary", "secondary", "advantage"];
+  const DECK_LIMIT = 3;
   function normalizeDeck(deck = {}) {
     const result = { ...(deck || {}) };
     for (const kind of DECK_KINDS) {
@@ -136,7 +137,7 @@ window.BuilderLibrary = (() => {
       throw Error("任务卡槽位已变化，请重新选择。");
     if (id == null) selected.splice(index, 1);
     else {
-      if (index >= 3) throw Error("每类最多选择 3 张卡。");
+      if (index >= DECK_LIMIT) throw Error("每类最多选择 " + DECK_LIMIT + " 张卡。");
       if (selected.some((value, i) => i !== index && value === String(id)))
         throw Error("同一类别不能重复选择同一张卡。");
       selected[index] = String(id);
@@ -240,6 +241,7 @@ window.BuilderLibrary = (() => {
     normalizeCommandSlots,
     switchBattleForce,
     normalizeDeck,
+    DECK_LIMIT,
     setDeckCard,
     create,
     read,

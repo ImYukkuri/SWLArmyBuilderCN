@@ -673,47 +673,55 @@ h1 {
 }
 
 .browser-top {
-  padding: 19px 22px 0;
+  display: grid;
+  gap: 3px;
+  padding: 4px 10px 3px;
   background: #f7fafc;
   border-bottom: 1px solid var(--line);
   flex: none;
-  padding-top: 13px;
 }
 
 .browser-heading {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 5px;
-  color: var(--accent);
-  font-size: 11px;
+  min-width: 0;
+  gap: 7px;
 }
 
 .browser-heading button {
+  flex: 0 0 34px;
+  min-height: 34px;
+  margin-inline-start: auto;
   background: transparent;
   border: 0;
-  padding: 0 3px;
+  padding: 0;
   font-size: 23px;
   line-height: 1;
   color: var(--muted);
 }
 
-.browser-top h2 {
+.browser-heading h2 {
+  flex: 0 1 auto;
+  max-width: 68%;
+  min-width: 0;
   font-weight: 650;
-  font-size: 21px;
+  font-size: 17px;
+  line-height: 1.25;
 }
 
-.browser-top > p {
+.browser-heading p {
+  flex: 0 1 auto;
+  min-width: 0;
   font-size: 12px;
   color: var(--muted);
-  margin-top: 4px;
-  line-height: 1.7;
 }
+
+.browser-heading :is(h2, p) { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.browser-heading p:empty { display: none; }
 
 .search-row {
   display: flex;
-  gap: 8px;
-  margin-top: 12px;
+  gap: 6px;
 }
 
 .search {
@@ -725,7 +733,8 @@ h1 {
   border: 1px solid #c9d7e0;
   border-radius: 5px;
   background: white;
-  padding: 8px 10px;
+  min-height: 34px;
+  padding: 4px 8px;
 }
 
 .search svg {
@@ -737,6 +746,7 @@ h1 {
 
 .search input {
   width: 100%;
+  min-width: 0;
   border: 0;
   background: transparent;
   font-size: 12px;
@@ -744,7 +754,7 @@ h1 {
 }
 
 .search-row select {
-  font-size: 11px;
+  font-size: 12px;
   border: 1px solid #c9d7e0;
   background: white;
   border-radius: 5px;
@@ -754,18 +764,21 @@ h1 {
 
 .result-controls {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 8px;
+  gap: 0 10px;
   font-size: 11px;
   color: var(--muted);
-  padding: 12px 0;
 }
+
+#result-count { margin-inline-end: auto; white-space: nowrap; }
 
 .result-controls label {
   display: flex;
-  gap: 6px;
+  gap: 4px;
   align-items: center;
+  min-height: 24px;
+  white-space: nowrap;
 }
 
 .result-controls input {
@@ -781,6 +794,10 @@ h1 {
   scrollbar-width: thin;
   scrollbar-color: #c1ced7 transparent;
   flex: 1;
+}
+
+.card-browser.is-open .card-grid {
+  padding-block-end: calc(clamp(54px, 9dvh, 96px) + env(safe-area-inset-bottom, 0px));
 }
 
 .candidate {
@@ -1640,21 +1657,6 @@ dialog, .card-browser, .keyword-popover {
   margin-right: 9px;
 }
 
-.batch-apply {
-  display: flex;
-  gap: 7px;
-  align-items: center;
-  font-size: 12px;
-  padding: 9px 0;
-  border-top: 1px solid #d5e0e7;
-  color: #355f7b;
-}
-
-.batch-apply input {
-  margin: 0;
-  accent-color: var(--accent);
-}
-
 .image-dialog {
   width: auto;
   max-width: min(1100px, 95vw);
@@ -2457,9 +2459,6 @@ dialog, .card-browser, .keyword-popover {
     padding: 24px 28px;
   }
 
-  .browser-top {
-    padding-inline: 28px;
-  }
 }
 
 @media (max-width: 1100px) and (min-width: 761px) {
@@ -2487,9 +2486,6 @@ dialog, .card-browser, .keyword-popover {
     padding: 18px;
   }
 
-  .browser-top {
-    padding: 16px 18px 0;
-  }
 
   .identity h3,
   .candidate .identity h3 {
@@ -2685,42 +2681,8 @@ dialog, .card-browser, .keyword-popover {
     background: #21394e66;
   }
 
-  .browser-top {
-    padding: 15px 18px 0;
-  }
-
-  .browser-top h2 {
-    font-size: 22px;
-  }
-
-  .browser-heading button {
-    min-width: 40px;
-    min-height: 30px;
-    text-align: right;
-  }
-
-  .browser-top > p {
-    font-size: 12px;
-  }
-
-  .search-row {
-    margin-top: 13px;
-  }
-
-  .search {
-    min-height: 40px;
-  }
-
   .search input {
     font-size: 13px;
-  }
-
-  .result-controls {
-    padding: 10px 0;
-  }
-
-  .result-controls label {
-    min-height: 24px;
   }
 
   .candidate {
@@ -2872,12 +2834,6 @@ dialog, .card-browser, .keyword-popover {
   .upgrade-art {
     width: 56px;
     height: 75px;
-  }
-
-  .batch-apply {
-    padding: 10px 0;
-    font-size: 12px;
-    min-height: 42px;
   }
 
   .unit-detail-dialog {
@@ -3657,7 +3613,8 @@ dialog, .card-browser, .keyword-popover {
 .battle-card-caption { display: flex; gap: 6px; align-items: baseline; justify-content: space-between; width: 100%; padding: 6px 8px; font-size: 12px; line-height: 1.5; overflow-wrap: anywhere; }
 .mission-placeholder { display: grid; place-items: center; width: 100%; min-height: 82px; font-size: 22px; color: var(--accent); }
 .mission-slot.empty .mission-card { border-style: dashed; background: #f8fafc; }
-.mission-slot.empty .battle-card-caption { justify-content: center; color: var(--muted); }
+.mission-card.mission-add { min-height: 108px; justify-content: center; align-items: center; gap: 4px; padding: 6px; text-align: center; font-size: 12px; color: var(--accent); }
+.mission-add-icon { font-size: 22px; line-height: 1; }
 .mission-card:hover, .deck-pick-card:hover { border-color: var(--accent); }
 .mission-slot.unavailable .mission-card { border-color: #b58e60; }
 .mission-unavailable { padding: 0 7px 6px; color: var(--warning); font-size: 10px; }
@@ -3672,7 +3629,6 @@ dialog, .card-browser, .keyword-popover {
 .deck-pick-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(185px, 1fr)); gap: 16px; padding: 20px; align-items: start; }
 .deck-pick-card[aria-pressed=true] { border-color: var(--accent); }
 .deck-pick-card:disabled { opacity:1; cursor:default; border-color:#9babac; }
-.deck-selected { flex: none; font-size: 11px; color: var(--accent); }
 
 /* A stable art crop keeps equipped slots compact while providing a separate image action. */
 .compact-slot .slot-art { position: relative; flex: 0 0 26px; width: 26px; height: 26px; margin: 2px; padding: 0; border: 1px solid #9fb7c6; border-radius: 50%; overflow: hidden; background: var(--pale); }
@@ -3911,19 +3867,10 @@ dialog, .card-browser, .keyword-popover {
 .roster-unit > .unit-brief .brief-first { gap: 4px 8px; }
 .roster-unit > .unit-brief .bilingual-name { flex: 1 1 auto; }
 .roster-unit > .unit-brief .brief-meta { margin-top: 3px; }
-.browser-heading { justify-content: flex-end; }
 html.page-overlay-open .roster-info,
 html.page-overlay-open #army-units > .roster-unit > .unit-brief { visibility: hidden; pointer-events: none; }
 
 /* Upgrade choices keep the full rule and weapon content, with tighter rhythm. */
-.upgrade-browser .browser-top { padding: 9px 14px 0; }
-.upgrade-browser .browser-heading { margin-bottom: 2px; }
-.upgrade-browser .browser-top h2 { font-size: 20px; }
-.upgrade-browser .browser-top > p { margin-top: 2px; line-height: 1.5; }
-.upgrade-browser .search-row { margin-top: 7px; }
-.upgrade-browser .result-controls { padding: 6px 0; }
-.upgrade-browser .batch-apply { margin-block: 0; padding-block: 5px; }
-.upgrade-browser .browser-foot { padding-block: 7px; }
 .candidate.upgrade-candidate { padding: 8px 14px; }
 .upgrade-candidate .identity { gap: 8px; }
 .upgrade-candidate-title-row,
@@ -3969,9 +3916,8 @@ html.page-overlay-open #army-units > .roster-unit > .unit-brief { visibility: hi
   position: absolute;
   inset: 0 auto auto 0;
   width: 100%;
-  height: 200%;
+  height: auto;
   max-height: none;
-  object-fit: fill;
 }
 .upgrade-candidate .identity .requirements { margin: 2px 0 0; padding: 0; border: 0; background: none; line-height: 1.45; }
 .upgrade-candidate .identity .candidate-state { margin-top: 3px; color: var(--accent); }
@@ -4002,7 +3948,6 @@ html.page-overlay-open #army-units > .roster-unit > .unit-brief { visibility: hi
   .roster-unit > .unit-brief .brief-first { column-gap: 5px; }
   .roster-unit > .compact-slots { padding-inline: 6px; }
   .army-header .army-summary { justify-content: flex-start; gap: 20px; padding-top: 12px; }
-  .upgrade-browser .browser-top { padding-inline: 12px; }
   .candidate.upgrade-candidate { padding: 8px 12px; }
   .upgrade-candidate .candidate-art { width: 80px; }
   .upgrade-candidate .weapon-title { flex-basis: 100%; }
@@ -4054,7 +3999,6 @@ html.page-overlay-open #army-units > .roster-unit > .unit-brief { visibility: hi
 .candidate.unit-candidate { padding: 0; }
 .candidate.unit-candidate + .unit-candidate { border-top: 5px solid #edf1f4; }
 
-/* The first three rows sit beside the portrait. The stats can extend below it. */
 .candidate-unit-head { display: grid; grid-template-columns: 84px minmax(0,1fr); }
 .unit-candidate .candidate-portrait {
   width: 100%; height: 100%; min-height: 0; border: 0; border-radius: 0;
@@ -4062,7 +4006,8 @@ html.page-overlay-open #army-units > .roster-unit > .unit-brief { visibility: hi
   overflow: hidden; align-self: start; background: #e3e6e9;
 }
 .unit-candidate .candidate-portrait img {
-  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;
+  position: absolute; top: 50%; left: 0; width: 100%; height: auto;
+  transform: translateY(-50%); display: block;
 }
 .candidate-unit-overview { display: grid; grid-template-rows: 28px 23px 27px; min-width: 0; }
 .candidate-unit-name-row { display: flex; align-items: center; min-width: 0; gap: 5px; padding-right: 5px; }
@@ -4098,16 +4043,14 @@ html.page-overlay-open #army-units > .roster-unit > .unit-brief { visibility: hi
   white-space: nowrap; color: #526674; font-size: 11px; line-height: 1;
 }
 .candidate-unit-rank { display: inline-flex; flex: none; align-items: center; gap: 3px; }
-.candidate-unit-meta .rank-icon { color: inherit; display: inline-flex; align-items: center; justify-content: center; width: 14px; height: 16px; font-size: 14px; margin: 0; }
+.candidate-unit-meta .rank-icon { color: inherit; display: inline-flex; align-items: center; min-width: 0; height: 16px; font-size: 14px; margin: 0; }
 .candidate-unit-type { overflow: hidden; text-overflow: ellipsis; }
 .candidate-unit-models {
   color: var(--ink);
   font: 700 12px/1 var(--numeric);
 }
 
-.unit-browser .result-controls { flex-wrap: wrap; }
-.unit-browser #result-count { margin-inline-end: auto; }
-.unit-browser .result-controls label { white-space: nowrap; }
+.unit-browser:not(:has(#candidate-explanations:checked)) .unit-candidate .timing-markers { display: none; }
 
 .unit-candidate .candidate-unit-slots {
   align-self: start;

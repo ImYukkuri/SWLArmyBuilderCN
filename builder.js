@@ -17,15 +17,6 @@ const Q = new URLSearchParams(location.search),
 const RANK_ORDER = [1, 6, 2, 3, 4, 5, 7];
 const RANK_GLYPH = { 1: "5", 6: "b", 2: "6", 3: "7", 4: "8", 5: "9" };
 const RANK_SHORT = { 1: "指挥", 6: "特工", 2: "核心", 3: "特种", 4: "支援", 5: "重型", 7: "飞机" };
-const RANK_LABEL = {
-  1: "Commander",
-  6: "Operative",
-  2: "Corps",
-  3: "Special Forces",
-  4: "Support",
-  5: "Heavy",
-  7: "Flier",
-};
 
 function setRankIcon(icon, rank) {
   icon.replaceChildren();
@@ -393,9 +384,8 @@ function deckCatalog(kind) {
     : kind === "secondary" ? data.deckData.secondary || data.deckData.objectives
       : data.deckData.conditions) || [];
 }
-function openDeckSlot(kind, label, index = 0, opener) {
+function openDeckSlot(kind, label, index, opener) {
   document.getElementById("deck-picker")?.close();
-  const selected = BuilderLibrary.normalizeDeck(army.deck)[kind];
   const dialog = node("dialog", "deck-picker-dialog");
   dialog.id = "deck-picker";
   dialog.classList.toggle("text-mode", cardView.battleText);
@@ -404,33 +394,45 @@ function openDeckSlot(kind, label, index = 0, opener) {
   const heading = node("div");
   const title = node("h2", null, "选择" + label);
   title.id = "deck-picker-title";
-  heading.append(title, node("p", "deck-picker-context",
-    `第 ${index + 1} 张 · 已选 ${selected.length} / 3 · 点击卡片${selected[index] ? "替换" : "加入"}`));
+  const context = node("p", "deck-picker-context");
+  context.setAttribute("aria-live", "polite");
+  heading.append(title, context);
   const close = node("button", null, "×");
   close.setAttribute("aria-label", "关闭任务卡选择");
   close.onclick = () => dialog.close();
   head.append(heading, battleTextToggle(), close);
   const grid = node("div", "deck-pick-grid");
-  for (const card of deckCatalog(kind)) {
-    if (card.armyIds?.length && !card.armyIds.includes(Number(army.armyId))) continue;
-    if (card.modes?.length && !card.modes.includes(army.mode)) continue;
-    const existing = selected.indexOf(String(card.id));
-    const button = node("button", "deck-pick-card");
-    button.dataset.id = card.id;
-    button.disabled = existing >= 0 && existing !== index;
-    button.setAttribute("aria-pressed", String(existing >= 0));
-    button.setAttribute("aria-label", named(card.name) + (existing >= 0 ? "，已选" : "，选择"));
-    button.append(battleCardArt(card));
-    const caption = node("span", "battle-card-caption", named(card.name));
-    if (existing >= 0) caption.append(node("b", "deck-selected", "已选"));
-    button.append(caption);
-    button.onclick = () => {
-      army.deck = BuilderLibrary.setDeckCard(army.deck, kind, index, card.id);
-      dialog.close();
-      render();
-    };
-    grid.append(button);
+
+  function draw() {
+    const selected = new Set(BuilderLibrary.normalizeDeck(army.deck)[kind]);
+    context.textContent = `第 ${index + 1} 张 · 已选 ${selected.size} / ${BuilderLibrary.DECK_LIMIT}`;
+    const buttons = [];
+    for (const card of deckCatalog(kind)) {
+      if (selected.has(String(card.id))) continue;
+      if (card.armyIds?.length && !card.armyIds.includes(Number(army.armyId))) continue;
+      if (card.modes?.length && !card.modes.includes(army.mode)) continue;
+      const button = node("button", "deck-pick-card");
+      button.dataset.id = card.id;
+      button.setAttribute("aria-label", "选择" + named(card.name));
+      button.append(battleCardArt(card), node("span", "battle-card-caption", named(card.name)));
+      button.onclick = () => {
+        army.deck = BuilderLibrary.setDeckCard(army.deck, kind, index, card.id);
+        render();
+        index = army.deck[kind].length;
+        if (index >= BuilderLibrary.DECK_LIMIT) {
+          dialog.close();
+          return;
+        }
+        draw();
+        dialog.scrollTop = 0;
+        BuilderOverlays.focus(close);
+      };
+      buttons.push(button);
+    }
+    grid.replaceChildren(...buttons);
+    if (!buttons.length) grid.append(node("p", "empty-result", "没有可选的" + label + "卡。"));
   }
+  draw();
   dialog.append(head, grid);
   dialog.addEventListener("click", (e) => { if (e.target === dialog) dialog.close(); });
   dialog.addEventListener("close", () => dialog.remove(), { once: true });
@@ -591,22 +593,25 @@ function choose(card) {
     const slot = first.upgrades.find(ch => ch.instanceId === result.chosenIds[0]).slotIndex;
     const records = unitSlotRecords(data.units[first.unitId], first);
     const next = nextEmptySlot(first, records, slot);
+    $("#candidate-search").value = "";
+    setStatus("已为 " + result.count + " 个单位装备 " + named(card.name) + "。");
+    if (next < 0) {
+      closeBrowser();
+      return;
+    }
     const group = groupedUnits().find((g) =>
       g.instances.some((i) => i.instanceId === first.instanceId),
     );
-    browser =
-      next >= 0
-        ? {
-            mode: "upgrades",
-            unitInstanceId: first.instanceId,
-            slotIndex: next,
-            slotKey: records[next].key,
-            groupIds: group.instances.map((i) => i.instanceId),
-          }
-        : null;
-    $("#candidate-search").value = "";
-    setStatus("已为 " + result.count + " 个单位装备 " + named(card.name) + "。");
+    const grid = $("#card-grid"), scrollTop = grid.scrollTop;
+    browser = {
+      mode: "upgrades",
+      unitInstanceId: first.instanceId,
+      slotIndex: next,
+      slotKey: records[next].key,
+      groupIds: group.instances.map((i) => i.instanceId),
+    };
     render();
+    grid.scrollTop = scrollTop;
     return;
   }
   const index = browser.slotIndex;

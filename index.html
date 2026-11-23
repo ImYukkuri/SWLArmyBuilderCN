@@ -130,11 +130,10 @@
         <aside id="card-browser" class="card-browser" aria-labelledby="browser-title">
           <div class="browser-top">
             <div class="browser-heading">
-              <span id="browser-category" hidden>候选资料库</span
-              ><button id="browser-close" aria-label="关闭选择面板">×</button>
+              <h2 id="browser-title">选择单位</h2>
+              <p id="browser-context"></p>
+              <button id="browser-close" aria-label="关闭选择面板">×</button>
             </div>
-            <h2 id="browser-title">选择单位</h2>
-            <p id="browser-context"></p>
             <div class="search-row">
               <label class="search"
                 ><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
@@ -157,10 +156,10 @@
               <span id="result-count"></span>
               <label hidden><input id="candidate-explanations" type="checkbox" />词条释义</label>
               <label><input id="show-unavailable" type="checkbox" />显示不可选</label>
+              <label id="batch-apply" hidden>
+                <input type="checkbox" id="apply-all-units" />应用全部单位
+              </label>
             </div>
-            <label class="batch-apply" id="batch-apply" hidden
-              ><input type="checkbox" id="apply-all-units" /><span id="batch-label"></span
-            ></label>
           </div>
           <div id="card-grid" class="card-grid"></div>
         </aside>

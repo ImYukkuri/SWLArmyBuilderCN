@@ -209,10 +209,14 @@ function selectContext(value, trigger) {
 }
 
 function closeBrowser() {
+  const pagePosition = document.documentElement.classList.contains("page-overlay-open")
+    ? null
+    : { left: scrollX, top: scrollY, behavior: "instant" };
   hideRule(false);
   browser = null;
   render();
   BuilderOverlays.focus(browserReturn?.());
+  if (pagePosition) window.scrollTo(pagePosition);
 }
 
 function filterCandidates() {
@@ -251,10 +255,7 @@ function filterCandidates() {
   }
   list.sort((a, b) => Number(mercenaries.has(a.id)) - Number(mercenaries.has(b.id)) ||
     cardUsage.compare(browser?.mode, sort, a, b));
-  $("#result-count").textContent =
-    list.length +
-    " 项" +
-    (currentCandidates.some((c) => !itemState(c).ok) && !all ? " · 已隐藏不可选项" : "");
+  $("#result-count").textContent = list.length + " 项";
   for (const c of list) grid.append(candidate(c));
   if (!list.length)
     grid.append(
@@ -272,7 +273,6 @@ function renderBrowser() {
   const aside = $("#card-browser"),
     mobile = matchMedia("(max-width:760px)").matches;
   aside.classList.toggle("is-open", !!browser);
-  aside.classList.toggle("upgrade-browser", browser?.mode === "upgrades");
   aside.classList.toggle("unit-browser", browser?.mode === "units");
   $("#candidate-explanations").closest("label").hidden = browser?.mode !== "units";
   $("#browser-backdrop").hidden = !browser || !mobile;
@@ -307,7 +307,6 @@ function renderBrowser() {
     $("#card-grid").replaceChildren(
       node("p", "empty-result", "选择军阶、升级槽或指挥卡"),
     );
-    $("#browser-category").textContent = "编制对照";
     $("#result-count").textContent = "";
     return;
   }
@@ -322,15 +321,14 @@ function renderBrowser() {
     $("#card-grid").scrollTop = 0;
     priorContext = key;
   }
+  const faction = named(data.defs.armies.find((a) => a.id === army.armyId)?.name);
+  const context = $("#browser-context");
+  context.textContent = faction;
+  context.title = faction;
   if (browser.mode === "units") {
     $("#browser-title").textContent =
       "选择" +
       (named(data.defs.ranks.find((r) => r.id === browser.rank)?.name) || "单位");
-    $("#browser-context").textContent =
-      named(data.defs.armies.find((a) => a.id === army.armyId)?.name) +
-      " / " +
-      (RANK_LABEL[browser.rank] || "");
-    $("#browser-category").textContent = "单位资料库";
     currentCandidates = Object.values(data.units).filter(u => !data.pkg._v2 || u._v2Ranks?.includes(browser.rank))
       .map(u => data.pkg._v2 ? BattleForceRuntime.candidate(u,browser.rank) : u).filter(
       (u) =>
@@ -351,16 +349,16 @@ function renderBrowser() {
     );
     browser.groupIds = group.instances.map((i) => i.instanceId);
     $("#browser-title").textContent = "选择" + slotName(browser.slotKey);
-    $("#browser-category").textContent = "升级资料库";
+    context.textContent = [named(u.name), faction].filter(Boolean).join(" · ");
+    context.title = context.textContent;
     currentCandidates = Object.values(data.upgrades).map((c) => displayUpgrade(UpgradeFaces.view(c, 'front'), inst)).filter((c) =>
       accessOf(c).includes(browser.slotKey) && RulesCore.runtimeAvailable(c,army,data.pkg),
     );
   } else {
     const p = commandSlotPips()[browser.slotIndex] ?? slotPipOf(commandOf(army.commandIds[browser.slotIndex]));
     $("#browser-title").textContent = "选择战术卡";
-    $("#browser-context").textContent =
-      p + " 牌点 / 第 " + (browser.slotIndex + 1) + " 个战术卡槽位";
-    $("#browser-category").textContent = "战术资料库";
+    context.textContent = p + " 牌点 · " + faction;
+    context.title = context.textContent;
     currentCandidates = data.defs.commands.filter((c) => !c.hidden && slotPipOf(c) === p);
   }
   stateCache.clear();
@@ -492,43 +490,52 @@ function renderDeck() {
     const section = node("section", "mission-section");
     section.dataset.kind = kind;
     const heading = node("div", "mission-heading");
-    heading.append(node("h3", null, label), node("span", null, selected.length + " / 3"));
+    const limit = BuilderLibrary.DECK_LIMIT;
+    heading.append(node("h3", null, label), node("span", null, selected.length + " / " + limit));
     const slots = node("div", "mission-slots");
-    for (let index = 0; index < Math.max(3, selected.length); index++) {
+    for (let index = 0; index < selected.length; index++) {
       const card = deckCatalog(kind).find((x) => String(x.id) === selected[index]);
-      const slot = node("div", "mission-slot" + (selected[index] ? " filled" : " empty"));
+      const slot = node("div", "mission-slot filled");
       const unavailable = card && ((card.modes?.length && !card.modes.includes(army.mode)) ||
         (card.armyIds?.length && !card.armyIds.includes(Number(army.armyId))));
       slot.classList.toggle("unavailable", !!unavailable);
       slot.dataset.index = index;
       const choose = node("button", "mission-card");
-      choose.setAttribute("aria-label", `${selected[index] ? "替换" : "选择"}${label}第 ${index + 1} 张`);
+      choose.setAttribute("aria-label", `替换${label}第 ${index + 1} 张`);
       if (card) choose.append(battleCardArt(card), node("span", "battle-card-caption", named(card.name)));
-      else choose.append(node("span", "mission-placeholder", selected[index] ? "卡牌资料不可用" : "＋"),
-        node("span", "battle-card-caption", selected[index] || `选择第 ${index + 1} 张`));
+      else choose.append(node("span", "mission-placeholder", "卡牌资料不可用"),
+        node("span", "battle-card-caption", selected[index]));
       if (unavailable) choose.append(node("small", "mission-unavailable", "不适用当前配置 · 点击更换"));
-      choose.disabled = index >= 3 || index > selected.length;
+      choose.disabled = index >= limit;
       choose.onclick = () => openDeckSlot(kind, label, index, choose);
       slot.append(choose);
-      if (selected[index]) {
+      if (card?.image) {
         const actions = node("div", "mission-card-actions");
-        if (card?.image) {
-          const preview = node("button", null, "查看");
-          preview.setAttribute("aria-label", "查看" + named(card.name) + "大图");
-          preview.onclick = () => showImage(card, preview);
-          actions.append(preview);
-        }
-        const remove = node("button", "card-remove");
-        remove.append(uiIcon("trash", "删除"));
-        remove.setAttribute("aria-label", `移除${label}第 ${index + 1} 张`);
-        remove.onclick = (e) => {
-          e.stopPropagation();
-          army.deck = BuilderLibrary.setDeckCard(army.deck, kind, index, null);
-          render();
-        };
-        slot.append(remove);
+        const preview = node("button", null, "查看");
+        preview.setAttribute("aria-label", "查看" + named(card.name) + "大图");
+        preview.onclick = () => showImage(card, preview);
+        actions.append(preview);
         slot.append(actions);
       }
+      const remove = node("button", "card-remove");
+      remove.append(uiIcon("trash", "删除"));
+      remove.setAttribute("aria-label", `移除${label}第 ${index + 1} 张`);
+      remove.onclick = () => {
+        army.deck = BuilderLibrary.setDeckCard(army.deck, kind, index, null);
+        render();
+      };
+      slot.append(remove);
+      slots.append(slot);
+    }
+    if (selected.length < limit) {
+      const slot = node("div", "mission-slot empty");
+      slot.dataset.index = selected.length;
+      const add = node("button", "mission-card mission-add");
+      const plus = node("span", "mission-add-icon", "＋");
+      plus.setAttribute("aria-hidden", "true");
+      add.append(plus, node("span", null, "新增" + label + "卡"));
+      add.onclick = () => openDeckSlot(kind, label, selected.length, add);
+      slot.append(add);
       slots.append(slot);
     }
     section.append(heading, slots);
@@ -2348,15 +2355,10 @@ function commandCard(card, { state, slotIndex = null }) {
 }
 function updateBatchControl() {
   const n = browser?.mode === "upgrades" ? browser.groupIds?.length || 1 : 0;
-  $("#batch-apply").hidden = n < 2;
+  const batch = $("#batch-apply");
+  batch.hidden = n < 2;
+  batch.title = n > 1 ? "应用到 " + n + " 个相同配置的单位" : "";
   $("#apply-all-units").checked = cardView.applyAll;
-  $("#batch-label").textContent = "应用到全部单位（" + n + " 个相同配置）";
-  if (browser?.mode === "upgrades") {
-    const inst = army.units.find(i => i.instanceId === browser.unitInstanceId);
-    $("#browser-context").textContent =
-      named(data.units[inst?.unitId]?.name) + " / " + slotName(browser.slotKey) + "槽位 / " +
-      (n > 1 ? "合并组 " + n + " 个，" + (cardView.applyAll ? "全部应用" : "仅修改 1 个") : "仅当前单位");
-  }
 }
 function renderIssues(report) {
   const box = $("#issues");

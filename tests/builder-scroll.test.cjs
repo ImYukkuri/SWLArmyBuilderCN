@@ -400,6 +400,7 @@ for (const mobile of [true, false]) test(`${mobile ? 'mobile' : 'desktop'} card 
   assert(!requests.some(url => url.includes('/assets/battle-deck/')));
   await screenshot('mission-picker');
   await mission.click();
+  await page.getByRole('button',{name:'关闭任务卡选择',exact:true}).click();
   const chosen = page.locator('.mission-section[data-kind="primary"] .mission-slot.filled').first();
   assert.equal(await chosen.locator('img').getAttribute('src'),payload.thumbnail);
   await chosen.getByRole('button', {name:'查看' + payload.name.zh + '大图',exact:true}).click();
@@ -1392,6 +1393,29 @@ test('nested upgrade images, automatic slot advance and final selection retain t
   await samePosition(page, y);
 });
 
+test('automatic upgrade slot advance preserves the scrolled candidate list', async t => {
+  const page = await setup(t);
+  await page.evaluate(() => {
+    const record = BuilderLibrary.create(4, 'Scrolled upgrades', data, uid, new Date().toISOString());
+    const result = BuilderModel.addUnit(record.army, data, 'republic-anakin', uid);
+    if (!result.ok) throw Error(result.reason);
+    record.army = result.draft;
+    openRoster(record);
+  });
+  const unit = page.locator('#army-units [data-unit-id="republic-anakin"]');
+  await unit.locator('.compact-slot .slot-name').filter({hasText: '原力'}).first().tap();
+  const slot = await page.evaluate(() => browser.slotIndex);
+  const grid = page.locator('#card-grid');
+  const choice = grid.locator('.upgrade-candidate.available h3').nth(7);
+  await choice.scrollIntoViewIfNeeded();
+  const before = await grid.evaluate(n => n.scrollTop);
+  assert(before > 100);
+  await choice.tap();
+  assert.equal(await page.evaluate(() => browser.slotIndex), slot + 1);
+  const after = await grid.evaluate(n => ({top:n.scrollTop,max:n.scrollHeight-n.clientHeight}));
+  assert(Math.abs(after.top - Math.min(before, after.max)) <= 2);
+});
+
 test('mobile detail, nested card image and keyword rules preserve page and parent dialog scroll', async t => {
   const page = await setup(t), summary = unit(page).locator('.brief-first'), y = await positionAt(page, summary);
   // Touch on iOS need not focus the tapped element; keep stale focus near the header.
@@ -1413,7 +1437,7 @@ test('mobile detail, nested card image and keyword rules preserve page and paren
 test('mobile candidate image returns to the scrolled selection list before returning to the roster', async t => {
   const page = await setup(t), add = page.locator('#army-units > .add-unit'), y = await positionAt(page, add);
   await add.tap();
-  const art = page.locator('#card-grid .candidate-portrait').nth(2);await art.scrollIntoViewIfNeeded();
+  const art = page.locator('#card-grid .candidate-portrait').last();await art.scrollIntoViewIfNeeded();
   const inner = await page.locator('#card-grid').evaluate(n => n.scrollTop);assert(inner > 0);
   await art.tap();await page.getByRole('button',{name:'关闭卡图',exact:true}).tap();await frames(page);
   assert(Math.abs(await page.locator('#card-grid').evaluate(n => n.scrollTop) - inner) <= 2);
@@ -1425,10 +1449,45 @@ test('mobile command and mission selections preserve position after their opener
   const page = await setup(t);
   const command = page.locator('#deck-panel .empty-command').first(), y = await positionAt(page, command);
   await command.tap();await page.locator('#browser-close').tap();await samePosition(page, y);
-  const mission = page.getByRole('button',{name:'选择主要任务第 1 张',exact:true});
+  const mission = page.getByRole('button',{name:'新增主要任务卡',exact:true});
   const missionY = await positionAt(page, mission);await mission.tap();
   await page.getByRole('button',{name:'关闭任务卡选择',exact:true}).tap();await samePosition(page, missionY);
-  await mission.tap();await page.locator('#deck-picker .deck-pick-card').first().tap();await samePosition(page, missionY);
+  await mission.tap();await page.locator('#deck-picker .deck-pick-card').first().tap();
+  await page.getByRole('button',{name:'关闭任务卡选择',exact:true}).tap();await samePosition(page, missionY);
+});
+
+test('mission categories offer one add slot, advance through unique picks and replace in place', async t => {
+  const page = await setup(t);
+  const picker = page.locator('#deck-picker');
+  for (const [kind, label] of [['primary','主要任务'],['secondary','次要任务'],['advantage','优势']]) {
+    const section = page.locator('.mission-section[data-kind="' + kind + '"]');
+    const add = section.getByRole('button',{name:'新增' + label + '卡',exact:true});
+    const filled = section.locator('.mission-slot.filled');
+    const choices = picker.locator('.deck-pick-card');
+    const picked = [];
+    assert.equal(await section.locator('.mission-slot').count(), 1);
+    await add.tap();
+    for (let index = 0; index < 3; index++) {
+      assert.equal(await add.count(), 1);
+      assert.match(await picker.locator('.deck-picker-context').innerText(), new RegExp('第 ' + (index + 1) + ' 张'));
+      const ids = await choices.evaluateAll(cards => cards.map(card => card.dataset.id));
+      assert.ok(picked.every(id => !ids.includes(id)));
+      picked.push(ids[0]);
+      await choices.first().tap();
+      assert.equal(await filled.count(), index + 1);
+    }
+    await picker.waitFor({state:'hidden'});
+    assert.equal(await add.count(), 0);
+    await filled.first().locator('.mission-card').tap();
+    const ids = await choices.evaluateAll(cards => cards.map(card => card.dataset.id));
+    assert.ok(picked.every(id => !ids.includes(id)));
+    await choices.first().tap();
+    await picker.waitFor({state:'hidden'});
+    assert.deepEqual(await page.evaluate(kind => army.deck[kind], kind), [ids[0],picked[1],picked[2]]);
+    await filled.first().locator('.card-remove').tap();
+    assert.equal(await add.count(), 1);
+    assert.equal(await filled.count(), 2);
+  }
 });
 
 test('rapid dialog reopen and navigation do not unlock a live modal or restore an old page offset', async t => {
