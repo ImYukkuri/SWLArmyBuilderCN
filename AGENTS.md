@@ -5,3 +5,7 @@
 - Run relevant tests, `npm run build`, and `python tools/release.py check` before uploading. If an upload fails after preparation, retry the same version; do not create an empty second release.
 - Keep the most recent 10 published versions in `CHANGELOG.md`; the release script moves older entries to `docs/changelog/YYYY.md`. Never discard old notes. See `VERSIONING.md`.
 - Keep screenshots, temporary test sites and private reference material outside the repository. Preserve unrelated local edits.
+
+# UI work
+
+- Before changing the builder UI, read `docs/UI-STANDARDS.md`. Keep mobile layouts compact and avoid unnecessary explanatory labels. Use the approved colors in `faction-colors.css` only at user-specified locations.

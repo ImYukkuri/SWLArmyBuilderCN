@@ -31,6 +31,7 @@ FILES = [
     "battleforce-runtime.js",
     "mandalorian-rules.js",
     "builder.css",
+    "faction-colors.css",
     "data/units.json",
     "data/upgrades.json",
     "data/catalog-definitions.json",

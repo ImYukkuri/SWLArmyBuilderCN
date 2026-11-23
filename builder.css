@@ -1814,19 +1814,6 @@ dialog, .card-browser, .keyword-popover {
   margin-top: 10px;
 }
 
-.upgrade-candidate .identity .en-name {
-  display: inline;
-  margin-left: 7px;
-}
-
-.upgrade-candidate .identity h3 {
-  display: inline;
-}
-
-.upgrade-candidate .identity .usage-flags {
-  margin-left: 8px;
-}
-
 .module-nav {
   font-size: 11px;
   margin-left: auto;
@@ -1886,15 +1873,29 @@ dialog, .card-browser, .keyword-popover {
 }
 
 .expand-unit {
-  border: 0;
-  border-left: 1px solid #dce4ea;
-  border-radius: 0;
-  background: transparent;
-  padding: 0;
-  min-width: 22px;
-  align-self: stretch;
-  color: var(--accent);
-  font-size: 21px;
+  display: grid;
+  place-items: center;
+  align-self: center;
+  min-width: 42px;
+  min-height: 32px;
+  padding: 0 5px;
+  border: 1px solid #b4c9d7;
+  border-radius: 3px;
+  background: #e9f1f6;
+  color: #304e64;
+  font: 650 11px/1 var(--body);
+  white-space: nowrap;
+}
+
+.expand-unit:hover,
+.expand-unit[aria-expanded="true"] {
+  background: #d5e6f1;
+  border-color: #849fb3;
+}
+
+.expand-unit:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
 }
 
 .legion-symbol {
@@ -3249,7 +3250,7 @@ dialog, .card-browser, .keyword-popover {
 
 .unit-brief {
   display: grid;
-  grid-template-columns: 48px minmax(0, 1fr) 22px;
+  grid-template-columns: 48px minmax(0, 1fr) max-content;
   align-items: center;
   gap: 8px;
   padding: 8px;
@@ -3463,37 +3464,6 @@ dialog, .card-browser, .keyword-popover {
   color: #687781;
 }
 
-.candidate.unit-candidate {
-  display: grid;
-  grid-template-columns: clamp(68px, 16%, 112px) minmax(0, 1fr);
-  align-items: start;
-  gap: 12px;
-  padding: 18px 16px;
-}
-
-.unit-candidate .candidate-portrait {
-  height: auto;
-  aspect-ratio: 0.78;
-  border-radius: 4px;
-}
-
-.unit-candidate-content {
-  min-width: 0;
-}
-
-.unit-candidate .candidate-brief {
-  display: flex;
-  align-items: stretch;
-  gap: 7px;
-  padding: 0;
-  background: transparent;
-}
-
-.candidate-brief .brief-body {
-  flex: 1;
-}
-
-.candidate-card-actions { display: flex; flex: 0 0 auto; flex-direction: column; align-items: center; gap: 3px; }
 .candidate .favorite-card {
   display: grid; place-items: center; width: 32px; min-height: 32px;
   flex: 0 0 auto; padding: 0; border: 1px solid transparent; border-radius: 5px;
@@ -3501,19 +3471,6 @@ dialog, .card-browser, .keyword-popover {
 }
 .candidate .favorite-card[aria-pressed="true"] { color: #976318; background: #fff3d6; }
 .candidate .favorite-card:hover, .candidate .favorite-card:focus-visible { border-color: currentColor; }
-
-.unit-candidate .candidate-tags {
-  margin: 10px 0 8px;
-}
-
-.unit-candidate .weapon-groups {
-  margin-top: 8px;
-}
-
-.unit-candidate .candidate-footer {
-  padding: 0;
-  margin-top: 10px;
-}
 
 .candidate-footer {
   flex-wrap: wrap;
@@ -3649,7 +3606,7 @@ dialog, .card-browser, .keyword-popover {
 
 @media (max-width: 760px) {
   .unit-brief {
-    grid-template-columns: 36px minmax(0, 1fr) 22px;
+    grid-template-columns: 36px minmax(0, 1fr) max-content;
     gap: 5px;
     padding: 6px;
   }
@@ -3677,14 +3634,6 @@ dialog, .card-browser, .keyword-popover {
   }
   .attribute .legion-symbol {
     font-size: 12px;
-  }
-  .candidate.unit-candidate {
-    grid-template-columns: 58px minmax(0, 1fr);
-    gap: 9px;
-    padding: 15px 10px;
-  }
-  .unit-candidate .candidate-brief {
-    gap: 4px;
   }
   .card-grid.command-grid {
     gap: 12px;
@@ -3977,6 +3926,38 @@ html.page-overlay-open #army-units > .roster-unit > .unit-brief { visibility: hi
 .upgrade-browser .browser-foot { padding-block: 7px; }
 .candidate.upgrade-candidate { padding: 8px 14px; }
 .upgrade-candidate .identity { gap: 8px; }
+.upgrade-candidate-title-row,
+.upgrade-candidate-names {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+}
+.upgrade-candidate-title-row { min-height: 30px; }
+.upgrade-candidate-names { flex: 1; }
+.upgrade-candidate-names h3,
+.upgrade-candidate-names .en-name {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.upgrade-candidate .upgrade-candidate-names h3 {
+  flex: 0 0 auto;
+  font-size: 15px;
+  line-height: 1.3;
+}
+.upgrade-candidate-names .en-name { min-width: 0; margin: 0; }
+.upgrade-candidate-title-row .usage-flags { flex: none; white-space: nowrap; }
+.upgrade-candidate-title-row .item-points {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 1px;
+  min-width: 0;
+  margin: 0;
+}
+.upgrade-candidate-title-row .item-points b { font: 650 22px/1 var(--numeric); }
+.upgrade-candidate-title-row .favorite-card { width: 28px; min-height: 30px; }
 .upgrade-candidate .candidate-art {
   position: relative;
   width: 88px;
@@ -4067,3 +4048,133 @@ html.page-overlay-open #army-units > .roster-unit > .unit-brief { visibility: hi
 .battleforce-entry .timing-markers { vertical-align:middle; }
 @media(max-width:760px) { .army-option-info { min-height:36px; flex-basis:32px; width:32px; } }
 @media(max-width:600px) { .v2-trait-group { align-items:flex-start; } .v2-trait-label { padding-top:6px; } }
+
+/* Unit selection card: portrait beside the four summary rows. */
+.unit-browser .card-grid { container: unit-candidates / inline-size; }
+.candidate.unit-candidate { padding: 0; }
+.candidate.unit-candidate + .unit-candidate { border-top: 5px solid #edf1f4; }
+
+/* The first three rows sit beside the portrait. The stats can extend below it. */
+.candidate-unit-head { display: grid; grid-template-columns: 84px minmax(0,1fr); }
+.unit-candidate .candidate-portrait {
+  width: 100%; height: 100%; min-height: 0; border: 0; border-radius: 0;
+  position: relative; display: grid; place-items: center; padding: 0;
+  overflow: hidden; align-self: start; background: #e3e6e9;
+}
+.unit-candidate .candidate-portrait img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.candidate-unit-overview { display: grid; grid-template-rows: 28px 23px 27px; min-width: 0; }
+.candidate-unit-name-row { display: flex; align-items: center; min-width: 0; gap: 5px; padding-right: 5px; }
+.candidate-unit-name {
+  position: relative; isolation: isolate; display: flex; align-items: center; min-width: 0; flex: 1;
+  height: 28px; padding: 0 12px 0 8px; gap: 5px; overflow: hidden;
+  color: var(--unit-fg); background: color-mix(in srgb, var(--unit-bg) 64%, #171a20);
+  clip-path: polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,5px 100%,0 calc(100% - 5px));
+}
+.candidate-unit-name::before {
+  content: ''; position: absolute; z-index: -1; inset: 1px;
+  background: linear-gradient(105deg,#ffffff08,#00000005), var(--unit-bg);
+  clip-path: polygon(0 0,calc(100% - 7px) 0,100% 7px,100% 100%,4px 100%,0 calc(100% - 4px));
+}
+.candidate-unit-name > b {
+  font: 650 14px/1.2 "Noto Sans SC", "Source Han Sans SC", "PingFang SC", DengXian, sans-serif;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 0 1 auto;
+}
+.candidate-unit-name > span { font: 500 11px/1.15 var(--numeric); min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; flex: 1 1 50px; }
+.candidate-unit-points { display: inline-flex; align-items: baseline; gap: 1px; flex: none; }
+.candidate-unit-points b { font: 650 25px/1 var(--numeric); }
+.candidate-unit-points small { font: 10px/1 var(--body); color: #566875; }
+.unit-candidate .candidate-unit-name-row .favorite-card {
+  display: grid; place-items: center; width: 29px; height: 28px; min-height: 28px; padding: 0;
+  border: 1px solid transparent; border-radius: 3px; background: transparent; color: #5b6e7d; flex: none; font: 25px/1 sans-serif;
+}
+.candidate-unit-meta-row { display: flex; align-items: center; gap: 5px; padding: 0 8px; min-width: 0; }
+.candidate-unit-title { flex: 1; min-width: 0; height: 20px; overflow: hidden; display: flex; flex-wrap: wrap; align-content: flex-start; column-gap: 5px; line-height: 20px; }
+.candidate-unit-title > span { flex: 0 1 auto; max-width: 100%; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #374957; }
+.candidate-unit-title > .english { flex: 0 0 auto; font: 11px/20px var(--numeric); color: #657581; }
+.candidate-unit-meta {
+  display: flex; flex: 0 1 auto; align-items: center; gap: 5px; min-width: 0;
+  white-space: nowrap; color: #526674; font-size: 11px; line-height: 1;
+}
+.candidate-unit-rank { display: inline-flex; flex: none; align-items: center; gap: 3px; }
+.candidate-unit-meta .rank-icon { color: inherit; display: inline-flex; align-items: center; justify-content: center; width: 14px; height: 16px; font-size: 14px; margin: 0; }
+.candidate-unit-type { overflow: hidden; text-overflow: ellipsis; }
+.candidate-unit-models {
+  color: var(--ink);
+  font: 700 12px/1 var(--numeric);
+}
+
+.unit-browser .result-controls { flex-wrap: wrap; }
+.unit-browser #result-count { margin-inline-end: auto; }
+.unit-browser .result-controls label { white-space: nowrap; }
+
+.unit-candidate .candidate-unit-slots {
+  align-self: start;
+  gap: 4px;
+  padding: 4px 5px 0 7px;
+}
+
+.unit-candidate .candidate-unit-slots .compact-slot { min-height: 24px; }
+.unit-candidate .candidate-unit-slots .slot-name {
+  flex-wrap: nowrap;
+  padding: 2px 5px;
+  font-size: 11px;
+  white-space: nowrap;
+}
+.unit-candidate .candidate-unit-slots .slot-glyph,
+.unit-candidate .candidate-unit-slots .required-slot { flex: none; }
+.candidate-slot-text { overflow: hidden; text-overflow: ellipsis; }
+
+.candidate-unit-stats { display: flex; min-width: 0; padding: 0 5px 0 7px; }
+.unit-candidate .candidate-unit-stats .attribute-band { flex: 1; padding: 0; min-width: 0; border-radius: 2px; background: #edf1f4; border: 1px solid #dbe1e6; container-type: normal; }
+.unit-candidate .candidate-unit-stats .attribute { flex: 1 1 0; min-width: 0; padding: 2px 1px; border-color: #d4dce2; gap: 0; }
+.unit-candidate .candidate-unit-stats .attribute dt { position: absolute; width: 1px; height: 1px; clip-path: inset(50%); overflow: hidden; }
+.unit-candidate .candidate-unit-stats .attribute dd { gap: 2px; min-width: 0; }
+.unit-candidate .candidate-unit-stats .attribute dd b { font-size: 14px; }
+.unit-candidate .candidate-unit-stats .attribute .ui-symbol { width: 12px; height: 12px; color: currentColor; }
+.unit-candidate .candidate-unit-stats .attribute .legion-symbol { font-size: 13px; }
+.unit-candidate .candidate-unit-stats .surge-arrow { color: inherit; }
+.unit-candidate .candidate-unit-stats .attribute[data-attack="none"],
+.unit-candidate .candidate-unit-stats .attribute[data-defense="white"] { background: #fff; color: #344653; }
+.unit-candidate .candidate-unit-stats .attribute[data-attack="hit"] { background: #f6d96f; color: #332d18; }
+.unit-candidate .candidate-unit-stats .attribute[data-attack="critical"] { background: #edaa59; color: #332619; }
+.unit-candidate .candidate-unit-stats .attribute[data-defense="red"] { background: #a84045; color: #fff; }
+.unit-candidate-content { min-width: 0; padding: 6px 9px 7px; display: flex; flex-direction: column; gap: 6px; }
+.unit-candidate .unit-candidate-content > .candidate-tags { margin: 0; gap: 4px; }
+.unit-candidate .unit-candidate-content .rule-tag-main { font-size: 11px; padding: 2px 5px; }
+.unit-candidate .unit-candidate-content .timing-markers { margin-right: 4px; }
+.unit-candidate .unit-candidate-content .timing-mark { font-size: 10px; }
+.unit-candidate .unit-candidate-content .rule-tag-toggle { min-width: 22px; padding: 1px 3px; }
+.unit-candidate .unit-candidate-content > .weapon-groups { margin: 2px 0 0; gap: 10px; }
+.unit-candidate .unit-candidate-content .weapon-group { margin: 0; padding: 9px 4px 4px; }
+.unit-candidate .unit-candidate-content .weapon-card-head { padding: 5px 7px; gap: 7px; }
+.unit-candidate .unit-candidate-content .weapon-title { min-width: 90px; }
+.unit-candidate .unit-candidate-content .weapon-title > b { font-size: 12px; }
+.unit-candidate .unit-candidate-content .weapon-tags { padding: 3px 5px; }
+.unit-candidate .unit-candidate-content .weapon-tags .rule-tag-main { font-size: 11px; }
+.unit-candidate-content > .candidate-footer { margin: 0; padding: 0; }
+
+@container unit-candidates (max-width: 360px) {
+  .candidate-unit-head { grid-template-columns: 70px minmax(0, 1fr); }
+  .candidate-unit-name > b { font-size: 13px; }
+  .candidate-unit-name { padding-inline: 6px 8px; gap: 4px; }
+  .candidate-unit-name-row { gap: 3px; padding-inline-end: 3px; }
+  .candidate-unit-points b { font-size: 23px; }
+  .candidate-unit-meta-row { padding-inline: 6px; gap: 3px; }
+  .candidate-unit-meta { gap: 3px; font-size: 10px; }
+  .candidate-unit-stats { padding-inline-start: 6px; }
+  .unit-candidate .candidate-unit-slots { padding-inline-start: 6px; }
+  .unit-candidate .candidate-unit-name-row .favorite-card { width: 27px; }
+}
+
+@container unit-candidates (min-width: 640px) {
+  .candidate-unit-head { grid-template-columns: 98px minmax(0, 1fr); }
+  .candidate-unit-overview { grid-template-rows: 29px 24px 28px; }
+  .candidate-unit-name { height: 29px; }
+  .candidate-unit-name > b { font-size: 15px; }
+  .candidate-unit-name > span { font-size: 13px; }
+  .candidate-unit-meta { font-size: 12px; }
+  .candidate-unit-title > span { font-size: 13px; }
+  .candidate-unit-title > .english { font-size: 12px; }
+}

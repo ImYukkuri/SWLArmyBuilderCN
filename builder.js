@@ -188,7 +188,7 @@ function setStatus(t, error) {
 function slotDef(key) {
   if (key?.startsWith('special:')) {
     const card = data.upgrades[key.slice(8)], name = card?.name?.zh || card?.name?.en || key.slice(8);
-    return {name: {zh: '【' + name + '】'}, iconGlyph: '+'};
+    return {name: {zh: name}, iconGlyph: '+'};
   }
   const s = (data.pkg.slots || []).find((x) => x.id === key);
   if (!s) return null;
@@ -196,6 +196,7 @@ function slotDef(key) {
 }
 
 function slotName(key) {
+  if (key === "heavy_weapon") return "重武";
   const d = slotDef(key);
   return d && d.name ? d.name.zh : key;
 }

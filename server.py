@@ -320,6 +320,7 @@ class Handler(BaseHTTPRequestHandler):
             files.update({'/battleforces':'battleforce-editor.html', **{'/'+name:name for name in ['battleforce-editor.html','battleforce-editor.js','battleforce-editor.css']}})
             files['/rule-icons.js']='rule-icons.js'
             files['/rule-icons.css']='rule-icons.css'
+            files['/faction-colors.css']='faction-colors.css'
             files['/editor-symbols.js']='editor-symbols.js'
             files.update({'/keywords':'keywords.html','/keywords.html':'keywords.html','/keyword-editor.js':'keyword-editor.js','/keyword-editor.css':'keyword-editor.css'})
             if path in files:p=ROOT/files[path]

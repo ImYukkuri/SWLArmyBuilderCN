@@ -129,13 +129,13 @@ for (const mobile of [true,false]) test(`${mobile?'mobile':'desktop'} personal s
   assert.deepEqual(await page.evaluate(()=>preferenceIO),{reads:1,writes:0});
   assert.equal(await page.locator('#candidate-sort').inputValue(),'usage');
   const unit=page.locator('.unit-candidate[data-id="rebels-rebel-troopers"]');
-  assert.equal(await unit.locator('.rank-label-inline').textContent().then(s=>s.includes('独特')),false);
+  assert.equal(await unit.locator('.candidate-unit-meta').textContent().then(s=>s.includes('独特')),false);
   await unit.locator('.favorite-card').click();
   assert.equal(await unit.locator('.favorite-card').getAttribute('aria-pressed'),'true');
   assert.equal(await page.evaluate(()=>army.units.length),0,'favorite must not add the unit');
   await page.selectOption('#candidate-sort','favorites');
   assert.equal(await page.locator('.unit-candidate').first().getAttribute('data-id'),'rebels-rebel-troopers');
-  await unit.locator('.bilingual-name').click();
+  await unit.locator('.candidate-unit-name').click();
   assert.equal(await page.evaluate(()=>cardUsage.stats('units',data.units['rebels-rebel-troopers']).count),1);
   await page.locator('#army-units .copy-unit').click();
   assert.equal(await page.evaluate(()=>cardUsage.stats('units',data.units['rebels-rebel-troopers']).count),2);
@@ -173,7 +173,7 @@ for (const mobile of [true,false]) test(`${mobile?'mobile':'desktop'} personal s
   });
   assert.deepEqual(await page.evaluate(()=>preferenceIO),before,'opening/filtering/closing does not touch usage storage');
   assert.equal(before.reads,1);
-  assert.equal(await page.locator('.unit-candidate .rank-label-inline').allTextContents().then(a=>a.some(s=>s.includes('独特'))),false);
+  assert.equal(await page.locator('.unit-candidate .candidate-unit-meta').allTextContents().then(a=>a.some(s=>s.includes('独特'))),false);
   assert.equal(await page.evaluate(()=>cardUsage.stats('upgrades',data.upgrades['force-push']).count),0);
   await page.reload();await page.waitForFunction(()=>typeof data!=='undefined'&&data);
   assert.equal(await page.evaluate(()=>cardUsage.stats('units',data.units['rebels-rebel-troopers']).count),2);
@@ -442,7 +442,7 @@ for(const mobile of [true,false])test(`${mobile?'mobile':'desktop'} mercenary pi
   await page.evaluate(()=>closeBrowser());
   await page.locator('#rank-add-bar [data-rank="6"]').click();
   assert.equal(await cad.getAttribute('data-state'),'available');
-  await cad.locator('.bilingual-name').click();
+  await cad.locator('.candidate-unit-name').click();
   assert.equal(await page.evaluate(()=>army.units.some(i=>i.unitId==='mercenary-rogue-cad-bane')),true);
   assert.equal(await page.locator('#rank-add-bar [data-rank="6"]').evaluate(n=>n.classList.contains('invalid')),false);
   await page.locator('#rank-add-bar [data-rank="2"]').click();
@@ -659,7 +659,7 @@ for(const mobile of [true,false]) test(`${mobile?'mobile':'desktop'} battle forc
   const local=candidate.locator('[data-rule-id="bf:28:ccb_decisive-rule"]');
   assert.equal(await local.locator('.rule-origin').innerText(),'来自 果决');
   assert.equal(await candidate.locator('[data-rule-id="bf:28:ccb_scout-rule"] .rule-origin').innerText(),'来自 侦察营');
-  await candidate.locator('.bilingual-name').click();
+  await candidate.locator('.candidate-unit-name').click();
   const roster=page.locator('#army-units > .roster-unit').first();
   await roster.locator('.expand-unit').click();
   await roster.locator('[data-rule-id="bf:28:ccb_decisive-rule"] .rule-tag-main').click();
@@ -675,7 +675,7 @@ for(const mobile of [true,false]) test(`${mobile?'mobile':'desktop'} irregular s
   const candidate=page.locator('#card-grid [data-id="rebels-cassian"]');
   assert.equal(await candidate.locator('[data-rule-id^="bf:29:"]').count(),2);
   assert.equal(await candidate.locator('[data-rule-id="field_commander"] .rule-origin').innerText(),'来自 非正规军');
-  await candidate.locator('.bilingual-name').click();
+  await candidate.locator('.candidate-unit-name').click();
   const roster=page.locator('#army-units > .roster-unit').first();
   await roster.locator('.expand-unit').click();
   assert.equal(await roster.locator('[data-phase="global"] [data-rule-id="bf:29:irregulars"]').count(),1);
@@ -889,7 +889,7 @@ for(const mobile of [true,false]) test(`${mobile?'mobile':'desktop'} 224 rank en
   await page.selectOption('#points-limit','1000');
   const add=async(rank,id)=>{
     await page.locator(`#rank-add-bar [data-rank="${rank}"]`).click();
-    await page.locator(`#card-grid [data-id="${id}"] .bilingual-name`).click();
+    await page.locator(`#card-grid [data-id="${id}"] .candidate-unit-name`).click();
   };
   await add(3,'empire-riot-squad-trench-buster');
   assert.equal(await page.evaluate(()=>RulesCore.validateArmy(army,data).rankCounts[3]),1);
@@ -938,7 +938,7 @@ for (const mobile of [true,false]) test(`${mobile?'mobile':'desktop'} V2 choices
   for(const id of ['ccb_scout','ccb_decisive','ccb_reinforced']) await page.locator(`[data-option-id="${id}"]`).click();
   const add=async(rank,id)=>{
     await page.locator(`#rank-add-bar [data-rank="${rank}"]`).click();
-    await page.locator(`#card-grid [data-id="${id}"] .bilingual-name`).click();
+    await page.locator(`#card-grid [data-id="${id}"] .candidate-unit-name`).click();
     if(mobile)assert.equal(await page.locator('html').evaluate(n=>n.classList.contains('page-overlay-open')),false);
   };
   await page.locator('#rank-add-bar [data-rank="1"]').click();
@@ -990,11 +990,11 @@ for(const mobile of [true,false])test(`${mobile?'mobile':'desktop'} ARC trait gi
   const arc=page.locator('#card-grid [data-id="republic-arc-troopers"]');
   assert.equal(await arc.locator('[data-rule-id="precise"] .rule-origin').innerText(),'来自 卓越 ARC 训练');
   assert.equal(await arc.locator('[data-rule-id="bf:28:ccb_superior_arc_training-rule"]').count(),0);
-  await arc.locator('.bilingual-name').click();
+  await arc.locator('.candidate-unit-name').click();
   await page.locator('#rank-add-bar [data-rank="2"]').click();
   const core=page.locator('#card-grid [data-id="republic-clone-trooper"]');
   assert.equal(await core.locator('[data-rule-id="precise"], [data-rule-id="bf:28:ccb_superior_arc_training-rule"]').count(),0);
-  await core.locator('.bilingual-name').click();
+  await core.locator('.candidate-unit-name').click();
   for(const unit of await page.locator('#army-units > .roster-unit').all())await unit.locator('.expand-unit').click();
   assert.equal(await page.locator('#army-units [data-rule-id="precise"] .rule-origin').count(),1);
   assert.equal(await page.locator('#army-units [data-rule-id="precise"] .rule-origin').innerText(),'来自 卓越 ARC 训练');
@@ -1035,7 +1035,7 @@ test('V2 trait cancellation removes equipped extra slots and irregulars has Impe
   await page.selectOption('#battleforce','28');
   await page.locator('[data-option-id="ccb_reinforced"]').click();
   await page.locator('#rank-add-bar [data-rank="2"]').click();
-  await page.locator('#card-grid [data-id="republic-clone-trooper"] .bilingual-name').click();
+  await page.locator('#card-grid [data-id="republic-clone-trooper"] .candidate-unit-name').click();
   const index=await page.evaluate(()=>unitSlotRecords(data.units[army.units[0].unitId],army.units[0]).findIndex(s=>s.effectId==='reinforced-personnel'));
   assert(index>=0);
   await page.locator(`.compact-slot[data-slot-index="${index}"] .slot-name`).click();
@@ -1048,7 +1048,7 @@ test('V2 trait cancellation removes equipped extra slots and irregulars has Impe
   await page.selectOption('#battleforce','29');
   await page.locator('#rank-add-bar [data-rank="5"]').click();
   assert.equal(await page.locator('#card-grid [data-id="republic-laat-gar"]').count(),0);
-  await page.locator('#card-grid [data-id="empire-laat-empire"] .bilingual-name').click();
+  await page.locator('#card-grid [data-id="empire-laat-empire"] .candidate-unit-name').click();
   assert.equal(await page.evaluate(()=>RulesCore.unitFor(army.units[0],army,data).factionId),1);
   await page.locator('#rank-add-bar [data-rank="5"]').click();
   assert.equal(await page.locator('#card-grid [data-id="empire-laat-empire"]').count(),0);
@@ -1373,7 +1373,7 @@ test('mobile unit picker preserves its bottom-of-roster opener when adding a uni
   const y = await positionAt(page, add);await add.tap();
   await page.locator('#candidate-search').fill('Rebel Troopers');
   const choice = page.locator('#card-grid .candidate[data-state="available"]').first();
-  await choice.locator('.brief-first').tap();await samePosition(page, y);
+  await choice.locator('.candidate-unit-name').tap();await samePosition(page, y);
   assert.equal(await page.locator('#card-browser').evaluate(n => n.classList.contains('is-open')), false);
   assert.equal(await page.locator('#summary-activations').innerText(), '19');
 });

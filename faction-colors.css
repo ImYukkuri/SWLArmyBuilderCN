@@ -1,0 +1,26 @@
+/* Approved unit-name palette, 2026-11-23. Tokens only: no global recoloring.
+ * Resolve a unit's faction first, then its affiliation within the generic
+ * mercenary/syndicate factions. See docs/UI-STANDARDS.md.
+ */
+:root {
+  --card-republic-bg: #A4A996;
+  --card-republic-fg: #171717; /* 7.42:1 */
+  --card-rebel-bg: #8C504A;
+  --card-rebel-fg: #FFFFFF; /* 6.25:1 */
+  --card-empire-bg: #5C4574;
+  --card-empire-fg: #FFFFFF; /* 8.21:1 */
+  --card-separatist-bg: #31487C;
+  --card-separatist-fg: #FFFFFF; /* 8.94:1 */
+  --card-mandalorian-bg: #625F62;
+  --card-mandalorian-fg: #FFFFFF; /* 6.30:1; 965 / 1081 / 1082 / 1083 / 1084 */
+  --card-mercenary-bg: #C2903E;
+  --card-mercenary-fg: #171717; /* 6.28:1; includes Rebel Scoundrel (6) */
+  --card-maul-bg: #7E3331;
+  --card-maul-fg: #FFFFFF; /* 8.73:1; affiliation 5 */
+  --card-pyke-black-sun-bg: #7D3822;
+  --card-pyke-black-sun-fg: #FFFFFF; /* 8.53:1; affiliations 1 / 2 */
+  --card-ewok-bg: #6F4F37;
+  --card-ewok-fg: #FFFFFF; /* 7.37:1; affiliation 7 */
+  --card-pirate-bg: #1E0D02;
+  --card-pirate-fg: #FFFFFF; /* 18.86:1; affiliation 3 */
+}
