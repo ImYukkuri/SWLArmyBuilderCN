@@ -16,6 +16,7 @@ function render(){
  for(const side of ['front','back']){const b=$('#edit-'+side);b.setAttribute('aria-selected',String(side===face));b.tabIndex=side===face?0:-1;}
  $('#upgrade-face-panel').setAttribute('aria-labelledby','edit-'+face);
  const shared=$('#shared-fields');shared.replaceChildren();
+ const number=field('数字 ID',draft.numericId??'',()=>{});number.querySelector('input').readOnly=true;number.querySelector('input').placeholder='保存时自动分配';shared.append(number);
  const dual=el('label'),check=el('input');check.type='checkbox';check.checked=!!draft.dualSided;check.id='dual-sided';
  check.onchange=()=>{draft.dualSided=check.checked;if(check.checked&&!draft.back)draft.back={name:{en:'',zh:''},description:{en:[],zh:[]},actionTypes:[],keywords:[],weapons:[],assets:{front:null}};face=check.checked?'back':'front';changed();render()};
  dual.append(check,document.createTextNode('双面升级卡'));shared.append(dual,el('p','两面共用费用、用途、槽位和规则限制；取消双面时保留背面草稿。'));

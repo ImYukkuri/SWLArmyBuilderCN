@@ -135,7 +135,7 @@ function identity(c, { unit = false, points = c.points, command = false } = {}) 
       node(
         "div",
         "unit-meta",
-        [named(rank?.name), named(type?.name), isUnique(c) ? "独特单位" : ""]
+        [named(rank?.name), named(type?.name)]
           .filter(Boolean)
           .join(" / "),
       ),
@@ -241,11 +241,16 @@ function filterCandidates() {
           .includes(search))
     );
   });
-  list.sort((a, b) =>
-    sort === "points"
-      ? (a.points ?? a.pips ?? Infinity) - (b.points ?? b.pips ?? Infinity)
-      : named(a.name).localeCompare(named(b.name), "zh"),
-  );
+  // Reuse the engine's current-force membership, including parent inheritance
+  // and explicit native overrides. Resolve once per candidate, never per pair.
+  const mercenaries = new Set();
+  if (browser?.mode === 'units' && [1,2,4,5].includes(BuilderLibrary.factionOf(army.armyId,data))) {
+    for (const card of list)
+      if (RulesCore.armyMembership(card,army.armyId,data.pkg,data.defs)?.tierPools?.includes('mercenary'))
+        mercenaries.add(card.id);
+  }
+  list.sort((a, b) => Number(mercenaries.has(a.id)) - Number(mercenaries.has(b.id)) ||
+    cardUsage.compare(browser?.mode, sort, a, b));
   $("#result-count").textContent =
     list.length +
     " 项" +
@@ -306,6 +311,9 @@ function renderBrowser() {
   }
   $("#candidate-search").disabled = false;
   $("#candidate-sort").disabled = false;
+  $("#candidate-sort").value = candidateSortModes[browser.mode];
+  for (const option of $("#candidate-sort").options)
+    option.hidden = browser.mode === 'commands' && ['usage','recent','favorites'].includes(option.value);
   $("#show-unavailable").disabled = false;
   const key = JSON.stringify(browser);
   if (priorContext !== key) {
@@ -1819,6 +1827,23 @@ function candidateStatus(state) {
   return footer;
 }
 
+function favoriteButton(c) {
+  const kind = browser.mode, selected = cardUsage.isFavorite(kind,c);
+  const button = node('button', 'favorite-card', selected ? '★' : '☆');
+  button.type = 'button';
+  button.setAttribute('aria-pressed',String(selected));
+  button.setAttribute('aria-label',(selected ? '取消收藏' : '收藏') + named(c.name));
+  button.title = (selected ? '取消收藏' : '收藏') + ' · 已使用 ' + cardUsage.stats(kind,c).count + ' 次';
+  button.onclick = e => {
+    e.stopPropagation();
+    cardUsage.toggleFavorite(kind,c);
+    filterCandidates();
+    [...$('#card-grid').children].find(n => n.dataset.id === c.id &&
+      (!n.dataset.face || n.dataset.face === (c._face || 'front')))?.querySelector('.favorite-card')?.focus({preventScroll:true});
+  };
+  return button;
+}
+
 function upgradeCandidate(c) {
   c = displayUpgrade(c);
   const state = itemState(c),
@@ -1828,6 +1853,10 @@ function upgradeCandidate(c) {
   item.dataset.face = c._face || "front";
   const host = army.units.find(i => i.instanceId === browser?.unitInstanceId);
   const head = identity(c, {points: upgradeDisplayPoints(c,host)});
+  const actions = node('div', 'candidate-card-actions');
+  const points = head.querySelector('.item-points');
+  if (points) actions.append(points);
+  actions.append(favoriteButton(c));head.append(actions);
   const main = head.querySelector(".identity-main");
   head.prepend(artButton(c, "upgrade-art candidate-art"));
   main.append(usageBadges(c));
@@ -1884,7 +1913,8 @@ function candidate(c) {
       ?.querySelector(".expand-unit")
       ?.focus({ preventScroll: true });
   };
-  head.append(toggle);
+  const actions = node('div', 'candidate-card-actions');
+  actions.append(favoriteButton(c), toggle);head.append(actions);
   content.append(
     head,
     ruleTags(cardKeywords(c), { forceOpen: open, timing: true }),
@@ -1976,7 +2006,6 @@ function briefHeader(
       [
         named(data.defs.ranks.find((r) => r.id === rankOf(unit, army.armyId))?.name),
         named(data.defs.unitTypes.find((t) => t.id === unit.unitTypeId)?.name),
-        isUnique(unit) ? "独特" : "",
       ]
         .filter(Boolean)
         .join(" / "),
@@ -2323,7 +2352,10 @@ function wireEditor() {
   $("#browser-close").onclick = closeBrowser;
   $("#browser-backdrop").onclick = closeBrowser;
   $("#candidate-search").oninput = filterCandidates;
-  $("#candidate-sort").onchange = filterCandidates;
+  $("#candidate-sort").onchange = () => {
+    if (browser) candidateSortModes[browser.mode] = $("#candidate-sort").value;
+    filterCandidates();
+  };
   $("#show-unavailable").onchange = filterCandidates;
   $("#apply-all-units").onchange = () => {
     cardView.applyAll = $("#apply-all-units").checked;

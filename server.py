@@ -7,6 +7,7 @@ from urllib.parse import urlsplit,unquote
 from PIL import Image
 from catalog_schema import DEFINITIONS,migrate_legacy,validate_unit_classification,validate_keyword_targets
 import maintenance_store
+import card_numeric_ids
 import rules
 from unit_identity import rename_documents, resolve_id, rewrite_references
 from rule_schema import validate_rules
@@ -162,7 +163,7 @@ def save_unit_image(record_id,image_bytes,revision):
     return commit_card(card,revision)
 
 
-def commit_card(card,revision,create=False):
+def commit_card(card,revision,create=False,restoring=False):
     card=migrate_legacy(card)
     validate(card)
     with LOCK:
@@ -172,6 +173,7 @@ def commit_card(card,revision,create=False):
         if create and card['id'] in catalog.get('idAliases',{}):raise ValueError('该 ID 用于旧军表兼容，不能重复使用')
         if index is None and not create:raise ValueError('单位 ID 不存在；为避免误覆盖，不允许直接更改 ID')
         if index is not None and create:raise ValueError('该单位 ID 已存在')
+        card_numeric_ids.assign(catalog,'units',card,catalog['units'][index] if index is not None else None,restoring=restoring)
         stamp=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S.%fZ');snapshot=stamp+'-'+digest(original)[:12]+'.json'
         HISTORY.mkdir(exist_ok=True);atomic(HISTORY/snapshot,original)
         make_portrait(card)
@@ -308,6 +310,7 @@ class Handler(BaseHTTPRequestHandler):
             files['/command-requirements-editor.js']='command-requirements-editor.js'
             files['/builder-transfer.js']='builder-transfer.js'
             files['/builder-share.js']='builder-share.js'
+            files['/card-usage.js']='card-usage.js'
             files['/builder-transfer-ui.js']='builder-transfer-ui.js'
             files['/builder-overlays.js']='builder-overlays.js'
             files['/builder-sticky.js']='builder-sticky.js'
@@ -380,7 +383,7 @@ class Handler(BaseHTTPRequestHandler):
                 if card is None:raise ValueError('该版本没有此单位')
                 for previous,current in aliases.items():card=rewrite_references(card,previous,current)
                 card['id']=data['id']
-                return self.reply(200,commit_card(card,data['revision']))
+                return self.reply(200,commit_card(card,data['revision'],restoring=True))
             if path=='/api/candidates':
                 return self.reply(200,rules.query_candidates(data.get('unitId')))
             if path=='/api/slot-rules/save':

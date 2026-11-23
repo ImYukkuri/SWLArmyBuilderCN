@@ -22,6 +22,7 @@ FILES = [
     "builder-library.js",
     "builder-transfer.js",
     "builder-share.js",
+    "card-usage.js",
     "builder-transfer-ui.js",
     "builder-home.js",
     "dice-enums.js",

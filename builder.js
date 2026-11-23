@@ -6,6 +6,8 @@ const el = (t, s) => {
   return n;
 };
 const uid = () => crypto.randomUUID();
+const cardUsage = CardUsage.create();
+const candidateSortModes = {units:'usage', upgrades:'usage', commands:'name'};
 let data = null,
   army = null,
   browser = null;
@@ -479,6 +481,9 @@ function duplicateGroup(group) {
     return;
   }
   army = result.draft;
+  const copy = army.units.find(i => i.instanceId === result.instanceId);
+  cardUsage.recordMany([{kind:'units',card:data.units[copy.unitId]},
+    ...copy.upgrades.map(ch => ({kind:'upgrades',card:data.upgrades[ch.upgradeId]}))]);
   setStatus("已复制完整单位及其升级，合并显示为 " + (group.instances.length + 1) + " 个。");
   render();
 }
@@ -503,7 +508,7 @@ function itemState(card) {
 function computeItemState(card) {
   if (browser.mode === "units") {
     if (alreadyInArmy(card))
-      return { kind: "chosen", label: "已加入军表 · 独特单位", ok: false };
+      return { kind: "chosen", label: "已加入军表", ok: false };
     if (unitAvailability(card).hidden)
       return {
         kind: "blocked",
@@ -568,6 +573,7 @@ function choose(card) {
       return;
     }
     army = result.draft;
+    cardUsage.recordMany([{kind:'units',card}]);
     setStatus("已加入 " + named(card.name) + (result.warnings?.length ? "；" + result.warnings.join("；") : ""));
     closeBrowser();
     return;
@@ -579,6 +585,7 @@ function choose(card) {
       return;
     }
     army = result.draft;
+    cardUsage.recordMany([{kind:'upgrades',card,count:result.count}]);
     const first = army.units.find((i) => i.instanceId === result.ids[0]);
     const slot = first.upgrades.find(ch => ch.instanceId === result.chosenIds[0]).slotIndex;
     const records = unitSlotRecords(data.units[first.unitId], first);

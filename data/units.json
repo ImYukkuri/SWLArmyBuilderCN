@@ -6,6 +6,7 @@
   "units": [
     {
       "id": "separatists-admiral-trench",
+      "numericId": 1,
       "name": {
         "en": "Admiral Trench",
         "zh": "特伦奇上将"
@@ -162,6 +163,7 @@
     },
     {
       "id": "separatists-b2-rocket",
+      "numericId": 2,
       "name": {
         "en": "B2 Super Rocket Battle Droids",
         "zh": "B2超级火箭战斗机器人"
@@ -269,6 +271,7 @@
     },
     {
       "id": "separatists-geonosian-engineer",
+      "numericId": 3,
       "name": {
         "en": "Geonosian Engineers",
         "zh": "吉奥诺西斯工程兵"
@@ -400,6 +403,7 @@
     },
     {
       "id": "separatists-aat",
+      "numericId": 4,
       "name": {
         "en": "AAT Battle Tank",
         "zh": "AAT战斗坦克"
@@ -547,6 +551,7 @@
     },
     {
       "id": "separatists-aqua-droids",
+      "numericId": 5,
       "name": {
         "en": "Aqua Droids",
         "zh": "水陆两栖机器人"
@@ -673,6 +678,7 @@
     },
     {
       "id": "separatists-asajj",
+      "numericId": 6,
       "name": {
         "en": "Asajj Ventress",
         "zh": "阿萨吉·文崔斯"
@@ -800,6 +806,7 @@
     },
     {
       "id": "separatists-b1",
+      "numericId": 7,
       "name": {
         "en": "B1 Battle Droids",
         "zh": "B1战斗机器人"
@@ -938,6 +945,7 @@
     },
     {
       "id": "separatists-b2",
+      "numericId": 8,
       "name": {
         "en": "B2 Super Battle Droids",
         "zh": "B2超级战斗机器人"
@@ -1069,6 +1077,7 @@
     },
     {
       "id": "separatists-bx",
+      "numericId": 9,
       "name": {
         "en": "BX-Series Droid Commandos",
         "zh": "BX系列机器人突击队"
@@ -1218,6 +1227,7 @@
     },
     {
       "id": "separatists-bx-strike",
+      "numericId": 10,
       "name": {
         "en": "BX-Series Droid Commandos",
         "zh": "BX系列机器人突击队"
@@ -1361,6 +1371,7 @@
     },
     {
       "id": "separatists-dooku",
+      "numericId": 11,
       "name": {
         "en": "Count Dooku",
         "zh": "杜库伯爵"
@@ -1519,6 +1530,7 @@
     },
     {
       "id": "separatists-drk1-droid",
+      "numericId": 12,
       "name": {
         "en": "DRK-1 Sith Probe Droids",
         "zh": "DRK-1西斯探测机器人"
@@ -1635,6 +1647,7 @@
     },
     {
       "id": "separatists-droidekas",
+      "numericId": 13,
       "name": {
         "en": "Droidekas",
         "zh": "机器佣兵"
@@ -1761,6 +1774,7 @@
     },
     {
       "id": "separatists-dsd1-dwarf",
+      "numericId": 14,
       "name": {
         "en": "DSD1 Dwarf Spider Droid",
         "zh": "DSD1矮蜘蛛机器人"
@@ -1875,6 +1889,7 @@
     },
     {
       "id": "separatists-geonosian",
+      "numericId": 15,
       "name": {
         "en": "Geonosian Warriors",
         "zh": "吉奥诺西斯战士"
@@ -2000,6 +2015,7 @@
     },
     {
       "id": "separatists-grievous-wheelbike",
+      "numericId": 16,
       "name": {
         "en": "General Grievous",
         "zh": "格里弗斯将军"
@@ -2182,6 +2198,7 @@
     },
     {
       "id": "separatists-grievous",
+      "numericId": 17,
       "name": {
         "en": "General Grievous",
         "zh": "格里弗斯将军"
@@ -2357,6 +2374,7 @@
     },
     {
       "id": "separatists-kalani",
+      "numericId": 18,
       "name": {
         "en": "Kalani",
         "zh": "卡拉尼"
@@ -2499,6 +2517,7 @@
     },
     {
       "id": "separatists-kraken",
+      "numericId": 19,
       "name": {
         "en": "Kraken",
         "zh": "克拉肯"
@@ -2651,6 +2670,7 @@
     },
     {
       "id": "separatists-lm-432-crab",
+      "numericId": 20,
       "name": {
         "en": "LM-432 Crab Droid",
         "zh": "LM-432蟹型机器人"
@@ -2773,6 +2793,7 @@
     },
     {
       "id": "separatists-magna",
+      "numericId": 21,
       "name": {
         "en": "IG-100 MagnaGuard",
         "zh": "IG-100磁卫机器人"
@@ -2917,6 +2938,7 @@
     },
     {
       "id": "separatists-magnaguard-prototype",
+      "numericId": 22,
       "name": {
         "en": "IG-100 MagnaGuard",
         "zh": "IG-100磁卫机器人"
@@ -3040,6 +3062,7 @@
     },
     {
       "id": "separatists-maul",
+      "numericId": 23,
       "name": {
         "en": "Maul",
         "zh": "摩尔"
@@ -3168,6 +3191,7 @@
     },
     {
       "id": "separatists-persuader",
+      "numericId": 24,
       "name": {
         "en": "Persuader-class Tank Droid",
         "zh": "“说服者级”坦克机器人"
@@ -3314,6 +3338,7 @@
     },
     {
       "id": "separatists-persuader-prototype",
+      "numericId": 25,
       "name": {
         "en": "Persuader-class Tank Droid",
         "zh": "“说服者级”坦克机器人"
@@ -3473,6 +3498,7 @@
     },
     {
       "id": "separatists-poggle",
+      "numericId": 26,
       "name": {
         "en": "Poggle the Lesser",
         "zh": "下等人波格尔"
@@ -3611,6 +3637,7 @@
     },
     {
       "id": "separatists-sun-fac",
+      "numericId": 27,
       "name": {
         "en": "Sun Fac",
         "zh": "森·法克"
@@ -3760,6 +3787,7 @@
     },
     {
       "id": "separatists-super-tactica-command-droid-aux",
+      "numericId": 28,
       "name": {
         "en": "Super Tactical Command Droid",
         "zh": "超级战术指挥机器人"
@@ -3905,6 +3933,7 @@
     },
     {
       "id": "separatists-super-tactica-command-droid-cnc",
+      "numericId": 29,
       "name": {
         "en": "Super Tactical Command Droid",
         "zh": "超级战术指挥机器人"
@@ -4047,6 +4076,7 @@
     },
     {
       "id": "separatists-tactical-droid",
+      "numericId": 30,
       "name": {
         "en": "T-Series Tactical Droid",
         "zh": "T系列战术机器人"
@@ -4173,6 +4203,7 @@
     },
     {
       "id": "separatists-save-opress-cis",
+      "numericId": 31,
       "name": {
         "en": "Savage Opress",
         "zh": "萨瓦奇·奥普雷斯"
@@ -4331,6 +4362,7 @@
     },
     {
       "id": "separatists-stap",
+      "numericId": 32,
       "name": {
         "en": "STAP Riders",
         "zh": "STAP骑手"
@@ -4462,6 +4494,7 @@
     },
     {
       "id": "separatists-tsmeu-wheel-bikes",
+      "numericId": 33,
       "name": {
         "en": "TSMEU-6 Wheel Bikes",
         "zh": "TSMEU-6轮式摩托"
@@ -4610,6 +4643,7 @@
     },
     {
       "id": "empire-74-z-speeder",
+      "numericId": 34,
       "name": {
         "en": "74-Z Speeder Bikes",
         "zh": "74-Z飞行摩托"
@@ -4749,6 +4783,7 @@
     },
     {
       "id": "empire-at-st",
+      "numericId": 35,
       "name": {
         "en": "AT-ST",
         "zh": "AT-ST"
@@ -4890,6 +4925,7 @@
     },
     {
       "id": "empire-dark-troopers",
+      "numericId": 36,
       "name": {
         "en": "Imperial Dark Troopers",
         "zh": "帝国黑暗士兵"
@@ -5026,6 +5062,7 @@
     },
     {
       "id": "empire-darth-vader-apprentice",
+      "numericId": 37,
       "name": {
         "en": "Darth Vader",
         "zh": "达斯·维达"
@@ -5186,6 +5223,7 @@
     },
     {
       "id": "empire-darth-vader-lord",
+      "numericId": 38,
       "name": {
         "en": "Darth Vader",
         "zh": "达斯·维达"
@@ -5331,6 +5369,7 @@
     },
     {
       "id": "empire-death-troopers",
+      "numericId": 39,
       "name": {
         "en": "Imperial Death Troopers",
         "zh": "帝国死亡士兵"
@@ -5488,6 +5527,7 @@
     },
     {
       "id": "empire-dewback",
+      "numericId": 40,
       "name": {
         "en": "Dewback Rider",
         "zh": "湿背蜥骑手"
@@ -5601,6 +5641,7 @@
     },
     {
       "id": "empire-df-90-mortar",
+      "numericId": 41,
       "name": {
         "en": "DF-90 Mortar Trooper",
         "zh": "DF-90迫击炮部队"
@@ -5742,6 +5783,7 @@
     },
     {
       "id": "empire-e-web",
+      "numericId": 42,
       "name": {
         "en": "E-Web Heavy Blaster Team",
         "zh": "E-WEB重型爆能枪小组"
@@ -5889,6 +5931,7 @@
     },
     {
       "id": "empire-fifth-brother",
+      "numericId": 43,
       "name": {
         "en": "Fifth Brother",
         "zh": "五哥"
@@ -6035,6 +6078,7 @@
     },
     {
       "id": "empire-general-tagge",
+      "numericId": 44,
       "name": {
         "en": "General Tagge",
         "zh": "塔格将军"
@@ -6174,6 +6218,7 @@
     },
     {
       "id": "empire-gideon",
+      "numericId": 45,
       "name": {
         "en": "Moff Gideon",
         "zh": "星区总督吉迪恩"
@@ -6323,6 +6368,7 @@
     },
     {
       "id": "empire-grand-admiral-thrawn",
+      "numericId": 46,
       "name": {
         "en": "Grand Admiral Thrawn",
         "zh": "索龙元帅"
@@ -6463,6 +6509,7 @@
     },
     {
       "id": "empire-grand-moff-tarkin",
+      "numericId": 47,
       "name": {
         "en": "Grand Moff Tarkin",
         "zh": "高级星区总督塔金"
@@ -6575,6 +6622,7 @@
     },
     {
       "id": "empire-id10-seeker",
+      "numericId": 48,
       "name": {
         "en": "Iden's ID10 Seeker Droid",
         "zh": "伊登的ID10搜索机器人"
@@ -6714,6 +6762,7 @@
     },
     {
       "id": "empire-iden-versio",
+      "numericId": 49,
       "name": {
         "en": "Iden Versio",
         "zh": "伊登·韦尔西奥"
@@ -6891,6 +6940,7 @@
     },
     {
       "id": "empire-imperial-agent-order-to-galaxy",
+      "numericId": 50,
       "name": {
         "en": "Imperial Agent",
         "zh": "帝国特工"
@@ -7028,6 +7078,7 @@
     },
     {
       "id": "empire-imperial-officer-ruthless-efficiency",
+      "numericId": 51,
       "name": {
         "en": "Imperial Officer",
         "zh": "帝国军官"
@@ -7163,6 +7214,7 @@
     },
     {
       "id": "empire-imperial-probe-droid",
+      "numericId": 52,
       "name": {
         "en": "Imperial Probe Droid",
         "zh": "帝国探测机器人"
@@ -7299,6 +7351,7 @@
     },
     {
       "id": "empire-inferno-squad",
+      "numericId": 53,
       "name": {
         "en": "Imperial Special Forces",
         "zh": "帝国特种部队"
@@ -7446,6 +7499,7 @@
     },
     {
       "id": "empire-kallus",
+      "numericId": 54,
       "name": {
         "en": "Agent Kallus",
         "zh": "卡勒斯特工"
@@ -7580,6 +7634,7 @@
     },
     {
       "id": "empire-laat-empire",
+      "numericId": 55,
       "name": {
         "en": "LAAT/le Patrol Transport",
         "zh": "LAAT/LE运输巡逻艇"
@@ -7708,6 +7763,7 @@
     },
     {
       "id": "empire-marquand",
+      "numericId": 56,
       "name": {
         "en": "Major Marquand",
         "zh": "马昆德少校"
@@ -7889,6 +7945,7 @@
     },
     {
       "id": "empire-orson-krennic",
+      "numericId": 57,
       "name": {
         "en": "Director Orson Krennic",
         "zh": "奥尔森·克伦尼克总监"
@@ -8026,6 +8083,7 @@
     },
     {
       "id": "empire-range-trooper",
+      "numericId": 58,
       "name": {
         "en": "Range Troopers",
         "zh": "游骑兵部队"
@@ -8149,6 +8207,7 @@
     },
     {
       "id": "empire-riot-squad",
+      "numericId": 59,
       "name": {
         "en": "Stormtrooper Riot Squad",
         "zh": "冲锋队镇暴小队"
@@ -8279,6 +8338,7 @@
     },
     {
       "id": "empire-scout",
+      "numericId": 60,
       "name": {
         "en": "Scout Troopers",
         "zh": "侦察兵"
@@ -8420,6 +8480,7 @@
     },
     {
       "id": "empire-scout-strike",
+      "numericId": 61,
       "name": {
         "en": "Scout Troopers",
         "zh": "侦察兵"
@@ -8565,6 +8626,7 @@
     },
     {
       "id": "empire-seventh-sister",
+      "numericId": 62,
       "name": {
         "en": "Seventh Sister",
         "zh": "七妹"
@@ -8729,6 +8791,7 @@
     },
     {
       "id": "empire-shoretroopers",
+      "numericId": 63,
       "name": {
         "en": "Shoretroopers",
         "zh": "岸防士兵"
@@ -8873,6 +8936,7 @@
     },
     {
       "id": "empire-snowtroopers",
+      "numericId": 64,
       "name": {
         "en": "Snowtroopers",
         "zh": "雪地士兵"
@@ -9009,6 +9073,7 @@
     },
     {
       "id": "empire-special-forces",
+      "numericId": 65,
       "name": {
         "en": "Imperial Special Forces",
         "zh": "帝国特种部队"
@@ -9134,6 +9199,7 @@
     },
     {
       "id": "empire-stormtroopers",
+      "numericId": 66,
       "name": {
         "en": "Stormtroopers",
         "zh": "冲锋队"
@@ -9284,6 +9350,7 @@
     },
     {
       "id": "empire-stormtroopers-hwu",
+      "numericId": 67,
       "name": {
         "en": "Stormtroopers",
         "zh": "冲锋队"
@@ -9405,6 +9472,7 @@
     },
     {
       "id": "empire-tx-225",
+      "numericId": 68,
       "name": {
         "en": "TX-225 GAVw Occupier Tank",
         "zh": "TX-225 GAVw 占领者坦克"
@@ -9555,6 +9623,7 @@
     },
     {
       "id": "empire-veers",
+      "numericId": 69,
       "name": {
         "en": "General Veers",
         "zh": "维尔斯将军"
@@ -9692,6 +9761,7 @@
     },
     {
       "id": "republic-jedi-barc",
+      "numericId": 70,
       "name": {
         "en": "Jedi Knight",
         "zh": "绝地武士"
@@ -9852,6 +9922,7 @@
     },
     {
       "id": "republic-ki-aadi-mundu",
+      "numericId": 71,
       "name": {
         "en": "Ki-Adi-Mundi",
         "zh": "基-阿迪-蒙迪"
@@ -9986,6 +10057,7 @@
     },
     {
       "id": "republic-mace-windu",
+      "numericId": 72,
       "name": {
         "en": "Mace Windu",
         "zh": "梅斯·温杜"
@@ -10147,6 +10219,7 @@
     },
     {
       "id": "republic-ahsoka-padawan-commander",
+      "numericId": 73,
       "name": {
         "en": "Ahsoka Tano",
         "zh": "阿索卡·塔诺"
@@ -10292,6 +10365,7 @@
     },
     {
       "id": "republic-anakin-barc",
+      "numericId": 74,
       "name": {
         "en": "Anakin Skywalker",
         "zh": "安纳金·天行者"
@@ -10457,6 +10531,7 @@
     },
     {
       "id": "republic-anakin",
+      "numericId": 75,
       "name": {
         "en": "Anakin Skywalker",
         "zh": "安纳金·天行者"
@@ -10592,6 +10667,7 @@
     },
     {
       "id": "republic-arc-troopers",
+      "numericId": 76,
       "name": {
         "en": "ARC Troopers",
         "zh": "ARC士兵"
@@ -10715,6 +10791,7 @@
     },
     {
       "id": "republic-arc-troopers-strike",
+      "numericId": 77,
       "name": {
         "en": "ARC Troopers",
         "zh": "ARC士兵"
@@ -10843,6 +10920,7 @@
     },
     {
       "id": "republic-arf-troopers",
+      "numericId": 78,
       "name": {
         "en": "ARF Troopers",
         "zh": "ARF士兵"
@@ -10974,6 +11052,7 @@
     },
     {
       "id": "republic-at-rt-gar",
+      "numericId": 79,
       "name": {
         "en": "AT-RT",
         "zh": "AT-RT"
@@ -11115,6 +11194,7 @@
     },
     {
       "id": "republic-bad-batch-gar",
+      "numericId": 80,
       "name": {
         "en": "The Bad Batch",
         "zh": "残次品小队"
@@ -11289,6 +11369,7 @@
     },
     {
       "id": "republic-barc",
+      "numericId": 81,
       "name": {
         "en": "BARC Speeder",
         "zh": "BARC飞行摩托"
@@ -11425,6 +11506,7 @@
     },
     {
       "id": "republic-c3po",
+      "numericId": 82,
       "name": {
         "en": "C-3PO",
         "zh": "C-3PO"
@@ -11558,6 +11640,7 @@
     },
     {
       "id": "republic-chewbacca-gar",
+      "numericId": 83,
       "name": {
         "en": "Chewbacca",
         "zh": "丘巴卡"
@@ -11717,6 +11800,7 @@
     },
     {
       "id": "republic-chieftain",
+      "numericId": 84,
       "name": {
         "en": "Wookiee Chieftain",
         "zh": "伍基人酋长"
@@ -11850,6 +11934,7 @@
     },
     {
       "id": "republic-clone-commander-leadership",
+      "numericId": 85,
       "name": {
         "en": "Clone Commander",
         "zh": "克隆人指挥官"
@@ -11972,6 +12057,7 @@
     },
     {
       "id": "republic-clone-commandos",
+      "numericId": 86,
       "name": {
         "en": "Clone Commandos",
         "zh": "克隆人突击队"
@@ -12119,6 +12205,7 @@
     },
     {
       "id": "republic-clone-trooper",
+      "numericId": 87,
       "name": {
         "en": "Clone Trooper Infantry",
         "zh": "克隆人士兵"
@@ -12257,6 +12344,7 @@
     },
     {
       "id": "republic-clonetrooper-marksmen",
+      "numericId": 88,
       "name": {
         "en": "Clone Trooper Marksmen",
         "zh": "克隆人神射手"
@@ -12397,6 +12485,7 @@
     },
     {
       "id": "republic-cody",
+      "numericId": 89,
       "name": {
         "en": "Clone Commander Cody",
         "zh": "克隆人指挥官科迪"
@@ -12545,6 +12634,7 @@
     },
     {
       "id": "republic-delta-squad",
+      "numericId": 90,
       "name": {
         "en": "Clone Commandos",
         "zh": "克隆人突击队"
@@ -12701,6 +12791,7 @@
     },
     {
       "id": "republic-isp",
+      "numericId": 91,
       "name": {
         "en": "Infantry Support Platform",
         "zh": "步兵支援平台"
@@ -12815,6 +12906,7 @@
     },
     {
       "id": "republic-jedi-knight",
+      "numericId": 92,
       "name": {
         "en": "Jedi Knight",
         "zh": "绝地武士"
@@ -12928,6 +13020,7 @@
     },
     {
       "id": "republic-jedi-knight-general",
+      "numericId": 93,
       "name": {
         "en": "Jedi Knight General",
         "zh": "绝地武士将军"
@@ -13044,6 +13137,7 @@
     },
     {
       "id": "republic-laat-gar",
+      "numericId": 94,
       "name": {
         "en": "LAAT/le Patrol Transport",
         "zh": "LAAT/LE运输巡逻艇"
@@ -13176,6 +13270,7 @@
     },
     {
       "id": "republic-obiwan",
+      "numericId": 95,
       "name": {
         "en": "Obi-Wan Kenobi",
         "zh": "欧比-旺·克诺比"
@@ -13316,6 +13411,7 @@
     },
     {
       "id": "republic-padme",
+      "numericId": 96,
       "name": {
         "en": "Padmé Amidala",
         "zh": "帕德梅·阿米达拉"
@@ -13448,6 +13544,7 @@
     },
     {
       "id": "republic-r2d2-gar",
+      "numericId": 97,
       "name": {
         "en": "R2-D2",
         "zh": "R2-D2"
@@ -13567,6 +13664,7 @@
     },
     {
       "id": "republic-raddaugh-gnasp",
+      "numericId": 98,
       "name": {
         "en": "Raddaugh Gnasp Fluttercraft",
         "zh": "拉道夫“咬牙蜂”扑翼机"
@@ -13675,6 +13773,7 @@
     },
     {
       "id": "republic-raddaugh",
+      "numericId": 99,
       "name": {
         "en": "Raddaugh Gnasp Fluttercraft",
         "zh": "拉道夫“咬牙蜂”扑翼机"
@@ -13792,6 +13891,7 @@
     },
     {
       "id": "republic-rex",
+      "numericId": 100,
       "name": {
         "en": "Clone Captain Rex",
         "zh": "克隆人上尉雷克斯"
@@ -13929,6 +14029,7 @@
     },
     {
       "id": "republic-saber-class",
+      "numericId": 101,
       "name": {
         "en": "Saber-class Tank",
         "zh": "“军刀”坦克"
@@ -14061,6 +14162,7 @@
     },
     {
       "id": "republic-wookiee-kashyyk",
+      "numericId": 102,
       "name": {
         "en": "Wookiee Warriors",
         "zh": "伍基人战士"
@@ -14181,6 +14283,7 @@
     },
     {
       "id": "republic-wookiee-noble",
+      "numericId": 103,
       "name": {
         "en": "Wookiee Warriors",
         "zh": "伍基人战士"
@@ -14304,6 +14407,7 @@
     },
     {
       "id": "republic-yoda",
+      "numericId": 104,
       "name": {
         "en": "Yoda",
         "zh": "尤达"
@@ -14455,6 +14559,7 @@
     },
     {
       "id": "republic-plo-koon",
+      "numericId": 105,
       "name": {
         "en": "Plo Koon",
         "zh": "普洛·孔"
@@ -14589,6 +14694,7 @@
     },
     {
       "id": "republic-shaak-ti",
+      "numericId": 106,
       "name": {
         "en": "Shaak Ti",
         "zh": "莎克·蒂"
@@ -14724,6 +14830,7 @@
     },
     {
       "id": "mercenary-black-sun-black-sun-enforcers",
+      "numericId": 107,
       "name": {
         "en": "Black Sun Enforcers",
         "zh": "黑日执法者"
@@ -14874,6 +14981,7 @@
     },
     {
       "id": "mercenary-black-sun-black-sun-vigo",
+      "numericId": 108,
       "name": {
         "en": "Black Sun Vigo",
         "zh": "黑日维戈"
@@ -15003,6 +15111,7 @@
     },
     {
       "id": "mercenary-clan-covert-din-djarin-covert",
+      "numericId": 109,
       "name": {
         "en": "Din Djarin",
         "zh": "丁·贾伦"
@@ -15191,6 +15300,7 @@
     },
     {
       "id": "mercenary-clan-covert-grogu-covert",
+      "numericId": 110,
       "name": {
         "en": "Grogu",
         "zh": "古古"
@@ -15302,6 +15412,7 @@
     },
     {
       "id": "mercenary-clan-covert-paz-vizsla",
+      "numericId": 111,
       "name": {
         "en": "Paz Vizsla",
         "zh": "帕兹·维兹拉"
@@ -15453,6 +15564,7 @@
     },
     {
       "id": "mercenary-clan-covert-the-armorer",
+      "numericId": 112,
       "name": {
         "en": "The Armorer",
         "zh": "铁匠"
@@ -15596,6 +15708,7 @@
     },
     {
       "id": "mercenary-clan-kryze-axe-woves",
+      "numericId": 113,
       "name": {
         "en": "Axe Woves",
         "zh": "阿克斯·沃夫斯"
@@ -15749,6 +15862,7 @@
     },
     {
       "id": "mercenary-clan-kryze-bo-katan-kryze",
+      "numericId": 114,
       "name": {
         "en": "Bo-Katan Kryze",
         "zh": "博-卡坦·克里兹"
@@ -15903,6 +16017,7 @@
     },
     {
       "id": "mercenary-clan-kryze-clan-kryze-veterans",
+      "numericId": 115,
       "name": {
         "en": "Clan Kryze Veterans",
         "zh": "克里兹氏族老兵"
@@ -16056,6 +16171,7 @@
     },
     {
       "id": "mercenary-clan-saxon-gar-saxon-leader",
+      "numericId": 116,
       "name": {
         "en": "Gar Saxon",
         "zh": "加尔·萨克森"
@@ -16217,6 +16333,7 @@
     },
     {
       "id": "mercenary-clan-saxon-rook-kast",
+      "numericId": 117,
       "name": {
         "en": "Rook Kast",
         "zh": "鲁克·卡斯特"
@@ -16349,6 +16466,7 @@
     },
     {
       "id": "mercenary-clan-saxon-super-commandos-saxon",
+      "numericId": 118,
       "name": {
         "en": "Super Commandos",
         "zh": "超级突击队"
@@ -16482,6 +16600,7 @@
     },
     {
       "id": "mercenary-clan-wren-clan-wren-veterans",
+      "numericId": 119,
       "name": {
         "en": "Clan Wren Veterans",
         "zh": "雷恩氏族老兵"
@@ -16634,6 +16753,7 @@
     },
     {
       "id": "mercenary-clan-wren-sabine-wren-clan",
+      "numericId": 120,
       "name": {
         "en": "Sabine Wren",
         "zh": "莎宾·雷恩"
@@ -16770,6 +16890,7 @@
     },
     {
       "id": "mercenary-clan-wren-ursa-wren",
+      "numericId": 121,
       "name": {
         "en": "Ursa Wren",
         "zh": "厄莎·雷恩"
@@ -16917,6 +17038,7 @@
     },
     {
       "id": "mercenary-creedless-mandalorian-hunter",
+      "numericId": 122,
       "name": {
         "en": "Mandalorian Hunter",
         "zh": "曼达洛猎人"
@@ -17118,6 +17240,7 @@
     },
     {
       "id": "mercenary-creedless-mandalorian-leader",
+      "numericId": 123,
       "name": {
         "en": "Mandalorian Leader",
         "zh": "曼达洛领袖"
@@ -17291,6 +17414,7 @@
     },
     {
       "id": "mercenary-creedless-mandalorian-initiates",
+      "numericId": 124,
       "name": {
         "en": "Mandalorian Initiates",
         "zh": "曼达洛学徒"
@@ -17427,6 +17551,7 @@
     },
     {
       "id": "mercenary-creedless-mandalorian-warriors-corps",
+      "numericId": 125,
       "name": {
         "en": "Mandalorian Warriors",
         "zh": "曼达洛战士"
@@ -17581,6 +17706,7 @@
     },
     {
       "id": "mercenary-creedless-mandalorian-warriors-support",
+      "numericId": 126,
       "name": {
         "en": "Mandalorian Warriors",
         "zh": "曼达洛战士"
@@ -17750,6 +17876,7 @@
     },
     {
       "id": "mercenary-ewoks-c3po-golden",
+      "numericId": 127,
       "name": {
         "en": "C-3PO",
         "zh": "C-3PO"
@@ -17846,6 +17973,7 @@
     },
     {
       "id": "mercenary-ewoks-chewbacca",
+      "numericId": 128,
       "name": {
         "en": "Chewbacca",
         "zh": "丘巴卡"
@@ -18030,6 +18158,7 @@
     },
     {
       "id": "mercenary-ewoks-ewok-skirmishers",
+      "numericId": 129,
       "name": {
         "en": "Ewok Skirmishers",
         "zh": "伊沃克散兵"
@@ -18153,6 +18282,7 @@
     },
     {
       "id": "mercenary-ewoks-ewok-slingers",
+      "numericId": 130,
       "name": {
         "en": "Ewok Slingers",
         "zh": "伊沃克投石兵"
@@ -18305,6 +18435,7 @@
     },
     {
       "id": "mercenary-ewoks-logray",
+      "numericId": 131,
       "name": {
         "en": "Logray",
         "zh": "洛格雷"
@@ -18427,6 +18558,7 @@
     },
     {
       "id": "mercenary-ewoks-wicket",
+      "numericId": 132,
       "name": {
         "en": "Wicket",
         "zh": "威克特"
@@ -18596,6 +18728,7 @@
     },
     {
       "id": "mercenary-maul-loyalists-gar-saxon",
+      "numericId": 133,
       "name": {
         "en": "Gar Saxon",
         "zh": "加尔·萨克森"
@@ -18748,6 +18881,7 @@
     },
     {
       "id": "mercenary-maul-loyalists-mandalorian-super",
+      "numericId": 134,
       "name": {
         "en": "Mandalorian Super Commandos",
         "zh": "曼达洛超级突击队"
@@ -18878,6 +19012,7 @@
     },
     {
       "id": "mercenary-maul-loyalists-maul-rival",
+      "numericId": 135,
       "name": {
         "en": "Maul",
         "zh": "摩尔"
@@ -19019,6 +19154,7 @@
     },
     {
       "id": "mercenary-maul-loyalists-savage-opress-maul",
+      "numericId": 136,
       "name": {
         "en": "Savage Opress",
         "zh": "萨瓦奇·奥普雷斯"
@@ -19178,6 +19314,7 @@
     },
     {
       "id": "mercenary-pyke-syndicate-pyke-syndicate-capo",
+      "numericId": 137,
       "name": {
         "en": "Pyke Syndicate Capo",
         "zh": "派克辛迪加头目"
@@ -19349,6 +19486,7 @@
     },
     {
       "id": "mercenary-pyke-syndicate-pyke-syndicate-footsoldier",
+      "numericId": 138,
       "name": {
         "en": "Pyke Syndicate Foot Soldiers",
         "zh": "派克辛迪加步兵"
@@ -19527,6 +19665,7 @@
     },
     {
       "id": "mercenary-raiders-aa5-speeder-truck",
+      "numericId": 139,
       "name": {
         "en": "A-A5 Speeder Truck",
         "zh": "A-A5飞行卡车"
@@ -19631,6 +19770,7 @@
     },
     {
       "id": "mercenary-raiders-hondo-ohnaka",
+      "numericId": 140,
       "name": {
         "en": "Hondo Ohnaka",
         "zh": "洪多·奥纳卡"
@@ -19826,6 +19966,7 @@
     },
     {
       "id": "mercenary-raiders-swoop-bike",
+      "numericId": 141,
       "name": {
         "en": "Swoop Bike Riders",
         "zh": "飞扑摩托骑手"
@@ -19984,6 +20125,7 @@
     },
     {
       "id": "mercenary-raiders-weequay-pirate",
+      "numericId": 142,
       "name": {
         "en": "Weequay Pirates",
         "zh": "威奎海盗"
@@ -20165,6 +20307,7 @@
     },
     {
       "id": "mercenary-raiders-wlo5-speeder-tank",
+      "numericId": 143,
       "name": {
         "en": "WLO-5 Speeder Tank",
         "zh": "WLO-5飞行坦克"
@@ -20359,6 +20502,7 @@
     },
     {
       "id": "mercenary-rogue-han-and-chewie",
+      "numericId": 144,
       "name": {
         "en": "Han & Chewie",
         "zh": "汉与丘伊"
@@ -20488,6 +20632,7 @@
     },
     {
       "id": "mercenary-rogue-bad-batch",
+      "numericId": 145,
       "name": {
         "en": "The Bad Batch",
         "zh": "残次品小队"
@@ -20666,6 +20811,7 @@
     },
     {
       "id": "mercenary-rogue-boba-fett-daimyo",
+      "numericId": 146,
       "name": {
         "en": "Boba Fett",
         "zh": "波巴·费特"
@@ -20834,6 +20980,7 @@
     },
     {
       "id": "mercenary-rogue-boba-fett-infamous",
+      "numericId": 147,
       "name": {
         "en": "Boba Fett",
         "zh": "波巴·费特"
@@ -21023,6 +21170,7 @@
     },
     {
       "id": "mercenary-rogue-bossk",
+      "numericId": 148,
       "name": {
         "en": "Bossk",
         "zh": "博斯克"
@@ -21188,6 +21336,7 @@
     },
     {
       "id": "mercenary-rogue-cad-bane",
+      "numericId": 149,
       "name": {
         "en": "Cad Bane",
         "zh": "凯德·贝恩"
@@ -21394,6 +21543,7 @@
     },
     {
       "id": "mercenary-rogue-ig-11",
+      "numericId": 150,
       "name": {
         "en": "IG-11",
         "zh": "IG-11"
@@ -21576,6 +21726,7 @@
     },
     {
       "id": "mercenary-rogue-ig-88",
+      "numericId": 151,
       "name": {
         "en": "IG-88",
         "zh": "IG-88"
@@ -21738,6 +21889,7 @@
     },
     {
       "id": "mercenary-rogue-omega",
+      "numericId": 152,
       "name": {
         "en": "Omega",
         "zh": "欧米伽"
@@ -21866,6 +22018,7 @@
     },
     {
       "id": "rebels-1-4-fd-laser-cannon-team",
+      "numericId": 153,
       "name": {
         "en": "1.4 FD Laser Cannon Team",
         "zh": "1.4FD激光炮小组"
@@ -22013,6 +22166,7 @@
     },
     {
       "id": "rebels-a-a5-speeder-truck-rebel",
+      "numericId": 154,
       "name": {
         "en": "A-A5 Speeder Truck",
         "zh": "A-A5飞行卡车"
@@ -22107,6 +22261,7 @@
     },
     {
       "id": "rebels-ahsoka",
+      "numericId": 155,
       "name": {
         "en": "Ahsoka Tano",
         "zh": "阿索卡·塔诺"
@@ -22240,6 +22395,7 @@
     },
     {
       "id": "rebels-at-rt-rebel",
+      "numericId": 156,
       "name": {
         "en": "AT-RT",
         "zh": "AT-RT"
@@ -22364,6 +22520,7 @@
     },
     {
       "id": "rebels-c-3po-cyborg",
+      "numericId": 157,
       "name": {
         "en": "C-3PO",
         "zh": "C-3PO"
@@ -22497,6 +22654,7 @@
     },
     {
       "id": "rebels-cassian",
+      "numericId": 158,
       "name": {
         "en": "Cassian Andor",
         "zh": "卡西安·安多"
@@ -22650,6 +22808,7 @@
     },
     {
       "id": "rebels-chewbacca-rebel",
+      "numericId": 159,
       "name": {
         "en": "Chewbacca",
         "zh": "丘巴卡"
@@ -22808,6 +22967,7 @@
     },
     {
       "id": "rebels-commandos",
+      "numericId": 160,
       "name": {
         "en": "Rebel Commandos",
         "zh": "义军突击队"
@@ -22937,6 +23097,7 @@
     },
     {
       "id": "rebels-fleet-troopers",
+      "numericId": 161,
       "name": {
         "en": "Fleet Troopers",
         "zh": "舰队士兵"
@@ -23053,6 +23214,7 @@
     },
     {
       "id": "rebels-guerilla-troopers",
+      "numericId": 162,
       "name": {
         "en": "Guerilla Troopers",
         "zh": "游击队士兵"
@@ -23177,6 +23339,7 @@
     },
     {
       "id": "rebels-han-solo-tauntaun",
+      "numericId": 163,
       "name": {
         "en": "Han Solo",
         "zh": "汉·索罗"
@@ -23336,6 +23499,7 @@
     },
     {
       "id": "rebels-jyn",
+      "numericId": 164,
       "name": {
         "en": "Jyn Erso",
         "zh": "琴·厄索"
@@ -23485,6 +23649,7 @@
     },
     {
       "id": "rebels-k-2so",
+      "numericId": 165,
       "name": {
         "en": "K-2SO",
         "zh": "K-2SO"
@@ -23613,6 +23778,7 @@
     },
     {
       "id": "rebels-lando",
+      "numericId": 166,
       "name": {
         "en": "Lando Calrissian",
         "zh": "兰多·卡瑞辛"
@@ -23750,6 +23916,7 @@
     },
     {
       "id": "rebels-leia-organa",
+      "numericId": 167,
       "name": {
         "en": "Leia Organa",
         "zh": "莱娅·奥加纳"
@@ -23891,6 +24058,7 @@
     },
     {
       "id": "rebels-luke-skywalker-jedi",
+      "numericId": 168,
       "name": {
         "en": "Luke Skywalker",
         "zh": "卢克·天行者"
@@ -24029,6 +24197,7 @@
     },
     {
       "id": "rebels-luke-tauntaun",
+      "numericId": 169,
       "name": {
         "en": "Luke Skywalker",
         "zh": "卢克·天行者"
@@ -24198,6 +24367,7 @@
     },
     {
       "id": "rebels-luke-skywalker-hero",
+      "numericId": 170,
       "name": {
         "en": "Luke Skywalker",
         "zh": "卢克·天行者"
@@ -24363,6 +24533,7 @@
     },
     {
       "id": "rebels-mark-2-blaster",
+      "numericId": 171,
       "name": {
         "en": "Mark II Medium Blaster Trooper",
         "zh": "MARK II中型爆能枪士兵"
@@ -24510,6 +24681,7 @@
     },
     {
       "id": "rebels-r2d2-hero",
+      "numericId": 172,
       "name": {
         "en": "R2-D2",
         "zh": "R2-D2"
@@ -24632,6 +24804,7 @@
     },
     {
       "id": "rebels-rebel-agent-defender-democracy",
+      "numericId": 173,
       "name": {
         "en": "Rebel Agent",
         "zh": "义军特工"
@@ -24761,6 +24934,7 @@
     },
     {
       "id": "rebels-rebel-officer-fight-freedom",
+      "numericId": 174,
       "name": {
         "en": "Rebel Officer",
         "zh": "义军军官"
@@ -24888,6 +25062,7 @@
     },
     {
       "id": "rebels-rebel-commandos",
+      "numericId": 175,
       "name": {
         "en": "Rebel Commandos",
         "zh": "义军突击队"
@@ -25023,6 +25198,7 @@
     },
     {
       "id": "rebels-rebel-troopers",
+      "numericId": 176,
       "name": {
         "en": "Rebel Troopers",
         "zh": "义军士兵"
@@ -25168,6 +25344,7 @@
     },
     {
       "id": "rebels-rebel-veterans",
+      "numericId": 177,
       "name": {
         "en": "Rebel Veterans",
         "zh": "义军老兵"
@@ -25315,6 +25492,7 @@
     },
     {
       "id": "rebels-sabine",
+      "numericId": 178,
       "name": {
         "en": "Sabine Wren",
         "zh": "莎宾·雷恩"
@@ -25438,6 +25616,7 @@
     },
     {
       "id": "rebels-sleeper-cell",
+      "numericId": 179,
       "name": {
         "en": "Rebel Sleeper Cell",
         "zh": "义军潜伏组织"
@@ -25588,6 +25767,7 @@
     },
     {
       "id": "rebels-solo",
+      "numericId": 180,
       "name": {
         "en": "Han Solo",
         "zh": "汉·索罗"
@@ -25734,6 +25914,7 @@
     },
     {
       "id": "rebels-t-47",
+      "numericId": 181,
       "name": {
         "en": "T-47 Airspeeder",
         "zh": "T-47飞行艇"
@@ -25872,6 +26053,7 @@
     },
     {
       "id": "rebels-tauntaun-riders",
+      "numericId": 182,
       "name": {
         "en": "Tauntaun Riders",
         "zh": "汤汤骑手"
@@ -26003,6 +26185,7 @@
     },
     {
       "id": "rebels-wookiee-freedom",
+      "numericId": 183,
       "name": {
         "en": "Wookiee Warriors",
         "zh": "伍基人战士"
@@ -26123,6 +26306,7 @@
     },
     {
       "id": "rebels-wookiee-resistance",
+      "numericId": 184,
       "name": {
         "en": "Wookiee Warriors",
         "zh": "伍基人战士"
@@ -26239,6 +26423,7 @@
     },
     {
       "id": "rebels-x-34-landspeeder",
+      "numericId": 185,
       "name": {
         "en": "X-34 Landspeeder",
         "zh": "X-34陆行艇"
@@ -26347,6 +26532,7 @@
     },
     {
       "id": "new-unit-mw9obgc9",
+      "numericId": 186,
       "name": {
         "en": "Obi-Wan Kenobi",
         "zh": "欧比-旺·克诺比"
@@ -26522,6 +26708,7 @@
     },
     {
       "id": "empire-mudtroopers",
+      "numericId": 187,
       "name": {
         "en": "Imperial Mudtroopers",
         "zh": "帝国泥地部队"
@@ -26651,6 +26838,7 @@
     },
     {
       "id": "empire-wet-weather-troopers",
+      "numericId": 188,
       "name": {
         "en": "Wet-Weather Gear Stormtroopers",
         "zh": "潮湿气候装备冲锋队"
@@ -26783,6 +26971,7 @@
     },
     {
       "id": "empire-riot-squad-trench-buster",
+      "numericId": 189,
       "name": {
         "en": "Stormtrooper Riot Squad",
         "zh": "冲锋队镇暴小队"
@@ -26912,6 +27101,7 @@
     },
     {
       "id": "republic-wookiee-treetop-defenders",
+      "numericId": 190,
       "name": {
         "en": "Wookiee Warriors",
         "zh": "伍基人战士"
@@ -27025,6 +27215,7 @@
     },
     {
       "id": "republic-wookiee-fearsome-guardians",
+      "numericId": 191,
       "name": {
         "en": "Wookiee Warriors",
         "zh": "伍基人战士"
@@ -27133,5 +27324,6 @@
       "unitSubtypeId": "wookiee_trooper",
       "nameIdentityId": "wookiee-warriors"
     }
-  ]
+  ],
+  "nextNumericId": 192
 }

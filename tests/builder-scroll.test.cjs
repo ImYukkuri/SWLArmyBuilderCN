@@ -60,6 +60,127 @@ async function samePosition(page, y) {
   assert.equal(await page.locator('html').evaluate(n => n.classList.contains('page-overlay-open')), false);
 }
 
+for (const mobile of [true,false]) test(`${mobile?'mobile':'desktop'} four factions keep mercenaries last under every personal sort`,async t=>{
+  const page=await setup(t,mobile);
+  for(const faction of [1,2,4,5]){
+    const result=await page.evaluate(faction=>{
+      if(browser)closeBrowser();
+      openRoster(BuilderLibrary.create(faction,'Mercenary sorting',data,uid,new Date().toISOString()));
+      selectContext({mode:'units',rank:2});
+      const merc=c=>RulesCore.armyMembership(c,army.armyId,data.pkg,data.defs)?.tierPools?.includes('mercenary');
+      const eligible=currentCandidates.filter(c=>itemState(c).ok),hire=eligible.find(merc);
+      if(!hire||!eligible.some(c=>!merc(c)))throw Error('Need native and mercenary candidates in faction '+faction);
+      cardUsage.recordMany([{kind:'units',card:hire,count:1000}]);cardUsage.toggleFavorite('units',hire);
+      const results=[];
+      for(const mode of ['usage','recent','favorites','name','points']){
+        $('#candidate-sort').value=mode;filterCandidates();
+        const flags=[...document.querySelectorAll('#card-grid .unit-candidate')].map(n=>merc(data.units[n.dataset.id]));
+        const first=flags.indexOf(true);
+        results.push({mode,grouped:first>0&&flags.slice(first).every(Boolean)});
+      }
+      return results;
+    },faction);
+    for(const r of result)assert.equal(r.grouped,true,`faction ${faction} / ${r.mode}`);
+  }
+  // Bright Tree Village explicitly treats its Ewoks as native, despite their
+  // mercenary status in the base Rebel army.
+  const override=await page.evaluate(()=>{
+    closeBrowser();openRoster(BuilderLibrary.create(1,'Native override',data,uid,new Date().toISOString()));
+    const force=Object.entries(data.pkg.battleForces).find(([,bf])=>bf.name==='Bright Tree Village');
+    if(!force)throw Error('Missing Bright Tree Village');army.armyId=Number(force[0]);render();
+    selectContext({mode:'units',rank:2});
+    const ewok=currentCandidates.find(c=>/Ewok/i.test(c.name.en)&&itemState(c).ok);
+    if(!ewok)throw Error('Missing native Ewok');
+    cardUsage.toggleFavorite('units',ewok);$('#candidate-sort').value='favorites';filterCandidates();
+    return {expected:ewok.id,first:$('#card-grid .unit-candidate').dataset.id};
+  });
+  assert.equal(override.first,override.expected);
+});
+
+test('card editors display immutable numeric IDs and unit copies start without one',async t=>{
+  const page=await setup(t,false);
+  await page.goto(base+'units.html');
+  const numeric=page.getByRole('textbox',{name:'数字 ID',exact:true});
+  await numeric.waitFor();assert.equal(await numeric.evaluate(n=>n.readOnly),true);
+  assert.match(await numeric.inputValue(),/^\d+$/);
+  await page.locator('#copy-unit').click();
+  assert.equal(await numeric.inputValue(),'');assert.equal(await numeric.getAttribute('placeholder'),'保存时自动分配');
+  await page.goto(base+'upgrades.html');
+  await numeric.waitFor();assert.equal(await numeric.evaluate(n=>n.readOnly),true);
+  assert.match(await numeric.inputValue(),/^\d+$/);
+});
+
+for (const mobile of [true,false]) test(`${mobile?'mobile':'desktop'} personal sorting only counts successful choices and never reads storage on candidate queries`,async t=>{
+  const context=await browser.newContext({viewport:mobile?{width:390,height:844}:{width:1440,height:1000},isMobile:mobile,hasTouch:mobile});
+  const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
+  t.after(async()=>{await context.close();assert.deepEqual(errors,[]);});
+  await page.addInitScript(()=>{
+    window.preferenceIO={reads:0,writes:0};
+    const get=Storage.prototype.getItem,set=Storage.prototype.setItem;
+    Storage.prototype.getItem=function(key){if(key==='legion-user-preferences')preferenceIO.reads++;return get.call(this,key);};
+    Storage.prototype.setItem=function(key,value){if(key==='legion-user-preferences')preferenceIO.writes++;return set.call(this,key,value);};
+  });
+  await page.goto(base);await page.waitForFunction(()=>typeof data!=='undefined'&&data);
+  await page.evaluate(()=>{
+    openRoster(BuilderLibrary.create(1,'Personal sorting',data,uid,new Date().toISOString()));
+    for(let i=0;i<5;i++){selectContext({mode:'units',rank:2});filterCandidates();closeBrowser();}
+    selectContext({mode:'units',rank:2});
+  });
+  assert.deepEqual(await page.evaluate(()=>preferenceIO),{reads:1,writes:0});
+  assert.equal(await page.locator('#candidate-sort').inputValue(),'usage');
+  const unit=page.locator('.unit-candidate[data-id="rebels-rebel-troopers"]');
+  assert.equal(await unit.locator('.rank-label-inline').textContent().then(s=>s.includes('独特')),false);
+  await unit.locator('.favorite-card').click();
+  assert.equal(await unit.locator('.favorite-card').getAttribute('aria-pressed'),'true');
+  assert.equal(await page.evaluate(()=>army.units.length),0,'favorite must not add the unit');
+  await page.selectOption('#candidate-sort','favorites');
+  assert.equal(await page.locator('.unit-candidate').first().getAttribute('data-id'),'rebels-rebel-troopers');
+  await unit.locator('.bilingual-name').click();
+  assert.equal(await page.evaluate(()=>cardUsage.stats('units',data.units['rebels-rebel-troopers']).count),1);
+  await page.locator('#army-units .copy-unit').click();
+  assert.equal(await page.evaluate(()=>cardUsage.stats('units',data.units['rebels-rebel-troopers']).count),2);
+  const slot=await page.evaluate(()=>{
+    const inst=army.units[0],records=unitSlotRecords(data.units[inst.unitId],inst);
+    const index=records.findIndex(r=>r.key==='gear');if(index<0)throw Error('gear fixture missing');
+    return index;
+  });
+  await page.locator(`#army-units .compact-slot[data-slot-index="${slot}"] .slot-name`).click();
+  await page.locator('#apply-all-units').check();
+  await page.selectOption('#candidate-sort','name');
+  const upgrade=page.locator('.upgrade-candidate.available[data-id="recon-intel"]');
+  const upgrades=page.locator('.upgrade-candidate.available');
+  const selected=await upgrade.count()?upgrade:upgrades.first(), upgradeId=await selected.getAttribute('data-id');
+  await selected.locator('.favorite-card').click();
+  assert.equal(await page.evaluate(id=>cardUsage.stats('upgrades',data.upgrades[id]).count,upgradeId),0);
+  await selected.locator('h3').click();
+  assert.equal(await page.evaluate(id=>cardUsage.stats('upgrades',data.upgrades[id]).count,upgradeId),2);
+  await page.evaluate(()=>{
+    if(browser)closeBrowser();
+    // Reject an impossible choice through the real UI callback, not just the pure model.
+    const inst=army.units[0],index=unitSlotRecords(data.units[inst.unitId],inst).findIndex(s=>s.key==='gear');
+    selectContext({mode:'upgrades',unitInstanceId:inst.instanceId,slotIndex:index,slotKey:'gear'});
+    choose(data.upgrades['force-push']);closeBrowser();
+    cardUsage.flush();
+  });
+  const before=await page.evaluate(()=>({...preferenceIO}));
+  await page.evaluate(()=>{
+    for(let i=0;i<5;i++){
+      selectContext({mode:'units',rank:2});filterCandidates();closeBrowser();
+      const inst=army.units[0],slot=unitSlotRecords(data.units[inst.unitId],inst)[0];
+      selectContext({mode:'upgrades',unitInstanceId:inst.instanceId,slotIndex:0,slotKey:slot.key});filterCandidates();closeBrowser();
+    }
+    selectContext({mode:'units',rank:1});
+  });
+  assert.deepEqual(await page.evaluate(()=>preferenceIO),before,'opening/filtering/closing does not touch usage storage');
+  assert.equal(before.reads,1);
+  assert.equal(await page.locator('.unit-candidate .rank-label-inline').allTextContents().then(a=>a.some(s=>s.includes('独特'))),false);
+  assert.equal(await page.evaluate(()=>cardUsage.stats('upgrades',data.upgrades['force-push']).count),0);
+  await page.reload();await page.waitForFunction(()=>typeof data!=='undefined'&&data);
+  assert.equal(await page.evaluate(()=>cardUsage.stats('units',data.units['rebels-rebel-troopers']).count),2);
+  assert.equal(await page.evaluate(id=>cardUsage.stats('upgrades',data.upgrades[id]).count,upgradeId),2);
+  assert.equal(await page.evaluate(()=>cardUsage.isFavorite('units',data.units['rebels-rebel-troopers'])),true);
+});
+
 for (const mobile of [true,false]) test(`${mobile?'mobile':'desktop'} share link restores V2 native state in another browser and keeps editing URLs short`,async t=>{
   const page=await setup(t,mobile);
   await page.evaluate(()=>{

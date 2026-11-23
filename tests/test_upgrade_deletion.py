@@ -26,7 +26,7 @@ class UpgradeDeletionTest(unittest.TestCase):
         Image.new('RGB', (64, 96), '#345678').save(self.root / 'assets/card.webp')
         self.artwork = (self.root / 'assets/card.webp').read_bytes()
         self.card = {
-            'id': 'test-upgrade', 'name': {'en': 'Test Upgrade', 'zh': '测试升级'},
+            'id': 'test-upgrade', 'numericId': 17, 'name': {'en': 'Test Upgrade', 'zh': '测试升级'},
             'points': 5, 'slotIds': [1, 10], 'usage': 'unit_upgrade',
             'rules': {'slotTypes': [1, 10]}, 'assets': {'front': 'assets/card.webp'},
             'description': {'en': [], 'zh': []}, 'keywords': [], 'weapons': [],

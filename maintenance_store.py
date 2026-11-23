@@ -6,6 +6,7 @@ from rule_schema import validate_rules,KNOWN
 from catalog_schema import validate_keyword_targets
 from card_images import update_card_thumbnails
 from command_requirements import validate as validate_command_requirements
+import card_numeric_ids
 ROOT=Path(__file__).resolve().parent;LOCK=threading.Lock()
 CONFIG={'upgrades':('data/upgrades.json','cards'),'armies':('data/armies.json','armies'),'commands':('data/catalog-definitions.json','commands'),'keywords':('data/catalog-definitions.json','keywords')}
 KEYWORD_TIMINGS={'global','army_building','setup','deployment','command','activation_start','activation','activation_end','movement','attack','defense','end_round'}
@@ -100,7 +101,7 @@ def validate(kind,card):
         if card.get('back') is not None:
             back=card['back']
             if not isinstance(back,dict):raise ValueError('背面必须为对象')
-            if any(k in back for k in ('points','slotIds','rules','restrictions','id','dualSided','back')):raise ValueError('费用、槽位与选择规则由两面共用，不能写入背面')
+            if any(k in back for k in ('points','slotIds','rules','restrictions','id','numericId','dualSided','back')):raise ValueError('费用、槽位、数字 ID 与选择规则由两面共用，不能写入背面')
             if back.get('legacyId') is not None and (not isinstance(back['legacyId'],str) or not re.fullmatch(r'[a-z0-9][a-z0-9_-]{0,150}',back['legacyId']) or back['legacyId']==card['id']):raise ValueError('背面旧 ID 无效')
             # Validate the printed face with the same schema and shared constraints.
             face={**card,**{k:back.get(k) for k in ('name','description','keywords','weapons','assets','actionTypes')}}
@@ -129,7 +130,7 @@ def validate(kind,card):
                 instances.add(c['instanceId'])
                 if c.get('face','front') not in ('front','back','both'):raise ValueError('升级显示状态必须为 front、back 或 both')
         validate_rules(card.get('rules',{}))
-def save(kind,card,revision,create=False):
+def save(kind,card,revision,create=False,restoring=False):
     validate(kind,card);filename,key=CONFIG[kind];path=ROOT/filename
     with LOCK:
         old=path.read_bytes()
@@ -137,6 +138,9 @@ def save(kind,card,revision,create=False):
         catalog=json.loads(old);index=next((i for i,c in enumerate(catalog[key])if c['id']==card['id']),None)
         if index is None and not(create and kind in ('armies','upgrades','commands','keywords')):raise ValueError('没有此记录；不能修改固定 ID')
         if index is not None and create:raise ValueError('ID 已存在')
+        if kind=='upgrades':
+            card=copy.deepcopy(card)
+            card_numeric_ids.assign(catalog,key,card,catalog[key][index] if index is not None else None,restoring=restoring)
         if kind in ('upgrades','commands'):
             previous=catalog[key][index] if index is not None else {}
             def image_references(value):
@@ -164,7 +168,8 @@ def delete(kind, record_id, revision):
         stamp = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S.%fZ')
         snapshot = stamp + '-' + hashof(old)[:12] + '.json'
         write(ROOT / 'history' / kind / snapshot, old)
-        catalog[key].pop(index)
+        removed=catalog[key].pop(index)
+        if kind=='upgrades':card_numeric_ids.retire(catalog,removed)
         catalog['updatedAt'] = datetime.now(timezone.utc).isoformat()
         content = encode(catalog)
         write(path, content)
@@ -175,7 +180,7 @@ def restore(kind,name,record_id,revision):
     _,key=CONFIG[kind];old=json.loads((ROOT/'history'/kind/name).read_bytes());card=next((c for c in old[key]if c['id']==record_id),None)
     if card is None:raise ValueError('此版本没有该记录')
     missing=kind in ('armies','upgrades') and not any(c['id']==record_id for c in read(kind)['catalog'][key])
-    return save(kind,card,revision,create=missing)
+    return save(kind,card,revision,create=missing,restoring=True)
 def delete_army(record_id,revision):
     path=ROOT/CONFIG['armies'][0]
     with LOCK:

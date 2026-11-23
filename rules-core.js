@@ -1404,7 +1404,7 @@ window.RulesCore = (() => {
   function cleanupArmy(army,data) { return allExtensions().flatMap(e => e.cleanup?.(army,data) || []); }
   function isTransitionalIssue(code,army,pkg) { return extensions(army.armyId,pkg).some(e => e.transitionalCodes?.includes(code)); }
   const api = { Dice, evaluate, validateArmy, unitContext, upgradeEligibility, keywordTargets, matchesKeywordTarget, detachmentLimits, entourageExemptions, armyRank, slotKey, accessKeys, slotGrantsFor, dedicatedSlotKeys, equipSlotKeys, slotListFor, restrictionConditionOk, requiredPropertiesOk, normRp, buildNameIndex, unavailableSets, unitCapFor, commandUnitRequirements,
-    commandSlotPips,commandRequirementErrors,commandArmyFaction,commandContext,commandEligibility,
+    armyMembership,commandSlotPips,commandRequirementErrors,commandArmyFaction,commandContext,commandEligibility,
     applyPropertyEffects,prepareData,runtimeAvailable,upgradePoints,defaultUpgradeIds,cleanupArmy,isTransitionalIssue,battleForceVersion,resolveArmyData,unitFor,exclusionFailure,exclusionConflicts };
   return api;
 })();

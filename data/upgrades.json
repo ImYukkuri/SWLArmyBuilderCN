@@ -5,6 +5,7 @@
   "cards": [
     {
       "id": "21b-medical-droid",
+      "numericId": 1,
       "name": {
         "en": "2-1B Medical Droid",
         "zh": "2-1B医疗机器人"
@@ -124,6 +125,7 @@
     },
     {
       "id": "aa5-heavy-laser",
+      "numericId": 2,
       "name": {
         "en": "Heavy Laser Retrofit",
         "zh": "重型激光改装"
@@ -233,6 +235,7 @@
     },
     {
       "id": "aa5-quad",
+      "numericId": 3,
       "name": {
         "en": "AG-2G Quad Laser",
         "zh": "AG-2G四联激光炮"
@@ -342,6 +345,7 @@
     },
     {
       "id": "aayla",
+      "numericId": 4,
       "name": {
         "en": "Aayla Secura",
         "zh": "艾拉·塞库拉"
@@ -470,6 +474,7 @@
     },
     {
       "id": "academy-trained",
+      "numericId": 5,
       "name": {
         "en": "Academy Trained",
         "zh": "学院训练"
@@ -602,6 +607,7 @@
     },
     {
       "id": "adaptive-combat-network",
+      "numericId": 6,
       "name": {
         "en": "Adaptive Combat Network",
         "zh": "自适应战斗网络"
@@ -693,6 +699,7 @@
     },
     {
       "id": "agile-climber",
+      "numericId": 7,
       "name": {
         "en": "Agile Climber",
         "zh": "敏捷攀爬者"
@@ -803,6 +810,7 @@
     },
     {
       "id": "airspeeder-buzzer",
+      "numericId": 8,
       "name": {
         "en": "Ax-108 \"Ground Buzzer\"",
         "zh": "Ax-108“地面蜂鸣器”"
@@ -910,6 +918,7 @@
     },
     {
       "id": "airspeeder-harpoon",
+      "numericId": 9,
       "name": {
         "en": "Mo/Dk Power Harpoon",
         "zh": "Mo/Dk动力鱼叉"
@@ -1024,6 +1033,7 @@
     },
     {
       "id": "annul",
+      "numericId": 10,
       "name": {
         "en": "Annul",
         "zh": "消解"
@@ -1101,6 +1111,7 @@
     },
     {
       "id": "arc-dc15",
+      "numericId": 11,
       "name": {
         "en": "DC-15x ARC Trooper Gunner",
         "zh": "ARC士兵 DC-15x枪手"
@@ -1225,6 +1236,7 @@
     },
     {
       "id": "armament-din-djarin-rifle",
+      "numericId": 12,
       "name": {
         "en": "Din's Amban Rifle",
         "zh": "丁的安班步枪"
@@ -1363,6 +1375,7 @@
     },
     {
       "id": "armament-din-djarin-spear",
+      "numericId": 13,
       "name": {
         "en": "Beskar Spear",
         "zh": "贝斯卡长矛"
@@ -1501,6 +1514,7 @@
     },
     {
       "id": "armament-electrogauntlets",
+      "numericId": 14,
       "name": {
         "en": "Electro Gauntlets",
         "zh": "电击手套"
@@ -1621,6 +1635,7 @@
     },
     {
       "id": "armament-maul-darksaber",
+      "numericId": 15,
       "name": {
         "en": "The Darksaber",
         "zh": "暗剑"
@@ -1779,6 +1794,7 @@
     },
     {
       "id": "armament-saxon-jetpack-rocket",
+      "numericId": 16,
       "name": {
         "en": "Saxon's Jetpack Rockets",
         "zh": "萨克森的火箭喷气背包"
@@ -1909,6 +1925,7 @@
     },
     {
       "id": "armament-saxon-rifle",
+      "numericId": 17,
       "name": {
         "en": "Saxon's Galar-90 Rifle",
         "zh": "萨克森的Galar-90步枪"
@@ -2040,6 +2057,7 @@
     },
     {
       "id": "asajj-heavy",
+      "numericId": 18,
       "name": {
         "en": "Asajj Ventress",
         "zh": "阿萨吉·文崔斯"
@@ -2228,6 +2246,7 @@
     },
     {
       "id": "at-st-mortar",
+      "numericId": 19,
       "name": {
         "en": "AT-ST Mortar Launcher",
         "zh": "AT-ST迫击炮发射器"
@@ -2338,6 +2357,7 @@
     },
     {
       "id": "at-st-twin-light",
+      "numericId": 20,
       "name": {
         "en": "88i Twin Light Blaster",
         "zh": "88i双联轻型爆能炮"
@@ -2448,6 +2468,7 @@
     },
     {
       "id": "atrt-flame",
+      "numericId": 21,
       "name": {
         "en": "AT-RT Flamethrower",
         "zh": "AT-RT火焰喷射器"
@@ -2563,6 +2584,7 @@
     },
     {
       "id": "atrt-laser-cannon",
+      "numericId": 22,
       "name": {
         "en": "AT-RT Laser Cannon",
         "zh": "AT-RT激光炮"
@@ -2676,6 +2698,7 @@
     },
     {
       "id": "atrt-rotary",
+      "numericId": 23,
       "name": {
         "en": "AT-RT Rotary Blaster",
         "zh": "AT-RT转轮爆能枪"
@@ -2785,6 +2808,7 @@
     },
     {
       "id": "axe-woves",
+      "numericId": 24,
       "name": {
         "en": "Axe Woves",
         "zh": "艾克斯·沃尔夫"
@@ -2930,6 +2954,7 @@
     },
     {
       "id": "b1-e5c",
+      "numericId": 25,
       "name": {
         "en": "E-5C B1 Battle Droid",
         "zh": "E-5C B1战斗机器人"
@@ -3036,6 +3061,7 @@
     },
     {
       "id": "b1-e60r",
+      "numericId": 26,
       "name": {
         "en": "E-60R B1 Battle Droid",
         "zh": "E-60R B1战斗机器人"
@@ -3150,6 +3176,7 @@
     },
     {
       "id": "b1-miniature",
+      "numericId": 27,
       "name": {
         "en": "B1 Battle Droid",
         "zh": "B1战斗机器人"
@@ -3248,6 +3275,7 @@
     },
     {
       "id": "b1-oom",
+      "numericId": 28,
       "name": {
         "en": "OOM-Series Battle Droid",
         "zh": "OOM系列战斗机器人"
@@ -3357,6 +3385,7 @@
     },
     {
       "id": "b1-radiation",
+      "numericId": 29,
       "name": {
         "en": "Radiation Cannon B1 Battle Droid",
         "zh": "辐射炮B1战斗机器人"
@@ -3469,6 +3498,7 @@
     },
     {
       "id": "b1-security",
+      "numericId": 30,
       "name": {
         "en": "B1 Security Droid",
         "zh": "B1安保机器人"
@@ -3574,6 +3604,7 @@
     },
     {
       "id": "b1-sniper",
+      "numericId": 31,
       "name": {
         "en": "E-5s B1 Battle Droid",
         "zh": "E-5s B1战斗机器人"
@@ -3685,6 +3716,7 @@
     },
     {
       "id": "b1-squad",
+      "numericId": 32,
       "name": {
         "en": "B1 Battle Droid Squad",
         "zh": "B1战斗机器人小队"
@@ -3809,6 +3841,7 @@
     },
     {
       "id": "b2-acm",
+      "numericId": 33,
       "name": {
         "en": "B2-ACM Battle Droid",
         "zh": "B2-ACM战斗机器人"
@@ -3915,6 +3948,7 @@
     },
     {
       "id": "b2-anti-infantry-missile",
+      "numericId": 34,
       "name": {
         "en": "Anti-Infantry Missile Pod Rocket Droid",
         "zh": "反步兵导弹舱火箭机器人"
@@ -4094,6 +4128,7 @@
     },
     {
       "id": "b2-ha",
+      "numericId": 35,
       "name": {
         "en": "B2-HA Battle Droid",
         "zh": "B2-HA战斗机器人"
@@ -4211,6 +4246,7 @@
     },
     {
       "id": "b2-ha-rocket",
+      "numericId": 36,
       "name": {
         "en": "B2-HA Rocket Droid",
         "zh": "B2-HA火箭机器人"
@@ -4326,6 +4362,7 @@
     },
     {
       "id": "b2-miniature",
+      "numericId": 37,
       "name": {
         "en": "B2 Super Battle Droid",
         "zh": "B2超级战斗机器人"
@@ -4424,6 +4461,7 @@
     },
     {
       "id": "b2-rocket-mini",
+      "numericId": 38,
       "name": {
         "en": "B2 Super Rocket Battle Droid",
         "zh": "B2超级火箭战斗机器人"
@@ -4522,6 +4560,7 @@
     },
     {
       "id": "b2-squad",
+      "numericId": 39,
       "name": {
         "en": "B2 Super Battle Droid Squad",
         "zh": "B2超级战斗机器小队"
@@ -4646,6 +4685,7 @@
     },
     {
       "id": "backworld-medic",
+      "numericId": 40,
       "name": {
         "en": "Backworld Medic",
         "zh": "边远世界医疗兵"
@@ -4745,6 +4785,7 @@
     },
     {
       "id": "barc-ion",
+      "numericId": 41,
       "name": {
         "en": "BARC Ion Gunner",
         "zh": "BARC离子炮手"
@@ -4868,6 +4909,7 @@
     },
     {
       "id": "barc-rps6",
+      "numericId": 42,
       "name": {
         "en": "BARC RPS-6 Gunner",
         "zh": "BARC RPS-6炮手"
@@ -4979,6 +5021,7 @@
     },
     {
       "id": "barc-twinlaser",
+      "numericId": 43,
       "name": {
         "en": "BARC Twin Laser Gunner",
         "zh": "BARC双联激光炮手"
@@ -5090,6 +5133,7 @@
     },
     {
       "id": "baron-rudor",
+      "numericId": 44,
       "name": {
         "en": "Baron Rudor",
         "zh": "鲁多男爵"
@@ -5206,6 +5250,7 @@
     },
     {
       "id": "battlemaster",
+      "numericId": 45,
       "name": {
         "en": "Battlemaster",
         "zh": "战斗大师"
@@ -5328,6 +5373,7 @@
     },
     {
       "id": "battlemind",
+      "numericId": 46,
       "name": {
         "en": "Battlemind",
         "zh": "战斗心智"
@@ -5408,6 +5454,7 @@
     },
     {
       "id": "battleshield-1",
+      "numericId": 47,
       "name": {
         "en": "Battle Shield Wookiee",
         "zh": "战盾伍基人"
@@ -5588,6 +5635,7 @@
     },
     {
       "id": "battletank-oom-droid",
+      "numericId": 48,
       "name": {
         "en": "OOM-Series Droid Pilot",
         "zh": "OOM系列机器人驾驶员"
@@ -5695,6 +5743,7 @@
     },
     {
       "id": "beskad-duelist-clan",
+      "numericId": 49,
       "name": {
         "en": "Beskad Duelist",
         "zh": "贝斯卡德决斗者"
@@ -5813,6 +5862,7 @@
     },
     {
       "id": "black-sun-crew",
+      "numericId": 50,
       "name": {
         "en": "Black Sun Crew",
         "zh": "黑日乘员"
@@ -5906,6 +5956,7 @@
     },
     {
       "id": "bo-katan-darksaber",
+      "numericId": 51,
       "name": {
         "en": "The Darksaber",
         "zh": "暗剑"
@@ -6094,6 +6145,7 @@
     },
     {
       "id": "bo-katan-kryze",
+      "numericId": 52,
       "name": {
         "en": "Bo-Katan Kryze",
         "zh": "博-卡坦·克里兹"
@@ -6227,6 +6279,7 @@
     },
     {
       "id": "bowcaster",
+      "numericId": 53,
       "name": {
         "en": "Bowcaster Wookiee",
         "zh": "弩枪伍基人"
@@ -6348,6 +6401,7 @@
     },
     {
       "id": "bx-gas",
+      "numericId": 54,
       "name": {
         "en": "Dioxis Mine Saboteur",
         "zh": "双噁毒气地雷爆破手"
@@ -6476,6 +6530,7 @@
     },
     {
       "id": "bx-shield",
+      "numericId": 55,
       "name": {
         "en": "BX Deflector Shields",
         "zh": "BX偏导护盾"
@@ -6591,6 +6646,7 @@
     },
     {
       "id": "bx-sniper",
+      "numericId": 56,
       "name": {
         "en": "BX-Series Droid Sniper",
         "zh": "BX系列机器人狙击手"
@@ -6714,6 +6770,7 @@
     },
     {
       "id": "bx-vibro",
+      "numericId": 57,
       "name": {
         "en": "BX Vibroswords",
         "zh": "BX振动剑"
@@ -6841,6 +6898,7 @@
     },
     {
       "id": "cassian-a280-pistol",
+      "numericId": 58,
       "name": {
         "en": "A280, Pistol Config",
         "zh": "A280手枪配置"
@@ -7038,6 +7096,7 @@
     },
     {
       "id": "cassian-andor",
+      "numericId": 59,
       "name": {
         "en": "Cassian Andor",
         "zh": "卡西安·安多"
@@ -7281,6 +7340,7 @@
     },
     {
       "id": "caught-in-a-web",
+      "numericId": 60,
       "name": {
         "en": "Caught in a Web",
         "zh": "落入蛛网"
@@ -7404,6 +7464,7 @@
     },
     {
       "id": "champion-of-the-watch",
+      "numericId": 61,
       "name": {
         "en": "Champion of the Watch",
         "zh": "守望冠军"
@@ -7554,6 +7615,7 @@
     },
     {
       "id": "chewbacca-heavy",
+      "numericId": 62,
       "name": {
         "en": "Chewbacca",
         "zh": "丘巴卡"
@@ -7702,6 +7764,7 @@
     },
     {
       "id": "children-of-the-watch",
+      "numericId": 63,
       "name": {
         "en": "Children of the Watch",
         "zh": "守望之子"
@@ -7812,6 +7875,7 @@
     },
     {
       "id": "cis-aqua-miniature",
+      "numericId": 64,
       "name": {
         "en": "Heavy Aqua Droid",
         "zh": "重型水战机器人"
@@ -7923,6 +7987,7 @@
     },
     {
       "id": "cis-crab-laser",
+      "numericId": 65,
       "name": {
         "en": "Heavy Laser Cannon",
         "zh": "重型激光炮"
@@ -8034,6 +8099,7 @@
     },
     {
       "id": "cis-crab-twin",
+      "numericId": 66,
       "name": {
         "en": "Twin Blaster Cannons",
         "zh": "双联爆能炮"
@@ -8141,6 +8207,7 @@
     },
     {
       "id": "clan-kryze",
+      "numericId": 67,
       "name": {
         "en": "Clan Kryze",
         "zh": "克里兹氏族"
@@ -8248,6 +8315,7 @@
     },
     {
       "id": "clan-saxon",
+      "numericId": 68,
       "name": {
         "en": "Clan Saxon",
         "zh": "萨克森氏族"
@@ -8364,6 +8432,7 @@
     },
     {
       "id": "clan-wren",
+      "numericId": 69,
       "name": {
         "en": "Clan Wren",
         "zh": "雷恩氏族"
@@ -8480,6 +8549,7 @@
     },
     {
       "id": "clone-boil",
+      "numericId": 70,
       "name": {
         "en": "Boil",
         "zh": "沸腾"
@@ -8619,6 +8689,7 @@
     },
     {
       "id": "clone-captain",
+      "numericId": 71,
       "name": {
         "en": "Clone Captain",
         "zh": "克隆人上尉"
@@ -8728,6 +8799,7 @@
     },
     {
       "id": "clone-commander",
+      "numericId": 72,
       "name": {
         "en": "Clone Commander",
         "zh": "克隆人指挥官"
@@ -8836,6 +8908,7 @@
     },
     {
       "id": "clone-comms",
+      "numericId": 73,
       "name": {
         "en": "Clone Comms Technician",
         "zh": "克隆人通信技师"
@@ -8960,6 +9033,7 @@
     },
     {
       "id": "clone-dp23",
+      "numericId": 74,
       "name": {
         "en": "DP-23 Clone Trooper",
         "zh": "DP-23克隆人士兵"
@@ -9071,6 +9145,7 @@
     },
     {
       "id": "clone-engineer",
+      "numericId": 75,
       "name": {
         "en": "Clone Engineer",
         "zh": "克隆人工程师"
@@ -9200,6 +9275,7 @@
     },
     {
       "id": "clone-fox",
+      "numericId": 76,
       "name": {
         "en": "Clone Commander Fox",
         "zh": "克隆人指挥官福克斯"
@@ -9343,6 +9419,7 @@
     },
     {
       "id": "clone-marksmen-miniature",
+      "numericId": 77,
       "name": {
         "en": "Clone Marksman",
         "zh": "克隆人神射手"
@@ -9440,6 +9517,7 @@
     },
     {
       "id": "clone-marksmen-squad",
+      "numericId": 78,
       "name": {
         "en": "Clone Trooper Marksmen Squad",
         "zh": "克隆人神射手小队"
@@ -9563,6 +9641,7 @@
     },
     {
       "id": "clone-medic",
+      "numericId": 79,
       "name": {
         "en": "Clone Medic",
         "zh": "克隆人医疗兵"
@@ -9657,6 +9736,7 @@
     },
     {
       "id": "clone-miniature",
+      "numericId": 80,
       "name": {
         "en": "Clone Trooper Infantry",
         "zh": "克隆人步兵"
@@ -9759,6 +9839,7 @@
     },
     {
       "id": "clone-mortar",
+      "numericId": 81,
       "name": {
         "en": "Mortar Clone Trooper",
         "zh": "迫击炮克隆人士兵"
@@ -9888,6 +9969,7 @@
     },
     {
       "id": "clone-rex",
+      "numericId": 82,
       "name": {
         "en": "Clone Captain Rex",
         "zh": "克隆人上尉雷克斯"
@@ -10042,6 +10124,7 @@
     },
     {
       "id": "clone-rocket",
+      "numericId": 83,
       "name": {
         "en": "RPS-6 Clone Trooper",
         "zh": "RPS-6克隆人士兵"
@@ -10168,6 +10251,7 @@
     },
     {
       "id": "clone-shock-pilot",
+      "numericId": 84,
       "name": {
         "en": "Clone Shock Trooper Pilot",
         "zh": "克隆人冲击部队驾驶员"
@@ -10271,6 +10355,7 @@
     },
     {
       "id": "clone-specialist",
+      "numericId": 85,
       "name": {
         "en": "Clone Specialist",
         "zh": "克隆人专业兵"
@@ -10392,6 +10477,7 @@
     },
     {
       "id": "clone-squad",
+      "numericId": 86,
       "name": {
         "en": "Clone Trooper Infantry Squad",
         "zh": "克隆人步兵小队"
@@ -10516,6 +10602,7 @@
     },
     {
       "id": "clone-veteran-pilot",
+      "numericId": 87,
       "name": {
         "en": "Veteran Clone Pilot",
         "zh": "克隆人驾驶员老兵"
@@ -10623,6 +10710,7 @@
     },
     {
       "id": "clone-z6",
+      "numericId": 88,
       "name": {
         "en": "Z-6 Clone Trooper",
         "zh": "Z-6克隆人士兵"
@@ -10729,6 +10817,7 @@
     },
     {
       "id": "cody-squad",
+      "numericId": 89,
       "name": {
         "en": "Clone Commander Cody",
         "zh": "克隆人指挥官科迪"
@@ -10891,6 +10980,7 @@
     },
     {
       "id": "combat-armor",
+      "numericId": 90,
       "name": {
         "en": "Combat Armor",
         "zh": "战斗护甲"
@@ -10993,6 +11083,7 @@
     },
     {
       "id": "combat-armor-rebel",
+      "numericId": 91,
       "name": {
         "en": "Combat Armor",
         "zh": "战斗护甲"
@@ -11095,6 +11186,7 @@
     },
     {
       "id": "command-and-control-uplink",
+      "numericId": 92,
       "name": {
         "en": "Command and Control Uplink",
         "zh": "指挥控制上行链路"
@@ -11216,6 +11308,7 @@
     },
     {
       "id": "command-improvised",
+      "numericId": 93,
       "name": {
         "en": "Improvised Orders",
         "zh": "临时命令"
@@ -11322,6 +11415,7 @@
     },
     {
       "id": "command-inspiring",
+      "numericId": 94,
       "name": {
         "en": "Inspiring Presence",
         "zh": "领袖风范"
@@ -11396,6 +11490,7 @@
     },
     {
       "id": "command-lead",
+      "numericId": 95,
       "name": {
         "en": "Lead By Example",
         "zh": "以身作则"
@@ -11482,6 +11577,7 @@
     },
     {
       "id": "command-strict",
+      "numericId": 96,
       "name": {
         "en": "Strict Orders",
         "zh": "严格命令"
@@ -11557,6 +11653,7 @@
     },
     {
       "id": "command-trusted-agent",
+      "numericId": 97,
       "name": {
         "en": "Trusted Agent",
         "zh": "信赖特工"
@@ -11650,6 +11747,7 @@
     },
     {
       "id": "command-underworld",
+      "numericId": 98,
       "name": {
         "en": "Underworld Connections",
         "zh": "地下联系"
@@ -11738,6 +11836,7 @@
     },
     {
       "id": "command-vigilance",
+      "numericId": 99,
       "name": {
         "en": "Vigilance",
         "zh": "警戒"
@@ -11814,6 +11913,7 @@
     },
     {
       "id": "commandos-saboteur",
+      "numericId": 100,
       "name": {
         "en": "Proton Charge Saboteur",
         "zh": "质子炸药爆破手"
@@ -11942,6 +12042,7 @@
     },
     {
       "id": "commandos-sniper",
+      "numericId": 101,
       "name": {
         "en": "DH-447 Sniper",
         "zh": "DH-447狙击手"
@@ -12065,6 +12166,7 @@
     },
     {
       "id": "commandos-sniper-a",
+      "numericId": 102,
       "name": {
         "en": "DC-17m ICWS Sniper Configuration",
         "zh": "DC-17m ICWS狙击配置"
@@ -12262,6 +12364,7 @@
     },
     {
       "id": "comms-control-array",
+      "numericId": 103,
       "name": {
         "en": "Command Control Array",
         "zh": "指挥控制阵列"
@@ -12368,6 +12471,7 @@
     },
     {
       "id": "comms-emergency",
+      "numericId": 104,
       "name": {
         "en": "Emergency Transponder",
         "zh": "紧急应答器"
@@ -12444,6 +12548,7 @@
     },
     {
       "id": "comms-hacked",
+      "numericId": 105,
       "name": {
         "en": "Hacked Comms Unit",
         "zh": "破解通信单元"
@@ -12519,6 +12624,7 @@
     },
     {
       "id": "comms-hq",
+      "numericId": 106,
       "name": {
         "en": "•HQ Uplink",
         "zh": "总部直传链路"
@@ -12595,6 +12701,7 @@
     },
     {
       "id": "comms-jammer",
+      "numericId": 107,
       "name": {
         "en": "Comms Jammer",
         "zh": "通信干扰器"
@@ -12669,6 +12776,7 @@
     },
     {
       "id": "comms-linked-targeting",
+      "numericId": 108,
       "name": {
         "en": "Linked Targeting Array",
         "zh": "互联瞄准阵列"
@@ -12791,6 +12899,7 @@
     },
     {
       "id": "comms-onboard",
+      "numericId": 109,
       "name": {
         "en": "Onboard Comms Channel",
         "zh": "机载通信频道"
@@ -12908,6 +13017,7 @@
     },
     {
       "id": "comms-spotter-uplink",
+      "numericId": 110,
       "name": {
         "en": "Spotter Uplink",
         "zh": "观瞄上行链路"
@@ -12987,6 +13097,7 @@
     },
     {
       "id": "cr-24-flame",
+      "numericId": 111,
       "name": {
         "en": "CR-24 Flame Rifle",
         "zh": "CR-24喷火步枪"
@@ -13096,6 +13207,7 @@
     },
     {
       "id": "crew-door-gunner",
+      "numericId": 112,
       "name": {
         "en": "Door Gunners",
         "zh": "舱门枪手"
@@ -13228,6 +13340,7 @@
     },
     {
       "id": "crosshair",
+      "numericId": 113,
       "name": {
         "en": "Crosshair",
         "zh": "准星"
@@ -13386,6 +13499,7 @@
     },
     {
       "id": "dark-trooper-miniature",
+      "numericId": 114,
       "name": {
         "en": "Imperial Dark Trooper",
         "zh": "帝国黑暗士兵"
@@ -13483,6 +13597,7 @@
     },
     {
       "id": "dc-15x-sniper",
+      "numericId": 115,
       "name": {
         "en": "DC-15x ARC Trooper Sniper",
         "zh": "DC-15x ARC士兵狙击手"
@@ -13606,6 +13721,7 @@
     },
     {
       "id": "deadeye",
+      "numericId": 116,
       "name": {
         "en": "Deadeye",
         "zh": "百发百中"
@@ -13740,6 +13856,7 @@
     },
     {
       "id": "defend-in-depth",
+      "numericId": 117,
       "name": {
         "en": "Defend in Depth",
         "zh": "纵深防御"
@@ -13880,6 +13997,7 @@
     },
     {
       "id": "del-meeko",
+      "numericId": 118,
       "name": {
         "en": "Del Meeko",
         "zh": "德尔·米科"
@@ -14027,6 +14145,7 @@
     },
     {
       "id": "din-djarin",
+      "numericId": 119,
       "name": {
         "en": "Din Djarin",
         "zh": "丁·贾林"
@@ -14180,6 +14299,7 @@
     },
     {
       "id": "din-djarin-darksaber",
+      "numericId": 120,
       "name": {
         "en": "The Darksaber",
         "zh": "暗剑"
@@ -14351,6 +14471,7 @@
     },
     {
       "id": "dlt-19d",
+      "numericId": 121,
       "name": {
         "en": "DLT-19D Trooper",
         "zh": "DLT-19D士兵"
@@ -14514,6 +14635,7 @@
     },
     {
       "id": "dlt19x-scout",
+      "numericId": 122,
       "name": {
         "en": "DLT-19x Sniper",
         "zh": "DLT-19x狙击手"
@@ -14636,6 +14758,7 @@
     },
     {
       "id": "double-bladed-lightsaber",
+      "numericId": 123,
       "name": {
         "en": "Double-Bladed Lightsaber",
         "zh": "双刃光剑"
@@ -14788,6 +14911,7 @@
     },
     {
       "id": "dt-f16",
+      "numericId": 124,
       "name": {
         "en": "DT-F16",
         "zh": "DT-F16"
@@ -14979,6 +15103,7 @@
     },
     {
       "id": "dual-armaments",
+      "numericId": 125,
       "name": {
         "en": "Dual Armaments",
         "zh": "双持武器"
@@ -15122,6 +15247,7 @@
     },
     {
       "id": "dw-3-grenade-launcher",
+      "numericId": 126,
       "name": {
         "en": "DW-3 Grenade Launcher",
         "zh": "DW-3榴弹发射器"
@@ -15231,6 +15357,7 @@
     },
     {
       "id": "e-11d-focused-fire",
+      "numericId": 127,
       "name": {
         "en": "E-11D Focused Fire Configuration",
         "zh": "E-11D集中射击配置"
@@ -15407,6 +15534,7 @@
     },
     {
       "id": "e4-medical",
+      "numericId": 128,
       "name": {
         "en": "EV-Series Medical Droid",
         "zh": "EV系列医疗机器人"
@@ -15544,6 +15672,7 @@
     },
     {
       "id": "echo-arc",
+      "numericId": 129,
       "name": {
         "en": "Echo, ARC Marksman",
         "zh": "回声，ARC神射手"
@@ -15699,6 +15828,7 @@
     },
     {
       "id": "echo-bb",
+      "numericId": 130,
       "name": {
         "en": "Echo, Clone Force 99",
         "zh": "回声，克隆人99号部队"
@@ -15808,6 +15938,7 @@
     },
     {
       "id": "ee-3-carbine",
+      "numericId": 131,
       "name": {
         "en": "EE-3 Carbine Rifle",
         "zh": "EE-3卡宾步枪"
@@ -15925,6 +16056,7 @@
     },
     {
       "id": "electrostaff",
+      "numericId": 132,
       "name": {
         "en": "Electrostaff",
         "zh": "电杖"
@@ -16059,6 +16191,7 @@
     },
     {
       "id": "electrostaff-pirate",
+      "numericId": 133,
       "name": {
         "en": "Electrostaff Pirate",
         "zh": "电杖海盗"
@@ -16179,6 +16312,7 @@
     },
     {
       "id": "enhanced-combat-subroutines",
+      "numericId": 134,
       "name": {
         "en": "Enhanced Combat Subroutines",
         "zh": "强化战斗子程序"
@@ -16287,6 +16421,7 @@
     },
     {
       "id": "ewok-medicine",
+      "numericId": 135,
       "name": {
         "en": "Herbal Medicine",
         "zh": "草药"
@@ -16395,6 +16530,7 @@
     },
     {
       "id": "ewok-secret",
+      "numericId": 136,
       "name": {
         "en": "Secret Ingredients",
         "zh": "秘密配方"
@@ -16508,6 +16644,7 @@
     },
     {
       "id": "ewoks-axe",
+      "numericId": 137,
       "name": {
         "en": "Axe Ewok",
         "zh": "战斧伊沃克人"
@@ -16634,6 +16771,7 @@
     },
     {
       "id": "ewoks-call-to-arms",
+      "numericId": 138,
       "name": {
         "en": "•Call to Arms",
         "zh": "战斗号召"
@@ -16747,6 +16885,7 @@
     },
     {
       "id": "ewoks-curiosity",
+      "numericId": 139,
       "name": {
         "en": "Insatiable Curiosity",
         "zh": "无尽好奇"
@@ -16854,6 +16993,7 @@
     },
     {
       "id": "ewoks-dwellers",
+      "numericId": 140,
       "name": {
         "en": "Forest Dwellers",
         "zh": "森林居民"
@@ -16969,6 +17109,7 @@
     },
     {
       "id": "ewoks-onward",
+      "numericId": 141,
       "name": {
         "en": "Onward to Victory",
         "zh": "迈向胜利"
@@ -17077,6 +17218,7 @@
     },
     {
       "id": "ewoks-skirmish-squad",
+      "numericId": 142,
       "name": {
         "en": "Ewok Skirmisher Squad",
         "zh": "伊沃克散兵小队"
@@ -17201,6 +17343,7 @@
     },
     {
       "id": "ewoks-slinger-squad",
+      "numericId": 143,
       "name": {
         "en": "Ewok Slinger Squad",
         "zh": "伊沃克投石兵小队"
@@ -17325,6 +17468,7 @@
     },
     {
       "id": "ewoks-trapper",
+      "numericId": 144,
       "name": {
         "en": "Ewok Trapper",
         "zh": "伊沃克陷阱手"
@@ -17441,6 +17585,7 @@
     },
     {
       "id": "expanded-databanks",
+      "numericId": 145,
       "name": {
         "en": "Expanded Databanks",
         "zh": "扩展数据库"
@@ -17537,6 +17682,7 @@
     },
     {
       "id": "fifth-brother",
+      "numericId": 146,
       "name": {
         "en": "Fifth Brother",
         "zh": "五弟"
@@ -17691,6 +17837,7 @@
     },
     {
       "id": "fire-control",
+      "numericId": 147,
       "name": {
         "en": "Fire Control",
         "zh": "火控"
@@ -17783,6 +17930,7 @@
     },
     {
       "id": "first-sergeant-arbmab",
+      "numericId": 148,
       "name": {
         "en": "First Sergeant Arbmab",
         "zh": "一等军士阿布马布"
@@ -17907,6 +18055,7 @@
     },
     {
       "id": "fives",
+      "numericId": 149,
       "name": {
         "en": "Fives",
         "zh": "五号"
@@ -18060,6 +18209,7 @@
     },
     {
       "id": "flame-projector",
+      "numericId": 150,
       "name": {
         "en": "•Flame Projector",
         "zh": "火焰喷射器"
@@ -18172,6 +18322,7 @@
     },
     {
       "id": "fleet-barrage",
+      "numericId": 151,
       "name": {
         "en": "MPL-57 Barrage Trooper",
         "zh": "MPL-57榴弹发射器士兵"
@@ -18291,6 +18442,7 @@
     },
     {
       "id": "fleet-scatter",
+      "numericId": 152,
       "name": {
         "en": "Scatter Gun Trooper",
         "zh": "散弹枪士兵"
@@ -18402,6 +18554,7 @@
     },
     {
       "id": "fleet-squad",
+      "numericId": 153,
       "name": {
         "en": "Fleet Trooper Squad",
         "zh": "舰队士兵小队"
@@ -18526,6 +18679,7 @@
     },
     {
       "id": "fleet-trooper",
+      "numericId": 154,
       "name": {
         "en": "Fleet Trooper",
         "zh": "舰队士兵"
@@ -18624,6 +18778,7 @@
     },
     {
       "id": "force-absorb",
+      "numericId": 155,
       "name": {
         "en": "Force Absorb",
         "zh": "原力吸收"
@@ -18715,6 +18870,7 @@
     },
     {
       "id": "force-adept",
+      "numericId": 156,
       "name": {
         "en": "•Jedi Training, Force Adept",
         "zh": "绝地训练，原力精通"
@@ -18836,6 +18992,7 @@
     },
     {
       "id": "force-agility",
+      "numericId": 157,
       "name": {
         "en": "Force Agility",
         "zh": "原力迅捷"
@@ -18913,6 +19070,7 @@
     },
     {
       "id": "force-anger",
+      "numericId": 158,
       "name": {
         "en": "Anger",
         "zh": "愤怒"
@@ -19000,6 +19158,7 @@
     },
     {
       "id": "force-barrier",
+      "numericId": 159,
       "name": {
         "en": "Force Barrier",
         "zh": "原力屏障"
@@ -19076,6 +19235,7 @@
     },
     {
       "id": "force-burst",
+      "numericId": 160,
       "name": {
         "en": "Burst of Speed",
         "zh": "速度爆发"
@@ -19152,6 +19312,7 @@
     },
     {
       "id": "force-choke",
+      "numericId": 161,
       "name": {
         "en": "Force Choke",
         "zh": "原力扼喉"
@@ -19242,6 +19403,7 @@
     },
     {
       "id": "force-clairvoyance",
+      "numericId": 162,
       "name": {
         "en": "Clairvoyance",
         "zh": "洞察"
@@ -19323,6 +19485,7 @@
     },
     {
       "id": "force-despair",
+      "numericId": 163,
       "name": {
         "en": "Despair",
         "zh": "绝望"
@@ -19417,6 +19580,7 @@
     },
     {
       "id": "force-drain",
+      "numericId": 164,
       "name": {
         "en": "Force Drain",
         "zh": "原力汲取"
@@ -19511,6 +19675,7 @@
     },
     {
       "id": "force-enhanced-defense",
+      "numericId": 165,
       "name": {
         "en": "Force Enhanced Defense",
         "zh": "原力防御"
@@ -19598,6 +19763,7 @@
     },
     {
       "id": "force-fear",
+      "numericId": 166,
       "name": {
         "en": "Fear",
         "zh": "恐惧"
@@ -19698,6 +19864,7 @@
     },
     {
       "id": "force-guidance",
+      "numericId": 167,
       "name": {
         "en": "Force Guidance",
         "zh": "原力引导"
@@ -19774,6 +19941,7 @@
     },
     {
       "id": "force-hope",
+      "numericId": 168,
       "name": {
         "en": "Hope",
         "zh": "希望"
@@ -19874,6 +20042,7 @@
     },
     {
       "id": "force-mind",
+      "numericId": 169,
       "name": {
         "en": "Jedi Mind Trick",
         "zh": "绝地心灵术"
@@ -19964,6 +20133,7 @@
     },
     {
       "id": "force-push",
+      "numericId": 170,
       "name": {
         "en": "Force Push",
         "zh": "原力推拉"
@@ -20041,6 +20211,7 @@
     },
     {
       "id": "force-reflexes",
+      "numericId": 171,
       "name": {
         "en": "Force Reflexes",
         "zh": "原力反射"
@@ -20115,6 +20286,7 @@
     },
     {
       "id": "force-saber",
+      "numericId": 172,
       "name": {
         "en": "Saber Throw",
         "zh": "光剑投掷"
@@ -20210,6 +20382,7 @@
     },
     {
       "id": "force-terror",
+      "numericId": 173,
       "name": {
         "en": "Terror",
         "zh": "畏惧"
@@ -20300,6 +20473,7 @@
     },
     {
       "id": "force-tranquility",
+      "numericId": 174,
       "name": {
         "en": "Tranquility",
         "zh": "宁静"
@@ -20395,6 +20569,7 @@
     },
     {
       "id": "frontline-commander",
+      "numericId": 175,
       "name": {
         "en": "Frontline Commander",
         "zh": "前线指挥官"
@@ -20533,6 +20708,7 @@
     },
     {
       "id": "full-beskar-armor",
+      "numericId": 176,
       "name": {
         "en": "Full Beskar Armor",
         "zh": "全贝斯卡护甲"
@@ -20636,6 +20812,7 @@
     },
     {
       "id": "fx-9-medical",
+      "numericId": 177,
       "name": {
         "en": "FX-9 Medical Droid",
         "zh": "FX-9医疗机器人"
@@ -20751,6 +20928,7 @@
     },
     {
       "id": "galaar-15-carbines",
+      "numericId": 178,
       "name": {
         "en": "GALAAR-15 Carbines",
         "zh": "GALAAR-15卡宾枪组"
@@ -20888,6 +21066,7 @@
     },
     {
       "id": "galaar-15-leader",
+      "numericId": 179,
       "name": {
         "en": "GALAAR-15 Carbine",
         "zh": "GALAAR-15卡宾枪"
@@ -20987,6 +21166,7 @@
     },
     {
       "id": "galaar-90-sniper",
+      "numericId": 180,
       "name": {
         "en": "GALAAR-90 Sniper Rifle",
         "zh": "GALAAR-90狙击步枪"
@@ -21123,6 +21303,7 @@
     },
     {
       "id": "galaar-90-sniper-leader",
+      "numericId": 181,
       "name": {
         "en": "GALAAR-90 Sniper Rifle",
         "zh": "GALAAR-90狙击步枪"
@@ -21264,6 +21445,7 @@
     },
     {
       "id": "gangster-boss",
+      "numericId": 182,
       "name": {
         "en": "Gang Boss",
         "zh": "帮派头目"
@@ -21395,6 +21577,7 @@
     },
     {
       "id": "gar-arf-miniatures",
+      "numericId": 183,
       "name": {
         "en": "ARF Trooper Duo",
         "zh": "ARF士兵双人组"
@@ -21498,6 +21681,7 @@
     },
     {
       "id": "gar-arf-rps",
+      "numericId": 184,
       "name": {
         "en": "RPS-6 ARF Trooper",
         "zh": "RPS-6 ARF士兵"
@@ -21612,6 +21796,7 @@
     },
     {
       "id": "gar-jedi-guardian",
+      "numericId": 185,
       "name": {
         "en": "Jedi Guardian",
         "zh": "绝地守护者"
@@ -21760,6 +21945,7 @@
     },
     {
       "id": "gar-saxon",
+      "numericId": 186,
       "name": {
         "en": "Gar Saxon",
         "zh": "加尔·萨克森"
@@ -21926,6 +22112,7 @@
     },
     {
       "id": "gear-ascension",
+      "numericId": 187,
       "name": {
         "en": "Ascension Cables",
         "zh": "攀爬缆索"
@@ -22015,6 +22202,7 @@
     },
     {
       "id": "gear-binoculars",
+      "numericId": 188,
       "name": {
         "en": "Electrobinoculars",
         "zh": "电子望远镜"
@@ -22115,6 +22303,7 @@
     },
     {
       "id": "gear-datapad",
+      "numericId": 189,
       "name": {
         "en": "Recon Intel",
         "zh": "侦察情报"
@@ -22201,6 +22390,7 @@
     },
     {
       "id": "gear-din-jetpack",
+      "numericId": 190,
       "name": {
         "en": "Din's Jetpack",
         "zh": "丁的喷气背包"
@@ -22326,6 +22516,7 @@
     },
     {
       "id": "gear-emergency",
+      "numericId": 191,
       "name": {
         "en": "Emergency Stims",
         "zh": "应急兴奋剂"
@@ -22406,6 +22597,7 @@
     },
     {
       "id": "gear-environment",
+      "numericId": 192,
       "name": {
         "en": "Environmental Gear",
         "zh": "环境适应装备"
@@ -22492,6 +22684,7 @@
     },
     {
       "id": "gear-extra-supplies",
+      "numericId": 193,
       "name": {
         "en": "Extra Supplies",
         "zh": "额外补给"
@@ -22566,6 +22759,7 @@
     },
     {
       "id": "gear-grappling",
+      "numericId": 194,
       "name": {
         "en": "Grappling Hooks",
         "zh": "攀爬钩爪"
@@ -22652,6 +22846,7 @@
     },
     {
       "id": "gear-portable",
+      "numericId": 195,
       "name": {
         "en": "Portable Scanner",
         "zh": "便携式扫描仪"
@@ -22762,6 +22957,7 @@
     },
     {
       "id": "gear-scopes",
+      "numericId": 196,
       "name": {
         "en": "Targeting Scopes",
         "zh": "瞄准镜"
@@ -22848,6 +23044,7 @@
     },
     {
       "id": "gear-supplies",
+      "numericId": 197,
       "name": {
         "en": "Prepared Supplies",
         "zh": "预备物资"
@@ -22924,6 +23121,7 @@
     },
     {
       "id": "general-of-the-republic",
+      "numericId": 198,
       "name": {
         "en": "General of the Republic",
         "zh": "共和国将军"
@@ -23061,6 +23259,7 @@
     },
     {
       "id": "general-weiss",
+      "numericId": 199,
       "name": {
         "en": "General Weiss",
         "zh": "韦斯将军"
@@ -23198,6 +23397,7 @@
     },
     {
       "id": "generator-barrage",
+      "numericId": 200,
       "name": {
         "en": "Barrage Generator",
         "zh": "弹幕发生器"
@@ -23281,6 +23481,7 @@
     },
     {
       "id": "generator-overcharged",
+      "numericId": 201,
       "name": {
         "en": "Overcharged Generator",
         "zh": "超载发生器"
@@ -23364,6 +23565,7 @@
     },
     {
       "id": "geonosian-miniature",
+      "numericId": 202,
       "name": {
         "en": "Geonosian Warrior",
         "zh": "吉奥诺西斯战士"
@@ -23466,6 +23668,7 @@
     },
     {
       "id": "geonosian-pike-1",
+      "numericId": 203,
       "name": {
         "en": "Force Pike Warrior",
         "zh": "力矛战士"
@@ -23653,6 +23856,7 @@
     },
     {
       "id": "geonosian-sonic",
+      "numericId": 204,
       "name": {
         "en": "Sonic Cannon Warrior",
         "zh": "声波炮战士"
@@ -23771,6 +23975,7 @@
     },
     {
       "id": "geonosian-squad",
+      "numericId": 205,
       "name": {
         "en": "Geonosian Warrior Squad",
         "zh": "吉奥诺西斯战士小队"
@@ -23900,6 +24105,7 @@
     },
     {
       "id": "gideon-darksaber",
+      "numericId": 206,
       "name": {
         "en": "The Darksaber",
         "zh": "暗剑"
@@ -24096,6 +24302,7 @@
     },
     {
       "id": "gideon-hask",
+      "numericId": 207,
       "name": {
         "en": "Gideon Hask",
         "zh": "吉迪恩·哈斯克"
@@ -24251,6 +24458,7 @@
     },
     {
       "id": "gnasp-bomber",
+      "numericId": 208,
       "name": {
         "en": "Gnasp Bombardier",
         "zh": "咬牙蜂投弹手"
@@ -24341,6 +24549,7 @@
     },
     {
       "id": "gnasp-gunner",
+      "numericId": 209,
       "name": {
         "en": "Gnasp Gunner",
         "zh": "咬牙蜂炮手"
@@ -24436,6 +24645,7 @@
     },
     {
       "id": "go-for-broke",
+      "numericId": 210,
       "name": {
         "en": "Go For Broke",
         "zh": "孤注一掷"
@@ -24522,6 +24732,7 @@
     },
     {
       "id": "governor-pryce",
+      "numericId": 211,
       "name": {
         "en": "Governor Pryce",
         "zh": "普赖斯总督"
@@ -24662,6 +24873,7 @@
     },
     {
       "id": "grenade-concussion",
+      "numericId": 212,
       "name": {
         "en": "Concussion Grenades",
         "zh": "震荡手雷"
@@ -24750,6 +24962,7 @@
     },
     {
       "id": "grenade-emp",
+      "numericId": 213,
       "name": {
         "en": "EMP \"Droid Poppers\"",
         "zh": "EMP“机器人爆破器”"
@@ -24839,6 +25052,7 @@
     },
     {
       "id": "grenade-fragmentation",
+      "numericId": 214,
       "name": {
         "en": "Fragmentation Grenades",
         "zh": "破片手雷"
@@ -24928,6 +25142,7 @@
     },
     {
       "id": "grenade-impact",
+      "numericId": 215,
       "name": {
         "en": "Impact Grenades",
         "zh": "冲击手雷"
@@ -25018,6 +25233,7 @@
     },
     {
       "id": "grenade-smoke",
+      "numericId": 216,
       "name": {
         "en": "Smoke Grenades",
         "zh": "烟雾手雷"
@@ -25098,6 +25314,7 @@
     },
     {
       "id": "grenade-sonic",
+      "numericId": 217,
       "name": {
         "en": "Sonic Imploders",
         "zh": "声波内爆弹"
@@ -25185,6 +25402,7 @@
     },
     {
       "id": "grievous-heavy",
+      "numericId": 218,
       "name": {
         "en": "General Grievous",
         "zh": "格里弗斯将军"
@@ -25363,6 +25581,7 @@
     },
     {
       "id": "guild-member",
+      "numericId": 219,
       "name": {
         "en": "Guild Member",
         "zh": "公会成员"
@@ -25487,6 +25706,7 @@
     },
     {
       "id": "hatred",
+      "numericId": 220,
       "name": {
         "en": "Hatred",
         "zh": "憎恨"
@@ -25581,6 +25801,7 @@
     },
     {
       "id": "heavy-arm-cannon",
+      "numericId": 221,
       "name": {
         "en": "Heavy Arm Cannon",
         "zh": "重型臂炮"
@@ -25688,6 +25909,7 @@
     },
     {
       "id": "heavy-blacksun-enforcer",
+      "numericId": 222,
       "name": {
         "en": "Scatter Gun Enforcer",
         "zh": "散弹枪执法者"
@@ -25799,6 +26021,7 @@
     },
     {
       "id": "heavy-blaster-pistol",
+      "numericId": 223,
       "name": {
         "en": "Heavy Blaster Pistol",
         "zh": "重型爆能手枪"
@@ -25945,6 +26168,7 @@
     },
     {
       "id": "heavy-blaster-pistol-rebel",
+      "numericId": 224,
       "name": {
         "en": "Heavy Blaster Pistol",
         "zh": "重型爆能手枪"
@@ -26082,6 +26306,7 @@
     },
     {
       "id": "heavy-commando-miniature",
+      "numericId": 225,
       "name": {
         "en": "Mandalorian Super Commando",
         "zh": "曼达洛超级突击队员"
@@ -26185,6 +26410,7 @@
     },
     {
       "id": "heavy-electro-whip",
+      "numericId": 226,
       "name": {
         "en": "Electro-Whip Soldier",
         "zh": "电鞭士兵"
@@ -26298,6 +26524,7 @@
     },
     {
       "id": "heavy-mag-det",
+      "numericId": 227,
       "name": {
         "en": "Mag-Det Enforcer",
         "zh": "磁爆执法者"
@@ -26394,6 +26621,7 @@
     },
     {
       "id": "heavy-pyke-p13",
+      "numericId": 228,
       "name": {
         "en": "P13-M Disruptor Soldier",
         "zh": "P13-M分裂枪士兵"
@@ -26504,6 +26732,7 @@
     },
     {
       "id": "heavy-rook-kast",
+      "numericId": 229,
       "name": {
         "en": "Rook Kast",
         "zh": "鲁克·卡斯特"
@@ -26653,6 +26882,7 @@
     },
     {
       "id": "helping-hand",
+      "numericId": 230,
       "name": {
         "en": "Helping Hand",
         "zh": "援助之手"
@@ -26748,6 +26978,7 @@
     },
     {
       "id": "high-speed-tracking",
+      "numericId": 231,
       "name": {
         "en": "High-Speed Tracking",
         "zh": "高速追踪"
@@ -26825,6 +27056,7 @@
     },
     {
       "id": "hit-the-dirt",
+      "numericId": 232,
       "name": {
         "en": "Hit the Dirt",
         "zh": "卧倒"
@@ -26986,6 +27218,7 @@
     },
     {
       "id": "hound-grizzer",
+      "numericId": 233,
       "name": {
         "en": "Hound and Grizzer",
         "zh": "猎犬与咧嘴"
@@ -27119,6 +27352,7 @@
     },
     {
       "id": "hunter",
+      "numericId": 234,
       "name": {
         "en": "Hunter",
         "zh": "猎人"
@@ -27235,6 +27469,7 @@
     },
     {
       "id": "ig100-magnaguard-pilot",
+      "numericId": 235,
       "name": {
         "en": "IG-100 MagnaGuard Pilot",
         "zh": "IG-100磁卫驾驶员"
@@ -27341,6 +27576,7 @@
     },
     {
       "id": "imperial-comms",
+      "numericId": 236,
       "name": {
         "en": "Imperial Comms Technician",
         "zh": "帝国通信技师"
@@ -27450,6 +27686,7 @@
     },
     {
       "id": "imperial-hammers",
+      "numericId": 237,
       "name": {
         "en": "Imperial Hammers Elite Armor Pilot",
         "zh": "帝国之锤精锐驾驶员"
@@ -27559,6 +27796,7 @@
     },
     {
       "id": "imperial-officer",
+      "numericId": 238,
       "name": {
         "en": "Imperial Officer",
         "zh": "帝国军官"
@@ -27685,6 +27923,7 @@
     },
     {
       "id": "imperial-probe-droid",
+      "numericId": 239,
       "name": {
         "en": "Imperial Probe Droid",
         "zh": "帝国探测机器人"
@@ -27828,6 +28067,7 @@
     },
     {
       "id": "infantry-support",
+      "numericId": 240,
       "name": {
         "en": "Infantry Support",
         "zh": "步兵支援"
@@ -27929,6 +28169,7 @@
     },
     {
       "id": "inquisitorus-training",
+      "numericId": 241,
       "name": {
         "en": "Inquisitorius Training",
         "zh": "判官庭训练"
@@ -28047,6 +28288,7 @@
     },
     {
       "id": "isp-327",
+      "numericId": 242,
       "name": {
         "en": "327th Star Corps Pilot",
         "zh": "第327星际军团驾驶员"
@@ -28138,6 +28380,7 @@
     },
     {
       "id": "isp-rocket",
+      "numericId": 243,
       "name": {
         "en": "Twin Missile Pods",
         "zh": "双联导弹舱"
@@ -28260,6 +28503,7 @@
     },
     {
       "id": "isp-twin",
+      "numericId": 244,
       "name": {
         "en": "Twin Beam Cannons",
         "zh": "双联光束炮"
@@ -28370,6 +28614,7 @@
     },
     {
       "id": "isp-twin-blaster",
+      "numericId": 245,
       "name": {
         "en": "Twin Blaster Cannons",
         "zh": "双联爆能炮"
@@ -28493,6 +28738,7 @@
     },
     {
       "id": "jedi-consular",
+      "numericId": 246,
       "name": {
         "en": "Jedi Consular",
         "zh": "绝地领事"
@@ -28659,6 +28905,7 @@
     },
     {
       "id": "jedi-guardian",
+      "numericId": 247,
       "name": {
         "en": "Jedi Guardian",
         "zh": "绝地守护者"
@@ -28803,6 +29050,7 @@
     },
     {
       "id": "jedi-negotiator",
+      "numericId": 248,
       "name": {
         "en": "Jedi Negotiator",
         "zh": "绝地谈判者"
@@ -28957,6 +29205,7 @@
     },
     {
       "id": "jyn-erso",
+      "numericId": 249,
       "name": {
         "en": "Jyn Erso",
         "zh": "琴·厄索"
@@ -29119,6 +29368,7 @@
     },
     {
       "id": "k2s0-blaster",
+      "numericId": 250,
       "name": {
         "en": "Jyn's SE-14 Blaster",
         "zh": "琴的SE-14爆能枪"
@@ -29266,6 +29516,7 @@
     },
     {
       "id": "kallus",
+      "numericId": 251,
       "name": {
         "en": "Agent Kallus",
         "zh": "卡勒斯特工"
@@ -29434,6 +29685,7 @@
     },
     {
       "id": "katarn-armor",
+      "numericId": 252,
       "name": {
         "en": "Katarn Pattern Armor",
         "zh": "卡塔恩型护甲"
@@ -29530,6 +29782,7 @@
     },
     {
       "id": "ki-adi-mundi-leader",
+      "numericId": 253,
       "name": {
         "en": "Ki-Adi-Mundi",
         "zh": "基-阿迪-芒迪"
@@ -29682,6 +29935,7 @@
     },
     {
       "id": "kraken",
+      "numericId": 254,
       "name": {
         "en": "Kraken",
         "zh": "克拉肯"
@@ -29847,6 +30101,7 @@
     },
     {
       "id": "landspeeder-ion",
+      "numericId": 255,
       "name": {
         "en": "M-45 Ion Blaster",
         "zh": "M-45离子爆能炮"
@@ -29965,6 +30220,7 @@
     },
     {
       "id": "landspeeder-medium",
+      "numericId": 256,
       "name": {
         "en": "Mark II Medium Blaster",
         "zh": "II型中型爆能炮"
@@ -30072,6 +30328,7 @@
     },
     {
       "id": "lightsaber",
+      "numericId": 257,
       "name": {
         "en": "Lightsaber",
         "zh": "光剑"
@@ -30220,6 +30477,7 @@
     },
     {
       "id": "limiter-override",
+      "numericId": 258,
       "name": {
         "en": "•Limiter Override",
         "zh": "限幅器解除"
@@ -30321,6 +30579,7 @@
     },
     {
       "id": "logistical-prowess",
+      "numericId": 259,
       "name": {
         "en": "Logistical Prowess",
         "zh": "后勤专长"
@@ -30424,6 +30683,7 @@
     },
     {
       "id": "lok-duk",
+      "numericId": 260,
       "name": {
         "en": "Lok Durd",
         "zh": "洛克·杜尔德"
@@ -30534,6 +30794,7 @@
     },
     {
       "id": "long-rifle-pirate",
+      "numericId": 261,
       "name": {
         "en": "Long Rifle Pirate",
         "zh": "长步枪海盗"
@@ -30644,6 +30905,7 @@
     },
     {
       "id": "longgun",
+      "numericId": 262,
       "name": {
         "en": "Long Gun Wookiee",
         "zh": "长枪伍基人"
@@ -30759,6 +31021,7 @@
     },
     {
       "id": "luke-skywalker",
+      "numericId": 263,
       "name": {
         "en": "Luke Skywalker",
         "zh": "卢克·天行者"
@@ -30929,6 +31192,7 @@
     },
     {
       "id": "lying-in-wait",
+      "numericId": 264,
       "name": {
         "en": "Lying in Wait",
         "zh": "卧倒待命"
@@ -31047,6 +31311,7 @@
     },
     {
       "id": "mace-windu-leader",
+      "numericId": 265,
       "name": {
         "en": "Mace windu",
         "zh": "梅斯·温杜"
@@ -31197,6 +31462,7 @@
     },
     {
       "id": "magna-miniature",
+      "numericId": 266,
       "name": {
         "en": "IG-100 MagnaGuard",
         "zh": "IG-100磁卫"
@@ -31292,6 +31558,7 @@
     },
     {
       "id": "magna-rps",
+      "numericId": 267,
       "name": {
         "en": "RPS-6 MagnaGuard",
         "zh": "RPS-6磁卫"
@@ -31413,6 +31680,7 @@
     },
     {
       "id": "magna-whip",
+      "numericId": 268,
       "name": {
         "en": "Electro-Whip MagnaGuard",
         "zh": "电鞭磁卫"
@@ -31533,6 +31801,7 @@
     },
     {
       "id": "mandalorian-initiate-squad",
+      "numericId": 269,
       "name": {
         "en": "Mandalorian Initiate Squad",
         "zh": "曼达洛新兵小队"
@@ -31649,6 +31918,7 @@
     },
     {
       "id": "mandalorian-rockets-clan",
+      "numericId": 270,
       "name": {
         "en": "•Jetpack Rockets",
         "zh": "喷气背包火箭"
@@ -31760,6 +32030,7 @@
     },
     {
       "id": "mandalorian-shields-clan",
+      "numericId": 271,
       "name": {
         "en": "Combat Shields",
         "zh": "战斗护盾"
@@ -31880,6 +32151,7 @@
     },
     {
       "id": "master-duelist",
+      "numericId": 272,
       "name": {
         "en": "•Jedi Training, Master Duelist",
         "zh": "绝地训练，决斗大师"
@@ -32006,6 +32278,7 @@
     },
     {
       "id": "mertalizer",
+      "numericId": 273,
       "name": {
         "en": "Mertalizer Dark Trooper",
         "zh": "粉碎炮黑暗士兵"
@@ -32115,6 +32388,7 @@
     },
     {
       "id": "micro-grenade-launcher",
+      "numericId": 274,
       "name": {
         "en": "Micro-Grenade Launcher",
         "zh": "微型榴弹发射器"
@@ -32225,6 +32499,7 @@
     },
     {
       "id": "mobility-upgrade",
+      "numericId": 275,
       "name": {
         "en": "Mobility Upgrade",
         "zh": "机动性升级"
@@ -32333,6 +32608,7 @@
     },
     {
       "id": "obiwan-heavy",
+      "numericId": 276,
       "name": {
         "en": "Obi-Wan Kenobi",
         "zh": "欧比-旺·克诺比"
@@ -32492,6 +32768,7 @@
     },
     {
       "id": "optimized-task-flow",
+      "numericId": 277,
       "name": {
         "en": "Optimized Task Flow",
         "zh": "优化任务流程"
@@ -32596,6 +32873,7 @@
     },
     {
       "id": "ordnance-ap",
+      "numericId": 278,
       "name": {
         "en": "Armor-Piercing Shells",
         "zh": "穿甲弹"
@@ -32697,6 +32975,7 @@
     },
     {
       "id": "ordnance-bunker",
+      "numericId": 279,
       "name": {
         "en": "Bunker Buster Shells",
         "zh": "掩体破坏弹"
@@ -32800,6 +33079,7 @@
     },
     {
       "id": "ordnance-energy",
+      "numericId": 280,
       "name": {
         "en": "High-Energy Shells",
         "zh": "高能炮弹"
@@ -32906,6 +33186,7 @@
     },
     {
       "id": "outer-rim-jockey",
+      "numericId": 281,
       "name": {
         "en": "Outer Rim Speeder Jockey",
         "zh": "外环飞艇驾驶员"
@@ -33017,6 +33298,7 @@
     },
     {
       "id": "overcharged-blaster-packs",
+      "numericId": 282,
       "name": {
         "en": "Overcharged Blaster Packs",
         "zh": "超载爆能弹药包"
@@ -33098,6 +33380,7 @@
     },
     {
       "id": "overclock",
+      "numericId": 283,
       "name": {
         "en": "•Overclock",
         "zh": "超频"
@@ -33198,6 +33481,7 @@
     },
     {
       "id": "paz-vizzla",
+      "numericId": 284,
       "name": {
         "en": "Paz Vizsla",
         "zh": "帕兹·维兹拉"
@@ -33359,6 +33643,7 @@
     },
     {
       "id": "peacekeeping-mission",
+      "numericId": 285,
       "name": {
         "en": "•Jedi Training, Peacekeeping Mission",
         "zh": "绝地训练，维和任务"
@@ -33479,6 +33764,7 @@
     },
     {
       "id": "personal-combat-shield",
+      "numericId": 286,
       "name": {
         "en": "•Personal Combat Shield",
         "zh": "个人战斗护盾"
@@ -33621,6 +33907,7 @@
     },
     {
       "id": "personnel-blacksun-miniature",
+      "numericId": 287,
       "name": {
         "en": "Black Sun Enforcer",
         "zh": "黑日执法者"
@@ -33732,6 +34019,7 @@
     },
     {
       "id": "personnel-blacksun-vigo",
+      "numericId": 288,
       "name": {
         "en": "Black Sun Vigo",
         "zh": "黑日维戈"
@@ -33846,6 +34134,7 @@
     },
     {
       "id": "personnel-pyke-capo",
+      "numericId": 289,
       "name": {
         "en": "Pyke Syndicate Capo",
         "zh": "派克辛迪加头目"
@@ -33956,6 +34245,7 @@
     },
     {
       "id": "personnel-pyke-miniature",
+      "numericId": 290,
       "name": {
         "en": "Pyke Syndicate Foot Soldier",
         "zh": "派克辛迪加步兵"
@@ -34070,6 +34360,7 @@
     },
     {
       "id": "pilot-frenzied",
+      "numericId": 291,
       "name": {
         "en": "Frenzied Gunner",
         "zh": "狂热炮手"
@@ -34186,6 +34477,7 @@
     },
     {
       "id": "pilot-raid-leader",
+      "numericId": 292,
       "name": {
         "en": "Raiding Party Leader",
         "zh": "劫掠小队队长"
@@ -34335,6 +34627,7 @@
     },
     {
       "id": "pirate-captain",
+      "numericId": 293,
       "name": {
         "en": "Pirate Captain",
         "zh": "海盗船长"
@@ -34439,6 +34732,7 @@
     },
     {
       "id": "pk-worker",
+      "numericId": 294,
       "name": {
         "en": "PK-Series Worker Droid",
         "zh": "PK系列劳工机器人"
@@ -34574,6 +34868,7 @@
     },
     {
       "id": "platoon-commander",
+      "numericId": 295,
       "name": {
         "en": "Platoon Commander",
         "zh": "排长"
@@ -34701,6 +34996,7 @@
     },
     {
       "id": "plo-koon",
+      "numericId": 296,
       "name": {
         "en": "Plo Koon",
         "zh": "普洛·孔"
@@ -34829,6 +35125,7 @@
     },
     {
       "id": "plo-koon-leader",
+      "numericId": 297,
       "name": {
         "en": "Plo Koon",
         "zh": "普洛·孔"
@@ -34987,6 +35284,7 @@
     },
     {
       "id": "programmed-loyalty",
+      "numericId": 298,
       "name": {
         "en": "Programmed Loyalty",
         "zh": "忠诚程序"
@@ -35090,6 +35388,7 @@
     },
     {
       "id": "programming-attack",
+      "numericId": 299,
       "name": {
         "en": "Attack Protocols",
         "zh": "攻击协议"
@@ -35205,6 +35504,7 @@
     },
     {
       "id": "programming-defense",
+      "numericId": 300,
       "name": {
         "en": "Defense Protocols",
         "zh": "防御协议"
@@ -35325,6 +35625,7 @@
     },
     {
       "id": "programming-engagement",
+      "numericId": 301,
       "name": {
         "en": "Engagement Protocols",
         "zh": "交战协议"
@@ -35435,6 +35736,7 @@
     },
     {
       "id": "proven-tactician",
+      "numericId": 302,
       "name": {
         "en": "Proven Tactician",
         "zh": "久经考验的战术家"
@@ -35565,6 +35867,7 @@
     },
     {
       "id": "pyke-syndicate-crew",
+      "numericId": 303,
       "name": {
         "en": "Pyke Syndicate Crew",
         "zh": "派克辛迪加乘员"
@@ -35658,6 +35961,7 @@
     },
     {
       "id": "pyke-syndicate-squad",
+      "numericId": 304,
       "name": {
         "en": "Pyke Syndicate Foot Soldier Squad",
         "zh": "派克辛迪加步兵小队"
@@ -35778,6 +36082,7 @@
     },
     {
       "id": "r4-astromech",
+      "numericId": 305,
       "name": {
         "en": "R4 Astromech",
         "zh": "R4宇航机器人"
@@ -35900,6 +36205,7 @@
     },
     {
       "id": "range-trooper-dlt20a",
+      "numericId": 306,
       "name": {
         "en": "DLT-20A Range Trooper",
         "zh": "DLT-20A边疆士兵"
@@ -36010,6 +36316,7 @@
     },
     {
       "id": "range-trooper-miniature",
+      "numericId": 307,
       "name": {
         "en": "Range Trooper",
         "zh": "边疆士兵"
@@ -36107,6 +36414,7 @@
     },
     {
       "id": "range-trooper-t21a",
+      "numericId": 308,
       "name": {
         "en": "T-21A Range Trooper",
         "zh": "T-21A边疆士兵"
@@ -36216,6 +36524,7 @@
     },
     {
       "id": "rebel-astromech",
+      "numericId": 309,
       "name": {
         "en": "Astromech Droid",
         "zh": "宇航技工机器人"
@@ -36331,6 +36640,7 @@
     },
     {
       "id": "rebel-captain",
+      "numericId": 310,
       "name": {
         "en": "Rebel Trooper Captain",
         "zh": "义军士兵上尉"
@@ -36445,6 +36755,7 @@
     },
     {
       "id": "rebel-cm093",
+      "numericId": 311,
       "name": {
         "en": "CM-O/93 Trooper",
         "zh": "CM-O/93士兵"
@@ -36556,6 +36867,7 @@
     },
     {
       "id": "rebel-comms",
+      "numericId": 312,
       "name": {
         "en": "Rebel Comms Technician",
         "zh": "义军通信技师"
@@ -36668,6 +36980,7 @@
     },
     {
       "id": "rebel-dlt-20",
+      "numericId": 313,
       "name": {
         "en": "DLT-20A Trooper",
         "zh": "DLT-20A士兵"
@@ -36779,6 +37092,7 @@
     },
     {
       "id": "rebel-hotshot-pilot",
+      "numericId": 314,
       "name": {
         "en": "Hotshot Pilot",
         "zh": "王牌驾驶员"
@@ -36889,6 +37203,7 @@
     },
     {
       "id": "rebel-mpl57",
+      "numericId": 315,
       "name": {
         "en": "MPL-57 Ion Trooper",
         "zh": "MPL-57离子炮士兵"
@@ -37008,6 +37323,7 @@
     },
     {
       "id": "rebel-officer",
+      "numericId": 316,
       "name": {
         "en": "Rebel Officer",
         "zh": "义军军官"
@@ -37126,6 +37442,7 @@
     },
     {
       "id": "rebel-specialist",
+      "numericId": 317,
       "name": {
         "en": "Rebel Trooper Specialist",
         "zh": "义军士兵专业兵"
@@ -37235,6 +37552,7 @@
     },
     {
       "id": "rebel-squad",
+      "numericId": 318,
       "name": {
         "en": "Rebel Trooper Squad",
         "zh": "义军士兵小队"
@@ -37359,6 +37677,7 @@
     },
     {
       "id": "rebel-sx21-trooper",
+      "numericId": 319,
       "name": {
         "en": "SX-21 Trooper",
         "zh": "SX-21士兵"
@@ -37470,6 +37789,7 @@
     },
     {
       "id": "rebel-trooper-miniature",
+      "numericId": 320,
       "name": {
         "en": "Rebel Trooper",
         "zh": "义军士兵"
@@ -37568,6 +37888,7 @@
     },
     {
       "id": "rebel-veteran",
+      "numericId": 321,
       "name": {
         "en": "Rebel Veteran",
         "zh": "义军老兵"
@@ -37666,6 +37987,7 @@
     },
     {
       "id": "rebel-z6",
+      "numericId": 322,
       "name": {
         "en": "Z-6 Trooper",
         "zh": "Z-6士兵"
@@ -37772,6 +38094,7 @@
     },
     {
       "id": "reluctant-hero",
+      "numericId": 323,
       "name": {
         "en": "Reluctant Hero",
         "zh": "不情愿的英雄"
@@ -37901,6 +38224,7 @@
     },
     {
       "id": "repeating-blaster",
+      "numericId": 324,
       "name": {
         "en": "Repeating Blaster",
         "zh": "连发爆能枪"
@@ -38046,6 +38370,7 @@
     },
     {
       "id": "riot-squad-kx",
+      "numericId": 325,
       "name": {
         "en": "KX-Series Security Droids",
         "zh": "KX系列安保机器人"
@@ -38157,6 +38482,7 @@
     },
     {
       "id": "riot-squad-marksman",
+      "numericId": 326,
       "name": {
         "en": "Stormtrooper Marksman",
         "zh": "冲锋队神射手"
@@ -38253,6 +38579,7 @@
     },
     {
       "id": "rook-kast-clan",
+      "numericId": 327,
       "name": {
         "en": "Rook Kast",
         "zh": "鲁克·卡斯特"
@@ -38401,6 +38728,7 @@
     },
     {
       "id": "rt-97c-blaster",
+      "numericId": 328,
       "name": {
         "en": "RT-97C Blaster Rifle",
         "zh": "RT-97C爆能步枪"
@@ -38503,6 +38831,7 @@
     },
     {
       "id": "ryder-azadi",
+      "numericId": 329,
       "name": {
         "en": "Ryder Azadi",
         "zh": "赖德·阿扎迪"
@@ -38615,6 +38944,7 @@
     },
     {
       "id": "saber-beam",
+      "numericId": 330,
       "name": {
         "en": "Twin Laser Turret",
         "zh": "双联激光炮塔"
@@ -38722,6 +39052,7 @@
     },
     {
       "id": "saber-beam-turret",
+      "numericId": 331,
       "name": {
         "en": "Beam Turret",
         "zh": "光束炮塔"
@@ -38829,6 +39160,7 @@
     },
     {
       "id": "sabine-darksaber",
+      "numericId": 332,
       "name": {
         "en": "The Darksaber",
         "zh": "暗剑"
@@ -39018,6 +39350,7 @@
     },
     {
       "id": "sabine-wren",
+      "numericId": 333,
       "name": {
         "en": "Sabine Wren",
         "zh": "萨宾·雷恩"
@@ -39151,6 +39484,7 @@
     },
     {
       "id": "saxon-darksaber",
+      "numericId": 334,
       "name": {
         "en": "The Darksaber",
         "zh": "暗剑"
@@ -39341,6 +39675,7 @@
     },
     {
       "id": "scout-saboteur",
+      "numericId": 335,
       "name": {
         "en": "Sonic Charge Saboteur",
         "zh": "声波炸药爆破手"
@@ -39520,6 +39855,7 @@
     },
     {
       "id": "security-detail",
+      "numericId": 336,
       "name": {
         "en": "Security Detail",
         "zh": "警卫分队"
@@ -39627,6 +39963,7 @@
     },
     {
       "id": "seek-and-destroy",
+      "numericId": 337,
       "name": {
         "en": "•Seek and Destroy",
         "zh": "搜寻并摧毁"
@@ -39748,6 +40085,7 @@
     },
     {
       "id": "seeker-droid",
+      "numericId": 338,
       "name": {
         "en": "Seeker Droid",
         "zh": "追踪机器人"
@@ -39873,6 +40211,7 @@
     },
     {
       "id": "seventh-sister",
+      "numericId": 339,
       "name": {
         "en": "Seventh Sister",
         "zh": "七妹"
@@ -40028,6 +40367,7 @@
     },
     {
       "id": "shaak-ti",
+      "numericId": 340,
       "name": {
         "en": "Shaak Ti",
         "zh": "莎克·蒂"
@@ -40196,6 +40536,7 @@
     },
     {
       "id": "shore-squad",
+      "numericId": 341,
       "name": {
         "en": "Shoretrooper Squad",
         "zh": "海岸士兵小队"
@@ -40320,6 +40661,7 @@
     },
     {
       "id": "shore-t21b",
+      "numericId": 342,
       "name": {
         "en": "T-21B Shoretrooper",
         "zh": "T-21B海岸士兵"
@@ -40483,6 +40825,7 @@
     },
     {
       "id": "shore-trooper",
+      "numericId": 343,
       "name": {
         "en": "Shoretrooper",
         "zh": "海岸士兵"
@@ -40581,6 +40924,7 @@
     },
     {
       "id": "shriv",
+      "numericId": 344,
       "name": {
         "en": "Shriv Suurgav",
         "zh": "施里夫·苏尔加夫"
@@ -40721,6 +41065,7 @@
     },
     {
       "id": "shukur-05-repeater",
+      "numericId": 345,
       "name": {
         "en": "SHUKUR-05 Repeater",
         "zh": "SHUKUR-05连发枪"
@@ -40825,6 +41170,7 @@
     },
     {
       "id": "sleeper-astromech",
+      "numericId": 346,
       "name": {
         "en": "Astromech",
         "zh": "宇航机器人"
@@ -40930,6 +41276,7 @@
     },
     {
       "id": "sleeper-marksman",
+      "numericId": 347,
       "name": {
         "en": "Rebel Marksman",
         "zh": "义军神射手"
@@ -41026,6 +41373,7 @@
     },
     {
       "id": "sliced-comms",
+      "numericId": 348,
       "name": {
         "en": "•Sliced Comms",
         "zh": "通信入侵"
@@ -41123,6 +41471,7 @@
     },
     {
       "id": "sm-9-frag",
+      "numericId": 349,
       "name": {
         "en": "SM-9 Frag Launcher Dark Trooper",
         "zh": "SM-9破片发射器黑暗士兵"
@@ -41240,6 +41589,7 @@
     },
     {
       "id": "snow-flame",
+      "numericId": 350,
       "name": {
         "en": "Flametrooper",
         "zh": "火焰士兵"
@@ -41353,6 +41703,7 @@
     },
     {
       "id": "snow-ion",
+      "numericId": 351,
       "name": {
         "en": "T-7 Ion Snowtrooper",
         "zh": "T-7离子雪地士兵"
@@ -41472,6 +41823,7 @@
     },
     {
       "id": "snow-squad",
+      "numericId": 352,
       "name": {
         "en": "Snowtrooper Squad",
         "zh": "雪地士兵小队"
@@ -41596,6 +41948,7 @@
     },
     {
       "id": "snowtrooper",
+      "numericId": 353,
       "name": {
         "en": "Snowtrooper",
         "zh": "雪地士兵"
@@ -41694,6 +42047,7 @@
     },
     {
       "id": "special-t21",
+      "numericId": 354,
       "name": {
         "en": "T-21 Special Forces Trooper",
         "zh": "T-21特种部队士兵"
@@ -41807,6 +42161,7 @@
     },
     {
       "id": "spider-flame",
+      "numericId": 355,
       "name": {
         "en": "Nose-Mounted Flamethrower",
         "zh": "机鼻火焰喷射器"
@@ -41919,6 +42274,7 @@
     },
     {
       "id": "spider-ion",
+      "numericId": 356,
       "name": {
         "en": "Nose-Mounted Ion Blaster",
         "zh": "机鼻离子爆能炮"
@@ -42037,6 +42393,7 @@
     },
     {
       "id": "spider-laser",
+      "numericId": 357,
       "name": {
         "en": "Nose-Mounted Laser Cannon",
         "zh": "机鼻激光炮"
@@ -42147,6 +42504,7 @@
     },
     {
       "id": "squad-leader-ahsoka",
+      "numericId": 358,
       "name": {
         "en": "Ahsoka Tano, Jedi Padawan",
         "zh": "阿索卡·塔诺，绝地学徒"
@@ -42304,6 +42662,7 @@
     },
     {
       "id": "squadron-leader",
+      "numericId": 359,
       "name": {
         "en": "Squadron Leader",
         "zh": "载具中队队长"
@@ -42429,6 +42788,7 @@
     },
     {
       "id": "stormtrooper",
+      "numericId": 360,
       "name": {
         "en": "Stormtrooper",
         "zh": "冲锋队士兵"
@@ -42529,6 +42889,7 @@
     },
     {
       "id": "stormtrooper-captain",
+      "numericId": 361,
       "name": {
         "en": "Stormtrooper Captain",
         "zh": "冲锋队上尉"
@@ -42646,6 +43007,7 @@
     },
     {
       "id": "stormtrooper-dlt19",
+      "numericId": 362,
       "name": {
         "en": "DLT-19 Stormtrooper",
         "zh": "DLT-19冲锋队士兵"
@@ -42816,6 +43178,7 @@
     },
     {
       "id": "stormtrooper-hh12",
+      "numericId": 363,
       "name": {
         "en": "HH-12 Stormtrooper",
         "zh": "HH-12冲锋队士兵"
@@ -42984,6 +43347,7 @@
     },
     {
       "id": "stormtrooper-rt97c",
+      "numericId": 364,
       "name": {
         "en": "RT-97C Stormtrooper",
         "zh": "RT-97C冲锋队士兵"
@@ -43149,6 +43513,7 @@
     },
     {
       "id": "stormtrooper-specialist",
+      "numericId": 365,
       "name": {
         "en": "Stormtrooper Specialist",
         "zh": "冲锋队专业兵"
@@ -43260,6 +43625,7 @@
     },
     {
       "id": "stormtrooper-squad",
+      "numericId": 366,
       "name": {
         "en": "Stormtrooper Squad",
         "zh": "冲锋队小队"
@@ -43386,6 +43752,7 @@
     },
     {
       "id": "stormtrooper-t21",
+      "numericId": 367,
       "name": {
         "en": "T-21 Stormtrooper",
         "zh": "T-21冲锋队士兵"
@@ -43551,6 +43918,7 @@
     },
     {
       "id": "strategic-programming",
+      "numericId": 368,
       "name": {
         "en": "Strategic Programming",
         "zh": "战略程序"
@@ -43657,6 +44025,7 @@
     },
     {
       "id": "strong-in-the-force",
+      "numericId": 369,
       "name": {
         "en": "Strong in the Force",
         "zh": "原力强大"
@@ -43788,6 +44157,7 @@
     },
     {
       "id": "stuck-in",
+      "numericId": 370,
       "name": {
         "en": "Stuck In",
         "zh": "坚守不退"
@@ -43871,6 +44241,7 @@
     },
     {
       "id": "stun-baton",
+      "numericId": 371,
       "name": {
         "en": "Stun Baton",
         "zh": "电击警棍"
@@ -44006,6 +44377,7 @@
     },
     {
       "id": "super-commando-gunslinger",
+      "numericId": 372,
       "name": {
         "en": "Super Commando Gunslinger",
         "zh": "超级突击队快枪手"
@@ -44130,6 +44502,7 @@
     },
     {
       "id": "super-commando-marksman",
+      "numericId": 373,
       "name": {
         "en": "Super Commando Marksman",
         "zh": "超级突击队神射手"
@@ -44242,6 +44615,7 @@
     },
     {
       "id": "super-commando-marksman-super",
+      "numericId": 374,
       "name": {
         "en": "Super Commando Marksman",
         "zh": "超级突击队神射手"
@@ -44354,6 +44728,7 @@
     },
     {
       "id": "superior-equipment",
+      "numericId": 375,
       "name": {
         "en": "•Superior Equipment",
         "zh": "精良装备"
@@ -44462,6 +44837,7 @@
     },
     {
       "id": "t-21-blaster",
+      "numericId": 376,
       "name": {
         "en": "T-21 Blaster Rifle",
         "zh": "T-21爆能步枪"
@@ -44569,6 +44945,7 @@
     },
     {
       "id": "t-series-pilot",
+      "numericId": 377,
       "name": {
         "en": "T-series Tactical Droid Pilot",
         "zh": "T系列战术机器人驾驶员"
@@ -44683,6 +45060,7 @@
     },
     {
       "id": "t-series-tactical",
+      "numericId": 378,
       "name": {
         "en": "T-Series Tactical Droid",
         "zh": "T系列战术机器人"
@@ -44842,6 +45220,7 @@
     },
     {
       "id": "tactical-acument",
+      "numericId": 379,
       "name": {
         "en": "•Jedi Training, Tactical Acumen",
         "zh": "绝地训练，战术洞察"
@@ -44958,6 +45337,7 @@
     },
     {
       "id": "tank-hunting-munitions",
+      "numericId": 380,
       "name": {
         "en": "Tank Hunting Munitions",
         "zh": "坦克杀手弹药"
@@ -45039,6 +45419,7 @@
     },
     {
       "id": "targeting-relay",
+      "numericId": 381,
       "name": {
         "en": "•Targeting Relay",
         "zh": "瞄准中继器"
@@ -45133,6 +45514,7 @@
     },
     {
       "id": "tech",
+      "numericId": 382,
       "name": {
         "en": "Tech",
         "zh": "技师"
@@ -45257,6 +45639,7 @@
     },
     {
       "id": "the-armorer",
+      "numericId": 383,
       "name": {
         "en": "The Armorer",
         "zh": "军械师"
@@ -45409,6 +45792,7 @@
     },
     {
       "id": "thermal-detonator",
+      "numericId": 384,
       "name": {
         "en": "Thermal Detonator",
         "zh": "热熔炸弹"
@@ -45530,6 +45914,7 @@
     },
     {
       "id": "tie-pilot",
+      "numericId": 385,
       "name": {
         "en": "Imperial TIE Pilot",
         "zh": "帝国TIE驾驶员"
@@ -45627,6 +46012,7 @@
     },
     {
       "id": "tip-of-the-spear",
+      "numericId": 386,
       "name": {
         "en": "Tip of the Spear",
         "zh": "矛锋"
@@ -45771,6 +46157,7 @@
     },
     {
       "id": "tod-advanced-drill",
+      "numericId": 387,
       "name": {
         "en": "Commendation: Advanced Drill",
         "zh": "嘉奖：进阶操练"
@@ -45844,6 +46231,7 @@
     },
     {
       "id": "tod-assault-badge",
+      "numericId": 388,
       "name": {
         "en": "Commendation: Assault Badge",
         "zh": "嘉奖：突击徽章"
@@ -45918,6 +46306,7 @@
     },
     {
       "id": "tod-battle-shaken",
+      "numericId": 389,
       "name": {
         "en": "Setback: Battle-Shaken",
         "zh": "挫折：战斗惊惶"
@@ -45981,6 +46370,7 @@
     },
     {
       "id": "tod-behind-schedule",
+      "numericId": 390,
       "name": {
         "en": "Setback: Behind Schedule",
         "zh": "挫折：行动迟缓"
@@ -46055,6 +46445,7 @@
     },
     {
       "id": "tod-born-to-lead",
+      "numericId": 391,
       "name": {
         "en": "High Commendation: Born to Lead",
         "zh": "高级嘉奖：天生领袖"
@@ -46129,6 +46520,7 @@
     },
     {
       "id": "tod-captious",
+      "numericId": 392,
       "name": {
         "en": "Defining Trait: Captious Command",
         "zh": "特质：苛刻指挥"
@@ -46189,6 +46581,7 @@
     },
     {
       "id": "tod-compromised",
+      "numericId": 393,
       "name": {
         "en": "Setback: Compromised",
         "zh": "挫折：受制于人"
@@ -46269,6 +46662,7 @@
     },
     {
       "id": "tod-conspicuous",
+      "numericId": 394,
       "name": {
         "en": "Defining Trait: Conspicuous",
         "zh": "特质：引人注目"
@@ -46350,6 +46744,7 @@
     },
     {
       "id": "tod-dedicated-to-the-cause",
+      "numericId": 395,
       "name": {
         "en": "High Commendation: Dedicated to the Cause",
         "zh": "高级嘉奖：献身事业"
@@ -46422,6 +46817,7 @@
     },
     {
       "id": "tod-disillusioned",
+      "numericId": 396,
       "name": {
         "en": "Defining Trait: Disillusioned",
         "zh": "特质：理想破灭"
@@ -46495,6 +46891,7 @@
     },
     {
       "id": "tod-downtrodden1",
+      "numericId": 397,
       "name": {
         "en": "Setback: Downtrodden 1",
         "zh": "挫折：意志消沉1"
@@ -46556,6 +46953,7 @@
     },
     {
       "id": "tod-downtrodden2",
+      "numericId": 398,
       "name": {
         "en": "Setback: Downtrodden 2",
         "zh": "挫折：意志消沉2"
@@ -46617,6 +47015,7 @@
     },
     {
       "id": "tod-downtrodden3",
+      "numericId": 399,
       "name": {
         "en": "Setback: Downtrodden 3",
         "zh": "挫折：意志消沉3"
@@ -46678,6 +47077,7 @@
     },
     {
       "id": "tod-downtrodden4",
+      "numericId": 400,
       "name": {
         "en": "Setback: Downtrodden 4",
         "zh": "挫折：意志消沉4"
@@ -46739,6 +47139,7 @@
     },
     {
       "id": "tod-downtrodden5",
+      "numericId": 401,
       "name": {
         "en": "Setback: Downtrodden X",
         "zh": "挫折：意志消沉X"
@@ -46800,6 +47201,7 @@
     },
     {
       "id": "tod-embittered",
+      "numericId": 402,
       "name": {
         "en": "Defining Trait: Embittered",
         "zh": "特质：愤懑"
@@ -46875,6 +47277,7 @@
     },
     {
       "id": "tod-expert-pilot",
+      "numericId": 403,
       "name": {
         "en": "Commendation: Expert Pilot",
         "zh": "嘉奖：驾驶专家"
@@ -46952,6 +47355,7 @@
     },
     {
       "id": "tod-extra-equipment",
+      "numericId": 404,
       "name": {
         "en": "Commendation: Extra Equipment",
         "zh": "嘉奖：额外装备"
@@ -47031,6 +47435,7 @@
     },
     {
       "id": "tod-failure-not-an-option",
+      "numericId": 405,
       "name": {
         "en": "Commendation: Failure Is Not an Option",
         "zh": "嘉奖：不容失败"
@@ -47113,6 +47518,7 @@
     },
     {
       "id": "tod-fatigue1",
+      "numericId": 406,
       "name": {
         "en": "Setback: Battle-Fatigue 1",
         "zh": "挫折：战斗疲劳1"
@@ -47176,6 +47582,7 @@
     },
     {
       "id": "tod-fatigue2",
+      "numericId": 407,
       "name": {
         "en": "Setback: Battle-Fatigue 2",
         "zh": "挫折：战斗疲劳2"
@@ -47239,6 +47646,7 @@
     },
     {
       "id": "tod-fatigue3",
+      "numericId": 408,
       "name": {
         "en": "Setback: Battle-Fatigue 3",
         "zh": "挫折：战斗疲劳3"
@@ -47302,6 +47710,7 @@
     },
     {
       "id": "tod-fatigue4",
+      "numericId": 409,
       "name": {
         "en": "Setback: Battle-Fatigue 4",
         "zh": "挫折：战斗疲劳4"
@@ -47365,6 +47774,7 @@
     },
     {
       "id": "tod-fatigue5",
+      "numericId": 410,
       "name": {
         "en": "Setback: Battle-Fatigue X",
         "zh": "挫折：战斗疲劳X"
@@ -47428,6 +47838,7 @@
     },
     {
       "id": "tod-fearsome",
+      "numericId": 411,
       "name": {
         "en": "Commendation: Fearsome",
         "zh": "嘉奖：令人畏惧"
@@ -47502,6 +47913,7 @@
     },
     {
       "id": "tod-feats-of-valor",
+      "numericId": 412,
       "name": {
         "en": "Commendation: Feats of Valor",
         "zh": "嘉奖：英勇事迹"
@@ -47572,6 +47984,7 @@
     },
     {
       "id": "tod-field-modifications",
+      "numericId": 413,
       "name": {
         "en": "Commendation: Field Modifications",
         "zh": "嘉奖：战地改装"
@@ -47651,6 +48064,7 @@
     },
     {
       "id": "tod-flat-footed",
+      "numericId": 414,
       "name": {
         "en": "Setback: Flat Footed",
         "zh": "挫折：措手不及"
@@ -47726,6 +48140,7 @@
     },
     {
       "id": "tod-flexible-response",
+      "numericId": 415,
       "name": {
         "en": "Commendation: Flexible Response",
         "zh": "嘉奖：灵活应对"
@@ -47813,6 +48228,7 @@
     },
     {
       "id": "tod-forward-patrol",
+      "numericId": 416,
       "name": {
         "en": "Commendation: Forward Patrol",
         "zh": "嘉奖：前沿巡逻"
@@ -47881,6 +48297,7 @@
     },
     {
       "id": "tod-go-where-the-money-is",
+      "numericId": 417,
       "name": {
         "en": "Commendation: Go Where the Money Is",
         "zh": "嘉奖：逐利而行"
@@ -47952,6 +48369,7 @@
     },
     {
       "id": "tod-greedy",
+      "numericId": 418,
       "name": {
         "en": "Defining Trait: Greedy",
         "zh": "特质：贪婪"
@@ -48025,6 +48443,7 @@
     },
     {
       "id": "tod-harsh-environemts-gear",
+      "numericId": 419,
       "name": {
         "en": "Commendation: Harsh Environments Gear",
         "zh": "嘉奖：恶劣环境装备"
@@ -48087,6 +48506,7 @@
     },
     {
       "id": "tod-headhunters",
+      "numericId": 420,
       "name": {
         "en": "High Commendation: Headhunters",
         "zh": "高级嘉奖：猎头者"
@@ -48165,6 +48585,7 @@
     },
     {
       "id": "tod-hopeful",
+      "numericId": 421,
       "name": {
         "en": "Commendation: Hopeful",
         "zh": "嘉奖：满怀希望"
@@ -48237,6 +48658,7 @@
     },
     {
       "id": "tod-implacable",
+      "numericId": 422,
       "name": {
         "en": "High Commendation: Implacable",
         "zh": "高级嘉奖：不可动摇"
@@ -48309,6 +48731,7 @@
     },
     {
       "id": "tod-legendary",
+      "numericId": 423,
       "name": {
         "en": "Commendation: Legendary",
         "zh": "嘉奖：传奇"
@@ -48386,6 +48809,7 @@
     },
     {
       "id": "tod-losing-faith",
+      "numericId": 424,
       "name": {
         "en": "Setback: Losing Faith",
         "zh": "挫折：失去信念"
@@ -48457,6 +48881,7 @@
     },
     {
       "id": "tod-lucky-shot",
+      "numericId": 425,
       "name": {
         "en": "High Commendation: Lucky Shot",
         "zh": "高级嘉奖：幸运一击"
@@ -48529,6 +48954,7 @@
     },
     {
       "id": "tod-marksmanship-badge",
+      "numericId": 426,
       "name": {
         "en": "Commendation: Marksmanship Badge",
         "zh": "嘉奖：射击徽章"
@@ -48591,6 +49017,7 @@
     },
     {
       "id": "tod-on-the-backfoot",
+      "numericId": 427,
       "name": {
         "en": "Defining Trait: On the Back Foot",
         "zh": "特质：陷于被动"
@@ -48663,6 +49090,7 @@
     },
     {
       "id": "tod-one-in-a-million",
+      "numericId": 428,
       "name": {
         "en": "Commendation: One in a Million",
         "zh": "嘉奖：百万分之一"
@@ -48724,6 +49152,7 @@
     },
     {
       "id": "tod-personal-shields",
+      "numericId": 429,
       "name": {
         "en": "Commendation: Personal Shields",
         "zh": "嘉奖：个人护盾"
@@ -48801,6 +49230,7 @@
     },
     {
       "id": "tod-rapid-response",
+      "numericId": 430,
       "name": {
         "en": "Commendation: Rapid Response",
         "zh": "嘉奖：快速响应"
@@ -48871,6 +49301,7 @@
     },
     {
       "id": "tod-recon-badge",
+      "numericId": 431,
       "name": {
         "en": "Commendation: Recon Badge",
         "zh": "嘉奖：侦察徽章"
@@ -48945,6 +49376,7 @@
     },
     {
       "id": "tod-resilient",
+      "numericId": 432,
       "name": {
         "en": "Commendation: Resilient",
         "zh": "嘉奖：坚韧"
@@ -49006,6 +49438,7 @@
     },
     {
       "id": "tod-scrambled",
+      "numericId": 433,
       "name": {
         "en": "Setback: Scrambled",
         "zh": "挫折：系统紊乱"
@@ -49084,6 +49517,7 @@
     },
     {
       "id": "tod-self-serving",
+      "numericId": 434,
       "name": {
         "en": "Setback: Self-Serving",
         "zh": "挫折：自利"
@@ -49154,6 +49588,7 @@
     },
     {
       "id": "tod-self-sufficient",
+      "numericId": 435,
       "name": {
         "en": "Commendation: Self-Sufficient",
         "zh": "嘉奖：自给自足"
@@ -49227,6 +49662,7 @@
     },
     {
       "id": "tod-selfless-warden",
+      "numericId": 436,
       "name": {
         "en": "Defining Trait: Selfless Warden",
         "zh": "特质：无私守护者"
@@ -49305,6 +49741,7 @@
     },
     {
       "id": "tod-special-munitions",
+      "numericId": 437,
       "name": {
         "en": "Commendation: Special Munitions",
         "zh": "嘉奖：特种弹药"
@@ -49370,6 +49807,7 @@
     },
     {
       "id": "tod-sterner-stuff",
+      "numericId": 438,
       "name": {
         "en": "Commendation: Sterner Stuff",
         "zh": "嘉奖：钢铁意志"
@@ -49444,6 +49882,7 @@
     },
     {
       "id": "tod-strongpoint-expertise",
+      "numericId": 439,
       "name": {
         "en": "Commendation: Strongpoint Expertise",
         "zh": "嘉奖：据点专家"
@@ -49509,6 +49948,7 @@
     },
     {
       "id": "tod-tunnel-vision",
+      "numericId": 440,
       "name": {
         "en": "Defining Trait: Tunnel Vision",
         "zh": "特质：目光狭隘"
@@ -49572,6 +50012,7 @@
     },
     {
       "id": "tod-unity",
+      "numericId": 441,
       "name": {
         "en": "Commendation: Unity",
         "zh": "嘉奖：团结"
@@ -49648,6 +50089,7 @@
     },
     {
       "id": "tod-unsure",
+      "numericId": 442,
       "name": {
         "en": "Defining Trait: Unsure",
         "zh": "特质：犹豫不决"
@@ -49711,6 +50153,7 @@
     },
     {
       "id": "tod-urban-assault-expert",
+      "numericId": 443,
       "name": {
         "en": "Commendation: Urban Assault Experts",
         "zh": "嘉奖：城市突击专家"
@@ -49787,6 +50230,7 @@
     },
     {
       "id": "tod-veteran-gunners",
+      "numericId": 444,
       "name": {
         "en": "High Commendation: Veteran Gunners",
         "zh": "高级嘉奖：老练炮手"
@@ -49861,6 +50305,7 @@
     },
     {
       "id": "tod-veteran-leader",
+      "numericId": 445,
       "name": {
         "en": "Commendation: Veteran Leader",
         "zh": "嘉奖：老练队长"
@@ -49923,6 +50368,7 @@
     },
     {
       "id": "tod-war-weary",
+      "numericId": 446,
       "name": {
         "en": "Setback: War Weary",
         "zh": "挫折：厌战"
@@ -49995,6 +50441,7 @@
     },
     {
       "id": "tod-weight-of-responsibility",
+      "numericId": 447,
       "name": {
         "en": "Defining Trait: Weight of Responsibility",
         "zh": "特质：责任重担"
@@ -50070,6 +50517,7 @@
     },
     {
       "id": "tod-well-stocked",
+      "numericId": 448,
       "name": {
         "en": "Commendation: Well-Stocked",
         "zh": "嘉奖：补给充足"
@@ -50142,6 +50590,7 @@
     },
     {
       "id": "tod-well-supplied",
+      "numericId": 449,
       "name": {
         "en": "Commendation: Well Supplied",
         "zh": "嘉奖：物资丰裕"
@@ -50220,6 +50669,7 @@
     },
     {
       "id": "training-duck",
+      "numericId": 450,
       "name": {
         "en": "Duck and Cover",
         "zh": "卧倒掩护"
@@ -50294,6 +50744,7 @@
     },
     {
       "id": "training-dug-in",
+      "numericId": 451,
       "name": {
         "en": "Dug In",
         "zh": "掘壕固守"
@@ -50409,6 +50860,7 @@
     },
     {
       "id": "training-endurance",
+      "numericId": 452,
       "name": {
         "en": "Endurance",
         "zh": "耐力"
@@ -50482,6 +50934,7 @@
     },
     {
       "id": "training-fray",
+      "numericId": 453,
       "name": {
         "en": "Into the Fray",
         "zh": "投身战场"
@@ -50556,6 +51009,7 @@
     },
     {
       "id": "training-hunt",
+      "numericId": 454,
       "name": {
         "en": "On the Hunt",
         "zh": "猎杀行动"
@@ -50631,6 +51085,7 @@
     },
     {
       "id": "training-imperial-march",
+      "numericId": 455,
       "name": {
         "en": "Imperial March",
         "zh": "帝国行军"
@@ -50771,6 +51226,7 @@
     },
     {
       "id": "training-mission-objective",
+      "numericId": 456,
       "name": {
         "en": "Mission Objective",
         "zh": "任务目标"
@@ -50859,6 +51315,7 @@
     },
     {
       "id": "training-offensive",
+      "numericId": 457,
       "name": {
         "en": "Offensive Push",
         "zh": "攻势推进"
@@ -50948,6 +51405,7 @@
     },
     {
       "id": "training-overwatch",
+      "numericId": 458,
       "name": {
         "en": "Overwatch",
         "zh": "警戒监视"
@@ -51034,6 +51492,7 @@
     },
     {
       "id": "training-protector",
+      "numericId": 459,
       "name": {
         "en": "Protector",
         "zh": "守护者"
@@ -51113,6 +51572,7 @@
     },
     {
       "id": "training-seize",
+      "numericId": 460,
       "name": {
         "en": "Seize the Initiative",
         "zh": "夺取先机"
@@ -51216,6 +51676,7 @@
     },
     {
       "id": "training-situational",
+      "numericId": 461,
       "name": {
         "en": "Situational Awareness",
         "zh": "态势感知"
@@ -51302,6 +51763,7 @@
     },
     {
       "id": "training-stance-b",
+      "numericId": 462,
       "name": {
         "en": "Offensive Stance",
         "zh": "进攻架势"
@@ -51467,6 +51929,7 @@
     },
     {
       "id": "training-strike-and-fade",
+      "numericId": 463,
       "name": {
         "en": "Strike and Fade",
         "zh": "打带跑"
@@ -51579,6 +52042,7 @@
     },
     {
       "id": "training-strike-team-leader",
+      "numericId": 464,
       "name": {
         "en": "Strike Team Leader",
         "zh": "打击小队队长"
@@ -51694,6 +52158,7 @@
     },
     {
       "id": "training-tenacity",
+      "numericId": 465,
       "name": {
         "en": "Tenacity",
         "zh": "顽强"
@@ -51770,6 +52235,7 @@
     },
     {
       "id": "training-upclose",
+      "numericId": 466,
       "name": {
         "en": "Up Close and Personal",
         "zh": "近距离交锋"
@@ -51844,6 +52310,7 @@
     },
     {
       "id": "tristan-wren-clan",
+      "numericId": 467,
       "name": {
         "en": "Tristan Wren",
         "zh": "特里斯坦·雷恩"
@@ -51997,6 +52464,7 @@
     },
     {
       "id": "turbo-charge",
+      "numericId": 468,
       "name": {
         "en": "Turbo-Charge",
         "zh": "涡轮增压"
@@ -52085,6 +52553,7 @@
     },
     {
       "id": "twin-lightsabers",
+      "numericId": 469,
       "name": {
         "en": "Twin Lightsabers",
         "zh": "双光剑"
@@ -52215,6 +52684,7 @@
     },
     {
       "id": "tx225-dlt19",
+      "numericId": 470,
       "name": {
         "en": "Pintle-Mounted DLT-19",
         "zh": "枢轴式DLT-19"
@@ -52322,6 +52792,7 @@
     },
     {
       "id": "tx225-rt97c",
+      "numericId": 471,
       "name": {
         "en": "Pintle-Mounted RT-97C",
         "zh": "枢轴式RT-97C"
@@ -52424,6 +52895,7 @@
     },
     {
       "id": "tyrannical-taskmaster",
+      "numericId": 472,
       "name": {
         "en": "•Tyrannical Taskmaster",
         "zh": "暴虐监工"
@@ -52523,6 +52995,7 @@
     },
     {
       "id": "unorthodox",
+      "numericId": 473,
       "name": {
         "en": "Unorthodox Tactician",
         "zh": "非正统战术家"
@@ -52617,6 +53090,7 @@
     },
     {
       "id": "unseen-saboteur",
+      "numericId": 474,
       "name": {
         "en": "Unseen Saboteur",
         "zh": "隐秘破坏者"
@@ -52754,6 +53228,7 @@
     },
     {
       "id": "unstable-a5-astromech",
+      "numericId": 475,
       "name": {
         "en": "Unstable Astromech",
         "zh": "不稳定的宇航机器人"
@@ -52861,6 +53336,7 @@
     },
     {
       "id": "ursa-wren-clan",
+      "numericId": 476,
       "name": {
         "en": "Ursa Wren",
         "zh": "厄萨·雷恩"
@@ -53001,6 +53477,7 @@
     },
     {
       "id": "veteran-squad",
+      "numericId": 477,
       "name": {
         "en": "Rebel Veteran Squad",
         "zh": "义军老兵小队"
@@ -53125,6 +53602,7 @@
     },
     {
       "id": "vibro-axe",
+      "numericId": 478,
       "name": {
         "en": "Vibro Axe",
         "zh": "振动斧"
@@ -53264,6 +53742,7 @@
     },
     {
       "id": "vibrosword",
+      "numericId": 479,
       "name": {
         "en": "Vibrosword",
         "zh": "振动剑"
@@ -53408,6 +53887,7 @@
     },
     {
       "id": "viper-droid",
+      "numericId": 480,
       "name": {
         "en": "Viper Recon Droid",
         "zh": "蝰蛇侦察机器人"
@@ -53559,6 +54039,7 @@
     },
     {
       "id": "war-party-leader",
+      "numericId": 481,
       "name": {
         "en": "War Party Leader",
         "zh": "战团首领"
@@ -53682,6 +54163,7 @@
     },
     {
       "id": "waxer",
+      "numericId": 482,
       "name": {
         "en": "Waxer",
         "zh": "蜡匠"
@@ -53821,6 +54303,7 @@
     },
     {
       "id": "wedge-antilles",
+      "numericId": 483,
       "name": {
         "en": "Wedge Antilles",
         "zh": "韦奇·安蒂列斯"
@@ -53956,6 +54439,7 @@
     },
     {
       "id": "weequay-captain",
+      "numericId": 484,
       "name": {
         "en": "Weequay Captain",
         "zh": "威奎船长"
@@ -54080,6 +54564,7 @@
     },
     {
       "id": "weequay-crew",
+      "numericId": 485,
       "name": {
         "en": "Weequay Crew",
         "zh": "威奎乘员"
@@ -54171,6 +54656,7 @@
     },
     {
       "id": "weequay-squad",
+      "numericId": 486,
       "name": {
         "en": "Weequay Pirate Squad",
         "zh": "威奎海盗小队"
@@ -54296,6 +54782,7 @@
     },
     {
       "id": "whipcord-launcher",
+      "numericId": 487,
       "name": {
         "en": "•Whipcord Launcher",
         "zh": "缆索发射器"
@@ -54417,6 +54904,7 @@
     },
     {
       "id": "wrecker",
+      "numericId": 488,
       "name": {
         "en": "Wrecker",
         "zh": "破坏者"
@@ -54541,6 +55029,7 @@
     },
     {
       "id": "x34-a300",
+      "numericId": 489,
       "name": {
         "en": "A300 Rifle Gunner",
         "zh": "A300步枪炮手"
@@ -54643,6 +55132,7 @@
     },
     {
       "id": "x34-rocket",
+      "numericId": 490,
       "name": {
         "en": "RPS-6 Rocket Gunner",
         "zh": "RPS-6火箭炮手"
@@ -54750,6 +55240,7 @@
     },
     {
       "id": "xs-iv",
+      "numericId": 491,
       "name": {
         "en": "XS-IV Assault Cannon Dark Trooper",
         "zh": "XS-IV突击炮黑暗士兵"
@@ -54861,6 +55352,7 @@
     },
     {
       "id": "youre-not-all-the-same-to-me",
+      "numericId": 492,
       "name": {
         "en": "You're Not All the Same to Me",
         "zh": "在我眼中你们各不相同"
@@ -54969,6 +55461,7 @@
     },
     {
       "id": "z6-riot-baton",
+      "numericId": 493,
       "name": {
         "en": "Z-6 Riot Baton",
         "zh": "Z-6防暴警棍"
@@ -55106,6 +55599,7 @@
     },
     {
       "id": "upstream-59",
+      "numericId": 494,
       "name": {
         "en": "A-180",
         "zh": ""
@@ -55166,6 +55660,7 @@
     },
     {
       "id": "upstream-60",
+      "numericId": 495,
       "name": {
         "en": "A-300",
         "zh": ""
@@ -55225,6 +55720,7 @@
     },
     {
       "id": "upstream-175",
+      "numericId": 496,
       "name": {
         "en": "Beskad Duelist",
         "zh": ""
@@ -55285,6 +55781,7 @@
     },
     {
       "id": "upstream-74",
+      "numericId": 497,
       "name": {
         "en": "Bistan",
         "zh": ""
@@ -55357,6 +55854,7 @@
     },
     {
       "id": "upstream-131",
+      "numericId": 498,
       "name": {
         "en": "C-3PO",
         "zh": "C-3PO"
@@ -55472,6 +55970,7 @@
     },
     {
       "id": "upstream-23419",
+      "numericId": 499,
       "name": {
         "en": "Chewbacca, Courageous Co-Pilot",
         "zh": "楚巴卡，无畏副驾驶"
@@ -55628,6 +56127,7 @@
     },
     {
       "id": "upstream-23968",
+      "numericId": 500,
       "name": {
         "en": "DLT-19 Stormtrooper",
         "zh": ""
@@ -55687,6 +56187,7 @@
     },
     {
       "id": "upstream-46",
+      "numericId": 501,
       "name": {
         "en": "Electrostaff Guard",
         "zh": ""
@@ -55746,6 +56247,7 @@
     },
     {
       "id": "upstream-23966",
+      "numericId": 502,
       "name": {
         "en": "Gas Grenade",
         "zh": ""
@@ -55804,6 +56306,7 @@
     },
     {
       "id": "upstream-22586",
+      "numericId": 503,
       "name": {
         "en": "Grogu",
         "zh": "古古"
@@ -55909,6 +56412,7 @@
     },
     {
       "id": "upstream-3649",
+      "numericId": 504,
       "name": {
         "en": "Grogu",
         "zh": "古古"
@@ -56014,6 +56518,7 @@
     },
     {
       "id": "upstream-23420",
+      "numericId": 505,
       "name": {
         "en": "Han Solo, Reckless Smuggler",
         "zh": "汉·索罗，亡命走私犯"
@@ -56164,6 +56669,7 @@
     },
     {
       "id": "upstream-143",
+      "numericId": 506,
       "name": {
         "en": "Iden's DLT-20A Rifle",
         "zh": ""
@@ -56223,6 +56729,7 @@
     },
     {
       "id": "upstream-167",
+      "numericId": 507,
       "name": {
         "en": "Iden's ID10 Seeker Droid",
         "zh": "伊登的ID10搜索机器人"
@@ -56347,6 +56854,7 @@
     },
     {
       "id": "upstream-168",
+      "numericId": 508,
       "name": {
         "en": "Iden's TL-50 Repeater",
         "zh": ""
@@ -56419,6 +56927,7 @@
     },
     {
       "id": "upstream-19896",
+      "numericId": 509,
       "name": {
         "en": "Imperial March",
         "zh": "帝国行军"
@@ -56483,6 +56992,7 @@
     },
     {
       "id": "upstream-186",
+      "numericId": 510,
       "name": {
         "en": "J-19 Bo-rifle",
         "zh": ""
@@ -56556,6 +57066,7 @@
     },
     {
       "id": "upstream-20841",
+      "numericId": 511,
       "name": {
         "en": "Kraken",
         "zh": ""
@@ -56639,6 +57150,7 @@
     },
     {
       "id": "upstream-156",
+      "numericId": 512,
       "name": {
         "en": "Looted E-5 Blaster",
         "zh": ""
@@ -56698,6 +57210,7 @@
     },
     {
       "id": "upstream-19064",
+      "numericId": 513,
       "name": {
         "en": "Mandalorian Combat Shields",
         "zh": ""
@@ -56758,6 +57271,7 @@
     },
     {
       "id": "upstream-23984",
+      "numericId": 514,
       "name": {
         "en": "Mudtrooper Squad",
         "zh": "泥地部队小队"
@@ -56841,6 +57355,7 @@
     },
     {
       "id": "upstream-15628",
+      "numericId": 515,
       "name": {
         "en": "Omega",
         "zh": "欧米伽"
@@ -56950,6 +57465,7 @@
     },
     {
       "id": "upstream-75",
+      "numericId": 516,
       "name": {
         "en": "Pao",
         "zh": ""
@@ -57022,6 +57538,7 @@
     },
     {
       "id": "upstream-23967",
+      "numericId": 517,
       "name": {
         "en": "RT-97C Stormtrooper",
         "zh": ""
@@ -57081,6 +57598,7 @@
     },
     {
       "id": "upstream-23948",
+      "numericId": 518,
       "name": {
         "en": "Stolen DLT-19",
         "zh": "缴获DLT-19"
@@ -57165,6 +57683,7 @@
     },
     {
       "id": "upstream-23947",
+      "numericId": 519,
       "name": {
         "en": "Stolen HH-12",
         "zh": "缴获HH-12"
@@ -57256,6 +57775,7 @@
     },
     {
       "id": "upstream-23949",
+      "numericId": 520,
       "name": {
         "en": "Stolen RT-97C",
         "zh": "缴获RT-97C"
@@ -57336,6 +57856,7 @@
     },
     {
       "id": "upstream-2719",
+      "numericId": 521,
       "name": {
         "en": "Super Commando Gunslinger",
         "zh": ""
@@ -57396,6 +57917,7 @@
     },
     {
       "id": "upstream-23983",
+      "numericId": 522,
       "name": {
         "en": "SX-21 Mudtrooper",
         "zh": ""
@@ -57454,6 +57976,7 @@
     },
     {
       "id": "upstream-177",
+      "numericId": 523,
       "name": {
         "en": "Tristan Wren",
         "zh": ""
@@ -57537,6 +58060,7 @@
     },
     {
       "id": "upstream-178",
+      "numericId": 524,
       "name": {
         "en": "Ursa Wren",
         "zh": ""
@@ -57620,6 +58144,7 @@
     },
     {
       "id": "upstream-23982",
+      "numericId": 525,
       "name": {
         "en": "Z-6 Mudtrooper",
         "zh": "Z-6 泥地士兵"
@@ -57707,6 +58232,7 @@
     },
     {
       "id": "new-upgrade-mwkely2o",
+      "numericId": 526,
       "name": {
         "en": "SX-21 Mudtrooper",
         "zh": "SX-21泥地士兵"
@@ -57777,6 +58303,7 @@
     },
     {
       "id": "new-upgrade-mwkggzem",
+      "numericId": 527,
       "name": {
         "en": "Gas Grenades",
         "zh": "毒气手雷"
@@ -57865,6 +58392,7 @@
     },
     {
       "id": "training-mechanical-carnage",
+      "numericId": 528,
       "name": {
         "en": "Mechanical Carnage",
         "zh": "机械化杀戮"
@@ -57934,6 +58462,7 @@
     },
     {
       "id": "training-cold-blooded",
+      "numericId": 529,
       "name": {
         "en": "Cold Blooded",
         "zh": "冷血"
@@ -57991,6 +58520,7 @@
     },
     {
       "id": "training-focused-on-the-kill",
+      "numericId": 530,
       "name": {
         "en": "Focused on the Kill",
         "zh": "专注猎杀"
@@ -58048,6 +58578,7 @@
     },
     {
       "id": "training-i-make-the-rules-now",
+      "numericId": 531,
       "name": {
         "en": "I Make the Rules Now",
         "zh": "现在我说了算"
@@ -58117,6 +58648,7 @@
     },
     {
       "id": "frontal-assault",
+      "numericId": 532,
       "name": {
         "en": "Frontal Assault",
         "zh": "正面突击"
@@ -58194,6 +58726,7 @@
     },
     {
       "id": "new-upgrade-mwoblqyu",
+      "numericId": 533,
       "name": {
         "en": "Thirst For Power",
         "zh": "渴望力量"
@@ -58249,6 +58782,7 @@
     },
     {
       "id": "eyes-and-ears",
+      "numericId": 534,
       "matching": {
         "status": "unmatched",
         "candidates": []
@@ -58312,6 +58846,7 @@
     },
     {
       "id": "veteran-operators",
+      "numericId": 535,
       "matching": {
         "status": "unmatched",
         "candidates": []
@@ -58394,6 +58929,7 @@
     },
     {
       "id": "wookiee-battle-cries",
+      "numericId": 536,
       "matching": {
         "status": "unmatched",
         "candidates": []
@@ -58474,6 +59010,7 @@
     },
     {
       "id": "war-grove-battle-shield-wookiee",
+      "numericId": 537,
       "matching": {
         "status": "unmatched",
         "candidates": []
@@ -58566,6 +59103,7 @@
     },
     {
       "id": "war-grove-bowcaster-wookiee",
+      "numericId": 538,
       "matching": {
         "status": "unmatched",
         "candidates": []
@@ -58657,6 +59195,7 @@
     },
     {
       "id": "war-grove-long-gun-wookiee",
+      "numericId": 539,
       "matching": {
         "status": "unmatched",
         "candidates": []
@@ -58756,6 +59295,7 @@
     },
     {
       "id": "war-grove-gnasp-bombardier",
+      "numericId": 540,
       "matching": {
         "status": "unmatched",
         "candidates": []
@@ -58842,6 +59382,7 @@
     },
     {
       "id": "war-grove-gnasp-gunner",
+      "numericId": 541,
       "matching": {
         "status": "unmatched",
         "candidates": []
@@ -58942,6 +59483,7 @@
     },
     {
       "id": "yoda-heavy",
+      "numericId": 542,
       "name": {
         "en": "Yoda",
         "zh": "尤达"
@@ -59044,5 +59586,6 @@
         "candidates": []
       }
     }
-  ]
+  ],
+  "nextNumericId": 543
 }

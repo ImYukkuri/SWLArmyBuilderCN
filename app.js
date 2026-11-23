@@ -13,6 +13,11 @@ function put(path,value){const p=path.slice(),k=p.pop();get(p)[k]=value;if(k==='
 function displayPath(path){return path.map(x=>labels[x]||x).join(' / ')}
 function formField(key,value,path){
   if(key==='id'&&path.length===1)return unitIdControl();
+  if(key==='numericId'&&path.length===1){
+    const row=el('label');row.className='field';row.append(el('span','数字 ID'));
+    const input=el('input');input.readOnly=true;input.value=value??'';input.placeholder='保存时自动分配';
+    input.setAttribute('aria-label','数字 ID');row.append(input);return row;
+  }
   const row=el('label');row.className='field';row.title=path.join('.');row.append(el('span',labels[key]||key));let control;
   const table=referenceTable(key,path);if(table==='keywords')row.firstChild.textContent='词条 ID';else if(table==='armies')row.firstChild.textContent='军队 ID';
   if(path.includes('keywords')&&key==='parameter'){
@@ -135,6 +140,7 @@ function newUnitDraft(){
 }
 function startDraft(template,label){
   if(dirty&&!confirm('当前单位有未保存修改，确定放弃并新建？'))return;
+  template.numericId=null;
   if(creating)catalog.units=catalog.units.filter(u=>u.id!==selected);
   draft=template;selected=draft.id;creating=true;dirty=false;
   catalog.units.push(structuredClone(draft));
@@ -149,6 +155,7 @@ function newUnit(){startDraft(newUnitDraft(),'空白')}
 function copyUnit(){
   if(!draft||!selected||creating){status('请先选择一个要复制的单位',true);return}
   const base=structuredClone(draft);
+  delete base.numericId;
   base.id='new-unit-'+Date.now().toString(36);
   base.name={...(base.name||{}),en:((base.name||{}).en||'Unit')+' (copy)',zh:((base.name||{}).zh||'单位')+'（副本）'};
   base.assets={...(base.assets||{}),portrait:null};

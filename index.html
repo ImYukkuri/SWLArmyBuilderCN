@@ -145,6 +145,9 @@
                   aria-label="搜索候选项"
                   placeholder="搜索名称、词条或武器" /></label
               ><select id="candidate-sort" aria-label="候选排序">
+                <option value="usage">常用优先</option>
+                <option value="recent">最近使用</option>
+                <option value="favorites">收藏优先</option>
                 <option value="name">名称排序</option>
                 <option value="points">点数升序</option>
               </select>
@@ -193,6 +196,7 @@
     <script src="builder-library.js"></script>
     <script src="builder-transfer.js"></script>
     <script src="builder-share.js"></script>
+    <script src="card-usage.js"></script>
     <script src="builder.js"></script>
     <script src="builder-overlays.js"></script>
     <script src="rule-icons.js"></script>

@@ -3493,6 +3493,15 @@ dialog, .card-browser, .keyword-popover {
   flex: 1;
 }
 
+.candidate-card-actions { display: flex; flex: 0 0 auto; flex-direction: column; align-items: center; gap: 3px; }
+.candidate .favorite-card {
+  display: grid; place-items: center; width: 32px; min-height: 32px;
+  flex: 0 0 auto; padding: 0; border: 1px solid transparent; border-radius: 5px;
+  background: transparent; color: var(--muted); font-size: 24px; line-height: 1;
+}
+.candidate .favorite-card[aria-pressed="true"] { color: #976318; background: #fff3d6; }
+.candidate .favorite-card:hover, .candidate .favorite-card:focus-visible { border-color: currentColor; }
+
 .unit-candidate .candidate-tags {
   margin: 10px 0 8px;
 }
