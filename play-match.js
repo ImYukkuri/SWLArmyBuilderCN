@@ -16,9 +16,6 @@
   const other = player => player === "self" ? "opponent" : "self";
   const emptyTaskDeck = () => ({ primary: [], secondary: [], advantage: [] });
   const cardKey = (player, id) => JSON.stringify([player, String(id)]);
-  const rulesProfiles = ["pre-december-2026", "doc61"];
-  const doc61Effective = new Date(2026, 11, 1);
-  const defaultRulesProfile = (date = new Date()) => date >= doc61Effective ? rulesProfiles[1] : rulesProfiles[0];
 
   function requireCondition(condition, message) {
     if (!condition) throw new Error(message);
@@ -31,7 +28,6 @@
       armies: { self: structuredClone(record), opponent: null },
       taskDecks: { self: structuredClone(record.army?.deck || emptyTaskDeck()), opponent: null },
       stage: "import",
-      rulesProfile: defaultRulesProfile(),
       initialBlue: null,
       blue: "self",
       mission: { primary: null, secondary: null, advantage: { self: null, opponent: null } },
@@ -93,7 +89,18 @@
     return card.id;
   }
 
-  function canBPMove(match, move, player = match.bp?.turn) {
+  function bpPlayer(match, step = match.bp.stepIndex) {
+    const first = match.bp.startingBlue ?? match.bp.history[0]?.player ?? match.bp.turn;
+    return step % 2 === 0 ? first : other(first);
+  }
+
+  function missionsReady(match) {
+    return !!match.initialBlue && (match.missionMode === "manual"
+      ? !!match.mission.primary && !!match.mission.secondary && players.every(side => !!match.mission.advantage[side])
+      : !!match.bp?.complete);
+  }
+
+  function canBPMove(match, move, player = match.bp && bpPlayer(match)) {
     if (match.stage !== "bp" || !players.includes(player) || ![2, 3, 4, 5].includes(match.bp.stepIndex)) return false;
     const available = (owner, category) => match.bp.piles[owner][category].cards.length > 0;
     if (move === "primary" || move === "secondary") return available(player, move);
@@ -151,15 +158,32 @@
     return self !== opponent && Math.max(self, opponent) >= victoryTarget;
   }
 
-  function matchOutcome(match) {
+  function defeatedPoints(match, unitPoints) {
+    return Object.fromEntries(players.map(player => {
+      const army = match.armies[player]?.army;
+      if (!army) return [player, null];
+      let points = 0;
+      for (const unit of army.units) {
+        if (match.unitStates[cardKey(player, unit.instanceId)]?.value !== "defeated") continue;
+        const cost = unitPoints(player, unit);
+        if (!Number.isSafeInteger(cost) || cost < 0) return [player, null];
+        points += cost;
+      }
+      return [player, points];
+    }));
+  }
+
+  function matchOutcome(match, calculated = {}) {
     if (match.stage !== "finished") return null;
     if (match.result?.reason === "lastArmy") return match.result;
     const { self, opponent } = totals(match);
     if (self !== opponent) {
       return { reason: match.round < maxRounds && match.result?.reason !== "manual" ? "target" : "points", winner: self > opponent ? "self" : "opponent" };
     }
-    const costs = match.result?.defeatedPoints;
-    if (!costs) return { reason: "pendingTie" };
+    const costs = Object.fromEntries(players.map(player => [
+      player, calculated[player] ?? match.result?.defeatedPoints?.[player]
+    ]));
+    if (!players.every(player => Number.isSafeInteger(costs[player]))) return { reason: "pendingTie" };
     if (costs.self === costs.opponent) return { reason: "draw" };
     return { reason: "defeatedPoints", winner: costs.self < costs.opponent ? "self" : "opponent" };
   }
@@ -199,6 +223,10 @@
     requireCondition(Number.isSafeInteger(quantity) && quantity >= 1, "标记数量须为正整数。");
     requireCondition(!owner || players.includes(owner), "未知的标记归属。");
     Object.assign(token, { label, quantity, owner });
+  }
+
+  function tokenOwner(token) {
+    return players.includes(token.owner) ? token.owner : players.includes(token.player) ? token.player : "self";
   }
 
   function canHideCommand(match, player, slot) {
@@ -301,6 +329,81 @@
       discarded: !!card.used, permanent: type === "displayCommand" && permanent === true });
   }
 
+  function missionResults(match, category, cardId, itemId) {
+    return match.scoreEvents.filter(entry => !entry.reversed && entry.category === category &&
+      String(entry.cardId) === String(cardId) && entry.itemId === itemId);
+  }
+
+  function missionPoints(item, control) {
+    return players.includes(control) ? item.points : 0;
+  }
+
+  function recordMissionScore(match, action, catalog) {
+    const {category, id, player, value, type} = action;
+    const cardId = match.mission[category]?.id;
+    const item = ["primary", "secondary"].includes(category) &&
+      catalog.missionScoring?.(category, cardId)?.scoreItems?.find(item => item.id === id);
+    requireCondition(item && item.poi === (type === "controlPOI"), "找不到任务计分项。");
+    const results = missionResults(match, category, cardId, id);
+    const round = match.round;
+    const control = item.poi ? value : player;
+    const previous = results.find(entry => entry.round === round && (item.poi || entry.player === player));
+    requireCondition(item.poi ? [...players, "tie", ""].includes(control) : players.includes(player) && [-1, 1].includes(Number(value)), "无效的计分操作。");
+    if (players.includes(control) && item.globalOnce) {
+      requireCondition(!results.some(entry => entry.player === control && entry.round !== round && entry.points > 0), "此计分项已在其他回合完成。");
+    }
+    const previousPoints = previous?.points || 0;
+    const points = item.poi ? missionPoints(item, control) : previousPoints + item.points * Number(value);
+    const canRepeat = item.poi || (item.repeatable && !item.globalOnce);
+    requireCondition(points >= 0, "此计分项没有可减去的分数。");
+    requireCondition(canRepeat || points <= item.points, "此计分项每回合只能记录一次。");
+    const unchanged = item.poi ? control === (previous?.control || "") : points === previousPoints;
+    if (unchanged) return;
+    if (previous) {
+      previous.reversed = true;
+      previous.reversedAt = new Date().toISOString();
+    }
+    if (points || item.poi && control) {
+      const event = {
+        id: match.scoreEvents.length + 1, player: players.includes(control) ? control : (previous?.player || "self"), category,
+        points, round, phase: match.phase, cardId, itemId: id, note: item.name,
+        createdAt: new Date().toISOString(), reversed: false
+      };
+      if (item.poi) event.control = control;
+      match.scoreEvents.push(event);
+    }
+    validTotals(match);
+    log(match, type, {player: players.includes(control) ? control : undefined, card: item.name, value: item.poi ? control : points});
+  }
+
+  function syncMissionTokens(match, category, catalog) {
+    const cardId = match.mission[category]?.id ?? null;
+    match.missionTokenCards ??= {};
+    const previous = match.missionTokenCards[category];
+    if (previous?.id === cardId) return;
+    match.missionTokenCards[category] = {id: cardId};
+    // The old secondary catalog had no default grants. Keep any grants the editor already created.
+    if (previous === cardId && (category === "primary" || match.tokens.some(token => token.missionCategory === category))) return;
+    match.tokens = match.tokens.filter(token => token.missionCategory !== category);
+    match.nextTokenId ??= match.tokens.reduce((next, token) => Math.max(next, token.id + 1), 1);
+    for (const token of catalog.missionScoring?.(category, cardId)?.tokens || []) {
+      for (const owner of players) {
+        for (let count = 0; count < token.quantity; count++) {
+          match.tokens.push({id: match.nextTokenId++, label: token.name, quantity: 1, owner, player: null, unit: null, missionCategory: category});
+        }
+      }
+    }
+  }
+
+  function refreshMissionTokens(match, catalog) {
+    const pending = ["primary", "secondary"].filter(category => match.mission[category] &&
+      match.missionTokenCards?.[category]?.id !== match.mission[category].id);
+    if (!pending.length) return match;
+    const next = structuredClone(match);
+    for (const category of pending) syncMissionTokens(next, category, catalog);
+    return next;
+  }
+
   function update(current, action, catalog, random = Math.random) {
     const match = structuredClone(current);
     const { type, player, category, value } = action;
@@ -309,12 +412,6 @@
     const isPlaying = match.stage === "playing";
     const canScore = isPlaying || match.stage === "finished";
     switch (type) {
-      case "rulesProfile":
-        requireCondition(rulesProfiles.includes(value), "未知的规则版本。");
-        if (value === rulesProfile(match)) break;
-        match.rulesProfile = value;
-        log(match, type, { value });
-        break;
       case "opponent":
         requireCondition(isSetup || (match.stage !== "bp" && !match.armies.opponent), "当前无法替换对手军表。");
         requireCondition(action.record?.army, "请提供对手军表。");
@@ -358,7 +455,7 @@
         const piles = Object.fromEntries(players.map(side => [side, Object.fromEntries(categories.map(kind => [
           kind, { cards: shuffle(taskDeck(match, side, kind), random), discard: [] }
         ]))]));
-        match.bp = { piles, turn: match.blue, stepIndex: 0, complete: false, history: [] };
+        match.bp = { piles, turn: match.blue, startingBlue: match.blue, stepIndex: 0, complete: false, history: [] };
         match.mission = { primary: null, secondary: null, advantage: { self: null, opponent: null } };
         match.missionMode = "bp";
         match.stage = "bp";
@@ -368,7 +465,7 @@
       case "bpReveal": {
         requireCondition(match.stage === "bp" && match.bp.stepIndex === 0 &&
           (category === "primary" || category === "secondary"), "请选择要揭露的任务类型。");
-        const blue = match.blue;
+        const blue = bpPlayer(match, 0);
         const red = other(blue);
         const redCategory = category === "primary" ? "secondary" : "primary";
         reveal(match, blue, category);
@@ -381,12 +478,14 @@
         );
         match.bp.initial = structuredClone(match.mission);
         match.bp.stepIndex = 2;
+        match.bp.turn = blue;
         log(match, type, { player: blue, category });
         break;
       }
       case "modifyMission": {
         requireCondition(canBPMove(match, value), "这张任务卡已没有可替换卡牌，或当前无法执行这项调整。");
-        const side = match.bp.turn;
+        const side = bpPlayer(match);
+        match.bp.startingBlue ??= bpPlayer(match, 0);
         let revealed = null;
         if (value === "claimBlue") {
           requireCondition(side !== match.blue, "你已经是蓝方。");
@@ -398,7 +497,7 @@
         }
         match.bp.history.push({ player: side, move: value, revealed });
         match.bp.stepIndex++;
-        match.bp.turn = match.bp.stepIndex % 2 === 0 ? match.blue : other(match.blue);
+        match.bp.turn = bpPlayer(match);
         match.bp.complete = match.bp.stepIndex === 6;
         log(match, type, { player: side, value, revealed });
         break;
@@ -434,10 +533,7 @@
         match.stage = "playing";
         break;
       case "finishSetup":
-        requireCondition((isSetup || match.stage === "bp") && match.initialBlue &&
-          (match.missionMode === "manual"
-            ? !!match.mission.primary && !!match.mission.secondary && players.every(side => !!match.mission.advantage[side])
-            : !!match.bp?.complete), "先确认玩家，并完成四张任务卡设置。");
+        requireCondition((isSetup || match.stage === "bp") && missionsReady(match), "先确认玩家，并完成四张任务卡设置。");
         match.stage = "playing";
         log(match, type);
         break;
@@ -487,6 +583,15 @@
         const entry = match.scoreEvents.at(-1);
         log(match, type, { player, score: { id: entry.id, points: entry.points, category: entry.category } });
         break;
+      case "missionScore":
+      case "controlPOI":
+        requireCondition(canScore, "请先进入对局。");
+        recordMissionScore(match, action, catalog);
+        break;
+      case "mirrorBoard":
+        requireCondition(canScore, "请先进入对局。");
+        match.mirrored = !match.mirrored;
+        break;
       case "amendScore":
       case "undoScore": {
         const entry = match.scoreEvents.find(event => String(event.id) === id);
@@ -495,6 +600,7 @@
           entry.reversed = true;
           entry.reversedAt = new Date().toISOString();
         } else {
+          requireCondition(!entry.itemId, "请在任务计分区修改这条记录。");
           const revised = scoreEntry(match, action, entry);
           const { revisions, ...before } = entry;
           if (Object.keys(revised).every(key => revised[key] === before[key])) break;
@@ -604,7 +710,7 @@
         else {
           requireCondition(!value || findUnit(match, player, String(value)), "找不到要分配标记的单位。");
           if (token.player === (value ? player : null) && token.unit === (value ? String(value) : null)) break;
-          if (token.owner === undefined) token.owner = token.player;
+          token.owner = tokenOwner(token);
           token.player = value ? player : null;
           token.unit = value ? String(value) : null;
         }
@@ -641,15 +747,14 @@
       default:
         throw new Error("未知的对局操作。");
     }
-    if (["score", "amendScore", "undoScore"].includes(type) && match.stage === "finished" &&
+    if (["startBP", "bpReveal", "modifyMission", "setMission", "finishSetup", "startGame"].includes(type)) {
+      for (const kind of ["primary", "secondary"]) syncMissionTokens(match, kind, catalog);
+    }
+    if (["score", "amendScore", "undoScore", "missionScore", "controlPOI"].includes(type) && match.stage === "finished" &&
         !["lastArmy", "manual"].includes(match.result?.reason) && match.round < maxRounds && !leadsAtTarget(totals(match))) {
       match.stage = "playing";
     }
     return match;
-  }
-
-  function rulesProfile(match) {
-    return rulesProfiles.includes(match.rulesProfile) ? match.rulesProfile : rulesProfiles[0];
   }
 
   function taskDeck(match, player, category) {
@@ -657,7 +762,8 @@
   }
 
   return { players, categories, scoreCategories, phases, maxRounds, victoryTarget, terrainCards, upgradeStatuses, upgradeFaces,
-    rulesProfiles, rulesProfile, defaultRulesProfile, reminderWindow, activationVisit,
-    other, cardKey, canHideCommand, commandSlot, commandPair, create, update, totals, scoreSummary, matchOutcome,
-    canSkipSetup, canBPMove, taskDeck, hasBattleDeck, hasBattleDecks };
+    reminderWindow, activationVisit,
+    other, cardKey, canHideCommand, commandSlot, commandPair, create, update, totals, scoreSummary, defeatedPoints, matchOutcome,
+    canSkipSetup, canBPMove, bpPlayer, missionsReady, missionResults, tokenOwner, refreshMissionTokens,
+    taskDeck, hasBattleDeck, hasBattleDecks };
 });

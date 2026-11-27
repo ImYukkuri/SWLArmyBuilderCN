@@ -70,12 +70,14 @@
 
   function restoreBPProgress(match) {
     const bp = match.bp;
-    if (!bp || bp.stepIndex !== undefined) return match;
+    if (!bp || !Array.isArray(bp.history)) return match;
     // Earlier matches recorded only the four adjustments after both opening draws.
-    if (!Array.isArray(bp.history)) return match;
-    bp.stepIndex = Math.min(6, 2 + bp.history.length);
-    bp.complete = bp.stepIndex === 6 || match.stage !== "bp";
-    if (!bp.complete) bp.turn = bp.stepIndex % 2 === 0 ? match.blue : PlayMatch.other(match.blue);
+    if (bp.stepIndex === undefined) {
+      bp.stepIndex = Math.min(6, 2 + bp.history.length);
+      bp.complete = bp.stepIndex === 6 || match.stage !== "bp";
+    }
+    bp.startingBlue ??= PlayMatch.bpPlayer(match, 0);
+    if (!bp.complete) bp.turn = PlayMatch.bpPlayer(match);
     return match;
   }
 

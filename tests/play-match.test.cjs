@@ -64,6 +64,50 @@ const apply = (match, type, fields = {}) => PlayMatch.update(match, { type, ...f
 const annotate = (match, player, value, category = "other") => apply(match, "score", { player, value, category });
 const playingMatch = () => apply(PlayMatch.create({ id: "roster", army: { units: [] } }), "skipSetup");
 
+test("mission scoring isolates rounds and players, applies limits and replaces POI control", () => {
+  const scoreItems = [
+    {id: "repeat", name: "重复", points: 2, repeatable: true, globalOnce: false, poi: false},
+    {id: "once", name: "每回合一次", points: 1, repeatable: false, globalOnce: false, poi: false},
+    {id: "global", name: "全局一次", points: 3, repeatable: false, globalOnce: true, poi: false},
+    {id: "poi", name: "占领点", points: 2, repeatable: false, globalOnce: false, poi: true}
+  ];
+  const missionCatalog = {...catalog, missionScoring: (_, id) => id === "deployment-16"
+    ? {scoreItems, tokens: [{name: "情报标记", quantity: 5}]} : undefined};
+  let match = playingMatch();
+  const update = action => { match = PlayMatch.update(match, action, missionCatalog); };
+  const select = id => update({type: "setMission", category: "primary", id});
+  const score = (id, player = "self", value = 1) => update({type: "missionScore", category: "primary", id, player, value});
+  const control = value => update({type: "controlPOI", category: "primary", id: "poi", value});
+  select("deployment-16");
+  assert.equal(match.tokens.length, 10);
+  assert.equal(match.tokens.filter(token => token.owner === "self").length, 5);
+  select("deployment-16");
+  assert.equal(match.tokens.length, 10);
+  score("repeat");
+  score("repeat");
+  score("once");
+  assert.throws(() => score("once"), /每回合/);
+  score("once", "opponent");
+  score("global");
+  control("self");
+  assert.deepEqual(PlayMatch.totals(match), {self: 10, opponent: 1});
+  control("tie");
+  assert.deepEqual(PlayMatch.totals(match), {self: 8, opponent: 1});
+  control("opponent");
+  assert.deepEqual(PlayMatch.totals(match), {self: 8, opponent: 3});
+  update({type: "setRound", value: 2});
+  assert.throws(() => score("global"), /其他回合/);
+  score("global", "opponent");
+  score("once");
+  score("repeat");
+  score("repeat", "self", -1);
+  assert.deepEqual(PlayMatch.totals(match), {self: 9, opponent: 6});
+  update({type: "mirrorBoard"});
+  assert.deepEqual(PlayMatch.totals(match), {self: 9, opponent: 6});
+  select("deployment-15");
+  assert.equal(match.tokens.length, 0);
+});
+
 test("terrain generation draws distinct halves, rotates them independently and preserves the saved layout", () => {
   const {storage, record} = archiveFixture();
   const setup = apply(PlayMatch.create(record), "beginSetup");
@@ -77,6 +121,26 @@ test("terrain generation draws distinct halves, rotates them independently and p
   const duplicate = JSON.parse(backup);
   duplicate.match.setup.terrainLayout[1].id = 1;
   assert.throws(() => PlayStore.restore(storage, record.id, JSON.stringify(duplicate)), /格式不兼容/);
+});
+
+test("legacy secondary missions receive their tokens once and keep subsequent token changes", () => {
+  const match = playingMatch();
+  const catalog = {missionScoring: (category, id) => category === "secondary" && id === "objective-13"
+    ? {tokens: [{name: "敌方选择目标", quantity: 2}, {name: "己方选择目标", quantity: 2}]} : undefined};
+  match.mission.secondary = {id: "objective-13", player: null};
+  match.missionTokenCards = {secondary: "objective-13"};
+  match.tokens.push({id: 1, owner: "opponent", label: "手动标记"});
+  match.nextTokenId = 2;
+  let restored = PlayMatch.refreshMissionTokens(match, catalog);
+  for (const player of PlayMatch.players) {
+    const tokens = restored.tokens.filter(token => PlayMatch.tokenOwner(token) === player && token.missionCategory);
+    assert.deepEqual(tokens.map(token => token.label).sort(), ["己方选择目标", "己方选择目标", "敌方选择目标", "敌方选择目标"]);
+  }
+  const removed = restored.tokens.find(token => token.missionCategory);
+  restored = PlayMatch.update(restored, {type: "removeToken", id: removed.id}, catalog);
+  assert.equal(PlayMatch.refreshMissionTokens(restored, catalog), restored);
+  assert.equal(restored.tokens.length, 8);
+  assert.equal(PlayMatch.tokenOwner({owner: null, player: "opponent"}), "opponent");
 });
 
 test("a saved pre-game setup can be skipped while retaining the current armies and selections", () => {
@@ -135,7 +199,7 @@ test("six-step mission construction follows the selected blue side and consumes 
     turnOrder.push(match.bp.turn);
     match = update(match, action);
   }
-  assert.deepEqual(turnOrder, ["opponent", "self", "self", "opponent"]);
+  assert.deepEqual(turnOrder, ["opponent", "self", "opponent", "self"]);
   assert.equal(match.blue, "self");
   assert.equal(match.initialBlue, "opponent");
   assert.equal(match.bp.complete, true);
@@ -241,6 +305,24 @@ test("a tie at the limit plays on through round five and can use manually entere
   assert.deepEqual(PlayMatch.matchOutcome(match), { reason: "draw" });
   match = apply(match, "reopen");
   assert.equal(PlayMatch.matchOutcome(match), null);
+});
+
+test("removed units count once per instance toward the other player's kill points and resolve a tie", () => {
+  const makeArmy = (...ids) => ({units: ids.map(instanceId => ({instanceId, upgrades: []})), commandIds: []});
+  let match = apply(PlayMatch.create({id: "roster", army: makeArmy("a", "b", "c")}), "skipSetup");
+  match = apply(match, "opponent", {record: {army: makeArmy("a", "d")}});
+  for (const [player, id, value] of [
+    ["self", "a", "defeated"], ["self", "b", "defeated"], ["self", "c", "activated"],
+    ["opponent", "a", "defeated"], ["opponent", "d", "ready"]
+  ]) match = apply(match, "unitStatus", {player, id, value});
+  const costs = {self: {a: 50, b: 60}, opponent: {a: 120}};
+  const losses = () => PlayMatch.defeatedPoints(match, (player, unit) => costs[player][unit.instanceId]);
+  assert.deepEqual(losses(), {self: 110, opponent: 120});
+  match = apply(match, "endGame");
+  assert.deepEqual(PlayMatch.matchOutcome(match, losses()), {reason: "defeatedPoints", winner: "self"});
+  match = apply(match, "unitStatus", {player: "opponent", id: "a", value: "ready"});
+  assert.deepEqual(losses(), {self: 110, opponent: 0});
+  assert.deepEqual(PlayMatch.matchOutcome(match, losses()), {reason: "defeatedPoints", winner: "opponent"});
 });
 
 test("confirming one remaining army works without importing the opponent", () => {
@@ -387,15 +469,9 @@ test("legacy token ownership survives a transfer and activity records preserve s
   assert.equal(match.activityLog.at(-1).before.quantity, 3);
 });
 
-test("rule profiles and manually repeated activations are scoped to the match and round", () => {
+test("manually repeated activations are scoped to the match and round", () => {
   const army = { units: [{ instanceId: "unit", upgrades: [] }], commandIds: [] };
   let match = apply(PlayMatch.create({ id: "roster", army }), "skipSetup");
-  delete match.rulesProfile;
-  assert.equal(PlayMatch.rulesProfile(match), "pre-december-2026");
-  assert.equal(PlayMatch.defaultRulesProfile(new Date(2026, 10, 30, 23, 59)), "pre-december-2026");
-  assert.equal(PlayMatch.defaultRulesProfile(new Date(2026, 11, 1)), "doc61");
-  match = apply(match, "rulesProfile", { value: "doc61" });
-  assert.equal(PlayMatch.rulesProfile(match), "doc61");
   match = apply(apply(match, "advance"), "advance");
   match = apply(match, "repeatActivation", { player: "self", id: "unit" });
   assert.equal(PlayMatch.activationVisit(match, "self", "unit"), 2);

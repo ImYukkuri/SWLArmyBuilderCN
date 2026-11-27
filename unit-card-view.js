@@ -518,9 +518,13 @@ window.UnitCardView = (() => {
       return out;
     }
 
+    function unitPhaseRules(unit, equipped, {forceOpen = false, hideArmyBuilding = false} = {}) {
+      return phaseRules(unitKeywords(unit, equipped), forceOpen, {hideArmyBuilding});
+    }
+
     function unitContents(unit, equipped, {forceOpen = false, hideArmyBuilding = false} = {}) {
       const out = node("div", "unit-expanded");
-      const phases = phaseRules(unitKeywords(unit, equipped), forceOpen, {hideArmyBuilding});
+      const phases = unitPhaseRules(unit, equipped, {forceOpen, hideArmyBuilding});
       if (phases.childElementCount) out.append(phases);
       out.append(unitWeaponGroups(unit, equipped, {forceOpen}));
       return out;
@@ -731,7 +735,7 @@ window.UnitCardView = (() => {
     }
 
     return {ruleInfo, proseNode, cardKeywords, unitKeywords, tag, ruleTimings, phaseRules,
-      unitWeaponGroups, unitContents, weaponBlock, upgradeEntry, upgradeEffect, usageBadges, unitHeader, renderRulePopover};
+      unitWeaponGroups, unitPhaseRules, unitContents, weaponBlock, upgradeEntry, upgradeEffect, usageBadges, unitHeader, renderRulePopover};
   }
 
   return {create, node, named, textParts, actionText, ACTION_LABEL, TIMING_LABEL, setRankIcon, rankIcon, slotDefinition, slotName,

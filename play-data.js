@@ -2,7 +2,8 @@ window.PlayData = (() => {
   const nameOf = (name, fallback = "") => typeof name === "string" ? name : name?.zh || name?.en || fallback;
   const phases = { command: "命令阶段", activation_start: "激活阶段开始", activation: "激活阶段", end_round: "结束阶段" };
   const phaseSteps = {
-    command: ["选择、暗置并翻开指挥卡", "结算指挥卡，处理优先权", "发布命令，建立命令池和跳过池"],
+    command: ["选择、暗置并翻开指挥卡", "结算指挥卡，由牌点较少的一方决定谁获得优先权",
+      "发布命令，建立命令池与跳过池。跳过池的基础数量为双方未被击败单位数之差"],
     activation_start: ["结算激活阶段开始时的效果"],
     activation: ["依次处理激活或跳过", "查看单位激活开始、执行中与结束时的效果"],
     end_round: ["结算结束阶段效果", "记录任务得分", "处理指挥卡与标记，结束本回合"]
@@ -27,21 +28,12 @@ window.PlayData = (() => {
     end_round: ["activation_phase_end", "end_round"]
   };
   const orderKeywords = new Set(["coordinate", "target", "defend", "disciplined", "this_is_the_way"]);
-  const missionTokens = {
-    "deployment-13": "物资", "deployment-22": "物资", "objective-13": "标记目标", "objective-22": "物资",
-    "objective-16": "扫描器", "objective-18": "扫描器", "objective-20": "扫描器", "objective-21": "扫描器"
-  };
-  const profileLabels = { "pre-december-2026": "2026 年 12 月前版", doc61: "DOC61（2026-12-01 起）" };
   const missionMoves = [
     { id: "primary", name: "替换主要任务" }, { id: "secondary", name: "替换次要任务" },
     { id: "advantage", name: "替换己方优势卡" }, { id: "opponentAdvantage", name: "替换对方优势卡" },
     { id: "claimBlue", name: "把自己变成蓝色方" }, { id: "pass", name: "让过" }
   ];
-  const commandHints = {
-    "pre-december-2026": ["结算指挥卡后，牌点较少的一方取得优先权", "跳过池基础数量为双方未被击败单位数之差减 1，最低为 0"],
-    doc61: ["结算指挥卡后，牌点较少的一方决定谁获得优先权", "跳过池基础数量为双方未被击败单位数之差"]
-  };
-  const ownerOptions = [{ id: "", name: "未指定" }, ...Object.entries(playerNames).map(([id, name]) => ({ id, name }))];
+  const sideName = (match, player) => player === match.blue ? "蓝方" : "红方";
   const battleRuleHeading = /^(部署|计分|特殊规则|计分格|任意领地|友方领地|争夺领地|敌方领地|敌方单位恐慌|所有敌方单位受压制)[：:]/;
 
   function battleParagraphs(rules) {
@@ -172,26 +164,25 @@ window.PlayData = (() => {
 
     function tokenSuggestions(match) {
       const labels = new Set();
-      for (const card of [match.mission.primary, match.mission.secondary]) {
-        if (missionTokens[card?.id]) labels.add(missionTokens[card.id]);
+      for (const category of ["primary", "secondary"]) {
+        const card = findBattleCard(category, match.mission[category]?.id);
+        for (const token of card?.tokens || []) labels.add(token.name);
       }
-      const bounty = (card) => card?.keywords?.some(ref => keywords.get(String(ref?.id ?? ref))?.id === "bounty");
-      for (const record of Object.values(match.armies)) {
-        if (!record) continue;
-        const resolved = RulesCore.resolveArmyData(record.army, data);
-        if (record.army.units.some(unit => bounty(resolved.units[unit.unitId]) ||
-            unit.upgrades.some(choice => bounty(UpgradeFaces.view(resolved.upgrades[choice.upgradeId], choice.face))))) {
-          labels.add("赏金");
-        }
-      }
+      labels.delete("赏金");
       return [...labels].map(label => ({ label, button: "添加" + label }));
     }
 
-    function tokenView(token, selectedToken) {
-      const owner = token.owner === undefined ? token.player : token.owner;
+    function tokenView(match, token, selectedToken) {
+      const owner = PlayMatch.tokenOwner(token);
       const quantity = token.quantity ?? 1;
-      return { ...token, quantity, owner, ownerLabel: playerNames[owner], ownerOptions,
-        quantityLabel: quantity > 1 ? "×" + quantity : "", selected: String(token.id) === selectedToken };
+      const ownerLabel = sideName(match, owner);
+      const quantityLabel = quantity > 1 ? "×" + quantity : "";
+      return { ...token, quantity, owner, quantityLabel, color: owner === match.blue ? "blue" : "red",
+        bounty: token.label === "赏金",
+        focus: "token-" + token.id, returnable: !!token.unit,
+        assignedElsewhere: !!token.unit && token.player !== owner,
+        ariaLabel: [ownerLabel, token.label, quantityLabel].filter(Boolean).join(" "),
+        selected: String(token.id) === selectedToken };
     }
 
     function reminderView(match, id, fields) {
@@ -229,7 +220,7 @@ window.PlayData = (() => {
 
     function activityView(match) {
       const actions = {
-        rulesProfile: "选择规则版本", startBP: "开始任务构建", modifyMission: "调整任务", setRound: "跳转回合",
+        startBP: "开始任务构建", modifyMission: "调整任务", setRound: "跳转回合",
         advance: "推进阶段", retreat: "返回阶段", finish: "结束对局", score: "记录得分", amendScore: "修改得分",
         undoScore: "撤销得分", unitStatus: "单位状态", upgradeStatus: "升级卡状态", upgradeFace: "切换卡面",
         revealCommands: "翻开指挥卡", command: "管理指挥卡", addToken: "添加标记", editToken: "修改标记",
@@ -240,10 +231,9 @@ window.PlayData = (() => {
       };
       const place = (token, unit) => unit ? playerNames[token.player] + " · " + unit : "托盘";
       const tokenLabel = token => {
-        const owner = token.owner === undefined ? token.player : token.owner;
-        return [token.label + " ×" + (token.quantity ?? 1), playerNames[owner]].filter(Boolean).join(" · ");
+        return [token.label + " ×" + (token.quantity ?? 1), sideName(match, PlayMatch.tokenOwner(token))].join(" · ");
       };
-      return (match.activityLog || []).slice().reverse().map(entry => {
+      return (match.activityLog || []).filter(entry => entry.type !== "rulesProfile").reverse().map(entry => {
         const { type, value, score, before, after } = entry;
         let detail = "";
         if (type === "assignToken") detail = tokenLabel(after) + " · " + place(before, entry.from) + " → " + place(after, entry.to);
@@ -252,7 +242,6 @@ window.PlayData = (() => {
         else if (score) detail = "记录 #" + score.id + " · " + labels[score.category] + " · " + score.points + " VP";
         else if (type === "modifyMission") detail = bpMoves[value];
         else if (type === "startBP") detail = "先翻" + labels[entry.category];
-        else if (type === "rulesProfile") detail = profileLabels[value];
         else if (type === "unitStatus") detail = [entry.unit, unitStates[value]].filter(Boolean).join(" · ");
         else if (type === "upgradeStatus" || type === "upgradeFace") detail = [entry.unit, entry.card, upgradeStates[value] || faceLabels[value]].join(" · ");
         else if (type === "command") detail = [{ hide: "暗置", withdraw: "收回暗置卡", markUsed: "切换使用状态" }[value], entry.card].filter(Boolean).join(" · ");
@@ -269,8 +258,13 @@ window.PlayData = (() => {
     function rosterView(match, player, selectedToken) {
       const record = match.armies[player];
       const identity = { player, sideName: playerNames[player], color: player === match.blue ? "blue" : "red",
-        colorName: player === match.blue ? "蓝方" : "红方" };
-      if (!record) return { ...identity, name: "未导入军表", units: [], reminders: [] };
+        colorName: sideName(match, player) };
+      const owned = match.tokens.filter(token => PlayMatch.tokenOwner(token) === player);
+      const selection = owned.find(token => String(token.id) === selectedToken);
+      const freeTokens = owned.filter(token => !token.unit || token.player !== player)
+        .map(token => tokenView(match, token, selectedToken));
+      const tokenPanel = {...identity, freeTokens, selectedToken: selection && tokenView(match, selection, selectedToken)};
+      if (!record) return { ...identity, name: "未导入军表", units: [], reminders: [], tokenPanel };
       const resolved = RulesCore.resolveArmyData(record.army, data);
       const reminders = [];
       const units = record.army.units.map((instance, index) => {
@@ -286,13 +280,19 @@ window.PlayData = (() => {
         const equipped = upgrades.flatMap(upgrade => upgrade.activeCards.filter(Boolean)
           .map(card => ({card, choiceId: upgrade.view.id})));
         const army = record.army;
+        let points = unit?.points ?? null;
+        for (const choice of instance.upgrades) {
+          const upgrade = Object.hasOwn(resolved.upgrades, choice.upgradeId) && resolved.upgrades[choice.upgradeId];
+          if (!upgrade || points === null) {
+            points = null;
+            break;
+          }
+          points += RulesCore.upgradePoints(upgrade, unit, army, resolved);
+        }
         const card = cardView(unit, instance.unitId, {sharedDetail: unit && {
           printed: unit, resolved, equipped,
           rank: RulesCore.armyRank(unit, army.armyId, resolved.pkg, resolved.defs, resolved.units),
-          points: (unit.points || 0) + instance.upgrades.reduce((sum, choice) => {
-            const upgrade = Object.hasOwn(resolved.upgrades, choice.upgradeId) && resolved.upgrades[choice.upgradeId];
-            return upgrade ? sum + RulesCore.upgradePoints(upgrade, unit, army, resolved) : sum;
-          }, 0)
+          points
         }});
         const unitReminders = [];
         if (state !== "defeated") {
@@ -306,15 +306,15 @@ window.PlayData = (() => {
           }
           reminders.push(...unitReminders);
         }
-        const tokens = match.tokens.filter(token => token.player === player && token.unit === id)
-          .map(token => tokenView(token, selectedToken));
+        const tokens = owned.filter(token => token.player === player && token.unit === id)
+          .map(token => tokenView(match, token, selectedToken));
         const stateOptions = [["ready", "就绪"], ["activated", "横置"], ["defeated", "移除"]].map(([value, label]) => ({
           id, player, label, value, active: state === value, focus: key + ":unit:" + value
         }));
-        return { ...card, card, id, key, player, standalone: !upgrades.length, stateOptions,
+        return { ...card, card, id, key, player, points, stateOptions,
           visualState: { ready: "ready", activated: "exhausted", defeated: "removed" }[state],
           canRepeatActivation: match.phase === "activation" && unitReminders.length > 0,
-          upgrades: upgrades.map(upgrade => upgrade.view), tokens, canAssign: !!selectedToken };
+          upgrades: upgrades.map(upgrade => upgrade.view), tokens, canAssign: !!selection };
       });
       record.army.commandIds.forEach((commandId, slot) => {
         if (commandId == null) return;
@@ -324,14 +324,14 @@ window.PlayData = (() => {
         const presentation = cardView(card, String(commandId));
         reminders.push(...cardReminders(match, player, { key: "command-" + slot, name: presentation.name }, presentation, card));
       });
-      return { ...identity, name: record.name, units, reminders };
+      return { ...identity, name: record.name, units, reminders, tokenPanel };
     }
 
-    function commandView(match, ui) {
+    function commandView(match, ui, boardPlayers) {
       const color = player => player === match.blue ? "blue" : "red";
       const sideName = player => player === match.blue ? "蓝方" : "红方";
       const sideLabel = player => sideName(player) + "指挥卡";
-      const sides = [match.blue, PlayMatch.other(match.blue)].map(player => {
+      const sides = boardPlayers.map(({id: player}) => {
         const record = match.armies[player];
         const slot = PlayMatch.commandSlot(match, player);
         const commands = record?.army.commandIds.flatMap((id, index) => {
@@ -359,7 +359,7 @@ window.PlayData = (() => {
       const hand = (player, purpose) => commands.filter(command => command.player === player && (purpose === "display"
         ? !command.displayed : !command.discarded));
       return {
-        blueCommand: sides[0], redCommand: sides[1], commandPair: pair,
+        leftCommand: sides[0], rightCommand: sides[1], commandPair: pair,
         priorityReady: !!pair && !ui.priorityBusy, priorityPrompt: ui.priorityBusy ? "蓝色玩家" : "随机选择优势玩家",
         priorityResult: !ui.priorityBusy && pair && match.priorityRoll?.pair === pair
           ? sideName(match.priorityRoll.player).replace("方", "色玩家") : "",
@@ -370,6 +370,45 @@ window.PlayData = (() => {
         displaySides: sides.map(side => ({ ...side, label: "揭露" + sideName(side.player) + "指挥卡",
           canDisplay: hand(side.player, "display").length > 0 }))
       };
+    }
+
+    function missionScoringView(match, boardPlayers) {
+      const categories = ["primary", "secondary"];
+      const events = match.scoreEvents.filter(entry => entry.round === match.round && !entry.reversed);
+      const summaries = boardPlayers.map(player => ({
+        ...player, categories: categories.map(category => ({
+          name: labels[category], points: events.filter(entry => entry.player === player.id && entry.category === category)
+            .reduce((sum, entry) => sum + entry.points, 0)
+        }))
+      }));
+      const groups = categories.flatMap(category => {
+        const cardId = match.mission[category]?.id;
+        const card = findBattleCard(category, cardId);
+        if (!card) return [];
+        const items = (card.scoreItems || []).map(item => {
+          const results = PlayMatch.missionResults(match, category, cardId, item.id);
+          const current = results.find(entry => entry.round === match.round);
+          const sides = boardPlayers.map(({id: player, name, color}) => {
+            const scored = results.find(entry => entry.player === player && entry.round === match.round);
+            const completed = item.globalOnce && results.find(entry => entry.player === player && entry.points > 0);
+            const points = scored?.points || 0;
+            const locked = !!completed && completed.round !== match.round;
+            return {player, name, color, category, id: item.id, points, locked,
+              subtractLabel: name + "减少" + item.name, addLabel: name + "增加" + item.name,
+              label: completed ? "第 " + completed.round + " 回合完成" : "",
+              canAdd: !locked && (!points || item.repeatable && !item.globalOnce),
+              canSubtract: points > 0, selected: current?.control === player};
+          });
+          const options = [
+            ...sides.map(side => ({...side, value: side.player, label: side.name, completion: side.label, enabled: !side.locked})),
+            {id: item.id, category, value: "tie", label: "打平", enabled: true, selected: current?.control === "tie"},
+            {id: item.id, category, value: "", label: "清除", enabled: !!current}
+          ];
+          return {...item, category, sides, options};
+        });
+        return [{category, title: labels[category] + " · " + nameOf(card.name), items}];
+      });
+      return {summaries, groups};
     }
 
     function missionFields(match, manual) {
@@ -385,7 +424,9 @@ window.PlayData = (() => {
         const selected = field.choice?.id || "";
         const options = manual ? [{ id: "", name: "未选择" }, ...pools[field.category]
           .map(card => ({ id: card.id, name: nameOf(card.name, card.id) }))] : [];
-        return { ...field, key: "mission-" + (field.player || field.category), card: battleCard(field.category, field.choice), selected, options, manual };
+        const card = battleCard(field.category, field.choice);
+        return { ...field, key: "mission-" + (field.player || field.category), card,
+          previewLabel: card?.detailLabel, selected, options, manual };
       });
     }
 
@@ -433,7 +474,7 @@ window.PlayData = (() => {
       };
     }
 
-    function scoreView(match, ui, scorePlayers, matchTotals) {
+    function scoreView(match, ui, scorePlayers, matchTotals, losses) {
       const { blue } = match;
       const red = PlayMatch.other(blue);
       const playerLabel = player => player === blue ? "蓝方" : "红方";
@@ -446,15 +487,15 @@ window.PlayData = (() => {
       const rounds = PlayMatch.scoreSummary(match);
       const roundOptions = rounds.map(row => ({ id: row.round, name: "第 " + row.round + " 回合" }));
       const scoreRound = ui.scoreRound || "";
-      const editingScore = match.scoreEvents.find(event => String(event.id) === ui.scoreEditId && !event.reversed);
-      const result = PlayMatch.matchOutcome(match);
+      const editingScore = match.scoreEvents.find(event => String(event.id) === ui.scoreEditId && !event.reversed && !event.itemId);
+      const result = PlayMatch.matchOutcome(match, losses);
       const winner = result?.winner ? playerLabel(result.winner) : "";
       const resultLabels = {
         target: winner + "达到 12 VP 且领先，赢得对局",
         points: winner + "以胜利分获胜",
         lastArmy: winner + "为唯一仍有未被击败单位的一方",
-        pendingTie: "胜利分相同，录入双方各自被击败单位的总分",
-        defeatedPoints: winner + "以较低的被击败单位分值获胜",
+        pendingTie: "胜利分相同，需要补录缺少的被击败单位总分",
+        defeatedPoints: winner + "以较高的击杀分获胜",
         draw: "平局"
       };
       return {
@@ -462,6 +503,7 @@ window.PlayData = (() => {
         roundFilterOptions: [{ id: "", name: "全部回合" }, ...roundOptions],
         scoreEvents: match.scoreEvents.slice().reverse().filter(event => !scoreRound || String(event.round) === scoreRound).map(event => ({
           ...describe(event),
+          canEdit: !event.reversed && !event.itemId,
           revisions: (event.revisions || []).slice().reverse().map(describe),
           canUndo: !event.reversed && Number.isSafeInteger(matchTotals[event.player] - event.points) && matchTotals[event.player] >= event.points
         })),
@@ -475,8 +517,9 @@ window.PlayData = (() => {
           phaseOptions: PlayMatch.phases.map(id => ({ id, name: phases[id] }))
         } : null,
         outcome: result ? resultLabels[result.reason] : "",
-        canSettleTie: ["pendingTie", "draw", "defeatedPoints"].includes(result?.reason),
-        casualtyScores: scorePlayers.map(player => ({ ...player, points: match.result?.defeatedPoints?.[player.id] ?? "" }))
+        canSettleTie: ["pendingTie", "draw", "defeatedPoints"].includes(result?.reason) && Object.values(losses).includes(null),
+        casualtyScores: scorePlayers.map(player => ({ ...player, known: losses[player.id] !== null,
+          points: losses[player.id] ?? match.result?.defeatedPoints?.[player.id] ?? "" }))
       };
     }
 
@@ -490,23 +533,39 @@ window.PlayData = (() => {
       const setupOpen = !!match && ui.page === "setup" && (stage === "setup" || stage === "bp");
       const homeOpen = !match || ui.page === "home";
       const scoreOpen = !!match && !setupOpen && !homeOpen && (playing || finished);
-      const wizardStep = Math.min(3, Math.max(1, Number(ui.wizardStep) || 1));
+      const wizardStep = Math.min(4, Math.max(1, Number(ui.wizardStep) || 1));
       const rosterOpen = ui.tab !== "match" && scoreOpen;
       const rosters = PlayMatch.players.map(player => rosterView(match, player, ui.selectedToken));
       const roster = rosterOpen ? rosters.find(side => side.player === ui.tab) : null;
+      const losses = PlayMatch.defeatedPoints(match, (player, unit) =>
+        rosters.find(side => side.player === player).units.find(row => row.id === String(unit.instanceId))?.points);
+      const killPoints = player => {
+        const enemy = PlayMatch.other(player);
+        return losses[enemy] ?? match.result?.defeatedPoints?.[enemy] ?? "—";
+      };
       const reminderRows = allReminders(match, roster ? [roster] : rosters)
         .map(row => ({ ...row, playerLabel: playerNames[row.player] }));
-      const selectedToken = match.tokens.find(token => String(token.id) === ui.selectedToken);
-      const rulesProfile = PlayMatch.rulesProfile(match);
-      const showTokens = playing || finished;
+      if (roster) {
+        roster.killPoints = killPoints(roster.player);
+        roster.showUnitKeywords = ui.showUnitKeywords;
+        for (const unit of roster.units) unit.showUnitKeywords = ui.showUnitKeywords;
+        roster.tokenPanel.tokenSuggestions = tokenSuggestions(match).map(suggestion => ({...suggestion, owner: roster.player}));
+        const selected = roster.tokenPanel.selectedToken;
+        if (selected) {
+          selected.ownerOptions = [match.blue, PlayMatch.other(match.blue)].map(id => ({id, name: sideName(match, id)}));
+          selected.externalTargets = rosters.find(side => side.player !== roster.player).units.map(unit => ({
+            player: unit.player, unit: unit.id, name: unit.name
+          }));
+        }
+      }
       const trackScores = Array.from({ length: PlayMatch.victoryTarget + 1 }, (_, score) => score);
       trackScores.push(...[...new Set(Object.values(totals).filter(score => score > PlayMatch.victoryTarget))].sort((a, b) => a - b));
       const mission = missionFields(match, manual);
       const missionByCategory = Object.fromEntries(mission.map(field => [field.category + ":" + (field.player || ""), field]));
       const missingDeckPlayer = PlayMatch.hasBattleDeck(match, "opponent", catalog) ? "self" : "opponent";
       const sideLabel = player => player === "self" ? "己方" : "对手";
-      const manualMissionsReady = !!match.mission.primary && !!match.mission.secondary &&
-        PlayMatch.players.every(side => !!match.mission.advantage[side]);
+      const missionsReady = PlayMatch.missionsReady(match);
+      const bpTurn = bp && PlayMatch.bpPlayer(match);
       const terrainLayout = (match.setup.terrainLayout || []).map(({id, rotated}, index) => ({
         id, rotated, image: asset("assets/references/terrain_layout_" + id + ".png"),
         label: (index ? "右半场" : "左半场") + " · " + id + " 号" + (rotated ? " · 旋转 180°" : " · 正向")
@@ -521,19 +580,24 @@ window.PlayData = (() => {
           scoreLabel: name + " " + totals[id] + " 分", subtractLabel: name + "减一分", addLabel: name + "加一分"
         };
       });
+      const boardPlayers = match.mirrored ? [...scorePlayers].reverse() : scorePlayers;
+      const primary = missionByCategory["primary:"];
+      const secondary = missionByCategory["secondary:"];
+      const onBoard = field => ({...field, openScoring: true,
+        canViewCard: !!field.card, previewLabel: field.card && "查看本回合任务计分 · " + field.card.name});
       return {
         rosterName: match.armies.self.name,
         stage, round, phase: phases[phase], playing, finished, rosterOpen,
         homeOpen, setupOpen, scoreOpen, wizardStep,
         wizardImportOpen: wizardStep === 1, wizardSidesOpen: wizardStep === 2, wizardBPOpen: wizardStep === 3,
+        wizardEffectsOpen: wizardStep === 4,
         wizardFooterOpen: wizardStep < 3 || !!match.initialBlue,
-        wizardSteps: ["导入与地形", "确认玩家", "组建任务"].map((label, index) => ({
+        wizardSteps: ["导入与地形", "确认玩家", "组建任务", "设置效果"].map((label, index) => ({
           value: index + 1, label, key: "wizard-step-" + (index + 1), current: wizardStep === index + 1,
           complete: index + 1 < wizardStep, enabled: true
         })),
         canGoPrevious: wizardStep > 1,
-        canGoNext: wizardStep < 3 || (!!match.initialBlue &&
-          (match.missionMode === "manual" ? manualMissionsReady : !!bp?.complete)),
+        canGoNext: wizardStep < 3 || missionsReady,
         playerConfirmed: !!match.initialBlue,
         playerColorSelf: match.initialBlue ? match.blue === "self" ? "蓝" : "红" : "",
         playerColorOpponent: match.initialBlue ? match.blue === "opponent" ? "蓝" : "红" : "",
@@ -543,22 +607,23 @@ window.PlayData = (() => {
         selfHasRed: !!match.initialBlue && match.blue === "opponent",
         canChoosePlayerColor: stage === "setup" && !bp,
         canImportOpponent: stage === "setup" && !bp,
-        canEditTerrain: stage === "setup",
         bpBoardOpen: !!bp || match.missionMode === "manual",
         beginBPAvailable: !bp && match.missionMode !== "manual",
         matchOpen: !rosterOpen, selfOpen: rosterOpen && ui.tab === "self", opponentOpen: rosterOpen && ui.tab === "opponent",
-        terrain: match.setup.terrain, terrainLayout,
+        terrainLayout,
         terrainButtonLabel: terrainLayout.length ? "重新生成地形参考" : "生成地形参考",
         opponentName: match.armies.opponent?.name, importError: ui.importError,
         importWarnings: (ui.importWarnings || []).map(message => ({message})),
-        bpTurn: bp?.turn === "self" ? "你" : "对手",
-        bpTurnColor: bp ? (bp.turn === blue ? "蓝方" : "红方") : "",
+        bpTurn: bpTurn === "self" ? "我方" : "对方",
+        bpTurnColor: bp ? (bpTurn === blue ? "蓝方" : "红方") : "",
+        bpSelfActive: !!bp && !bp.complete && bpTurn === "self",
+        bpOpponentActive: !!bp && !bp.complete && bpTurn === "opponent",
         bpStarted: !!bp,
         bpComplete: !!bp?.complete,
         bpRevealOpen: !!bp && bp.stepIndex === 0,
         bpActionOpen: !!bp && bp.stepIndex >= 2 && bp.stepIndex < 6,
         bpCurrentSteps: Array.from({ length: 6 }, (_, index) => ({
-          value: index + 1, color: index % 2 === 0 ? "蓝" : "红",
+          value: index + 1, side: bp ? playerNames[PlayMatch.bpPlayer(match, index)] : "",
           active: bp?.stepIndex === index, complete: (bp?.stepIndex ?? 0) > index
         })),
         bpMoves: missionMoves.map(move => ({ ...move, enabled: bp ? PlayMatch.canBPMove(match, move.id) : false })),
@@ -569,30 +634,33 @@ window.PlayData = (() => {
           revealed: entry.revealed ? battleCard(entry.move === "opponentAdvantage" ? "advantage" : entry.move, { id: entry.revealed }).name : ""
         })) || [],
         mission: {
-          primary: missionByCategory["primary:"], secondary: missionByCategory["secondary:"],
+          primary, secondary,
           selfAdvantage: missionByCategory["advantage:self"], opponentAdvantage: missionByCategory["advantage:opponent"],
-          blueAdvantage: mission.find(field => field.category === "advantage" && field.player === blue),
-          redAdvantage: mission.find(field => field.category === "advantage" && field.player === red)
+          leftAdvantage: missionByCategory["advantage:" + boardPlayers[0].id],
+          rightAdvantage: missionByCategory["advantage:" + boardPlayers[1].id]
         },
+        mirrored: !!match.mirrored,
+        leftMission: onBoard(match.mirrored ? secondary : primary),
+        rightMission: onBoard(match.mirrored ? primary : secondary),
+        missionScoreOpen: ui.missionScoreOpen,
+        ...(ui.missionScoreOpen ? missionScoringView(match, boardPlayers) : {}),
         showBoard: playing || finished,
         boardPhase: playing || finished ? phases[phase] : "赛前准备",
         canRetreat: playing && (round > 1 || phase !== "command"),
         advanceLabel: phase === "end_round" ? "结束本回合" : "下一阶段",
         phaseSteps: phaseSteps[phase].map(text => ({ text })),
-        commandHints: phase === "command" ? commandHints[rulesProfile].map(text => ({ text })) : [],
-        rulesProfile,
-        rulesProfiles: PlayMatch.rulesProfiles.map(id => ({ id, name: profileLabels[id] })),
         rounds: Array.from({ length: PlayMatch.maxRounds }, (_, index) => {
-          const value = index + 1;
+          const value = match.mirrored ? PlayMatch.maxRounds - index : index + 1;
           return { value, label: "第 " + value + " 回合", key: "round-" + value, current: round === value, complete: round > value, enabled: playing };
         }),
-        scorePlayers, bluePlayer: scorePlayers[0], redPlayer: scorePlayers[1],
-        track: trackScores.map(score => ({
-          score, blue: score === totals[blue], red: score === totals[red],
+        scorePlayers, leftPlayer: boardPlayers[0], rightPlayer: boardPlayers[1],
+        killScores: boardPlayers.map(({id, name, color}) => ({id, name, color, points: killPoints(id)})),
+        track: (match.mirrored ? trackScores.reverse() : trackScores).map(score => ({
+          score, start: score === 0, blue: score === totals[blue], red: score === totals[red],
           blueLabel: "蓝方 " + score + " 分", redLabel: "红方 " + score + " 分"
         })),
-        ...scoreView(match, ui, scorePlayers, totals),
-        ...(scoreOpen ? commandView(match, ui) : {}),
+        ...scoreView(match, ui, scorePlayers, totals, losses),
+        ...(scoreOpen ? commandView(match, ui, boardPlayers) : {}),
         dicePools: [diceView(ui, "self", stage === "setup"), diceView(ui, "opponent", stage === "setup")],
         currentDeck: ui.deckDialog ? taskDeckView(match, ui.deckDialog) : null,
         deckWarningTitle: !match.armies.opponent && missingDeckPlayer === "opponent" ? "对手军表未导入" :
@@ -603,17 +671,7 @@ window.PlayData = (() => {
         showReminders: !!PlayMatch.reminderWindow(match),
         reminders: reminderRows,
         pendingReminderCount: reminderRows.filter(row => row.pending).length,
-        activity: activityView(match),
-        freeTokens: match.tokens.filter(token => !token.unit).map(token => tokenView(token, ui.selectedToken)),
-        showTokens,
-        tokenSuggestions: showTokens ? tokenSuggestions(match) : [],
-        selectedToken: selectedToken ? tokenView(selectedToken, ui.selectedToken) : null,
-        tokenTargets: rosters.map(side => ({
-          name: side.sideName,
-          units: side.units.map((unit, index) => ({
-            id: unit.id, player: side.player, name: (index + 1) + " · " + unit.name
-          }))
-        })).filter(side => side.units.length)
+        activity: activityView(match)
       };
     }
 
@@ -654,6 +712,7 @@ window.PlayData = (() => {
       prose: text => RuleIcons.prose(text, data.defs),
       isDualUpgrade: (army, id) => UpgradeFaces.isDual(RulesCore.resolveArmyData(army, data).upgrades[id]),
       hasBattleCard: (category, id) => !!findBattleCard(category, id),
+      missionScoring: findBattleCard,
       async importOpponent(input) {
         const now = new Date().toISOString();
         const makeId = () => crypto.randomUUID();

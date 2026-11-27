@@ -4,6 +4,7 @@ from html.parser import HTMLParser
 from http.server import ThreadingHTTPServer
 from pathlib import Path
 import sys
+import tempfile
 import threading
 import unittest
 from urllib.request import urlopen
@@ -78,6 +79,30 @@ class BuilderServerTest(unittest.TestCase):
             self.assertEqual(response.status, 200)
             self.assertEqual(response.headers['Content-Type'], 'application/pdf')
             self.assertGreater(len(response.read()), 100_000)
+
+    def test_mission_editor_saves_both_catalog_representations_and_checks_revision(self):
+        with urlopen(self.base + 'missions.html') as response:
+            parser = Dependencies()
+            parser.feed(response.read().decode('utf8'))
+        for dependency in parser.paths:
+            with urlopen(self.base + dependency) as response:
+                self.assertEqual(response.status, 200)
+        with urlopen(self.base + 'api/missions') as response:
+            current = json.load(response)
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'battle-deck.json'
+            path.write_bytes(server.encoded(current['catalog']))
+            item = {'id': 'first', 'name': '测试', 'points': 2, 'repeatable': False, 'globalOnce': True, 'poi': False}
+            payload = {'category': 'secondary', 'id': 'objective-13', 'revision': server.digest(path.read_bytes()),
+                       'scoreItems': [item], 'tokens': [{'name': '测试标记', 'quantity': 3}]}
+            saved = server.save_mission_fields(path, payload)
+            for key in ('secondary', 'objectives'):
+                card = next(card for card in saved['catalog'][key] if card['id'] == payload['id'])
+                self.assertEqual(card['scoreItems'], [item])
+                self.assertEqual(card['tokens'], payload['tokens'])
+            with self.assertRaises(FileExistsError):
+                server.save_mission_fields(path, payload)
+            self.assertEqual(server.digest(path.read_bytes()), saved['revision'])
 
     def test_unknown_script_remains_unavailable(self):
         with self.assertRaises(HTTPError) as error:

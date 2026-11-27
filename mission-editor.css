@@ -1,0 +1,14 @@
+.mission-editor { max-width: 960px; }
+.mission-filters, .mission-save-row { display: flex; flex-wrap: wrap; align-items: end; gap: 8px; margin-block-end: 10px; }
+.mission-filters label { display: grid; gap: 3px; min-width: 0; }
+.mission-save-row { align-items: center; justify-content: space-between; }
+.mission-save-row p { margin: 0; }
+.mission-editor fieldset { min-inline-size: 0; margin: 0 0 12px; border: 1px solid #c3ced5; }
+.mission-editor-rows { display: grid; gap: 7px; margin-block-end: 8px; }
+.mission-editor-row { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: end; padding: 7px 0; border-block-end: 1px solid #c3ced5; }
+.mission-editor-field { display: grid; gap: 3px; flex: 1 1 150px; }
+.mission-editor-field:has([type=number]) { flex: 0 0 68px; }
+.mission-editor-row input { min-width: 0; width: 100%; }
+.mission-editor-flags { display: flex; gap: 6px 12px; flex-wrap: wrap; align-items: center; }
+.mission-editor-flags label { display: flex; align-items: center; gap: 3px; white-space: nowrap; }
+.mission-editor-flags input { width: auto; }

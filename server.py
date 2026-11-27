@@ -28,6 +28,36 @@ def relative_asset(value):
     p=(ROOT/value).resolve()
     if not p.is_relative_to((ROOT/'assets').resolve())or not p.is_file():raise ValueError('图片文件不存在或路径越界')
     return p
+
+def save_mission_fields(path, data):
+    category=data['category']
+    mirrors={'primary':'deployments','secondary':'objectives'}
+    if category not in mirrors:raise ValueError('请选择主要或次要任务')
+    scoring=data['scoreItems'];tokens=data['tokens']
+    if not isinstance(scoring,list) or not isinstance(tokens,list):raise ValueError('任务字段必须为列表')
+    ids=set()
+    for item in scoring:
+        key=item['id'];name=item['name'];points=item['points']
+        if (not isinstance(key,str) or not re.fullmatch(r'[a-zA-Z0-9_-]{1,80}',key) or key in ids
+                or not isinstance(name,str) or not name.strip() or type(points) is not int or not 1<=points<=1_000_000
+                or any(type(item[flag]) is not bool for flag in ('repeatable','globalOnce','poi'))):
+            raise ValueError('每个计分项必须有唯一 ID、名称、正整数分值和有效选项')
+        ids.add(key)
+    for token in tokens:
+        name=token['name'];quantity=token['quantity']
+        if not isinstance(name,str) or not name.strip() or type(quantity) is not int or not 1<=quantity<=1000:
+            raise ValueError('标记需要名称及 1–1000 的整数个数')
+    with LOCK:
+        current=path.read_bytes()
+        if data['revision']!=digest(current):raise FileExistsError('任务卡资料已更新，请刷新后重试')
+        deck=json.loads(current)
+        matches=[card for section in (category,mirrors[category]) for card in deck.get(section,[]) if card['id']==data['id']]
+        if not matches:raise ValueError('找不到这张任务卡')
+        for card in matches:
+            card.update(scoreItems=scoring,tokens=tokens)
+        content=encoded(deck)
+        atomic(path,content)
+    return {'revision':digest(content),'catalog':deck}
 def validate(card):
     if not isinstance(card,dict):raise ValueError('单位必须是 JSON 对象')
     if not re.fullmatch(r'[a-z0-9][a-z0-9_-]{0,150}',card.get('id','')):raise ValueError('单位 ID 格式不正确')
@@ -280,6 +310,9 @@ class Handler(BaseHTTPRequestHandler):
             if path=='/api/catalog':
                 with LOCK:content=DATA.read_bytes()
                 return self.reply(200,{'revision':digest(content),'catalog':json.loads(content)})
+            if path=='/api/missions':
+                with LOCK:content=(ROOT/'data/battle-deck.json').read_bytes()
+                return self.reply(200,{'revision':digest(content),'catalog':json.loads(content)})
             if path in ['/api/upgrades','/api/armies','/api/commands','/api/keywords']:return self.reply(200,maintenance_store.read(path.split('/')[-1]))
             if path in ['/api/upgrades/history','/api/armies/history','/api/commands/history','/api/keywords/history']:return self.reply(200,maintenance_store.history(path.split('/')[2]))
             if path=='/api/upgrade-report':return self.reply(200,json.loads((ROOT/'data/upgrade-crosswalk.json').read_bytes()))
@@ -324,6 +357,7 @@ class Handler(BaseHTTPRequestHandler):
             files['/rule-icons.js']='rule-icons.js'
             files['/rule-icons.css']='rule-icons.css'
             files['/faction-colors.css']='faction-colors.css'
+            files.update({'/'+name:name for name in ['missions.html','mission-editor.js','mission-editor.css']})
             files['/editor-symbols.js']='editor-symbols.js'
             files.update({'/keywords':'keywords.html','/keywords.html':'keywords.html','/keyword-editor.js':'keyword-editor.js','/keyword-editor.css':'keyword-editor.css'})
             if path in files:p=ROOT/files[path]
@@ -345,6 +379,8 @@ class Handler(BaseHTTPRequestHandler):
             size=int(self.headers.get('Content-Length','0'))
             if not 0<size<maxsize:raise ValueError('请求大小无效')
             data=json.loads(self.rfile.read(size))
+            if path=='/api/missions/save':
+                return self.reply(200,save_mission_fields(ROOT/'data/battle-deck.json',data))
             if path=='/api/upgrades/image':
                 import base64
                 raw=data.get('dataUrl','')

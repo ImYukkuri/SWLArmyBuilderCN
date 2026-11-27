@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>任务卡 · 数据维护</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="mission-editor.css">
+  <script defer src="mission-editor.js"></script>
+</head>
+<body>
+  <header>
+    <div><h1>任务卡</h1><nav class="module-nav"><a href="index.html">写表器</a><a href="maintenance.html">数据维护</a></nav></div>
+  </header>
+  <main class="mission-editor dashboard">
+    <div class="mission-filters">
+      <label>类别 <select id="mission-category"><option value="primary">主要任务</option><option value="secondary">次要任务</option></select></label>
+      <label>卡牌 <select id="mission-card"></select></label>
+    </div>
+    <form id="mission-form" hidden>
+      <div class="mission-save-row">
+        <p id="mission-feedback" role="status" aria-live="polite"></p>
+        <button type="submit">保存任务配置</button>
+      </div>
+      <fieldset>
+        <legend>计分项</legend>
+        <div id="mission-scores" class="mission-editor-rows"></div>
+        <button type="button" data-add="scoreItems">＋ 计分项</button>
+      </fieldset>
+      <fieldset>
+        <legend>包含标记（每方各获一份）</legend>
+        <div id="mission-tokens" class="mission-editor-rows"></div>
+        <button type="button" data-add="tokens">＋ 标记</button>
+      </fieldset>
+    </form>
+    <p id="mission-load-error" role="alert"></p>
+  </main>
+</body>
+</html>

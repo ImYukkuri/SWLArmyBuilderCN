@@ -63,7 +63,9 @@ async function samePosition(page, y) {
 test('play unit detail uses the builder attribute, rule and weapon components below the full card', async t => {
   const page = await setup(t);
   await page.evaluate(() => {
-    army.units = [{instanceId: uid(), unitId: 'rebels-rebel-troopers', upgrades: []}];
+    army.units = [{instanceId: uid(), unitId: 'rebels-lando', upgrades: [
+      {instanceId: uid(), upgradeId: 'command-lead', slotIndex: 0}
+    ]}];
     render();
   });
   await page.locator('#army-units .expand-unit').click();
@@ -82,12 +84,25 @@ test('play unit detail uses the builder attribute, rule and weapon components be
   await page.locator('#roster-play').click();
   await page.getByRole('button', {name: '跳过设置'}).click();
   await page.getByRole('button', {name: '我方军表', exact: true}).click();
-  await page.locator('#play-roster .roster-art').click();
+  const unitArt = page.locator('#play-roster .unit-card-piece .roster-art');
+  await unitArt.click();
   const detail = page.locator('[data-detail-dialog]');
   const image = await detail.locator('.detail-image img').boundingBox();
   const card = detail.locator('.roster-unit');
   assert(image && image.y + image.height <= (await card.boundingBox()).y);
   assert.deepEqual(await snapshot(card), expected);
+  assert.equal(await card.locator('[data-phase="army_building"]').count(), 0);
+  const toggles = card.locator('.rule-tag-toggle');
+  assert(await card.locator('.selected-upgrades .rule-tag-toggle').count() > 0);
+  const count = await toggles.count();
+  assert(count > 1);
+  assert.equal(await card.locator('.rule-tag-toggle[aria-expanded=false]').count(), count);
+  await detail.getByRole('button', {name: '展开全部词条'}).click();
+  assert.equal(await card.locator('.rule-tag-toggle[aria-expanded=true]').count(), count);
+  await toggles.first().click();
+  await detail.getByRole('button', {name: '展开全部词条'}).click();
+  await detail.getByRole('button', {name: '收起全部词条'}).click();
+  assert.equal(await card.locator('.rule-tag-toggle[aria-expanded=false]').count(), count);
   await card.locator('.phase-tags .rule-tag-main').first().click();
   const rule = detail.locator('.unit-card-subdialog');
   await rule.getByRole('tab', {name: '完整规则'}).click();
@@ -95,9 +110,26 @@ test('play unit detail uses the builder attribute, rule and weapon components be
   await rule.getByRole('button', {name: '关闭词条'}).click();
   await rule.waitFor({state: 'detached'});
   assert.equal(await detail.evaluate(node => node.open), true);
+  await detail.getByRole('button', {name: '展开全部词条'}).click();
+  await detail.getByRole('button', {name: '关闭', exact: true}).click();
+  await unitArt.click();
+  assert.equal(await card.locator('.rule-tag-toggle[aria-expanded=false]').count(), count);
+
+  await detail.getByRole('button', {name: '关闭', exact: true}).click();
+  await page.locator('#play-roster .upgrade-piece .roster-art').click();
+  const upgrade = detail.locator('.card-detail-page[data-upgrade]');
+  assert.equal(await upgrade.locator('.upgrade-effect').evaluate(node => getComputedStyle(node).fontSize), '16px');
+  assert.equal(await upgrade.locator('.rule-tag-main').first().evaluate(node => getComputedStyle(node).fontSize), '14px');
+  assert(await upgrade.locator('.detail-image img').evaluate(async node => {
+    await node.decode();
+    const {width, height} = node.getBoundingClientRect();
+    return width <= 280 && height <= innerHeight * 0.48 + 1 &&
+      Math.abs(width / height - node.naturalWidth / node.naturalHeight) < 0.01;
+  }));
+  assert.equal(await detail.getByRole('button', {name: '展开全部词条'}).isVisible(), false);
 });
 
-for (const mobile of [true, false]) test(`${mobile ? 'mobile' : 'desktop'} play roster retains page and row scroll during card updates`, async t => {
+for (const mobile of [true, false]) test(`${mobile ? 'mobile' : 'desktop'} play roster wraps upgrades and retains page position during card updates`, async t => {
   const page = await setup(t, mobile);
   const press = locator => mobile ? locator.tap() : locator.click();
   await page.evaluate(() => {
@@ -110,6 +142,20 @@ for (const mobile of [true, false]) test(`${mobile ? 'mobile' : 'desktop'} play 
   await page.getByRole('button', {name: '我方军表', exact: true}).click();
   const row = page.locator('#play-roster .unit').nth(12);
   const unit = row.locator('.unit-card-piece');
+  const layout = await row.locator('.roster-art').evaluateAll(cards => {
+    const boxes = cards.map(card => card.getBoundingClientRect());
+    const first = boxes[0];
+    const wrapped = boxes.find(box => box.top > first.top);
+    return {
+      widthRatio: first.width / cards[0].closest('.unit').clientWidth,
+      upgradeRatio: boxes[1].width / first.height,
+      aligned: boxes[1].top === first.top && boxes[1].height === first.height,
+      wrapsFromStart: wrapped?.left === first.left
+    };
+  });
+  assert(Math.abs(layout.widthRatio - 0.37) < 0.01);
+  assert(Math.abs(layout.upgradeRatio - 725 / 1040) < 0.01);
+  assert(layout.aligned && layout.wrapsFromStart);
   const exhausted = unit.getByRole('button', {name: '横置'});
   const y = await positionAt(page, exhausted);
   await press(exhausted);
@@ -121,17 +167,88 @@ for (const mobile of [true, false]) test(`${mobile ? 'mobile' : 'desktop'} play 
   const lastUpgrade = row.locator('.upgrade-piece').last();
   const remove = lastUpgrade.getByRole('button', {name: '移除'});
   const upgradeY = await positionAt(page, remove);
-  const x = await row.evaluate(node => node.scrollLeft);
-  assert(x > 0, 'the upgrade row must already be scrolled');
+  assert(await row.evaluate(node => node.scrollWidth <= node.clientWidth + 1));
   await press(remove);
   assert.equal(await remove.getAttribute('aria-pressed'), 'true');
   await samePosition(page, upgradeY);
-  assert.equal(await row.evaluate(node => node.scrollLeft), x);
 
   await press(lastUpgrade.locator('.roster-art'));
   await press(page.locator('[data-detail-dialog]').getByRole('button', {name: '关闭'}));
   await samePosition(page, upgradeY);
-  assert.equal(await row.evaluate(node => node.scrollLeft), x);
+
+  const toggle = page.getByRole('checkbox', {name: '显示单位词条'});
+  assert.equal(await toggle.isChecked(), false);
+  await toggle.check();
+  const rules = row.locator('.unit-keywords');
+  const [art, keyword, upgrade] = await Promise.all([
+    unit.locator('.roster-art').boundingBox(),
+    rules.boundingBox(),
+    row.locator('.upgrade-piece .roster-art').first().boundingBox()
+  ]);
+  assert.equal(art.y, keyword.y);
+  assert(keyword.x > art.x && upgrade.y > art.y && upgrade.x === art.x);
+  const impact = rules.getByRole('button', {name: /冲击.*来自/}).first();
+  assert.match(await impact.innerText(), /来自 冲击手雷/);
+  await press(impact);
+  const rule = page.getByRole('dialog', {name: '词条规则'});
+  await rule.getByRole('tab', {name: '完整规则'}).click();
+  await rule.getByRole('button', {name: '关闭词条'}).click();
+  await rule.waitFor({state: 'detached'});
+});
+
+for (const mobile of [true, false]) test(`${mobile ? 'touch' : 'mouse'} moves play tokens above unit cards and back to the tray`, async t => {
+  const page = await setup(t, mobile);
+  if (!mobile) await page.setViewportSize({width: 1440, height: 1200});
+  await page.evaluate(() => { army.units.splice(2); });
+  await page.locator('#roster-play').click();
+  await page.getByRole('button', {name: '跳过设置'}).click();
+  await page.getByRole('button', {name: '我方军表', exact: true}).click();
+  const roster = page.locator('#play-roster');
+  const tray = roster.locator('.token-tray');
+  const units = roster.locator('.unit');
+  const tokenRows = roster.locator('.unit-tokens');
+  const token = roster.getByRole('button', {name: '蓝方 赏金', exact: true});
+  const capture = mobile && await page.context().newCDPSession(page);
+  const drag = async (from, to, cancel = false) => {
+    const source = await from.boundingBox();
+    const target = await to.boundingBox();
+    const start = {x: source.x + source.width / 2, y: source.y + source.height / 2};
+    // Use the area near the right edge to exercise dropping beyond the unit card art.
+    const end = {x: target.x + target.width - 12, y: target.y + target.height / 2};
+    if (mobile) {
+      await capture.send('Input.dispatchTouchEvent', {type: 'touchStart', touchPoints: [start]});
+      await capture.send('Input.dispatchTouchEvent', {type: 'touchMove', touchPoints: [end]});
+    } else {
+      await page.mouse.move(start.x, start.y);
+      await page.mouse.down();
+      await page.mouse.move(end.x, end.y);
+    }
+    await page.waitForFunction(() => document.querySelector('.token-drop-active'), null, {timeout: 2000});
+    assert.equal(await to.evaluate(node => node.classList.contains('token-drop-active')), true);
+    if (mobile) await capture.send('Input.dispatchTouchEvent', {type: cancel ? 'touchCancel' : 'touchEnd', touchPoints: []});
+    else await page.mouse.up();
+    assert.equal(await page.locator('.token-drag-preview').count(), 0);
+  };
+
+  assert.deepEqual(await tokenRows.evaluateAll(rows => rows.map(row => row.offsetHeight)), [0, 0]);
+  await roster.getByRole('button', {name: '添加赏金', exact: true}).click();
+  await drag(token, units.first());
+  await tokenRows.first().getByRole('button', {name: '蓝方 赏金', exact: true}).waitFor();
+  const row = await tokenRows.first().boundingBox();
+  assert(row.height > 0 && row.y + row.height <= (await units.first().locator('.roster-art').boundingBox()).y);
+  if (mobile) {
+    await drag(token, units.last(), true);
+    assert.equal(await tokenRows.first().locator('.token-chip').count(), 1);
+  }
+  await drag(token, units.last());
+  await tokenRows.last().getByRole('button', {name: '蓝方 赏金', exact: true}).waitFor();
+  assert.equal(await tokenRows.first().evaluate(node => node.offsetHeight), 0);
+  await drag(token, tray);
+  await tray.getByRole('button', {name: '蓝方 赏金', exact: true}).waitFor();
+  assert.deepEqual(await tokenRows.evaluateAll(rows => rows.map(row => row.offsetHeight)), [0, 0]);
+  assert.equal(await page.locator('[data-detail-dialog]').evaluate(node => node.open), false);
+  await (mobile ? token.tap() : token.click());
+  await page.waitForFunction(() => document.querySelector('.token-tray .token-chip[aria-pressed=true]'), null, {timeout: 2000});
 });
 
 for (const mobile of [true,false]) test(`${mobile?'mobile':'desktop'} four factions keep mercenaries last under every personal sort`,async t=>{

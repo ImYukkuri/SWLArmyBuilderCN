@@ -7,12 +7,13 @@
   const base = new URL(url.searchParams.get("base") || "./", url);
   const initialView = () => ({
     page: "home", wizardStep: 1, tab: "match", selectedToken: null, scoreRound: "", scoreEditId: "",
-    importError: "", importWarnings: [],
+    importError: "", importWarnings: [], missionScoreOpen: false, showUnitKeywords: false,
     dicePools: { self: { count: 0, faces: null }, opponent: { count: 0, faces: null } },
     deckDialog: null, pendingStartBP: false, commandDialog: null, displayChoice: null, priorityBusy: false
   });
   let ui = initialView();
   const repeatedNodes = new WeakMap();
+  const keywordPanels = new WeakMap();
   let catalog;
   let archive;
   let session;
@@ -73,6 +74,11 @@
     if (data.show) node.hidden = !readPath(context, data.show);
     if (data.hide) node.hidden = !!readPath(context, data.hide);
     if (data.enable) node.disabled = !readPath(context, data.enable);
+    if (data.checked) node.checked = !!readPath(context, data.checked);
+    if (data.unitKeywords) {
+      if (!node.hidden) renderUnitKeywords(node, readPath(context, data.unitKeywords));
+      return;
+    }
     if (data.src) {
       const src = readPath(context, data.src);
       if (src && node.getAttribute("src") !== src) node.src = src;
@@ -126,13 +132,14 @@
     }
   }
 
-  function showUnitCardDetails(dialog, target, detail) {
-    const {printed, resolved, equipped, rank, points} = detail;
-    const {node, named, originLabel} = UnitCardView;
+  function unitCardPresentation(host, resolved, cardView) {
+    const {node, named, originLabel, ACTION_LABEL} = UnitCardView;
     const openSubdialog = (anchor, build) => {
       const subdialog = node("dialog", "unit-card-subdialog");
-      subdialog.append(build(() => subdialog.close()));
-      dialog.append(subdialog);
+      const content = build(() => subdialog.close());
+      subdialog.setAttribute("aria-label", content.getAttribute("aria-label") || anchor.textContent.trim());
+      subdialog.append(content);
+      host.append(subdialog);
       subdialog.addEventListener("close", () => {
         subdialog.remove();
         BuilderOverlays.focus(anchor);
@@ -141,9 +148,21 @@
     };
     const view = UnitCardView.create({
       getData: () => resolved,
+      cardView,
       openRule(rule, anchor) {
         openSubdialog(anchor, close => {
           const popover = node("div", "keyword-popover");
+          if (rule._actionUpgrade) {
+            const effect = rule._actionUpgrade;
+            const header = node("div", "popover-heading");
+            const button = node("button", null, "×");
+            button.setAttribute("aria-label", "关闭升级卡效果");
+            button.onclick = close;
+            header.append(node("h3", null, named(effect.name)), button);
+            popover.setAttribute("aria-label", "升级卡效果");
+            popover.append(header, node("p", "popover-timing", effect.actionTypes.map(type => ACTION_LABEL[type]).join(" / ")), upgrade(effect));
+            return popover;
+          }
           view.renderRulePopover(popover, rule, close);
           for (const card of rule.origins || []) {
             const source = node("div", "popover-source");
@@ -154,7 +173,7 @@
         });
       }
     });
-    const upgrade = (card, compact = false) => {
+    const upgrade = (card, {compact = false, forceOpen = true} = {}) => {
       const path = card.assets?.front || card.image;
       const art = compact && path ? node("button", "upgrade-art") : null;
       if (art) {
@@ -174,7 +193,7 @@
           return figure;
         });
       }
-      return view.upgradeEntry(card, {forceOpen: true, compact, art, showWeapons(anchor) {
+      return view.upgradeEntry(card, {forceOpen, compact, art, showWeapons(anchor) {
         openSubdialog(anchor, close => {
           const content = node("div");
           const header = node("div", "popover-heading");
@@ -186,20 +205,64 @@
         });
       }});
     };
+    return {view, upgrade};
+  }
+
+  function renderUnitKeywords(target, detail) {
+    if (!detail) {
+      target.replaceChildren();
+      keywordPanels.delete(target);
+      return;
+    }
+    const {printed, resolved, equipped} = detail;
+    const signature = JSON.stringify(equipped.map(({card, choiceId}) => [choiceId, card.id, card._face]));
+    const previous = keywordPanels.get(target);
+    if (previous?.printed === printed && previous.signature === signature) return;
+    const cardView = previous?.cardView || {tags: new Set()};
+    const {view} = unitCardPresentation(document.body, resolved, cardView);
+    target.replaceChildren(view.unitPhaseRules(printed, equipped, {hideArmyBuilding: true}));
+    keywordPanels.set(target, {printed, signature, cardView});
+  }
+
+  function showUnitCardDetails(dialog, target, {printed, resolved, equipped, rank, points}) {
+    const {node} = UnitCardView;
+    const {view, upgrade} = unitCardPresentation(dialog, resolved);
     if (!equipped) {
       target.append(upgrade(printed));
       return;
     }
     const card = node("article", "roster-unit");
-    const contents = view.unitContents(printed, equipped, {forceOpen: true});
+    const contents = view.unitContents(printed, equipped, {hideArmyBuilding: true});
     if (equipped.length) {
       const upgrades = node("div", "selected-upgrades");
       upgrades.append(node("h4", "compact-section-title", "升级卡"));
-      for (const {card: selected} of equipped) upgrades.append(upgrade(selected, true));
+      for (const {card: selected} of equipped) upgrades.append(upgrade(selected, {compact: true, forceOpen: false}));
       contents.append(upgrades);
     }
     card.append(view.unitHeader(printed, {rank, points, detail: true, showModels: true}), contents);
     target.append(card);
+  }
+
+  function bindDetailRuleToggle(dialog) {
+    const button = dialog.querySelector("[data-toggle-detail-rules]");
+    const toggles = [...dialog.querySelectorAll(".unit-expanded .rule-tag-toggle")];
+    const allExpanded = () => toggles.every(toggle => toggle.getAttribute("aria-expanded") === "true");
+    const updateLabel = () => { button.textContent = allExpanded() ? "收起全部词条" : "展开全部词条"; };
+    button.hidden = !toggles.length;
+    if (button.hidden) {
+      button.onclick = null;
+      return;
+    }
+    updateLabel();
+    button.onclick = () => {
+      const expand = !allExpanded();
+      for (const toggle of toggles) {
+        const tag = toggle.parentElement;
+        UnitCardView.setTagSummary(tag, toggle, tag.querySelector(".tag-summary"), expand);
+      }
+      updateLabel();
+    };
+    for (const toggle of toggles) toggle.addEventListener("click", updateLabel);
   }
 
   function savePageRoute() {
@@ -222,12 +285,14 @@
     root.querySelector("[data-back]").href = back.href;
     ui = initialView();
     if (entry) {
+      const updatedMatch = PlayMatch.refreshMissionTokens(entry.match, catalog);
+      if (updatedMatch !== entry.match) setSession({...entry, match: updatedMatch});
       const requestedPage = page || url.searchParams.get("view");
       const stage = entry.match.stage;
       if (requestedPage === "setup" && ["setup", "bp"].includes(stage)) ui.page = "setup";
       if (requestedPage === "score" && ["playing", "finished"].includes(stage)) ui.page = "score";
       const requestedStep = Number(url.searchParams.get("step"));
-      ui.wizardStep = Number.isInteger(requestedStep) && requestedStep >= 1 && requestedStep <= 3
+      ui.wizardStep = Number.isInteger(requestedStep) && requestedStep >= 1 && requestedStep <= 4
         ? requestedStep : entry.match.bp ? 3 : 1;
     }
     savePageRoute();
@@ -403,7 +468,10 @@
         ui.wizardStep = Math.max(1, ui.wizardStep - 1);
         savePageRoute();
       } else if (type === "wizardNext") {
-        if (ui.wizardStep < 3) {
+        if (ui.wizardStep >= 3 && !PlayMatch.missionsReady(currentEntry().match)) {
+          throw new Error("先确认玩家，并完成四张任务卡设置。");
+        }
+        if (ui.wizardStep < 4) {
           ui.wizardStep++;
           savePageRoute();
         }
@@ -470,24 +538,33 @@
         root.querySelector("[data-deck-dialog]").close();
         if (ui.pendingStartBP) await startMissionBuilding(matchId);
       } else if (type === "tab") {
+        if (ui.tab !== args.value) ui.selectedToken = null;
         ui.tab = args.value;
       } else if (type === "setView") {
         if (!Object.hasOwn(ui, args.field)) return;
-        ui[args.field] = String(args.value ?? "");
+        ui[args.field] = typeof ui[args.field] === "boolean" ? args.value === true : String(args.value ?? "");
       } else if (type === "selectToken") {
         const id = String(args.id);
         ui.selectedToken = ui.selectedToken === id ? null : id;
       } else if (type === "detail") {
         if (!args.card) return;
+        if (args.openScoring) {
+          ui.missionScoreOpen = true;
+          render();
+          return;
+        }
         const dialog = root.querySelector("[data-detail-dialog]");
         const pages = (args.card.pages || [args.card]).map(card => ({
-          ...card, plainRules: !card.sharedDetail && !card.isCommand ? card.rules : ""
+          ...card,
+          isUpgrade: !!card.sharedDetail && !card.sharedDetail.equipped,
+          plainRules: !card.sharedDetail && !card.isCommand ? card.rules : ""
         }));
         bind(dialog, { ...args.card, pages });
         dialog.querySelectorAll("[data-unit-detail]").forEach((target, index) => {
           const detail = pages[index].sharedDetail;
           if (detail) showUnitCardDetails(dialog, target, detail);
         });
+        bindDetailRuleToggle(dialog);
         dialog.showModal();
         return;
       } else {
@@ -526,6 +603,86 @@
     }
   }
 
+  function connectTokenDrag(roster) {
+    let drag;
+    let skipClickFrom;
+    const targetAt = (x, y) => {
+      const target = document.elementFromPoint(x, y)?.closest("[data-token-drop]");
+      return target && roster.contains(target) ? target : null;
+    };
+
+    function updateDrag() {
+      const { x, y, preview } = drag;
+      const edge = Math.min(80, innerHeight / 5);
+      const distance = Math.min(y - edge, 0) + Math.max(y - innerHeight + edge, 0);
+      if (distance) window.scrollBy({ top: Math.max(-20, Math.min(20, distance / 3)), behavior: "instant" });
+      preview.style.left = x + "px";
+      preview.style.top = y + "px";
+      const target = targetAt(x, y);
+      if (target !== drag.target) {
+        drag.target?.classList.remove("token-drop-active");
+        target?.classList.add("token-drop-active");
+        drag.target = target;
+      }
+      drag.frame = requestAnimationFrame(updateDrag);
+    }
+
+    roster.addEventListener("pointerdown", event => {
+      if (!event.isPrimary || event.button !== 0 || drag) return;
+      skipClickFrom = null;
+      const token = event.target.closest("[data-drag-token]");
+      if (!token) return;
+      drag = { token, pointer: event.pointerId, startX: event.clientX, startY: event.clientY };
+      token.setPointerCapture(event.pointerId);
+    });
+    roster.addEventListener("pointermove", event => {
+      if (event.pointerId !== drag?.pointer) return;
+      drag.x = event.clientX;
+      drag.y = event.clientY;
+      if (drag.preview || Math.hypot(drag.x - drag.startX, drag.y - drag.startY) < 6) return;
+      const preview = drag.token.cloneNode(true);
+      delete preview.dataset.dragToken;
+      preview.classList.add("token-drag-preview");
+      preview.inert = true;
+      document.body.append(preview);
+      drag.preview = preview;
+      drag.token.classList.add("token-drag-source");
+      updateDrag();
+    });
+
+    function finishDrag(event) {
+      if (event.pointerId !== drag?.pointer) return;
+      const { token, preview, target, frame } = drag;
+      drag = null;
+      if (!preview) {
+        if (event.type === "pointerup" && event.pointerType === "touch") {
+          skipClickFrom = token;
+          void act(token);
+        }
+        return;
+      }
+      cancelAnimationFrame(frame);
+      preview.remove();
+      token.classList.remove("token-drag-source");
+      target?.classList.remove("token-drop-active");
+      skipClickFrom = token;
+      const destination = event.type === "pointerup" && targetAt(event.clientX, event.clientY);
+      if (destination && destination !== token.closest("[data-token-drop]")) {
+        void act(destination, { id: token.dataset.dragToken });
+      }
+    }
+    roster.addEventListener("pointerup", finishDrag);
+    roster.addEventListener("pointercancel", finishDrag);
+    document.addEventListener("lostpointercapture", finishDrag);
+    roster.addEventListener("click", event => {
+      if (skipClickFrom && event.detail && event.target.closest("[data-drag-token]") === skipClickFrom) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      skipClickFrom = null;
+    }, { capture: true });
+  }
+
   function connect() {
     root.querySelector("[data-display-confirm]").addEventListener("close", () => { ui.displayChoice = null; });
     root.querySelector("[data-deck-dialog]").addEventListener("close", event => {
@@ -543,25 +700,11 @@
       if (await act(form, fields) && form.hasAttribute("data-clear")) form.reset();
     });
     root.addEventListener("change", event => {
-      if (event.target.matches("select[data-action]")) void act(event.target, { value: event.target.value, id: event.target.value });
+      const control = event.target;
+      if (control.matches("select[data-action]")) void act(control, {value: control.value, id: control.value});
+      if (control.matches("input[type=checkbox][data-action]")) void act(control, {value: control.checked});
     });
-    root.addEventListener("dragstart", event => {
-      const token = event.target.closest("[data-drag-token]");
-      if (!token) return;
-      event.dataTransfer.effectAllowed = "move";
-      event.dataTransfer.setData("application/x-swl-token", token.getAttribute("data-drag-token"));
-    });
-    const dropTarget = event => event.target.closest("[data-token-drop]");
-    root.addEventListener("dragover", event => {
-      if (dropTarget(event) && event.dataTransfer.types.includes("application/x-swl-token")) event.preventDefault();
-    });
-    root.addEventListener("drop", event => {
-      const target = dropTarget(event);
-      const id = event.dataTransfer.getData("application/x-swl-token");
-      if (!target || !id) return;
-      event.preventDefault();
-      void act(target, { id });
-    });
+    connectTokenDrag(root.querySelector("#play-roster"));
     window.addEventListener("storage", event => {
       if (event.storageArea !== localStorage || event.key !== PlayStore.storageKey(rosterId)) return;
       try {
@@ -586,8 +729,8 @@
       if (session?.match?.rosterId !== rosterId) session = null;
       const entry = currentEntry();
       const missingEntry = currentId && !entry;
-      selectMatch(entry);
       catalog = await PlayData.load(base);
+      selectMatch(entry);
       render();
       connect();
       status.textContent = missingEntry ? "找不到该对局，可从历史记录选择其他对局。" : "";

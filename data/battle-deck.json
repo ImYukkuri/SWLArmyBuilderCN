@@ -17,7 +17,27 @@
         "zh": "部署：从蓝方玩家开始，双方各选择2个友方单位和2个敌方单位；不得选择已被选过的单位。每个被选单位获得1个标记目标标记。\n计分：带有标记目标标记的单位被击败且效果结算后，其对手得1分。"
       },
       "image": "assets/battle-deck/secondary/Marked Targets.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/secondary/Marked Targets-c9fba4d583c4.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/secondary/Marked Targets-c9fba4d583c4.webp",
+      "scoreItems": [
+        {
+          "id": "defeat",
+          "name": "击败目标",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        }
+      ],
+      "tokens": [
+        {
+          "name": "敌方选择目标",
+          "quantity": 2
+        },
+        {
+          "name": "己方选择目标",
+          "quantity": 2
+        }
+      ]
     },
     {
       "id": "objective-14",
@@ -34,7 +54,42 @@
         "zh": "计分：每回合每位玩家一次，当敌方单位被友方单位的攻击击败时，该友方单位的控制玩家可以标记下表中属于自己的一格未标记格子。只能选择与攻击单位队长所在领地相对应的格子。\n计分格：以下每行蓝方、红方各有一格，每格整局只能标记一次。\n任意领地：蓝方1分，红方1分。\n友方领地：蓝方1分，红方1分。\n争夺领地：蓝方1分，红方1分。\n敌方领地：蓝方2分，红方2分。"
       },
       "image": "assets/battle-deck/secondary/Sweep and Clear.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/secondary/Sweep and Clear-58b9ad97ed3f.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/secondary/Sweep and Clear-58b9ad97ed3f.webp",
+      "scoreItems": [
+        {
+          "id": "any",
+          "name": "任意领地",
+          "points": 1,
+          "repeatable": false,
+          "globalOnce": true,
+          "poi": false
+        },
+        {
+          "id": "friendly",
+          "name": "友方领地",
+          "points": 1,
+          "repeatable": false,
+          "globalOnce": true,
+          "poi": false
+        },
+        {
+          "id": "contested",
+          "name": "争夺领地",
+          "points": 1,
+          "repeatable": false,
+          "globalOnce": true,
+          "poi": false
+        },
+        {
+          "id": "enemy",
+          "name": "敌方领地",
+          "points": 1,
+          "repeatable": false,
+          "globalOnce": true,
+          "poi": false
+        }
+      ],
+      "tokens": []
     },
     {
       "id": "objective-15",
@@ -51,7 +106,34 @@
         "zh": "计分：从第二回合开始，每个回合结束阶段，若压制标记数量达到或超过自身勇气值的敌方单位数量多于友方单位数量，得1分。\n每回合每位玩家一次，当一个单位获得至少1个压制标记时，其对手可以标记下表中属于自己的一格未标记格子，但必须满足对应行的条件。\n计分格：以下每行蓝方、红方各有一格，每格整局只能标记一次。\n敌方单位恐慌：蓝方2分，红方2分。\n所有敌方单位受压制：所有能够获得压制标记的敌方单位都至少有1个压制标记时，蓝方2分，红方2分。"
       },
       "image": "assets/battle-deck/secondary/Bring Them to Heel.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/secondary/Bring Them to Heel-536dca4e2243.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/secondary/Bring Them to Heel-536dca4e2243.webp",
+      "scoreItems": [
+        {
+          "id": "round",
+          "name": "回合得分",
+          "points": 1,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": true
+        },
+        {
+          "id": "panic",
+          "name": "敌方单位恐慌",
+          "points": 2,
+          "repeatable": false,
+          "globalOnce": true,
+          "poi": false
+        },
+        {
+          "id": "suppressed",
+          "name": "所有敌方压制",
+          "points": 2,
+          "repeatable": false,
+          "globalOnce": true,
+          "poi": false
+        }
+      ],
+      "tokens": []
     },
     {
       "id": "objective-16",
@@ -68,7 +150,31 @@
         "zh": "部署：从蓝方玩家开始，双方各选择2个友方单位。每个被选单位获得一个友方扫描器（资产）。\n计分：从第二回合开始，每个回合结束阶段，若玩家控制2个各自携带扫描器的单位，且这些单位不在友方领地内，也未争夺位于友方领地内的兴趣点，得1分。\n回合结束阶段，若携带扫描器的友方单位正在争夺一个未被认领的敌方扫描器，其控制玩家得2分；每位玩家每局最多以此方式得2分。\n特殊规则：每个单位获得“索取（扫描器）”免费行动，且不能索取敌方扫描器。每个单位同一时间最多携带1个扫描器。"
       },
       "image": "assets/battle-deck/secondary/Surface Scan.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/secondary/Surface Scan-3ae213f687ab.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/secondary/Surface Scan-3ae213f687ab.webp",
+      "scoreItems": [
+        {
+          "id": "scan",
+          "name": "扫描分",
+          "points": 1,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": false
+        },
+        {
+          "id": "enemy-scanner",
+          "name": "争夺敌方扫描器",
+          "points": 2,
+          "repeatable": false,
+          "globalOnce": true,
+          "poi": false
+        }
+      ],
+      "tokens": [
+        {
+          "name": "扫描器",
+          "quantity": 2
+        }
+      ]
     },
     {
       "id": "objective-17",
@@ -85,7 +191,23 @@
         "zh": "部署：从蓝方玩家开始，双方各在距离战场每条边缘1以外放置一个友方基地（兴趣点）。然后再次从蓝方玩家开始，双方各选择1个友方单位；每个被选单位获得一个炸弹（资产）。\n计分：每个回合结束阶段，若敌方基地在本阶段被摧毁，得4分。\n特殊规则：每个单位获得“索取（炸弹）”免费行动；每个单位最多携带1个炸弹。\n回合结束阶段开始时，若携带炸弹的至少一个友方单位正在争夺你控制的敌方基地，移除正在争夺该基地的所有友方单位所携带的炸弹，然后摧毁该基地并将其移出战场。"
       },
       "image": "assets/battle-deck/secondary/Destroy Enemy Base.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/secondary/Destroy Enemy Base-9a0f04a58150.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/secondary/Destroy Enemy Base-9a0f04a58150.webp",
+      "scoreItems": [
+        {
+          "id": "destroy",
+          "name": "摧毁基地",
+          "points": 4,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": false
+        }
+      ],
+      "tokens": [
+        {
+          "name": "炸弹",
+          "quantity": 1
+        }
+      ]
     },
     {
       "id": "objective-18",
@@ -102,7 +224,23 @@
         "zh": "部署：从蓝方玩家开始，双方各选择1个友方单位。每个被选单位获得一个友方扫描器（资产）。\n计分：从第二回合开始，每个友方单位激活结束时，若其携带扫描器，且单位队长距离至少2个敌方单位不超过2并具有视线，其控制玩家得1分；每位玩家每回合最多以此方式得1分。\n特殊规则：每个单位获得“索取（扫描器）”免费行动，且不能索取敌方扫描器。\n若友方单位携带扫描器，则该单位激活结束时，视线内且距离其单位队长2以内的每个敌方单位获得1个观察标记。"
       },
       "image": "assets/battle-deck/secondary/Recon Mission.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/secondary/Recon Mission-fa4d200ed58d.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/secondary/Recon Mission-fa4d200ed58d.webp",
+      "scoreItems": [
+        {
+          "id": "scan",
+          "name": "扫描分",
+          "points": 1,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": false
+        }
+      ],
+      "tokens": [
+        {
+          "name": "扫描器",
+          "quantity": 1
+        }
+      ]
     },
     {
       "id": "objective-21",
@@ -119,7 +257,23 @@
         "zh": "部署：从蓝方玩家开始，双方各选择1个友方单位。每个被选单位获得一个友方扫描器（资产）。\n计分：从第二回合开始，每个友方单位激活结束时，若其携带扫描器，且单位队长距离至少2个敌方单位不超过2并具有视线，其控制玩家得1分；每位玩家每回合最多以此方式得1分。\n特殊规则：每个单位获得“索取（扫描器）”免费行动，且不能索取敌方扫描器。\n若友方单位携带扫描器，则该单位激活结束时，视线内且距离其单位队长2以内的每个敌方单位获得1个观察标记。"
       },
       "image": "assets/battle-deck/secondary/Recon Mission.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/secondary/Recon Mission-fa4d200ed58d.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/secondary/Recon Mission-fa4d200ed58d.webp",
+      "scoreItems": [
+        {
+          "id": "scan",
+          "name": "扫描分",
+          "points": 1,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": false
+        }
+      ],
+      "tokens": [
+        {
+          "name": "扫描器",
+          "quantity": 1
+        }
+      ]
     },
     {
       "id": "objective-20",
@@ -136,7 +290,31 @@
         "zh": "部署：从蓝方玩家开始，双方各选择2个友方单位。每个被选单位获得一个友方扫描器（资产）。\n计分：从第二回合开始，每个回合结束阶段，若玩家控制2个各自携带扫描器的单位，且这些单位不在友方领地内，也未争夺位于友方领地内的兴趣点，得1分。\n回合结束阶段，若携带扫描器的友方单位正在争夺一个未被认领的敌方扫描器，其控制玩家得2分；每位玩家每局最多以此方式得2分。\n特殊规则：每个单位获得“索取（扫描器）”免费行动，且不能索取敌方扫描器。每个单位同一时间最多携带1个扫描器。"
       },
       "image": "assets/battle-deck/secondary/Surface Scan.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/secondary/Surface Scan-3ae213f687ab.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/secondary/Surface Scan-3ae213f687ab.webp",
+      "scoreItems": [
+        {
+          "id": "scan",
+          "name": "扫描分",
+          "points": 1,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": false
+        },
+        {
+          "id": "enemy-scanner",
+          "name": "争夺敌方扫描器",
+          "points": 2,
+          "repeatable": false,
+          "globalOnce": true,
+          "poi": false
+        }
+      ],
+      "tokens": [
+        {
+          "name": "扫描器",
+          "quantity": 2
+        }
+      ]
     },
     {
       "id": "objective-19",
@@ -153,7 +331,34 @@
         "zh": "计分：从第二回合开始，每个回合结束阶段，若压制标记数量达到或超过自身勇气值的敌方单位数量多于友方单位数量，得1分。\n每回合每位玩家一次，当一个单位获得至少1个压制标记时，其对手可以标记下表中属于自己的一格未标记格子，但必须满足对应行的条件。\n计分格：以下每行蓝方、红方各有一格，每格整局只能标记一次。\n敌方单位恐慌：蓝方2分，红方2分。\n所有敌方单位受压制：所有能够获得压制标记的敌方单位都至少有1个压制标记时，蓝方2分，红方2分。"
       },
       "image": "assets/battle-deck/secondary/Bring Them to Heel.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/secondary/Bring Them to Heel-536dca4e2243.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/secondary/Bring Them to Heel-536dca4e2243.webp",
+      "scoreItems": [
+        {
+          "id": "round",
+          "name": "回合得分",
+          "points": 1,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": true
+        },
+        {
+          "id": "panic",
+          "name": "敌方单位恐慌",
+          "points": 2,
+          "repeatable": false,
+          "globalOnce": true,
+          "poi": false
+        },
+        {
+          "id": "suppressed",
+          "name": "所有敌方压制",
+          "points": 2,
+          "repeatable": false,
+          "globalOnce": true,
+          "poi": false
+        }
+      ],
+      "tokens": []
     },
     {
       "id": "objective-22",
@@ -170,7 +375,50 @@
         "zh": "部署：从蓝方玩家开始，双方各在争夺领地内放置2个补给箱（资产），位置须在距离战场每条边缘2以外、其他补给箱1以外。\n计分：从第二回合开始，每个友方单位激活开始时，若其正在争夺兴趣点并携带补给箱，其控制玩家可将该补给箱移出游戏；若如此，得1分。若在第四或第五回合，额外得1分。\n特殊规则：每个士兵单位获得“索取（补给箱）”行动。每个单位同一时间最多携带1个补给箱。"
       },
       "image": "assets/battle-deck/secondary/Supply Run.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/secondary/Supply Run-bfc58ed13f87.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/secondary/Supply Run-bfc58ed13f87.webp",
+      "scoreItems": [
+        {
+          "id": "crate-1",
+          "name": "补给箱1",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": true
+        },
+        {
+          "id": "crate-2",
+          "name": "补给箱2",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": true
+        },
+        {
+          "id": "crate-3",
+          "name": "补给箱3",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": true
+        },
+        {
+          "id": "crate-4",
+          "name": "补给箱4",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": true
+        },
+        {
+          "id": "round-bonus",
+          "name": "回合额外分",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        }
+      ],
+      "tokens": []
     },
     {
       "id": "objective-23",
@@ -187,7 +435,23 @@
         "zh": "部署：在战场中央放置一个交易所（兴趣点），即使那里已有目标标记也照常放置。从蓝方玩家开始，双方各选择1个友方核心或特种部队军阶的士兵单位；每个被选单位获得一个友方囚犯（资产）。\n计分：从第二回合开始，每个回合结束阶段，你控制的每个携带至少1名囚犯且距离交易所1以内的单位得1分。\n特殊规则：携带至少1名囚犯的单位勇气值增加1。第一激活阶段开始时，携带至少1名囚犯的单位获得隐匿，直到回合结束。\n此外，每个核心或特种部队军阶的士兵单位获得“索取（囚犯）”行动。"
       },
       "image": "assets/battle-deck/secondary/Failed Negotiations.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/secondary/Failed Negotiations-b6aec51bdf0a.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/secondary/Failed Negotiations-b6aec51bdf0a.webp",
+      "scoreItems": [
+        {
+          "id": "hostage",
+          "name": "人质分",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        }
+      ],
+      "tokens": [
+        {
+          "name": "人质",
+          "quantity": 1
+        }
+      ]
     },
     {
       "id": "objective-24",
@@ -204,7 +468,18 @@
         "zh": "部署：将一个数据核心（资产）放在战场中央，即使那里已有目标标记也照常放置。从蓝方玩家开始，双方各在争夺领地内放置2个数据核心，位置须在距离战场每条边缘2以外、其他数据核心1以外。\n计分：从第二回合开始，每个回合结束阶段，你控制且有至少2个压制标记的数据核心各得1分。计分后，移除你控制且有至少2个压制标记的数据核心。\n特殊规则：每个单位获得“数据回收”行动（在该单位正在争夺的数据核心上放置1个压制标记）。"
       },
       "image": "assets/battle-deck/secondary/Retrieve the Data.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/secondary/Retrieve the Data-cd292265fe63.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/secondary/Retrieve the Data-cd292265fe63.webp",
+      "scoreItems": [
+        {
+          "id": "control",
+          "name": "控制数据",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        }
+      ],
+      "tokens": []
     },
     {
       "id": "objective-25",
@@ -221,7 +496,26 @@
         "zh": "部署：将一个通讯中继器（资产）放在战场中央，即使那里已有目标标记也照常放置。然后从蓝方玩家开始，双方各放置2个通讯中继器，位置须同时在两条战场长边的距离3以内，且在短边和其他通讯中继器的距离1以外。\n计分：从第二回合开始，每个回合结束阶段，控制至少2个通讯中继器得1分，控制至少4个再得1分。\n特殊规则：每个单位获得“校准中继站”行动（选择该单位正在争夺的一个通讯中继器；你现在控制该通讯中继器）。\n玩家控制的通讯中继器会一直由其控制，直到另一玩家控制它。"
       },
       "image": "assets/battle-deck/secondary/Align the Relay.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/secondary/Align the Relay-adb58a72f5da.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/secondary/Align the Relay-adb58a72f5da.webp",
+      "scoreItems": [
+        {
+          "id": "control-two",
+          "name": "控制2个",
+          "points": 1,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": false
+        },
+        {
+          "id": "control-four",
+          "name": "控制4个",
+          "points": 2,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": false
+        }
+      ],
+      "tokens": []
     }
   ],
   "deployments": [
@@ -240,7 +534,34 @@
         "zh": "部署：按《合围》地图卡所示放置3个补给堆（兴趣点）。\n计分：从第二回合开始，每个回合结束阶段，若你控制中央补给堆得2分；你控制的每个非中央补给堆得1分。"
       },
       "image": "assets/battle-deck/primary/Close the Pocket.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/primary/Close the Pocket-d681d4d030db.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/primary/Close the Pocket-d681d4d030db.webp",
+      "scoreItems": [
+        {
+          "id": "outer-1",
+          "name": "外围点1",
+          "points": 1,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": true
+        },
+        {
+          "id": "outer-2",
+          "name": "外围点2",
+          "points": 1,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": true
+        },
+        {
+          "id": "center",
+          "name": "中心点",
+          "points": 2,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": true
+        }
+      ],
+      "tokens": []
     },
     {
       "id": "deployment-14",
@@ -257,7 +578,26 @@
         "zh": "部署：按《碉堡突击》地图卡所示放置4个碉堡（兴趣点）。距离友方领地最远的2个碉堡为敌方碉堡。\n计分：从第二回合开始，每个回合结束阶段，你控制的每个碉堡得1分；本阶段被摧毁的每个敌方碉堡另得3分。\n特殊规则：从第二回合开始，回合结束阶段开始时，双方从蓝方玩家开始，在各自控制的每个敌方碉堡上放置1个伤害标记。然后，若至少一个争夺该碉堡的单位是友方指挥官、特工或特种部队单位，额外放置1个伤害标记。随后，拥有至少3个伤害标记的碉堡被摧毁并移出战场。"
       },
       "image": "assets/battle-deck/primary/Bunker Assault.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/primary/Bunker Assault-6ec3bd4cbb4e.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/primary/Bunker Assault-6ec3bd4cbb4e.webp",
+      "scoreItems": [
+        {
+          "id": "control",
+          "name": "碉堡控制分",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        },
+        {
+          "id": "destroy",
+          "name": "碉堡摧毁分",
+          "points": 3,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        }
+      ],
+      "tokens": []
     },
     {
       "id": "deployment-15",
@@ -274,7 +614,26 @@
         "zh": "部署：按《突破》地图卡所示放置4个检查点（兴趣点）。\n计分：从第二回合开始，每个回合结束阶段，每个位于友方领地且未被敌方单位争夺的检查点得1分。此外，你控制的每个位于敌方领地的检查点得2分。"
       },
       "image": "assets/battle-deck/primary/Breakthrough.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/primary/Breakthrough-35f3d6ffae16.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/primary/Breakthrough-35f3d6ffae16.webp",
+      "scoreItems": [
+        {
+          "id": "friendly",
+          "name": "己方领地控制分",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        },
+        {
+          "id": "enemy",
+          "name": "敌方领地控制分",
+          "points": 2,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        }
+      ],
+      "tokens": []
     },
     {
       "id": "deployment-16",
@@ -290,7 +649,31 @@
       "rules": {
         "zh": "部署：按《拦截信号》地图卡所示放置4座通讯塔（兴趣点）。\n从蓝方玩家开始，双方各选择3个友方单位。然后再次从蓝方玩家开始，双方各从对手刚选择的单位中选择2个；这些被选中的敌方单位各获得1个情报标记。\n计分：从第二回合开始，每个回合结束阶段，每座不在友方领地内且满足以下至少一项条件的通讯塔得1分：由带有情报标记的友方单位争夺；或由你控制。\n特殊规则：每个回合结束阶段结束时，若你控制一座通讯塔，最多2个正在争夺该通讯塔的友方单位可以各获得1个情报标记。每位玩家在任意时刻最多只能有2个单位带有情报标记。"
       },
-      "thumbnail": "assets/thumbnails/battle-deck/primary/Intercept the Signals-4ed8151864d2.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/primary/Intercept the Signals-4ed8151864d2.webp",
+      "scoreItems": [
+        {
+          "id": "control",
+          "name": "控制得分",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        },
+        {
+          "id": "intel",
+          "name": "情报标记争夺分",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        }
+      ],
+      "tokens": [
+        {
+          "name": "情报标记",
+          "quantity": 5
+        }
+      ]
     },
     {
       "id": "deployment-17",
@@ -307,7 +690,34 @@
         "zh": "部署：按《回收研究资料》地图卡所示放置6个实验室（兴趣点）。\n计分：从第二回合开始，每个回合结束阶段，若友方单位争夺2个实验室得1分，争夺3个得2分，争夺至少4个得3分。"
       },
       "image": "assets/battle-deck/primary/Recover the Research.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/primary/Recover the Research-6831f3aa8b97.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/primary/Recover the Research-6831f3aa8b97.webp",
+      "scoreItems": [
+        {
+          "id": "two",
+          "name": "争夺2个",
+          "points": 1,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": false
+        },
+        {
+          "id": "three",
+          "name": "争夺3个",
+          "points": 2,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": false
+        },
+        {
+          "id": "four",
+          "name": "争夺4个",
+          "points": 3,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": false
+        }
+      ],
+      "tokens": []
     },
     {
       "id": "deployment-19",
@@ -324,7 +734,18 @@
         "zh": "部署：按《转移重点》地图卡所示放置5个优先目标（兴趣点）。\n计分：从第二回合开始，每个回合结束阶段，你控制的每个优先目标得1分。\n特殊规则：从第二回合开始，每个回合结束阶段结束时，双方轮流将对手控制的每个优先目标放置到其当前位置距离½以内，从蓝方玩家开始。每个优先目标每回合只能如此放置一次。"
       },
       "image": "assets/battle-deck/primary/Shifting Priorities.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/primary/Shifting Priorities-87d0a0b3fa4e.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/primary/Shifting Priorities-87d0a0b3fa4e.webp",
+      "scoreItems": [
+        {
+          "id": "control",
+          "name": "控制POI",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        }
+      ],
+      "tokens": []
     },
     {
       "id": "deployment-22",
@@ -341,7 +762,34 @@
         "zh": "部署：按《合围》地图卡所示放置3个补给堆（兴趣点）。\n计分：从第二回合开始，每个回合结束阶段，若你控制中央补给堆得2分；你控制的每个非中央补给堆得1分。"
       },
       "image": "assets/battle-deck/primary/Close the Pocket.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/primary/Close the Pocket-d681d4d030db.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/primary/Close the Pocket-d681d4d030db.webp",
+      "scoreItems": [
+        {
+          "id": "outer-1",
+          "name": "外围点1",
+          "points": 1,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": true
+        },
+        {
+          "id": "outer-2",
+          "name": "外围点2",
+          "points": 1,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": true
+        },
+        {
+          "id": "center",
+          "name": "中心点",
+          "points": 2,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": true
+        }
+      ],
+      "tokens": []
     },
     {
       "id": "deployment-21",
@@ -358,7 +806,26 @@
         "zh": "部署：按《碉堡突击》地图卡所示放置4个碉堡（兴趣点）。距离友方领地最远的2个碉堡为敌方碉堡。\n计分：从第二回合开始，每个回合结束阶段，你控制的每个碉堡得1分；本阶段被摧毁的每个敌方碉堡另得3分。\n特殊规则：从第二回合开始，回合结束阶段开始时，双方从蓝方玩家开始，在各自控制的每个敌方碉堡上放置1个伤害标记。然后，若至少一个争夺该碉堡的单位是友方指挥官、特工或特种部队单位，额外放置1个伤害标记。随后，拥有至少3个伤害标记的碉堡被摧毁并移出战场。"
       },
       "image": "assets/battle-deck/primary/Bunker Assault.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/primary/Bunker Assault-6ec3bd4cbb4e.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/primary/Bunker Assault-6ec3bd4cbb4e.webp",
+      "scoreItems": [
+        {
+          "id": "control",
+          "name": "碉堡控制分",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        },
+        {
+          "id": "destroy",
+          "name": "碉堡摧毁分",
+          "points": 3,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        }
+      ],
+      "tokens": []
     },
     {
       "id": "deployment-20",
@@ -374,7 +841,31 @@
       "rules": {
         "zh": "部署：按《拦截信号》地图卡所示放置4座通讯塔（兴趣点）。\n从蓝方玩家开始，双方各选择3个友方单位。然后再次从蓝方玩家开始，双方各从对手刚选择的单位中选择2个；这些被选中的敌方单位各获得1个情报标记。\n计分：从第二回合开始，每个回合结束阶段，每座不在友方领地内且满足以下至少一项条件的通讯塔得1分：由带有情报标记的友方单位争夺；或由你控制。\n特殊规则：每个回合结束阶段结束时，若你控制一座通讯塔，最多2个正在争夺该通讯塔的友方单位可以各获得1个情报标记。每位玩家在任意时刻最多只能有2个单位带有情报标记。"
       },
-      "thumbnail": "assets/thumbnails/battle-deck/primary/Intercept the Signals-4ed8151864d2.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/primary/Intercept the Signals-4ed8151864d2.webp",
+      "scoreItems": [
+        {
+          "id": "control",
+          "name": "控制得分",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        },
+        {
+          "id": "intel",
+          "name": "情报标记争夺分",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        }
+      ],
+      "tokens": [
+        {
+          "name": "情报标记",
+          "quantity": 5
+        }
+      ]
     },
     {
       "id": "deployment-24",
@@ -391,7 +882,26 @@
         "zh": "部署：按《接敌！接敌！》地图卡所示放置5个监听哨（兴趣点）。\n特殊规则：争夺至少一个监听哨的单位获得精准1。\n计分：从第二回合开始，每个回合结束阶段，你控制的每个位于友方或争夺领地的监听哨得1分；每个位于敌方领地的监听哨得2分。"
       },
       "image": "assets/battle-deck/primary/Contact, Contact!.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/primary/Contact, Contact!-4f22c0f215ba.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/primary/Contact, Contact!-4f22c0f215ba.webp",
+      "scoreItems": [
+        {
+          "id": "control",
+          "name": "控制普通POI",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        },
+        {
+          "id": "enemy",
+          "name": "控制敌方POI",
+          "points": 2,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": false
+        }
+      ],
+      "tokens": []
     },
     {
       "id": "deployment-25",
@@ -408,7 +918,26 @@
         "zh": "部署：按《有效载荷》地图卡所示放置3辆炸弹车（兴趣点）。\n计分：从第二回合开始，每个回合结束阶段，你控制的每辆炸弹车得1分。\n然后双方轮流将各自控制且不在敌方领地内的炸弹车放置到其当前位置距离½以内，从蓝方玩家开始。每辆炸弹车每回合只能如此放置一次。\n全部炸弹车放置完毕后，每辆位于敌方领地内的炸弹车得2分。"
       },
       "image": "assets/battle-deck/primary/Payload.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/primary/Payload-a37712d66ed0.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/primary/Payload-a37712d66ed0.webp",
+      "scoreItems": [
+        {
+          "id": "control",
+          "name": "控制炸弹车",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        },
+        {
+          "id": "enemy",
+          "name": "敌方领地炸弹车",
+          "points": 2,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        }
+      ],
+      "tokens": []
     },
     {
       "id": "deployment-26",
@@ -425,7 +954,34 @@
         "zh": "部署：按《坩埚》地图卡所示放置6个航点（兴趣点）。\n计分：从第二回合开始，每个回合结束阶段，你控制的每个位于友方领地内的航点得1分；你控制的每个完全位于争夺领地内、且距离另一个你控制的航点2以内的航点也得1分。若你控制了两个完全位于争夺领地内的航点，额外得1分。\n特殊规则：回合结束阶段，争夺至少一个航点的单位在移除标记步骤中少移除1个压制标记。"
       },
       "image": "assets/battle-deck/primary/Cauldron.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/primary/Cauldron-87cdc5193033.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/primary/Cauldron-87cdc5193033.webp",
+      "scoreItems": [
+        {
+          "id": "friendly",
+          "name": "己方POI",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        },
+        {
+          "id": "contested",
+          "name": "争夺区POI",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        },
+        {
+          "id": "both",
+          "name": "同时控制争夺区POI",
+          "points": 2,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": true
+        }
+      ],
+      "tokens": []
     },
     {
       "id": "deployment-23",
@@ -442,7 +998,31 @@
         "zh": "部署：按《迂回》地图卡所示放置4面旗帜（兴趣点）。从蓝方玩家开始，双方各选择最多3个未被运输的非指挥官单位。每个被选单位获得1个先锋标记。\n计分：从第二回合开始，每个回合结束阶段，你控制的每面旗帜得1分。若你控制的至少2个带有先锋标记的单位正在争夺你控制的旗帜，额外得1分。\n特殊规则：带有先锋标记的单位必须部署在接触战场短边的玩家领地部分。除非通过运输关键词部署，否则只有带有先锋标记的单位可以部署在该区域。"
       },
       "image": "assets/battle-deck/primary/Outflank.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/primary/Outflank-2f14b585af3d.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/primary/Outflank-2f14b585af3d.webp",
+      "scoreItems": [
+        {
+          "id": "control",
+          "name": "控制POI",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        },
+        {
+          "id": "vanguard",
+          "name": "先锋争夺分",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        }
+      ],
+      "tokens": [
+        {
+          "name": "先锋标记",
+          "quantity": 3
+        }
+      ]
     }
   ],
   "conditions": [
@@ -776,7 +1356,34 @@
         "zh": "部署：按《合围》地图卡所示放置3个补给堆（兴趣点）。\n计分：从第二回合开始，每个回合结束阶段，若你控制中央补给堆得2分；你控制的每个非中央补给堆得1分。"
       },
       "image": "assets/battle-deck/primary/Close the Pocket.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/primary/Close the Pocket-d681d4d030db.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/primary/Close the Pocket-d681d4d030db.webp",
+      "scoreItems": [
+        {
+          "id": "outer-1",
+          "name": "外围点1",
+          "points": 1,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": true
+        },
+        {
+          "id": "outer-2",
+          "name": "外围点2",
+          "points": 1,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": true
+        },
+        {
+          "id": "center",
+          "name": "中心点",
+          "points": 2,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": true
+        }
+      ],
+      "tokens": []
     },
     {
       "id": "deployment-14",
@@ -793,7 +1400,26 @@
         "zh": "部署：按《碉堡突击》地图卡所示放置4个碉堡（兴趣点）。距离友方领地最远的2个碉堡为敌方碉堡。\n计分：从第二回合开始，每个回合结束阶段，你控制的每个碉堡得1分；本阶段被摧毁的每个敌方碉堡另得3分。\n特殊规则：从第二回合开始，回合结束阶段开始时，双方从蓝方玩家开始，在各自控制的每个敌方碉堡上放置1个伤害标记。然后，若至少一个争夺该碉堡的单位是友方指挥官、特工或特种部队单位，额外放置1个伤害标记。随后，拥有至少3个伤害标记的碉堡被摧毁并移出战场。"
       },
       "image": "assets/battle-deck/primary/Bunker Assault.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/primary/Bunker Assault-6ec3bd4cbb4e.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/primary/Bunker Assault-6ec3bd4cbb4e.webp",
+      "scoreItems": [
+        {
+          "id": "control",
+          "name": "碉堡控制分",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        },
+        {
+          "id": "destroy",
+          "name": "碉堡摧毁分",
+          "points": 3,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        }
+      ],
+      "tokens": []
     },
     {
       "id": "deployment-15",
@@ -810,7 +1436,26 @@
         "zh": "部署：按《突破》地图卡所示放置4个检查点（兴趣点）。\n计分：从第二回合开始，每个回合结束阶段，每个位于友方领地且未被敌方单位争夺的检查点得1分。此外，你控制的每个位于敌方领地的检查点得2分。"
       },
       "image": "assets/battle-deck/primary/Breakthrough.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/primary/Breakthrough-35f3d6ffae16.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/primary/Breakthrough-35f3d6ffae16.webp",
+      "scoreItems": [
+        {
+          "id": "friendly",
+          "name": "己方领地控制分",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        },
+        {
+          "id": "enemy",
+          "name": "敌方领地控制分",
+          "points": 2,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        }
+      ],
+      "tokens": []
     },
     {
       "id": "deployment-16",
@@ -826,7 +1471,31 @@
       "rules": {
         "zh": "部署：按《拦截信号》地图卡所示放置4座通讯塔（兴趣点）。\n从蓝方玩家开始，双方各选择3个友方单位。然后再次从蓝方玩家开始，双方各从对手刚选择的单位中选择2个；这些被选中的敌方单位各获得1个情报标记。\n计分：从第二回合开始，每个回合结束阶段，每座不在友方领地内且满足以下至少一项条件的通讯塔得1分：由带有情报标记的友方单位争夺；或由你控制。\n特殊规则：每个回合结束阶段结束时，若你控制一座通讯塔，最多2个正在争夺该通讯塔的友方单位可以各获得1个情报标记。每位玩家在任意时刻最多只能有2个单位带有情报标记。"
       },
-      "thumbnail": "assets/thumbnails/battle-deck/primary/Intercept the Signals-4ed8151864d2.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/primary/Intercept the Signals-4ed8151864d2.webp",
+      "scoreItems": [
+        {
+          "id": "control",
+          "name": "控制得分",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        },
+        {
+          "id": "intel",
+          "name": "情报标记争夺分",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        }
+      ],
+      "tokens": [
+        {
+          "name": "情报标记",
+          "quantity": 5
+        }
+      ]
     },
     {
       "id": "deployment-17",
@@ -843,7 +1512,34 @@
         "zh": "部署：按《回收研究资料》地图卡所示放置6个实验室（兴趣点）。\n计分：从第二回合开始，每个回合结束阶段，若友方单位争夺2个实验室得1分，争夺3个得2分，争夺至少4个得3分。"
       },
       "image": "assets/battle-deck/primary/Recover the Research.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/primary/Recover the Research-6831f3aa8b97.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/primary/Recover the Research-6831f3aa8b97.webp",
+      "scoreItems": [
+        {
+          "id": "two",
+          "name": "争夺2个",
+          "points": 1,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": false
+        },
+        {
+          "id": "three",
+          "name": "争夺3个",
+          "points": 2,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": false
+        },
+        {
+          "id": "four",
+          "name": "争夺4个",
+          "points": 3,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": false
+        }
+      ],
+      "tokens": []
     },
     {
       "id": "deployment-19",
@@ -860,7 +1556,18 @@
         "zh": "部署：按《转移重点》地图卡所示放置5个优先目标（兴趣点）。\n计分：从第二回合开始，每个回合结束阶段，你控制的每个优先目标得1分。\n特殊规则：从第二回合开始，每个回合结束阶段结束时，双方轮流将对手控制的每个优先目标放置到其当前位置距离½以内，从蓝方玩家开始。每个优先目标每回合只能如此放置一次。"
       },
       "image": "assets/battle-deck/primary/Shifting Priorities.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/primary/Shifting Priorities-87d0a0b3fa4e.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/primary/Shifting Priorities-87d0a0b3fa4e.webp",
+      "scoreItems": [
+        {
+          "id": "control",
+          "name": "控制POI",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        }
+      ],
+      "tokens": []
     },
     {
       "id": "deployment-22",
@@ -877,7 +1584,34 @@
         "zh": "部署：按《合围》地图卡所示放置3个补给堆（兴趣点）。\n计分：从第二回合开始，每个回合结束阶段，若你控制中央补给堆得2分；你控制的每个非中央补给堆得1分。"
       },
       "image": "assets/battle-deck/primary/Close the Pocket.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/primary/Close the Pocket-d681d4d030db.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/primary/Close the Pocket-d681d4d030db.webp",
+      "scoreItems": [
+        {
+          "id": "outer-1",
+          "name": "外围点1",
+          "points": 1,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": true
+        },
+        {
+          "id": "outer-2",
+          "name": "外围点2",
+          "points": 1,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": true
+        },
+        {
+          "id": "center",
+          "name": "中心点",
+          "points": 2,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": true
+        }
+      ],
+      "tokens": []
     },
     {
       "id": "deployment-21",
@@ -894,7 +1628,26 @@
         "zh": "部署：按《碉堡突击》地图卡所示放置4个碉堡（兴趣点）。距离友方领地最远的2个碉堡为敌方碉堡。\n计分：从第二回合开始，每个回合结束阶段，你控制的每个碉堡得1分；本阶段被摧毁的每个敌方碉堡另得3分。\n特殊规则：从第二回合开始，回合结束阶段开始时，双方从蓝方玩家开始，在各自控制的每个敌方碉堡上放置1个伤害标记。然后，若至少一个争夺该碉堡的单位是友方指挥官、特工或特种部队单位，额外放置1个伤害标记。随后，拥有至少3个伤害标记的碉堡被摧毁并移出战场。"
       },
       "image": "assets/battle-deck/primary/Bunker Assault.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/primary/Bunker Assault-6ec3bd4cbb4e.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/primary/Bunker Assault-6ec3bd4cbb4e.webp",
+      "scoreItems": [
+        {
+          "id": "control",
+          "name": "碉堡控制分",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        },
+        {
+          "id": "destroy",
+          "name": "碉堡摧毁分",
+          "points": 3,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        }
+      ],
+      "tokens": []
     },
     {
       "id": "deployment-20",
@@ -910,7 +1663,31 @@
       "rules": {
         "zh": "部署：按《拦截信号》地图卡所示放置4座通讯塔（兴趣点）。\n从蓝方玩家开始，双方各选择3个友方单位。然后再次从蓝方玩家开始，双方各从对手刚选择的单位中选择2个；这些被选中的敌方单位各获得1个情报标记。\n计分：从第二回合开始，每个回合结束阶段，每座不在友方领地内且满足以下至少一项条件的通讯塔得1分：由带有情报标记的友方单位争夺；或由你控制。\n特殊规则：每个回合结束阶段结束时，若你控制一座通讯塔，最多2个正在争夺该通讯塔的友方单位可以各获得1个情报标记。每位玩家在任意时刻最多只能有2个单位带有情报标记。"
       },
-      "thumbnail": "assets/thumbnails/battle-deck/primary/Intercept the Signals-4ed8151864d2.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/primary/Intercept the Signals-4ed8151864d2.webp",
+      "scoreItems": [
+        {
+          "id": "control",
+          "name": "控制得分",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        },
+        {
+          "id": "intel",
+          "name": "情报标记争夺分",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        }
+      ],
+      "tokens": [
+        {
+          "name": "情报标记",
+          "quantity": 5
+        }
+      ]
     },
     {
       "id": "deployment-24",
@@ -927,7 +1704,26 @@
         "zh": "部署：按《接敌！接敌！》地图卡所示放置5个监听哨（兴趣点）。\n特殊规则：争夺至少一个监听哨的单位获得精准1。\n计分：从第二回合开始，每个回合结束阶段，你控制的每个位于友方或争夺领地的监听哨得1分；每个位于敌方领地的监听哨得2分。"
       },
       "image": "assets/battle-deck/primary/Contact, Contact!.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/primary/Contact, Contact!-4f22c0f215ba.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/primary/Contact, Contact!-4f22c0f215ba.webp",
+      "scoreItems": [
+        {
+          "id": "control",
+          "name": "控制普通POI",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        },
+        {
+          "id": "enemy",
+          "name": "控制敌方POI",
+          "points": 2,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": false
+        }
+      ],
+      "tokens": []
     },
     {
       "id": "deployment-25",
@@ -944,7 +1740,26 @@
         "zh": "部署：按《有效载荷》地图卡所示放置3辆炸弹车（兴趣点）。\n计分：从第二回合开始，每个回合结束阶段，你控制的每辆炸弹车得1分。\n然后双方轮流将各自控制且不在敌方领地内的炸弹车放置到其当前位置距离½以内，从蓝方玩家开始。每辆炸弹车每回合只能如此放置一次。\n全部炸弹车放置完毕后，每辆位于敌方领地内的炸弹车得2分。"
       },
       "image": "assets/battle-deck/primary/Payload.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/primary/Payload-a37712d66ed0.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/primary/Payload-a37712d66ed0.webp",
+      "scoreItems": [
+        {
+          "id": "control",
+          "name": "控制炸弹车",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        },
+        {
+          "id": "enemy",
+          "name": "敌方领地炸弹车",
+          "points": 2,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        }
+      ],
+      "tokens": []
     },
     {
       "id": "deployment-26",
@@ -961,7 +1776,34 @@
         "zh": "部署：按《坩埚》地图卡所示放置6个航点（兴趣点）。\n计分：从第二回合开始，每个回合结束阶段，你控制的每个位于友方领地内的航点得1分；你控制的每个完全位于争夺领地内、且距离另一个你控制的航点2以内的航点也得1分。若你控制了两个完全位于争夺领地内的航点，额外得1分。\n特殊规则：回合结束阶段，争夺至少一个航点的单位在移除标记步骤中少移除1个压制标记。"
       },
       "image": "assets/battle-deck/primary/Cauldron.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/primary/Cauldron-87cdc5193033.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/primary/Cauldron-87cdc5193033.webp",
+      "scoreItems": [
+        {
+          "id": "friendly",
+          "name": "己方POI",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        },
+        {
+          "id": "contested",
+          "name": "争夺区POI",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        },
+        {
+          "id": "both",
+          "name": "同时控制争夺区POI",
+          "points": 2,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": true
+        }
+      ],
+      "tokens": []
     },
     {
       "id": "deployment-23",
@@ -978,7 +1820,31 @@
         "zh": "部署：按《迂回》地图卡所示放置4面旗帜（兴趣点）。从蓝方玩家开始，双方各选择最多3个未被运输的非指挥官单位。每个被选单位获得1个先锋标记。\n计分：从第二回合开始，每个回合结束阶段，你控制的每面旗帜得1分。若你控制的至少2个带有先锋标记的单位正在争夺你控制的旗帜，额外得1分。\n特殊规则：带有先锋标记的单位必须部署在接触战场短边的玩家领地部分。除非通过运输关键词部署，否则只有带有先锋标记的单位可以部署在该区域。"
       },
       "image": "assets/battle-deck/primary/Outflank.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/primary/Outflank-2f14b585af3d.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/primary/Outflank-2f14b585af3d.webp",
+      "scoreItems": [
+        {
+          "id": "control",
+          "name": "控制POI",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        },
+        {
+          "id": "vanguard",
+          "name": "先锋争夺分",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        }
+      ],
+      "tokens": [
+        {
+          "name": "先锋标记",
+          "quantity": 3
+        }
+      ]
     }
   ],
   "secondary": [
@@ -997,7 +1863,27 @@
         "zh": "部署：从蓝方玩家开始，双方各选择2个友方单位和2个敌方单位；不得选择已被选过的单位。每个被选单位获得1个标记目标标记。\n计分：带有标记目标标记的单位被击败且效果结算后，其对手得1分。"
       },
       "image": "assets/battle-deck/secondary/Marked Targets.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/secondary/Marked Targets-c9fba4d583c4.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/secondary/Marked Targets-c9fba4d583c4.webp",
+      "scoreItems": [
+        {
+          "id": "defeat",
+          "name": "击败目标",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        }
+      ],
+      "tokens": [
+        {
+          "name": "敌方选择目标",
+          "quantity": 2
+        },
+        {
+          "name": "己方选择目标",
+          "quantity": 2
+        }
+      ]
     },
     {
       "id": "objective-14",
@@ -1014,7 +1900,42 @@
         "zh": "计分：每回合每位玩家一次，当敌方单位被友方单位的攻击击败时，该友方单位的控制玩家可以标记下表中属于自己的一格未标记格子。只能选择与攻击单位队长所在领地相对应的格子。\n计分格：以下每行蓝方、红方各有一格，每格整局只能标记一次。\n任意领地：蓝方1分，红方1分。\n友方领地：蓝方1分，红方1分。\n争夺领地：蓝方1分，红方1分。\n敌方领地：蓝方2分，红方2分。"
       },
       "image": "assets/battle-deck/secondary/Sweep and Clear.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/secondary/Sweep and Clear-58b9ad97ed3f.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/secondary/Sweep and Clear-58b9ad97ed3f.webp",
+      "scoreItems": [
+        {
+          "id": "any",
+          "name": "任意领地",
+          "points": 1,
+          "repeatable": false,
+          "globalOnce": true,
+          "poi": false
+        },
+        {
+          "id": "friendly",
+          "name": "友方领地",
+          "points": 1,
+          "repeatable": false,
+          "globalOnce": true,
+          "poi": false
+        },
+        {
+          "id": "contested",
+          "name": "争夺领地",
+          "points": 1,
+          "repeatable": false,
+          "globalOnce": true,
+          "poi": false
+        },
+        {
+          "id": "enemy",
+          "name": "敌方领地",
+          "points": 1,
+          "repeatable": false,
+          "globalOnce": true,
+          "poi": false
+        }
+      ],
+      "tokens": []
     },
     {
       "id": "objective-15",
@@ -1031,7 +1952,34 @@
         "zh": "计分：从第二回合开始，每个回合结束阶段，若压制标记数量达到或超过自身勇气值的敌方单位数量多于友方单位数量，得1分。\n每回合每位玩家一次，当一个单位获得至少1个压制标记时，其对手可以标记下表中属于自己的一格未标记格子，但必须满足对应行的条件。\n计分格：以下每行蓝方、红方各有一格，每格整局只能标记一次。\n敌方单位恐慌：蓝方2分，红方2分。\n所有敌方单位受压制：所有能够获得压制标记的敌方单位都至少有1个压制标记时，蓝方2分，红方2分。"
       },
       "image": "assets/battle-deck/secondary/Bring Them to Heel.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/secondary/Bring Them to Heel-536dca4e2243.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/secondary/Bring Them to Heel-536dca4e2243.webp",
+      "scoreItems": [
+        {
+          "id": "round",
+          "name": "回合得分",
+          "points": 1,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": true
+        },
+        {
+          "id": "panic",
+          "name": "敌方单位恐慌",
+          "points": 2,
+          "repeatable": false,
+          "globalOnce": true,
+          "poi": false
+        },
+        {
+          "id": "suppressed",
+          "name": "所有敌方压制",
+          "points": 2,
+          "repeatable": false,
+          "globalOnce": true,
+          "poi": false
+        }
+      ],
+      "tokens": []
     },
     {
       "id": "objective-16",
@@ -1048,7 +1996,31 @@
         "zh": "部署：从蓝方玩家开始，双方各选择2个友方单位。每个被选单位获得一个友方扫描器（资产）。\n计分：从第二回合开始，每个回合结束阶段，若玩家控制2个各自携带扫描器的单位，且这些单位不在友方领地内，也未争夺位于友方领地内的兴趣点，得1分。\n回合结束阶段，若携带扫描器的友方单位正在争夺一个未被认领的敌方扫描器，其控制玩家得2分；每位玩家每局最多以此方式得2分。\n特殊规则：每个单位获得“索取（扫描器）”免费行动，且不能索取敌方扫描器。每个单位同一时间最多携带1个扫描器。"
       },
       "image": "assets/battle-deck/secondary/Surface Scan.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/secondary/Surface Scan-3ae213f687ab.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/secondary/Surface Scan-3ae213f687ab.webp",
+      "scoreItems": [
+        {
+          "id": "scan",
+          "name": "扫描分",
+          "points": 1,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": false
+        },
+        {
+          "id": "enemy-scanner",
+          "name": "争夺敌方扫描器",
+          "points": 2,
+          "repeatable": false,
+          "globalOnce": true,
+          "poi": false
+        }
+      ],
+      "tokens": [
+        {
+          "name": "扫描器",
+          "quantity": 2
+        }
+      ]
     },
     {
       "id": "objective-17",
@@ -1065,7 +2037,23 @@
         "zh": "部署：从蓝方玩家开始，双方各在距离战场每条边缘1以外放置一个友方基地（兴趣点）。然后再次从蓝方玩家开始，双方各选择1个友方单位；每个被选单位获得一个炸弹（资产）。\n计分：每个回合结束阶段，若敌方基地在本阶段被摧毁，得4分。\n特殊规则：每个单位获得“索取（炸弹）”免费行动；每个单位最多携带1个炸弹。\n回合结束阶段开始时，若携带炸弹的至少一个友方单位正在争夺你控制的敌方基地，移除正在争夺该基地的所有友方单位所携带的炸弹，然后摧毁该基地并将其移出战场。"
       },
       "image": "assets/battle-deck/secondary/Destroy Enemy Base.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/secondary/Destroy Enemy Base-9a0f04a58150.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/secondary/Destroy Enemy Base-9a0f04a58150.webp",
+      "scoreItems": [
+        {
+          "id": "destroy",
+          "name": "摧毁基地",
+          "points": 4,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": false
+        }
+      ],
+      "tokens": [
+        {
+          "name": "炸弹",
+          "quantity": 1
+        }
+      ]
     },
     {
       "id": "objective-18",
@@ -1082,7 +2070,23 @@
         "zh": "部署：从蓝方玩家开始，双方各选择1个友方单位。每个被选单位获得一个友方扫描器（资产）。\n计分：从第二回合开始，每个友方单位激活结束时，若其携带扫描器，且单位队长距离至少2个敌方单位不超过2并具有视线，其控制玩家得1分；每位玩家每回合最多以此方式得1分。\n特殊规则：每个单位获得“索取（扫描器）”免费行动，且不能索取敌方扫描器。\n若友方单位携带扫描器，则该单位激活结束时，视线内且距离其单位队长2以内的每个敌方单位获得1个观察标记。"
       },
       "image": "assets/battle-deck/secondary/Recon Mission.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/secondary/Recon Mission-fa4d200ed58d.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/secondary/Recon Mission-fa4d200ed58d.webp",
+      "scoreItems": [
+        {
+          "id": "scan",
+          "name": "扫描分",
+          "points": 1,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": false
+        }
+      ],
+      "tokens": [
+        {
+          "name": "扫描器",
+          "quantity": 1
+        }
+      ]
     },
     {
       "id": "objective-21",
@@ -1099,7 +2103,23 @@
         "zh": "部署：从蓝方玩家开始，双方各选择1个友方单位。每个被选单位获得一个友方扫描器（资产）。\n计分：从第二回合开始，每个友方单位激活结束时，若其携带扫描器，且单位队长距离至少2个敌方单位不超过2并具有视线，其控制玩家得1分；每位玩家每回合最多以此方式得1分。\n特殊规则：每个单位获得“索取（扫描器）”免费行动，且不能索取敌方扫描器。\n若友方单位携带扫描器，则该单位激活结束时，视线内且距离其单位队长2以内的每个敌方单位获得1个观察标记。"
       },
       "image": "assets/battle-deck/secondary/Recon Mission.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/secondary/Recon Mission-fa4d200ed58d.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/secondary/Recon Mission-fa4d200ed58d.webp",
+      "scoreItems": [
+        {
+          "id": "scan",
+          "name": "扫描分",
+          "points": 1,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": false
+        }
+      ],
+      "tokens": [
+        {
+          "name": "扫描器",
+          "quantity": 1
+        }
+      ]
     },
     {
       "id": "objective-20",
@@ -1116,7 +2136,31 @@
         "zh": "部署：从蓝方玩家开始，双方各选择2个友方单位。每个被选单位获得一个友方扫描器（资产）。\n计分：从第二回合开始，每个回合结束阶段，若玩家控制2个各自携带扫描器的单位，且这些单位不在友方领地内，也未争夺位于友方领地内的兴趣点，得1分。\n回合结束阶段，若携带扫描器的友方单位正在争夺一个未被认领的敌方扫描器，其控制玩家得2分；每位玩家每局最多以此方式得2分。\n特殊规则：每个单位获得“索取（扫描器）”免费行动，且不能索取敌方扫描器。每个单位同一时间最多携带1个扫描器。"
       },
       "image": "assets/battle-deck/secondary/Surface Scan.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/secondary/Surface Scan-3ae213f687ab.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/secondary/Surface Scan-3ae213f687ab.webp",
+      "scoreItems": [
+        {
+          "id": "scan",
+          "name": "扫描分",
+          "points": 1,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": false
+        },
+        {
+          "id": "enemy-scanner",
+          "name": "争夺敌方扫描器",
+          "points": 2,
+          "repeatable": false,
+          "globalOnce": true,
+          "poi": false
+        }
+      ],
+      "tokens": [
+        {
+          "name": "扫描器",
+          "quantity": 2
+        }
+      ]
     },
     {
       "id": "objective-19",
@@ -1133,7 +2177,34 @@
         "zh": "计分：从第二回合开始，每个回合结束阶段，若压制标记数量达到或超过自身勇气值的敌方单位数量多于友方单位数量，得1分。\n每回合每位玩家一次，当一个单位获得至少1个压制标记时，其对手可以标记下表中属于自己的一格未标记格子，但必须满足对应行的条件。\n计分格：以下每行蓝方、红方各有一格，每格整局只能标记一次。\n敌方单位恐慌：蓝方2分，红方2分。\n所有敌方单位受压制：所有能够获得压制标记的敌方单位都至少有1个压制标记时，蓝方2分，红方2分。"
       },
       "image": "assets/battle-deck/secondary/Bring Them to Heel.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/secondary/Bring Them to Heel-536dca4e2243.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/secondary/Bring Them to Heel-536dca4e2243.webp",
+      "scoreItems": [
+        {
+          "id": "round",
+          "name": "回合得分",
+          "points": 1,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": true
+        },
+        {
+          "id": "panic",
+          "name": "敌方单位恐慌",
+          "points": 2,
+          "repeatable": false,
+          "globalOnce": true,
+          "poi": false
+        },
+        {
+          "id": "suppressed",
+          "name": "所有敌方压制",
+          "points": 2,
+          "repeatable": false,
+          "globalOnce": true,
+          "poi": false
+        }
+      ],
+      "tokens": []
     },
     {
       "id": "objective-22",
@@ -1150,7 +2221,50 @@
         "zh": "部署：从蓝方玩家开始，双方各在争夺领地内放置2个补给箱（资产），位置须在距离战场每条边缘2以外、其他补给箱1以外。\n计分：从第二回合开始，每个友方单位激活开始时，若其正在争夺兴趣点并携带补给箱，其控制玩家可将该补给箱移出游戏；若如此，得1分。若在第四或第五回合，额外得1分。\n特殊规则：每个士兵单位获得“索取（补给箱）”行动。每个单位同一时间最多携带1个补给箱。"
       },
       "image": "assets/battle-deck/secondary/Supply Run.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/secondary/Supply Run-bfc58ed13f87.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/secondary/Supply Run-bfc58ed13f87.webp",
+      "scoreItems": [
+        {
+          "id": "crate-1",
+          "name": "补给箱1",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": true
+        },
+        {
+          "id": "crate-2",
+          "name": "补给箱2",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": true
+        },
+        {
+          "id": "crate-3",
+          "name": "补给箱3",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": true
+        },
+        {
+          "id": "crate-4",
+          "name": "补给箱4",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": true
+        },
+        {
+          "id": "round-bonus",
+          "name": "回合额外分",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        }
+      ],
+      "tokens": []
     },
     {
       "id": "objective-23",
@@ -1167,7 +2281,23 @@
         "zh": "部署：在战场中央放置一个交易所（兴趣点），即使那里已有目标标记也照常放置。从蓝方玩家开始，双方各选择1个友方核心或特种部队军阶的士兵单位；每个被选单位获得一个友方囚犯（资产）。\n计分：从第二回合开始，每个回合结束阶段，你控制的每个携带至少1名囚犯且距离交易所1以内的单位得1分。\n特殊规则：携带至少1名囚犯的单位勇气值增加1。第一激活阶段开始时，携带至少1名囚犯的单位获得隐匿，直到回合结束。\n此外，每个核心或特种部队军阶的士兵单位获得“索取（囚犯）”行动。"
       },
       "image": "assets/battle-deck/secondary/Failed Negotiations.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/secondary/Failed Negotiations-b6aec51bdf0a.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/secondary/Failed Negotiations-b6aec51bdf0a.webp",
+      "scoreItems": [
+        {
+          "id": "hostage",
+          "name": "人质分",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        }
+      ],
+      "tokens": [
+        {
+          "name": "人质",
+          "quantity": 1
+        }
+      ]
     },
     {
       "id": "objective-24",
@@ -1184,7 +2314,18 @@
         "zh": "部署：将一个数据核心（资产）放在战场中央，即使那里已有目标标记也照常放置。从蓝方玩家开始，双方各在争夺领地内放置2个数据核心，位置须在距离战场每条边缘2以外、其他数据核心1以外。\n计分：从第二回合开始，每个回合结束阶段，你控制且有至少2个压制标记的数据核心各得1分。计分后，移除你控制且有至少2个压制标记的数据核心。\n特殊规则：每个单位获得“数据回收”行动（在该单位正在争夺的数据核心上放置1个压制标记）。"
       },
       "image": "assets/battle-deck/secondary/Retrieve the Data.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/secondary/Retrieve the Data-cd292265fe63.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/secondary/Retrieve the Data-cd292265fe63.webp",
+      "scoreItems": [
+        {
+          "id": "control",
+          "name": "控制数据",
+          "points": 1,
+          "repeatable": true,
+          "globalOnce": false,
+          "poi": false
+        }
+      ],
+      "tokens": []
     },
     {
       "id": "objective-25",
@@ -1201,7 +2342,26 @@
         "zh": "部署：将一个通讯中继器（资产）放在战场中央，即使那里已有目标标记也照常放置。然后从蓝方玩家开始，双方各放置2个通讯中继器，位置须同时在两条战场长边的距离3以内，且在短边和其他通讯中继器的距离1以外。\n计分：从第二回合开始，每个回合结束阶段，控制至少2个通讯中继器得1分，控制至少4个再得1分。\n特殊规则：每个单位获得“校准中继站”行动（选择该单位正在争夺的一个通讯中继器；你现在控制该通讯中继器）。\n玩家控制的通讯中继器会一直由其控制，直到另一玩家控制它。"
       },
       "image": "assets/battle-deck/secondary/Align the Relay.webp",
-      "thumbnail": "assets/thumbnails/battle-deck/secondary/Align the Relay-adb58a72f5da.webp"
+      "thumbnail": "assets/thumbnails/battle-deck/secondary/Align the Relay-adb58a72f5da.webp",
+      "scoreItems": [
+        {
+          "id": "control-two",
+          "name": "控制2个",
+          "points": 1,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": false
+        },
+        {
+          "id": "control-four",
+          "name": "控制4个",
+          "points": 2,
+          "repeatable": false,
+          "globalOnce": false,
+          "poi": false
+        }
+      ],
+      "tokens": []
     }
   ]
 }
