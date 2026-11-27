@@ -15,38 +15,9 @@ const Q = new URLSearchParams(location.search),
   DATA_BASE = Q.get("base") || "";
 
 const RANK_ORDER = [1, 6, 2, 3, 4, 5, 7];
-const RANK_GLYPH = { 1: "5", 6: "b", 2: "6", 3: "7", 4: "8", 5: "9" };
 const RANK_SHORT = { 1: "指挥", 6: "特工", 2: "核心", 3: "特种", 4: "支援", 5: "重型", 7: "飞机" };
 
-function setRankIcon(icon, rank) {
-  icon.replaceChildren();
-  if (rank === 7) icon.append(RuleIcons.icon('rank-flier'));
-  else icon.textContent = RANK_GLYPH[rank] || '';
-}
-function rankIcon(rank) {
-  const icon = el('span');
-  icon.className = 'rank-icon';
-  setRankIcon(icon, rank);
-  return icon;
-}
-
 let unitNameIndex = null;
-const TIMING_LABEL = {
-  action: "行动",
-  global: "全局",
-  army_building: "组军",
-  setup: "设置",
-  deployment: "部署",
-  command: "命令阶段",
-  activation_start: "激活开始",
-  activation: "激活",
-  activation_end: "激活结束",
-  movement: "移动",
-  attack: "攻击",
-  defense: "防御",
-  end_round: "回合结束",
-  unclassified: "未分类",
-};
 const ORDER_GLYPH = {
   "rank-commander": "5",
   "rank-operative": "b",
@@ -177,19 +148,11 @@ function setStatus(t, error) {
 }
 
 function slotDef(key) {
-  if (key?.startsWith('special:')) {
-    const card = data.upgrades[key.slice(8)], name = card?.name?.zh || card?.name?.en || key.slice(8);
-    return {name: {zh: name}, iconGlyph: '+'};
-  }
-  const s = (data.pkg.slots || []).find((x) => x.id === key);
-  if (!s) return null;
-  return (data.defs.upgradeSlots || []).find((x) => x.id === s.sourceId) || s;
+  return UnitCardView.slotDefinition(key, data);
 }
 
 function slotName(key) {
-  if (key === "heavy_weapon") return "重武";
-  const d = slotDef(key);
-  return d && d.name ? d.name.zh : key;
+  return UnitCardView.slotName(key, data);
 }
 
 function unitSlotRecords(u, inst) {
@@ -251,10 +214,6 @@ function invalidMarks(report) {
   return { units, ranks };
 }
 
-function keywordRef(id) {
-  return (data.defs.keywords || []).find((k) => String(k.id) === String(id));
-}
-
 function wireRosterActions(){
   const ex=$('#roster-export'),im=$('#roster-import'),sh=$('#roster-share');
   if(!ex||!im||!sh)return;
@@ -262,6 +221,15 @@ function wireRosterActions(){
   im.onclick=()=>openTransferDialog('import');
   $('#library-import').onclick=()=>openTransferDialog('import');
   sh.onclick=()=>openShareDialog();
+  const play = $("#roster-play");
+  if (play) play.onclick = () => {
+    if (!activeRecord || !army) return;
+    if (!saveActiveRoster()) return;
+    const target = new URL("play.html", location.href);
+    target.searchParams.set("roster", activeRecord.id);
+    if (DATA_BASE) target.searchParams.set("base", DATA_BASE);
+    location.assign(target);
+  };
 }
 function renderFaction() {
   const base = BuilderLibrary.faction(activeRecord.factionId, data);
@@ -409,8 +377,7 @@ function openDeckSlot(kind, label, index, opener) {
     const buttons = [];
     for (const card of deckCatalog(kind)) {
       if (selected.has(String(card.id))) continue;
-      if (card.armyIds?.length && !card.armyIds.includes(Number(army.armyId))) continue;
-      if (card.modes?.length && !card.modes.includes(army.mode)) continue;
+      if (!BuilderLibrary.deckCardAvailable(card, army, data)) continue;
       const button = node("button", "deck-pick-card");
       button.dataset.id = card.id;
       button.setAttribute("aria-label", "选择" + named(card.name));
@@ -448,6 +415,9 @@ function restore() {
 }
 function render() {
   if (!data || !army || !activeRecord) return;
+  BuilderOverlays.preserveScroll(renderEditor);
+}
+function renderEditor() {
   data = RulesCore.resolveArmyData(army,data);
   UpgradeFaces.normalizeArmy(army, data);
   army.mode = BuilderLibrary.modeForPoints(army.pointsLimit);
@@ -459,7 +429,7 @@ function render() {
   renderMode();
   renderPoints(report);
   renderRankBar(report);
-  renderUnits();
+  updateUnitList();
   renderDeck();
   renderArmyOptions();
   renderBrowser();

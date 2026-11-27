@@ -312,8 +312,11 @@ class Handler(BaseHTTPRequestHandler):
             files['/builder-share.js']='builder-share.js'
             files['/card-usage.js']='card-usage.js'
             files['/builder-transfer-ui.js']='builder-transfer-ui.js'
+            files['/builder-settings.js']='builder-settings.js'
             files['/builder-overlays.js']='builder-overlays.js'
+            files.update({'/'+name:name for name in ['unit-card-view.js','unit-card.css']})
             files['/builder-sticky.js']='builder-sticky.js'
+            files.update({'/'+name:name for name in ['play.html','play.css','play-match.js','play-store.js','play-data.js','play-page.js']})
             files['/mandalorian-rules.js']='mandalorian-rules.js'
             files['/battleforce-v2.js']='battleforce-v2.js'
             files['/battleforce-runtime.js']='battleforce-runtime.js'
@@ -330,7 +333,7 @@ class Handler(BaseHTTPRequestHandler):
                 p=(ROOT/path[1:]).resolve()
                 if not p.is_relative_to(ROOT)or not p.is_file():return self.reply(404,{'error':'没有此资源'})
             else:return self.reply(404,{'error':'没有此资源'})
-            kinds={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8','.webp':'image/webp','.png':'image/png'}
+            kinds={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8','.webp':'image/webp','.png':'image/png','.pdf':'application/pdf'}
             return self.reply(200,p.read_bytes(),kinds.get(p.suffix,'application/octet-stream'))
         except (OSError,ValueError)as e:return self.reply(400,{'error':str(e)})
     def do_POST(self):

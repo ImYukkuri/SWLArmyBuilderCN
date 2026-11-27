@@ -60,6 +60,80 @@ async function samePosition(page, y) {
   assert.equal(await page.locator('html').evaluate(n => n.classList.contains('page-overlay-open')), false);
 }
 
+test('play unit detail uses the builder attribute, rule and weapon components below the full card', async t => {
+  const page = await setup(t);
+  await page.evaluate(() => {
+    army.units = [{instanceId: uid(), unitId: 'rebels-rebel-troopers', upgrades: []}];
+    render();
+  });
+  await page.locator('#army-units .expand-unit').click();
+  const snapshot = card => card.evaluate(node => {
+    const text = selector => [...node.querySelectorAll(selector)].map(item => item.textContent.trim());
+    const weapon = node.querySelector('.weapon-card');
+    return {
+      stats: text('.attribute:not([aria-label^="人数"])'),
+      phases: text('.phase-title'),
+      weapons: text('.weapon-title'),
+      weaponBackground: getComputedStyle(weapon).backgroundColor
+    };
+  });
+  const expected = await snapshot(page.locator('#army-units .roster-unit'));
+  assert(expected.phases.length && expected.weapons.length);
+  await page.locator('#roster-play').click();
+  await page.getByRole('button', {name: '跳过设置'}).click();
+  await page.getByRole('button', {name: '我方军表', exact: true}).click();
+  await page.locator('#play-roster .roster-art').click();
+  const detail = page.locator('[data-detail-dialog]');
+  const image = await detail.locator('.detail-image img').boundingBox();
+  const card = detail.locator('.roster-unit');
+  assert(image && image.y + image.height <= (await card.boundingBox()).y);
+  assert.deepEqual(await snapshot(card), expected);
+  await card.locator('.phase-tags .rule-tag-main').first().click();
+  const rule = detail.locator('.unit-card-subdialog');
+  await rule.getByRole('tab', {name: '完整规则'}).click();
+  assert.equal(await rule.getByRole('tab', {name: '完整规则'}).getAttribute('aria-selected'), 'true');
+  await rule.getByRole('button', {name: '关闭词条'}).click();
+  await rule.waitFor({state: 'detached'});
+  assert.equal(await detail.evaluate(node => node.open), true);
+});
+
+for (const mobile of [true, false]) test(`${mobile ? 'mobile' : 'desktop'} play roster retains page and row scroll during card updates`, async t => {
+  const page = await setup(t, mobile);
+  const press = locator => mobile ? locator.tap() : locator.click();
+  await page.evaluate(() => {
+    army.units[12].upgrades = Array.from({length: 14}, (_, slotIndex) => ({
+      instanceId: uid(), upgradeId: "grenade-impact", slotIndex
+    }));
+  });
+  await page.locator('#roster-play').click();
+  await page.getByRole('button', {name: '跳过设置'}).click();
+  await page.getByRole('button', {name: '我方军表', exact: true}).click();
+  const row = page.locator('#play-roster .unit').nth(12);
+  const unit = row.locator('.unit-card-piece');
+  const exhausted = unit.getByRole('button', {name: '横置'});
+  const y = await positionAt(page, exhausted);
+  await press(exhausted);
+  assert.equal(await exhausted.getAttribute('aria-pressed'), 'true');
+  await samePosition(page, y);
+  await press(unit.getByRole('button', {name: '就绪'}));
+  await samePosition(page, y);
+
+  const lastUpgrade = row.locator('.upgrade-piece').last();
+  const remove = lastUpgrade.getByRole('button', {name: '移除'});
+  const upgradeY = await positionAt(page, remove);
+  const x = await row.evaluate(node => node.scrollLeft);
+  assert(x > 0, 'the upgrade row must already be scrolled');
+  await press(remove);
+  assert.equal(await remove.getAttribute('aria-pressed'), 'true');
+  await samePosition(page, upgradeY);
+  assert.equal(await row.evaluate(node => node.scrollLeft), x);
+
+  await press(lastUpgrade.locator('.roster-art'));
+  await press(page.locator('[data-detail-dialog]').getByRole('button', {name: '关闭'}));
+  await samePosition(page, upgradeY);
+  assert.equal(await row.evaluate(node => node.scrollLeft), x);
+});
+
 for (const mobile of [true,false]) test(`${mobile?'mobile':'desktop'} four factions keep mercenaries last under every personal sort`,async t=>{
   const page=await setup(t,mobile);
   for(const faction of [1,2,4,5]){
@@ -1087,6 +1161,64 @@ for (const width of [320, 390, 1440]) test(`Flier navigation and empty selection
   assert.equal(await row.locator('svg[data-rule-icon="rank-flier"]').count(),1);
 });
 
+for (const mobile of [true, false]) test(`${mobile ? 'mobile' : 'desktop'} roster miniatures reuse the unit picker name band`, async t => {
+  const page = await setup(t, mobile);
+  await page.evaluate(() => {
+    const record = BuilderLibrary.create(4, 'Roster name band', data, uid, new Date().toISOString());
+    record.army.units = [
+      'republic-clone-trooper',
+      'mercenary-pyke-syndicate-pyke-syndicate-footsoldier',
+    ].map(unitId => ({unitId, instanceId:uid(), upgrades:[]}));
+    openRoster(record);
+    selectContext({mode:'units',rank:2});
+  });
+  for (const id of ['republic-clone-trooper','mercenary-pyke-syndicate-pyke-syndicate-footsoldier']) {
+    const row = page.locator('#army-units [data-unit-id="' + id + '"] .roster-name-band');
+    const candidate = page.locator('#card-grid [data-id="' + id + '"] .candidate-unit-name');
+    assert.equal(await row.count(),1);
+    assert.equal(await candidate.count(),1);
+    const style = await page.evaluate(id => {
+      const row = document.querySelector('#army-units [data-unit-id="' + id + '"] .roster-name-band');
+      const candidate = document.querySelector('#card-grid [data-id="' + id + '"] .candidate-unit-name');
+      return {
+        rowBackground:candidate && getComputedStyle(row).getPropertyValue('--unit-bg'),
+        candidateBackground:candidate && getComputedStyle(candidate).getPropertyValue('--unit-bg'),
+        direction:getComputedStyle(row).flexDirection,
+        height:row.getBoundingClientRect().height,
+        oneLine:row.scrollHeight <= row.clientHeight + 1,
+        english:!!row.querySelector('span'),
+      };
+    },id);
+    assert.equal(style.rowBackground,style.candidateBackground);
+    assert.equal(style.direction,'row');
+    assert(style.height >= 27 && style.height <= 29);
+    assert.equal(style.oneLine,true);
+    assert.equal(style.english,true);
+  }
+  const separation = await page.evaluate(() => {
+    const cards = [...document.querySelectorAll('#card-grid > .unit-candidate')];
+    const first = cards[0], second = cards[1];
+    const style = getComputedStyle(first);
+    return {
+      count:cards.length,
+      gap:second.getBoundingClientRect().top - first.getBoundingClientRect().bottom,
+      border:style.borderTopWidth + ' ' + style.borderTopStyle,
+      borderColor:style.borderTopColor,
+      borderRadius:style.borderTopLeftRadius,
+      background:style.backgroundColor,
+    };
+  });
+  assert(separation.count >= 2);
+  assert(Math.abs(separation.gap - 8) <= 1);
+  assert.equal(separation.border,'1px solid');
+  assert.equal(separation.borderColor,'rgb(203, 213, 221)');
+  assert.equal(separation.borderRadius,'4px');
+  assert.equal(separation.background,'rgb(255, 255, 255)');
+  if (mobile) await page.locator('#browser-close').tap();
+  await page.locator('#army-units [data-unit-id="republic-clone-trooper"] .roster-name-band').click();
+  assert.equal(await page.locator('#unit-detail .roster-name-band').count(),0);
+});
+
 for (const mobile of [true, false]) test(`${mobile ? 'mobile' : 'desktop'} real card headers stick and are pushed away in both scroll directions`, async t => {
   const page = await setup(t, mobile);
   await page.evaluate(() => {for (const inst of army.units) cardView.expanded.add(inst.instanceId); renderUnits();});
@@ -1414,6 +1546,92 @@ test('automatic upgrade slot advance preserves the scrolled candidate list', asy
   assert.equal(await page.evaluate(() => browser.slotIndex), slot + 1);
   const after = await grid.evaluate(n => ({top:n.scrollTop,max:n.scrollHeight-n.clientHeight}));
   assert(Math.abs(after.top - Math.min(before, after.max)) <= 2);
+});
+
+for (const mobile of [true,false]) test(`${mobile?'mobile':'desktop'} large-card mode persists and supports unit and upgrade selection`, async t => {
+  const page = await setup(t,mobile);
+  await page.locator('#back-library').click();
+  const settings = page.locator('.masthead').getByRole('button',{name:'设置',exact:true});
+  await settings.click();
+  await page.getByRole('radio',{name:'大图',exact:true}).check();
+  await page.getByRole('button',{name:'关闭设置',exact:true}).click();
+  await page.getByRole('button',{name:'新建银河帝国军表',exact:true}).click();
+  await page.reload();
+  await settings.click();
+  assert.equal(await page.getByRole('radio',{name:'大图',exact:true}).isChecked(),true);
+  await page.getByRole('button',{name:'关闭设置',exact:true}).click();
+
+  await page.locator('#rank-add-bar [data-rank="2"]').click();
+  const grid = page.locator('#card-grid');
+  const unit = grid.locator('.large-card-candidate[data-id="empire-shoretroopers"]');
+  async function checkRows() {
+    const columns = mobile ? 1 : 2;
+    const layout = await grid.locator('.large-card-candidate').evaluateAll(async cards => {
+      for (const card of cards) {
+        const image = card.querySelector('img');
+        if (image) image.loading = 'eager';
+      }
+      await Promise.all(cards.map(card => card.querySelector('img')?.decode().catch(() => {})));
+      return cards.map(card => {
+        const {top,bottom} = card.getBoundingClientRect();
+        const image = card.querySelector('img');
+        const imageRect = image?.getBoundingClientRect();
+        const fullArt = !imageRect || (image.naturalWidth > 0 &&
+          Math.abs(imageRect.height - imageRect.width * image.naturalHeight / image.naturalWidth) < 1 &&
+          imageRect.bottom <= card.querySelector('.large-card-tools').getBoundingClientRect().top + 1);
+        return {top,bottom,fullArt};
+      });
+    });
+    assert.ok(layout.length >= 2);
+    for (let i = 0; i < layout.length; i += columns) {
+      const row = layout.slice(i,i+columns);
+      assert.ok(row.every(card => card.fullArt && Math.abs(card.top - row[0].top) < 1));
+      const next = layout[i+columns];
+      if (next) assert.ok(next.top > Math.max(...row.map(card => card.bottom)));
+    }
+  }
+  await checkRows();
+  assert.ok(await unit.locator('.large-card-slot-icon[aria-label="重武"]').count());
+  await unit.locator('.large-card-expand').click();
+  await checkRows();
+  assert.ok(await unit.locator('.large-card-details .rule-origin').count(),'weapon keyword lists its source');
+  assert.equal(await unit.locator('.weapon-card').count(),0);
+  await unit.locator('img').click();
+
+  const rosterUnit = page.locator('#army-units .roster-unit[data-unit-id="empire-shoretroopers"]');
+  await rosterUnit.locator('.slot-name').filter({hasText:'重武'}).click();
+  const upgrade = grid.locator('.large-card-candidate.available').first();
+  await upgrade.locator('img').evaluate(image => image.decode());
+  assert.ok(await upgrade.locator('.large-card-slot-icon[aria-label="重武"]').count());
+  await upgrade.locator('.large-card-expand').click();
+  await checkRows();
+  assert.equal(await upgrade.locator('.large-card-details').isVisible(),true);
+  assert.equal(await upgrade.locator('.weapon-card').count(),0);
+  await upgrade.locator('img').click();
+  assert.equal(await page.evaluate(() => army.units[0].upgrades.length),1);
+});
+
+test('manual roster save promotes a draft and autosave protects the existing archive', async t => {
+  const page = await setup(t);
+  assert.equal(await page.locator('#save-state').innerText(),'草稿 · 自动保存');
+  const archiveId = await page.evaluate(() => activeRecord.id);
+  await page.locator('#save-roster').click();
+  const name = page.locator('#roster-name');
+  await name.fill('Edited roster');
+  await name.blur();
+  assert.equal(await page.locator('#save-state').innerText(),'草稿 · 自动保存');
+  const snapshot = await page.evaluate(archiveId => ({
+    name:BuilderLibrary.read(localStorage).records.find(r => r.id === archiveId).name,
+    draftId:activeRecord.id,
+  }),archiveId);
+  assert.equal(snapshot.name,'Scroll regression');
+  assert.notEqual(snapshot.draftId,archiveId);
+  await page.locator('#save-roster').click();
+  assert.equal(await page.evaluate(() => activeRecord.id),archiveId);
+  await page.locator('#back-library').click();
+  assert.equal(await page.locator('#saved-rosters .saved-roster').count(),1);
+  assert.equal(await page.locator('#draft-rosters .saved-roster').count(),0);
+  assert.equal(await page.getByRole('button',{name:'打开军表 Edited roster',exact:true}).count(),1);
 });
 
 test('mobile detail, nested card image and keyword rules preserve page and parent dialog scroll', async t => {

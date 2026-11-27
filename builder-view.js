@@ -1,35 +1,8 @@
 /* Shared roster, candidate and detail presentation. */
-const ACTION_LABEL = {action: '行动', 'double-action': '双行动',
-  'free-action': '免费行动', 'free-exhaust': '免费行动：横置'};
-const node = (tag, cls, text) => {
-  const n = el(tag, text);
-  if (cls) n.className = cls;
-  if (typeof text === "string" && /行动|免费(?:行动|动)/.test(text)) n.replaceChildren(actionText(text));
-  return n;
-};
-// Shared by plain labels, rule text and icon substitutions; longest label wins.
-function actionText(text) {
-  const out = document.createDocumentFragment();
-  let pos = 0;
-  for (const match of text.matchAll(/免费(?:行动|动)(?:(?:\s*[：:]\s*|并)横置)?|普通行动|双行动|行动/g)) {
-    out.append(document.createTextNode(text.slice(pos, match.index)));
-    const mark = document.createElement("span");
-    mark.className = "action-mark";
-    const type = match[0].includes('横置') ? 'free-exhaust' : match[0].startsWith('免费') ? 'free-action'
-      : match[0] === '双行动' ? 'double-action' : 'action';
-    mark.textContent = ACTION_LABEL[type];
-    mark.dataset.action = type === 'free-action' ? 'free' : type === 'action' ? 'normal' : type;
-    out.append(mark);
-    pos = match.index + match[0].length;
-  }
-  out.append(document.createTextNode(text.slice(pos)));
-  return out;
-}
-const named = (v) => (typeof v === "string" ? v : textParts(v?.zh).trim() ? v.zh : v?.en || "");
-const textParts = (v) => (Array.isArray(v) ? v : [v]).filter(Boolean).join("\n");
 const assetPath = (path) => (path ? DATA_BASE + path : "");
 const cardView = {
   expanded: new Set(),
+  largeExpanded: new Set(),
   candidateSummaries: { open: false, overrides: new Set() },
   commandExpanded: new Set(),
   commandCollapsed: new Set(),
@@ -38,6 +11,12 @@ const cardView = {
   applyAll: false,
   battleText: (() => { try { return localStorage.getItem("swl-battle-text") === "true"; } catch { return false; } })(),
 };
+const { node, named, textParts, ACTION_LABEL, setRankIcon, rankIcon,
+  uiIcon, statMatrix, uniqueRules, setTagSummary, timingMarkers, faceLabel,
+  originLabel } = UnitCardView;
+const { ruleInfo, proseNode, cardKeywords, tag, ruleTimings, phaseRules,
+  unitWeaponGroups, unitContents, weaponBlock, upgradeEntry, upgradeEffect, usageBadges, unitHeader, renderRulePopover } =
+  UnitCardView.create({getData: () => data, openRule, cardView});
 const stateCache = new Map();
 let equipPreviewContext = null;
 const modalStack = [];
@@ -46,7 +25,6 @@ let browserReturn = null,
   priorContext = "",
   currentCandidates = [],
   invalidUnitIds = new Set();
-const svgNS = "http://www.w3.org/2000/svg";
 const imageDialog = node("dialog", "image-dialog");
 imageDialog.id = "image-dialog";
 const weaponDialog = node("dialog", "weapon-dialog");
@@ -71,53 +49,6 @@ function groupedUnits() {
 }
 function canDuplicate(group) {
   return BuilderModel.copyable(group.instances[0], data);
-}
-
-function ruleInfo(k) {
-  const item = typeof k === "string" ? { id: k } : k;
-  if (item._actionUpgrade) {
-    const c = item._actionUpgrade;
-    return {item, label: named(c.name), ref: {name: c.name, timing: ['action'],
-      summary: textParts(named(c.description))}};
-  }
-  const ref = item._entry || keywordRef(item.id);
-  if (!ref)
-    return { item, ref: null, label: String(item.label || item.raw || item.id || "") };
-  let label = named(ref.name);
-  if (item.value != null)
-    label = label.includes("X")
-      ? label.replaceAll("X", String(item.value))
-      : label + " " + item.value;
-  const targets = item.parameterRefs || (item.parameterRef ? [item.parameterRef] : []);
-  const targetLabel = targets.map(ref => {
-    if (ref.kind === 'unit') {
-      const unit = data.units[ref.id];
-      return unit ? [named(unit.name), named(unit.title)].filter(Boolean).join(' · ') : ref.id;
-    }
-    if (ref.kind === 'nameIdentity') return named(Object.values(data.units).find(u => u.nameIdentityId === ref.id)?.name) || ref.id;
-    const table = {unitCategory: 'unitCategories', unitSubtype: 'unitSubtypes', unitType: 'unitTypes', rank: 'ranks'}[ref.kind];
-    return named(data.defs[table]?.find(t => t.id === ref.id)?.name) || ref.id;
-  }).join(' 或 ');
-  if (targetLabel || item.parameter) label = label.split(/[：:]/)[0] + "：" + (targetLabel || item.parameter);
-  return { item, ref, label };
-}
-
-// Resolve names against the live catalog, shared with the keyword editor preview.
-function proseIconLabel(key) { return RuleIcons.label(key, data.defs); }
-function proseNode(raw) {
-  const box = node("span");
-  const text = textParts(raw).replace(/\{@icon\.action\}\s*\{@icon\.action\}/g, '{@icon.double-action}');
-  let pos = 0;
-  for (const m of text.matchAll(/\{@icon\.([\w-]+)\}/g)) {
-    box.append(actionText(text.slice(pos, m.index)));
-    const token = node("span", "inline-token");
-    const label=proseIconLabel(m[1]);
-    token.append(RuleIcons.icon(m[1],label) || actionText(label));
-    box.append(token);
-    pos = m.index + m[0].length;
-  }
-  box.append(actionText(text.slice(pos)));
-  return box;
 }
 
 function identity(c, { unit = false, points = c.points, command = false } = {}) {
@@ -274,6 +205,9 @@ function renderBrowser() {
     mobile = matchMedia("(max-width:760px)").matches;
   aside.classList.toggle("is-open", !!browser);
   aside.classList.toggle("unit-browser", browser?.mode === "units");
+  aside.classList.toggle("large-card-browser",
+    !!browser && ["units","upgrades"].includes(browser.mode) &&
+      BuilderSettings.selectionListStyle() === "large");
   $("#candidate-explanations").closest("label").hidden = browser?.mode !== "units";
   $("#browser-backdrop").hidden = !browser || !mobile;
   document.body.classList.toggle("sheet-open", !!browser && mobile);
@@ -496,8 +430,7 @@ function renderDeck() {
     for (let index = 0; index < selected.length; index++) {
       const card = deckCatalog(kind).find((x) => String(x.id) === selected[index]);
       const slot = node("div", "mission-slot filled");
-      const unavailable = card && ((card.modes?.length && !card.modes.includes(army.mode)) ||
-        (card.armyIds?.length && !card.armyIds.includes(Number(army.armyId))));
+      const unavailable = card && !BuilderLibrary.deckCardAvailable(card, army, data);
       slot.classList.toggle("unavailable", !!unavailable);
       slot.dataset.index = index;
       const choose = node("button", "mission-card");
@@ -698,115 +631,6 @@ function renderPoints(report) {
   );
 }
 
-function uiIcon(kind, label) {
-  const glyphs = { surge: "a", "surge-block": "d", hit: "h", critical: "c", block: "s" };
-  if (glyphs[kind]) {
-    const icon = node("span", "ui-symbol legion-symbol", glyphs[kind]);
-    icon.setAttribute("role", "img");
-    icon.setAttribute("aria-label", label || kind);
-    return icon;
-  }
-  const svg = document.createElementNS(svgNS, "svg");
-  svg.classList.add("ui-symbol");
-  svg.setAttribute("role", "img");
-  svg.setAttribute("aria-label", label || kind);
-  const shapes = {
-    models:
-      "M4 19v-6a4 4 0 0 1 8 0v6M7 5a2 2 0 1 0 4 0 2 2 0 1 0-4 0M15 8a2 2 0 1 0 4 0 2 2 0 1 0-4 0M16 12a4 4 0 0 1 4 4v3",
-    wounds: "M12 20 3.7 11.7A5.2 5.2 0 0 1 12 5.5a5.2 5.2 0 0 1 8.3 6.2Z",
-    courage: "m12 2 8 3v6c0 5-8 10-8 10S4 16 4 11V5Zm0 5v7m-3-3 3-4 3 4",
-    speed: "m3 6 6 6-6 6m7-12 6 6-6 6m7-12 5 6-5 6",
-    resilience: "m12 2 9 10-9 10-9-10Zm-5 10h10",
-    trash: "M4 6h16M9 3h6l1 3M6 6l1 15h10l1-15M10 10v7m4-7v7",
-    exhaust: "M5 7h14v12H5Zm3-4h11l3 3",
-    expend: "M5 3h14v18H5Zm3 5 8 8m0-8-8 8",
-  };
-  if (shapes[kind]) {
-    svg.setAttribute("viewBox", "0 0 24 24");
-    const p = document.createElementNS(svgNS, "path");
-    p.setAttribute("d", shapes[kind]);
-    p.setAttribute("fill", "none");
-    p.setAttribute("stroke", "currentColor");
-    p.setAttribute("stroke-width", "1.7");
-    p.setAttribute("stroke-linecap", "round");
-    p.setAttribute("stroke-linejoin", "round");
-    svg.append(p);
-  } else if (kind === "red-defense" || kind === "white-defense") {
-    svg.setAttribute("viewBox", "0 0 24 24");
-    const p = document.createElementNS(svgNS, "rect");
-    p.setAttribute("x", "3");
-    p.setAttribute("y", "3");
-    p.setAttribute("width", "18");
-    p.setAttribute("height", "18");
-    p.setAttribute("rx", "2");
-    p.setAttribute("fill", kind === "red-defense" ? "#b04448" : "white");
-    p.setAttribute("stroke", kind === "red-defense" ? "#91373b" : "#74838c");
-    svg.append(p);
-    const dot = document.createElementNS(svgNS, "path");
-    dot.setAttribute("d", "M8 8h8v6l-4 3-4-3Z");
-    dot.setAttribute("fill", kind === "red-defense" ? "white" : "#344550");
-    svg.append(dot);
-  } else {
-    svg.setAttribute("viewBox", "0 0 24 24");
-  }
-  return svg;
-}
-
-function statMatrix(u, { showModels = false, compactDefense = false } = {}) {
-  const bar = node("dl", "attribute-band");
-  const s = u.stats || {};
-  const fields = [
-    ...(showModels ? [["人数", "models", s.models]] : []),
-    ["生命", "wounds", s.wounds ?? s.woundsSymbol],
-    ...(!compactDefense ? [["防御", "defense", s.defenseDie]] : []),
-    s.resilience != null || s.resilienceSymbol
-      ? ["韧性", "resilience", s.resilience ?? s.resilienceSymbol]
-      : ["勇气", "courage", s.courage ?? s.courageSymbol],
-    ["速度", "speed", s.speed],
-    ["攻转", "attack", s.attackSurge],
-    ["防转", "defenseSurge", s.defenseSurge ?? (compactDefense && s.defenseDie ? "none" : null)],
-  ];
-  for (const [label, key, value] of fields) {
-    if (value == null) continue;
-    const cell = node("div", "attribute"),
-      dd = node("dd");
-    cell.title = label;
-    cell.setAttribute("aria-label", label + "：" + value);
-    if (compactDefense && key === "attack") cell.dataset.attack = value;
-    if (compactDefense && key === "defenseSurge" && s.defenseDie) {
-      cell.dataset.defense = s.defenseDie;
-      cell.title = (s.defenseDie === "red" ? "红色防御骰" : "白色防御骰") +
-        (value === "none" ? " · 无防御转换" : " · 激增转格挡");
-      cell.setAttribute("aria-label", cell.title);
-    }
-    cell.append(node("dt", null, label));
-    if (key === "defense")
-      dd.append(
-        uiIcon(value + "-defense", value === "red" ? "红色防御骰" : "白色防御骰"),
-      );
-    else if (key === "attack" || key === "defenseSurge") {
-      dd.append(
-        uiIcon(
-          key === "attack" ? "surge" : "surge-block",
-          key === "attack" ? "攻击激增" : "防御激增",
-        ),
-      );
-      dd.append(node("span", "surge-arrow", "›"));
-      if (value === "none") dd.append(node("span", "no-conversion", "—"));
-      else
-        dd.append(uiIcon(value, { hit: "命中", critical: "暴击", block: "格挡" }[value]));
-    } else {
-      dd.append(
-        uiIcon(key, label + (key === "wounds" ? "（每模型）" : "")),
-        node("b", null, value === "dash" ? "—" : value === "x" ? "X" : value),
-      );
-    }
-    cell.append(dd);
-    bar.append(cell);
-  }
-  return bar;
-}
-
 function perUnitPoints(inst) {
   return (
     (RulesCore.unitFor(inst,army,data)?.points || 0) +
@@ -823,8 +647,6 @@ function displayUpgrade(c, inst = null, choice = null) {
   return BuilderModel.upgradePresentation(c, data, host);
 }
 
-function faceLabel(c) { return {front: '正面', back: '反面', both: '双面'}[c._face || 'front']; }
-function originLabel(c) { return named(c.name) + (UpgradeFaces.isDual(c) ? ' · ' + faceLabel(c) : ''); }
 function printedUpgrades(c) { return UpgradeFaces.visible(c).map(side => displayUpgrade(side)); }
 function liveUpgrade(c) {
   if (!c._choiceId) return c;
@@ -1105,247 +927,11 @@ function showDualImage(c, opener) {
   if (restoreTabFocus) imageDialog.querySelector(`.face-tab[data-face="${c._face}"]`)?.focus({preventScroll: true});
 }
 
-function upgradeEffect(c) {
-  const effect = node("div", "upgrade-effect");
-  const description = textParts(named(c.description));
-  if (description) effect.append(proseNode(description));
-  if (c.counterpart) {
-    const heading = node("p", "counterpart-heading", "伙伴单位 · " + named(c.counterpart.name));
-    const stats = c.counterpart.stats;
-    if (stats?.wounds != null) heading.append(node("span", null, "生命 " + stats.wounds));
-    effect.append(heading);
-    for (const k of uniqueRules(cardKeywords(c.counterpart))) {
-      const { ref, label } = ruleInfo(k);
-      const text = ref?.summary || ref?.full;
-      if (!text) continue;
-      const row = node("p", "counterpart-effect-rule");
-      row.append(node("strong", null, label + "："), proseNode(text));
-      effect.append(row);
-    }
-  }
-  return effect;
-}
-
-function usageBadges(c) {
-  const wrap = node("span", "usage-flags");
-  const raw = textParts(c.description?.en),
-    zh = textParts(c.description?.zh);
-  const one =
-    /\{@icon\.expend\}\s*this\s*card/i.test(raw) ||
-    (!raw && /\{@icon\.expend\}\s*(?:此卡|这张卡)/.test(zh));
-  const exhaust =
-    /\{@icon\.exhaust\}\s*this\s*card/i.test(raw) ||
-    (!raw && /\{@icon\.exhaust\}\s*(?:此卡|这张卡)/.test(zh)) ||
-    /\{@icon\.free-exhaust\}/.test(raw);
-  if (one) {
-    const b = node("span", "usage-flag", "一次性");
-    b.prepend(uiIcon("expend", "一次性消耗"));
-    wrap.append(b);
-  } else if (exhaust) {
-    const b = node("span", "usage-flag", "可横置");
-    b.prepend(uiIcon("exhaust", "横置使用"));
-    wrap.append(b);
-  }
-  return wrap;
-}
-
-function keywordKey(k) {
-  return JSON.stringify([
-    String(k.id || k.ruleId || k.raw || ""),
-    k.value ?? null,
-    k.parameter ?? null,
-    k.parameterRefs || k.parameterRef || null,
-    k.action ?? null,
-    !!k.weaponSources?.length,
-  ]);
-}
-
-function keywordEntries(inst) {
-  const u = RulesCore.unitFor(inst,army,data),
-    map = new Map();
-  const add = (k, origin, weaponName) => {
-    if (!k) return;
-    const item = typeof k === "string" ? { id: k } : { ...k };
-    if (weaponName) item.weaponSources = [weaponName];
-    const key = keywordKey(item);
-    if (!map.has(key)) map.set(key, { ...item, origins: [] });
-    const current = map.get(key);
-    if (weaponName && !current.weaponSources.includes(weaponName))
-      current.weaponSources.push(weaponName);
-    if (item._battleForceSources?.length) {
-      const sources=new Map([...(current._battleForceSources || []),...item._battleForceSources].map(s=>[JSON.stringify([s.id,s.ruleGroupId]),s]));
-      current._battleForceSources=[...sources.values()];
-    }
-    if (origin && !current.origins.some((x) => x.id === origin.id && x._face === origin._face))
-      current.origins.push(origin);
-  };
-  for (const k of cardKeywords(u)) add(k, null);
-  for (const choice of inst.upgrades) {
+function equippedCards(inst) {
+  return inst.upgrades.flatMap(choice => {
     const card = displayUpgrade(data.upgrades[choice.upgradeId], inst, choice);
-    for (const c of card ? printedUpgrades(card) : []) {
-      for (const k of cardKeywords(c)) add(k, c);
-      for (const weapon of c.weapons || []) {
-        const name = named(weapon.name) || "未命名武器";
-        for (const k of weapon.keywords || []) add(k, null, name);
-      }
-      if (c.actionTypes?.length) map.set('upgrade:' + choice.instanceId + ':' + c._face, {
-        id: 'upgrade-action:' + choice.instanceId + ':' + c._face, actionTypes: c.actionTypes, _actionUpgrade: c,
-      });
-    }
-  }
-  return [...map.values()];
-}
-
-function cardKeywords(card) {
-  if (!card) return [];
-  const keywords = card.keywords || [];
-  const equip = keywords.filter(k => (typeof k === 'string' ? k : k?.id) === 'equip');
-  if (!equip.length && !card.equipUpgradeIds?.length && !card.equipSlotIds?.length) return keywords;
-  const labels = [];
-  const add = name => {if (name && !labels.includes(name)) labels.push(name);};
-  for (const id of card.equipUpgradeIds || []) {
-    const target = data.upgrades[id];
-    add(target ? named(BuilderModel.upgradePresentation(target, data, card).name) : id);
-  }
-  for (const id of RulesCore.equipSlotKeys(card, data.pkg)) add(slotName(id));
-  const linked = Array.isArray(card.equipUpgradeIds) || Array.isArray(card.equipSlotIds);
-  if (!linked) for (const keyword of equip) {
-    const refs = keyword.parameterRefs || (keyword.parameterRef ? [keyword.parameterRef] : []);
-    for (const ref of refs) {
-      if (ref.kind === 'unit') add(named(data.units[ref.id]?.name) || ref.id);
-      if (ref.kind === 'upgrade') add(named(data.upgrades[ref.id]?.name) || ref.id);
-    }
-    if (refs.length || labels.length) continue;
-    // Legacy text is only translated through exact catalog names. Canonical
-    // Equip IDs above take precedence over stale or incomplete OCR parameters.
-    const norm = value => String(value || '').trim().toLocaleLowerCase();
-    for (const part of String(keyword.parameter || '').split(/[,，、;；]+/).filter(s => s.trim())) {
-      const target = [...Object.values(data.upgrades), ...Object.values(data.units)]
-        .find(c => [c.id, c.name?.en, c.name?.zh].some(n => n && norm(n) === norm(part)));
-      add(target ? named(target.name) : part.trim());
-    }
-  }
-  const other = keywords.filter(k => (typeof k === 'string' ? k : k?.id) !== 'equip');
-  if (labels.length || equip.length) other.push({id: 'equip', parameter: labels.join('、') || null});
-  return other;
-}
-
-function uniqueRules(ks) {
-  const seen = new Set();
-  return (ks || []).filter((k) => {
-    const key = keywordKey(typeof k === "string" ? { id: k } : k);
-    if (seen.has(key)) return false;
-    seen.add(key);
-    return true;
+    return (card ? printedUpgrades(card) : []).map(card => ({card, choiceId: choice.instanceId}));
   });
-}
-
-function battleForceSourceLabel(source) {
-  return source.ruleGroupName || source.name;
-}
-
-function setTagSummary(tag, toggle, body, expanded) {
-  body.hidden = !expanded;
-  tag.classList.toggle("open", expanded);
-  toggle.textContent = expanded ? "−" : "＋";
-  toggle.setAttribute("aria-label", (expanded ? "收起" : "展开") + toggle.dataset.ruleLabel + "释义");
-  toggle.setAttribute("aria-expanded", String(expanded));
-}
-
-function tag(k, {
-  forceOpen = false, timing = false, showOrigin = true, showBattleForceOrigin = true, summaryView = null,
-} = {}) {
-  const info = ruleInfo(k);
-  const key = JSON.stringify([keywordKey(info.item), (k.origins || []).map((c) => c.id), k.weaponSources || []]);
-  const outer = node("span", "rule-tag");
-  outer.dataset.ruleId = info.item.id;
-  outer.dataset.ruleKey = key;
-  const main = node("button", "rule-tag-main");
-  main.type = "button";
-  const actions = BuilderModel.keywordActionTypes(info.item, data.defs);
-  if (timing) main.append(timingMarkers(ruleTimings(k)));
-  // A generic keyword may have several printed variants. Show only a known
-  // per-card type here, never imply that one ability has several costs.
-  const sourceTypes = [...new Set((k.origins || []).flatMap(c => c.actionTypes || []))];
-  const printedTypes = ACTION_LABEL[info.item.action] || info.item.actionTypes ? actions
-    : sourceTypes.length === 1 && actions.length ? sourceTypes : actions.length === 1 ? actions : [];
-  if (printedTypes.length) {
-    const badge = node('span', 'rule-action');
-    badge.textContent = printedTypes.map(t => ACTION_LABEL[t]).join(' / ');
-    main.append(badge);
-  }
-  main.append(actionText(info.label));
-  const origins = [
-    ...(showOrigin ? (k.origins || []).map(originLabel) : []),
-    ...(showOrigin ? k.weaponSources || [] : []),
-    ...(showBattleForceOrigin ? (k._battleForceSources || []).map(battleForceSourceLabel) : []),
-  ];
-  if (origins.length)
-    main.append(
-      node(
-        "small",
-        "rule-origin",
-        [...new Set(origins)].map(name=>"来自 " + name).join(" / "),
-      ),
-    );
-  main.setAttribute("aria-haspopup", "dialog");
-  main.onclick = (e) => {
-    e.stopPropagation();
-    openRule(k, main);
-  };
-  outer.append(main);
-  const summary = info.ref?.summary || "";
-  if (summary) {
-    const toggle = node("button", "rule-tag-toggle");
-    toggle.type = "button";
-    toggle.dataset.ruleLabel = info.label;
-    const expanded = summaryView
-      ? summaryView.open !== summaryView.overrides.has(key)
-      : forceOpen || cardView.explanations || cardView.tags.has(key);
-    const body = node("span", "tag-summary");
-    body.append(proseNode(summary));
-    setTagSummary(outer, toggle, body, expanded);
-    toggle.onclick = (e) => {
-      e.stopPropagation();
-      const next = body.hidden;
-      setTagSummary(outer, toggle, body, next);
-      const overrides = summaryView ? summaryView.overrides : cardView.tags;
-      if (next !== (summaryView?.open ?? false)) overrides.add(key);
-      else overrides.delete(key);
-    };
-    outer.append(toggle, body);
-  }
-  return outer;
-}
-
-function ruleTimings(k) {
-  return BuilderModel.keywordActionTypes(k, data.defs).length ? ['action'] : ruleInfo(k).ref?.timing || [];
-}
-function phaseRules(ks, forceOpen = false, { hideArmyBuilding = false } = {}) {
-  const list = node("div", "phase-rules");
-  const order = Object.keys(TIMING_LABEL),
-    groups = new Map();
-  for (const k of uniqueRules(ks)) {
-    const timings = [...new Set(ruleTimings(k).filter(Boolean))];
-    for (const timing of timings.length ? timings : ['unclassified']) {
-      if (!groups.has(timing)) groups.set(timing, []);
-      groups.get(timing).push(k);
-    }
-  }
-  for (const [key, entries] of [...groups].sort(
-    (a, b) => order.indexOf(a[0]) - order.indexOf(b[0]),
-  )) {
-    if (hideArmyBuilding && key === 'army_building') continue;
-    const row = node("div", "phase-row");
-    row.dataset.phase = key;
-    const label = node("div", "phase-title");
-    label.append(node("span", "phase-name", TIMING_LABEL[key] || key));
-    const tags = node("div", "phase-tags");
-    for (const k of entries) tags.append(tag(k, { forceOpen }));
-    row.append(label, tags);
-    list.append(row);
-  }
-  return list;
 }
 
 function keywordGroups(ks, options = {}) {
@@ -1361,86 +947,8 @@ function ruleButton(k) {
   return button;
 }
 
-function dicePool(d) {
-  const box = node("span", "attack-pool");
-  for (const color of ["red", "black", "white"]) {
-    const v = d?.[color];
-    if (v == null || v === 0) continue;
-    const part = node("span", "die-value");
-    const label =
-      (v < 0 ? "X" : v) + { red: "红", black: "黑", white: "白" }[color] + "骰";
-    part.setAttribute("aria-label", label);
-    part.append(node("i", "die " + color), node("b", null, v < 0 ? "X" : v));
-    box.append(part);
-  }
-  return box;
-}
-
-function weaponBlock(w, origin, { forceOpen = false, timing = false, summaryView = null } = {}) {
-  const card = node("div", "weapon-card"),
-    head = node("div", "weapon-card-head");
-  const name = node("div", "weapon-title");
-  name.append(node("b", null, named(w.name)));
-  if (w.name?.zh && w.name?.en && w.name.zh !== w.name.en)
-    name.append(node("span", "weapon-english", w.name.en));
-  if (origin) name.append(node("small", "weapon-origin", "来自 " + originLabel(origin)));
-  if (origin?._face) card.dataset.face = origin._face;
-  head.append(name);
-  const r = w.range;
-  if (r?.min != null) {
-    const kind = r.min < 0 ? "overrun" : r.min === 0 ? (r.max === 0 ? "melee" : "mixed") : "ranged";
-    const range = node("span", "range-pill " + kind);
-    range.append(
-      node(
-        "small",
-        null,
-        kind === "overrun" ? "碾压" : kind === "melee" ? "近战" : kind === "mixed" ? "近 / 远" : "远程",
-      ),
-      node("b", null, kind === "overrun" ? "" : r.max == null || r.min === r.max ? r.min : r.min + "–" + r.max),
-    );
-    head.append(range);
-  }
-  head.append(dicePool(w.dice));
-  card.append(head);
-  if (w.keywords?.length) {
-    const ks = node("div", "weapon-tags");
-    for (const k of uniqueRules(w.keywords))
-      ks.append(tag(k, { forceOpen, timing, summaryView, showOrigin: false, showBattleForceOrigin: false }));
-    card.append(ks);
-  }
-  if (Object.values(w.dice || {}).some((v) => v < 0) && origin) {
-    const p = node("p", "variable-dice-note");
-    p.append(proseNode(textParts(named(origin.description))));
-    card.append(p);
-  }
-  return card;
-}
-
 function unitWeapons(inst, options = {}) {
-  const u = RulesCore.unitFor(inst,army,data),
-    list = [
-      ...(u?.weapons || []).map((w) => ({ w, origin: null })),
-      ...inst.upgrades.flatMap((ch) => {
-        const c = displayUpgrade(data.upgrades[ch.upgradeId], inst, ch);
-        return (c ? printedUpgrades(c) : []).flatMap(side => (side.weapons || []).map(w => ({w, origin: side})));
-      }),
-    ];
-  const out = node("div", "weapon-groups");
-  for (const [key, label, test] of [
-    ["melee", "近战可用武器", (w) => w.range?.min === 0],
-    ["ranged", "远程武器", (w) => w.range?.min > 0],
-    ["overrun", "碾压武器", (w) => w.range?.min < 0],
-    ["unknown", "射程待确认", (w) => w.range?.min == null],
-  ]) {
-    const found = list.filter((x) => test(x.w));
-    if (!found.length) continue;
-    const group = node("section", "weapon-group " + key);
-    group.append(node("h4", null, label));
-    for (const { w, origin } of found)
-      group.append(weaponBlock(w, origin, options));
-    out.append(group);
-  }
-  return out;
+  return unitWeaponGroups(RulesCore.unitFor(inst, army, data), equippedCards(inst), options);
 }
 
 function weaponRows(ws) {
@@ -1466,52 +974,12 @@ function upgradeDetail(c, { forceOpen = false, compact = false, removable = fals
     }
     return box;
   }
-  const box = node("article", "upgrade-detail");
-  if (c._choiceId) box.dataset.choiceId = c._choiceId;
-  const body = node("div", "upgrade-body");
-  const art = artButton(c, "upgrade-art");
-  box.classList.toggle("has-upgrade-art", !art.disabled);
-  const h = node("div", "upgrade-line");
-  h.append(node("b", null, named(c.name)));
-  if (c.name?.zh && c.name.en && c.name.zh !== c.name.en)
-    h.append(node("span", "upgrade-english", c.name.en));
-  h.append(usageBadges(c));
-  if (facePart) h.append(node('span', 'face-badge', faceLabel(c)));
-  else if (UpgradeFaces.isDual(c)) h.append(faceControl(c));
-  if (!facePart) h.append(upgradeEntryActions(c, removable));
-  body.append(h);
-  const effect = upgradeEffect(c);
-  if (effect.childNodes.length) body.append(effect);
-  if (!compact) {
-    const req = textParts(
-      c.restrictions?.text?.zh || c.requirementsText || c.restrictions?.text?.en,
-    );
-    if (req) {
-      const p = node("div", "upgrade-requirements", "使用要求：");
-      p.append(proseNode(req));
-      body.append(p);
-    }
-  }
-  const footer = node("div", "upgrade-tags");
-  for (const k of uniqueRules(cardKeywords(c)))
-    footer.append(
-      tag({ ...(typeof k === "string" ? { id: k } : k), origins: [c] }, { forceOpen, showOrigin: false }),
-    );
-  if (c.weapons?.length) {
-    const b = node(
-      "button",
-      "weapon-inspect",
-      "查看武器属性 · " + c.weapons.map((w) => named(w.name)).join(" / "),
-    );
-    b.onclick = (e) => {
-      e.stopPropagation();
-      showWeapons(c, b);
-    };
-    body.append(b);
-  }
-  box.append(body, art);
-  if (footer.children.length) box.append(footer);
-  return box;
+  return upgradeEntry(c, {
+    forceOpen, compact, facePart, art: artButton(c, "upgrade-art"),
+    faceControl: !facePart && UpgradeFaces.isDual(c) ? faceControl(c) : null,
+    actions: !facePart ? upgradeEntryActions(c, removable) : null,
+    showWeapons: anchor => showWeapons(c, anchor)
+  });
 }
 
 function upgradeEntryActions(c, removable) {
@@ -1588,65 +1056,7 @@ function openUpgradeRule(card, anchor) {
 function openRule(k, anchor) {
   if (typeof k === "string") k = { id: k };
   if (k._actionUpgrade) return openUpgradeRule(k._actionUpgrade, anchor);
-  const { ref, label } = ruleInfo(k);
-  ruleAnchor = anchor;
-  rulePop.replaceChildren();
-  rulePop.setAttribute('aria-label', '词条规则');
-  const header = node("div", "popover-heading");
-  const title = node("div");
-  title.append(node("h3", null, label));
-  if (ref?.name?.en) title.append(node("span", "popover-english", ref.name.en));
-  const close = node("button", null, "×");
-  close.setAttribute("aria-label", "关闭词条");
-  close.onclick = hideRule;
-  header.append(title, close);
-  rulePop.append(
-    header,
-    node(
-      "p",
-      "popover-timing",
-      ruleTimings(k).map((t) => TIMING_LABEL[t] || t).join(" / "),
-    ),
-  );
-  for (const weapon of k.weaponSources || [])
-    rulePop.append(node("p", "rule-origin", "来自 " + weapon));
-  for (const source of k._battleForceSources || []) rulePop.append(node('p','rule-origin','来自 '+battleForceSourceLabel(source)));
-  const tabs = node("div", "rule-tabs");
-  tabs.setAttribute("role", "tablist");
-  tabs.setAttribute("aria-label", "词条说明长度");
-  const panel = node("section", "popover-rule");
-  panel.id = "rule-text-panel";
-  panel.setAttribute("role", "tabpanel");
-  panel.tabIndex = 0;
-  const content = node("div");
-  panel.append(content);
-  const buttons = [];
-  for (const [key, title, text] of [["summary", "简写", ref?.summary], ["full", "完整规则", ref?.full]]) {
-    const button = node("button", null, title);
-    button.id = "rule-tab-" + key;
-    button.setAttribute("role", "tab");
-    button.setAttribute("aria-controls", panel.id);
-    button.onclick = () => {
-      for (const tab of buttons) {
-        tab.setAttribute("aria-selected", String(tab === button));
-        tab.tabIndex = tab === button ? 0 : -1;
-      }
-      panel.setAttribute("aria-labelledby", button.id);
-      content.replaceChildren(proseNode(text || (key === "summary" && ref?.full
-        ? "暂无简写，可切换完整规则。" : "现有资料没有关联释义。")));
-      if (!rulePop.hidden) positionRulePopover(anchor);
-    };
-    button.onkeydown = (e) => {
-      if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(e.key)) return;
-      e.preventDefault();
-      const next = e.key === "Home" ? buttons[0] : e.key === "End" ? buttons[1] : buttons.find((b) => b !== button);
-      next.click(); next.focus();
-    };
-    buttons.push(button);
-    tabs.append(button);
-  }
-  buttons[0].click();
-  rulePop.append(tabs, panel);
+  const close = renderRulePopover(rulePop, k, () => hideRule(), () => positionRulePopover(anchor));
   for (const c of k.origins || []) {
     const src = node("section", "popover-source");
     src.append(
@@ -1688,12 +1098,8 @@ function selectGroupSlot(group, index, key, trigger) {
 }
 
 function expandedContents(inst, { forceOpen = false, detail = false } = {}) {
-  const u = RulesCore.unitFor(inst,army,data),
-    out = node("div", "unit-expanded");
-  const rules = keywordEntries(inst);
-  const phases = phaseRules(rules, forceOpen, { hideArmyBuilding: !detail });
-  if (phases.childElementCount) out.append(phases);
-  out.append(unitWeapons(inst, { forceOpen }));
+  const u = RulesCore.unitFor(inst, army, data);
+  const out = unitContents(u, equippedCards(inst), {forceOpen, hideArmyBuilding: !detail});
   if (inst.upgrades.length) {
     const section = node("section", "selected-upgrades");
     section.append(node("h4", "compact-section-title", "升级卡"));
@@ -1784,11 +1190,16 @@ function refreshUnitFaces(card, group, detail = false) {
   card.querySelector('.unit-expanded')?.replaceWith(expandedContents(group.instances[0], {forceOpen: detail, detail}));
   return card;
 }
-function renderUnits({changedInstanceId = null} = {}) {
+function renderUnits(options) {
+  BuilderOverlays.preserveScroll(() => updateUnitList(options));
+}
+
+function updateUnitList({changedInstanceId = null} = {}) {
   const list = $("#army-units");
   list.classList.add("grouped-army-list");
-  if (!changedInstanceId) list.replaceChildren();
-  const existing = new Map([...list.querySelectorAll(':scope > .roster-unit')].map(n => [n.dataset.groupKey, n]));
+  const existing = changedInstanceId
+    ? new Map([...list.querySelectorAll(':scope > .roster-unit')].map(n => [n.dataset.groupKey, n]))
+    : new Map();
   const byMembers = new Map([...existing.values()].map(n => [n.dataset.instances, n]));
   const wanted = groupedUnits().map(g => {
     const members = JSON.stringify(g.instances.map(i => i.instanceId));
@@ -1800,29 +1211,17 @@ function renderUnits({changedInstanceId = null} = {}) {
   });
   const b = list.querySelector(':scope > .add-unit') || node("button", "add-unit", "＋ 添加单位");
   b.onclick = () => selectContext({ mode: "units", rank: 2 }, b);wanted.push(b);
+  const wantedNodes = new Set(wanted);
   // Reconcile in place: never detach unaffected unit nodes or their loaded images.
   let cursor = list.firstChild;
   for (const child of wanted) {
     if (child === cursor) cursor = cursor.nextSibling;
     else list.insertBefore(child, cursor);
   }
-  for (const child of [...list.children]) if (!wanted.includes(child)) child.remove();
+  for (const child of [...list.children]) if (!wantedNodes.has(child)) child.remove();
   window.BuilderSticky?.refresh();
 }
 
-function timingMarkers(timings) {
-  const markers = node("span", "timing-markers");
-  const list = [...new Set(timings?.length ? timings : ["unclassified"])];
-  markers.title = list.map((t) => TIMING_LABEL[t] || t).join(" / ");
-  markers.setAttribute("aria-label", "时机：" + markers.title);
-  for (const t of list) {
-    const mark = node("span", "timing-mark", TIMING_LABEL[t] || t);
-    mark.textContent = TIMING_LABEL[t] || t;
-    mark.dataset.timing = t;
-    markers.append(mark);
-  }
-  return markers;
-}
 function ruleTags(keywords, options = {}) {
   const tags = node("div", "candidate-tags");
   const entries = uniqueRules(keywords);
@@ -1932,6 +1331,18 @@ const UNIT_AFFILIATION_TONES = {
   965: "mandalorian", 1081: "mandalorian", 1082: "mandalorian", 1083: "mandalorian", 1084: "mandalorian",
 };
 
+function unitNameTone(unit) {
+  return UNIT_FACTION_TONES[unit.factionId] ||
+    (unit.affiliationIds || []).map(id => UNIT_AFFILIATION_TONES[id]).find(Boolean) ||
+    "mercenary";
+}
+
+function setUnitNameTone(element, unit) {
+  const tone = unitNameTone(unit);
+  element.style.setProperty("--unit-bg", "var(--card-" + tone + "-bg)");
+  element.style.setProperty("--unit-fg", "var(--card-" + tone + "-fg)");
+}
+
 function unitExpandButton(unit, expanded) {
   const label = expanded ? "收起" : "展开";
   const button = node("button", "expand-unit", label);
@@ -1946,11 +1357,7 @@ function unitCandidateHeader(unit, group) {
   const body = node("div", "candidate-unit-overview");
   const first = node("div", "candidate-unit-name-row");
   const name = node("div", "candidate-unit-name");
-  const tone = UNIT_FACTION_TONES[unit.factionId] ||
-    (unit.affiliationIds || []).map(id => UNIT_AFFILIATION_TONES[id]).find(Boolean) ||
-    "mercenary";
-  name.style.setProperty("--unit-bg", "var(--card-" + tone + "-bg)");
-  name.style.setProperty("--unit-fg", "var(--card-" + tone + "-fg)");
+  setUnitNameTone(name, unit);
   name.append(node("b", null, named(unit.name)));
   if (unit.name?.zh && unit.name.en && unit.name.zh !== unit.name.en)
     name.append(node("span", null, unit.name.en));
@@ -1992,8 +1399,11 @@ function unitCandidateHeader(unit, group) {
 }
 
 function candidate(c) {
-  if (browser.mode === "upgrades") return upgradeCandidate(c);
-  if (browser.mode !== "units") return commandCandidate(c);
+  const unit = browser.mode === "units";
+  if (!unit && browser.mode !== "upgrades") return commandCandidate(c);
+  if (BuilderSettings.selectionListStyle() === "large")
+    return largeCardCandidate(unit ? c : displayUpgrade(c), unit);
+  if (!unit) return upgradeCandidate(c);
   const inst = { unitId: c.id, instanceId: "candidate-" + c.id, upgrades: [] };
   const group = { unit: c, instances: [inst] },
     state = itemState(c);
@@ -2010,6 +1420,99 @@ function candidate(c) {
   card.append(unitCandidateHeader(c, group));
   if (content.childElementCount) card.append(content);
   return selectableCandidate(card, c, state);
+}
+
+function largeCardImage(card) {
+  const frame = node("div", "large-card-art");
+  const original = card.assets?.front || card.image;
+  const source = card.assets?.thumbnail || card.thumbnail || original || card.assets?.portrait;
+  const name = named(card.name);
+  if (!source) {
+    frame.append(node("span", "large-card-art-empty", name + " · 暂无卡图"));
+    return frame;
+  }
+  const image = node("img");
+  image.src = assetPath(source);
+  image.alt = named(card.name) + "卡图";
+  image.loading = "lazy";
+  image.decoding = "async";
+  image.onerror = () => {
+    if (original && image.getAttribute("src") !== assetPath(original)) {
+      image.src = assetPath(original);
+      return;
+    }
+    image.remove();
+    frame.append(node("span", "large-card-art-empty", name + " · 卡图暂不可用"));
+  };
+  frame.append(image);
+  return frame;
+}
+
+function largeCardSlotIcons(keys) {
+  const strip = node("div", "large-card-slot-icons");
+  strip.setAttribute("role", "group");
+  strip.setAttribute("aria-label", "升级槽位");
+  for (const key of keys) {
+    const name = slotName(key);
+    const icon = node("span", "large-card-slot-icon");
+    icon.title = name;
+    icon.setAttribute("role", "img");
+    icon.setAttribute("aria-label", name);
+    icon.append(node("span", "slot-glyph", slotDef(key)?.iconGlyph || "+"));
+    strip.append(icon);
+  }
+  return strip;
+}
+
+function largeCardCandidate(card, unit) {
+  const state = itemState(card);
+  const key = [browser.mode, card.id, card._face || "front"].join(":");
+  const item = node("article", "candidate large-card-candidate " + state.kind);
+  item.dataset.id = card.id;
+  item.dataset.state = state.kind;
+  if (!unit) item.dataset.face = card._face || "front";
+  item.append(largeCardImage(card));
+
+  const instance = unit ? {unitId:card.id, instanceId:"candidate-" + card.id, upgrades:[]} :
+    army.units.find(i => i.instanceId === browser.unitInstanceId);
+  const slots = unit ? unitSlotRecords(card, instance).map(record => record.key) :
+    [...new Set(accessOf(card))];
+  const points = unit ? card.points : upgradeDisplayPoints(card, instance);
+  const tools = node("div", "large-card-tools");
+  const cost = node("span", "candidate-unit-points");
+  cost.append(node("b", null, points ?? "—"), node("small", null, "分"));
+  const toggle = node("button", "large-card-expand");
+  toggle.type = "button";
+  tools.append(largeCardSlotIcons(slots), cost, favoriteButton(card), toggle);
+
+  const details = node("div", "large-card-details");
+  function setExpanded(expanded) {
+    if (expanded && !details.childElementCount) {
+      const options = {timing:true, summaryView:cardView.candidateSummaries};
+      const keywords = [...cardKeywords(card), ...(card.counterpart ? cardKeywords(card.counterpart) : [])];
+      const weaponKeywords = (card.weapons || []).flatMap(weapon =>
+        (weapon.keywords || []).map(entry => ({
+          ...(typeof entry === "string" ? {id:entry} : entry),
+          weaponSources:[named(weapon.name)],
+        })),
+      );
+      const tags = ruleTags([...keywords, ...weaponKeywords], options);
+      details.append(tags.childElementCount ? tags : node("p", "large-card-no-rules", "无词条"));
+    }
+    details.hidden = !expanded;
+    toggle.textContent = expanded ? "收起" : "展开";
+    toggle.setAttribute("aria-label", toggle.textContent + named(card.name) + "词条");
+    toggle.setAttribute("aria-expanded", String(expanded));
+  }
+  setExpanded(cardView.largeExpanded.has(key));
+  toggle.onclick = () => {
+    if (details.hidden) cardView.largeExpanded.add(key);
+    else cardView.largeExpanded.delete(key);
+    setExpanded(cardView.largeExpanded.has(key));
+  };
+  item.append(tools, details);
+  if (!state.ok) item.append(candidateStatus(state));
+  return selectableCandidate(item, card, state);
 }
 
 function showDialog(dialog, opener = document.activeElement) {
@@ -2030,7 +1533,6 @@ function showDialog(dialog, opener = document.activeElement) {
   }
 }
 function briefHeader(unit, instance, group, { detail = false } = {}) {
-  const header = node("div", detail ? "unit-brief detail-brief" : "unit-brief");
   let controls;
   if (!detail) {
     controls = node("div", "instance-controls");
@@ -2066,49 +1568,11 @@ function briefHeader(unit, instance, group, { detail = false } = {}) {
         controls.append(node("span", "group-count", "×" + group.instances.length));
     }
   }
-  header.append(artButton(unit));
-  const body = node("div", "brief-body"),
-    first = node("div", "brief-first"),
-    name = node("div", "bilingual-name");
-  name.append(node("b", null, named(unit.name)));
-  if (unit.name?.zh && unit.name.en && unit.name.en !== unit.name.zh)
-    name.append(node("span", null, unit.name.en));
-  first.append(name, statMatrix(unit, { showModels: !detail }));
-  const second = node("div", "brief-meta");
-  second.append(rankIcon(rankOf(unit, army.armyId)));
-  second.append(
-    node(
-      "span",
-      "rank-label-inline",
-      [
-        named(data.defs.ranks.find((r) => r.id === rankOf(unit, army.armyId))?.name),
-        named(data.defs.unitTypes.find((t) => t.id === unit.unitTypeId)?.name),
-      ]
-        .filter(Boolean)
-        .join(" / "),
-    ),
-  );
-  if (named(unit.title)) {
-    const title = node("span", "bilingual-title", named(unit.title));
-    if (unit.title.zh && unit.title.en && unit.title.en !== unit.title.zh)
-      title.append(node("span", null, unit.title.en));
-    second.append(title);
-  }
-  body.append(first, second);
-  header.append(body);
-  const cost = node("div", "brief-cost"),
-    single = perUnitPoints(instance),
-    quantity = detail ? 1 : group.instances.length;
-  if (single != null) {
-    cost.append(node("b", null, single * quantity), node("small", null, "分"));
-    if (quantity > 1) cost.append(node("span", null, single + " × " + quantity));
-  }
-  if (controls) {
-    const end = node("div", "brief-end");
-    end.append(cost, controls);
-    first.append(end);
-  } else first.append(cost);
-  return header;
+  return unitHeader(unit, {
+    rank: rankOf(unit, army.armyId), points: perUnitPoints(instance),
+    quantity: detail ? 1 : group.instances.length, art: artButton(unit),
+    detail, controls, setNameTone: setUnitNameTone
+  });
 }
 function slotStrip(group, { readonly = false, candidateLayout = false } = {}) {
   const inst = group.instances[0],
@@ -2439,7 +1903,7 @@ function wireEditor() {
     const view = cardView.candidateSummaries;
     view.open = target.checked;
     view.overrides.clear();
-    for (const toggle of $("#card-grid").querySelectorAll(".unit-candidate .rule-tag-toggle")) {
+    for (const toggle of $("#card-grid").querySelectorAll(".unit-candidate .rule-tag-toggle, .large-card-candidate .rule-tag-toggle")) {
       const tag = toggle.parentElement;
       setTagSummary(tag, toggle, tag.querySelector(".tag-summary"), view.open);
     }

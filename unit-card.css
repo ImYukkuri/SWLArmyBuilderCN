@@ -1,0 +1,1158 @@
+/* Unit and upgrade presentation for the builder and the play detail dialog. */
+
+@font-face {
+  font-family: LegionSymbols;
+  src: url("assets/legion-icons.ttf") format("truetype");
+  font-display: swap;
+}
+
+.rank-icon {
+  font: 22px/1 LegionSymbols;
+  min-width: 26px;
+}
+
+.die {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  transform: rotate(45deg);
+  border: 1px solid #9daab3;
+  border-radius: 1px;
+  flex: none;
+}
+
+.die.red {
+  background: #a24e53;
+  border-color: #a24e53;
+}
+
+.die.black {
+  background: #34414a;
+  border-color: #34414a;
+}
+
+.die.white {
+  background: #fff;
+}
+
+.rule-action {
+  display: inline-flex;
+  align-items: baseline;
+  margin-right: 4px;
+}
+
+.action-mark {
+  display: inline-block;
+  vertical-align: baseline;
+  white-space: nowrap;
+  margin-inline: .12em;
+  padding: .06em .32em;
+  border: 1px solid #7891a3;
+  border-radius: 3px;
+  background: #f0f5f8;
+  color: #284e65;
+  font-size: .88em;
+  font-weight: 600;
+  line-height: 1.3;
+  text-indent: 0;
+}
+
+.action-mark[data-action=free], .action-mark[data-action=free-exhaust] {
+  border-color: #859b94;
+  color: #315e51;
+  background: #f0f6f2;
+}
+
+.ui-symbol {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  fill: currentColor;
+  flex: none;
+  vertical-align: middle;
+}
+
+.unit-expanded {
+  padding: 0 12px 7px;
+  border-top: 1px solid #e0e7ed;
+}
+
+.phase-rules {
+  margin: 5px 0;
+}
+
+.phase-row {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr);
+  border-bottom: 1px solid #e2e8ed;
+  gap: 7px;
+  padding: 4px 0;
+}
+
+.phase-row:last-child {
+  border-bottom: 0;
+}
+
+.phase-title {
+  font-size: 11px;
+  line-height: 1.5;
+  font-weight: 600;
+  color: #4e6a7e;
+  padding: 3px 5px;
+  border-left: 3px solid #97b1c3;
+  background: #edf3f7;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  gap: 0 2px;
+}
+
+.phase-name, .timing-mark { white-space: nowrap; }
+
+.phase-row[data-phase="attack"] .phase-title {
+  color: #7f494e;
+  border-color: #b57c81;
+  background: #f6edee;
+}
+
+.phase-row[data-phase="defense"] .phase-title {
+  color: #3c657a;
+  border-color: #709aaf;
+  background: #eaf2f6;
+}
+
+.phase-row[data-phase="movement"] .phase-title {
+  color: #5a6c4d;
+  border-color: #91a580;
+  background: #eff4eb;
+}
+
+.phase-tags {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.rule-tag {
+  display: inline-grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  max-width: 100%;
+  border: 1px solid #cad7e0;
+  border-radius: 3px;
+  background: #f3f7fa;
+  overflow: hidden;
+  color: #35596e;
+  vertical-align: middle;
+}
+
+.rule-tag-main {
+  display: block;
+  text-align: left;
+  padding: 3px 6px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.rule-origin {
+  display: block;
+  font-size: 9px;
+  font-weight: 400;
+  color: #6b8292;
+  line-height: 1.5;
+}
+
+.rule-tag-toggle {
+  border: 0;
+  border-left: 1px solid #d4e0e7;
+  border-radius: 0;
+  font-size: 12px;
+  align-self: stretch;
+  padding: 0 5px;
+  background: #e7eff5;
+  color: #456b84;
+  min-width: 24px;
+}
+
+.tag-summary {
+  grid-column: 1/-1;
+  padding: 5px 7px;
+  border-top: 1px solid #d4e0e7;
+  font-size: 12px;
+  line-height: 1.75;
+  font-weight: 400;
+  color: #425767;
+  background: #f9fbfd;
+}
+
+.rule-tag.open {
+  max-width: 100%;
+}
+
+.rule-tag.open .rule-tag-main {
+  font-size: 12px;
+}
+
+.weapon-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 8px 0;
+}
+
+.weapon-group {
+  position: relative;
+  padding: 10px 5px 5px;
+  margin-top: 3px;
+  border: 1px solid #d4dce3;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.weapon-group > h4 {
+  position: absolute;
+  top: -9px;
+  left: 9px;
+  padding: 0 5px;
+  background: white;
+  font-size: 10px;
+  font-weight: 500;
+  color: #647b8c;
+  line-height: 1.6;
+}
+
+.weapon-group.melee {
+  border-color: #dcc9cc;
+}
+
+.weapon-group.melee > h4 {
+  color: #986168;
+}
+
+.weapon-card {
+  background: #24282d;
+  border: 1px solid #11161c;
+  border-radius: 4px;
+  overflow: hidden;
+  color: #f2f5f7;
+}
+
+.weapon-card-head {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 9px;
+  flex-wrap: wrap;
+}
+
+.weapon-title {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 1px 7px;
+  flex: 1;
+  line-height: 1.5;
+  min-width: 110px;
+}
+
+.weapon-title > b {
+  font-size: 12px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.weapon-english {
+  font: 11px/1.5 var(--numeric);
+  color: #c9d0d7;
+}
+
+.weapon-origin {
+  font-size: 9px;
+  color: #bbc8d2;
+}
+
+.range-pill {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ffffff40;
+  border-radius: 4px;
+  padding: 2px 6px;
+  min-width: 49px;
+  flex: none;
+  line-height: 1.25;
+  flex-direction: row;
+  gap: 4px;
+}
+
+.range-pill small {
+  font-size: 8px;
+  color: #edf1f6;
+}
+
+.range-pill b {
+  font: 17px/1.2 var(--numeric);
+  font-weight: 650;
+  color: white;
+}
+
+.range-pill.melee {
+  background: #a8434a;
+}
+
+.range-pill.ranged {
+  background: #2c6b9a;
+}
+
+.range-pill.mixed {
+  background: linear-gradient(110deg, #a8434a, #865880 48%, #2c6b9a);
+}
+
+.attack-pool {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: none;
+  flex-wrap: wrap;
+}
+
+.die-value {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font: 16px/1 var(--numeric);
+}
+
+.die-value b {
+  font-weight: 550;
+}
+
+.attack-pool .die {
+  width: 11px;
+  height: 11px;
+}
+
+.weapon-card .die.red {
+  background: #e1646a;
+  border-color: #e1646a;
+}
+
+.weapon-card .die.black {
+  background: #1b1c20;
+  border-color: #c1c8cd;
+}
+
+.weapon-card .die.white {
+  background: #f6f8fa;
+  border-color: white;
+}
+
+.weapon-tags {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  padding: 0 8px 7px;
+}
+
+.weapon-tags .rule-tag {
+  background: #383e46;
+  border-color: #586574;
+  color: #f0f4f8;
+}
+
+.weapon-tags .rule-tag-main {
+  color: #eff4f7;
+  font-size: 10px;
+  padding: 2px 5px;
+}
+
+.weapon-tags .rule-origin {
+  color: #bbcbd7;
+}
+
+.weapon-tags .rule-tag-toggle {
+  color: #d5e1ea;
+  background: #454f5c;
+  border-color: #657586;
+  min-width: 22px;
+}
+
+.weapon-tags .tag-summary {
+  background: #f6f9fc;
+}
+
+.variable-dice-note {
+  padding: 6px 9px;
+  color: #dbe2e8;
+  border-top: 1px solid #56606d;
+  font-size: 10px;
+  line-height: 1.7;
+}
+
+.compact-section-title {
+  font-size: 11px;
+  color: #627b8f;
+  font-weight: 500;
+  margin: 5px 0 2px;
+}
+
+.upgrade-detail {
+  padding: 5px 0;
+  border-top: 1px solid #dce5eb;
+}
+
+.upgrade-detail.has-upgrade-art {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(100px, 27%, 132px);
+  grid-template-rows: auto 1fr;
+  gap: 3px 10px;
+  align-items: start;
+}
+
+.upgrade-body { min-width: 0; grid-column: 1; grid-row: 1 / 3; }
+
+.upgrade-detail > .upgrade-art { grid-column: 2; grid-row: 1; justify-self: center; }
+
+.upgrade-detail > .upgrade-tags { grid-column: 2; grid-row: 2; justify-content: center; margin-top: 0; }
+
+.upgrade-detail > .upgrade-tags:has(.rule-tag.open) { grid-column: 1 / -1; grid-row: 3; justify-content: flex-start; }
+
+.upgrade-body > .weapon-inspect { margin-top: 3px; text-align: left; }
+
+.upgrade-detail .counterpart-heading, .upgrade-detail .counterpart-effect-rule { margin-top: 3px; }
+
+.upgrade-entry-actions { display: inline-flex; align-items: center; gap: 4px; margin-left: auto; }
+
+.upgrade-entry-actions:empty { display: none; }
+
+.upgrade-line {
+  display: flex;
+  gap: 2px 6px;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 12px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.upgrade-line > b {
+  font-size: 12px;
+}
+
+.upgrade-english {
+  font: 11px/1.35 var(--numeric);
+  color: #6d8190;
+}
+
+.upgrade-art {
+  width: 64px;
+  height: 86px;
+  flex: none;
+  border: 0;
+  border-radius: 2px;
+  padding: 0;
+  background: #e9eef2;
+  overflow: hidden;
+}
+
+.upgrade-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.upgrade-art:disabled {
+  display: none;
+}
+
+.upgrade-cost {
+  margin-left: auto;
+  white-space: nowrap;
+  color: #45677f;
+  font: 12px var(--numeric);
+}
+
+.upgrade-effect {
+  font-size: 12px;
+  line-height: 1.55;
+  color: #405565;
+  margin-top: 3px;
+  white-space: pre-line;
+}
+
+.upgrade-requirements {
+  font-size: 11px;
+  color: #667f91;
+  margin-top: 5px;
+}
+
+.upgrade-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 5px;
+}
+
+.weapon-inspect {
+  border: 0;
+  border-bottom: 1px dotted #a4bacb;
+  padding: 2px 0;
+  background: none;
+  border-radius: 0;
+  color: #326482;
+  font-size: 10px;
+  text-align: left;
+}
+
+.usage-flags {
+  display: inline-flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.usage-flag {
+  font-size: 9px;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  white-space: nowrap;
+  background: #f0ede8;
+  color: #7c6546;
+  padding: 1px 4px;
+  border-radius: 2px;
+}
+
+.usage-flag .ui-symbol {
+  width: 12px;
+  height: 12px;
+}
+
+.weapon-brief > span:not(.attack-pool) {
+  font-size: 10px;
+  color: #6c8292;
+}
+
+.weapon-brief .die-value {
+  font-size: 13px;
+}
+
+.weapon-brief .die {
+  width: 9px;
+  height: 9px;
+}
+
+.unit-detail-dialog .unit-expanded {
+  padding: 8px 0;
+}
+
+.unit-detail-dialog .phase-title {
+  min-width: 0;
+}
+
+.unit-detail-dialog .weapon-card-head {
+  padding: 8px 11px;
+}
+
+.weapon-dialog .weapon-card + .weapon-card {
+  margin-top: 8px;
+}
+
+.keyword-popover {
+  position: fixed;
+  z-index: 1000;
+  background: white;
+  border: 1px solid #afc3d2;
+  border-top: 3px solid #326a8a;
+  border-radius: 6px;
+  padding: 15px;
+  overflow: auto;
+  box-shadow: 0 12px 35px #243e5433;
+  color: #243e50;
+  font-size: 13px;
+}
+
+.popover-heading {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.popover-heading h3 {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.popover-heading button {
+  border: 0;
+  background: transparent;
+  font-size: 22px;
+  line-height: 1;
+  padding: 1px 6px;
+}
+
+.popover-english {
+  font: 11px var(--numeric);
+  color: #6a8292;
+}
+
+.popover-timing {
+  font-size: 10px;
+  color: #708698;
+  margin: 7px 0;
+}
+
+.popover-rule {
+  padding: 8px 0;
+  border-top: 1px solid #d8e3eb;
+}
+
+.popover-rule h4,
+.popover-source > h4 {
+  font-size: 11px;
+  color: #507794;
+  margin: 0 0 5px;
+  font-weight: 500;
+}
+
+.popover-rule > div {
+  font-size: 13px;
+  line-height: 1.9;
+  white-space: pre-line;
+}
+
+.popover-source {
+  padding-top: 10px;
+  margin-top: 4px;
+  border-top: 2px solid #d6e3ec;
+}
+
+.popover-source .upgrade-detail {
+  border: 0;
+  padding: 0;
+}
+
+.keyword-popover .rule-tag-main {
+  font-size: 11px;
+}
+
+.legion-symbol {
+  font: 16px/1 LegionSymbols;
+  text-align: center;
+}
+
+.surge-arrow {
+  font-size: 11px;
+  color: #718b9d;
+}
+
+.no-conversion {
+  font-size: 12px;
+  color: #657d8e;
+}
+
+.upgrade-effect,
+.upgrade-requirements,
+.variable-dice-note,
+.tag-summary {
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+.rule-origin,
+.weapon-origin {
+  font-size: 10px;
+}
+
+.large-card-details > .candidate-tags,
+.large-card-details > .upgrade-tags {
+  display:flex;
+  flex-wrap:wrap;
+  gap:4px;
+  margin:0;
+}
+
+@media (max-width: 760px) {
+  .unit-expanded {
+      padding: 0 8px 5px;
+    }
+
+  .phase-row {
+      grid-template-columns: 68px minmax(0, 1fr);
+      gap: 4px;
+      padding: 3px 0;
+    }
+
+  .phase-title {
+      font-size: 10px;
+      padding: 2px 4px;
+    }
+
+  .phase-tags {
+      gap: 4px;
+    }
+
+  .rule-tag-main {
+      font-size: 11px;
+      padding: 3px 5px;
+    }
+
+  .rule-tag-toggle {
+      min-width: 28px;
+    }
+
+  .tag-summary {
+      font-size: 12px;
+    }
+
+  .weapon-card-head {
+      gap: 7px;
+      padding: 6px;
+      flex-wrap: wrap;
+    }
+
+  .weapon-title {
+      min-width: 48%;
+    }
+
+  .weapon-title > b {
+      font-size: 11px;
+    }
+
+  .weapon-english {
+      font-size: 10px;
+    }
+
+  .weapon-origin {
+      font-size: 9px;
+    }
+
+  .range-pill {
+      min-width: 44px;
+      padding: 2px 5px;
+    }
+
+  .range-pill b {
+      font-size: 15px;
+    }
+
+  .attack-pool {
+      gap: 6px;
+    }
+
+  .die-value {
+      font-size: 14px;
+      gap: 4px;
+    }
+
+  .weapon-card .attack-pool .die {
+      width: 10px;
+      height: 10px;
+    }
+
+  .upgrade-line {
+      gap: 2px 5px;
+    }
+
+  .upgrade-line > b {
+      font-size: 11px;
+    }
+
+  .upgrade-english {
+      font-size: 10px;
+    }
+
+  .upgrade-effect {
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+  .upgrade-detail {
+      padding: 4px 0;
+    }
+
+  .upgrade-detail.has-upgrade-art {
+      grid-template-columns: minmax(0, 1fr) 100px;
+      column-gap: 7px;
+    }
+
+  .upgrade-art {
+      width: 56px;
+      height: 75px;
+    }
+
+  .unit-detail-dialog .phase-title {
+      min-width: 0;
+    }
+
+  .keyword-popover {
+      padding: 13px;
+    }
+
+  .variable-dice-note {
+      font-size: 11px;
+    }
+}
+
+@media (max-width: 1150px) and (min-width: 761px) {
+  .phase-row {
+      grid-template-columns: 84px minmax(0, 1fr);
+    }
+
+  .weapon-card-head {
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+  .weapon-title {
+      min-width: 50%;
+    }
+}
+
+.unit-brief {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) max-content;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  cursor: pointer;
+  background: #f9fbfc;
+}
+
+.detail-brief {
+  grid-template-columns: 64px minmax(0, 1fr);
+}
+
+.brief-body {
+  min-width: 0;
+  container: unit-summary / inline-size;
+}
+
+.brief-end .brief-cost { margin: 0; }
+
+.brief-first {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+}
+
+.bilingual-name {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  max-width: 43%;
+  gap: 2px;
+}
+
+.bilingual-name > b {
+  font-size: 16px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.bilingual-name > span {
+  font: 11px/1.4 var(--numeric);
+  color: #607280;
+  overflow-wrap: anywhere;
+}
+
+.brief-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 5px;
+  margin-top: 5px;
+  font-size: 10px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.brief-meta .rank-icon {
+  font-size: 13px;
+  color: var(--faction);
+}
+
+.bilingual-title {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0 5px;
+  color: #3f5c70;
+}
+
+.bilingual-title::before {
+  content: "";
+  border-left: 1px solid #bdcbd6;
+  margin: 2px 3px;
+}
+
+.bilingual-title > span {
+  font: 10px/1.5 var(--numeric);
+  color: var(--muted);
+}
+
+.brief-cost {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: flex-end;
+  max-width: 55px;
+  gap: 1px;
+  margin-left: auto;
+}
+
+.brief-cost > b {
+  font: 600 25px/1.1 var(--numeric);
+}
+
+.brief-cost > small {
+  font-size: 9px;
+  color: var(--muted);
+}
+
+.brief-cost > span {
+  flex-basis: 100%;
+  text-align: right;
+  font: 10px var(--numeric);
+  color: var(--muted);
+}
+
+.attribute-band {
+  display: flex;
+  flex: 1 1 220px;
+  min-width: 0;
+  align-items: stretch;
+  margin: 0;
+  padding: 3px 0;
+  background: #e8eff5;
+  border-radius: 3px;
+  container: unit-attributes / inline-size;
+}
+
+.attribute {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 2px;
+  border-right: 1px solid #c8d6e1;
+}
+
+.attribute:last-child {
+  border-right: 0;
+}
+
+.attribute dt {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+.attribute dd {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.attribute dd b {
+  font: 600 15px/1 var(--numeric);
+}
+
+.attribute .ui-symbol {
+  width: 13px;
+  height: 13px;
+  color: #3c586e;
+}
+
+.attribute .legion-symbol {
+  font-size: 13px;
+}
+
+@container unit-summary (max-width:470px) {
+  .brief-first .bilingual-name {
+      max-width: none;
+      flex: 1 1 auto;
+    }
+
+  .brief-first .attribute-band {
+      flex-basis: 100%;
+      order: 3;
+    }
+}
+
+@container unit-attributes (min-width:390px) {
+  .attribute dt {
+      position: static;
+      width: auto;
+      height: auto;
+      clip-path: none;
+      overflow: visible;
+      font-size: 10px;
+      color: #607688;
+    }
+}
+
+.selectable-candidate:focus-visible,
+.unit-brief:focus-visible {
+  outline: 2px solid #548cba;
+  outline-offset: -3px;
+}
+
+.timing-markers {display:inline-flex;flex-wrap:wrap;gap:3px;align-items:center;margin-right:5px;vertical-align:middle;}
+
+.timing-mark {display:inline-flex;align-items:center;gap:3px;font-style:normal;font-size:10px;font-weight:400;line-height:1.4;color:#526574;--timing-color:#89939b;}
+
+.timing-mark::before {content:"";display:inline-block;width:4px;min-height:12px;align-self:stretch;border-radius:1px;background:var(--timing-color);}
+
+.timing-mark[data-timing="global"] {
+  --timing-color: #66718e;
+}
+
+.timing-mark[data-timing="army_building"] {
+  --timing-color: #81694e;
+}
+
+.phase-row[data-phase="army_building"] .phase-title {
+  color: #705b43;
+  border-color: #a48b6b;
+  background: #f3eee6;
+}
+
+.timing-mark[data-timing="setup"] {
+  --timing-color: #987143;
+}
+
+.timing-mark[data-timing="deployment"] {
+  --timing-color: #64804e;
+}
+
+.timing-mark[data-timing="command"] {
+  --timing-color: #aa7e2f;
+}
+
+.timing-mark[data-timing="activation_start"] {
+  --timing-color: #43928c;
+}
+
+.timing-mark[data-timing="activation"] {
+  --timing-color: #39757f;
+}
+
+.timing-mark[data-timing="activation_end"] {
+  --timing-color: #537056;
+}
+
+.timing-mark[data-timing="movement"] {
+  --timing-color: #4e8b54;
+}
+
+.timing-mark[data-timing="attack"] {
+  --timing-color: #ad5555;
+}
+
+.timing-mark[data-timing="defense"] {
+  --timing-color: #487dac;
+}
+
+.timing-mark[data-timing="end_round"] {
+  --timing-color: #8a6595;
+}
+
+@media (max-width: 760px) {
+  .unit-brief {
+      grid-template-columns: 36px minmax(0, 1fr) max-content;
+      gap: 5px;
+      padding: 6px;
+    }
+
+  .detail-brief {
+      grid-template-columns: 44px minmax(0, 1fr);
+    }
+
+  .bilingual-name > b {
+      font-size: 15px;
+    }
+
+  .bilingual-name > span {
+      font-size: 10px;
+    }
+
+  .brief-cost > b {
+      font-size: 22px;
+    }
+
+  .attribute dd {
+      gap: 1px;
+    }
+
+  .attribute dd b {
+      font-size: 14px;
+    }
+
+  .attribute .ui-symbol {
+      width: 12px;
+      height: 12px;
+    }
+
+  .attribute .legion-symbol {
+      font-size: 12px;
+    }
+}
+
+.image-dialog > .candidate-tags, .image-dialog > .weapon-groups { margin-top: 8px; }
+
+.counterpart-heading { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; color: var(--accent); font-weight: 600; margin: 5px 0; }
+
+.counterpart-heading span { font-weight: 400; font-size: 12px; color: var(--muted); }
+
+.counterpart-effect-rule { margin-top: 5px; }
+
+.counterpart-effect-rule strong { font-weight: 600; }
+
+.rule-tabs { display: flex; gap: 4px; margin-top: 8px; border-bottom: 1px solid var(--line); }
+
+.rule-tabs button { border: 0; border-bottom: 2px solid transparent; border-radius: 0; color: var(--muted); padding: 7px 12px; background: transparent; }
+
+.rule-tabs button[aria-selected=true] { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+
+.rule-tabs + .popover-rule { border-top: 0; }
+
+.battle-card-paper .action-mark { font-size:.88em; }
+
+.phase-row[data-phase="action"] .phase-title { color:#6d5224; border-color:#b38943; background:#f6f0e5; }
+
+.timing-mark[data-timing="action"] { --timing-color:#b38943; color:#795e30; }
+
+.face-badge { display:inline-block; color:#285d79; background:#e6eff4; padding:2px 7px; font-size:12px; font-weight:650; border-radius:3px; }
+
+.image-face .candidate-tags,.image-face .weapon-groups { margin-top:8px; }
+
+.action-mark[data-action="double-action"] { border-style:double; border-width:3px; padding-block:0; }
+
+.weapon-group.overrun { border-color:#b6a993; }
+
+.weapon-group.overrun h4 { color:#796342; }
+
+.range-pill.overrun { background:#796342; color:white; }
+
+.upgrade-candidate-title-row .usage-flags { flex: none; white-space: nowrap; }
+
+.battleforce-entry .timing-markers { vertical-align:middle; }
+
+.unit-browser:not(:has(#candidate-explanations:checked)) .timing-markers { display: none; }

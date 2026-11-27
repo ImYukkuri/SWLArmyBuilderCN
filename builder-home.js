@@ -5,7 +5,11 @@ let collection = { version: 1, records: [] },
   deletedRecord = null;
 let navigationRevision = 0;
 const rosterFingerprint = (record) => JSON.stringify([record.name, record.factionId, record.army]);
-const replaceRoute = hash => history.replaceState(null, '', BuilderShare.route(location.href, hash));
+function replaceRoute(hash) {
+  const previous = location.hash;
+  history.replaceState(null, '', BuilderShare.route(location.href, hash));
+  BuilderOverlays.replaceRoute(previous);
+}
 
 function initializeLibrary() {
   try {
@@ -81,6 +85,7 @@ function openRoster(record) {
     : "";
   browser = null;
   cardView.expanded.clear();
+  cardView.largeExpanded.clear();
   cardView.tags.clear();
   cardView.commandCollapsed.clear();
   cardView.applyAll = false;
@@ -88,8 +93,9 @@ function openRoster(record) {
   $("#open-explanations").checked = false;
   $("#library-page").hidden = true;
   $("#editor-page").hidden = false;
-  $("#save-state").textContent = "已保存";
+  $("#save-state").textContent = activeRecord.status === "draft" ? "草稿 · 自动保存" : "已保存";
   $("#save-state").classList.remove("error");
+  $("#save-roster").textContent = activeRecord.status === "draft" ? "正式保存" : "保存修改";
   replaceRoute(BuilderShare.rosterRoute(activeRecord));
   $('#roster-share-status').textContent = '';
   setStatus("");
@@ -99,20 +105,36 @@ function openRoster(record) {
   $("#rank-bar").querySelector("button")?.focus({ preventScroll: true });
 }
 
-function saveActiveRoster() {
+function saveActiveRoster({promote = false} = {}) {
   if (!activeRecord || !army) return true;
   activeRecord.name =
     activeRecord.name.trim() || BuilderLibrary.faction(activeRecord.factionId, data).name + "军表";
   activeRecord.army = army;
   const signature = rosterFingerprint(activeRecord);
-  if (signature === lastSavedRoster) return true;
-  const candidate = { ...activeRecord, updatedAt: new Date().toISOString() };
+  if (!promote && signature === lastSavedRoster) return true;
+  const now = new Date().toISOString();
   try {
-    collection = BuilderLibrary.writeRecord(localStorage, candidate);
-    activeRecord = candidate;
+    if (promote) {
+      const result = BuilderLibrary.promoteDraft(localStorage, activeRecord, now);
+      collection = result.collection;
+      activeRecord = result.record;
+      replaceRoute(BuilderShare.rosterRoute(activeRecord));
+    } else {
+      const wasFormal = activeRecord.status !== "draft";
+      const candidate = {
+        ...activeRecord,
+        ...(wasFormal ? {id:uid(), sourceRecordId:activeRecord.id, createdAt:now} : {}),
+        status:"draft",
+        updatedAt:now,
+      };
+      collection = BuilderLibrary.writeDraft(localStorage, candidate);
+      activeRecord = candidate;
+      if (wasFormal) replaceRoute(BuilderShare.rosterRoute(activeRecord));
+    }
     lastSavedRoster = signature;
-    $("#save-state").textContent = "已保存";
+    $("#save-state").textContent = activeRecord.status === "draft" ? "草稿 · 自动保存" : "已保存";
     $("#save-state").classList.remove("error");
+    $("#save-roster").textContent = activeRecord.status === "draft" ? "正式保存" : "保存修改";
     return true;
   } catch (error) {
     $("#save-state").textContent = "保存失败";
@@ -170,7 +192,8 @@ async function navigateLibrary() {
       // Validate before saving, but retain all cards even if the composition is illegal.
       RulesCore.validateArmy(record.army, source);
       if (activeRecord && !saveActiveRoster()) return;
-      collection = BuilderLibrary.writeRecord(localStorage, record);
+      record.status = "draft";
+      collection = BuilderLibrary.writeDraft(localStorage, record);
       openRoster(record);
       setStatus('已从分享链接导入：' + record.name);
       return;
@@ -199,10 +222,16 @@ async function navigateLibrary() {
 
 function renderSavedRosters() {
   const list = $("#saved-rosters");
+  const draftList = $("#draft-rosters");
   list.replaceChildren();
-  $("#saved-count").textContent = String(collection.records.length);
+  draftList.replaceChildren();
+  const formal = collection.records.filter(record => record.status !== "draft");
+  const drafts = collection.records.filter(record => record.status === "draft");
+  $("#saved-count").textContent = String(formal.length);
+  $("#draft-count").textContent = String(drafts.length);
   const search = $("#saved-search").value.trim().toLocaleLowerCase();
   const records = [...collection.records].sort((a, b) =>
+    Number(a.status === "draft") - Number(b.status === "draft") ||
     String(b.updatedAt).localeCompare(String(a.updatedAt)),
   );
   for (const record of records) {
@@ -214,11 +243,13 @@ function renderSavedRosters() {
       continue;
     const article = node("article", "saved-roster");
     article.dataset.id = record.id;
+    article.classList.toggle("is-draft", record.status === "draft");
     article.style.setProperty("--faction-color", faction.color);
     const open = node("button", "saved-roster-main");
     open.setAttribute("aria-label", "打开军表 " + record.name);
     const title = node("span", "saved-roster-title");
     title.append(node("b", null, record.name), node("span", null, faction.name));
+    if (record.status === "draft") title.append(node("span","roster-status","草稿"));
     const bf =
       record.army.armyId === record.factionId
         ? "无战斗部队"
@@ -251,7 +282,7 @@ function renderSavedRosters() {
     copy.onclick = () => {
       const duplicate = BuilderLibrary.copy(record, uid, new Date().toISOString());
       try {
-        collection = BuilderLibrary.writeRecord(localStorage, duplicate);
+        collection = BuilderLibrary.writeDraft(localStorage, duplicate);
         renderSavedRosters();
         setStatus("已复制军表 " + record.name);
       } catch (error) {
@@ -270,20 +301,19 @@ function renderSavedRosters() {
     };
     actions.append(copy, remove);
     article.append(open, actions);
-    list.append(article);
+    (record.status === "draft" ? draftList : list).append(article);
   }
-  if (!list.children.length) {
-    const empty = node("div", "saved-empty");
-    empty.append(
-      node("h3", null, search ? "没有匹配的军表" : "还没有保存的军表"),
-      node(
-        "p",
-        null,
-        search ? "试试军表名称或势力名称。" : "从上方选择一个势力开始，编辑过程中会自动保存。",
-      ),
-    );
-    list.append(empty);
-  }
+  const empty = message => {
+    const box = node("div", "saved-empty");
+    box.append(node("h3", null, message));
+    return box;
+  };
+  if (!list.children.length) list.append(empty(
+    search ? "没有匹配的军表存档" : "还没有军表存档",
+  ));
+  if (!draftList.children.length) draftList.append(empty(
+    search ? "没有匹配的军表草稿" : "还没有军表草稿",
+  ));
 }
 
 function showUndo(name) {
@@ -294,7 +324,9 @@ function showUndo(name) {
   undo.onclick = () => {
     if (!deletedRecord) return;
     try {
-      collection = BuilderLibrary.writeRecord(localStorage, deletedRecord);
+      collection = deletedRecord.status === "draft"
+        ? BuilderLibrary.writeDraft(localStorage, deletedRecord)
+        : BuilderLibrary.writeRecord(localStorage, deletedRecord);
       deletedRecord = null;
       notice.hidden = true;
       renderSavedRosters();
@@ -308,6 +340,25 @@ function showUndo(name) {
 function wireLibrary() {
   $("#back-library").onclick = showLibrary;
   $("#saved-search").oninput = renderSavedRosters;
+  const settings = BuilderSettings.load();
+  document.querySelectorAll('[name="selection-list-style"]').forEach(input => {
+    input.checked = input.value === settings.selectionListStyle;
+    input.onchange = () => {
+      if (!input.checked) return;
+      const grid = $("#card-grid"), scrollTop = grid.scrollTop;
+      const saved = BuilderSettings.update({selectionListStyle:input.value});
+      if (saved.selectionListStyle !== input.value) {
+        document.querySelector('[name="selection-list-style"][value="' + saved.selectionListStyle + '"]').checked = true;
+        setStatus("设置未能保存到浏览器。", true);
+        return;
+      }
+      cardView.largeExpanded.clear();
+      renderBrowser();
+      grid.scrollTop = scrollTop;
+    };
+  });
+  $("#open-settings").onclick = () => showDialog($("#settings-dialog"));
+  $("#settings-close").onclick = () => $("#settings-dialog").close();
   $("#roster-name").oninput = () => {
     if (!activeRecord) return;
     activeRecord.name = $("#roster-name").value;
@@ -319,7 +370,10 @@ function wireLibrary() {
   };
   $("#save-roster").onclick = () => {
     if (!$("#points-limit").reportValidity()) return;
-    if (saveActiveRoster()) setStatus("军表已保存，可从“势力与军表”继续编辑。");
+    if (saveActiveRoster({promote:true})) {
+      renderSavedRosters();
+      setStatus("已保存为正式军表。");
+    }
   };
   $(".brand").onclick = (event) => {
     event.preventDefault();

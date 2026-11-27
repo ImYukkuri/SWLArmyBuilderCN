@@ -145,7 +145,8 @@ function openTransferDialog(operation) {
       if(!result||result.issues.length)return;
       try {
         if(activeRecord&&!saveActiveRoster())return;
-        collection=BuilderLibrary.writeRecord(localStorage,result.record);
+        result.record.status='draft';
+        collection=BuilderLibrary.writeDraft(localStorage,result.record);
         const record=result.record,warnings=result.warnings;dialog.close();openRoster(record);
         setStatus('已导入：'+record.name+(warnings.length?'；'+warnings.join('；'):''));
       }catch(e){messages(['导入未保存：'+e.message],'transfer-errors');}

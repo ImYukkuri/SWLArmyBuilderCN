@@ -70,5 +70,22 @@ window.RuleIcons = (() => {
     result.setAttribute('role','img');result.setAttribute('aria-label',title);result.setAttribute('title',title);result.dataset.ruleIcon=key;
     return result;
   }
-  return {ACTION_LABEL,REFERENCE_GROUPS,label,icon};
+  function prose(raw, defs, renderText = text => document.createTextNode(text)) {
+    const box = document.createElement("span");
+    const text = (Array.isArray(raw) ? raw : [raw]).filter(Boolean).join("\n")
+      .replace(/\{@icon\.action\}\s*\{@icon\.action\}/g, "{@icon.double-action}");
+    let cursor = 0;
+    for (const match of text.matchAll(/\{@icon\.([\w-]+)\}/g)) {
+      box.append(renderText(text.slice(cursor, match.index)));
+      const token = document.createElement("span");
+      token.className = "inline-token";
+      const name = label(match[1], defs);
+      token.append(icon(match[1], name) || renderText(name));
+      box.append(token);
+      cursor = match.index + match[0].length;
+    }
+    box.append(renderText(text.slice(cursor)));
+    return box;
+  }
+  return {ACTION_LABEL,REFERENCE_GROUPS,label,icon,prose};
 })();

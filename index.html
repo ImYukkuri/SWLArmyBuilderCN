@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>军团 · 军表编辑器</title>
     <link rel="stylesheet" href="builder.css" />
+    <link rel="stylesheet" href="unit-card.css" />
     <link rel="stylesheet" href="faction-colors.css" />
     <link rel="stylesheet" href="rule-icons.css" />
   </head>
@@ -15,6 +16,7 @@
       >
       <nav class="module-nav"><a href="maintenance.html">数据维护</a></nav>
       <span class="edition">Star Wars Legion</span>
+      <button id="open-settings" class="masthead-settings" type="button" aria-haspopup="dialog">设置</button>
     </header>
     <div class="app-status">
       <div id="status" class="statusbar" role="status" aria-live="polite">正在载入军表资料…</div>
@@ -22,8 +24,7 @@
     <main id="library-page" class="library-page" hidden>
       <div class="library-heading">
         <div>
-          <h1>你的军团，从这里集结</h1>
-          <p>选择势力建立新军表，或继续编辑已保存的编制。</p>
+          <h1>SW军团中文写表器</h1>
         </div>
         <span class="storage-label">军表保存在当前浏览器</span>
       </div>
@@ -37,8 +38,7 @@
       <section class="saved-section" aria-labelledby="saved-heading">
         <div class="library-section-head">
           <div>
-            <h2 id="saved-heading">已保存的军表 <span id="saved-count"></span></h2>
-            <p>单位、升级与战术卡会随军表一起保存。</p>
+            <h2 id="saved-heading">军表存档 <span id="saved-count"></span></h2>
           </div>
           <label class="saved-search"
             ><span>查找军表</span
@@ -52,14 +52,23 @@
         </div>
         <div id="library-notice" class="library-notice" role="status" hidden></div>
         <div id="saved-rosters" class="saved-rosters"></div>
+        <div class="draft-section-head">
+          <h2>军表草稿 <span id="draft-count"></span></h2>
+          <small>最多保留 5 份</small>
+        </div>
+        <div id="draft-rosters" class="saved-rosters draft-rosters"></div>
       </section>
+      <footer class="library-footer">
+        <span>Author:C.Shadow</span>
+        <span>如遇任何问题可以在星球大战军团Q群反馈</span>
+      </footer>
     </main>
     <main id="editor-page" class="workspace" hidden>
       <div class="editor-navigation">
         <button id="back-library" class="text-button">‹ 势力与军表</button>
         <div class="save-actions">
           <span id="save-state" role="status"></span
-          ><button id="save-roster" class="choose-button">保存军表</button>
+          ><button id="save-roster" class="choose-button">正式保存</button>
         </div>
       </div>
       <section class="army-header">
@@ -109,6 +118,7 @@
         <button type="button" id="roster-export">导出 JSON</button>
         <button type="button" id="roster-import">导入 JSON</button>
         <button type="button" id="roster-share">生成分享链接</button>
+        <button type="button" id="roster-play">游玩</button>
         <input type="file" id="roster-file" accept=".json,application/json" hidden />
         <span id="roster-share-status"></span>
       </div>
@@ -172,6 +182,17 @@
         <div id="issues"></div>
       </dialog>
     </main>
+    <dialog id="settings-dialog" class="settings-dialog" aria-labelledby="settings-title">
+      <div class="dialog-head">
+        <h2 id="settings-title">设置</h2>
+        <button id="settings-close" type="button" aria-label="关闭设置">×</button>
+      </div>
+      <fieldset>
+        <legend>选择列表样式</legend>
+        <label><input type="radio" name="selection-list-style" value="detail" />详情</label>
+        <label><input type="radio" name="selection-list-style" value="large" />大图</label>
+      </fieldset>
+    </dialog>
     <script>
       window.addEventListener(
         "error",
@@ -198,12 +219,16 @@
     <script src="builder-transfer.js"></script>
     <script src="builder-share.js"></script>
     <script src="card-usage.js"></script>
+    <script src="play-match.js"></script>
+    <script src="play-store.js"></script>
     <script src="builder.js"></script>
     <script src="builder-overlays.js"></script>
     <script src="rule-icons.js"></script>
+    <script src="unit-card-view.js"></script>
     <script src="builder-view.js"></script>
     <script src="builder-sticky.js"></script>
     <script src="builder-transfer-ui.js"></script>
+    <script src="builder-settings.js"></script>
     <script src="builder-home.js"></script>
   </body>
 </html>

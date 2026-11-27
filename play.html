@@ -1,0 +1,811 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>游玩系统 · SWL Army Builder CN</title>
+  <link rel="stylesheet" href="rule-icons.css">
+  <link rel="stylesheet" href="play.css">
+  <link rel="stylesheet" href="unit-card.css">
+  <script defer src="rule-icons.js"></script>
+  <script defer src="upgrade-faces.js"></script>
+  <script defer src="battleforce-v2.js"></script>
+  <script defer src="battleforce-runtime.js"></script>
+  <script defer src="rules-core.js"></script>
+  <script defer src="mandalorian-rules.js"></script>
+  <script defer src="builder-model.js"></script>
+  <script defer src="builder-library.js"></script>
+  <script defer src="builder-transfer.js"></script>
+  <script defer src="builder-share.js"></script>
+  <script defer src="builder-overlays.js"></script>
+  <script defer src="unit-card-view.js"></script>
+  <script defer src="play-match.js"></script>
+  <script defer src="play-store.js"></script>
+  <script defer src="play-data.js"></script>
+  <script defer src="play-page.js"></script>
+</head>
+<body>
+  <main data-play>
+    <header class="play-header">
+      <a href="index.html" data-back>‹ 写表器</a>
+      <h1 data-text="rosterName">游玩系统</h1>
+      <p role="status" aria-live="polite">正在载入对局</p>
+    </header>
+    <div data-loaded hidden>
+      <section class="play-home" data-show="homeOpen">
+        <h2>开始一场对局</h2>
+        <div class="home-actions">
+          <button type="button" class="home-action" data-action="startSetup">
+            <strong>开始设置流程</strong>
+            <span>导入对手军表，确认玩家并组建任务</span>
+          </button>
+          <button type="button" class="home-action home-action-secondary" data-action="startPlay">
+            <strong>跳过设置</strong>
+            <span>直接进入计分页</span>
+          </button>
+        </div>
+        <section class="home-records">
+          <h3>此军表的对局记录</h3>
+          <p data-hide="matches.length">暂无对局记录。</p>
+          <ol class="archive-list">
+            <template data-each="matches">
+              <li>
+                <div class="archive-info">
+                  <b data-text="name"></b>
+                  <span data-show="opponent">／<span data-text="opponent"></span></span>
+                  <small data-text="status"></small>
+                  <small data-show="score" data-text="score"></small>
+                  <small data-show="time" data-text="time"></small>
+                </div>
+                <div class="actions">
+                  <button type="button" disabled title="对局载入功能后续接入">载入</button>
+                  <button type="button" data-action="deleteMatch" data-args="id=id">删除</button>
+                </div>
+              </li>
+            </template>
+          </ol>
+        </section>
+      </section>
+
+      <details class="match-archive">
+        <summary>对局备份与管理</summary>
+        <ol class="archive-list" data-show="matches.length">
+          <template data-each="matches">
+            <li>
+              <div class="archive-info"><b data-text="name"></b><small data-text="status"></small><small data-text="time"></small></div>
+              <div class="actions">
+                <button type="button" data-action="exportMatch" data-args="id=id">导出</button>
+                <button type="button" data-action="deleteMatch" data-args="id=id">删除</button>
+              </div>
+            </li>
+          </template>
+        </ol>
+        <form data-action="restoreMatch" data-clear>
+          <label>对局备份 <input type="file" name="file" accept=".json,application/json" required></label>
+          <button type="submit">恢复对局</button>
+        </form>
+      </details>
+      <div data-show="hasMatch">
+        <section class="setup-workflow" data-show="setupOpen" aria-label="赛前设置步骤">
+          <nav class="wizard-steps" aria-label="赛前设置步骤">
+            <template data-each="wizardSteps">
+              <button type="button" data-action="wizardStep" data-args="value=value"
+                data-attr="aria-current=current data-complete=complete data-focus-key=key">
+                <span data-text="value"></span><b data-text="label"></b>
+              </button>
+            </template>
+          </nav>
+
+          <section class="play-prep setup-step terrain-setup" data-show="wizardImportOpen" aria-label="对手军表与地形">
+            <div class="setup-import">
+              <header class="terrain-heading">
+                <h2>对手军表</h2>
+                <p data-show="canImportOpponent">可跳过导入，直接进入下一步。</p>
+              </header>
+              <div role="status" class="import-status">
+                <div class="import-success" data-show="opponentName">
+                  <span class="import-check" aria-hidden="true">✓</span>
+                  <div><strong>已导入对手军表</strong><span data-text="opponentName"></span></div>
+                </div>
+                <p class="import-error" data-show="importError" data-text="importError"></p>
+                <ul class="import-warnings" data-show="importWarnings.length">
+                  <template data-each="importWarnings"><li data-text="message"></li></template>
+                </ul>
+              </div>
+              <form id="setup-opponent-import" data-action="opponent" data-show="canImportOpponent" data-clear>
+                <label>军表文件 <input type="file" name="file" accept=".json,application/json"></label>
+                <label>或粘贴 JSON／分享链接 <textarea name="input" rows="2"></textarea></label>
+                <button type="submit">导入对手军表</button>
+              </form>
+            </div>
+            <div class="terrain-reference">
+              <header class="terrain-heading">
+                <h2>地形参考</h2>
+                <button class="terrain-generate" type="button" data-action="generateTerrain" data-text="terrainButtonLabel"></button>
+              </header>
+              <figure class="terrain-result" data-show="terrainLayout.length">
+                <div class="terrain-board">
+                  <template data-each="terrainLayout">
+                    <div class="terrain-half" data-attr="data-layout=id">
+                      <div class="terrain-tile" data-attr="data-rotated=rotated"><img data-src="image" data-attr="alt=label"></div>
+                    </div>
+                  </template>
+                </div>
+                <figcaption class="terrain-caption" aria-live="polite">
+                  <template data-each="terrainLayout"><span data-text="label"></span></template>
+                </figcaption>
+              </figure>
+              <div class="terrain-guide">
+                <div class="terrain-guide-intro">
+                  <h3>地形布置指南</h3>
+                  <a href="assets/references/terrain-layout-cards-doc62.pdf" download>DOC62 原文</a>
+                </div>
+                <p>地形布局卡为活动组织者同时布置多张战桌提供起点，可按场地需要调整。每张卡代表半张战场，随机抽两张左右并排，其中任意一张或两张都可以旋转 180°。</p>
+                <dl class="terrain-counts">
+                  <div><dt>大型地形</dt><dd>2 件</dd></div>
+                  <div><dt>中型地形</dt><dd>6 件</dd></div>
+                  <div><dt>小型地形</dt><dd>8 件</dd></div>
+                  <div><dt>填充地形</dt><dd>16–24 件</dd></div>
+                </dl>
+                <h4>摆放地形</h4>
+                <p>从推荐清单逐件取用，让每件地形覆盖一个标记点。与其他地形的间距须大于距离 ½，并尽量接近距离 1。若无法按建议摆放，可微调到最接近的合适位置。为大型底座模型预留通道，使其能到达战场的大部分区域。</p>
+                <h4>半标记</h4>
+                <p>两张图拼接时，正好对齐的两个半标记合算为一个完整标记。拼缝上未配对的半标记也各算一个完整标记。拼缝以外的半标记则每侧选一个来摆放地形。</p>
+                <h4>填充地形</h4>
+                <p>摆完标记点的地形后，再用小型散布地形、区域地形或障碍地形丰富战场主题。填充地形可放在战场任意位置，也可与较大的地形重叠。</p>
+              </div>
+            </div>
+            <form class="terrain-note" data-action="terrain" data-show="canEditTerrain">
+              <p>确认地形布置后，和对手一起商定本局的生命地形规则。</p>
+              <label>地形与生命地形规则备注 <textarea name="value" rows="2" data-model="terrain"></textarea></label>
+              <button type="submit">保存备注</button>
+            </form>
+          </section>
+
+          <section class="play-prep setup-step" data-show="wizardSidesOpen">
+            <h2>确定蓝色玩家</h2>
+            <p class="step-instruction">每位玩家各掷四颗黑色攻击骰；刷新页面后掷骰结果和次数会清零。</p>
+            <div class="dice-pools">
+              <template data-each="dicePools">
+                <article class="dice-pool" data-attr="data-player=player">
+                  <header><strong data-text="playerName"></strong><span>第 <b data-text="rollCount"></b> 次</span></header>
+                  <div class="dice-row">
+                    <template data-each="dice">
+                      <span class="black-die" data-attr="data-face=face aria-label=label" role="img">
+                        <b data-text="symbol"></b><small data-text="label"></small>
+                      </span>
+                    </template>
+                  </div>
+                  <p data-show="totals">暴击 <b data-text="totals.critical"></b> · 命中 <b data-text="totals.hit"></b> · 激增 <b data-text="totals.surge"></b></p>
+                  <button type="button" data-action="rollDice" data-args="player=player" data-enable="canRoll">掷四颗黑色攻击骰</button>
+                </article>
+              </template>
+            </div>
+            <p class="dice-rule">暴击结果最多的玩家是蓝色玩家。如果平局，则命中结果最多的玩家是蓝色玩家。如果仍然平局，则激增结果最多的玩家是蓝色玩家。如果此时仍然平局，则玩家重掷骰子并遵循上述规则，直至打破平局。</p>
+            <fieldset class="player-color-picker">
+              <legend>你是</legend>
+              <button type="button" data-action="choosePlayerColor" data-value="blue" data-enable="canChoosePlayerColor" data-attr="aria-pressed=selfHasBlue">
+                <span class="color-icon color-icon-blue" aria-hidden="true">◆</span>蓝色玩家
+              </button>
+              <button type="button" data-action="choosePlayerColor" data-value="red" data-enable="canChoosePlayerColor" data-attr="aria-pressed=selfHasRed">
+                <span class="color-icon color-icon-red" aria-hidden="true">◆</span>红色玩家
+              </button>
+            </fieldset>
+            <p class="confirmed-players" data-show="playerConfirmed">你是<span data-text="playerColorSelf"></span>方，对手是<span data-text="playerColorOpponent"></span>方。</p>
+          </section>
+
+          <section class="play-prep setup-step bp-setup-step" data-show="wizardBPOpen">
+            <h2>组建任务</h2>
+            <p class="player-gate" data-hide="playerConfirmed">先确认玩家</p>
+            <div data-show="playerConfirmed">
+              <button type="button" data-show="beginBPAvailable" data-action="beginMissionBuilding">开始组建任务</button>
+              <div data-show="bpBoardOpen">
+                <ol class="bp-stepbar" data-show="bpStarted" aria-label="六步任务组建">
+                  <template data-each="bpCurrentSteps">
+                    <li data-attr="data-current=active data-complete=complete data-color=color"><span data-text="value"></span><b data-text="color"></b></li>
+                  </template>
+                </ol>
+                <div class="bp-mission-grid">
+                  <section class="bp-card-slot" data-with="mission.primary">
+                    <template data-use="play-mission-card"></template>
+                  </section>
+                  <section class="bp-card-slot" data-with="mission.secondary">
+                    <template data-use="play-mission-card"></template>
+                  </section>
+                  <section class="bp-card-slot" data-with="mission.selfAdvantage" data-attr="data-color=playerColorSelfValue">
+                    <template data-use="play-mission-card"></template>
+                  </section>
+                  <section class="bp-card-slot" data-with="mission.opponentAdvantage" data-attr="data-color=playerColorOpponentValue">
+                    <template data-use="play-mission-card"></template>
+                  </section>
+                </div>
+                <div class="bp-controls" data-show="bpStarted">
+                  <section class="bp-player-card" data-attr="data-color=playerColorSelfValue">
+                    <b>你 · <span data-text="playerColorSelf"></span>方</b>
+                    <button type="button" data-action="openDeck" data-player="self">确认己方卡组</button>
+                  </section>
+                  <section class="bp-current-action">
+                    <p data-show="bpRevealOpen"><b>蓝色玩家选择</b></p>
+                    <div class="actions" data-show="bpRevealOpen">
+                      <button type="button" data-action="bpReveal" data-category="primary">揭露主要任务和优势卡</button>
+                      <button type="button" data-action="bpReveal" data-category="secondary">揭露次要任务和优势卡</button>
+                    </div>
+                    <p data-show="bpActionOpen"><b data-text="bpTurnColor"></b> · <span data-text="bpTurn"></span>选择调整</p>
+                    <div class="actions bp-move-list" data-show="bpActionOpen">
+                      <template data-each="bpMoves">
+                        <button type="button" data-action="modifyMission" data-args="value=id" data-text="name" data-enable="enabled"></button>
+                      </template>
+                    </div>
+                    <p class="bp-complete" data-show="bpComplete">任务组建完成</p>
+                  </section>
+                  <section class="bp-player-card" data-attr="data-color=playerColorOpponentValue">
+                    <b>对手 · <span data-text="playerColorOpponent"></span>方</b>
+                    <button type="button" data-action="confirmDeckOpen" data-player="opponent">确认对手卡组</button>
+                  </section>
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+          <footer class="wizard-footer" data-show="wizardFooterOpen">
+            <button type="button" data-action="wizardPrevious" data-enable="canGoPrevious">上一步</button>
+            <button type="button" class="wizard-next" data-action="wizardNext" data-enable="canGoNext">
+              <span data-hide="wizardBPOpen">下一个</span><span data-show="wizardBPOpen">进入计分页</span>
+            </button>
+          </footer>
+        </section>
+
+        <div data-show="scoreOpen">
+      <label class="rules-profile">规则版本 <select data-action="rulesProfile" data-model="rulesProfile">
+        <template data-each="rulesProfiles"><option data-text="name" data-attr="value=id"></option></template>
+      </select></label>
+      <nav class="actions play-tabs" aria-label="对局页面" data-show="showBoard">
+        <button data-action="tab" data-value="match" data-attr="aria-pressed=matchOpen">任务与计分</button>
+        <button data-action="tab" data-value="self" data-attr="aria-pressed=selfOpen">我方军表</button>
+        <button data-action="tab" data-value="opponent" data-attr="aria-pressed=opponentOpen">对方军表</button>
+      </nav>
+
+      <div data-show="matchOpen">
+        <div class="score-nav-row">
+          <button type="button" class="quiet-button" data-action="returnHome">‹ 对局选择</button>
+          <div class="actions">
+            <button type="button" data-action="saveMatch">存档</button>
+            <button type="button" data-action="endGame">结束游戏</button>
+          </div>
+        </div>
+
+        <section class="match-panel" aria-label="对局面板">
+          <div class="mission-row">
+            <div class="mission-slot" data-with="mission.primary"><template data-use="play-mission-card"></template></div>
+            <div class="mission-map" data-with="mission.primary.card">
+              <h3 class="panel-label">地图</h3>
+              <button type="button" class="battle-preview" data-show="map" data-action="detail" data-args="card=map" data-attr="aria-label=map.name">
+                <span class="map-crop" data-attr="data-card-id=map.id"><img data-src="map.image" alt=""></span>
+              </button>
+              <p class="empty-card" data-hide="map">暂无地图</p>
+            </div>
+            <div class="mission-slot mission-right" data-with="mission.secondary"><template data-use="play-mission-card"></template></div>
+          </div>
+
+          <div class="scoreboard">
+            <div class="player-score" data-with="bluePlayer"><template data-use="play-player-score"></template></div>
+            <div class="round-console">
+              <div class="round-heading">
+                <strong>第 <span data-text="round"></span> 回合</strong>
+                <span data-text="boardPhase"></span>
+              </div>
+              <div class="round-track" role="group" aria-label="回合轨">
+                <template data-each="rounds">
+                  <button type="button" class="round-cell" data-action="setRound" data-args="value=value" data-enable="enabled"
+                    data-attr="aria-label=label aria-pressed=current data-complete=complete data-focus-key=key" data-text="value"></button>
+                </template>
+              </div>
+              <div class="phase-actions" data-show="playing">
+                <button type="button" data-action="retreat" data-enable="canRetreat">上一阶段</button>
+                <button type="button" data-action="advance" data-text="advanceLabel"></button>
+              </div>
+            </div>
+            <div class="player-score player-score-red" data-with="redPlayer"><template data-use="play-player-score"></template></div>
+          </div>
+
+          <div class="victory-board">
+            <h3 class="panel-label" id="play-score-track-title">计分轨</h3>
+            <div class="score-track-scroll">
+              <ol class="score-track" aria-labelledby="play-score-track-title">
+                <template data-each="track">
+                  <li>
+                    <b data-text="score"></b>
+                    <span class="score-disc track-token" data-show="red" data-color="red" role="img" data-attr="aria-label=redLabel"><span data-text="score"></span></span>
+                    <span class="score-disc track-token" data-show="blue" data-color="blue" role="img" data-attr="aria-label=blueLabel"><span data-text="score"></span></span>
+                  </li>
+                </template>
+              </ol>
+            </div>
+          </div>
+
+          <div class="command-and-advantage">
+          <p class="priority-rule">点数低的一方选择先后手。</p>
+          <div class="advantage-row">
+            <div class="mission-slot" data-with="mission.blueAdvantage"><template data-use="play-mission-card"></template></div>
+            <div class="command-slot" data-with="blueCommand"><template data-use="play-command-slot"></template></div>
+            <div class="command-slot" data-with="redCommand"><template data-use="play-command-slot"></template></div>
+            <div class="mission-slot mission-right" data-with="mission.redAdvantage"><template data-use="play-mission-card"></template></div>
+          </div>
+          <div class="priority-control" data-show="commandPair">
+            <button type="button" data-action="rollPriority" data-enable="priorityReady" data-args="pair=commandPair">
+              <span data-priority-label data-text="priorityPrompt"></span>
+            </button>
+            <output data-show="priorityResult" data-text="priorityResult"></output>
+          </div>
+          </div>
+        </section>
+        <div class="command-tools">
+          <button type="button" data-action="discardList">查看弃置卡牌</button>
+          <section class="command-display" aria-label="揭露卡">
+            <div class="command-display-heading">
+              <h2>揭露卡</h2>
+              <div class="actions">
+                <template data-each="displaySides">
+                  <button type="button" data-action="commandPicker" data-purpose="display" data-args="player=player"
+                    data-text="label" data-enable="canDisplay" data-attr="data-color=color"></button>
+                </template>
+              </div>
+            </div>
+            <div class="command-card-grid" data-show="displayedCommands.length">
+              <template data-each="displayedCommands">
+                <article class="command-library-card">
+                  <small data-text="owner"></small>
+                  <button type="button" class="battle-preview" data-action="detail" data-args="card=card" data-with="card">
+                    <template data-use="play-command-face"></template>
+                  </button>
+                  <button type="button" class="command-remove" aria-label="移出揭露区" data-action="removeDisplay" data-args="player=player id=id">×</button>
+                </article>
+              </template>
+            </div>
+          </section>
+        </div>
+        <details data-show="bpHistory.length">
+          <summary>任务调整记录</summary>
+          <ol>
+            <template data-each="bpHistory"><li><span data-text="player"></span> <span data-text="action"></span> <span data-text="revealed"></span></li></template>
+          </ol>
+        </details>
+
+        <section data-show="showBoard">
+          <details data-show="playing">
+            <summary>本阶段流程</summary>
+            <ol><template data-each="phaseSteps"><li data-text="text"></li></template></ol>
+            <ul data-show="commandHints.length"><template data-each="commandHints"><li data-text="text"></li></template></ul>
+          </details>
+          <p data-show="finished" data-text="outcome"></p>
+          <form data-action="settleTie" data-show="canSettleTie">
+            <div class="actions">
+              <template data-each="casualtyScores">
+                <label><span data-text="name"></span>被击败单位总分
+                  <input type="number" min="0" inputmode="numeric" required data-attr="name=id" data-model="points">
+                </label>
+              </template>
+            </div>
+            <button type="submit">确认比较</button>
+          </form>
+          <details data-show="playing">
+            <summary>按剩余单位结算</summary>
+            <form data-action="confirmLastArmy">
+              <label>唯一还有未被击败单位的一方 <select name="player" required>
+                <option value="">请选择</option>
+                <template data-each="scorePlayers"><option data-text="name" data-attr="value=id"></option></template>
+              </select></label>
+              <button type="submit">确认结算</button>
+            </form>
+          </details>
+          <div class="actions" data-show="finished">
+            <button data-action="reopen">返回对局</button>
+            <button data-action="newMatch">用本局军表开始新对局</button>
+          </div>
+        </section>
+        <section data-show="showBoard">
+          <h2>得分记录</h2>
+          <form data-action="score" data-clear>
+            <label>玩家 <select name="player">
+              <optgroup label="本局玩家"><template data-each="scorePlayers"><option data-text="name" data-attr="value=id"></option></template></optgroup>
+            </select></label>
+            <label>得分项 <select name="category"><option value="primary">主目标</option><option value="secondary">次要目标</option><option value="other">其他</option></select></label>
+            <label>分数 <input type="number" name="value" required value="1" inputmode="numeric"></label>
+            <label>备注 <input name="note"></label>
+            <button type="submit">记录得分</button>
+          </form>
+          <details>
+            <summary>各回合得分</summary>
+            <table class="round-scores">
+              <thead><tr><th scope="col">回合</th><th scope="col">蓝方本轮</th><th scope="col">红方本轮</th><th scope="col">累计 蓝∶红</th></tr></thead>
+              <tbody>
+                <template data-each="roundScores">
+                  <tr><th scope="row" data-text="round"></th><td data-text="blue"></td><td data-text="red"></td><td><span data-text="cumulativeBlue"></span> ∶ <span data-text="cumulativeRed"></span></td></tr>
+                </template>
+              </tbody>
+            </table>
+          </details>
+          <label>筛选回合 <select data-action="setView" data-field="scoreRound" data-model="scoreRound">
+            <template data-each="roundFilterOptions"><option data-text="name" data-attr="value=id"></option></template>
+          </select></label>
+          <div data-show="editingScore" data-with="editingScore">
+            <h3>修改得分记录</h3>
+            <form data-action="amendScore" data-args="id=id">
+              <label>玩家 <select name="player" data-model="player">
+                <template data-each="playerOptions"><option data-text="name" data-attr="value=id"></option></template>
+              </select></label>
+              <label>得分项 <select name="category" data-model="category">
+                <template data-each="categoryOptions"><option data-text="name" data-attr="value=id"></option></template>
+              </select></label>
+              <label>分数 <input type="number" name="value" required inputmode="numeric" data-model="points"></label>
+              <label>回合 <select name="round" data-model="round">
+                <template data-each="roundOptions"><option data-text="name" data-attr="value=id"></option></template>
+              </select></label>
+              <label>阶段 <select name="phase" data-model="phase">
+                <template data-each="phaseOptions"><option data-text="name" data-attr="value=id"></option></template>
+              </select></label>
+              <label>备注 <input name="note" data-model="note"></label>
+              <button type="submit">保存修改</button>
+              <button type="button" data-action="setView" data-field="scoreEditId">取消修改</button>
+            </form>
+          </div>
+          <ul class="score-history">
+            <template data-each="scoreEvents" data-key="id">
+              <li data-attr="data-reversed=reversed">
+                <b data-text="playerLabel"></b> <strong data-text="signed"></strong>
+                <span data-text="categoryLabel"></span> <span data-text="source"></span> <span data-text="note"></span>
+                <small>第 <span data-text="round"></span> 回合 · <span data-text="phaseLabel"></span></small>
+                <button data-action="setView" data-field="scoreEditId" data-args="value=id" data-hide="reversed">修改</button>
+                <button data-action="undoScore" data-args="id=id" data-show="canUndo">撤销</button>
+                <span data-show="reversed">已撤销</span>
+                <details data-show="revisions.length">
+                  <summary>修改历史</summary>
+                  <ul>
+                    <template data-each="revisions">
+                      <li><span data-text="playerLabel"></span> <span data-text="signed"></span>
+                        <span data-text="categoryLabel"></span> <span data-text="source"></span> <span data-text="note"></span>
+                        <small>第 <span data-text="round"></span> 回合 · <span data-text="phaseLabel"></span></small>
+                      </li>
+                    </template>
+                  </ul>
+                </details>
+              </li>
+            </template>
+          </ul>
+        </section>
+      </div>
+
+      <section data-show="showTokens" class="token-panel">
+        <h2>场上标记</h2>
+        <form data-action="addToken" data-clear>
+          <label>名称 <input name="value" list="token-types" maxlength="40" required></label>
+          <button type="submit">添加标记</button>
+        </form>
+        <datalist id="token-types"><option value="赏金"><option value="物资"><option value="标记目标"><option value="优势"></datalist>
+        <div class="actions">
+          <template data-each="tokenSuggestions"><button data-action="addToken" data-args="value=label" data-text="button"></button></template>
+        </div>
+        <div class="actions">
+          <div class="actions token-tray" data-token-drop data-action="assignToken" aria-label="标记托盘">
+            <template data-each="freeTokens">
+              <span class="token">
+                <span class="token-grip" draggable="true" data-attr="data-drag-token=id" title="拖动标记" aria-hidden="true">⠿</span>
+                <button data-action="selectToken" data-args="id=id" data-attr="aria-pressed=selected">
+                  <span data-text="label"></span> <small data-text="quantityLabel"></small> <small data-text="ownerLabel"></small>
+                </button>
+                <button data-action="removeToken" data-args="id=id" aria-label="删除标记">×</button>
+              </span>
+            </template>
+          </div>
+        </div>
+        <div data-show="selectedToken" data-with="selectedToken">
+          <form data-action="editToken" data-args="id=id">
+            <label>标记类型／名称 <input name="label" data-model="label" maxlength="40" required></label>
+            <label>数量 <input type="number" name="quantity" data-model="quantity" min="1" required></label>
+            <label>归属 <select name="owner" data-model="owner">
+              <template data-each="ownerOptions"><option data-attr="value=id" data-text="name"></option></template>
+            </select></label>
+            <button type="submit">保存标记</button>
+            <button type="button" data-action="removeToken" data-args="id=id">删除所选标记</button>
+          </form>
+        </div>
+        <details data-show="tokenTargets.length">
+          <summary>分配到双方单位</summary>
+          <div>
+            <template data-each="tokenTargets">
+              <div>
+                <h3 data-text="name"></h3>
+                <div class="actions">
+                  <template data-each="units">
+                    <button data-token-drop data-action="assignToken" data-args="player=player value=id" data-text="name"></button>
+                  </template>
+                </div>
+              </div>
+            </template>
+          </div>
+        </details>
+      </section>
+
+      <section id="play-reminders" data-show="showReminders">
+        <details>
+          <summary>时机提醒（待处理 <span data-text="pendingReminderCount"></span>）</summary>
+          <form data-action="addReminder" data-clear>
+            <label>手动提醒 <input name="value" maxlength="200" required></label>
+            <button type="submit">添加提醒</button>
+          </form>
+          <ul class="timing-list" data-show="reminders.length">
+            <template data-each="reminders">
+              <li>
+                <small data-text="timing"></small> <small data-text="visitLabel" data-show="visitLabel"></small>
+                <b data-text="name"></b>
+                <div data-show="card"><span data-text="playerLabel"></span> · <button data-action="detail" data-args="card=card" data-text="source"></button></div>
+                <p class="rules" data-prose="summary" data-show="summary"></p>
+                <div class="actions">
+                  <button data-action="reminderState" data-args="id=id" data-value="handled" data-show="pending">标为已处理</button>
+                  <button data-action="reminderState" data-args="id=id" data-value="ignored" data-show="pending">暂时忽略</button>
+                  <span data-hide="pending" data-text="state"></span>
+                  <button data-action="reminderState" data-args="id=id" data-value="pending" data-hide="pending">恢复待处理</button>
+                </div>
+              </li>
+            </template>
+          </ul>
+        </details>
+      </section>
+
+      <section id="play-roster" data-show="rosterOpen" data-with="roster">
+        <header>
+          <h2><span data-text="sideName"></span>军表 <small data-text="colorName"></small></h2>
+          <p data-text="name"></p>
+        </header>
+          <div class="unit-grid">
+            <template data-each="units" data-key="key">
+              <article class="unit" data-attr="data-standalone=standalone data-unit-state=visualState" data-token-drop data-action="assignToken" data-args="player=player value=id">
+                <div class="unit-card-piece">
+                <button class="card-link roster-art" data-action="detail" data-args="card=card" data-attr="data-focus-key=id aria-label=name">
+                  <img data-src="image" data-show="image" alt="" loading="lazy">
+                  <b data-hide="image" data-text="name"></b>
+                </button>
+                <div class="card-state-tabs" aria-label="单位状态" role="group">
+                  <template data-each="stateOptions" data-key="value">
+                    <button data-action="unitStatus" data-args="player=player id=id value=value" data-text="label"
+                      data-attr="aria-pressed=active data-focus-key=focus"></button>
+                  </template>
+                </div>
+                <div class="actions">
+                  <button data-action="assignToken" data-args="player=player value=id" data-show="canAssign">分配标记</button>
+                  <button data-action="repeatActivation" data-args="player=player id=id" data-show="canRepeatActivation">记录额外激活</button>
+                </div>
+                <div class="actions">
+                  <template data-each="tokens">
+                    <span class="token">
+                      <span class="token-grip" draggable="true" data-attr="data-drag-token=id" title="拖动标记" aria-hidden="true">⠿</span>
+                      <button data-action="selectToken" data-args="id=id" data-attr="aria-pressed=selected">
+                        <span data-text="label"></span> <small data-text="quantityLabel"></small> <small data-text="ownerLabel"></small>
+                      </button>
+                      <button data-action="assignToken" data-args="id=id" aria-label="退回标记">↩</button></span>
+                  </template>
+                </div>
+                </div>
+                <div class="upgrade-list" data-show="upgrades.length">
+                  <template data-each="upgrades" data-key="focus">
+                    <div class="upgrade-piece" data-attr="data-state=visualState">
+                      <button class="card-link roster-art" data-action="detail" data-args="card=card" data-attr="data-focus-key=focus aria-label=name">
+                        <img data-src="image" data-show="image" alt="" loading="lazy"><b data-hide="image" data-text="name"></b>
+                      </button>
+                      <div class="card-state-tabs" aria-label="升级卡状态" role="group">
+                        <template data-each="stateOptions" data-key="value">
+                          <button data-action="upgradeStatus" data-args="player=player unit=unit id=id value=value correction=correction"
+                            data-text="label" data-attr="aria-pressed=active data-focus-key=focus"></button>
+                        </template>
+                      </div>
+                      <div class="actions" data-show="faceOptions.length" aria-label="双面卡朝向">
+                        <template data-each="faceOptions" data-key="value">
+                          <button data-action="upgradeFace" data-args="player=player unit=unit id=id value=value"
+                            data-text="label" data-attr="aria-pressed=active data-focus-key=focus"></button>
+                        </template>
+                      </div>
+                    </div>
+                  </template>
+                </div>
+              </article>
+            </template>
+          </div>
+      </section>
+      <section id="play-activity" data-show="activity.length">
+        <details>
+          <summary>操作记录</summary>
+          <ol class="activity-list">
+            <template data-each="activity">
+              <li><small>第 <span data-text="round"></span> 回合 · <span data-text="phase"></span></small>
+                <span data-text="playerLabel"></span> <b data-text="action"></b> <span data-text="detail"></span>
+              </li>
+            </template>
+          </ol>
+        </details>
+      </section>
+      </div>
+      </div>
+    </div>
+
+    <dialog class="deck-warning" data-deck-warning aria-labelledby="deck-warning-title">
+      <h2 id="deck-warning-title" data-text="deckWarningTitle"></h2>
+      <div class="actions">
+        <button type="button" data-action="manualMissions">跳过此步骤，直接设定任务</button>
+        <button type="button" data-action="supplementDeck" data-args="player=supplementPlayer" data-text="supplementButtonLabel"></button>
+        <button type="button" data-action="reimportOpponent">重新导入对手军表</button>
+      </div>
+      <form method="dialog"><button type="submit">关闭</button></form>
+    </dialog>
+
+    <dialog class="deck-confirm" data-confirm-deck aria-labelledby="deck-confirm-title">
+      <h2 id="deck-confirm-title">确认查看对手任务牌组</h2>
+      <p>打开后会显示对手牌组中的卡牌，以及已上场或弃置的状态。</p>
+      <div class="actions">
+        <button type="button" data-action="cancelDeckConfirm">返回</button>
+        <button type="button" class="wizard-next" data-action="openConfirmedDeck">确认</button>
+      </div>
+    </dialog>
+
+    <dialog class="deck-picker" data-deck-dialog aria-labelledby="deck-picker-title">
+      <div data-show="currentDeck" data-with="currentDeck">
+        <header class="deck-picker-header">
+          <h2 id="deck-picker-title"><span data-text="playerName"></span>任务牌组</h2>
+          <button type="button" data-action="closeDeck" aria-label="关闭">×</button>
+        </header>
+        <div class="deck-picker-rows">
+          <template data-each="rows">
+            <div class="task-deck-row">
+              <h3 data-text="name"></h3>
+              <div class="deck-card-grid">
+                <template data-each="cards">
+                  <div class="deck-choice" data-attr="data-card-id=id data-unavailable=unavailable">
+                    <button type="button" class="battle-preview" data-show="card" data-action="detail" data-args="card=card" data-attr="aria-label=card.detailLabel">
+                      <img data-src="card.image" data-show="card.image" alt="" loading="lazy">
+                      <strong data-text="card.name"></strong>
+                    </button>
+                    <div class="task-deck-empty" data-hide="card" aria-label="空卡位"></div>
+                    <small data-show="status" data-text="status"></small>
+                    <select data-hide="readOnly" data-action="setDeckSlot" data-args="category=category index=index" data-model="id"
+                      data-attr="aria-label=label data-focus-key=key">
+                      <template data-each="options"><option data-attr="value=id" data-text="name"></option></template>
+                    </select>
+                  </div>
+                </template>
+              </div>
+            </div>
+          </template>
+        </div>
+        <footer class="deck-picker-footer">
+          <button type="button" data-action="closeDeck" data-hide="readOnly">取消</button>
+          <button type="button" class="wizard-next" data-action="saveDeck" data-hide="readOnly" data-enable="complete">确认九张卡</button>
+          <button type="button" data-action="closeDeck" data-show="readOnly">完成查看</button>
+        </footer>
+      </div>
+    </dialog>
+
+    <template id="play-mission-card">
+      <h3 class="panel-label" data-text="name"></h3>
+      <button type="button" class="battle-preview" data-show="card" data-action="detail" data-args="card=card" data-attr="aria-label=card.detailLabel">
+        <span class="battle-face" data-attr="data-category=category data-card-id=card.id data-has-art=card.hasArt" data-with="card">
+          <span class="battle-template" data-show="image"><img data-src="image" alt=""></span>
+          <strong class="battle-title" data-show="showTitle" data-text="name"></strong>
+          <span class="battle-rules" data-show="paragraphs.length">
+            <template data-each="paragraphs">
+              <span class="battle-paragraph"><template data-each="parts"><span data-attr="data-emphasis=bold" data-prose="text"></span></template></span>
+            </template>
+          </span>
+          <span class="battle-footer" data-show="footerImage"><img data-src="footerImage" alt=""></span>
+          <small class="battle-missing" data-show="missing" data-text="missing"></small>
+        </span>
+      </button>
+      <p class="empty-card" data-hide="card">未选择</p>
+      <select class="mission-picker" data-show="manual" data-action="setMission" data-args="category=category player=player" data-model="selected" data-attr="aria-label=name data-focus-key=key">
+        <template data-each="options"><option data-attr="value=id" data-text="name"></option></template>
+      </select>
+    </template>
+
+    <template id="play-player-score">
+      <span class="score-disc player-disc" data-attr="data-color=color aria-label=scoreLabel" role="img"><span data-text="score"></span></span>
+      <div class="player-name"><span data-text="name"></span><strong data-text="faction" data-show="faction"></strong></div>
+      <div class="score-stepper" data-show="canScore">
+        <button type="button" data-action="score" data-category="other" data-value="-1" data-args="player=id" data-enable="canSubtract" data-attr="aria-label=subtractLabel">−</button>
+        <button type="button" data-action="score" data-category="other" data-value="1" data-args="player=id" data-attr="aria-label=addLabel">＋</button>
+      </div>
+    </template>
+
+    <template id="play-command-face">
+      <span class="command-face">
+        <img data-src="image" data-show="image" alt="" loading="lazy">
+        <span class="command-card-copy">
+          <strong><span data-text="name"></span><small data-text="pips" data-show="pips"></small></strong>
+          <span class="command-orders" data-show="orders">命令对象 <b data-prose="orders"></b></span>
+          <span class="rules" data-show="rules" data-prose="rules"></span>
+          <small data-show="missing" data-text="missing"></small>
+        </span>
+      </span>
+    </template>
+
+    <template id="play-command-slot">
+      <h3 class="panel-label" data-text="label"></h3>
+      <button type="button" class="command-empty" data-show="empty" data-action="commandPicker" data-purpose="play"
+        data-args="player=player" data-attr="aria-label=label">＋</button>
+      <div class="command-on-table" data-show="hasTable">
+        <button type="button" class="battle-preview command-back" data-show="hidden" aria-label="翻开暗置指挥卡"
+          data-action="flipCommand" data-args="player=player id=id">
+          <img data-src="back" alt="">
+        </button>
+        <button type="button" class="battle-preview command-turned" data-show="revealed" data-action="detail"
+          data-args="card=card" data-attr="aria-label=revealedLabel" data-with="card">
+          <template data-use="play-command-face"></template>
+        </button>
+        <button type="button" class="command-remove" aria-label="移出指挥卡槽"
+          data-action="removeCommand" data-args="player=player id=id">×</button>
+      </div>
+    </template>
+
+    <dialog class="command-dialog" data-command-picker aria-labelledby="command-picker-title">
+      <form method="dialog"><button type="submit">关闭</button></form>
+      <div data-with="commandPicker">
+        <h2 id="command-picker-title" data-text="title"></h2>
+        <p data-hide="cards.length">没有可选指挥卡。</p>
+        <div class="command-card-grid">
+          <template data-each="cards">
+            <button class="battle-preview" type="button" data-action="chooseCommand"
+              data-args="id=id player=player purpose=purpose" data-attr="aria-label=card.name" data-with="card">
+              <template data-use="play-command-face"></template>
+            </button>
+          </template>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog class="command-dialog" data-discard-dialog aria-labelledby="discard-title">
+      <form method="dialog"><button type="submit">关闭</button></form>
+      <h2 id="discard-title">弃置卡牌</h2>
+      <p data-hide="discardedCommands.length">弃牌堆为空。</p>
+      <div class="command-card-grid">
+        <template data-each="discardedCommands">
+          <article class="command-library-card">
+            <small data-text="owner"></small>
+            <button type="button" class="battle-preview" data-action="detail" data-args="card=card" data-with="card">
+              <template data-use="play-command-face"></template>
+            </button>
+            <button type="button" data-show="restorable" data-action="restoreCommand" data-args="id=id player=player">恢复到手牌</button>
+            <small data-hide="restorable">永久揭露</small>
+          </article>
+        </template>
+      </div>
+    </dialog>
+
+    <dialog data-display-confirm aria-labelledby="display-confirm-title">
+      <h2 id="display-confirm-title">是否是永久揭露效果？</h2>
+      <p>如果是永久揭露效果，则揭露后无法返回手牌。</p>
+      <form method="dialog">
+        <button type="submit">取消</button>
+        <button type="button" data-action="confirmDisplay" data-value="no">否</button>
+        <button type="button" data-action="confirmDisplay" data-value="yes">是</button>
+      </form>
+    </dialog>
+
+    <dialog class="play-card-detail" data-detail-dialog aria-labelledby="play-detail-title">
+      <form method="dialog"><button type="submit">关闭</button></form>
+      <h2 id="play-detail-title" class="detail-dialog-title" data-text="name"></h2>
+      <div class="card-detail-pages">
+        <template data-each="pages">
+          <div class="card-detail-page">
+            <h3 data-show="faceLabel"><span data-text="faceLabel"></span> · <span data-text="name"></span></h3>
+            <p data-show="missing" data-text="missing"></p>
+            <div data-hide="isCommand" data-attr="data-map=cropped data-card-id=id">
+              <span class="detail-image" data-show="image"><img data-src="image" data-attr="alt=name"></span>
+            </div>
+            <div class="command-detail-face" data-show="isCommand"><template data-use="play-command-face"></template></div>
+            <div class="unit-detail-content" data-unit-detail data-show="sharedDetail"></div>
+            <p class="rules" data-show="plainRules" data-prose="plainRules"></p>
+          </div>
+        </template>
+      </div>
+    </dialog>
+  </main>
+</body>
+</html>

@@ -21,6 +21,17 @@ window.BuilderOverlays = (() => {
       target.focus?.({ preventScroll: true });
   }
 
+  function preserveScroll(update, containers = []) {
+    const position = page ? null : {left: scrollX, top: scrollY, behavior: 'instant'};
+    const offsets = containers.map(node => ({node, left: node.scrollLeft, top: node.scrollTop}));
+    update();
+    for (const {node, left, top} of offsets) {
+      if (node.scrollLeft !== left || node.scrollTop !== top)
+        node.scrollTo({left, top, behavior: 'instant'});
+    }
+    if (position && !page && (scrollX !== position.left || scrollY !== position.top)) window.scrollTo(position);
+  }
+
   function parents() {
     return [...document.querySelectorAll('dialog[open], #card-grid, #card-browser')]
       .filter(n => n.getClientRects().length)
@@ -78,5 +89,8 @@ window.BuilderOverlays = (() => {
   }
   for (const event of ['pointerdown', 'touchstart', 'wheel', 'keydown'])
     document.addEventListener(event, () => revision++, {capture: true, passive: true});
-  return {open, close, reset, focus, rememberFocus};
+  function replaceRoute(previous) {
+    if (page?.route === previous) page.route = location.hash;
+  }
+  return {open, close, reset, focus, rememberFocus, replaceRoute, preserveScroll};
 })();

@@ -37,6 +37,27 @@ test("three independent battle-card categories support replacement and removal w
   assert.deepEqual(replacement.advantage, deck.advantage);
   assert.deepEqual(library.normalizeDeck(JSON.parse(JSON.stringify(replacement))), replacement);
 });
+test("faction advantages apply to their parent army and its battle forces", () => {
+  const cards = read("battle-deck.json").conditions;
+  const restrictions = [
+    { cards: ["condition-25", "condition-28"], armies: [1, 13, 18, 29] },
+    { cards: ["condition-22", "condition-29"], armies: [2, 7, 10, 17, 19, 27] },
+    { cards: ["condition-24", "condition-26"], armies: [4, 12, 16, 21, 28] },
+    { cards: ["condition-23", "condition-27"], armies: [5, 11, 15, 20] },
+  ];
+  for (const restriction of restrictions) {
+    for (const id of restriction.cards) {
+      const card = cards.find(card => card.id === id);
+      for (const { id: armyId } of data.defs.armies) {
+        assert.equal(library.deckCardAvailable(card, { armyId, mode: "standard" }, data),
+          restriction.armies.includes(armyId), id + " in army " + armyId);
+      }
+      assert.equal(library.deckCardAvailable(card, { armyId: restriction.armies[0], mode: "recon" }, data), false);
+    }
+  }
+  const universal = cards.find(card => card.id === "condition-13");
+  assert.equal(library.deckCardAvailable(universal, { armyId: 27, mode: "standard" }, data), true);
+});
 let sequence = 0;
 const uid = () => `saved-${++sequence}`,
   now = "2026-01-01T00:00:00.000Z";
@@ -201,7 +222,7 @@ test("saving one roster preserves all other saved records and options", () => {
   assert.equal(records.length, 2);
   assert.deepEqual(
     records.find((r) => r.id === b.id),
-    b,
+    {...b,status:"formal"},
   );
   assert.deepEqual(records.find((r) => r.id === a.id).army.options, a.army.options);
   assert.equal(records.find((r) => r.id === a.id).name, "重命名");
@@ -246,5 +267,36 @@ test("deletion can restore the exact saved roster", () => {
   library.removeRecord(store, record.id);
   assert.equal(library.read(store).records.length, 0);
   library.writeRecord(store, record);
-  assert.deepEqual(library.read(store).records, [record]);
+  assert.deepEqual(library.read(store).records, [{...record,status:"formal"}]);
+});
+
+test("draft autosave keeps only the five newest drafts and never trims formal rosters", () => {
+  const store = storage();
+  const formal = library.create(1,"Permanent",data,uid,"2026-01-01T00:00:00.000Z");
+  library.writeRecord(store,formal);
+  let drafts=[];
+  for(let i=0;i<7;i++){
+    const draft={...library.create(2,"Draft "+i,data,uid,new Date(Date.UTC(2026,0,i+1)).toISOString()),status:"draft"};
+    drafts.push(draft);
+    library.writeDraft(store,draft);
+  }
+  const saved=library.read(store).records;
+  assert.equal(saved.filter(r=>r.status==="formal").length,1);
+  assert.equal(saved.find(r=>r.id===formal.id).name,"Permanent");
+  assert.deepEqual(saved.filter(r=>r.status==="draft").map(r=>r.name).sort(),
+    ["Draft 2","Draft 3","Draft 4","Draft 5","Draft 6"]);
+});
+
+test("explicitly saving a draft promotes it and updates its source formal roster", () => {
+  const store=storage();
+  const source=library.create(4,"Source",data,uid,now);
+  library.writeRecord(store,source);
+  const draft={...source,id:uid(),sourceRecordId:source.id,status:"draft",name:"Edited",updatedAt:now};
+  library.writeDraft(store,draft);
+  const result=library.promoteDraft(store,draft,"2026-02-01T00:00:00.000Z");
+  assert.equal(result.record.id,source.id);
+  assert.equal(result.record.status,"formal");
+  assert.equal(result.record.name,"Edited");
+  assert.equal(result.record.createdAt,source.createdAt);
+  assert.equal(library.read(store).records.length,1);
 });

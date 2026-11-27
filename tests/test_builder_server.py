@@ -45,6 +45,7 @@ class BuilderServerTest(unittest.TestCase):
             parser = Dependencies()
             parser.feed(response.read().decode('utf8'))
         self.assertIn('builder-home.js', parser.paths)
+        self.assertIn('builder-settings.js', parser.paths)
         for path in parser.paths:
             with self.subTest(path=path), urlopen(self.base + path) as response:
                 self.assertEqual(response.status, 200)
@@ -71,6 +72,12 @@ class BuilderServerTest(unittest.TestCase):
                 self.assertIsInstance(json.loads(response.read()), dict)
         with urlopen(self.base + 'assets/legion-icons.ttf') as response:
             self.assertGreater(len(response.read()), 0)
+
+    def test_terrain_reference_is_served_as_a_pdf(self):
+        with urlopen(self.base + 'assets/references/terrain-layout-cards-doc62.pdf') as response:
+            self.assertEqual(response.status, 200)
+            self.assertEqual(response.headers['Content-Type'], 'application/pdf')
+            self.assertGreater(len(response.read()), 100_000)
 
     def test_unknown_script_remains_unavailable(self):
         with self.assertRaises(HTTPError) as error:

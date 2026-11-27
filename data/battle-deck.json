@@ -610,9 +610,7 @@
         "standard"
       ],
       "armyIds": [
-        1,
-        13,
-        18
+        1
       ],
       "rules": {
         "en": "Enemy units within € of 1 or more Comms\nScramblers cannot be issued Orders. Go\nEnemy units gain 4 DESTROY COMMS\nSCRAMBLER (Remove an enemy Comms\nScrambler within @ from the battlefield).",
@@ -632,11 +630,7 @@
         "standard"
       ],
       "armyIds": [
-        2,
-        10,
-        19,
-        17,
-        7
+        2
       ],
       "rules": {
         "en": "When an allied unt gains 1 or more suppression\ntokens, after the effect is resolved. vou may\nremove | Advantage token on this card. If you\ndo, the allied unit removes all of its Suppression\ntokens, then suffers | Wound.",
@@ -656,10 +650,7 @@
         "standard"
       ],
       "armyIds": [
-        4,
-        21,
-        12,
-        16
+        4
       ],
       "rules": {
         "en": "Special Rules: &) Only.\nAt the start of the first Activation Phase, choose\nup to 2 allied A Clone Trooper units. The\nchosen units gain REINFORCEMENTS.",
@@ -679,11 +670,7 @@
         "standard"
       ],
       "armyIds": [
-        2,
-        10,
-        19,
-        17,
-        7
+        2
       ],
       "rules": {
         "en": "CI1005€ all allied a Or \"A™ 1I00pCT UniL\nwith 6 or fewer miniatures. If the chosen unit\nhas INFILTRATE, it gains 1 Aim token and 1\nDodge token. If the chosen unit does not have\nINFILTRATE, it gains INFILTRATE.",
@@ -703,10 +690,7 @@
         "standard"
       ],
       "armyIds": [
-        5,
-        11,
-        15,
-        20
+        5
       ],
       "rules": {
         "en": "LUTE tC ISSUE UTACTS SCP O01 UC Lolninana\nPhase, you may remove 1 of the Advantage\ntokens on this card. If you do, choose an allied\nunit with the Af keyword. The chosen unit issues\nan Order to itself.",
@@ -726,10 +710,7 @@
         "standard"
       ],
       "armyIds": [
-        4,
-        21,
-        12,
-        16
+        4
       ],
       "rules": {
         "en": "LULIng tic IS5UcC UIdActs S5L1ep 01 Ul Lominand\nPhase, you may remove 1 Advantage token on\nthis card. If you do, choose up to 2 allied 38\nunits. Each unit gains COORDINATE: CLONE\nTROOPER or COORDINATE: ‘¥) VEHICLE.",
@@ -749,9 +730,7 @@
         "standard"
       ],
       "armyIds": [
-        1,
-        13,
-        18
+        1
       ],
       "rules": {
         "en": "Have 1 OI INOIC AAVAIIAEC LORCIIS Hl OUI \"ads\nPool, you may spend 1 of those Advantage\ntokens. If you do, the activating unit gains 1\nAim token and 1 Dodge token, or makes a free\nRecover action.",
@@ -771,10 +750,7 @@
         "standard"
       ],
       "armyIds": [
-        5,
-        11,
-        15,
-        20
+        5
       ],
       "rules": {
         "en": "Special Rules: ¥ Only.\n\nAt the start of the first Activation Phase, choose\nup to 3 allied Vehicle units. Each chosen Vehicle\nunit gains 1 Aim token.",

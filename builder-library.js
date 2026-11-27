@@ -2,6 +2,7 @@
 window.BuilderLibrary = (() => {
   const KEY = "swl-army-library";
   const LEGACY_KEY = "swl-army-draft";
+  const MAX_DRAFTS = 5;
   const FACTIONS = [
     { id: 1, name: "义军", en: "Rebel Alliance", color: "#9c493f" },
     { id: 2, name: "银河帝国", en: "Galactic Empire", color: "#72577e" },
@@ -121,6 +122,13 @@ window.BuilderLibrary = (() => {
   }
   const DECK_KINDS = ["primary", "secondary", "advantage"];
   const DECK_LIMIT = 3;
+  function deckCardAvailable(card, army, data) {
+    if (card.modes?.length && !card.modes.includes(army.mode)) return false;
+    if (!card.armyIds?.length) return true;
+    const armyId = Number(army.armyId);
+    const factionId = factionOf(armyId, data);
+    return card.armyIds.some(id => Number(id) === armyId || Number(id) === factionId);
+  }
   function normalizeDeck(deck = {}) {
     const result = { ...(deck || {}) };
     for (const kind of DECK_KINDS) {
@@ -167,6 +175,7 @@ window.BuilderLibrary = (() => {
       factionId: Number(factionId),
       createdAt: now,
       updatedAt: now,
+      status: "draft",
       army,
     };
   }
@@ -178,17 +187,50 @@ window.BuilderLibrary = (() => {
       throw Error("已保存军表的格式无法读取。");
     for (const r of collection.records) {
       if (!r.id || typeof r.name !== "string") throw Error("已保存军表的记录不完整。");
+      if (r.status !== "draft") r.status = "formal";
       normalize(r.army);
     }
     return collection;
   }
+  function trimDrafts(collection) {
+    const drafts = collection.records.filter(r => r.status === "draft").reverse()
+      .sort((a, b) => String(b.updatedAt).localeCompare(String(a.updatedAt)));
+    const expired = new Set(drafts.slice(MAX_DRAFTS));
+    collection.records = collection.records.filter(r => !expired.has(r));
+  }
   function writeRecord(storage, record) {
     const collection = read(storage);
+    record = {...structuredClone(record), status:"formal"};
     const index = collection.records.findIndex((r) => r.id === record.id);
-    if (index >= 0) collection.records[index] = structuredClone(record);
-    else collection.records.push(structuredClone(record));
+    if (index >= 0) collection.records[index] = record;
+    else collection.records.push(record);
     storage.setItem(KEY, JSON.stringify(collection));
     return collection;
+  }
+  function writeDraft(storage, record) {
+    const collection = read(storage);
+    const draft = {...structuredClone(record), status:"draft"};
+    const index = collection.records.findIndex(r => r.id === draft.id);
+    if (index >= 0) collection.records.splice(index,1);
+    collection.records.push(draft);
+    trimDrafts(collection);
+    storage.setItem(KEY, JSON.stringify(collection));
+    return collection;
+  }
+  function promoteDraft(storage, record, now) {
+    const collection = read(storage);
+    const sourceId = record.sourceRecordId || record.id;
+    const source = collection.records.find(r => r.id === sourceId && r.status !== "draft");
+    const promoted = {...structuredClone(record), id:source?.id || record.id, status:"formal", updatedAt:now};
+    delete promoted.sourceRecordId;
+    if (source) promoted.createdAt = source.createdAt;
+    const index = collection.records.findIndex(r => r.id === promoted.id);
+    if (index >= 0) collection.records[index] = promoted;
+    else collection.records.push(promoted);
+    if (record.id !== promoted.id)
+      collection.records = collection.records.filter(r => r.id !== record.id);
+    storage.setItem(KEY, JSON.stringify(collection));
+    return {collection, record:promoted};
   }
   function removeRecord(storage, id) {
     const collection = read(storage);
@@ -209,16 +251,20 @@ window.BuilderLibrary = (() => {
         factionId,
         createdAt: now,
         updatedAt: now,
+        status: "draft",
         army,
       });
     }
     collection.migratedLegacy = true;
+    trimDrafts(collection);
     storage.setItem(KEY, JSON.stringify(collection));
     return collection;
   }
   function copy(record, makeId, now) {
     const duplicate = structuredClone(record);
     duplicate.id = makeId();
+    duplicate.status = "draft";
+    delete duplicate.sourceRecordId;
     duplicate.name += " · 副本";
     duplicate.createdAt = duplicate.updatedAt = now;
     for (const unit of duplicate.army.units) {
@@ -230,6 +276,7 @@ window.BuilderLibrary = (() => {
   return {
     KEY,
     LEGACY_KEY,
+    MAX_DRAFTS,
     FACTIONS,
     factionOf,
     faction,
@@ -242,10 +289,13 @@ window.BuilderLibrary = (() => {
     switchBattleForce,
     normalizeDeck,
     DECK_LIMIT,
+    deckCardAvailable,
     setDeckCard,
     create,
     read,
     writeRecord,
+    writeDraft,
+    promoteDraft,
     removeRecord,
     migrate,
     copy,
