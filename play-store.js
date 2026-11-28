@@ -168,7 +168,7 @@
     try { backup = JSON.parse(text); }
     catch { throw new Error("无法读取对局 JSON。"); }
     if (backup?.schema !== "swl.play.backup" || backup.schemaVersion !== schemaVersion) {
-      throw new Error("请选择兼容的游玩对局备份。");
+      throw new Error("请选择兼容的对局助手备份。");
     }
     const match = restoreBPProgress(validateMatch(backup.match));
     const createdAt = Number.isFinite(Date.parse(backup.createdAt)) ? backup.createdAt : null;

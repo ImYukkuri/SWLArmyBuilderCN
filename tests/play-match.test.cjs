@@ -2,6 +2,7 @@ const assert = require("node:assert/strict");
 const test = require("node:test");
 const PlayMatch = require("../play-match.js");
 const PlayStore = require("../play-store.js");
+const { commands } = require("../data/catalog-definitions.json");
 
 const catalog = { hasBattleCard: () => true };
 
@@ -384,11 +385,13 @@ test("commands can be withdrawn or replaced while hidden and reveal independentl
 
 test("the score panel keeps matching command cards, discards and display effects separate by player", () => {
   const { record } = archiveFixture();
-  record.army.commandIds = ["8", "35"];
+  record.army.commandIds = ["35", "18309", "55", "18310", "18902", "78", "5182", "18220", "3083"];
   let match = apply(PlayMatch.create(record), "skipSetup");
   match = apply(match, "opponent", { record });
-  const command = (type, player, id = 0, fields = {}) => {
-    match = apply(match, type, { player, id, ...fields });
+  const commandCatalog = { ...catalog, commandCard: (match, player, slot) =>
+    commands.find(card => card.id === match.armies[player].army.commandIds[slot]) };
+  const command = (type, player, id = 0) => {
+    match = PlayMatch.update(match, { type, player, id }, commandCatalog);
   };
   const state = (player, id = 0) => match.commands[PlayMatch.cardKey(player, id)];
 
@@ -416,19 +419,26 @@ test("the score panel keeps matching command cards, discards and display effects
   command("restoreCommand", "self");
   assert.equal(state("self").used, false);
 
-  command("displayCommand", "self", 0, { permanent: false });
+  command("displayCommand", "self");
   assert.equal(state("self").displayed, true);
+  for (const slot of [7, 8]) {
+    command("displayCommand", "self", slot);
+    assert.equal(state("self", slot).displayed, true);
+    assert.ok(!state("self", slot).used);
+  }
   command("placeCommand", "self");
   command("removeCommand", "self");
   command("removeDisplay", "self");
-  command("displayCommand", "self", 0, { permanent: true });
-  assert.equal(state("self").displayed, true);
-  assert.equal(state("self").used, true);
-  command("removeDisplay", "self");
-  assert.equal(state("self").displayed, false);
-  assert.equal(state("self").used, true);
-  assert.throws(() => command("restoreCommand", "self"), /无法返回手牌/);
-  assert.throws(() => command("placeCommand", "self"), /已弃置/);
+  for (const slot of [1, 2, 3, 4, 5, 6]) {
+    command("displayCommand", "self", slot);
+    assert.equal(state("self", slot).displayed, true);
+    assert.equal(state("self", slot).used, true);
+    command("removeDisplay", "self", slot);
+    assert.equal(state("self", slot).displayed, false);
+    assert.equal(state("self", slot).used, true);
+    assert.throws(() => command("restoreCommand", "self", slot), /无法返回手牌/);
+    assert.throws(() => command("placeCommand", "self", slot), /已弃置/);
+  }
   assert.equal(PlayMatch.commandSlot(match, "opponent"), 0);
 });
 

@@ -283,13 +283,15 @@
     return JSON.stringify([match.round, ...slots]);
   }
 
-  function updateCommandTable(match, { type, player, id, permanent }, catalog) {
+  function updateCommandTable(match, { type, player, id }, catalog) {
     requireCondition(players.includes(player) && /^\d+$/.test(String(id)) &&
       match.armies[player]?.army.commandIds[id] != null, "找不到这张指挥卡。");
     const key = cardKey(player, id);
     const card = match.commands[key] ||= {};
     const onTable = commandSlot(match, player) === Number(id);
     const concealed = type === "placeCommand" || (type === "removeCommand" && card.hidden);
+    const keywords = type === "displayCommand" ? catalog.commandCard?.(match, player, id)?.keywords || [] : [];
+    const permanent = ["divulge", "permanent"].every(keyword => keywords.some(entry => (entry.id || entry) === keyword));
     switch (type) {
       case "placeCommand":
         requireCondition(!card.used && commandSlot(match, player) < 0, "这个卡槽已有指挥卡，或此卡已弃置。");
@@ -326,7 +328,7 @@
     }
     log(match, type, { player,
       card: concealed ? "" : catalog.commandName?.(match, player, id) || String(id),
-      discarded: !!card.used, permanent: type === "displayCommand" && permanent === true });
+      discarded: !!card.used, permanent });
   }
 
   function missionResults(match, category, cardId, itemId) {

@@ -74,6 +74,8 @@ window.PlayData = (() => {
     }
     const asset = path => path ? new URL(path, base).href : "";
     const findBattleCard = (category, id) => pools[category]?.find(card => String(card.id) === String(id));
+    const commandsById = new Map(data.defs.commands.map(card => [String(card.id), card]));
+    const commandCard = (match, player, slot) => commandsById.get(String(match.armies[player]?.army.commandIds[slot]));
     function resolveUnit(instance, army, resolved) {
       const unit = RulesCore.unitFor(instance, army, resolved);
       if (unit?.id) return unit;
@@ -320,7 +322,7 @@ window.PlayData = (() => {
         if (commandId == null) return;
         const state = match.commands[PlayMatch.cardKey(player, slot)] || {};
         if (state.hidden || (state.revealedRound !== match.round && !state.displayed)) return;
-        const card = resolved.defs.commands.find(card => String(card.id) === String(commandId));
+        const card = commandCard(match, player, slot);
         const presentation = cardView(card, String(commandId));
         reminders.push(...cardReminders(match, player, { key: "command-" + slot, name: presentation.name }, presentation, card));
       });
@@ -336,7 +338,7 @@ window.PlayData = (() => {
         const slot = PlayMatch.commandSlot(match, player);
         const commands = record?.army.commandIds.flatMap((id, index) => {
           if (id == null) return [];
-          const source = data.defs.commands.find(command => String(command.id) === String(id));
+          const source = commandCard(match, player, index);
           const state = match.commands[PlayMatch.cardKey(player, index)] || {};
           const card = cardView(source, String(id), {
             isCommand: true, pips: source?.pips, orders: nameOf(source?.orders)
@@ -375,13 +377,7 @@ window.PlayData = (() => {
     function missionScoringView(match, boardPlayers) {
       const categories = ["primary", "secondary"];
       const events = match.scoreEvents.filter(entry => entry.round === match.round && !entry.reversed);
-      const summaries = boardPlayers.map(player => ({
-        ...player, categories: categories.map(category => ({
-          name: labels[category], points: events.filter(entry => entry.player === player.id && entry.category === category)
-            .reduce((sum, entry) => sum + entry.points, 0)
-        }))
-      }));
-      const groups = categories.flatMap(category => {
+      return categories.flatMap(category => {
         const cardId = match.mission[category]?.id;
         const card = findBattleCard(category, cardId);
         if (!card) return [];
@@ -404,11 +400,15 @@ window.PlayData = (() => {
             {id: item.id, category, value: "tie", label: "打平", enabled: true, selected: current?.control === "tie"},
             {id: item.id, category, value: "", label: "清除", enabled: !!current}
           ];
-          return {...item, category, sides, options};
+          return {...item, category, left: sides[0], right: sides[1], options};
         });
-        return [{category, title: labels[category] + " · " + nameOf(card.name), items}];
+        const totals = boardPlayers.map(({id, name, color}) => {
+          const points = events.filter(entry => entry.player === id && entry.category === category)
+            .reduce((sum, entry) => sum + entry.points, 0);
+          return {color, points, label: name + "本回合" + labels[category] + " " + points + " 分"};
+        });
+        return [{category, title: labels[category] + " · " + nameOf(card.name), left: totals[0], right: totals[1], items}];
       });
-      return {summaries, groups};
     }
 
     function missionFields(match, manual) {
@@ -583,10 +583,7 @@ window.PlayData = (() => {
       const boardPlayers = match.mirrored ? [...scorePlayers].reverse() : scorePlayers;
       const primary = missionByCategory["primary:"];
       const secondary = missionByCategory["secondary:"];
-      const onBoard = field => ({...field, openScoring: true,
-        canViewCard: !!field.card, previewLabel: field.card && "查看本回合任务计分 · " + field.card.name});
       return {
-        rosterName: match.armies.self.name,
         stage, round, phase: phases[phase], playing, finished, rosterOpen,
         homeOpen, setupOpen, scoreOpen, wizardStep,
         wizardImportOpen: wizardStep === 1, wizardSidesOpen: wizardStep === 2, wizardBPOpen: wizardStep === 3,
@@ -640,10 +637,9 @@ window.PlayData = (() => {
           rightAdvantage: missionByCategory["advantage:" + boardPlayers[1].id]
         },
         mirrored: !!match.mirrored,
-        leftMission: onBoard(match.mirrored ? secondary : primary),
-        rightMission: onBoard(match.mirrored ? primary : secondary),
-        missionScoreOpen: ui.missionScoreOpen,
-        ...(ui.missionScoreOpen ? missionScoringView(match, boardPlayers) : {}),
+        leftMission: match.mirrored ? secondary : primary,
+        rightMission: match.mirrored ? primary : secondary,
+        missionScoreGroups: scoreOpen ? missionScoringView(match, boardPlayers) : [],
         showBoard: playing || finished,
         boardPhase: playing || finished ? phases[phase] : "赛前准备",
         canRetreat: playing && (round > 1 || phase !== "command"),
@@ -707,8 +703,9 @@ window.PlayData = (() => {
       },
       commandName(match, player, slot) {
         const id = String(match.armies[player]?.army.commandIds[slot]);
-        return nameOf(data.defs.commands.find(command => String(command.id) === id)?.name, id);
+        return nameOf(commandCard(match, player, slot)?.name, id);
       },
+      commandCard,
       prose: text => RuleIcons.prose(text, data.defs),
       isDualUpgrade: (army, id) => UpgradeFaces.isDual(RulesCore.resolveArmyData(army, data).upgrades[id]),
       hasBattleCard: (category, id) => !!findBattleCard(category, id),

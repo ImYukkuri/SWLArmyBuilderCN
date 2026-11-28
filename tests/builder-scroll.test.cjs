@@ -187,6 +187,10 @@ for (const mobile of [true, false]) test(`${mobile ? 'mobile' : 'desktop'} play 
   ]);
   assert.equal(art.y, keyword.y);
   assert(keyword.x > art.x && upgrade.y > art.y && upgrade.x === art.x);
+  const upgradedRows = await row.locator('.upgrade-piece .roster-art').evaluateAll(cards =>
+    cards.map(card => card.getBoundingClientRect().toJSON()));
+  assert(upgradedRows.some(card => card.y >= keyword.y + keyword.height && card.x >= keyword.x));
+  assert(upgradedRows.every(card => card.y >= keyword.y + keyword.height || card.right <= keyword.x + 1));
   const impact = rules.getByRole('button', {name: /冲击.*来自/}).first();
   assert.match(await impact.innerText(), /来自 冲击手雷/);
   await press(impact);
@@ -194,6 +198,52 @@ for (const mobile of [true, false]) test(`${mobile ? 'mobile' : 'desktop'} play 
   await rule.getByRole('tab', {name: '完整规则'}).click();
   await rule.getByRole('button', {name: '关闭词条'}).click();
   await rule.waitFor({state: 'detached'});
+});
+
+test('narrow play panel keeps mission scoring, card details and restart accessible', async t => {
+  const page = await setup(t);
+  await page.setViewportSize({width:320, height:740});
+  await page.getByRole('button', {name: '对局助手', exact: true}).tap();
+  await page.getByRole('button', {name: '跳过设置'}).tap();
+  const panel = page.locator('.match-panel');
+  await panel.locator('.mission-left select').selectOption('deployment-14');
+  await panel.locator('.mission-right select').selectOption('objective-15');
+  await panel.locator('.advantage-left select').selectOption('condition-29');
+  const sections = await panel.locator('.mission-row, .mission-scoring, .map-and-commands, .advantage-row').evaluateAll(nodes =>
+    nodes.map(node => node.getBoundingClientRect().y));
+  assert(sections.every((y, index) => !index || y > sections[index - 1]));
+  const [commands, map] = await Promise.all([
+    panel.locator('.command-slot').evaluateAll(nodes => nodes.map(node => node.getBoundingClientRect().toJSON())),
+    panel.locator('.mission-map').boundingBox()
+  ]);
+  assert(commands[0].right < map.x && map.x + map.width < commands[1].left);
+  assert.equal(await page.evaluate(() => document.documentElement.scrollWidth), 320);
+
+  const add = panel.getByRole('button', {name: '蓝方增加碉堡控制分', exact: true});
+  assert((await add.boundingBox()).width >= 32);
+  await add.tap();
+  const totals = panel.locator('.mission-group-heading').first().locator('b');
+  assert.equal(await totals.first().innerText(), '1');
+  await page.getByRole('button', {name: '镜像'}).tap();
+  assert.equal(await totals.last().getAttribute('data-color'), 'blue');
+  assert.equal(await totals.last().innerText(), '1');
+  await panel.locator('.mission-left .battle-preview').tap();
+  const detail = page.locator('[data-detail-dialog]');
+  assert.equal(await detail.locator('h2').innerText(), '迫使其就范');
+  await detail.getByRole('button', {name: '关闭', exact: true}).tap();
+
+  const records = page.locator('.match-records');
+  const phase = records.getByText('本阶段流程', {exact: true});
+  assert.equal(await phase.isVisible(), false);
+  await records.locator('summary').first().tap();
+  assert.equal(await phase.isVisible(), true);
+  const reset = page.getByRole('button', {name: '重新设置', exact: true});
+  page.once('dialog', dialog => dialog.dismiss());
+  await reset.tap();
+  assert.equal(await panel.isVisible(), true);
+  page.once('dialog', dialog => dialog.accept());
+  await reset.tap();
+  assert.equal(await page.getByRole('button', {name: '开始设置流程'}).isVisible(), true);
 });
 
 for (const mobile of [true, false]) test(`${mobile ? 'touch' : 'mouse'} moves play tokens above unit cards and back to the tray`, async t => {

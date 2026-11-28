@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>游玩系统 · SWL Army Builder CN</title>
+  <title>对局助手 · SWL Army Builder CN</title>
   <link rel="stylesheet" href="rule-icons.css">
   <link rel="stylesheet" href="play.css">
   <link rel="stylesheet" href="unit-card.css">
@@ -28,7 +28,7 @@
   <main data-play>
     <header class="play-header">
       <a href="index.html" data-back>‹ 写表器</a>
-      <h1 data-text="rosterName">游玩系统</h1>
+      <h1 data-text="heading">对局助手</h1>
       <p role="status" aria-live="polite">正在载入对局</p>
     </header>
     <div data-loaded hidden>
@@ -275,7 +275,7 @@
 
       <div data-show="matchOpen">
         <div class="score-nav-row">
-          <button type="button" class="quiet-button" data-action="returnHome">‹ 对局选择</button>
+          <button type="button" class="quiet-button" data-action="resetSetup">重新设置</button>
           <div class="actions">
             <button type="button" data-action="mirrorBoard" data-attr="aria-pressed=mirrored">镜像</button>
             <button type="button" data-action="saveMatch">存档</button>
@@ -285,60 +285,65 @@
 
         <section class="match-panel" aria-label="对局面板" data-attr="data-mirrored=mirrored">
           <div class="mission-row">
-            <div class="mission-slot" data-with="leftMission"><template data-use="play-mission-card"></template></div>
-            <div class="mission-center">
-              <div class="mission-map" data-with="mission.primary.card">
-                <h3 class="panel-label">地图</h3>
-                <button type="button" class="battle-preview" data-show="map" data-action="detail" data-args="card=map" data-attr="aria-label=map.name">
-                  <span class="map-crop" data-attr="data-card-id=map.id"><img data-src="map.image" alt=""></span>
-                </button>
-                <p class="empty-card" data-hide="map">暂无地图</p>
-              </div>
-              <div class="mission-scoring" data-show="missionScoreOpen">
-                <header class="mission-score-heading">
-                  <template data-each="summaries" data-key="id">
-                    <div class="mission-round-total" data-attr="data-color=color">
-                      <strong data-text="name"></strong>
-                      <template data-each="categories"><span><span data-text="name"></span> <b data-text="points"></b></span></template>
+            <div class="mission-slot mission-left" data-with="leftMission"><template data-use="play-mission-card"></template></div>
+            <div class="mission-slot mission-right" data-with="rightMission"><template data-use="play-mission-card"></template></div>
+          </div>
+          <div class="mission-scoring" data-show="missionScoreGroups.length">
+            <h3>第 <span data-text="round"></span> 回合计分</h3>
+            <template data-each="missionScoreGroups" data-key="category">
+              <div class="mission-score-group">
+                <div class="mission-group-heading">
+                  <b data-text="left.points" data-attr="data-color=left.color aria-label=left.label"></b>
+                  <h4 data-text="title"></h4>
+                  <b data-text="right.points" data-attr="data-color=right.color aria-label=right.label"></b>
+                </div>
+                <p data-hide="items.length">暂无计分项</p>
+                <template data-each="items" data-key="id">
+                  <div class="mission-score-item">
+                    <div class="mission-item-label"><strong data-text="name"></strong><small><span data-text="points"></span> 分</small></div>
+                    <div class="mission-item-side mission-item-left" data-hide="poi" data-with="left">
+                      <template data-use="play-mission-stepper"></template>
                     </div>
-                  </template>
-                  <h3>第 <span data-text="round"></span> 回合计分</h3>
-                </header>
-                <template data-each="groups" data-key="category">
-                  <div class="mission-score-group">
-                    <h4 data-text="title"></h4>
-                    <p data-hide="items.length">暂无计分项</p>
-                    <template data-each="items" data-key="id">
-                      <div class="mission-score-item">
-                        <div class="mission-item-label"><strong data-text="name"></strong><small><span data-text="points"></span> 分</small></div>
-                        <div class="mission-item-sides" data-hide="poi">
-                          <template data-each="sides" data-key="player">
-                            <div data-attr="data-color=color">
-                              <div class="mission-stepper" data-hide="locked">
-                                <button type="button" data-action="missionScore" data-value="-1" data-args="category=category id=id player=player" data-enable="canSubtract" data-attr="aria-label=subtractLabel">−</button>
-                                <output data-text="points"></output>
-                                <button type="button" data-action="missionScore" data-value="1" data-args="category=category id=id player=player" data-enable="canAdd" data-attr="aria-label=addLabel">＋</button>
-                              </div>
-                              <small data-show="label" data-text="label"></small>
-                            </div>
-                          </template>
+                    <div class="mission-item-side mission-item-right" data-hide="poi" data-with="right">
+                      <template data-use="play-mission-stepper"></template>
+                    </div>
+                    <div class="mission-poi" data-show="poi">
+                      <template data-each="options" data-key="value">
+                        <div>
+                          <button type="button" data-action="controlPOI" data-args="category=category id=id value=value" data-text="label"
+                            data-enable="enabled" data-attr="aria-pressed=selected data-color=color"></button>
+                          <small data-show="completion" data-text="completion"></small>
                         </div>
-                        <div class="mission-poi" data-show="poi">
-                          <template data-each="options" data-key="value">
-                            <div>
-                              <button type="button" data-action="controlPOI" data-args="category=category id=id value=value" data-text="label"
-                                data-enable="enabled" data-attr="aria-pressed=selected data-color=color"></button>
-                              <small data-show="completion" data-text="completion"></small>
-                            </div>
-                          </template>
-                        </div>
-                      </div>
-                    </template>
+                      </template>
+                    </div>
                   </div>
                 </template>
               </div>
+            </template>
+          </div>
+
+          <div class="map-and-commands">
+            <div class="command-slot command-left" data-with="leftCommand"><template data-use="play-command-slot"></template></div>
+            <div class="mission-map" data-with="mission.primary.card">
+              <h3 class="panel-label">地图</h3>
+              <button type="button" class="battle-preview" data-show="map" data-action="detail" data-args="card=map" data-attr="aria-label=map.name">
+                <span class="map-crop" data-attr="data-card-id=map.id"><img data-src="map.image" alt=""></span>
+              </button>
+              <p class="empty-card" data-hide="map">暂无地图</p>
             </div>
-            <div class="mission-slot mission-right" data-with="rightMission"><template data-use="play-mission-card"></template></div>
+            <div class="command-slot command-right" data-with="rightCommand"><template data-use="play-command-slot"></template></div>
+            <p class="priority-rule">点数低的一方选择先后手。</p>
+            <div class="priority-control" data-show="commandPair">
+              <button type="button" data-action="rollPriority" data-enable="priorityReady" data-args="pair=commandPair">
+                <span data-priority-label data-text="priorityPrompt"></span>
+              </button>
+              <output data-show="priorityResult" data-text="priorityResult"></output>
+            </div>
+          </div>
+
+          <div class="advantage-row">
+            <div class="mission-slot advantage-left" data-with="mission.leftAdvantage"><template data-use="play-mission-card"></template></div>
+            <div class="mission-slot advantage-right" data-with="mission.rightAdvantage"><template data-use="play-mission-card"></template></div>
           </div>
 
           <div class="scoreboard">
@@ -377,21 +382,6 @@
             </div>
           </div>
 
-          <div class="command-and-advantage">
-          <p class="priority-rule">点数低的一方选择先后手。</p>
-          <div class="advantage-row">
-            <div class="mission-slot" data-with="mission.leftAdvantage"><template data-use="play-mission-card"></template></div>
-            <div class="command-slot" data-with="leftCommand"><template data-use="play-command-slot"></template></div>
-            <div class="command-slot" data-with="rightCommand"><template data-use="play-command-slot"></template></div>
-            <div class="mission-slot mission-right" data-with="mission.rightAdvantage"><template data-use="play-mission-card"></template></div>
-          </div>
-          <div class="priority-control" data-show="commandPair">
-            <button type="button" data-action="rollPriority" data-enable="priorityReady" data-args="pair=commandPair">
-              <span data-priority-label data-text="priorityPrompt"></span>
-            </button>
-            <output data-show="priorityResult" data-text="priorityResult"></output>
-          </div>
-          </div>
         </section>
         <div class="command-tools">
           <button type="button" data-action="discardList">查看弃置卡牌</button>
@@ -418,114 +408,6 @@
             </div>
           </section>
         </div>
-        <details data-show="bpHistory.length">
-          <summary>任务调整记录</summary>
-          <ol>
-            <template data-each="bpHistory"><li><span data-text="player"></span> <span data-text="action"></span> <span data-text="revealed"></span></li></template>
-          </ol>
-        </details>
-
-        <section data-show="showBoard">
-          <details data-show="playing">
-            <summary>本阶段流程</summary>
-            <ol><template data-each="phaseSteps"><li data-text="text"></li></template></ol>
-          </details>
-          <p data-show="finished" data-text="outcome"></p>
-          <form data-action="settleTie" data-show="canSettleTie">
-            <div class="actions">
-              <template data-each="casualtyScores">
-                <label><span data-text="name"></span>被击败单位总分
-                  <input type="number" min="0" inputmode="numeric" required data-attr="name=id readonly=known" data-model="points">
-                </label>
-              </template>
-            </div>
-            <button type="submit">确认比较</button>
-          </form>
-          <details data-show="playing">
-            <summary>按剩余单位结算</summary>
-            <form data-action="confirmLastArmy">
-              <label>唯一还有未被击败单位的一方 <select name="player" required>
-                <option value="">请选择</option>
-                <template data-each="scorePlayers"><option data-text="name" data-attr="value=id"></option></template>
-              </select></label>
-              <button type="submit">确认结算</button>
-            </form>
-          </details>
-          <div class="actions" data-show="finished">
-            <button data-action="reopen">返回对局</button>
-            <button data-action="newMatch">用本局军表开始新对局</button>
-          </div>
-        </section>
-        <section data-show="showBoard">
-          <h2>得分记录</h2>
-          <form data-action="score" data-clear>
-            <label>玩家 <select name="player">
-              <optgroup label="本局玩家"><template data-each="scorePlayers"><option data-text="name" data-attr="value=id"></option></template></optgroup>
-            </select></label>
-            <label>得分项 <select name="category"><option value="primary">主目标</option><option value="secondary">次要目标</option><option value="other">其他</option></select></label>
-            <label>分数 <input type="number" name="value" required value="1" inputmode="numeric"></label>
-            <label>备注 <input name="note"></label>
-            <button type="submit">记录得分</button>
-          </form>
-          <details>
-            <summary>各回合得分</summary>
-            <table class="round-scores">
-              <thead><tr><th scope="col">回合</th><th scope="col">蓝方本轮</th><th scope="col">红方本轮</th><th scope="col">累计 蓝∶红</th></tr></thead>
-              <tbody>
-                <template data-each="roundScores">
-                  <tr><th scope="row" data-text="round"></th><td data-text="blue"></td><td data-text="red"></td><td><span data-text="cumulativeBlue"></span> ∶ <span data-text="cumulativeRed"></span></td></tr>
-                </template>
-              </tbody>
-            </table>
-          </details>
-          <label>筛选回合 <select data-action="setView" data-field="scoreRound" data-model="scoreRound">
-            <template data-each="roundFilterOptions"><option data-text="name" data-attr="value=id"></option></template>
-          </select></label>
-          <div data-show="editingScore" data-with="editingScore">
-            <h3>修改得分记录</h3>
-            <form data-action="amendScore" data-args="id=id">
-              <label>玩家 <select name="player" data-model="player">
-                <template data-each="playerOptions"><option data-text="name" data-attr="value=id"></option></template>
-              </select></label>
-              <label>得分项 <select name="category" data-model="category">
-                <template data-each="categoryOptions"><option data-text="name" data-attr="value=id"></option></template>
-              </select></label>
-              <label>分数 <input type="number" name="value" required inputmode="numeric" data-model="points"></label>
-              <label>回合 <select name="round" data-model="round">
-                <template data-each="roundOptions"><option data-text="name" data-attr="value=id"></option></template>
-              </select></label>
-              <label>阶段 <select name="phase" data-model="phase">
-                <template data-each="phaseOptions"><option data-text="name" data-attr="value=id"></option></template>
-              </select></label>
-              <label>备注 <input name="note" data-model="note"></label>
-              <button type="submit">保存修改</button>
-              <button type="button" data-action="setView" data-field="scoreEditId">取消修改</button>
-            </form>
-          </div>
-          <ul class="score-history">
-            <template data-each="scoreEvents" data-key="id">
-              <li data-attr="data-reversed=reversed">
-                <b data-text="playerLabel"></b> <strong data-text="signed"></strong>
-                <span data-text="categoryLabel"></span> <span data-text="source"></span> <span data-text="note"></span>
-                <small>第 <span data-text="round"></span> 回合 · <span data-text="phaseLabel"></span></small>
-                <button data-action="setView" data-field="scoreEditId" data-args="value=id" data-show="canEdit">修改</button>
-                <button data-action="undoScore" data-args="id=id" data-show="canUndo">撤销</button>
-                <span data-show="reversed">已撤销</span>
-                <details data-show="revisions.length">
-                  <summary>修改历史</summary>
-                  <ul>
-                    <template data-each="revisions">
-                      <li><span data-text="playerLabel"></span> <span data-text="signed"></span>
-                        <span data-text="categoryLabel"></span> <span data-text="source"></span> <span data-text="note"></span>
-                        <small>第 <span data-text="round"></span> 回合 · <span data-text="phaseLabel"></span></small>
-                      </li>
-                    </template>
-                  </ul>
-                </details>
-              </li>
-            </template>
-          </ul>
-        </section>
         <section class="kill-summary" aria-labelledby="kill-summary-title">
           <h2 id="kill-summary-title">击杀分</h2>
           <div class="kill-sides">
@@ -534,6 +416,116 @@
             </template>
           </div>
         </section>
+        <details class="match-records" data-show="showBoard">
+          <summary>得分记录<small class="match-development">功能还在开发</small></summary>
+          <details data-show="bpHistory.length">
+            <summary>任务调整记录</summary>
+            <ol>
+              <template data-each="bpHistory"><li><span data-text="player"></span> <span data-text="action"></span> <span data-text="revealed"></span></li></template>
+            </ol>
+          </details>
+
+          <section aria-label="对局流程与结算">
+            <details data-show="playing">
+              <summary>本阶段流程</summary>
+              <ol><template data-each="phaseSteps"><li data-text="text"></li></template></ol>
+            </details>
+            <p data-show="finished" data-text="outcome"></p>
+            <form data-action="settleTie" data-show="canSettleTie">
+              <div class="actions">
+                <template data-each="casualtyScores">
+                  <label><span data-text="name"></span>被击败单位总分
+                    <input type="number" min="0" inputmode="numeric" required data-attr="name=id readonly=known" data-model="points">
+                  </label>
+                </template>
+              </div>
+              <button type="submit">确认比较</button>
+            </form>
+            <details data-show="playing">
+              <summary>按剩余单位结算</summary>
+              <form data-action="confirmLastArmy">
+                <label>唯一还有未被击败单位的一方 <select name="player" required>
+                  <option value="">请选择</option>
+                  <template data-each="scorePlayers"><option data-text="name" data-attr="value=id"></option></template>
+                </select></label>
+                <button type="submit">确认结算</button>
+              </form>
+            </details>
+            <div class="actions" data-show="finished">
+              <button data-action="reopen">返回对局</button>
+              <button data-action="newMatch">用本局军表开始新对局</button>
+            </div>
+          </section>
+          <section aria-label="得分明细">
+            <form data-action="score" data-clear>
+              <label>玩家 <select name="player">
+                <optgroup label="本局玩家"><template data-each="scorePlayers"><option data-text="name" data-attr="value=id"></option></template></optgroup>
+              </select></label>
+              <label>得分项 <select name="category"><option value="primary">主目标</option><option value="secondary">次要目标</option><option value="other">其他</option></select></label>
+              <label>分数 <input type="number" name="value" required value="1" inputmode="numeric"></label>
+              <label>备注 <input name="note"></label>
+              <button type="submit">记录得分</button>
+            </form>
+            <details>
+              <summary>各回合得分</summary>
+              <table class="round-scores">
+                <thead><tr><th scope="col">回合</th><th scope="col">蓝方本轮</th><th scope="col">红方本轮</th><th scope="col">累计 蓝∶红</th></tr></thead>
+                <tbody>
+                  <template data-each="roundScores">
+                    <tr><th scope="row" data-text="round"></th><td data-text="blue"></td><td data-text="red"></td><td><span data-text="cumulativeBlue"></span> ∶ <span data-text="cumulativeRed"></span></td></tr>
+                  </template>
+                </tbody>
+              </table>
+            </details>
+            <label>筛选回合 <select data-action="setView" data-field="scoreRound" data-model="scoreRound">
+              <template data-each="roundFilterOptions"><option data-text="name" data-attr="value=id"></option></template>
+            </select></label>
+            <div data-show="editingScore" data-with="editingScore">
+              <h3>修改得分记录</h3>
+              <form data-action="amendScore" data-args="id=id">
+                <label>玩家 <select name="player" data-model="player">
+                  <template data-each="playerOptions"><option data-text="name" data-attr="value=id"></option></template>
+                </select></label>
+                <label>得分项 <select name="category" data-model="category">
+                  <template data-each="categoryOptions"><option data-text="name" data-attr="value=id"></option></template>
+                </select></label>
+                <label>分数 <input type="number" name="value" required inputmode="numeric" data-model="points"></label>
+                <label>回合 <select name="round" data-model="round">
+                  <template data-each="roundOptions"><option data-text="name" data-attr="value=id"></option></template>
+                </select></label>
+                <label>阶段 <select name="phase" data-model="phase">
+                  <template data-each="phaseOptions"><option data-text="name" data-attr="value=id"></option></template>
+                </select></label>
+                <label>备注 <input name="note" data-model="note"></label>
+                <button type="submit">保存修改</button>
+                <button type="button" data-action="setView" data-field="scoreEditId">取消修改</button>
+              </form>
+            </div>
+            <ul class="score-history">
+              <template data-each="scoreEvents" data-key="id">
+                <li data-attr="data-reversed=reversed">
+                  <b data-text="playerLabel"></b> <strong data-text="signed"></strong>
+                  <span data-text="categoryLabel"></span> <span data-text="source"></span> <span data-text="note"></span>
+                  <small>第 <span data-text="round"></span> 回合 · <span data-text="phaseLabel"></span></small>
+                  <button data-action="setView" data-field="scoreEditId" data-args="value=id" data-show="canEdit">修改</button>
+                  <button data-action="undoScore" data-args="id=id" data-show="canUndo">撤销</button>
+                  <span data-show="reversed">已撤销</span>
+                  <details data-show="revisions.length">
+                    <summary>修改历史</summary>
+                    <ul>
+                      <template data-each="revisions">
+                        <li><span data-text="playerLabel"></span> <span data-text="signed"></span>
+                          <span data-text="categoryLabel"></span> <span data-text="source"></span> <span data-text="note"></span>
+                          <small>第 <span data-text="round"></span> 回合 · <span data-text="phaseLabel"></span></small>
+                        </li>
+                      </template>
+                    </ul>
+                  </details>
+                </li>
+              </template>
+            </ul>
+          </section>
+        </details>
       </div>
 
       <section id="play-reminders" data-show="showReminders">
@@ -620,6 +612,7 @@
                 <div class="unit-tokens" data-show="tokens.length">
                   <template data-each="tokens" data-key="id"><template data-use="play-token"></template></template>
                 </div>
+                <div class="unit-keywords" data-show="showUnitKeywords" data-unit-keywords="card.sharedDetail" aria-label="单位词条"></div>
                 <div class="unit-card-piece">
                 <button class="card-link roster-art" data-action="detail" data-args="card=card" data-attr="data-focus-key=id aria-label=name">
                   <img data-src="image" data-show="image" alt="" loading="lazy">
@@ -636,7 +629,6 @@
                   <button data-action="repeatActivation" data-args="player=player id=id" data-show="canRepeatActivation">记录额外激活</button>
                 </div>
                 </div>
-                <div class="unit-keywords" data-show="showUnitKeywords" data-unit-keywords="card.sharedDetail" aria-label="单位词条"></div>
                 <div class="upgrade-list" data-show="upgrades.length">
                   <template data-each="upgrades" data-key="focus">
                     <div class="upgrade-piece" data-attr="data-state=visualState">
@@ -752,7 +744,7 @@
 
     <template id="play-mission-card">
       <h3 class="panel-label" data-text="name"></h3>
-      <button type="button" class="battle-preview" data-show="card" data-action="detail" data-args="card=card openScoring=openScoring" data-attr="aria-label=previewLabel">
+      <button type="button" class="battle-preview" data-show="card" data-action="detail" data-args="card=card" data-attr="aria-label=previewLabel">
         <span class="battle-face" data-attr="data-category=category data-card-id=card.id data-has-art=card.hasArt" data-with="card">
           <span class="battle-template" data-show="image"><img data-src="image" alt=""></span>
           <strong class="battle-title" data-show="showTitle" data-text="name"></strong>
@@ -765,11 +757,19 @@
           <small class="battle-missing" data-show="missing" data-text="missing"></small>
         </span>
       </button>
-      <button type="button" class="mission-card-detail" data-show="canViewCard" data-action="detail" data-args="card=card" data-attr="aria-label=card.detailLabel">卡牌详情</button>
       <p class="empty-card" data-hide="card">未选择</p>
       <select class="mission-picker" data-show="manual" data-action="setMission" data-args="category=category player=player" data-model="selected" data-attr="aria-label=name data-focus-key=key">
         <template data-each="options"><option data-attr="value=id" data-text="name"></option></template>
       </select>
+    </template>
+
+    <template id="play-mission-stepper">
+      <div class="mission-stepper" data-hide="locked">
+        <button type="button" data-action="missionScore" data-value="-1" data-args="category=category id=id player=player" data-enable="canSubtract" data-attr="aria-label=subtractLabel">−</button>
+        <output data-text="points" data-attr="data-color=color"></output>
+        <button type="button" data-action="missionScore" data-value="1" data-args="category=category id=id player=player" data-enable="canAdd" data-attr="aria-label=addLabel">＋</button>
+      </div>
+      <small data-show="label" data-text="label"></small>
     </template>
 
     <template id="play-player-score">
@@ -843,16 +843,6 @@
           </article>
         </template>
       </div>
-    </dialog>
-
-    <dialog data-display-confirm aria-labelledby="display-confirm-title">
-      <h2 id="display-confirm-title">是否是永久揭露效果？</h2>
-      <p>如果是永久揭露效果，则揭露后无法返回手牌。</p>
-      <form method="dialog">
-        <button type="submit">取消</button>
-        <button type="button" data-action="confirmDisplay" data-value="no">否</button>
-        <button type="button" data-action="confirmDisplay" data-value="yes">是</button>
-      </form>
     </dialog>
 
     <dialog class="play-card-detail" data-detail-dialog aria-labelledby="play-detail-title">

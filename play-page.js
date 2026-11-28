@@ -7,9 +7,9 @@
   const base = new URL(url.searchParams.get("base") || "./", url);
   const initialView = () => ({
     page: "home", wizardStep: 1, tab: "match", selectedToken: null, scoreRound: "", scoreEditId: "",
-    importError: "", importWarnings: [], missionScoreOpen: false, showUnitKeywords: false,
+    importError: "", importWarnings: [], showUnitKeywords: false,
     dicePools: { self: { count: 0, faces: null }, opponent: { count: 0, faces: null } },
-    deckDialog: null, pendingStartBP: false, commandDialog: null, displayChoice: null, priorityBusy: false
+    deckDialog: null, pendingStartBP: false, commandDialog: null, priorityBusy: false
   });
   let ui = initialView();
   const repeatedNodes = new WeakMap();
@@ -118,11 +118,12 @@
     const before = document.activeElement;
     const focusKey = before?.getAttribute("data-focus-key");
     const match = currentEntry()?.match;
-    const pageView = match ? catalog.view(match, ui) : { rosterName: "游玩系统", homeOpen: true };
+    const pageView = match ? catalog.view(match, ui) : { homeOpen: true };
+    const rosterName = match?.armies.self.name || rosterRecord?.name;
     bind(root, {
       ...pageView,
       ...catalog.archiveView(archive, currentId),
-      rosterName: match?.armies.self.name || rosterRecord?.name || "游玩系统",
+      heading: rosterName ? "对局助手 · " + rosterName : "对局助手",
       hasMatch: !!match
     });
     root.querySelector("[data-loaded]").hidden = false;
@@ -447,17 +448,7 @@
         root.querySelector(type === "commandPicker" ? "[data-command-picker]" : "[data-discard-dialog]").showModal();
         return;
       } else if (type === "chooseCommand") {
-        if (args.purpose === "display") {
-          ui.displayChoice = { player: args.player, id: args.id };
-          root.querySelector("[data-display-confirm]").showModal();
-          return;
-        }
-        await commit({ ...args, type: "placeCommand" }, matchId);
-        root.querySelector("[data-command-picker]").close();
-      } else if (type === "confirmDisplay") {
-        if (!ui.displayChoice) return;
-        await commit({ ...ui.displayChoice, type: "displayCommand", permanent: args.value === "yes" }, matchId);
-        root.querySelector("[data-display-confirm]").close();
+        await commit({ ...args, type: args.purpose === "display" ? "displayCommand" : "placeCommand" }, matchId);
         root.querySelector("[data-command-picker]").close();
       } else if (type === "rollPriority") {
         await rollPriority(element, args.pair, matchId);
@@ -482,7 +473,8 @@
           ui.tab = "match";
           savePageRoute();
         }
-      } else if (type === "returnHome") {
+      } else if (type === "resetSetup") {
+        if (!window.confirm("返回对局选择并重新设置？开始新对局时将替换当前会话，已存档的对局可保留。")) return;
         ui.page = "home";
         savePageRoute();
       } else if (type === "rollDice") {
@@ -548,11 +540,6 @@
         ui.selectedToken = ui.selectedToken === id ? null : id;
       } else if (type === "detail") {
         if (!args.card) return;
-        if (args.openScoring) {
-          ui.missionScoreOpen = true;
-          render();
-          return;
-        }
         const dialog = root.querySelector("[data-detail-dialog]");
         const pages = (args.card.pages || [args.card]).map(card => ({
           ...card,
@@ -684,7 +671,6 @@
   }
 
   function connect() {
-    root.querySelector("[data-display-confirm]").addEventListener("close", () => { ui.displayChoice = null; });
     root.querySelector("[data-deck-dialog]").addEventListener("close", event => {
       if (!event.currentTarget.open) ui.deckDialog = null;
     });
