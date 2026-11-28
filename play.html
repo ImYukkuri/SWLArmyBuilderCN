@@ -288,8 +288,8 @@
             <div class="mission-slot mission-left" data-with="leftMission"><template data-use="play-mission-card"></template></div>
             <div class="mission-slot mission-right" data-with="rightMission"><template data-use="play-mission-card"></template></div>
           </div>
-          <div class="mission-scoring" data-show="missionScoreGroups.length">
-            <h3>第 <span data-text="round"></span> 回合计分</h3>
+          <details class="mission-scoring" data-show="missionScoreGroups.length" open>
+            <summary>第 <span data-text="round"></span> 回合计分</summary>
             <template data-each="missionScoreGroups" data-key="category">
               <div class="mission-score-group">
                 <div class="mission-group-heading">
@@ -320,7 +320,7 @@
                 </template>
               </div>
             </template>
-          </div>
+          </details>
 
           <div class="map-and-commands">
             <div class="command-slot command-left" data-with="leftCommand"><template data-use="play-command-slot"></template></div>
@@ -339,11 +339,6 @@
               </button>
               <output data-show="priorityResult" data-text="priorityResult"></output>
             </div>
-          </div>
-
-          <div class="advantage-row">
-            <div class="mission-slot advantage-left" data-with="mission.leftAdvantage"><template data-use="play-mission-card"></template></div>
-            <div class="mission-slot advantage-right" data-with="mission.rightAdvantage"><template data-use="play-mission-card"></template></div>
           </div>
 
           <div class="scoreboard">
@@ -382,6 +377,10 @@
             </div>
           </div>
 
+          <div class="advantage-row">
+            <div class="mission-slot advantage-left" data-with="mission.leftAdvantage"><template data-use="play-mission-card"></template></div>
+            <div class="mission-slot advantage-right" data-with="mission.rightAdvantage"><template data-use="play-mission-card"></template></div>
+          </div>
         </section>
         <div class="command-tools">
           <button type="button" data-action="discardList">查看弃置卡牌</button>

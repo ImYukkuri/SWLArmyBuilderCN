@@ -209,8 +209,9 @@ test('narrow play panel keeps mission scoring, card details and restart accessib
   await panel.locator('.mission-left select').selectOption('deployment-14');
   await panel.locator('.mission-right select').selectOption('objective-15');
   await panel.locator('.advantage-left select').selectOption('condition-29');
-  const sections = await panel.locator('.mission-row, .mission-scoring, .map-and-commands, .advantage-row').evaluateAll(nodes =>
-    nodes.map(node => node.getBoundingClientRect().y));
+  const sections = await panel.evaluate(node => [
+    '.mission-row', '.mission-scoring', '.map-and-commands', '.scoreboard', '.victory-board', '.advantage-row'
+  ].map(selector => node.querySelector(selector).getBoundingClientRect().y));
   assert(sections.every((y, index) => !index || y > sections[index - 1]));
   const [commands, map] = await Promise.all([
     panel.locator('.command-slot').evaluateAll(nodes => nodes.map(node => node.getBoundingClientRect().toJSON())),
@@ -224,7 +225,16 @@ test('narrow play panel keeps mission scoring, card details and restart accessib
   await add.tap();
   const totals = panel.locator('.mission-group-heading').first().locator('b');
   assert.equal(await totals.first().innerText(), '1');
+  const scoring = panel.locator('.mission-scoring');
+  const heading = scoring.locator('summary');
+  assert.equal(await scoring.evaluate(node => node.open), true);
+  await heading.tap();
+  assert.equal(await scoring.evaluate(node => node.open), false);
+  assert.equal(await add.isVisible(), false);
   await page.getByRole('button', {name: '镜像'}).tap();
+  assert.equal(await scoring.evaluate(node => node.open), false);
+  await heading.tap();
+  assert.equal(await add.isVisible(), true);
   assert.equal(await totals.last().getAttribute('data-color'), 'blue');
   assert.equal(await totals.last().innerText(), '1');
   await panel.locator('.mission-left .battle-preview').tap();

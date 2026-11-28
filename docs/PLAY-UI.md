@@ -27,9 +27,9 @@
 
 表单使用 `data-action` 和带 `name` 的控件提交。重复项里如需在更新后保留键盘焦点，可绑定唯一的 `data-focus-key`。标记拖放使用 `data-drag-token` 和 `data-token-drop`，其余参数仍通过 `data-action` 与 `data-args` 声明。
 
-`.match-panel` 使用 CSS 网格安排各模块。窄屏依次排列任务卡、回合计分项、地图与指挥卡、优势卡、回合与总分、计分轨。主任务、次要任务和双方优势卡共用 `#play-mission-card`，双方计分控件分别共用 `#play-mission-stepper` 和 `#play-player-score`。
+`.match-panel` 使用 CSS 网格安排各模块。窄屏依次排列任务卡、回合计分项、地图与指挥卡、回合与总分、计分轨、优势卡。主任务、次要任务和双方优势卡共用 `#play-mission-card`，双方计分控件分别共用 `#play-mission-stepper` 和 `#play-player-score`。
 
-计分面板顶部可镜像。点击卡面打开详情，选定的任务在面板中直接显示本回合的计分项。任务的计分项和标记在数据维护的「任务卡」页面配置。
+计分面板顶部可镜像。点击卡面打开详情，选定的任务在面板中直接显示本回合的计分项。点击回合计分标题可收起或展开计分项。任务的计分项和标记在数据维护的「任务卡」页面配置。
 
 得分明细使用 `scoreEvents`，每条记录的原值保存在 `revisions`。`roundScores` 提供各回合净得分和累计分。`retreat` 和 `advance` 移动流程位置，得分修正分别使用 `amendScore` 和 `undoScore`。筛选与选中待修改的记录由 `setView` 控制。
 

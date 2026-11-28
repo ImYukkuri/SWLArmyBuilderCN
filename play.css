@@ -554,7 +554,7 @@ section.bp-player-card { min-width: 0; margin: 0; padding: 10px; }
 .match-panel[data-mirrored] .score-track li { border-inline-start: 1px solid #766448; border-inline-end: 0; }
 .match-panel[data-mirrored] .score-track li[data-start] { border-inline-end: 1px solid #8d7653; }
 .mission-scoring { min-width: 0; padding: 7px var(--gutter); }
-.mission-scoring > h3 { margin: 0 0 3px; font-size: 12px; text-align: center; }
+.mission-scoring > summary { padding-block: 4px; cursor: pointer; font-size: 12px; font-weight: 650; text-align: center; }
 .mission-score-group { margin-block-start: 4px; border-block-start: 1px solid var(--line); }
 .mission-group-heading {
   display: grid;
@@ -944,7 +944,7 @@ button.token-return { position: absolute; inset: 0 0 auto auto; z-index: 1; widt
 @media (max-width: 620px) {
   .match-panel { grid-template-columns: minmax(0, 1fr); grid-template-areas: none; gap: 0; }
   .match-panel > * { grid-area: auto; }
-  .match-panel > div { padding-block: 7px; border-block-end: 1px solid var(--line); }
+  .match-panel > :is(div, .mission-scoring) { padding-block: 7px; border-block-end: 1px solid var(--line); }
   .mission-row, .advantage-row {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
